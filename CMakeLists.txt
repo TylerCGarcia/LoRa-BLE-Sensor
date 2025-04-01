@@ -9,7 +9,12 @@ list(APPEND BOARD_ROOT ${CMAKE_CURRENT_SOURCE_DIR})
 set(BOARD lora_ble_sensor)
 
 # Set the overlay file
-set(DTC_OVERLAY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/pmic.overlay)
+set(DTC_OVERLAY_FILE 
+    ${CMAKE_CURRENT_SOURCE_DIR}/conf/pmic.overlay)
+
+# Define configuration files.
+list(APPEND CONF_FILE
+  ${CMAKE_CURRENT_SOURCE_DIR}/conf/prj.conf)
 
 find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
 project(LoRa-BLE-Sensor)
