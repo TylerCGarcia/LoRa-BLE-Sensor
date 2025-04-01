@@ -1,0 +1,6 @@
+if BOARD_LORA_CURRENT_SENSOR
+
+config BOARD
+	default "lora_current_sensor"
+
+endif 

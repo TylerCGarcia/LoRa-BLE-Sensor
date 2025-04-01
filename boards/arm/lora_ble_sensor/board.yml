@@ -1,0 +1,6 @@
+board:
+  name: lora_ble_sensor
+  full_name: LoRa_BLE_Sensor
+  vendor: nordic
+  socs:
+  - name: nrf52840

@@ -1,0 +1,12 @@
+# editors
+*.swp
+*~
+
+# build
+/build*/
+twister-out*/
+.vscode/
+
+
+# Remove Version folder
+# conf/version.conf

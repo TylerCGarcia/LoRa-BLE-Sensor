@@ -1,0 +1,177 @@
+/*
+ * Copyright (c) 2021 Guillaume Paquet <guillaume.paquet@smile.fr>
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+/dts-v1/;
+#include <nordic/nrf52840_qiaa.dtsi>
+#include <nordic/nrf52840_partition.dtsi>
+#include <zephyr/dt-bindings/lora/sx126x.h>
+#include "lora_ble_sensor-pinctrl.dtsi"
+#include <zephyr/dt-bindings/input/input-event-codes.h>
+
+	/ {
+	model = "LoRa_BLE_Sensor with a Nordic NRF52840 SoC";
+	compatible = "arm,lora_ble_sensor";
+
+	chosen {
+		zephyr,console = &cdc_acm_uart0;
+		zephyr,shell-uart = &cdc_acm_uart0;
+		zephyr,uart-mcumgr = &cdc_acm_uart0;
+		zephyr,bt-mon-uart = &cdc_acm_uart0;
+		zephyr,bt-c2h-uart = &cdc_acm_uart0;
+	};
+
+	leds {
+		compatible = "gpio-leds";
+		boost1_en: boost1_en {
+			gpios = <&gpio0 17 GPIO_ACTIVE_HIGH>;
+			label = "Boost 1 Enable";
+		};
+		boost1_ctrl1: boost1_ctrl1 {
+			gpios = <&gpio0 15 GPIO_ACTIVE_HIGH>;
+			label = "Boost 1 Ctrl 1";
+		};
+		boost1_ctrl2: boost1_ctrl2 {
+			gpios = <&gpio0 16 GPIO_ACTIVE_HIGH>;
+			label = "Boost 1 Ctrl 2";
+		};
+		boost2_en: boost2_en {
+			gpios = <&gpio0 14 GPIO_ACTIVE_HIGH>;
+			label = "Boost 2 Enable";
+		};
+		boost2_ctrl1: boost2_ctrl1 {
+			gpios = <&gpio0 26 GPIO_ACTIVE_HIGH>;
+			label = "Boost 2 Ctrl 1";
+		};
+		boost2_ctrl2: boost2_ctrl2 {
+			gpios = <&gpio0 13 GPIO_ACTIVE_HIGH>;
+			label = "Boost 2 Ctrl 2";
+		};
+	};
+
+	buttons {
+		compatible = "gpio-keys";
+		button0: button_0 {
+			gpios = <&gpio0 9  (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+			label = "Button 0";
+			zephyr,code = <INPUT_KEY_0>;
+		};
+	};
+
+	/* Declaration of aliases */
+	aliases {
+		sw0 = &button0;
+		lora0 = &lora;
+		watchdog0 = &wdt0;
+		boost1en = &boost1_en;
+		boost1ctrl1 = &boost1_ctrl1;
+		boost1ctrl2 = &boost1_ctrl2;
+		boost2en = &boost2_en;
+		boost2ctrl1 = &boost2_ctrl1;
+		boost2ctrl2 = &boost2_ctrl2;
+	};
+};
+
+&reg0 {
+	status = "okay";
+};
+
+&reg1 {
+	regulator-initial-mode = <NRF5X_REG_MODE_DCDC>;
+};
+
+&adc {
+	status = "disabled";
+};
+
+&uicr {
+	gpio-as-nreset;
+	nfct-pins-as-gpios;
+};
+
+&gpiote {
+	status = "okay";
+};
+
+&gpio0 {
+	status = "okay";
+};
+
+&gpio1 {
+	status = "okay";
+};
+
+// &uart0 {
+// 	compatible = "nordic,nrf-uart";
+// 	status = "okay";
+// 	current-speed = <115200>;
+// 	pinctrl-0 = <&uart0_default>;
+// 	pinctrl-1 = <&uart0_sleep>;
+// 	pinctrl-names = "default", "sleep";
+// };
+
+// &uart1 {
+// 	compatible = "nordic,nrf-uarte";
+// 	current-speed = <115200>;
+// 	status = "disabled";
+// 	pinctrl-0 = <&uart1_default>;
+// 	pinctrl-1 = <&uart1_sleep>;
+// 	pinctrl-names = "default", "sleep";
+// };
+
+&i2c0 {
+	compatible = "nordic,nrf-twi";
+	status = "okay";
+	pinctrl-0 = <&i2c0_default>;
+	pinctrl-1 = <&i2c0_sleep>;
+	pinctrl-names = "default", "sleep";
+};
+
+// &i2c1 {
+// 	compatible = "nordic,nrf-twi";
+// 	/* Cannot be used together with spi1. */
+// 	/* status = "okay"; */
+// 	pinctrl-0 = <&i2c1_default>;
+// 	pinctrl-1 = <&i2c1_sleep>;
+// 	pinctrl-names = "default", "sleep";
+// };
+
+&spi1 {
+	compatible = "nordic,nrf-spi";
+	status = "okay";
+	cs-gpios = <&gpio1 10 GPIO_ACTIVE_LOW>;
+
+	pinctrl-0 = <&spi1_default>;
+	pinctrl-1 = <&spi1_sleep>;
+	pinctrl-names = "default", "sleep";
+	lora: lora@0 {
+		compatible = "semtech,sx1262";
+		reg = <0>;
+		reset-gpios = <&gpio1 6 GPIO_ACTIVE_LOW>;
+		busy-gpios = <&gpio1 14 GPIO_ACTIVE_HIGH>;
+		rx-enable-gpios = <&gpio1 5 GPIO_ACTIVE_LOW>;
+		dio1-gpios = <&gpio1 15 GPIO_ACTIVE_HIGH>;
+		dio2-tx-enable;
+		dio3-tcxo-voltage = <SX126X_DIO3_TCXO_3V3>;
+		tcxo-power-startup-delay-ms = <5>;
+		spi-max-frequency = <1000000>;
+	};
+};
+
+&qspi {
+	status = "disabled";
+	pinctrl-0 = <&qspi_default>;
+	pinctrl-1 = <&qspi_sleep>;
+	pinctrl-names = "default", "sleep";
+};
+
+zephyr_udc0: &usbd {
+	compatible = "nordic,nrf-usbd";
+	status = "okay";
+	cdc_acm_uart0: cdc_acm_uart0 {
+		compatible = "zephyr,cdc-acm-uart";
+		label = "CDC_ACM_0";
+	};
+};

@@ -1,0 +1,8 @@
+# LoRa-BLE-Sensor Board configuration
+
+# Copyright (c) 2021 Guillaume Paquet <guillaume.paquet@smile.fr>
+# SPDX-License-Identifier: Apache-2.0
+
+if BOARD_LORA_BLE_SENSOR
+
+endif # BOARD_LoRa_BLE_Sensor
