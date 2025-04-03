@@ -1,0 +1,108 @@
+{
+    // source ~/zephyrproject/.venv/bin/activate
+    // usbipd list -> usbipd bind --busid <busid> -> usbipd attach --wsl --busid <busid> -> lsusb ->usbipd deattach --busid <busid>
+    // west twister -n -T tests/ -A ~/Work/CyberJungle/Code/LoRa-BLE-Sensor/ -p lora_ble_sensor
+    // https://devzone.nordicsemi.com/f/nordic-q-a/82738/jlink-fails-to-connect-using-nrfjprog-inside-windows-subsystem-linux-2
+    // These commands are needed to fix the JLink connection issue everytime jlink is attached to wsl
+    // sudo service udev restart
+    // sudo udevadm control --reload
+    // west twister --device-testing --device-serial /dev/ttyACM0 -p lora_ble_sensor -T tests/ -A ~/Work/CyberJungle/Code/LoRa-BLE-Sensor/
+    "terminal.integrated.env.osx": {
+        "PATH": "$HOME/zephyrproject/zephyr/scripts",
+        "ZEPHYR_BASE": "${env:HOME}/zephyrproject/zephyr",
+    },
+    "terminal.integrated.env.linux": {
+        "PATH": "$HOME/zephyrproject/zephyr/scripts:${env:PATH}",
+        "ZEPHYR_BASE": "${env:HOME}/zephyrproject/zephyr",
+    },
+    "terminal.integrated.env.windows": {
+        "PATH": "C:\\zephyrproject\\zephyr\\scripts;${env:PATH}",
+        "ZEPHYR_BASE": "C:\\zephyrproject\\zephyr",
+    },
+    "cortex-debug.gdbPath": "/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/12.2 mpacbti-rel1/bin/arm-none-eabi-gdb",
+    "cortex-debug.JLinkGDBServerPath": "/Program Files/SEGGER/JLink/JLinkGDBServerCL",
+    "cortex-debug.variableUseNaturalFormat": true,
+
+    "actionButtons": {
+        "defaultColor": "white",
+        "commands": [
+            {
+                "name" : "✔",
+                "terminalName" : "Zephyr Terminal",
+                "color": "white",
+				"useVsCodeApi": false,
+                "ignoreClear": true,
+                "singleInstance": false,
+                "command": "west build"
+            },
+            {
+                "name" : "✔✔",
+                "terminalName" : "Zephyr Terminal",
+                "color": "white",
+				"useVsCodeApi": false,
+                "ignoreClear": true,
+                "singleInstance": false,
+                "command": "west build -p"
+            },
+            {
+                "name" : "🡅",
+                "terminalName" : "Zephyr Terminal",
+                "color": "white",
+				"useVsCodeApi": false,
+                "ignoreClear": true,
+                "singleInstance": false,
+                "command": "west flash"
+            },
+            {
+                "name" : "Twister",
+                "terminalName" : "Zephyr Terminal",
+                "color": "white",
+				"useVsCodeApi": false,
+                "ignoreClear": true,
+                "singleInstance": false,
+                "command": "west twister -T tests/",
+                // python C:/zephyrproject/zephyr/scripts/twister -T tests
+            },
+            {
+                "name" : "Run",
+                "terminalName" : "Zephyr Terminal",
+                "color": "white",
+				"useVsCodeApi": false,
+                "ignoreClear": true,
+                "singleInstance": false,
+                "command": "west build -b qemu_cortex_m3 -t run tests/sensor_power_tests",
+            }
+        ]
+    },
+    "files.associations": {
+        "kernel.h": "c",
+        "gpio.h": "c",
+        "lorawan.h": "c",
+        "printk.h": "c",
+        "log.h": "c",
+        "flash.h": "c",
+        "nvs.h": "c",
+        "adc.h": "c",
+        "array": "c",
+        "string": "c",
+        "string_view": "c",
+        "flash_map.h": "c",
+        "irq.h": "c",
+        "soc.h": "c",
+        "irq_ctrl.h": "c",
+        "board_soc.h": "c",
+        "interrupt_util.h": "c",
+        "exti_stm32.h": "c",
+        "lorawan_app.h": "c",
+        "device.h": "c",
+        "main.h": "c",
+        "app_utilities.h": "c",
+        "npm1300.h": "c",
+        "npm1300_charger.h": "c",
+        "led.h": "c",
+        "regulator.h": "c",
+        "nordic-npm1300-gpio.h": "c",
+        "pm.h": "c",
+        "poweroff.h": "c"
+    }
+}

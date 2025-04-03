@@ -5,7 +5,6 @@
 # build
 /build*/
 twister-out*/
-.vscode/
 
 
 # Remove Version folder
