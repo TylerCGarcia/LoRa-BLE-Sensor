@@ -1,21 +1,38 @@
 {
     "configurations": [
         {
-            "name": "Win32",
+            "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/**",
-                "C:/zephyrproject/zephyr/**",
-                "C:/zephyrproject/zephyr/include",   
-                "C:/zephyrproject/zephyr/include/zephyr/logging"
+                "~/zephyrproject/zephyr/**",
+                "~/zephyrproject/zephyr/include",
+                "~/zephyrproject/zephyr/kernel/include",
+                "~/zephyrproject/zephyr/arch/posix/include",   
+                "~/zephyrproject/zephyr/kernel/",
+                "~/zephyrproject/zephyr/include/zephyr",
+                "~/zephyrproject/zephyr/include/zephyr/logging"
             ],
             "defines": [
                 "_DEBUG",
                 "UNICODE",
-                "_UNICODE"
+                "_UNICODE",
+                "__ZEPHYR__=1",
+                "KERNEL",
+                "CONFIG_POSIX_API",
+                "CONFIG_NATIVE_POSIX"
             ],
             "cStandard": "c17",
             "cppStandard": "c++17",
-            "intelliSenseMode": "windows-msvc-x64"
+            "intelliSenseMode": "linux-gcc-x64",
+            "compilerPath": "/usr/bin/gcc",
+            "browse": {
+                "path": [
+                    "${workspaceFolder}",
+                    "${workspaceFolder}/build/zephyr/include/generated",
+                    "~/zephyrproject/zephyr"
+                ],
+                "limitSymbolsToIncludedHeaders": true
+            }
         }
     ],
     "version": 4
