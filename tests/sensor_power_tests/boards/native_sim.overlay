@@ -40,32 +40,29 @@
     };
 
 	npm1300_ek_pmic: pmic {
-        compatible = "zephyr,regulator";
+        // compatible = "zephyr,regulator";
 
         npm1300_ek_regulators: regulators {
-            compatible = "zephyr,regulator";
+            // compatible = "zephyr,regulator";
+            compatible = "zephyr,fake-regulator";
 
             npm1300_ek_buck1: buck1 {
-                compatible = "regulator-fixed";
-                regulator-name = "buck1";
                 regulator-min-microvolt = <3000000>;
                 regulator-max-microvolt = <3000000>;
             };
 
             npm1300_ek_ldo1: ldo1 {
-                compatible = "zephyr,fake-regulator";
-                fake-is-enable-in-hardware;
-                regulator-name = "ldo1";
-                regulator-min-microvolt = <3300000>;
-                regulator-max-microvolt = <3300000>;
+                regulator-initial-mode = <NPM1300_LDSW_MODE_LDO>;
+                /delete-property/ enable-gpios;
+                /delete-property/ regulator-init-microvolt;
+                regulator-boot-off;
             };
 
             npm1300_ek_ldo2: ldo2 {
-                compatible = "zephyr,fake-regulator";
-                fake-is-enable-in-hardware;
-                regulator-name = "ldo2";
-                regulator-min-microvolt = <3300000>;
-                regulator-max-microvolt = <3300000>;
+                regulator-initial-mode = <NPM1300_LDSW_MODE_LDO>;
+                /delete-property/ enable-gpios;
+                /delete-property/ regulator-init-microvolt;
+                regulator-boot-off;
             };
         };
 

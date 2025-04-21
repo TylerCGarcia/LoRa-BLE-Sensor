@@ -65,13 +65,22 @@
                 // python C:/zephyrproject/zephyr/scripts/twister -T tests
             },
             {
-                "name" : "Run",
+                "name" : "qemu",
                 "terminalName" : "Zephyr Terminal",
                 "color": "white",
 				"useVsCodeApi": false,
                 "ignoreClear": true,
                 "singleInstance": false,
                 "command": "west build -b qemu_cortex_m3 -t run tests/sensor_power_tests",
+            },
+            {
+                "name" : "sim",
+                "terminalName" : "Zephyr Terminal",
+                "color": "white",
+				"useVsCodeApi": false,
+                "ignoreClear": true,
+                "singleInstance": false,
+                "command": "west build -b native_sim -t run tests/sensor_power_tests",
             },
             {
                 "name" : "venv",
