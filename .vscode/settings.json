@@ -61,7 +61,7 @@
 				"useVsCodeApi": false,
                 "ignoreClear": true,
                 "singleInstance": false,
-                "command": "west twister -T tests/",
+                "command": "west twister -T tests/ -A ~/Work/CyberJungle/Code/LoRa-BLE-Sensor/",
                 // python C:/zephyrproject/zephyr/scripts/twister -T tests
             },
             {
@@ -72,6 +72,15 @@
                 "ignoreClear": true,
                 "singleInstance": false,
                 "command": "west build -b qemu_cortex_m3 -t run tests/sensor_power_tests",
+            },
+            {
+                "name" : "venv",
+                "terminalName" : "Zephyr Terminal",
+                "color": "white",
+				"useVsCodeApi": false,
+                "ignoreClear": true,
+                "singleInstance": false,
+                "command": "source ~/zephyrproject/.venv/bin/activate",
             }
         ]
     },
@@ -105,6 +114,11 @@
         "nordic-npm1300-gpio.h": "c",
         "pm.h": "c",
         "poweroff.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "sensor_power.h": "c",
+        "ztest.h": "c",
+        "gpio_emul.h": "c",
+        "fff.h": "c",
+        "fake.h": "c"
     }
 }

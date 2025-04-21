@@ -1,0 +1,91 @@
+#include <zephyr/dt-bindings/gpio/gpio.h>
+#include <dt-bindings/regulator/npm1300.h>
+
+/ {
+
+    leds {
+		compatible = "gpio-leds";
+		boost1_en: boost1_en {
+			gpios = <&gpio0 0 GPIO_ACTIVE_HIGH>;
+			label = "Boost 1 Enable";
+		};
+		boost1_ctrl1: boost1_ctrl1 {
+			gpios = <&gpio0 1 GPIO_ACTIVE_HIGH>;
+			label = "Boost 1 Ctrl 1";
+		};
+		boost1_ctrl2: boost1_ctrl2 {
+			gpios = <&gpio0 2 GPIO_ACTIVE_HIGH>;
+			label = "Boost 1 Ctrl 2";
+		};
+		boost2_en: boost2_en {
+			gpios = <&gpio0 3 GPIO_ACTIVE_HIGH>;
+			label = "Boost 2 Enable";
+		};
+		boost2_ctrl1: boost2_ctrl1 {
+			gpios = <&gpio0 4 GPIO_ACTIVE_HIGH>;
+			label = "Boost 2 Ctrl 1";
+		};
+		boost2_ctrl2: boost2_ctrl2 {
+			gpios = <&gpio0 5 GPIO_ACTIVE_HIGH>;
+			label = "Boost 2 Ctrl 2";
+		};
+	};
+    aliases {
+		boost1en = &boost1_en;
+		boost1ctrl1 = &boost1_ctrl1;
+		boost1ctrl2 = &boost1_ctrl2;
+		boost2en = &boost2_en;
+		boost2ctrl1 = &boost2_ctrl1;
+		boost2ctrl2 = &boost2_ctrl2;
+    };
+
+	npm1300_ek_pmic: pmic {
+        compatible = "zephyr,regulator";
+
+        npm1300_ek_regulators: regulators {
+            compatible = "zephyr,regulator";
+
+            npm1300_ek_buck1: buck1 {
+                compatible = "regulator-fixed";
+                regulator-name = "buck1";
+                regulator-min-microvolt = <3000000>;
+                regulator-max-microvolt = <3000000>;
+            };
+
+            npm1300_ek_ldo1: ldo1 {
+                compatible = "zephyr,fake-regulator";
+                fake-is-enable-in-hardware;
+                regulator-name = "ldo1";
+                regulator-min-microvolt = <3300000>;
+                regulator-max-microvolt = <3300000>;
+            };
+
+            npm1300_ek_ldo2: ldo2 {
+                compatible = "zephyr,fake-regulator";
+                fake-is-enable-in-hardware;
+                regulator-name = "ldo2";
+                regulator-min-microvolt = <3300000>;
+                regulator-max-microvolt = <3300000>;
+            };
+        };
+
+        npm1300_ek_charger: charger {
+            compatible = "test-charger"; // Dummy compatible
+        };
+
+        npm1300_ek_leds: leds {
+            compatible = "nordic,npm1300-led";
+            nordic,led0-mode = "error";    
+            nordic,led1-mode = "charging";    
+            nordic,led2-mode = "host";
+        };
+    };
+};
+
+&gpio0 {
+    status = "okay";
+    compatible = "zephyr,gpio-emul";
+    ngpios = <32>;
+    gpio-controller;
+    #gpio-cells = <2>;
+};
