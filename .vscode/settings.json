@@ -128,6 +128,9 @@
         "ztest.h": "c",
         "gpio_emul.h": "c",
         "fff.h": "c",
-        "fake.h": "c"
+        "fake.h": "c",
+        "adc_emul.h": "c",
+        "bitset": "c",
+        "algorithm": "c"
     }
 }

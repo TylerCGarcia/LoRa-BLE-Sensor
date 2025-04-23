@@ -3,7 +3,10 @@
 #include <zephyr/kernel.h>
 #include <zephyr/drivers/gpio.h>
 #include <zephyr/drivers/regulator.h>
+#include <zephyr/drivers/adc.h>
 
+static int output_read_divider_high = 100;
+static int output_read_divider_low = 13;
 
 enum sensor_voltage sensor_state[SENSOR_OUTPUT_INDEX_LIMIT];
 
@@ -22,8 +25,9 @@ static int turn_on_regulator(sensor_power_config_t *config)
     }
 }
 
-int set_sensor_voltage(sensor_power_config_t *config, enum sensor_voltage voltage)
+int set_sensor_output(sensor_power_config_t *config, enum sensor_voltage voltage)
 {
+    sensor_state[config->output_id] = voltage;
     switch (voltage) {
         case SENSOR_VOLTAGE_OFF:
             turn_off_regulator(config);
@@ -62,10 +66,9 @@ int set_sensor_voltage(sensor_power_config_t *config, enum sensor_voltage voltag
             gpio_pin_set_dt(&config->boost_ctrl2, 0);
             break;
         default:
-            set_sensor_voltage(config, SENSOR_VOLTAGE_OFF); // If invalid output, set voltage to OFF
+            set_sensor_output(config, SENSOR_VOLTAGE_OFF); // If invalid output, set voltage to OFF
             return -EINVAL; 
     }
-    sensor_state[config->output_id] = voltage;
     return 0;
     }
 
@@ -101,18 +104,82 @@ static int sensor_power_setup(sensor_power_config_t *config)
     if (ret < 0) {
 		return ret;
     }
+
+    return 0;
+}
+
+static int sensor_output_adc_setup(sensor_power_config_t *config)
+{
+    int ret;
+    // if (!device_is_ready(config->output_read.dev)) {
+    //     return -1;
+	// }	
+    // struct adc_channel_cfg channel_cfg = {
+    // .gain             = ADC_GAIN_1_6,
+    // .reference        = ADC_REF_INTERNAL,
+    // .acquisition_time = ADC_ACQ_TIME_DEFAULT,
+    // .channel_id       = &config->output_read.channel_id,
+    // };
+    // ret = adc_channel_setup(config->output_read.dev, &channel_cfg);
+    // if (ret < 0) {
+	// 	return ret;
+    // }
+    if (!adc_is_ready_dt(&config->output_read)) {
+		return -1;
+	}
+    ret = adc_channel_setup_dt(&config->output_read);
+    if (ret < 0) {
+		return ret;
+    }
     return 0;
 }
 
 int sensor_power_init(sensor_power_config_t *config)
 {
     sensor_power_setup(config);
-    set_sensor_voltage(config, SENSOR_VOLTAGE_OFF);
+    sensor_output_adc_setup(config);
+    set_sensor_output(config, SENSOR_VOLTAGE_OFF);
     return 0;
 }
 
-enum sensor_voltage get_sensor_voltage(sensor_power_config_t *config)
+enum sensor_voltage get_sensor_output(sensor_power_config_t *config)
 {
     return sensor_state[config->output_id];
 }
 
+static int read_sensor_output_raw(sensor_power_config_t *config)
+{
+	int16_t buf;
+	struct adc_sequence sequence = {
+		.buffer = &buf,
+		/* buffer size in bytes, not number of samples */
+		.buffer_size = sizeof(buf),
+		// Optional
+		// .calibrate = true,
+	};
+	int err = adc_sequence_init_dt(&config->output_read, &sequence);
+    if(err < 0)
+    {
+        return err;
+    }
+	err = adc_read(config->output_read.dev, &sequence);
+    if(err < 0)
+    {
+        return err;
+    }
+    return buf;
+}
+
+float read_sensor_output(sensor_power_config_t *config)
+{
+
+	int val_mv = (int)read_sensor_output_raw(config);
+    // val_mv = (val_mv*600*6) / 4095; // Unused custom calculations
+	int err = adc_raw_to_millivolts_dt(&config->output_read, &val_mv);
+    if(err < 0)
+    {
+        return err;
+    }
+
+	return (((float)val_mv/1000.0) * (((float)output_read_divider_high + (float)output_read_divider_low)/(float)output_read_divider_low));
+}

@@ -2,6 +2,7 @@
 #define SENSOR_POWER_H
 
 #include <zephyr/drivers/gpio.h>
+#include <zephyr/drivers/adc.h>
 
 /**
  * @brief Regulator identifiers
@@ -34,6 +35,7 @@ typedef struct {
     struct gpio_dt_spec boost_ctrl1;
     struct gpio_dt_spec boost_ctrl2;
     const struct device *ldo_dev;
+    const struct adc_dt_spec output_read;
 } sensor_power_config_t;
 
 /**
@@ -51,7 +53,7 @@ int sensor_power_init(sensor_power_config_t *config);
  * @param config 
  * @return enum sensor_voltage 
  */
-enum sensor_voltage get_sensor_voltage(sensor_power_config_t *config);
+enum sensor_voltage get_sensor_output(sensor_power_config_t *config);
 
 /**
  * @brief Set the sensor voltage for an output, enabling/disabling the correct regulators, and setting the correct gpios.
@@ -60,7 +62,10 @@ enum sensor_voltage get_sensor_voltage(sensor_power_config_t *config);
  * @param voltage 
  * @return int 
  */
-int set_sensor_voltage(sensor_power_config_t *config, enum sensor_voltage voltage);
+int set_sensor_output(sensor_power_config_t *config, enum sensor_voltage voltage);
+
+
+float read_sensor_output(sensor_power_config_t *config);
 
 #endif
 
