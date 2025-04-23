@@ -8,6 +8,15 @@
 static int output_read_divider_high = 100;
 static int output_read_divider_low = 13;
 
+const sensor_voltage_info_t sensor_voltage_table[] = {
+    { SENSOR_VOLTAGE_OFF, "SENSOR_VOLTAGE_OFF", 2.75 }, // <- substitute real value for OFF if needed
+    { SENSOR_VOLTAGE_3V3, "SENSOR_VOLTAGE_3V3", 3.3 },
+    { SENSOR_VOLTAGE_5V,  "SENSOR_VOLTAGE_5V",  5.0 },
+    { SENSOR_VOLTAGE_6V,  "SENSOR_VOLTAGE_6V",  6.0 },
+    { SENSOR_VOLTAGE_12V, "SENSOR_VOLTAGE_12V", 12.0 },
+    { SENSOR_VOLTAGE_24V, "SENSOR_VOLTAGE_24V", 24.0 },
+};
+
 enum sensor_voltage sensor_state[SENSOR_OUTPUT_INDEX_LIMIT];
 
 static int turn_off_regulator(sensor_power_config_t *config)
@@ -181,4 +190,13 @@ float read_sensor_output(sensor_power_config_t *config)
         return err;
     }
 	return (((float)val_mv/1000.0) * (((float)output_read_divider_high + (float)output_read_divider_low)/(float)output_read_divider_low));
+}
+
+int validate_output(sensor_power_config_t *config, enum sensor_voltage voltage, uint8_t accepted_error)
+{
+    if(voltage != get_sensor_output(config))
+    {
+        return -1;
+    }
+    return 0;
 }

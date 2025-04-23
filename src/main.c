@@ -12,15 +12,6 @@
 
 LOG_MODULE_REGISTER(MAIN);
 
-static const char *sensor_output_name[] = {
-	"SENSOR_VOLTAGE_OFF", 
-	"SENSOR_VOLTAGE_3V3", 
-	"SENSOR_VOLTAGE_5V",
-	"SENSOR_VOLTAGE_6V",
-	"SENSOR_VOLTAGE_12V",
-	"SENSOR_VOLTAGE_24V"
-};
-
 sensor_power_config_t sensor_output1 = {
 	.output_id = SENSOR_OUTPUT_1,
 	.boost_en = GPIO_DT_SPEC_GET(DT_ALIAS(boost1en), gpios),	

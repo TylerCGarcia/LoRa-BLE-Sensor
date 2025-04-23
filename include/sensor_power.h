@@ -26,6 +26,12 @@ typedef enum sensor_voltage {
     SENSOR_VOLTAGE_INDEX_LIMIT
 };
 
+typedef struct {
+    enum sensor_voltage voltage_enum;
+    const char *name;
+    float expected_output;
+} sensor_voltage_info_t;
+
 /**
  * @brief Sensor power configuration
  */
@@ -64,8 +70,23 @@ enum sensor_voltage get_sensor_output(sensor_power_config_t *config);
  */
 int set_sensor_output(sensor_power_config_t *config, enum sensor_voltage voltage);
 
-
+/**
+ * @brief Read the voltage output of the selected sensor power configuration. Takes into account resistor divider on output.
+ * 
+ * @param config 
+ * @return float 
+ */
 float read_sensor_output(sensor_power_config_t *config);
+
+/**
+ * @brief 
+ * 
+ * @param config 
+ * @param voltage 
+ * @param accepted_error error in percent that the device is allowed to be off by
+ * @return int 
+ */
+int validate_output(sensor_power_config_t *config, enum sensor_voltage voltage, uint8_t accepted_error);
 
 #endif
 

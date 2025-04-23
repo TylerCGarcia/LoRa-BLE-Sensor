@@ -299,14 +299,22 @@ ZTEST(sensor_power_tests, test_invalid_output_sets_voltage_off)
  */
 ZTEST(sensor_power_tests, test_output_read_expected_value)
 {
-	int accepted_error_mv = 25; // Take into account integer rounding errors in the conversion
+	float accepted_error = 0.05; // Take into account integer rounding errors in the conversion
 	set_sensor_output(&sensor_output1, SENSOR_VOLTAGE_3V3);
 	confirm_voltage(&sensor_output1, SENSOR_VOLTAGE_3V3);
-	const uint16_t input_mv = 3000;
-	const uint16_t expected_output_mv = input_mv * (float)(113.0/13.0);
+	const uint16_t input_mv = 2500;
+	const float expected_output = (float)(input_mv / 1000.0) * (float)(113.0/13.0);
 	adc_emul_const_value_set(sensor_output1.output_read.dev, sensor_output1.output_read.channel_id, input_mv);
 	float output = read_sensor_output(&sensor_output1);
-	int output_mv = output *1000;
-	zassert_within(output_mv, expected_output_mv, accepted_error_mv, "Mismatch: got %d, expected %d", output_mv, expected_output_mv);
+	zassert_within(output, expected_output, accepted_error, "Mismatch: got %f, expected %f", output, expected_output);
+}
+
+ZTEST(sensor_power_tests, test_validate_output_3v3)
+{
+	int ret;
+	set_sensor_output(&sensor_output1, SENSOR_VOLTAGE_3V3);
+	uint8_t allowed_error = 5;
+	ret = validate_output(&sensor_output1, SENSOR_VOLTAGE_3V3, allowed_error);
+	zassert_ok(ret, "Voltage read does not match expected value");
 }
 
