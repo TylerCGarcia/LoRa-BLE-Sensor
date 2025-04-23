@@ -4,9 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  * Tests:
  * - Regulators are less than 3V when off
- * - The ADC reads the correct regulator voltage 
- * Notes:
- * - regulator needs to be enabled for regulator_disable to register
+ * - Regulator outputs are validated with ADC
  */
 
 #include <zephyr/fff.h>

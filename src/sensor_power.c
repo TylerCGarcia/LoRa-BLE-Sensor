@@ -155,7 +155,7 @@ static int read_sensor_output_raw(sensor_power_config_t *config)
 		/* buffer size in bytes, not number of samples */
 		.buffer_size = sizeof(buf),
 		// Optional
-		// .calibrate = true,
+		.calibrate = true,
 	};
 	int err = adc_sequence_init_dt(&config->output_read, &sequence);
     if(err < 0)
@@ -180,6 +180,5 @@ float read_sensor_output(sensor_power_config_t *config)
     {
         return err;
     }
-
 	return (((float)val_mv/1000.0) * (((float)output_read_divider_high + (float)output_read_divider_low)/(float)output_read_divider_low));
 }

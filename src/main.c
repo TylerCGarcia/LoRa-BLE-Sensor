@@ -8,6 +8,7 @@
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
 #include "sensor_power.h"
+#include <zephyr/drivers/adc.h>
 
 LOG_MODULE_REGISTER(MAIN);
 
@@ -25,7 +26,8 @@ sensor_power_config_t sensor_output1 = {
 	.boost_en = GPIO_DT_SPEC_GET(DT_ALIAS(boost1en), gpios),	
 	.boost_ctrl1 = GPIO_DT_SPEC_GET(DT_ALIAS(boost1ctrl1), gpios),
 	.boost_ctrl2 = GPIO_DT_SPEC_GET(DT_ALIAS(boost1ctrl2), gpios),
-	.ldo_dev = DEVICE_DT_GET(DT_NODELABEL(npm1300_ek_ldo1))
+	.ldo_dev = DEVICE_DT_GET(DT_NODELABEL(npm1300_ek_ldo1)),
+	.output_read = ADC_DT_SPEC_GET_BY_NAME(DT_PATH(zephyr_user), sensor_output1)
 };
 
 sensor_power_config_t sensor_output2 = {
@@ -33,7 +35,8 @@ sensor_power_config_t sensor_output2 = {
 	.boost_en = GPIO_DT_SPEC_GET(DT_ALIAS(boost2en), gpios),	
 	.boost_ctrl1 = GPIO_DT_SPEC_GET(DT_ALIAS(boost2ctrl1), gpios),
 	.boost_ctrl2 = GPIO_DT_SPEC_GET(DT_ALIAS(boost2ctrl2), gpios),
-	.ldo_dev = DEVICE_DT_GET(DT_NODELABEL(npm1300_ek_ldo2))
+	.ldo_dev = DEVICE_DT_GET(DT_NODELABEL(npm1300_ek_ldo2)),
+	.output_read = ADC_DT_SPEC_GET_BY_NAME(DT_PATH(zephyr_user), sensor_output2)
 };
 
 static void sensor_setup(void)
@@ -48,14 +51,14 @@ int main(void)
 	int i = 0;
 	while (1) 
 	{
-		LOG_INF("Setting Voltage %s", sensor_output_name[i]);
-		set_sensor_voltage(&sensor_output1, i);
-		k_sleep(K_SECONDS(10));
+		LOG_INF("Setting Output %s", sensor_output_name[i]);
+		set_sensor_output(&sensor_output1, i);
+		k_sleep(K_SECONDS(1));
+		LOG_INF("READ VOLTAGE: %f", read_sensor_output(&sensor_output1));
+		k_sleep(K_SECONDS(5));
 		i = (i+1)%SENSOR_VOLTAGE_INDEX_LIMIT;
-		set_sensor_voltage(&sensor_output1, SENSOR_VOLTAGE_OFF);
+		set_sensor_output(&sensor_output1, SENSOR_VOLTAGE_OFF);
 		k_sleep(K_SECONDS(2));
-
-
 	}
 	return 0;
 }
