@@ -205,7 +205,10 @@ int validate_output(sensor_power_config_t *config, enum sensor_voltage voltage, 
 
 int get_sensor_voltage_name(char * voltage_name, enum sensor_voltage voltage)
 {
-    
+    if(voltage < 0 || voltage >= SENSOR_VOLTAGE_INDEX_LIMIT)
+    {
+        return -1;
+    }
     strcpy(voltage_name, sensor_voltage_table[voltage].name);
     return 0;
 }

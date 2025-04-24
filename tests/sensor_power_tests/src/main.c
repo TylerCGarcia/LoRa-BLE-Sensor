@@ -307,12 +307,26 @@ ZTEST(sensor_power_tests, test_get_sensor_output_name)
 	zassert_str_equal(voltage_name, expected_name, "%s is not %s", voltage_name, expected_name);
 }
 
-ZTEST(sensor_power_tests, test_sensor_output_name_out_of_bounds)
+/**
+ * @brief Test upper bounds return of get_sensor_voltage_name
+ * 
+ */
+ZTEST(sensor_power_tests, test_sensor_output_name_out_of_bounds_high)
 {
 	char voltage_name[20];
 	int ret = get_sensor_voltage_name(voltage_name, SENSOR_VOLTAGE_INDEX_LIMIT);
 	zassert_not_ok(ret, "did not detect out of bounds name");
-	// zassert_str_equal(voltage_name, expected_name, "%s is not %s", voltage_name, expected_name);
+}
+
+/**
+ * @brief Test lower bounds return of get_sensor_voltage_name
+ * 
+ */
+ZTEST(sensor_power_tests, test_sensor_output_name_out_of_bounds_low)
+{
+	char voltage_name[20];
+	int ret = get_sensor_voltage_name(voltage_name, -1);
+	zassert_not_ok(ret, "did not detect out of bounds name");
 }
 
 /**
