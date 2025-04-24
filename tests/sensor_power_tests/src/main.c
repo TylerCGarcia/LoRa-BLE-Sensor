@@ -293,6 +293,28 @@ ZTEST(sensor_power_tests, test_invalid_output_sets_voltage_off)
 	confirm_voltage(&sensor_output1, SENSOR_VOLTAGE_OFF);
 }
 
+
+/**
+ * @brief Get correct name associated to a sensor value
+ * 
+ */
+ZTEST(sensor_power_tests, test_get_sensor_output_name)
+{
+	char voltage_name[20];
+	char * expected_name = "SENSOR_VOLTAGE_3V3";
+	int ret = get_sensor_voltage_name(voltage_name, SENSOR_VOLTAGE_3V3);
+	zassert_ok(ret, "Issue getting the correct name");
+	zassert_str_equal(voltage_name, expected_name, "%s is not %s", voltage_name, expected_name);
+}
+
+ZTEST(sensor_power_tests, test_sensor_output_name_out_of_bounds)
+{
+	char voltage_name[20];
+	int ret = get_sensor_voltage_name(voltage_name, SENSOR_VOLTAGE_INDEX_LIMIT);
+	zassert_not_ok(ret, "did not detect out of bounds name");
+	// zassert_str_equal(voltage_name, expected_name, "%s is not %s", voltage_name, expected_name);
+}
+
 /**
  * @brief Confirm that sensor output read adc is working 
  * 
@@ -317,4 +339,5 @@ ZTEST(sensor_power_tests, test_validate_output_3v3)
 	ret = validate_output(&sensor_output1, SENSOR_VOLTAGE_3V3, allowed_error);
 	zassert_ok(ret, "Voltage read does not match expected value");
 }
+
 

@@ -4,12 +4,14 @@
 #include <zephyr/drivers/gpio.h>
 #include <zephyr/drivers/regulator.h>
 #include <zephyr/drivers/adc.h>
+#include <stdio.h>
+#include <string.h>
 
 static int output_read_divider_high = 100;
 static int output_read_divider_low = 13;
 
 const sensor_voltage_info_t sensor_voltage_table[] = {
-    { SENSOR_VOLTAGE_OFF, "SENSOR_VOLTAGE_OFF", 2.75 }, // <- substitute real value for OFF if needed
+    { SENSOR_VOLTAGE_OFF, "SENSOR_VOLTAGE_OFF", 2.75 },
     { SENSOR_VOLTAGE_3V3, "SENSOR_VOLTAGE_3V3", 3.3 },
     { SENSOR_VOLTAGE_5V,  "SENSOR_VOLTAGE_5V",  5.0 },
     { SENSOR_VOLTAGE_6V,  "SENSOR_VOLTAGE_6V",  6.0 },
@@ -200,3 +202,11 @@ int validate_output(sensor_power_config_t *config, enum sensor_voltage voltage, 
     }
     return 0;
 }
+
+int get_sensor_voltage_name(char * voltage_name, enum sensor_voltage voltage)
+{
+    
+    strcpy(voltage_name, sensor_voltage_table[voltage].name);
+    return 0;
+}
+

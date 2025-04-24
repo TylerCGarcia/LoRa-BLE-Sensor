@@ -26,6 +26,8 @@ typedef enum sensor_voltage {
     SENSOR_VOLTAGE_INDEX_LIMIT
 };
 
+#define VOLTAGE_NAME_LENGTH      20
+
 typedef struct {
     enum sensor_voltage voltage_enum;
     const char *name;
@@ -87,6 +89,15 @@ float read_sensor_output(sensor_power_config_t *config);
  * @return int 
  */
 int validate_output(sensor_power_config_t *config, enum sensor_voltage voltage, uint8_t accepted_error);
+
+/**
+ * @brief Get the name for the selected sensor voltage
+ * 
+ * @param voltage_name 
+ * @param voltage 
+ * @return int 
+ */
+int get_sensor_voltage_name(char * voltage_name, enum sensor_voltage voltage);
 
 #endif
 

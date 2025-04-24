@@ -131,6 +131,7 @@
         "fake.h": "c",
         "adc_emul.h": "c",
         "bitset": "c",
-        "algorithm": "c"
+        "algorithm": "c",
+        "*.tcc": "c"
     }
 }
