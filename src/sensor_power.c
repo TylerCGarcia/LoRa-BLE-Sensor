@@ -7,9 +7,6 @@
 #include <stdio.h>
 #include <string.h>
 
-static int output_read_divider_high = 100;
-static int output_read_divider_low = 13;
-
 const sensor_voltage_info_t sensor_voltage_table[] = {
     { SENSOR_VOLTAGE_OFF, "SENSOR_VOLTAGE_OFF", 2.75 },
     { SENSOR_VOLTAGE_3V3, "SENSOR_VOLTAGE_3V3", 3.3 },
@@ -191,12 +188,19 @@ float read_sensor_output(sensor_power_config_t *config)
     {
         return err;
     }
-	return (((float)val_mv/1000.0) * (((float)output_read_divider_high + (float)output_read_divider_low)/(float)output_read_divider_low));
+	return (((float)val_mv/1000.0) * (((float)OUTUT_READ_DIVIDER_HIGH + (float)OUTUT_READ_DIVIDER_LOW)/(float)OUTUT_READ_DIVIDER_LOW));
 }
 
 int validate_output(sensor_power_config_t *config, enum sensor_voltage voltage, uint8_t accepted_error)
 {
     if(voltage != get_sensor_output(config))
+    {
+        return -1;
+    }
+    float sensor_reading = read_sensor_output(config);
+    float upper_bounds = sensor_voltage_table[voltage].expected_output * (float)((100.0 + (float)accepted_error)/100.0);
+    float lower_bounds = sensor_voltage_table[voltage].expected_output * (float)((100.0 - (float)accepted_error)/100.0);
+    if(sensor_reading < lower_bounds || sensor_reading > upper_bounds)
     {
         return -1;
     }

@@ -26,7 +26,10 @@ typedef enum sensor_voltage {
     SENSOR_VOLTAGE_INDEX_LIMIT
 };
 
-#define VOLTAGE_NAME_LENGTH      20
+#define VOLTAGE_NAME_LENGTH         20
+#define OUTUT_READ_DIVIDER_HIGH     100
+#define OUTUT_READ_DIVIDER_LOW      13
+
 
 typedef struct {
     enum sensor_voltage voltage_enum;
@@ -50,7 +53,7 @@ typedef struct {
  * @brief Initialize a sensor_power_setup. This sets the id of the output, the gpios beings used and the regulator device being used.
  * After configurations are set, the sensors output is set OFF.
  * 
- * @param config 
+ * @param config sensor_power_config_t sensor power configuration for the current sensor
  * @return int 
  */
 int sensor_power_init(sensor_power_config_t *config);
@@ -58,7 +61,7 @@ int sensor_power_init(sensor_power_config_t *config);
 /**
  * @brief Get the sensor voltage that is set for an output.
  * 
- * @param config 
+ * @param config sensor_power_config_t sensor power configuration for the current sensor
  * @return enum sensor_voltage 
  */
 enum sensor_voltage get_sensor_output(sensor_power_config_t *config);
@@ -66,8 +69,8 @@ enum sensor_voltage get_sensor_output(sensor_power_config_t *config);
 /**
  * @brief Set the sensor voltage for an output, enabling/disabling the correct regulators, and setting the correct gpios.
  * 
- * @param config 
- * @param voltage 
+ * @param config sensor_power_config_t sensor power configuration for the current sensor
+ * @param voltage enum sensor_voltage setting selected
  * @return int 
  */
 int set_sensor_output(sensor_power_config_t *config, enum sensor_voltage voltage);
@@ -75,16 +78,16 @@ int set_sensor_output(sensor_power_config_t *config, enum sensor_voltage voltage
 /**
  * @brief Read the voltage output of the selected sensor power configuration. Takes into account resistor divider on output.
  * 
- * @param config 
- * @return float 
+ * @param config sensor_power_config_t sensor power configuration for the current sensor
+ * @return float output of the sensor power system
  */
 float read_sensor_output(sensor_power_config_t *config);
 
 /**
  * @brief 
  * 
- * @param config 
- * @param voltage 
+ * @param config sensor_power_config_t sensor power configuration for the current sensor
+ * @param voltage enum sensor_voltage setting selected
  * @param accepted_error error in percent that the device is allowed to be off by
  * @return int 
  */
@@ -93,8 +96,8 @@ int validate_output(sensor_power_config_t *config, enum sensor_voltage voltage, 
 /**
  * @brief Get the name for the selected sensor voltage
  * 
- * @param voltage_name 
- * @param voltage 
+ * @param voltage_name char array for the name to be saved to
+ * @param voltage enum sensor_voltage setting selected
  * @return int 
  */
 int get_sensor_voltage_name(char * voltage_name, enum sensor_voltage voltage);

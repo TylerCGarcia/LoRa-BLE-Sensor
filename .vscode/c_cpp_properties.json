@@ -10,7 +10,8 @@
                 "~/zephyrproject/zephyr/arch/posix/include",   
                 "~/zephyrproject/zephyr/kernel/",
                 "~/zephyrproject/zephyr/include/zephyr",
-                "~/zephyrproject/zephyr/include/zephyr/logging"
+                "~/zephyrproject/zephyr/include/zephyr/logging",
+                "~/zephyrproject/zephyr/include/zephyr/drivers"
             ],
             "defines": [
                 "_DEBUG",
@@ -29,7 +30,8 @@
                 "path": [
                     "${workspaceFolder}",
                     "${workspaceFolder}/build/zephyr/include/generated",
-                    "~/zephyrproject/zephyr"
+                    "~/zephyrproject/zephyr",
+                    "~/zephyrproject/zephyr/include/zephyr/drivers"
                 ],
                 "limitSymbolsToIncludedHeaders": true
             }

@@ -308,24 +308,15 @@ ZTEST(sensor_power_tests, test_get_sensor_output_name)
 }
 
 /**
- * @brief Test upper bounds return of get_sensor_voltage_name
+ * @brief Test upper and lower bounds return of get_sensor_voltage_name
  * 
  */
-ZTEST(sensor_power_tests, test_sensor_output_name_out_of_bounds_high)
+ZTEST(sensor_power_tests, test_sensor_output_name_out_of_bounds)
 {
 	char voltage_name[20];
 	int ret = get_sensor_voltage_name(voltage_name, SENSOR_VOLTAGE_INDEX_LIMIT);
 	zassert_not_ok(ret, "did not detect out of bounds name");
-}
-
-/**
- * @brief Test lower bounds return of get_sensor_voltage_name
- * 
- */
-ZTEST(sensor_power_tests, test_sensor_output_name_out_of_bounds_low)
-{
-	char voltage_name[20];
-	int ret = get_sensor_voltage_name(voltage_name, -1);
+	ret = get_sensor_voltage_name(voltage_name, -1);
 	zassert_not_ok(ret, "did not detect out of bounds name");
 }
 
@@ -339,19 +330,261 @@ ZTEST(sensor_power_tests, test_output_read_expected_value)
 	set_sensor_output(&sensor_output1, SENSOR_VOLTAGE_3V3);
 	confirm_voltage(&sensor_output1, SENSOR_VOLTAGE_3V3);
 	const uint16_t input_mv = 2500;
-	const float expected_output = (float)(input_mv / 1000.0) * (float)(113.0/13.0);
+	const float expected_output = (float)(input_mv / 1000.0) * (float)(((float)OUTUT_READ_DIVIDER_HIGH + (float)OUTUT_READ_DIVIDER_LOW)/(float)OUTUT_READ_DIVIDER_LOW);
 	adc_emul_const_value_set(sensor_output1.output_read.dev, sensor_output1.output_read.channel_id, input_mv);
 	float output = read_sensor_output(&sensor_output1);
 	zassert_within(output, expected_output, accepted_error, "Mismatch: got %f, expected %f", output, expected_output);
 }
 
+/**
+ * @brief Test validate_output for 3v3, making sure valid adc reading and sensor was set correctly
+ * 
+ */
 ZTEST(sensor_power_tests, test_validate_output_3v3)
 {
 	int ret;
 	set_sensor_output(&sensor_output1, SENSOR_VOLTAGE_3V3);
+
 	uint8_t allowed_error = 5;
+	const uint16_t input_mv = 3300; // 3.3V
+	const uint16_t emul_mv = (input_mv * OUTUT_READ_DIVIDER_LOW) / (OUTUT_READ_DIVIDER_HIGH + OUTUT_READ_DIVIDER_LOW);
+	adc_emul_const_value_set(sensor_output1.output_read.dev, sensor_output1.output_read.channel_id, emul_mv);
+	
+	ret = validate_output(&sensor_output1, SENSOR_VOLTAGE_3V3, allowed_error);
+	zassert_ok(ret, "Voltage read does not match expected value");
+}
+
+/**
+ * @brief Test validate_output for 5V, making sure valid adc reading and sensor was set correctly
+ * 
+ */
+ZTEST(sensor_power_tests, test_validate_output_5v)
+{
+	int ret;
+	set_sensor_output(&sensor_output1, SENSOR_VOLTAGE_5V);
+
+	uint8_t allowed_error = 5;
+	const uint16_t input_mv = 5000; // 5V
+	const uint16_t emul_mv = (input_mv * OUTUT_READ_DIVIDER_LOW) / (OUTUT_READ_DIVIDER_HIGH + OUTUT_READ_DIVIDER_LOW);
+	adc_emul_const_value_set(sensor_output1.output_read.dev, sensor_output1.output_read.channel_id, emul_mv);
+	
+	ret = validate_output(&sensor_output1, SENSOR_VOLTAGE_5V, allowed_error);
+	zassert_ok(ret, "Voltage read does not match expected value");
+}
+
+/**
+ * @brief Test validate_output for 6V, making sure valid adc reading and sensor was set correctly
+ * 
+ */
+ZTEST(sensor_power_tests, test_validate_output_6v)
+{
+	int ret;
+	set_sensor_output(&sensor_output1, SENSOR_VOLTAGE_6V);
+
+	uint8_t allowed_error = 5;
+	const uint16_t input_mv = 6000; // 6V
+	const uint16_t emul_mv = (input_mv * OUTUT_READ_DIVIDER_LOW) / (OUTUT_READ_DIVIDER_HIGH + OUTUT_READ_DIVIDER_LOW);
+	adc_emul_const_value_set(sensor_output1.output_read.dev, sensor_output1.output_read.channel_id, emul_mv);
+	
+	ret = validate_output(&sensor_output1, SENSOR_VOLTAGE_6V, allowed_error);
+	zassert_ok(ret, "Voltage read does not match expected value");
+}
+
+/**
+ * @brief Test validate_output for 12V, making sure valid adc reading and sensor was set correctly
+ * 
+ */
+ZTEST(sensor_power_tests, test_validate_output_12v)
+{
+	int ret;
+	set_sensor_output(&sensor_output1, SENSOR_VOLTAGE_12V);
+
+	uint8_t allowed_error = 5;
+	const uint16_t input_mv = 12000; // 12V
+	const uint16_t emul_mv = (input_mv * OUTUT_READ_DIVIDER_LOW) / (OUTUT_READ_DIVIDER_HIGH + OUTUT_READ_DIVIDER_LOW);
+	adc_emul_const_value_set(sensor_output1.output_read.dev, sensor_output1.output_read.channel_id, emul_mv);
+	
+	ret = validate_output(&sensor_output1, SENSOR_VOLTAGE_12V, allowed_error);
+	zassert_ok(ret, "Voltage read does not match expected value");
+}
+
+/**
+ * @brief Test validate_output for 24V, making sure valid adc reading and sensor was set correctly
+ * 
+ */
+ZTEST(sensor_power_tests, test_validate_output_24v)
+{
+	int ret;
+	set_sensor_output(&sensor_output1, SENSOR_VOLTAGE_24V);
+
+	uint8_t allowed_error = 5;
+	const uint16_t input_mv = 24000; // 24V
+	const uint16_t emul_mv = (input_mv * OUTUT_READ_DIVIDER_LOW) / (OUTUT_READ_DIVIDER_HIGH + OUTUT_READ_DIVIDER_LOW);
+	adc_emul_const_value_set(sensor_output1.output_read.dev, sensor_output1.output_read.channel_id, emul_mv);
+	
+	ret = validate_output(&sensor_output1, SENSOR_VOLTAGE_24V, allowed_error);
+	zassert_ok(ret, "Voltage read does not match expected value");
+}
+
+/**
+ * @brief Test validate_output has error for 3v3 when there is a 6% input error above and accepted_error is set to 5%
+ * 
+ */
+ZTEST(sensor_power_tests, test_validate_output_3v3_out_of_bounds_high)
+{
+	int ret;
+	set_sensor_output(&sensor_output1, SENSOR_VOLTAGE_3V3);
+	
+	uint8_t allowed_error = 5;
+	const uint16_t input_mv = 3498; // 3.3V + 6% error
+	const uint16_t emul_mv = (input_mv * OUTUT_READ_DIVIDER_LOW) / (OUTUT_READ_DIVIDER_HIGH + OUTUT_READ_DIVIDER_LOW);
+	adc_emul_const_value_set(sensor_output1.output_read.dev, sensor_output1.output_read.channel_id, emul_mv);
+	
+	ret = validate_output(&sensor_output1, SENSOR_VOLTAGE_3V3, allowed_error);
+	zassert_not_ok(ret, "Voltage read does not match expected value");
+}
+
+/**
+ * @brief Test validate_output has error for 3v3 when there is a 6% input error below and accepted_error is set to 5%
+ * 
+ */
+ZTEST(sensor_power_tests, test_validate_output_3v3_out_of_bounds_low)
+{
+	int ret;
+	set_sensor_output(&sensor_output1, SENSOR_VOLTAGE_3V3);
+	
+	uint8_t allowed_error = 5;
+	const uint16_t input_mv = 3102; // 3.3V - 6% error
+	const uint16_t emul_mv = (input_mv * OUTUT_READ_DIVIDER_LOW) / (OUTUT_READ_DIVIDER_HIGH + OUTUT_READ_DIVIDER_LOW);
+	adc_emul_const_value_set(sensor_output1.output_read.dev, sensor_output1.output_read.channel_id, emul_mv);
+	
+	ret = validate_output(&sensor_output1, SENSOR_VOLTAGE_3V3, allowed_error);
+	zassert_not_ok(ret, "Voltage read does not match expected value");
+}
+
+/**
+ * @brief Test validate_output for 3v3 when there is a 3% error above and accepted_error is set to 5%
+ * 
+ */
+ZTEST(sensor_power_tests, test_validate_output_3v3_in_bounds_high)
+{
+	int ret;
+	set_sensor_output(&sensor_output1, SENSOR_VOLTAGE_3V3);
+	
+	uint8_t allowed_error = 5;
+	const uint16_t input_mv = 3399; // 3.3V + 3% error
+	const uint16_t emul_mv = (input_mv * OUTUT_READ_DIVIDER_LOW) / (OUTUT_READ_DIVIDER_HIGH + OUTUT_READ_DIVIDER_LOW);
+	adc_emul_const_value_set(sensor_output1.output_read.dev, sensor_output1.output_read.channel_id, emul_mv);
+	
+	ret = validate_output(&sensor_output1, SENSOR_VOLTAGE_3V3, allowed_error);
+	zassert_ok(ret, "Voltage read does not match expected value");
+}
+
+/**
+ * @brief Test validate_output for 3v3 when there is a 3% error below and accepted_error is set to 5%
+ * 
+ */
+ZTEST(sensor_power_tests, test_validate_output_3v3_in_bounds_low)
+{
+	int ret;
+	set_sensor_output(&sensor_output1, SENSOR_VOLTAGE_3V3);
+	
+	uint8_t allowed_error = 5;
+	const uint16_t input_mv = 3201; // 3.3V - 3% error
+	const uint16_t emul_mv = (input_mv * OUTUT_READ_DIVIDER_LOW) / (OUTUT_READ_DIVIDER_HIGH + OUTUT_READ_DIVIDER_LOW);
+	adc_emul_const_value_set(sensor_output1.output_read.dev, sensor_output1.output_read.channel_id, emul_mv);
+	
 	ret = validate_output(&sensor_output1, SENSOR_VOLTAGE_3V3, allowed_error);
 	zassert_ok(ret, "Voltage read does not match expected value");
 }
 
 
+/**
+ * @brief Test validate_output has error for 24v when there is a 6% input error above and accepted_error is set to 5%
+ * 
+ */
+ZTEST(sensor_power_tests, test_validate_output_24v_out_of_bounds_high)
+{
+	int ret;
+	set_sensor_output(&sensor_output1, SENSOR_VOLTAGE_24V);
+	
+	uint8_t allowed_error = 5;
+	const uint16_t input_mv = 25440; // 24V + 6% error
+	const uint16_t emul_mv = (input_mv * OUTUT_READ_DIVIDER_LOW) / (OUTUT_READ_DIVIDER_HIGH + OUTUT_READ_DIVIDER_LOW);
+	adc_emul_const_value_set(sensor_output1.output_read.dev, sensor_output1.output_read.channel_id, emul_mv);
+	
+	ret = validate_output(&sensor_output1, SENSOR_VOLTAGE_24V, allowed_error);
+	zassert_not_ok(ret, "Voltage read does not match expected value");
+}
+
+/**
+ * @brief Test validate_output has error for 24v when there is a 6% input error below and accepted_error is set to 5%
+ * 
+ */
+ZTEST(sensor_power_tests, test_validate_output_24v_out_of_bounds_low)
+{
+	int ret;
+	set_sensor_output(&sensor_output1, SENSOR_VOLTAGE_24V);
+	
+	uint8_t allowed_error = 5;
+	const uint16_t input_mv = 22560; // 24V - 6% error
+	const uint16_t emul_mv = (input_mv * OUTUT_READ_DIVIDER_LOW) / (OUTUT_READ_DIVIDER_HIGH + OUTUT_READ_DIVIDER_LOW);
+	adc_emul_const_value_set(sensor_output1.output_read.dev, sensor_output1.output_read.channel_id, emul_mv);
+	
+	ret = validate_output(&sensor_output1, SENSOR_VOLTAGE_24V, allowed_error);
+	zassert_not_ok(ret, "Voltage read does not match expected value");
+}
+
+/**
+ * @brief Test validate_output for 24V when there is a 3% error above and accepted_error is set to 5%
+ * 
+ */
+ZTEST(sensor_power_tests, test_validate_output_24v_in_bounds_high)
+{
+	int ret;
+	set_sensor_output(&sensor_output1, SENSOR_VOLTAGE_24V);
+	
+	uint8_t allowed_error = 5;
+	const uint16_t input_mv = 24720; // 24V + 3% error
+	const uint16_t emul_mv = (input_mv * OUTUT_READ_DIVIDER_LOW) / (OUTUT_READ_DIVIDER_HIGH + OUTUT_READ_DIVIDER_LOW);
+	adc_emul_const_value_set(sensor_output1.output_read.dev, sensor_output1.output_read.channel_id, emul_mv);
+	
+	ret = validate_output(&sensor_output1, SENSOR_VOLTAGE_24V, allowed_error);
+	zassert_ok(ret, "Voltage read does not match expected value");
+}
+
+/**
+ * @brief Test validate_output for 24v when there is a 3% error below and accepted_error is set to 5%
+ * 
+ */
+ZTEST(sensor_power_tests, test_validate_output_24v_in_bounds_low)
+{
+	int ret;
+	set_sensor_output(&sensor_output1, SENSOR_VOLTAGE_24V);
+	
+	uint8_t allowed_error = 5;
+	const uint16_t input_mv = 23280; // 24V - 3% error
+	const uint16_t emul_mv = (input_mv * OUTUT_READ_DIVIDER_LOW) / (OUTUT_READ_DIVIDER_HIGH + OUTUT_READ_DIVIDER_LOW);
+	adc_emul_const_value_set(sensor_output1.output_read.dev, sensor_output1.output_read.channel_id, emul_mv);
+	
+	ret = validate_output(&sensor_output1, SENSOR_VOLTAGE_24V, allowed_error);
+	zassert_ok(ret, "Voltage read does not match expected value");
+}
+
+/**
+ * @brief Test validate_output when the voltage read is correct but the set voltage is incorrect, should produce an error
+ * 
+ */
+ZTEST(sensor_power_tests, test_validate_output_wrong_setting)
+{
+	int ret;
+	set_sensor_output(&sensor_output1, SENSOR_VOLTAGE_3V3);
+	
+	uint8_t allowed_error = 5;
+	const uint16_t input_mv = 24000; // 24V - 3% error
+	const uint16_t emul_mv = (input_mv * OUTUT_READ_DIVIDER_LOW) / (OUTUT_READ_DIVIDER_HIGH + OUTUT_READ_DIVIDER_LOW);
+	adc_emul_const_value_set(sensor_output1.output_read.dev, sensor_output1.output_read.channel_id, emul_mv);
+	
+	ret = validate_output(&sensor_output1, SENSOR_VOLTAGE_24V, allowed_error);
+	zassert_not_ok(ret, "Voltage does not match expected value");
+}

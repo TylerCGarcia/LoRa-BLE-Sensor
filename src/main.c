@@ -38,14 +38,20 @@ static void sensor_setup(void)
 
 int main(void)
 {
+	int ret;
+	int accepted_error = 5;
 	sensor_setup();
 	int i = 0;
 	while (1) 
 	{
-		LOG_INF("Setting Output %s", sensor_output_name[i]);
+		char voltage_name[20];
+		get_sensor_voltage_name(voltage_name, i);
+		LOG_INF("Setting Output %s", voltage_name);
 		set_sensor_output(&sensor_output1, i);
 		k_sleep(K_SECONDS(1));
 		LOG_INF("READ VOLTAGE: %f", read_sensor_output(&sensor_output1));
+		ret = validate_output(&sensor_output1, i, accepted_error);
+		LOG_INF("OUTPUT is %s", ret ? "INVALID":"VALID");
 		k_sleep(K_SECONDS(5));
 		i = (i+1)%SENSOR_VOLTAGE_INDEX_LIMIT;
 		set_sensor_output(&sensor_output1, SENSOR_VOLTAGE_OFF);
