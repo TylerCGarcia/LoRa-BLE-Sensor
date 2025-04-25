@@ -40,10 +40,8 @@
     };
 
 	npm1300_ek_pmic: pmic {
-        // compatible = "zephyr,regulator";
 
         npm1300_ek_regulators: regulators {
-            // compatible = "zephyr,regulator";
             compatible = "zephyr,fake-regulator";
 
             npm1300_ek_buck1: buck1 {
@@ -86,12 +84,10 @@
 };
 
 &adc0 {
-	compatible = "zephyr,adc-emul";
 	#address-cells = <1>;
 	#size-cells = <0>;
 	status = "okay";
 	ref-internal-mv = <600>;
-	// ref-external1-mv = <3300>;
 	channel@0 {
 		reg = <0>;
 		zephyr,gain = "ADC_GAIN_1_6";
