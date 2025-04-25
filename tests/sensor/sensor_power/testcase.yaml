@@ -1,0 +1,12 @@
+tests:  
+  sensor.sensor_power:
+    tags:    
+      - drivers
+      - gpio    
+      - adc
+      - regulator
+    harness: ztest
+    depends_on: adc
+    platform_allow:
+      - native_sim
+      - qemu_cortex_m3 

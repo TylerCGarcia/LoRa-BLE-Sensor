@@ -61,8 +61,7 @@
 				"useVsCodeApi": false,
                 "ignoreClear": true,
                 "singleInstance": false,
-                "command": "west twister -T tests/ -A ~/Work/CyberJungle/Code/LoRa-BLE-Sensor/",
-                // python C:/zephyrproject/zephyr/scripts/twister -T tests
+                "command": "west twister -T tests/ -vv",
             },
             {
                 "name" : "qemu",
