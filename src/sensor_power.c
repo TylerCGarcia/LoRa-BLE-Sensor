@@ -78,7 +78,7 @@ int set_sensor_output(sensor_power_config_t *config, enum sensor_voltage voltage
             return -EINVAL; 
     }
     return 0;
-    }
+}
 
 static int sensor_power_setup(sensor_power_config_t *config)
 {
@@ -119,19 +119,6 @@ static int sensor_power_setup(sensor_power_config_t *config)
 static int sensor_output_adc_setup(sensor_power_config_t *config)
 {
     int ret;
-    // if (!device_is_ready(config->output_read.dev)) {
-    //     return -1;
-	// }	
-    // struct adc_channel_cfg channel_cfg = {
-    // .gain             = ADC_GAIN_1_6,
-    // .reference        = ADC_REF_INTERNAL,
-    // .acquisition_time = ADC_ACQ_TIME_DEFAULT,
-    // .channel_id       = &config->output_read.channel_id,
-    // };
-    // ret = adc_channel_setup(config->output_read.dev, &channel_cfg);
-    // if (ret < 0) {
-	// 	return ret;
-    // }
     if (!adc_is_ready_dt(&config->output_read)) {
 		return -1;
 	}
@@ -144,8 +131,14 @@ static int sensor_output_adc_setup(sensor_power_config_t *config)
 
 int sensor_power_init(sensor_power_config_t *config)
 {
-    sensor_power_setup(config);
-    sensor_output_adc_setup(config);
+    if(sensor_power_setup(config) != 0)
+    {
+        return -1;
+    }
+    if(sensor_output_adc_setup(config) != 0)
+    {
+        return -1;
+    }
     set_sensor_output(config, SENSOR_VOLTAGE_OFF);
     return 0;
 }
