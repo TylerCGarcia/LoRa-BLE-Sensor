@@ -54,7 +54,7 @@ typedef struct {
  * After configurations are set, the sensors output is set OFF.
  * 
  * @param config sensor_power_config_t sensor power configuration for the current sensor
- * @return int 
+ * @return int -1 if error setting up power system or adc
  */
 int sensor_power_init(sensor_power_config_t *config);
 
@@ -62,7 +62,7 @@ int sensor_power_init(sensor_power_config_t *config);
  * @brief Get the sensor voltage that is set for an output.
  * 
  * @param config sensor_power_config_t sensor power configuration for the current sensor
- * @return enum sensor_voltage 
+ * @return enum sensor_voltage for selected sensor configuration
  */
 enum sensor_voltage get_sensor_output(sensor_power_config_t *config);
 
@@ -71,7 +71,7 @@ enum sensor_voltage get_sensor_output(sensor_power_config_t *config);
  * 
  * @param config sensor_power_config_t sensor power configuration for the current sensor
  * @param voltage enum sensor_voltage setting selected
- * @return int 
+ * @return int 0 if successful, sets voltage to OFF if invalid voltage input
  */
 int set_sensor_output(sensor_power_config_t *config, enum sensor_voltage voltage);
 
@@ -89,7 +89,7 @@ float read_sensor_output(sensor_power_config_t *config);
  * @param config sensor_power_config_t sensor power configuration for the current sensor
  * @param voltage enum sensor_voltage setting selected
  * @param accepted_error error in percent that the device is allowed to be off by
- * @return int 
+ * @return int 0 if successful, -1 if not
  */
 int validate_output(sensor_power_config_t *config, enum sensor_voltage voltage, uint8_t accepted_error);
 
@@ -98,7 +98,7 @@ int validate_output(sensor_power_config_t *config, enum sensor_voltage voltage, 
  * 
  * @param voltage_name char array for the name to be saved to
  * @param voltage enum sensor_voltage setting selected
- * @return int 
+ * @return int 0 if successful, -1 if invalid input
  */
 int get_sensor_voltage_name(char * voltage_name, enum sensor_voltage voltage);
 
