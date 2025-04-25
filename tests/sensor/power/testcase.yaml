@@ -1,5 +1,5 @@
 tests:  
-  sensor.sensor_power:
+  sensor.power:
     tags:    
       - drivers
       - gpio    

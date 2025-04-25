@@ -122,7 +122,7 @@ static void reset_all_fakes(void)
  * @brief Setup sensor power systems 
  * 
  */
-static void testsuite_setup(void)
+static void *testsuite_setup(void)
 {
 	reset_all_fakes();
 
@@ -169,7 +169,7 @@ static void testsuite_setup(void)
  * @brief Call after each test
  * 
  */
-static void after_tests(void)
+static void *after_tests(void)
 {
 	// Reset all voltages to OFF after each test
 	set_sensor_output(&sensor_output1, SENSOR_VOLTAGE_OFF);
@@ -180,7 +180,7 @@ static void after_tests(void)
  * @brief Call before each test
  * 
  */
-static void before_tests(void)
+static void *before_tests(void)
 {
 	reset_all_fakes();
 }
@@ -191,13 +191,13 @@ static void before_tests(void)
  * This test verifies various assert macros provided by ztest.
  *
  */
-ZTEST_SUITE(sensor_power, NULL, testsuite_setup, before_tests, after_tests, NULL);
+ZTEST_SUITE(power, NULL, testsuite_setup, before_tests, after_tests, NULL);
 
 /**
  * @brief Confirm the correct gpios are set and regulator calls are made for setting an output OFF
  * 
  */
-ZTEST(sensor_power, test_set_regulator_off)
+ZTEST(power, test_set_regulator_off)
 {
 	set_sensor_output(&sensor_output1, SENSOR_VOLTAGE_OFF);
 	confirm_voltage(&sensor_output1, SENSOR_VOLTAGE_OFF);
@@ -207,7 +207,7 @@ ZTEST(sensor_power, test_set_regulator_off)
  * @brief Confirm the correct gpios are set and regulator calls are made for setting an output to 3.3V
  * 
  */
-ZTEST(sensor_power, test_set_regulator_3v3)
+ZTEST(power, test_set_regulator_3v3)
 {
 	set_sensor_output(&sensor_output1, SENSOR_VOLTAGE_3V3);
 	confirm_voltage(&sensor_output1, SENSOR_VOLTAGE_3V3);
@@ -217,7 +217,7 @@ ZTEST(sensor_power, test_set_regulator_3v3)
  * @brief Confirm the correct gpios are set and regulator calls are made for setting an output to 5V
  * 
  */
-ZTEST(sensor_power, test_set_regulator_5v)
+ZTEST(power, test_set_regulator_5v)
 {
 	set_sensor_output(&sensor_output1, SENSOR_VOLTAGE_5V);
 	confirm_voltage(&sensor_output1, SENSOR_VOLTAGE_5V);
@@ -227,7 +227,7 @@ ZTEST(sensor_power, test_set_regulator_5v)
  * @brief Confirm the correct gpios are set and regulator calls are made for setting an output to 6V
  * 
  */
-ZTEST(sensor_power, test_set_regulator_6v)
+ZTEST(power, test_set_regulator_6v)
 {
 	set_sensor_output(&sensor_output1, SENSOR_VOLTAGE_6V);
 	confirm_voltage(&sensor_output1, SENSOR_VOLTAGE_6V);
@@ -237,7 +237,7 @@ ZTEST(sensor_power, test_set_regulator_6v)
  * @brief Confirm the correct gpios are set and regulator calls are made for setting an output to 12V
  * 
  */
-ZTEST(sensor_power, test_set_regulator_12v)
+ZTEST(power, test_set_regulator_12v)
 {
 	set_sensor_output(&sensor_output1, SENSOR_VOLTAGE_12V);
 	confirm_voltage(&sensor_output1, SENSOR_VOLTAGE_12V);
@@ -247,7 +247,7 @@ ZTEST(sensor_power, test_set_regulator_12v)
  * @brief Confirm the correct gpios are set and regulator calls are made for setting an output to 24V
  * 
  */
-ZTEST(sensor_power, test_set_regulator_24v)
+ZTEST(power, test_set_regulator_24v)
 {
 	set_sensor_output(&sensor_output1, SENSOR_VOLTAGE_24V);
 	confirm_voltage(&sensor_output1, SENSOR_VOLTAGE_24V);
@@ -257,7 +257,7 @@ ZTEST(sensor_power, test_set_regulator_24v)
  * @brief Confirm that multiple outputs can be set correctly 
  * 
  */
-ZTEST(sensor_power, test_set_different_sensors_different_voltages)
+ZTEST(power, test_set_different_sensors_different_voltages)
 {
 	set_sensor_output(&sensor_output1, SENSOR_VOLTAGE_6V);
 	confirm_voltage(&sensor_output1, SENSOR_VOLTAGE_6V);
@@ -270,7 +270,7 @@ ZTEST(sensor_power, test_set_different_sensors_different_voltages)
  * @brief Confirm that the same output can be set correctly multiple times
  * 
  */
-ZTEST(sensor_power, test_set_same_sensor_multiple_times)
+ZTEST(power, test_set_same_sensor_multiple_times)
 {
 	set_sensor_output(&sensor_output1, SENSOR_VOLTAGE_3V3);
 	confirm_voltage(&sensor_output1, SENSOR_VOLTAGE_3V3);
@@ -284,7 +284,7 @@ ZTEST(sensor_power, test_set_same_sensor_multiple_times)
  * @brief Confirm that invalid outputs set output to OFF
  * 
  */
-ZTEST(sensor_power, test_invalid_output_sets_voltage_off)
+ZTEST(power, test_invalid_output_sets_voltage_off)
 {
 	set_sensor_output(&sensor_output1, SENSOR_VOLTAGE_3V3);
 	confirm_voltage(&sensor_output1, SENSOR_VOLTAGE_3V3);
@@ -298,7 +298,7 @@ ZTEST(sensor_power, test_invalid_output_sets_voltage_off)
  * @brief Get correct name associated to a sensor value
  * 
  */
-ZTEST(sensor_power, test_get_sensor_output_name)
+ZTEST(power, test_get_sensor_output_name)
 {
 	char voltage_name[20];
 	char * expected_name = "SENSOR_VOLTAGE_3V3";
@@ -311,7 +311,7 @@ ZTEST(sensor_power, test_get_sensor_output_name)
  * @brief Test upper and lower bounds return of get_sensor_voltage_name
  * 
  */
-ZTEST(sensor_power, test_sensor_output_name_out_of_bounds)
+ZTEST(power, test_sensor_output_name_out_of_bounds)
 {
 	char voltage_name[20];
 	int ret = get_sensor_voltage_name(voltage_name, SENSOR_VOLTAGE_INDEX_LIMIT);
@@ -324,7 +324,7 @@ ZTEST(sensor_power, test_sensor_output_name_out_of_bounds)
  * @brief Confirm that sensor output read adc is working 
  * 
  */
-ZTEST(sensor_power, test_output_read_expected_value)
+ZTEST(power, test_output_read_expected_value)
 {
 	float accepted_error = 0.05; // Take into account integer rounding errors in the conversion
 	set_sensor_output(&sensor_output1, SENSOR_VOLTAGE_3V3);
@@ -340,7 +340,7 @@ ZTEST(sensor_power, test_output_read_expected_value)
  * @brief Test validate_output for 3v3, making sure valid adc reading and sensor was set correctly
  * 
  */
-ZTEST(sensor_power, test_validate_output_3v3)
+ZTEST(power, test_validate_output_3v3)
 {
 	int ret;
 	set_sensor_output(&sensor_output1, SENSOR_VOLTAGE_3V3);
@@ -358,7 +358,7 @@ ZTEST(sensor_power, test_validate_output_3v3)
  * @brief Test validate_output for 5V, making sure valid adc reading and sensor was set correctly
  * 
  */
-ZTEST(sensor_power, test_validate_output_5v)
+ZTEST(power, test_validate_output_5v)
 {
 	int ret;
 	set_sensor_output(&sensor_output1, SENSOR_VOLTAGE_5V);
@@ -376,7 +376,7 @@ ZTEST(sensor_power, test_validate_output_5v)
  * @brief Test validate_output for 6V, making sure valid adc reading and sensor was set correctly
  * 
  */
-ZTEST(sensor_power, test_validate_output_6v)
+ZTEST(power, test_validate_output_6v)
 {
 	int ret;
 	set_sensor_output(&sensor_output1, SENSOR_VOLTAGE_6V);
@@ -394,7 +394,7 @@ ZTEST(sensor_power, test_validate_output_6v)
  * @brief Test validate_output for 12V, making sure valid adc reading and sensor was set correctly
  * 
  */
-ZTEST(sensor_power, test_validate_output_12v)
+ZTEST(power, test_validate_output_12v)
 {
 	int ret;
 	set_sensor_output(&sensor_output1, SENSOR_VOLTAGE_12V);
@@ -412,7 +412,7 @@ ZTEST(sensor_power, test_validate_output_12v)
  * @brief Test validate_output for 24V, making sure valid adc reading and sensor was set correctly
  * 
  */
-ZTEST(sensor_power, test_validate_output_24v)
+ZTEST(power, test_validate_output_24v)
 {
 	int ret;
 	set_sensor_output(&sensor_output1, SENSOR_VOLTAGE_24V);
@@ -430,7 +430,7 @@ ZTEST(sensor_power, test_validate_output_24v)
  * @brief Test validate_output has error for 3v3 when there is a 6% input error above and accepted_error is set to 5%
  * 
  */
-ZTEST(sensor_power, test_validate_output_3v3_out_of_bounds_high)
+ZTEST(power, test_validate_output_3v3_out_of_bounds_high)
 {
 	int ret;
 	set_sensor_output(&sensor_output1, SENSOR_VOLTAGE_3V3);
@@ -448,7 +448,7 @@ ZTEST(sensor_power, test_validate_output_3v3_out_of_bounds_high)
  * @brief Test validate_output has error for 3v3 when there is a 6% input error below and accepted_error is set to 5%
  * 
  */
-ZTEST(sensor_power, test_validate_output_3v3_out_of_bounds_low)
+ZTEST(power, test_validate_output_3v3_out_of_bounds_low)
 {
 	int ret;
 	set_sensor_output(&sensor_output1, SENSOR_VOLTAGE_3V3);
@@ -466,7 +466,7 @@ ZTEST(sensor_power, test_validate_output_3v3_out_of_bounds_low)
  * @brief Test validate_output for 3v3 when there is a 3% error above and accepted_error is set to 5%
  * 
  */
-ZTEST(sensor_power, test_validate_output_3v3_in_bounds_high)
+ZTEST(power, test_validate_output_3v3_in_bounds_high)
 {
 	int ret;
 	set_sensor_output(&sensor_output1, SENSOR_VOLTAGE_3V3);
@@ -484,7 +484,7 @@ ZTEST(sensor_power, test_validate_output_3v3_in_bounds_high)
  * @brief Test validate_output for 3v3 when there is a 3% error below and accepted_error is set to 5%
  * 
  */
-ZTEST(sensor_power, test_validate_output_3v3_in_bounds_low)
+ZTEST(power, test_validate_output_3v3_in_bounds_low)
 {
 	int ret;
 	set_sensor_output(&sensor_output1, SENSOR_VOLTAGE_3V3);
@@ -503,7 +503,7 @@ ZTEST(sensor_power, test_validate_output_3v3_in_bounds_low)
  * @brief Test validate_output has error for 24v when there is a 6% input error above and accepted_error is set to 5%
  * 
  */
-ZTEST(sensor_power, test_validate_output_24v_out_of_bounds_high)
+ZTEST(power, test_validate_output_24v_out_of_bounds_high)
 {
 	int ret;
 	set_sensor_output(&sensor_output1, SENSOR_VOLTAGE_24V);
@@ -521,7 +521,7 @@ ZTEST(sensor_power, test_validate_output_24v_out_of_bounds_high)
  * @brief Test validate_output has error for 24v when there is a 6% input error below and accepted_error is set to 5%
  * 
  */
-ZTEST(sensor_power, test_validate_output_24v_out_of_bounds_low)
+ZTEST(power, test_validate_output_24v_out_of_bounds_low)
 {
 	int ret;
 	set_sensor_output(&sensor_output1, SENSOR_VOLTAGE_24V);
@@ -539,7 +539,7 @@ ZTEST(sensor_power, test_validate_output_24v_out_of_bounds_low)
  * @brief Test validate_output for 24V when there is a 3% error above and accepted_error is set to 5%
  * 
  */
-ZTEST(sensor_power, test_validate_output_24v_in_bounds_high)
+ZTEST(power, test_validate_output_24v_in_bounds_high)
 {
 	int ret;
 	set_sensor_output(&sensor_output1, SENSOR_VOLTAGE_24V);
@@ -557,7 +557,7 @@ ZTEST(sensor_power, test_validate_output_24v_in_bounds_high)
  * @brief Test validate_output for 24v when there is a 3% error below and accepted_error is set to 5%
  * 
  */
-ZTEST(sensor_power, test_validate_output_24v_in_bounds_low)
+ZTEST(power, test_validate_output_24v_in_bounds_low)
 {
 	int ret;
 	set_sensor_output(&sensor_output1, SENSOR_VOLTAGE_24V);
@@ -575,7 +575,7 @@ ZTEST(sensor_power, test_validate_output_24v_in_bounds_low)
  * @brief Test validate_output when the voltage read is correct but the set voltage is incorrect, should produce an error
  * 
  */
-ZTEST(sensor_power, test_validate_output_wrong_setting)
+ZTEST(power, test_validate_output_wrong_setting)
 {
 	int ret;
 	set_sensor_output(&sensor_output1, SENSOR_VOLTAGE_3V3);
