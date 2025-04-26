@@ -85,15 +85,16 @@
 
     zephyr,user {
 		/* adjust channel number according to pinmux in board.dts */
-		io-channels = <&adc0 0>, <&adc0 1>;
-		io-channel-names = "sensor_output1", "sensor_output2";
+		io-channels = <&adc0 0>, <&adc0 1>, <&adc0 2>, <&adc0 3>, <&adc0 4>, <&adc0 5>;
+		io-channel-names = "sensor_output1", "sensor_output2", "voltage_sensor1", "current_sensor1", "voltage_sensor2", "current_sensor2";
 	};
 };
 
 &adc0 {
+	status = "okay";
+	nchannels = <6>;
 	#address-cells = <1>;
 	#size-cells = <0>;
-	status = "okay";
 	ref-internal-mv = <600>;
 	channel@0 {
 		reg = <0>;
@@ -109,6 +110,38 @@
 		zephyr,reference = "ADC_REF_INTERNAL";
 		zephyr,acquisition-time = <ADC_ACQ_TIME_DEFAULT>;
 		zephyr,input-positive = <3>; 
+		zephyr,resolution = <12>;
+	};
+	channel@2 {
+		reg = <2>;
+		zephyr,gain = "ADC_GAIN_1_6";
+		zephyr,reference = "ADC_REF_INTERNAL";
+		zephyr,acquisition-time = <ADC_ACQ_TIME_DEFAULT>;
+		zephyr,input-positive = <1>; 
+		zephyr,resolution = <12>;
+	};
+    channel@3 {
+		reg = <3>;
+		zephyr,gain = "ADC_GAIN_1_6";
+		zephyr,reference = "ADC_REF_INTERNAL";
+		zephyr,acquisition-time = <ADC_ACQ_TIME_DEFAULT>;
+		zephyr,input-positive = <0>; 
+		zephyr,resolution = <12>;
+	};
+	channel@4 {
+		reg = <4>;
+		zephyr,gain = "ADC_GAIN_1_6";
+		zephyr,reference = "ADC_REF_INTERNAL";
+		zephyr,acquisition-time = <ADC_ACQ_TIME_DEFAULT>;
+		zephyr,input-positive = <6>; 
+		zephyr,resolution = <12>;
+	};
+    channel@5 {
+		reg = <5>;
+		zephyr,gain = "ADC_GAIN_1_6";
+		zephyr,reference = "ADC_REF_INTERNAL";
+		zephyr,acquisition-time = <ADC_ACQ_TIME_DEFAULT>;
+		zephyr,input-positive = <7>; 
 		zephyr,resolution = <12>;
 	};
 };

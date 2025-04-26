@@ -30,7 +30,7 @@ sensor_power_config_t sensor_output2 = {
 	.output_read = ADC_DT_SPEC_GET_BY_NAME(DT_PATH(zephyr_user), sensor_output2)
 };
 
-static void sensor_setup(void)
+static void setup_power(void)
 {
 	sensor_power_init(&sensor_output1);
 	sensor_power_init(&sensor_output2);
@@ -40,7 +40,7 @@ int main(void)
 {
 	int ret;
 	int accepted_error = 5;
-	sensor_setup();
+	setup_power();
 	int i = 0;
 	while (1) 
 	{

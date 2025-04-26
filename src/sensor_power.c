@@ -37,45 +37,45 @@ int set_sensor_output(sensor_power_config_t *config, enum sensor_voltage voltage
 {
     sensor_state[config->output_id] = voltage;
     switch (voltage) {
-        case SENSOR_VOLTAGE_OFF:
-            turn_off_regulator(config);
-            gpio_pin_set_dt(&config->boost_en, 0);
-            gpio_pin_set_dt(&config->boost_ctrl1, 0);
-            gpio_pin_set_dt(&config->boost_ctrl2, 0);
-            break;
-        case SENSOR_VOLTAGE_3V3:
-            turn_on_regulator(config);
-            gpio_pin_set_dt(&config->boost_en, 0);
-            gpio_pin_set_dt(&config->boost_ctrl1, 0);
-            gpio_pin_set_dt(&config->boost_ctrl2, 0);
-            break;
-        case SENSOR_VOLTAGE_5V:
-            turn_off_regulator(config);
-            gpio_pin_set_dt(&config->boost_en, 1);
-            gpio_pin_set_dt(&config->boost_ctrl1, 1);
-            gpio_pin_set_dt(&config->boost_ctrl2, 1);
-            break;
-        case SENSOR_VOLTAGE_6V:
-            turn_off_regulator(config);
-            gpio_pin_set_dt(&config->boost_en, 1);
-            gpio_pin_set_dt(&config->boost_ctrl1, 0);
-            gpio_pin_set_dt(&config->boost_ctrl2, 1);
-            break;  
-        case SENSOR_VOLTAGE_12V:
-            turn_off_regulator(config);
-            gpio_pin_set_dt(&config->boost_en, 1);
-            gpio_pin_set_dt(&config->boost_ctrl1, 1);
-            gpio_pin_set_dt(&config->boost_ctrl2, 0);
-            break;
-        case SENSOR_VOLTAGE_24V:
-            turn_off_regulator(config);
-            gpio_pin_set_dt(&config->boost_en, 1);
-            gpio_pin_set_dt(&config->boost_ctrl1, 0);
-            gpio_pin_set_dt(&config->boost_ctrl2, 0);
-            break;
-        default:
-            set_sensor_output(config, SENSOR_VOLTAGE_OFF); // If invalid output, set voltage to OFF
-            return -EINVAL; 
+    case SENSOR_VOLTAGE_OFF:
+        turn_off_regulator(config);
+        gpio_pin_set_dt(&config->boost_en, 0);
+        gpio_pin_set_dt(&config->boost_ctrl1, 0);
+        gpio_pin_set_dt(&config->boost_ctrl2, 0);
+        break;
+    case SENSOR_VOLTAGE_3V3:
+        turn_on_regulator(config);
+        gpio_pin_set_dt(&config->boost_en, 0);
+        gpio_pin_set_dt(&config->boost_ctrl1, 0);
+        gpio_pin_set_dt(&config->boost_ctrl2, 0);
+        break;
+    case SENSOR_VOLTAGE_5V:
+        turn_off_regulator(config);
+        gpio_pin_set_dt(&config->boost_en, 1);
+        gpio_pin_set_dt(&config->boost_ctrl1, 1);
+        gpio_pin_set_dt(&config->boost_ctrl2, 1);
+        break;
+    case SENSOR_VOLTAGE_6V:
+        turn_off_regulator(config);
+        gpio_pin_set_dt(&config->boost_en, 1);
+        gpio_pin_set_dt(&config->boost_ctrl1, 0);
+        gpio_pin_set_dt(&config->boost_ctrl2, 1);
+        break;  
+    case SENSOR_VOLTAGE_12V:
+        turn_off_regulator(config);
+        gpio_pin_set_dt(&config->boost_en, 1);
+        gpio_pin_set_dt(&config->boost_ctrl1, 1);
+        gpio_pin_set_dt(&config->boost_ctrl2, 0);
+        break;
+    case SENSOR_VOLTAGE_24V:
+        turn_off_regulator(config);
+        gpio_pin_set_dt(&config->boost_en, 1);
+        gpio_pin_set_dt(&config->boost_ctrl1, 0);
+        gpio_pin_set_dt(&config->boost_ctrl2, 0);
+        break;
+    default:
+        set_sensor_output(config, SENSOR_VOLTAGE_OFF); // If invalid output, set voltage to OFF
+        return -EINVAL; 
     }
     return 0;
 }
