@@ -167,7 +167,7 @@ ZTEST(data, test_sensor_voltage_read_zero)
 }
 
 /**
- * @brief Test current read outputs expected value
+ * @brief Test that the voltage read returns an error when sensor is not set up for voltage read
  * 
  */
 ZTEST(data, test_voltage_read_when_voltage_sensor_not_set)
@@ -179,6 +179,79 @@ ZTEST(data, test_voltage_read_when_voltage_sensor_not_set)
 	const uint16_t emul_mv = (input_mv * VOLTAGE_READ_DIVIDER_LOW) / (VOLTAGE_READ_DIVIDER_HIGH + VOLTAGE_READ_DIVIDER_LOW);
     adc_emul_const_value_set(sensor1_data_config.voltage_read.dev, sensor1_data_config.voltage_read.channel_id, emul_mv);
     float voltage = get_sensor_voltage_reading(&sensor1_data_config);
-    float accepted_error = expected_output * 0.05; // Give 5% error
     zassert_not_ok(voltage, "Voltage sensor set when not expected");
+}
+
+/**
+ * @brief Test current read outputs expected value
+ * 
+ */
+ZTEST(data, test_sensor_current_read)
+{
+    int ret = sensor_data_setup(&sensor1_data_config, CURRENT_SENSOR);
+    zassert_ok(ret, "Sensor1 failed current setup");
+    enum sensor_types setup = get_sensor_data_setup(&sensor1_data_config);
+    zassert_equal(setup, CURRENT_SENSOR, "setup did not equal CURRENT_SENSOR");
+    float expected_output = 7;
+    const uint16_t input_ma = (expected_output);
+	const uint16_t emul_mv = (input_ma) * CURRENT_READ_RESISTOR;
+    adc_emul_const_value_set(sensor1_data_config.current_read.dev, sensor1_data_config.current_read.channel_id, emul_mv);
+    float current = get_sensor_current_reading(&sensor1_data_config);
+    float accepted_error = expected_output * 0.05; // Give 5% error
+	zassert_within(current, expected_output, accepted_error, "Mismatch: got %f, expected %f", current, expected_output);
+}
+
+
+/**
+ * @brief Test current read outputs expected value of zero
+ * 
+ */
+ZTEST(data, test_sensor_current_read_zero)
+{
+    int ret = sensor_data_setup(&sensor1_data_config, CURRENT_SENSOR);
+    zassert_ok(ret, "Sensor1 failed current setup");
+    enum sensor_types setup = get_sensor_data_setup(&sensor1_data_config);
+    zassert_equal(setup, CURRENT_SENSOR, "setup did not equal CURRENT_SENSOR");
+    float expected_output = 0;
+    const uint16_t input_ma = (expected_output);
+	const uint16_t emul_mv = (input_ma) * CURRENT_READ_RESISTOR;
+    adc_emul_const_value_set(sensor1_data_config.current_read.dev, sensor1_data_config.current_read.channel_id, emul_mv);
+    float current = get_sensor_current_reading(&sensor1_data_config);
+    float accepted_error = expected_output * 0.05; // Give 5% error
+	zassert_within(current, expected_output, accepted_error, "Mismatch: got %f, expected %f", current, expected_output);
+}
+
+/**
+ * @brief Test current read outputs expected value of 24mA
+ * 
+ */
+ZTEST(data, test_sensor_current_read_24ma)
+{
+    int ret = sensor_data_setup(&sensor1_data_config, CURRENT_SENSOR);
+    zassert_ok(ret, "Sensor1 failed current setup");
+    enum sensor_types setup = get_sensor_data_setup(&sensor1_data_config);
+    zassert_equal(setup, CURRENT_SENSOR, "setup did not equal CURRENT_SENSOR");
+    float expected_output = 24;
+    const uint16_t input_ma = (expected_output);
+	const uint16_t emul_mv = (input_ma) * CURRENT_READ_RESISTOR;
+    adc_emul_const_value_set(sensor1_data_config.current_read.dev, sensor1_data_config.current_read.channel_id, emul_mv);
+    float current = get_sensor_current_reading(&sensor1_data_config);
+    float accepted_error = expected_output * 0.05; // Give 5% error
+	zassert_within(current, expected_output, accepted_error, "Mismatch: got %f, expected %f", current, expected_output);
+}
+
+/**
+ * @brief Test that the current read returns an error when sensor is not set up for current read
+ * 
+ */
+ZTEST(data, test_current_read_when_current_sensor_not_set)
+{
+    int ret = sensor_data_setup(&sensor1_data_config, VOLTAGE_SENSOR);
+    zassert_ok(ret, "Sensor1 failed voltage setup");
+    float expected_output = 24;
+    const uint16_t input_ma = (expected_output);
+	const uint16_t emul_mv = (input_ma) * CURRENT_READ_RESISTOR;
+    adc_emul_const_value_set(sensor1_data_config.current_read.dev, sensor1_data_config.current_read.channel_id, emul_mv);
+    float current = get_sensor_current_reading(&sensor1_data_config);
+    zassert_not_ok(current, "Voltage sensor set when not expected");
 }

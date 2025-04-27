@@ -56,4 +56,6 @@ enum sensor_types get_sensor_data_setup(sensor_data_config_t *config);
 
 float get_sensor_voltage_reading(sensor_data_config_t *config);
 
+float get_sensor_current_reading(sensor_data_config_t *config);
+
 #endif

@@ -153,3 +153,19 @@ float get_sensor_voltage_reading(sensor_data_config_t *config)
     }
 	return (((float)val_mv/1000.0) * (((float)VOLTAGE_READ_DIVIDER_HIGH + (float)VOLTAGE_READ_DIVIDER_LOW)/(float)VOLTAGE_READ_DIVIDER_LOW));
 }
+
+float get_sensor_current_reading(sensor_data_config_t *config)
+{
+    if(get_sensor_data_setup(config) != CURRENT_SENSOR)
+    {
+        return -1;
+    }
+	int val_mv = (int)read_sensor_output_raw(&config->current_read);
+	int err = adc_raw_to_millivolts_dt(&config->current_read, &val_mv);
+    if(err < 0)
+    {
+        return err;
+    }
+    // I = V/R
+    return (float)val_mv / (float)CURRENT_READ_RESISTOR;
+}
