@@ -255,3 +255,37 @@ ZTEST(data, test_current_read_when_current_sensor_not_set)
     float current = get_sensor_current_reading(&sensor1_data_config);
     zassert_not_ok(current, "Voltage sensor set when not expected");
 }
+
+/**
+ * @brief Test that the current read and voltage read can be used at the same time 
+ * 
+ */
+ZTEST(data, test_current_sensor_and_voltage_sensor)
+{
+    int ret = sensor_data_setup(&sensor1_data_config, VOLTAGE_SENSOR);
+    zassert_ok(ret, "Sensor1 failed voltage setup");
+    enum sensor_types setup = get_sensor_data_setup(&sensor1_data_config);
+    zassert_equal(setup, VOLTAGE_SENSOR, "setup did not equal VOLTAGE_SENSOR");
+
+    ret = sensor_data_setup(&sensor2_data_config, CURRENT_SENSOR);
+    zassert_ok(ret, "Sensor1 failed current setup");
+    enum sensor_types setup2 = get_sensor_data_setup(&sensor2_data_config);
+    zassert_equal(setup2, CURRENT_SENSOR, "setup did not equal CURRENT_SENSOR");
+
+    float expected_output = 3.3;
+    const uint16_t input_mv = (expected_output * 1000);
+	const uint16_t emul_mv = (input_mv * VOLTAGE_READ_DIVIDER_LOW) / (VOLTAGE_READ_DIVIDER_HIGH + VOLTAGE_READ_DIVIDER_LOW);
+    adc_emul_const_value_set(sensor1_data_config.voltage_read.dev, sensor1_data_config.voltage_read.channel_id, emul_mv);
+
+    float expected_current = 10;
+	const uint16_t emul_mv2 = (expected_current) * CURRENT_READ_RESISTOR;
+    adc_emul_const_value_set(sensor2_data_config.current_read.dev, sensor2_data_config.current_read.channel_id, emul_mv2);
+ 
+    float voltage = get_sensor_voltage_reading(&sensor1_data_config);
+    float accepted_error = expected_output * 0.05; // Give 5% error
+	zassert_within(voltage, expected_output, accepted_error, "Mismatch: got %f, expected %f", voltage, expected_output);
+    
+    float current = get_sensor_current_reading(&sensor2_data_config);
+    float accepted_error2 = expected_current * 0.05; // Give 5% error
+	zassert_within(current, expected_current, accepted_error2, "Mismatch: got %f, expected %f", current, expected_output);
+}
