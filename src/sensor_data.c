@@ -141,6 +141,10 @@ static int read_sensor_output_raw(const struct adc_dt_spec *spec)
 
 float get_sensor_voltage_reading(sensor_data_config_t *config)
 {
+    if(get_sensor_data_setup(config) != VOLTAGE_SENSOR)
+    {
+        return -1;
+    }
 	int val_mv = (int)read_sensor_output_raw(&config->voltage_read);
 	int err = adc_raw_to_millivolts_dt(&config->voltage_read, &val_mv);
     if(err < 0)
