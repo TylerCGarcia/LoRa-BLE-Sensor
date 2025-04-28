@@ -289,3 +289,18 @@ ZTEST(data, test_current_sensor_and_voltage_sensor)
     float accepted_error2 = expected_current * 0.05; // Give 5% error
 	zassert_within(current, expected_current, accepted_error2, "Mismatch: got %f, expected %f", current, expected_output);
 }
+
+/**
+ * @brief Test pulse read outputs expected value
+ * 
+ */
+ZTEST(data, test_sensor_pulse_read)
+{
+    int ret = sensor_data_setup(&sensor1_data_config, PULSE_SENSOR);
+    zassert_ok(ret, "Sensor1 failed pulse setup");
+    enum sensor_types setup = get_sensor_data_setup(&sensor1_data_config);
+    zassert_equal(setup, PULSE_SENSOR, "setup did not equal PULSE_SENSOR");
+    int expected_pulse_count = 1;
+    int pulse_count = get_sensor_pulse_count(&sensor1_data_config);
+    zassert_equal(expected_pulse_count, pulse_count, "Expected %d, got %d", expected_pulse_count, pulse_count);
+}

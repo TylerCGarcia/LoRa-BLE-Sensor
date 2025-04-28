@@ -2,37 +2,51 @@
 
 #include "sensor_data.h"
 
+typedef struct {
+    struct gpio_callback cb;
+    enum sensor_id id;
+} pulse_context_t;
 
 enum sensor_types sensor_setups[SENSOR_INDEX_LIMIT];
 
 static int pulse_count[SENSOR_INDEX_LIMIT];
 
+static pulse_context_t pulse_cb_data[SENSOR_INDEX_LIMIT];
+
 /* Button Interrupt */
 static void pulse_captured(const struct device *dev, struct gpio_callback *cb, uint32_t pins)
 {
-    pulse_count[0]++;
+    pulse_context_t *context = CONTAINER_OF(cb, pulse_context_t, cb);
+    pulse_count[context->id]++;
 }
-static struct gpio_callback pulse_cb_data;
 
 static int sensor_data_pulse_setup(sensor_data_config_t *config)
 {
     int ret;
+
     if (!gpio_is_ready_dt(&config->d1)) 
     {
-		return -1;
-	}
+        return -1;
+    }
+
     ret = gpio_pin_configure_dt(&config->d1, GPIO_INPUT);
-	if (ret != 0) 
+    if (ret != 0) 
     {
-		return -1;
-	}
+        return -1;
+    }
+
     ret = gpio_pin_interrupt_configure_dt(&config->d1, GPIO_INT_EDGE_TO_INACTIVE);
     if (ret != 0) 
     {
         return -1;
     }
-    gpio_init_callback(&pulse_cb_data, pulse_captured, BIT(config->d1.pin));
-    gpio_add_callback(config->d1.port, &pulse_cb_data);
+
+    pulse_cb_data[config->id].id = config->id;
+
+    gpio_init_callback(&pulse_cb_data[config->id].cb, pulse_captured, BIT(config->d1.pin));
+    gpio_add_callback(config->d1.port, &pulse_cb_data[config->id].cb);
+
+    return 0;
 }
 
 static int sensor_data_adc_setup(sensor_data_config_t *config, enum sensor_types sensor_type)
@@ -69,13 +83,16 @@ static int sensor_data_adc_setup(sensor_data_config_t *config, enum sensor_types
 static int setup_hardware(sensor_data_config_t *config, enum sensor_types sensor_type)
 {
     int ret;
+    // If switching from pulse sensor to any other sensor remove the callback
+    if (sensor_setups[config->id] == PULSE_SENSOR && sensor_type != PULSE_SENSOR)
+    {
+        gpio_remove_callback(config->d1.port, &pulse_cb_data[config->id].cb);
+    }
+
     switch (sensor_type)
     {
     case NULL_SENSOR:
-        if(sensor_setups[config->id] = PULSE_SENSOR)
-        {
-            gpio_remove_callback(config->d1.port, &pulse_cb_data); // if callback was previously added, remove it 
-        }
+        
         break;
     case VOLTAGE_SENSOR:
         ret = sensor_data_adc_setup(config, sensor_type);
@@ -168,4 +185,13 @@ float get_sensor_current_reading(sensor_data_config_t *config)
     }
     // I = V/R
     return (float)val_mv / (float)CURRENT_READ_RESISTOR;
+}
+
+int get_sensor_pulse_count(sensor_data_config_t *config)
+{
+    if(get_sensor_data_setup(config) != PULSE_SENSOR)
+    {
+        return -1;
+    }
+    return pulse_count[config->id];
 }
