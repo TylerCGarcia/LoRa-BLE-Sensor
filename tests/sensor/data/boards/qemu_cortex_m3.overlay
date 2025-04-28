@@ -30,6 +30,22 @@
 			gpios = <&gpio0 5 GPIO_ACTIVE_HIGH>;
 			label = "Boost 2 Ctrl 2";
 		};
+		sensor1_d1: sensor1_d1 {
+			gpios = <&gpio0 6 GPIO_ACTIVE_HIGH>;
+			label = "Sensor 1 Digital 1";
+		};
+		sensor1_d2: sensor1_d2 {
+			gpios = <&gpio0 7 GPIO_ACTIVE_HIGH>;
+			label = "Sensor 1 Digital 2";
+		};
+		sensor2_d1: sensor2_d1 {
+			gpios = <&gpio0 8 GPIO_ACTIVE_HIGH>;
+			label = "Sensor 2 Digital 1";
+		};
+		sensor2_d2: sensor2_d2 {
+			gpios = <&gpio0 9 GPIO_ACTIVE_HIGH>;
+			label = "Sensor 2 Digital 2";
+		};
 	};
     aliases {
 		boost1en = &boost1_en;
@@ -38,6 +54,10 @@
 		boost2en = &boost2_en;
 		boost2ctrl1 = &boost2_ctrl1;
 		boost2ctrl2 = &boost2_ctrl2;
+		sensor1d1 = &sensor1_d1;
+		sensor1d2 = &sensor1_d2;
+		sensor2d1 = &sensor2_d1;
+		sensor2d2 = &sensor2_d2;
     };
 
 	npm1300_ek_pmic: pmic {
@@ -79,7 +99,6 @@
 
     adc0: adc {
 		compatible = "zephyr,adc-emul";
-		nchannels = <2>;
 		#io-channel-cells = <1>;
 	};
 
@@ -122,7 +141,7 @@
 	};
     channel@3 {
 		reg = <3>;
-		zephyr,gain = "ADC_GAIN_1_6";
+		zephyr,gain = "ADC_GAIN_1_2";
 		zephyr,reference = "ADC_REF_INTERNAL";
 		zephyr,acquisition-time = <ADC_ACQ_TIME_DEFAULT>;
 		zephyr,input-positive = <0>; 
@@ -138,7 +157,7 @@
 	};
     channel@5 {
 		reg = <5>;
-		zephyr,gain = "ADC_GAIN_1_6";
+		zephyr,gain = "ADC_GAIN_1_2";
 		zephyr,reference = "ADC_REF_INTERNAL";
 		zephyr,acquisition-time = <ADC_ACQ_TIME_DEFAULT>;
 		zephyr,input-positive = <7>; 
@@ -150,6 +169,7 @@
     status = "okay";
     compatible = "zephyr,gpio-emul";
     ngpios = <32>;
+	falling-edge;
     gpio-controller;
     #gpio-cells = <2>;
 };

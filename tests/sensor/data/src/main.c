@@ -18,16 +18,16 @@
 
 sensor_data_config_t sensor1_data_config = {
     .id = SENSOR_1,
-	.d1 = GPIO_DT_SPEC_GET(DT_ALIAS(boost1en), gpios),	
-	.d2 = GPIO_DT_SPEC_GET(DT_ALIAS(boost1ctrl1), gpios),
+	.d1 = GPIO_DT_SPEC_GET(DT_ALIAS(sensor1d1), gpios),	
+	.d2 = GPIO_DT_SPEC_GET(DT_ALIAS(sensor1d2), gpios),
 	.voltage_read = ADC_DT_SPEC_GET_BY_NAME(DT_PATH(zephyr_user), voltage_sensor1),
     .current_read = ADC_DT_SPEC_GET_BY_NAME(DT_PATH(zephyr_user), current_sensor1)
 };
 
 sensor_data_config_t sensor2_data_config = {
     .id = SENSOR_2,
-	.d1 = GPIO_DT_SPEC_GET(DT_ALIAS(boost2en), gpios),	
-	.d2 = GPIO_DT_SPEC_GET(DT_ALIAS(boost2ctrl1), gpios),
+	.d1 = GPIO_DT_SPEC_GET(DT_ALIAS(sensor2d1), gpios),	
+	.d2 = GPIO_DT_SPEC_GET(DT_ALIAS(sensor2d2), gpios),
 	.voltage_read = ADC_DT_SPEC_GET_BY_NAME(DT_PATH(zephyr_user), voltage_sensor2),
     .current_read = ADC_DT_SPEC_GET_BY_NAME(DT_PATH(zephyr_user), current_sensor2)
 };
