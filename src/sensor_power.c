@@ -16,7 +16,7 @@ const sensor_voltage_info_t sensor_voltage_table[] = {
     { SENSOR_VOLTAGE_24V, "SENSOR_VOLTAGE_24V", 24.0 },
 };
 
-enum sensor_voltage sensor_state[SENSOR_OUTPUT_INDEX_LIMIT];
+enum sensor_voltage sensor_state[SENSOR_POWER_INDEX_LIMIT];
 
 static int turn_off_regulator(sensor_power_config_t *config)
 {
@@ -35,7 +35,7 @@ static int turn_on_regulator(sensor_power_config_t *config)
 
 int set_sensor_output(sensor_power_config_t *config, enum sensor_voltage voltage)
 {
-    sensor_state[config->output_id] = voltage;
+    sensor_state[config->power_id] = voltage;
     switch (voltage) {
     case SENSOR_VOLTAGE_OFF:
         turn_off_regulator(config);
@@ -145,7 +145,7 @@ int sensor_power_init(sensor_power_config_t *config)
 
 enum sensor_voltage get_sensor_output(sensor_power_config_t *config)
 {
-    return sensor_state[config->output_id];
+    return sensor_state[config->power_id];
 }
 
 static int read_sensor_output_raw(sensor_power_config_t *config)

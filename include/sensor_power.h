@@ -1,17 +1,9 @@
 #ifndef SENSOR_POWER_H
 #define SENSOR_POWER_H
 
+#include "sensor_id.h"
 #include <zephyr/drivers/gpio.h>
 #include <zephyr/drivers/adc.h>
-
-/**
- * @brief Regulator identifiers
- */
-typedef enum sensor_output_id {
-    SENSOR_OUTPUT_1 = 0,
-    SENSOR_OUTPUT_2,
-    SENSOR_OUTPUT_INDEX_LIMIT // This is used to get the size of the enum
-};
 
 /**
  * @brief Voltage levels for sensor power
@@ -30,7 +22,6 @@ typedef enum sensor_voltage {
 #define OUTUT_READ_DIVIDER_HIGH     100
 #define OUTUT_READ_DIVIDER_LOW      13
 
-
 typedef struct {
     enum sensor_voltage voltage_enum;
     const char *name;
@@ -41,7 +32,7 @@ typedef struct {
  * @brief Sensor power configuration
  */
 typedef struct {
-    enum sensor_output_id output_id;
+    enum sensor_power_id power_id;
     struct gpio_dt_spec boost_en; 
     struct gpio_dt_spec boost_ctrl1;
     struct gpio_dt_spec boost_ctrl2;

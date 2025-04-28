@@ -1,17 +1,9 @@
 #ifndef SENSOR_DATA_H
 #define SENSOR_DATA_H
 
+#include "sensor_id.h"
 #include <zephyr/drivers/gpio.h>
 #include <zephyr/drivers/adc.h>
-
-/**
- * @brief Sensor identifiers
- */
-typedef enum sensor_id {
-    SENSOR_1 = 0,
-    SENSOR_2,
-    SENSOR_INDEX_LIMIT // This is used to get the size of the enum
-};
 
 /**
  * @brief Regulator identifiers
@@ -28,7 +20,6 @@ typedef enum sensor_types {
     /* Used to denote size of enum. */
     SENSOR_TYPE_LIMIT
 };
-
 
 /**
  * @brief Sensor data pin configuration

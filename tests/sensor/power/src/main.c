@@ -25,7 +25,7 @@ DEFINE_FFF_GLOBALS;
 // static const struct adc_dt_spec adc_bat = ADC_DT_SPEC_GET_BY_NAME(DT_PATH(zephyr_user), v_bat);
 
 sensor_power_config_t sensor_output1 = {
-	.output_id = SENSOR_OUTPUT_1,
+	.power_id = SENSOR_POWER_1,
 	.boost_en = GPIO_DT_SPEC_GET(DT_ALIAS(boost1en), gpios),	
 	.boost_ctrl1 = GPIO_DT_SPEC_GET(DT_ALIAS(boost1ctrl1), gpios),
 	.boost_ctrl2 = GPIO_DT_SPEC_GET(DT_ALIAS(boost1ctrl2), gpios),
@@ -34,7 +34,7 @@ sensor_power_config_t sensor_output1 = {
 };
 
 sensor_power_config_t sensor_output2 = {
-	.output_id = SENSOR_OUTPUT_2,
+	.power_id = SENSOR_POWER_2,
 	.boost_en = GPIO_DT_SPEC_GET(DT_ALIAS(boost2en), gpios),	
 	.boost_ctrl1 = GPIO_DT_SPEC_GET(DT_ALIAS(boost2ctrl1), gpios),
 	.boost_ctrl2 = GPIO_DT_SPEC_GET(DT_ALIAS(boost2ctrl2), gpios),

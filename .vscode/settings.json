@@ -132,6 +132,7 @@
         "algorithm": "c",
         "*.tcc": "c",
         "numeric": "c",
-        "sensor_data.h": "c"
+        "sensor_data.h": "c",
+        "sensor_id.h": "c"
     }
 }
