@@ -3,11 +3,9 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  * Tests:
- * - Can be configured to analog or digital sensor
- * - can be configured to analog voltage or analog current 
- * - can be configured to digital sensor pulse 
  * - handles invalid sensor types 
  * - handles sensor timeouts
+ * - Pulse sensor interrupt is disabled after sensor type is changed
  */
 
 #include <zephyr/ztest.h>

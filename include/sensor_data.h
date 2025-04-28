@@ -50,16 +50,55 @@ typedef struct {
 #define VOLTAGE_READ_DIVIDER_LOW      13
 #define CURRENT_READ_RESISTOR         50
 
+/**
+ * @brief Setup sensor for sensor_type with hardware configuration 
+ * 
+ * @param config sensor hardware configuration
+ * @param sensor_type type of sensor to be set to
+ * @return int 0 if successful, < 0 otherwise
+ */
 int sensor_data_setup(sensor_data_config_t *config, enum sensor_types sensor_type);
 
+/**
+ * @brief Get the sensor type set for a hardware configuration
+ * 
+ * @param config sensor hardware configuration
+ * @return enum sensor_types current sensor type set
+ */
 enum sensor_types get_sensor_data_setup(sensor_data_config_t *config);
 
+/**
+ * @brief Get the sensor voltage reading for a given sensor, takes into account 
+ * the VOLTAGE_READ_DIVIDER_HIGH and VOLTAGE_READ_DIVIDER_LOW values
+ * 
+ * @param config sensor hardware configuration
+ * @return float voltage on sensor voltage_read pin, -1 if sensor is not configured to VOLTAGE_SENSOR
+ */
 float get_sensor_voltage_reading(sensor_data_config_t *config);
 
+/**
+ * @brief Get the sensor current reading for a given sensor in milliamperes, takes 
+ * into account the CURRENT_READ_RESISTOR
+ * 
+ * @param config sensor hardware configuration
+ * @return float current on sensor current_read pin in mA, -1 if sensor is not configured to CURRENT_SENSOR
+ */
 float get_sensor_current_reading(sensor_data_config_t *config);
 
+/**
+ * @brief Get the current number of pulses captured on since initialization or last reset. 
+ * 
+ * @param config sensor hardware configuration
+ * @return int number of pulses, -1 if sensor is not configured to PULSE_SENSOR
+ */
 int get_sensor_pulse_count(sensor_data_config_t *config);
 
+/**
+ * @brief Reset the pulse count for a given sensor to 0.
+ * 
+ * @param config sensor hardware configuration
+ * @return int 0 if successful, -1 if sensor is not configured to PULSE_SENSOR
+ */
 int reset_sensor_pulse_count(sensor_data_config_t *config);
 
 #endif

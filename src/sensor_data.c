@@ -109,9 +109,10 @@ int sensor_data_setup(sensor_data_config_t *config, enum sensor_types sensor_typ
         break;
     }
 
-    if(ret <0)
+    if(ret < 0)
     {
         sensor_setups[config->id] = NULL_SENSOR;
+        return ret;
     }
     
     sensor_setups[config->id] = sensor_type;
