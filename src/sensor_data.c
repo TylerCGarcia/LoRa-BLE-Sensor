@@ -80,13 +80,14 @@ static int sensor_data_adc_setup(sensor_data_config_t *config, enum sensor_types
     }
 }
 
-static int setup_hardware(sensor_data_config_t *config, enum sensor_types sensor_type)
+int sensor_data_setup(sensor_data_config_t *config, enum sensor_types sensor_type)
 {
     int ret;
     // If switching from pulse sensor to any other sensor remove the callback
     if (sensor_setups[config->id] == PULSE_SENSOR && sensor_type != PULSE_SENSOR)
     {
         gpio_remove_callback(config->d1.port, &pulse_cb_data[config->id].cb);
+        reset_sensor_pulse_count(config);
     }
 
     switch (sensor_type)
@@ -114,17 +115,6 @@ static int setup_hardware(sensor_data_config_t *config, enum sensor_types sensor
     }
     
     sensor_setups[config->id] = sensor_type;
-    return 0;
-}
-
-int sensor_data_setup(sensor_data_config_t *config, enum sensor_types sensor_type)
-{
-    sensor_setups[config->id] = sensor_type;
-    int ret = setup_hardware(config, sensor_type);
-    if(ret < 0)
-    {
-        return ret;
-    }
     return 0;
 }
 
@@ -194,4 +184,14 @@ int get_sensor_pulse_count(sensor_data_config_t *config)
         return -1;
     }
     return pulse_count[config->id];
+}
+
+int reset_sensor_pulse_count(sensor_data_config_t *config)
+{
+    if(get_sensor_data_setup(config) != PULSE_SENSOR)
+    {
+        return -1;
+    }
+    pulse_count[config->id] = 0;
+    return 0;
 }

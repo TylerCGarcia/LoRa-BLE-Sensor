@@ -34,7 +34,19 @@ sensor_data_config_t sensor2_data_config = {
     .current_read = ADC_DT_SPEC_GET_BY_NAME(DT_PATH(zephyr_user), current_sensor2)
 };
 
-ZTEST_SUITE(data, NULL, NULL, NULL, NULL, NULL);
+/**
+ * @brief Call after each test
+ * 
+ */
+static void *after_tests(void)
+{
+	// Reset all sensors to NULL after each test
+    sensor_data_setup(&sensor1_data_config, NULL_SENSOR);
+    sensor_data_setup(&sensor2_data_config, NULL_SENSOR);
+}
+
+
+ZTEST_SUITE(data, NULL, NULL, NULL, after_tests, NULL);
 
 /**
  * @brief Test that sensor can be set up for voltage read
@@ -290,6 +302,16 @@ ZTEST(data, test_current_sensor_and_voltage_sensor)
 	zassert_within(current, expected_current, accepted_error2, "Mismatch: got %f, expected %f", current, expected_output);
 }
 
+static void emulate_pulses(sensor_data_config_t *config, int num_pulses)
+{
+    for(int i = 0; i < num_pulses; i++)
+    {
+        gpio_emul_input_set(config->d1.port, config->d1.pin, 1);
+        gpio_emul_input_set(config->d1.port, config->d1.pin, 0);
+    }
+    gpio_emul_input_set(config->d1.port, config->d1.pin, 1);
+}
+
 /**
  * @brief Test pulse read outputs expected value
  * 
@@ -300,7 +322,57 @@ ZTEST(data, test_sensor_pulse_read)
     zassert_ok(ret, "Sensor1 failed pulse setup");
     enum sensor_types setup = get_sensor_data_setup(&sensor1_data_config);
     zassert_equal(setup, PULSE_SENSOR, "setup did not equal PULSE_SENSOR");
-    int expected_pulse_count = 1;
+    int expected_pulse_count = 0;
+    emulate_pulses(&sensor1_data_config, expected_pulse_count);
     int pulse_count = get_sensor_pulse_count(&sensor1_data_config);
     zassert_equal(expected_pulse_count, pulse_count, "Expected %d, got %d", expected_pulse_count, pulse_count);
+}
+
+/**
+ * @brief Test pulse read outputs expected value after a reset
+ * 
+ */
+ZTEST(data, test_sensor_pulse_reset)
+{
+    int ret = sensor_data_setup(&sensor1_data_config, PULSE_SENSOR);
+    zassert_ok(ret, "Sensor1 failed pulse setup");
+    enum sensor_types setup = get_sensor_data_setup(&sensor1_data_config);
+    zassert_equal(setup, PULSE_SENSOR, "setup did not equal PULSE_SENSOR");
+    int expected_pulse_count = 0; // Should show 0 pulses after reset
+    int fake_pulse_counts = 1; // Number of pulses to emulate
+    emulate_pulses(&sensor1_data_config, fake_pulse_counts);
+    reset_sensor_pulse_count(&sensor1_data_config);
+    int pulse_count = get_sensor_pulse_count(&sensor1_data_config);
+    zassert_equal(expected_pulse_count, pulse_count, "Expected %d, got %d", expected_pulse_count, pulse_count);
+}
+
+/**
+ * @brief Test pulse read outputs expected value from two sensors
+ * 
+ */
+ZTEST(data, test_sensor_pulse_read_two_sensors)
+{
+    int ret = sensor_data_setup(&sensor1_data_config, PULSE_SENSOR);
+    zassert_ok(ret, "Sensor1 failed pulse setup");
+    ret = sensor_data_setup(&sensor2_data_config, PULSE_SENSOR);
+    zassert_ok(ret, "Sensor2 failed pulse setup");
+
+    enum sensor_types setup1 = get_sensor_data_setup(&sensor1_data_config);
+    zassert_equal(setup1, PULSE_SENSOR, "setup did not equal PULSE_SENSOR");
+
+    enum sensor_types setup2 = get_sensor_data_setup(&sensor1_data_config);
+    zassert_equal(setup2, PULSE_SENSOR, "setup did not equal PULSE_SENSOR");
+
+    int expected_pulse_count1 = 5;
+    emulate_pulses(&sensor1_data_config, expected_pulse_count1);
+
+    int expected_pulse_count2 = 14;
+    emulate_pulses(&sensor2_data_config, expected_pulse_count2);
+
+    int pulse_count = get_sensor_pulse_count(&sensor1_data_config);
+    zassert_equal(expected_pulse_count1, pulse_count, "Sensor 1 expected %d, got %d", expected_pulse_count1, pulse_count);
+
+
+    pulse_count = get_sensor_pulse_count(&sensor2_data_config);
+    zassert_equal(expected_pulse_count2, pulse_count, "Sensor 2 expected %d, got %d", expected_pulse_count2, pulse_count);
 }

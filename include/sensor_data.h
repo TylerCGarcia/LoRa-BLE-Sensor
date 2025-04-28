@@ -60,4 +60,6 @@ float get_sensor_current_reading(sensor_data_config_t *config);
 
 int get_sensor_pulse_count(sensor_data_config_t *config);
 
+int reset_sensor_pulse_count(sensor_data_config_t *config);
+
 #endif
