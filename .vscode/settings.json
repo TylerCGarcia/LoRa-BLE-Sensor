@@ -78,7 +78,7 @@
 				"useVsCodeApi": false,
                 "ignoreClear": true,
                 "singleInstance": false,
-                "command": "west build -b native_sim -t run tests/sensor/data",
+                "command": "west build -b native_sim -t run tests/radio/lorawan",
             },
             {
                 "name" : "venv",
@@ -133,6 +133,7 @@
         "*.tcc": "c",
         "numeric": "c",
         "sensor_data.h": "c",
-        "sensor_id.h": "c"
+        "sensor_id.h": "c",
+        "counter.h": "c"
     }
 }

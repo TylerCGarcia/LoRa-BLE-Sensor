@@ -1,0 +1,169 @@
+#include <zephyr/dt-bindings/gpio/gpio.h>
+#include <dt-bindings/regulator/npm1300.h>
+
+/ {
+
+    leds {
+		compatible = "gpio-leds";
+		boost1_en: boost1_en {
+			gpios = <&gpio0 0 GPIO_ACTIVE_HIGH>;
+			label = "Boost 1 Enable";
+		};
+		boost1_ctrl1: boost1_ctrl1 {
+			gpios = <&gpio0 1 GPIO_ACTIVE_HIGH>;
+			label = "Boost 1 Ctrl 1";
+		};
+		boost1_ctrl2: boost1_ctrl2 {
+			gpios = <&gpio0 2 GPIO_ACTIVE_HIGH>;
+			label = "Boost 1 Ctrl 2";
+		};
+		boost2_en: boost2_en {
+			gpios = <&gpio0 3 GPIO_ACTIVE_HIGH>;
+			label = "Boost 2 Enable";
+		};
+		boost2_ctrl1: boost2_ctrl1 {
+			gpios = <&gpio0 4 GPIO_ACTIVE_HIGH>;
+			label = "Boost 2 Ctrl 1";
+		};
+		boost2_ctrl2: boost2_ctrl2 {
+			gpios = <&gpio0 5 GPIO_ACTIVE_HIGH>;
+			label = "Boost 2 Ctrl 2";
+		};
+		sensor1_d1: sensor1_d1 {
+			gpios = <&gpio0 6 GPIO_ACTIVE_HIGH>;
+			label = "Sensor 1 Digital 1";
+		};
+		sensor1_d2: sensor1_d2 {
+			gpios = <&gpio0 7 GPIO_ACTIVE_HIGH>;
+			label = "Sensor 1 Digital 2";
+		};
+		sensor2_d1: sensor2_d1 {
+			gpios = <&gpio0 8 GPIO_ACTIVE_HIGH>;
+			label = "Sensor 2 Digital 1";
+		};
+		sensor2_d2: sensor2_d2 {
+			gpios = <&gpio0 9 GPIO_ACTIVE_HIGH>;
+			label = "Sensor 2 Digital 2";
+		};
+	};
+    aliases {
+		boost1en = &boost1_en;
+		boost1ctrl1 = &boost1_ctrl1;
+		boost1ctrl2 = &boost1_ctrl2;
+		boost2en = &boost2_en;
+		boost2ctrl1 = &boost2_ctrl1;
+		boost2ctrl2 = &boost2_ctrl2;
+		sensor1d1 = &sensor1_d1;
+		sensor1d2 = &sensor1_d2;
+		sensor2d1 = &sensor2_d1;
+		sensor2d2 = &sensor2_d2;
+    };
+
+	npm1300_ek_pmic: pmic {
+
+        npm1300_ek_regulators: regulators {
+            compatible = "zephyr,fake-regulator";
+
+            npm1300_ek_buck1: buck1 {
+                regulator-min-microvolt = <3000000>;
+                regulator-max-microvolt = <3000000>;
+            };
+
+            npm1300_ek_ldo1: ldo1 {
+                regulator-initial-mode = <NPM1300_LDSW_MODE_LDO>;
+                /delete-property/ enable-gpios;
+                /delete-property/ regulator-init-microvolt;
+                regulator-boot-off;
+            };
+
+            npm1300_ek_ldo2: ldo2 {
+                regulator-initial-mode = <NPM1300_LDSW_MODE_LDO>;
+                /delete-property/ enable-gpios;
+                /delete-property/ regulator-init-microvolt;
+                regulator-boot-off;
+            };
+        };
+
+        npm1300_ek_charger: charger {
+            compatible = "test-charger"; // Dummy compatible
+        };
+
+        npm1300_ek_leds: leds {
+            compatible = "nordic,npm1300-led";
+            nordic,led0-mode = "error";    
+            nordic,led1-mode = "charging";    
+            nordic,led2-mode = "host";
+        };
+    };
+
+    zephyr,user {
+		/* adjust channel number according to pinmux in board.dts */
+		io-channels = <&adc0 0>, <&adc0 1>, <&adc0 2>, <&adc0 3>, <&adc0 4>, <&adc0 5>;
+		io-channel-names = "sensor_output1", "sensor_output2", "voltage_sensor1", "current_sensor1", "voltage_sensor2", "current_sensor2";
+	};
+};
+
+&adc0 {
+	status = "okay";
+	nchannels = <6>;
+	#address-cells = <1>;
+	#size-cells = <0>;
+	ref-internal-mv = <600>;
+	channel@0 {
+		reg = <0>;
+		zephyr,gain = "ADC_GAIN_1_6";
+		zephyr,reference = "ADC_REF_INTERNAL";
+		zephyr,acquisition-time = <ADC_ACQ_TIME_DEFAULT>;
+		zephyr,input-positive = <2>; 
+		zephyr,resolution = <12>;
+	};
+    channel@1 {
+		reg = <1>;
+		zephyr,gain = "ADC_GAIN_1_6";
+		zephyr,reference = "ADC_REF_INTERNAL";
+		zephyr,acquisition-time = <ADC_ACQ_TIME_DEFAULT>;
+		zephyr,input-positive = <3>; 
+		zephyr,resolution = <12>;
+	};
+	channel@2 {
+		reg = <2>;
+		zephyr,gain = "ADC_GAIN_1_6";
+		zephyr,reference = "ADC_REF_INTERNAL";
+		zephyr,acquisition-time = <ADC_ACQ_TIME_DEFAULT>;
+		zephyr,input-positive = <1>; 
+		zephyr,resolution = <12>;
+	};
+    channel@3 {
+		reg = <3>;
+		zephyr,gain = "ADC_GAIN_1_2";
+		zephyr,reference = "ADC_REF_INTERNAL";
+		zephyr,acquisition-time = <ADC_ACQ_TIME_DEFAULT>;
+		zephyr,input-positive = <0>; 
+		zephyr,resolution = <12>;
+	};
+	channel@4 {
+		reg = <4>;
+		zephyr,gain = "ADC_GAIN_1_6";
+		zephyr,reference = "ADC_REF_INTERNAL";
+		zephyr,acquisition-time = <ADC_ACQ_TIME_DEFAULT>;
+		zephyr,input-positive = <6>; 
+		zephyr,resolution = <12>;
+	};
+    channel@5 {
+		reg = <5>;
+		zephyr,gain = "ADC_GAIN_1_2";
+		zephyr,reference = "ADC_REF_INTERNAL";
+		zephyr,acquisition-time = <ADC_ACQ_TIME_DEFAULT>;
+		zephyr,input-positive = <7>; 
+		zephyr,resolution = <12>;
+	};
+};
+
+&gpio0 {
+    status = "okay";
+    compatible = "zephyr,gpio-emul";
+    ngpios = <32>;
+	falling-edge;
+    gpio-controller;
+    #gpio-cells = <2>;
+};

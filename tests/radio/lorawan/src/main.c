@@ -6,11 +6,12 @@
  */
 
 #include <zephyr/ztest.h>
-#include <zephyr/drivers/counter.h>
 
-ZTEST_SUITE(app, NULL, NULL, NULL, NULL, NULL);
+#include "sensor_lorawan.h"
 
-ZTEST(app, test_app_setup)
+ZTEST_SUITE(lorawan, NULL, NULL, NULL, NULL, NULL);
+
+ZTEST(lorawan, test_setup)
 {
     zassert_ok(0,"TEST");
 }
