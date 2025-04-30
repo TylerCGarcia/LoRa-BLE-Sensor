@@ -1,6 +1,9 @@
 #ifndef SENSOR_LORAWAN_H
 #define SENSOR_LORAWAN_H
 
+#include <stdint.h>
+#include <zephyr/device.h>
+
 typedef struct {
     /* LoRaWAN Device. */
     const struct device *lora_dev;

@@ -6,6 +6,8 @@
  */
 
 #include <zephyr/ztest.h>
+#include <stdint.h>
+#include <string.h>
 
 #include "sensor_lorawan.h"
 #include <zephyr/lorawan/lorawan.h>
@@ -43,3 +45,14 @@ ZTEST(lorawan, test_setup_fail)
     ret = lorawan_setup(&setup);
     zassert_equal(ret, -1, "lorawan_setup should fail");
 }
+
+ZTEST(lorawan, test_fail_when_no_join_eui)
+{
+    int ret;
+    uint8_t join_eui[8] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+    memcpy(setup.join_eui, join_eui, sizeof(join_eui));
+    
+    ret = lorawan_setup(&setup);
+    zassert_equal(ret, -1, "lorawan_setup should fail");
+}
+

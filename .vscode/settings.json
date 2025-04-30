@@ -137,6 +137,7 @@
         "counter.h": "c",
         "emul.h": "c",
         "sensor_lorawan.h": "c",
-        "byteorder.h": "c"
+        "byteorder.h": "c",
+        "stdint.h": "c"
     }
 }
