@@ -1,5 +1,7 @@
 tests:  
   sensor.lorawan:
+    tags:
+      - lorawan
     harness: ztest
     platform_allow:
       - native_sim
