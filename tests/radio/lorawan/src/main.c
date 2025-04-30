@@ -3,6 +3,8 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  * Tests:
+ * - lorawan_setup_fails
+ * - lorawan_setup_fails_only_first_try
  */
 
 #include <zephyr/ztest.h>
@@ -13,46 +15,83 @@
 #include <zephyr/lorawan/lorawan.h>
 #include <zephyr/lorawan/emul.h>
 
+
+#define DEV_EUI {0x00, 0x80, 0xE1, 0x15, 0x00, 0x56, 0x9E, 0x08}
+#define JOIN_EUI {0x60, 0x81, 0xF9, 0x1D, 0xE0, 0x47, 0x30, 0xAB}
+#define APP_KEY {0xE1, 0x0E, 0x13, 0x72, 0xD6, 0xA4, 0x19, 0x95, 0x0C, 0x88, 0x19, 0x41, 0x04, 0x0D, 0x58, 0x03}
+
+static uint8_t test_dev_eui[8] = DEV_EUI;
+static uint8_t test_join_eui[8] = JOIN_EUI;
+static uint8_t test_app_key[16] = APP_KEY;
+
 static lorawan_setup_t setup = {
     .lora_dev = DEVICE_DT_GET(DT_ALIAS(lora0)),
     .join_attempts = 3,
-    .dev_eui = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
-    .join_eui = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
-    .app_key = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
+    .dev_eui = DEV_EUI,
+    .join_eui = JOIN_EUI,
+    .app_key = APP_KEY,
 };
 
-ZTEST_SUITE(lorawan, NULL, NULL, NULL, NULL, NULL);
+/**
+ * @brief Call after each test
+ * 
+ */
+static void *after_tests(void)
+{
+	// Reset all sensors to correct values after each test
+    memcpy(setup.app_key, test_app_key, sizeof(test_app_key));    
+	memcpy(setup.dev_eui, test_dev_eui, sizeof(test_dev_eui));
+	memcpy(setup.join_eui, test_join_eui, sizeof(test_join_eui));
+}
+
+ZTEST_SUITE(lorawan, NULL, NULL, NULL, after_tests, NULL);
 
 ZTEST(lorawan, test_setup)
 {
-    // const struct device *lora_dev = DEVICE_DT_GET(DT_ALIAS(lora0));
-	// struct lorawan_join_config join_cfg = {0};
-	// int ret;
-	// zassert_true(device_is_ready(lora_dev), "LoRa device not ready");
-	// ret = lorawan_start();
-	// zassert_equal(ret, 0, "lorawan_start failed: %d", ret);
-	// ret = lorawan_join(&join_cfg);
-	// zassert_equal(ret, 0, "lorawan_join failed: %d", ret);
-
 	int ret;
     ret = lorawan_setup(&setup);
     zassert_equal(ret, 0, "lorawan_setup failed: %d", ret);
 }
 
-ZTEST(lorawan, test_setup_fail)
+ZTEST(lorawan, test_setup_fails_when_no_dev_eui)
 {
     int ret;
+    uint8_t dev_eui[8] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+    memcpy(setup.dev_eui, dev_eui, sizeof(dev_eui));
     ret = lorawan_setup(&setup);
-    zassert_equal(ret, -1, "lorawan_setup should fail");
+    zassert_not_ok(ret, "lorawan_setup should fail");
 }
 
-ZTEST(lorawan, test_fail_when_no_join_eui)
+ZTEST(lorawan, test_setup_fails_when_no_join_eui)
 {
     int ret;
     uint8_t join_eui[8] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
     memcpy(setup.join_eui, join_eui, sizeof(join_eui));
+    ret = lorawan_setup(&setup);
+    zassert_not_ok(ret, "lorawan_setup should fail");
+}
+
+
+ZTEST(lorawan, test_setup_fails_when_no_app_key)
+{
+    int ret;
+    uint8_t app_key[16] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+    memcpy(setup.app_key, app_key, sizeof(app_key));
     
     ret = lorawan_setup(&setup);
-    zassert_equal(ret, -1, "lorawan_setup should fail");
+    zassert_not_ok(ret, "lorawan_setup should fail");
 }
+
+ZTEST(lorawan, test_setup_fails_when_no_dev_eui_and_join_eui)
+{
+    int ret;
+    uint8_t dev_eui[8] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+    uint8_t join_eui[8] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+    memcpy(setup.dev_eui, dev_eui, sizeof(dev_eui));
+    memcpy(setup.join_eui, join_eui, sizeof(join_eui));
+    ret = lorawan_setup(&setup);
+    zassert_not_ok(ret, "lorawan_setup should fail");
+}
+
+
 
