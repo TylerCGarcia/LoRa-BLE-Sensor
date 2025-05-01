@@ -29,11 +29,17 @@ static uint8_t test_app_key[16] = APP_KEY;
 
 static lorawan_setup_t setup = {
     .lora_dev = DEVICE_DT_GET(DT_ALIAS(lora0)),
+    .downlink_callback = NULL,
     .join_attempts = 3,
     .dev_eui = DEV_EUI,
     .join_eui = JOIN_EUI,
     .app_key = APP_KEY,
 };
+
+static bool last_downlink_called;
+static uint8_t last_downlink_port;
+static uint8_t last_downlink_len;
+static uint8_t last_downlink_data[64];
 
 /**
  * @brief Call after each test
@@ -131,4 +137,97 @@ ZTEST(lorawan, test_setup_fails_when_no_dev_eui_and_join_eui)
 }
 
 
+ZTEST(lorawan, test_send_packet)
+{
+    int ret;
+    ret = lorawan_setup(&setup);
+    zassert_equal(ret, 0, "lorawan_setup failed: %d", ret);
+    lorawan_data_t lorawan_data;
+    lorawan_data.data = "Hello, World!";
+    lorawan_data.length = strlen(lorawan_data.data);
+    lorawan_data.port = 1;
+    lorawan_data.attempts = 0;
+    ret = lorawan_send_data(&lorawan_data);
+    zassert_ok(ret, "lorawan_send_data failed: %d", ret);
+}
+
+ZTEST(lorawan, test_send_data_fails_when_no_data)
+{
+    int ret;
+    ret = lorawan_setup(&setup);
+    zassert_equal(ret, 0, "lorawan_setup failed: %d", ret);
+    lorawan_data_t lorawan_data;
+    lorawan_data.data = NULL;
+    lorawan_data.length = 0;
+    lorawan_data.port = 1;
+    lorawan_data.attempts = 0;
+    ret = lorawan_send_data(&lorawan_data);
+    zassert_not_ok(ret, "lorawan_send_data should fail");
+}
+
+ZTEST(lorawan, test_send_data_resets_data_afer_send)
+{
+    int ret;
+    ret = lorawan_setup(&setup);
+    zassert_equal(ret, 0, "lorawan_setup failed: %d", ret);
+    lorawan_data_t lorawan_data;
+    lorawan_data.data = "Hello, World!";
+    lorawan_data.length = strlen(lorawan_data.data);
+    lorawan_data.port = 1;
+    lorawan_data.attempts = 0;
+    lorawan_data.delay = 1000;
+    ret = lorawan_send_data(&lorawan_data);
+    zassert_ok(ret, "lorawan_send_data failed: %d", ret);
+    zassert_is_null(lorawan_data.data, "lorawan_data.data should be NULL");
+    zassert_equal(lorawan_data.length, 0, "lorawan_data.length should be 0");
+}
+
+
+ZTEST(lorawan, test_send_data_confirmed)
+{
+    int ret;
+    ret = lorawan_setup(&setup);
+    zassert_equal(ret, 0, "lorawan_setup failed: %d", ret);
+    lorawan_data_t lorawan_data;
+    lorawan_data.data = "Hello, World!";
+    lorawan_data.length = strlen(lorawan_data.data);
+    lorawan_data.port = 1;
+    lorawan_data.attempts = 1;
+    lorawan_data.delay = 1000;
+    ret = lorawan_send_data(&lorawan_data);
+    zassert_ok(ret, "lorawan_send_data failed: %d", ret);
+}
+
+static void dl_callback(uint8_t port, bool data_pending, int16_t rssi, int8_t snr, uint8_t len, const uint8_t *data)
+{
+    // last_downlink_called = true;
+    // last_downlink_port = port;
+    // last_downlink_len = len;
+    // memcpy(last_downlink_data, data, len);
+}
+
+ZTEST(lorawan, test_send_data_downlink_callback)
+{
+    int ret;
+    setup.downlink_callback.cb = dl_callback;
+    setup.downlink_callback.port = LW_RECV_PORT_ANY;
+
+    ret = lorawan_setup(&setup);
+    zassert_equal(ret, 0, "lorawan_setup failed: %d", ret);
+    // Act
+    const uint8_t *payload = "Hello";
+    lorawan_emul_send_downlink(202, true, 0, 0, strlen(payload), payload);
+
+    // zassert_equal(ret, 0, "lorawan_setup failed: %d", ret);
+    // lorawan_data_t lorawan_data;
+    // lorawan_data.data = "Hello, World!";
+    // lorawan_data.length = strlen(lorawan_data.data);
+    // lorawan_data.port = 1;
+    // lorawan_data.attempts = 1;
+    // lorawan_data.delay = 1000;
+    // ret = lorawan_send_data(&lorawan_data);
+    // zassert_ok(ret, "lorawan_send_data failed: %d", ret);
+    // // lorawan_emul_send_downlink(1, 1, -59, 24, strlen("Hello, World!"), "Hello, World!");
+
+}
 

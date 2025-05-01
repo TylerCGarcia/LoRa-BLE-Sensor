@@ -138,6 +138,7 @@
         "emul.h": "c",
         "sensor_lorawan.h": "c",
         "byteorder.h": "c",
-        "stdint.h": "c"
+        "stdint.h": "c",
+        "errno.h": "c"
     }
 }

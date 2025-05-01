@@ -21,6 +21,21 @@ typedef struct {
 
 } lorawan_setup_t;
 
+
+typedef struct {
+    /* Data to send. */
+    uint8_t *data;
+    /* Length of the data to send. */
+    uint16_t length;
+    /* LoRaWAN port to send the data to. */
+    uint8_t port;
+    /* How many attempts to send data when waiting for an ack, if 0, it will send an unconfirmed message. */
+    uint8_t attempts;
+    /* Delay between attempts in milliseconds. */
+    uint32_t delay;
+} lorawan_data_t;
+
+
 /**
  * @brief Setup LoRaWAN Network with a given lorawan_setup_t configuration. 
  * 
@@ -28,6 +43,14 @@ typedef struct {
  * @return int 
  */
 int lorawan_setup(lorawan_setup_t *setup);
+
+/**
+ * @brief Send data to the LoRaWAN Network.
+ * 
+ * @param data lorawan_data_t structure containing the data to send.
+ * @return int 0 if successful, -1 if failed.
+ */
+int lorawan_send_data(lorawan_data_t *data);
 
 /**
  * @brief Check if the LoRaWAN Network is connected.

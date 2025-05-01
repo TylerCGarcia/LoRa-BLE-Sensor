@@ -13,8 +13,3 @@ target_include_directories(app PRIVATE
 target_sources(app PRIVATE src/main.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../../../src/sensor_lorawan.c
 )
-
-# target_compile_options(app PRIVATE
-#     -Wl,--wrap=lorawan_start
-#     -Wl,--wrap=lorawan_join
-# )

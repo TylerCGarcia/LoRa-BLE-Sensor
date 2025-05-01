@@ -1,5 +1,7 @@
 #include "sensor_lorawan.h"
 #include <zephyr/lorawan/lorawan.h>
+#include <errno.h>
+#include <zephyr/kernel.h>
 
 static int lorawan_connection_status = 0;
 
@@ -33,10 +35,19 @@ int lorawan_setup(lorawan_setup_t *setup)
 	if (is_lorawan_configured(setup) < 0) {
 		return -1;
 	}
+	join_cfg.mode = LORAWAN_ACT_OTAA;
+	join_cfg.dev_eui = setup->dev_eui;
+	join_cfg.otaa.join_eui = setup->join_eui;
+	join_cfg.otaa.app_key = setup->app_key;
+	join_cfg.otaa.nwk_key = setup->app_key;
 
 	ret = lorawan_start();
 	if (ret < 0) {
 		return ret;
+	}
+
+	if (&setup->downlink_callback != NULL) {
+		lorawan_register_downlink_callback(&setup->downlink_callback);
 	}
 
 	int i = 0;
@@ -56,6 +67,50 @@ int lorawan_setup(lorawan_setup_t *setup)
     lorawan_connection_status = 1;
     return 0;
 }
+
+static int reset_data(lorawan_data_t *data)
+{
+	data->data = NULL;
+	data->length = 0;
+	return 0;
+}
+
+int lorawan_send_data(lorawan_data_t *data)
+{
+	int ret;
+	if (data->length == 0) {
+		return -1;
+	}
+
+	if(data->attempts == 0)
+	{
+		ret = lorawan_send(data->port, data->data, data->length, LORAWAN_MSG_UNCONFIRMED);
+		reset_data(data);
+		return 0;
+	}
+	else
+	{
+		for(int i = 0; i < data->attempts; i++)
+		{
+			ret = lorawan_send(data->port, data->data, data->length, LORAWAN_MSG_CONFIRMED);
+	
+			if (ret == -EAGAIN) {
+				k_msleep(data->delay);
+				continue;
+			} else if (ret < 0) {
+				reset_data(data);
+				return(-1);
+			} else {
+				reset_data(data);
+				return 0; // This means ack was received
+			}
+		}
+	}
+
+	reset_data(data);
+	return 0;
+}
+
 
 int is_lorawan_connected(void) {
 	return lorawan_connection_status;
