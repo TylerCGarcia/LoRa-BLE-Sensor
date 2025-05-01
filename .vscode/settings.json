@@ -139,6 +139,7 @@
         "sensor_lorawan.h": "c",
         "byteorder.h": "c",
         "stdint.h": "c",
-        "errno.h": "c"
+        "errno.h": "c",
+        "slist.h": "c"
     }
 }

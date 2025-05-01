@@ -46,7 +46,12 @@ int lorawan_setup(lorawan_setup_t *setup)
 		return ret;
 	}
 
-	if (&setup->downlink_callback != NULL) {
+	ret = lorawan_set_class(setup->uplink_class);
+	if (ret < 0) {
+		return ret;
+	}
+
+	if (setup->downlink_callback.cb != NULL) {
 		lorawan_register_downlink_callback(&setup->downlink_callback);
 	}
 

@@ -4,9 +4,9 @@
  * SPDX-License-Identifier: Apache-2.0
  * Tests:
  * - lorawan_setup_fails
+ * - lorawan_setup can be called multiple times
  * - lorawan_setup_fails_only_first_try
  * - give out dev nonce requirement
- * - test downlink callback 
  */
 
 #include <zephyr/ztest.h>
@@ -29,6 +29,7 @@ static uint8_t test_app_key[16] = APP_KEY;
 
 static lorawan_setup_t setup = {
     .lora_dev = DEVICE_DT_GET(DT_ALIAS(lora0)),
+    .uplink_class = LORAWAN_CLASS_A,
     .downlink_callback = NULL,
     .join_attempts = 3,
     .dev_eui = DEV_EUI,
@@ -51,6 +52,7 @@ static void *after_tests(void)
     memcpy(setup.app_key, test_app_key, sizeof(test_app_key));    
 	memcpy(setup.dev_eui, test_dev_eui, sizeof(test_dev_eui));
 	memcpy(setup.join_eui, test_join_eui, sizeof(test_join_eui));
+    setup.uplink_class = LORAWAN_CLASS_A;
 }
 
 
@@ -72,6 +74,18 @@ ZTEST(lorawan, test_setup)
     ret = lorawan_setup(&setup);
     zassert_equal(ret, 0, "lorawan_setup failed: %d", ret);
 }
+
+/**
+ * @brief Test lorawan_setup with correct parameters
+ */
+ZTEST(lorawan, test_setup_fails_when_invalid_uplink_class)
+{
+	int ret;
+    setup.uplink_class = 5;
+    ret = lorawan_setup(&setup);
+    zassert_not_ok(ret, "lorawan_setup should fail");
+}
+
 
 /**
  * @brief Test is_lorawan_connected after lorawan_setup
@@ -200,10 +214,10 @@ ZTEST(lorawan, test_send_data_confirmed)
 
 static void dl_callback(uint8_t port, bool data_pending, int16_t rssi, int8_t snr, uint8_t len, const uint8_t *data)
 {
-    // last_downlink_called = true;
-    // last_downlink_port = port;
-    // last_downlink_len = len;
-    // memcpy(last_downlink_data, data, len);
+    last_downlink_called = true;
+    last_downlink_port = port;
+    last_downlink_len = len;
+    memcpy(last_downlink_data, data, len);
 }
 
 ZTEST(lorawan, test_send_data_downlink_callback)
@@ -214,20 +228,13 @@ ZTEST(lorawan, test_send_data_downlink_callback)
 
     ret = lorawan_setup(&setup);
     zassert_equal(ret, 0, "lorawan_setup failed: %d", ret);
-    // Act
+
     const uint8_t *payload = "Hello";
-    lorawan_emul_send_downlink(202, true, 0, 0, strlen(payload), payload);
-
-    // zassert_equal(ret, 0, "lorawan_setup failed: %d", ret);
-    // lorawan_data_t lorawan_data;
-    // lorawan_data.data = "Hello, World!";
-    // lorawan_data.length = strlen(lorawan_data.data);
-    // lorawan_data.port = 1;
-    // lorawan_data.attempts = 1;
-    // lorawan_data.delay = 1000;
-    // ret = lorawan_send_data(&lorawan_data);
-    // zassert_ok(ret, "lorawan_send_data failed: %d", ret);
-    // // lorawan_emul_send_downlink(1, 1, -59, 24, strlen("Hello, World!"), "Hello, World!");
-
+    uint8_t downlink_port = 1;
+    lorawan_emul_send_downlink(downlink_port, true, 0, 0, strlen(payload), payload);
+    // Assert
+    zassert_true(last_downlink_called, "Downlink callback was not called");
+    zassert_equal(last_downlink_port, downlink_port, "Wrong port");
+    zassert_equal(last_downlink_len, strlen(payload), "Wrong length");
+    zassert_mem_equal(last_downlink_data, payload, strlen(payload), "Wrong data");
 }
-

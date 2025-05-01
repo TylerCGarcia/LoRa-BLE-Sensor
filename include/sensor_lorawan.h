@@ -8,6 +8,8 @@
 typedef struct {
     /* LoRaWAN Device. */
     const struct device *lora_dev;
+    /* LoRaWAN uplink class. */
+    enum lorawan_class uplink_class;
     /* LoRaWAN downlink callback. */
     struct lorawan_downlink_cb downlink_callback;
     /* How many attempts to join the network. */
