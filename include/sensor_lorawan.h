@@ -1,12 +1,15 @@
 #ifndef SENSOR_LORAWAN_H
 #define SENSOR_LORAWAN_H
 
+#include <zephyr/lorawan/lorawan.h>
 #include <stdint.h>
 #include <zephyr/device.h>
 
 typedef struct {
     /* LoRaWAN Device. */
     const struct device *lora_dev;
+    /* LoRaWAN downlink callback. */
+    struct lorawan_downlink_cb downlink_callback;
     /* How many attempts to join the network. */
     int join_attempts;
     /* Device EUI for LoRaWAN Network. */

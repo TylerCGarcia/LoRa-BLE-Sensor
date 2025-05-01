@@ -5,6 +5,8 @@
  * Tests:
  * - lorawan_setup_fails
  * - lorawan_setup_fails_only_first_try
+ * - give out dev nonce requirement
+ * - test downlink callback 
  */
 
 #include <zephyr/ztest.h>

@@ -29,7 +29,7 @@ int lorawan_setup(lorawan_setup_t *setup)
     const struct device *lora_dev = DEVICE_DT_GET(DT_ALIAS(lora0));
 	struct lorawan_join_config join_cfg = {0};
 	int ret;
-
+	
 	if (is_lorawan_configured(setup) < 0) {
 		return -1;
 	}
@@ -41,6 +41,7 @@ int lorawan_setup(lorawan_setup_t *setup)
 
 	int i = 0;
 	while (setup->join_attempts == 0 || i < setup->join_attempts) {
+		join_cfg.otaa.dev_nonce++;
 		ret = lorawan_join(&join_cfg);
 		if (ret == 0) {
 			break;
