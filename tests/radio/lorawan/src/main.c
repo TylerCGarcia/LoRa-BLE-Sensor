@@ -8,13 +8,14 @@
  */
 
 #include <zephyr/ztest.h>
+#include <zephyr/fff.h>
+
 #include <stdint.h>
 #include <string.h>
 
 #include "sensor_lorawan.h"
 #include <zephyr/lorawan/lorawan.h>
 #include <zephyr/lorawan/emul.h>
-
 
 #define DEV_EUI {0x00, 0x80, 0xE1, 0x15, 0x00, 0x56, 0x9E, 0x08}
 #define JOIN_EUI {0x60, 0x81, 0xF9, 0x1D, 0xE0, 0x47, 0x30, 0xAB}
@@ -44,8 +45,19 @@ static void *after_tests(void)
 	memcpy(setup.join_eui, test_join_eui, sizeof(test_join_eui));
 }
 
-ZTEST_SUITE(lorawan, NULL, NULL, NULL, after_tests, NULL);
 
+static void *testsuite_setup(void)
+{
+    int ret;
+    ret = is_lorawan_connected();
+    zassert_equal(ret, 0, "lorawan is not connected before setup");
+}
+
+ZTEST_SUITE(lorawan, NULL, testsuite_setup, NULL, after_tests, NULL);
+
+/**
+ * @brief Test lorawan_setup with correct parameters
+ */
 ZTEST(lorawan, test_setup)
 {
 	int ret;
@@ -53,6 +65,21 @@ ZTEST(lorawan, test_setup)
     zassert_equal(ret, 0, "lorawan_setup failed: %d", ret);
 }
 
+/**
+ * @brief Test is_lorawan_connected after lorawan_setup
+ */
+ZTEST(lorawan, test_is_lorawan_connected)
+{
+	int ret;
+    ret = lorawan_setup(&setup);
+    zassert_equal(ret, 0, "lorawan_setup failed: %d", ret);
+	ret = is_lorawan_connected();
+	zassert_equal(ret, 1, "lorawan is not connected after setup");
+}
+
+/**
+ * @brief Test lorawan_setup fails when no dev_eui
+ */
 ZTEST(lorawan, test_setup_fails_when_no_dev_eui)
 {
     int ret;
@@ -62,6 +89,9 @@ ZTEST(lorawan, test_setup_fails_when_no_dev_eui)
     zassert_not_ok(ret, "lorawan_setup should fail");
 }
 
+/**
+ * @brief Test lorawan_setup fails when no join_eui
+ */
 ZTEST(lorawan, test_setup_fails_when_no_join_eui)
 {
     int ret;
@@ -71,7 +101,9 @@ ZTEST(lorawan, test_setup_fails_when_no_join_eui)
     zassert_not_ok(ret, "lorawan_setup should fail");
 }
 
-
+/**
+ * @brief Test lorawan_setup fails when no app_key
+ */
 ZTEST(lorawan, test_setup_fails_when_no_app_key)
 {
     int ret;
@@ -82,6 +114,9 @@ ZTEST(lorawan, test_setup_fails_when_no_app_key)
     zassert_not_ok(ret, "lorawan_setup should fail");
 }
 
+/**
+ * @brief Test lorawan_setup fails when no dev_eui and join_eui
+ */
 ZTEST(lorawan, test_setup_fails_when_no_dev_eui_and_join_eui)
 {
     int ret;

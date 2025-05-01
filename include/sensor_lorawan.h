@@ -26,6 +26,12 @@ typedef struct {
  */
 int lorawan_setup(lorawan_setup_t *setup);
 
+/**
+ * @brief Check if the LoRaWAN Network is connected.
+ * 
+ * @return int 1 if connected, 0 if not connected
+ */
+int is_lorawan_connected(void);
 
 #endif
 
