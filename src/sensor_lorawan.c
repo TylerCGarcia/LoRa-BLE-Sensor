@@ -40,6 +40,7 @@ int lorawan_setup(lorawan_setup_t *setup)
 	join_cfg.otaa.join_eui = setup->join_eui;
 	join_cfg.otaa.app_key = setup->app_key;
 	join_cfg.otaa.nwk_key = setup->app_key;
+	join_cfg.otaa.dev_nonce = setup->dev_nonce;
 
 	ret = lorawan_start();
 	if (ret < 0) {
@@ -62,9 +63,11 @@ int lorawan_setup(lorawan_setup_t *setup)
 		if (ret == 0) {
 			break;
 		}
+		k_msleep(setup->delay);
 		i++;
 	}
-
+	// Save the dev_nonce for the next join
+	setup->dev_nonce = join_cfg.otaa.dev_nonce;
 	if (ret < 0) {
 		return ret;
 	}
@@ -73,11 +76,16 @@ int lorawan_setup(lorawan_setup_t *setup)
     return 0;
 }
 
-static int reset_data(lorawan_data_t *data)
+/**
+ * @brief Reset the data to be sent after each lorawan_send_data call.
+ * 
+ * @param data lorawan data struct
+ * @return int 0
+ */
+static void reset_data(lorawan_data_t *data)
 {
 	data->data = NULL;
 	data->length = 0;
-	return 0;
 }
 
 int lorawan_send_data(lorawan_data_t *data)

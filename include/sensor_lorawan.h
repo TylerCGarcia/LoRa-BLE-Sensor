@@ -14,6 +14,10 @@ typedef struct {
     struct lorawan_downlink_cb downlink_callback;
     /* How many attempts to join the network. */
     int join_attempts;
+    /* Device Nonce for LoRaWAN Network. Should be tracked seperately for different euis. */
+    uint16_t dev_nonce;
+    /* Delay between joinattempts in milliseconds. */
+    uint32_t delay;
     /* Device EUI for LoRaWAN Network. */
     uint8_t dev_eui[8];
     /* Join EUI for LoRaWAN Network. */

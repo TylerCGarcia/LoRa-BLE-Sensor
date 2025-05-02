@@ -32,6 +32,8 @@ static lorawan_setup_t setup = {
     .uplink_class = LORAWAN_CLASS_A,
     .downlink_callback = NULL,
     .join_attempts = 3,
+    .dev_nonce = 0,
+    .delay = 1000,
     .dev_eui = DEV_EUI,
     .join_eui = JOIN_EUI,
     .app_key = APP_KEY,
@@ -150,7 +152,9 @@ ZTEST(lorawan, test_setup_fails_when_no_dev_eui_and_join_eui)
     zassert_not_ok(ret, "lorawan_setup should fail");
 }
 
-
+/**
+ * @brief Test lorawan_send_data with correct parameters
+ */
 ZTEST(lorawan, test_send_packet)
 {
     int ret;
@@ -165,6 +169,9 @@ ZTEST(lorawan, test_send_packet)
     zassert_ok(ret, "lorawan_send_data failed: %d", ret);
 }
 
+/**
+ * @brief Test lorawan_send_data fails when no data
+ */
 ZTEST(lorawan, test_send_data_fails_when_no_data)
 {
     int ret;
@@ -179,6 +186,9 @@ ZTEST(lorawan, test_send_data_fails_when_no_data)
     zassert_not_ok(ret, "lorawan_send_data should fail");
 }
 
+/**
+ * @brief Test lorawan_send_data resets data after send
+ */
 ZTEST(lorawan, test_send_data_resets_data_afer_send)
 {
     int ret;
@@ -196,7 +206,9 @@ ZTEST(lorawan, test_send_data_resets_data_afer_send)
     zassert_equal(lorawan_data.length, 0, "lorawan_data.length should be 0");
 }
 
-
+/**
+ * @brief Test lorawan_send_data with confirmed message
+ */
 ZTEST(lorawan, test_send_data_confirmed)
 {
     int ret;
@@ -212,6 +224,9 @@ ZTEST(lorawan, test_send_data_confirmed)
     zassert_ok(ret, "lorawan_send_data failed: %d", ret);
 }
 
+/**
+ * @brief Test downlink callback
+ */
 static void dl_callback(uint8_t port, bool data_pending, int16_t rssi, int8_t snr, uint8_t len, const uint8_t *data)
 {
     last_downlink_called = true;
@@ -220,6 +235,9 @@ static void dl_callback(uint8_t port, bool data_pending, int16_t rssi, int8_t sn
     memcpy(last_downlink_data, data, len);
 }
 
+/**
+ * @brief Test if the downlink callback functions correctly
+ */
 ZTEST(lorawan, test_send_data_downlink_callback)
 {
     int ret;
