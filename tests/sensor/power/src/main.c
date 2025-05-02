@@ -30,7 +30,8 @@ sensor_power_config_t sensor_output1 = {
 	.boost_ctrl1 = GPIO_DT_SPEC_GET(DT_ALIAS(boost1ctrl1), gpios),
 	.boost_ctrl2 = GPIO_DT_SPEC_GET(DT_ALIAS(boost1ctrl2), gpios),
 	.ldo_dev = DEVICE_DT_GET(DT_NODELABEL(npm1300_ek_ldo1)),
-	.output_read = ADC_DT_SPEC_GET_BY_NAME(DT_PATH(zephyr_user), sensor_output1)
+	.output_read = ADC_DT_SPEC_GET_BY_NAME(DT_PATH(zephyr_user), sensor_output1),
+	.delay_ms = 100
 };
 
 sensor_power_config_t sensor_output2 = {
@@ -39,7 +40,8 @@ sensor_power_config_t sensor_output2 = {
 	.boost_ctrl1 = GPIO_DT_SPEC_GET(DT_ALIAS(boost2ctrl1), gpios),
 	.boost_ctrl2 = GPIO_DT_SPEC_GET(DT_ALIAS(boost2ctrl2), gpios),
 	.ldo_dev = DEVICE_DT_GET(DT_NODELABEL(npm1300_ek_ldo2)),
-	.output_read = ADC_DT_SPEC_GET_BY_NAME(DT_PATH(zephyr_user), sensor_output2)
+	.output_read = ADC_DT_SPEC_GET_BY_NAME(DT_PATH(zephyr_user), sensor_output2),
+	.delay_ms = 100
 };
 
 /**
@@ -587,4 +589,21 @@ ZTEST(power, test_validate_output_wrong_setting)
 	
 	ret = validate_output(&sensor_output1, SENSOR_VOLTAGE_24V, allowed_error);
 	zassert_not_ok(ret, "Voltage does not match expected value");
+}
+
+/**
+ * @brief Test that the output is off before setting a voltage. Will not set voltage correctly if being set
+ * from a different on voltage.
+ * 
+ */
+ZTEST(power, test_sets_output_off_before_setting_voltage)
+{
+	int ret;
+	set_sensor_output(&sensor_output1, SENSOR_VOLTAGE_3V3);
+	confirm_voltage(&sensor_output1, SENSOR_VOLTAGE_3V3);
+	set_sensor_output(&sensor_output1, SENSOR_VOLTAGE_3V3);
+	confirm_voltage(&sensor_output1, SENSOR_VOLTAGE_3V3);
+
+	// the second set sensor output should call regulator_disable once to turn off before setting the second call
+	zassert_equal(regulator_fake_disable_fake.call_count, 1, "regulator_disable should be %d, but was %d", 3, regulator_fake_set_voltage_fake.call_count);
 }

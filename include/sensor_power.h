@@ -32,12 +32,20 @@ typedef struct {
  * @brief Sensor power configuration
  */
 typedef struct {
+    /* Sensor power configurationid. */
     enum sensor_power_id power_id;
+    /* GPIO spec for the boost enable pin. */
     struct gpio_dt_spec boost_en; 
+    /* GPIO spec for the boost control 1 pin. */
     struct gpio_dt_spec boost_ctrl1;
+    /* GPIO spec for the boost control 2 pin. */
     struct gpio_dt_spec boost_ctrl2;
+    /* LDO device for the sensor. */
     const struct device *ldo_dev;
+    /* ADC spec for reading the output voltage. */
     const struct adc_dt_spec output_read;
+    /* Delay in ms to wait after setting the voltage to allow the voltage to stabilize. */
+    uint32_t delay_ms;
 } sensor_power_config_t;
 
 /**
@@ -59,6 +67,7 @@ enum sensor_voltage get_sensor_output(sensor_power_config_t *config);
 
 /**
  * @brief Set the sensor voltage for an output, enabling/disabling the correct regulators, and setting the correct gpios.
+ * When setting the voltage to OFF the voltage may take 1-2 seconds to fully turn off, due to capacitors on the output.
  * 
  * @param config sensor_power_config_t sensor power configuration for the current sensor
  * @param voltage enum sensor_voltage setting selected

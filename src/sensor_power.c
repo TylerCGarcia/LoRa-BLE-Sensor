@@ -35,6 +35,11 @@ static int turn_on_regulator(sensor_power_config_t *config)
 
 int set_sensor_output(sensor_power_config_t *config, enum sensor_voltage voltage)
 {
+    // If the voltage is being set to a non-off voltage, and the current voltage is not off, set the voltage to off first.
+    if(voltage != SENSOR_VOLTAGE_OFF && sensor_state[config->power_id] != SENSOR_VOLTAGE_OFF)
+    {
+        set_sensor_output(config, SENSOR_VOLTAGE_OFF);
+    }
     sensor_state[config->power_id] = voltage;
     switch (voltage) {
     case SENSOR_VOLTAGE_OFF:
@@ -77,6 +82,7 @@ int set_sensor_output(sensor_power_config_t *config, enum sensor_voltage voltage
         set_sensor_output(config, SENSOR_VOLTAGE_OFF); // If invalid output, set voltage to OFF
         return -EINVAL; 
     }
+    k_msleep(config->delay_ms);
     return 0;
 }
 

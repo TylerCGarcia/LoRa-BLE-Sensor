@@ -26,4 +26,5 @@ target_include_directories(app PRIVATE
 target_sources(app PRIVATE 
     ${CMAKE_CURRENT_SOURCE_DIR}/src/main.c
     ${CMAKE_CURRENT_SOURCE_DIR}/src/sensor_power.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/sensor_data.c
 )
