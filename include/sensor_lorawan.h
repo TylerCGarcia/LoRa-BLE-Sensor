@@ -5,6 +5,8 @@
 #include <stdint.h>
 #include <zephyr/device.h>
 
+#define MAX_LORAWAN_PAYLOAD 255
+
 typedef struct {
     /* LoRaWAN Device. */
     const struct device *lora_dev;
@@ -30,7 +32,7 @@ typedef struct {
 
 typedef struct {
     /* Data to send. */
-    uint8_t *data;
+    uint8_t data[MAX_LORAWAN_PAYLOAD];
     /* Length of the data to send. */
     uint16_t length;
     /* LoRaWAN port to send the data to. */

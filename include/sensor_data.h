@@ -40,6 +40,7 @@ typedef struct {
 #define VOLTAGE_READ_DIVIDER_HIGH     100
 #define VOLTAGE_READ_DIVIDER_LOW      13
 #define CURRENT_READ_RESISTOR         50
+#define PULSE_DEBOUNCE_MS             50
 
 /**
  * @brief Setup sensor for sensor_type with hardware configuration 

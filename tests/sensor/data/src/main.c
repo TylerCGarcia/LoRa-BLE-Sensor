@@ -11,6 +11,7 @@
 #include <zephyr/ztest.h>
 
 #include "sensor_data.h"
+#include <zephyr/kernel.h>
 #include <zephyr/drivers/gpio.h>
 #include <zephyr/drivers/gpio/gpio_emul.h>
 #include <zephyr/drivers/adc.h>
@@ -31,6 +32,18 @@ sensor_data_config_t sensor2_data_config = {
 	.voltage_read = ADC_DT_SPEC_GET_BY_NAME(DT_PATH(zephyr_user), voltage_sensor2),
     .current_read = ADC_DT_SPEC_GET_BY_NAME(DT_PATH(zephyr_user), current_sensor2)
 };
+
+static void emulate_pulses(sensor_data_config_t *config, int num_pulses)
+{
+    for(int i = 0; i < num_pulses; i++)
+    {
+        k_msleep(PULSE_DEBOUNCE_MS);
+        gpio_emul_input_set(config->d1.port, config->d1.pin, 1);
+        gpio_emul_input_set(config->d1.port, config->d1.pin, 0);
+    }
+    gpio_emul_input_set(config->d1.port, config->d1.pin, 1);
+}
+
 
 /**
  * @brief Call after each test
@@ -300,16 +313,6 @@ ZTEST(data, test_current_sensor_and_voltage_sensor)
 	zassert_within(current, expected_current, accepted_error2, "Mismatch: got %f, expected %f", current, expected_output);
 }
 
-static void emulate_pulses(sensor_data_config_t *config, int num_pulses)
-{
-    for(int i = 0; i < num_pulses; i++)
-    {
-        gpio_emul_input_set(config->d1.port, config->d1.pin, 1);
-        gpio_emul_input_set(config->d1.port, config->d1.pin, 0);
-    }
-    gpio_emul_input_set(config->d1.port, config->d1.pin, 1);
-}
-
 /**
  * @brief Test pulse read outputs expected value
  * 
@@ -320,7 +323,7 @@ ZTEST(data, test_sensor_pulse_read)
     zassert_ok(ret, "Sensor1 failed pulse setup");
     enum sensor_types setup = get_sensor_data_setup(&sensor1_data_config);
     zassert_equal(setup, PULSE_SENSOR, "setup did not equal PULSE_SENSOR");
-    int expected_pulse_count = 0;
+    int expected_pulse_count = 10;
     emulate_pulses(&sensor1_data_config, expected_pulse_count);
     int pulse_count = get_sensor_pulse_count(&sensor1_data_config);
     zassert_equal(expected_pulse_count, pulse_count, "Expected %d, got %d", expected_pulse_count, pulse_count);
@@ -374,3 +377,4 @@ ZTEST(data, test_sensor_pulse_read_two_sensors)
     pulse_count = get_sensor_pulse_count(&sensor2_data_config);
     zassert_equal(expected_pulse_count2, pulse_count, "Sensor 2 expected %d, got %d", expected_pulse_count2, pulse_count);
 }
+

@@ -7,11 +7,28 @@
 #include <stdio.h>
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
+#include "sensor_lorawan.h"
 #include "sensor_power.h"
 #include "sensor_data.h"
 #include <zephyr/drivers/adc.h>
 
 LOG_MODULE_REGISTER(MAIN);
+
+#define DEV_EUI {0x00, 0x80, 0xE1, 0x15, 0x00, 0x56, 0x9E, 0x08}
+#define JOIN_EUI {0x60, 0x81, 0xF9, 0x1D, 0xE0, 0x47, 0x30, 0xAB}
+#define APP_KEY {0xE1, 0x0E, 0x13, 0x72, 0xD6, 0xA4, 0x19, 0x95, 0x0C, 0x88, 0x19, 0x41, 0x04, 0x0D, 0x58, 0x03}
+
+static lorawan_setup_t setup = {
+    .lora_dev = DEVICE_DT_GET(DT_ALIAS(lora0)),
+    .uplink_class = LORAWAN_CLASS_A,
+    .downlink_callback = NULL,
+    .join_attempts = 10,
+    .dev_nonce = 80,
+    .delay = 1000,
+    .dev_eui = DEV_EUI,
+    .join_eui = JOIN_EUI,
+    .app_key = APP_KEY,
+};
 
 sensor_power_config_t sensor_output1 = {
 	.power_id = SENSOR_POWER_1,
@@ -74,26 +91,54 @@ static void set_and_validate_output(sensor_power_config_t *sensor, enum sensor_v
 
 static void setup_sensor_data(void)
 {
-	sensor_data_setup(&sensor1_data_config, VOLTAGE_SENSOR);
-	sensor_data_setup(&sensor2_data_config, VOLTAGE_SENSOR);
+	int accepted_error = 5;
+	sensor_data_setup(&sensor1_data_config, PULSE_SENSOR);
+	sensor_data_setup(&sensor2_data_config, PULSE_SENSOR);
+	set_and_validate_output(&sensor_output1, SENSOR_VOLTAGE_3V3, accepted_error);
+	set_and_validate_output(&sensor_output2, SENSOR_VOLTAGE_3V3, accepted_error);
+}
+
+static void run_sensor_tests(void)
+{
+	float voltage1 = get_sensor_voltage_reading(&sensor1_data_config);
+	LOG_INF("VOLTAGE1: %f", voltage1);
+	float voltage2 = get_sensor_voltage_reading(&sensor2_data_config);
+	LOG_INF("VOLTAGE2: %f", voltage2);
+	float current1 = get_sensor_current_reading(&sensor1_data_config);
+	LOG_INF("CURRENT1: %f", current1);
+	float current2 = get_sensor_current_reading(&sensor2_data_config);
+	LOG_INF("CURRENT2: %f", current2);
+	int pulses1 = get_sensor_pulse_count(&sensor1_data_config);
+	LOG_INF("PULSES1: %d", pulses1);
+	int pulses2 = get_sensor_pulse_count(&sensor2_data_config);
+	LOG_INF("PULSES2: %d", pulses2);
 }
 
 int main(void)
 {
 	int accepted_error = 5;
-	setup_power();
-	setup_sensor_data();
-	int i = 0;
+	int ret;
+	LOG_INF("Starting Application");
+    ret = lorawan_setup(&setup);
 	while (1) 
 	{
-		set_and_validate_output(&sensor_output1, SENSOR_VOLTAGE_12V, accepted_error);
-		set_and_validate_output(&sensor_output2, SENSOR_VOLTAGE_12V, accepted_error);
-		float voltage1 = get_sensor_voltage_reading(&sensor1_data_config);
-		LOG_INF("VOLTAGE1: %f", voltage1);
-		float voltage2 = get_sensor_voltage_reading(&sensor2_data_config);
-		LOG_INF("VOLTAGE2: %f", voltage2);
 		k_msleep(1000);
-		i = (i+1)%SENSOR_VOLTAGE_INDEX_LIMIT;
+		if(is_lorawan_connected())
+		{
+			LOG_INF("Sending LoRaWAN data");
+			int i = 0;
+			lorawan_data_t lorawan_data;
+			lorawan_data.data[i++] = 255;
+			lorawan_data.data[i++] = 255;
+			lorawan_data.data[i++] = 255;
+			lorawan_data.data[i++] = 255;
+			lorawan_data.length = i;
+			lorawan_data.port = 2;
+			lorawan_data.attempts = 10;
+			lorawan_data.delay = 1000;
+			ret = lorawan_send_data(&lorawan_data);
+		}
+		k_sleep(K_MINUTES(1));
 	}
 	return 0;
 }

@@ -1,6 +1,7 @@
 
 
 #include "sensor_data.h"
+#include <zephyr/kernel.h>
 
 typedef struct {
     struct gpio_callback cb;
@@ -13,11 +14,19 @@ static int pulse_count[SENSOR_INDEX_LIMIT];
 
 static pulse_context_t pulse_cb_data[SENSOR_INDEX_LIMIT];
 
+static int64_t last_pulse_time[SENSOR_INDEX_LIMIT];
+
 /* Button Interrupt */
 static void pulse_captured(const struct device *dev, struct gpio_callback *cb, uint32_t pins)
 {
     pulse_context_t *context = CONTAINER_OF(cb, pulse_context_t, cb);
-    pulse_count[context->id]++;
+    int id = context->id;
+    int64_t now = k_uptime_get();
+
+    if (now - last_pulse_time[id] > PULSE_DEBOUNCE_MS) {
+        pulse_count[id]++;
+        last_pulse_time[id] = now;
+    }
 }
 
 static int sensor_data_pulse_setup(sensor_data_config_t *config)
