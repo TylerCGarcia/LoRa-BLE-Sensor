@@ -1,47 +1,54 @@
-#include <zephyr/kernel.h>
-#include <zephyr/bluetooth/bluetooth.h>
-#include <zephyr/bluetooth/hci.h>
+/*
+ * Copyright (c) 2016 Intel Corporation
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ * Tests:
+ * - connection callbacks
+ * - ble advertisement interval
+ * - bt_set_name
+ * - ble advertising data
+ * - ble advertising data update
+ * 
+ */
+
 
 #include <zephyr/ztest.h>
 
-#define DEVICE_NAME CONFIG_BT_DEVICE_NAME
-#define DEVICE_NAME_LEN (sizeof(DEVICE_NAME) - 1)
+#include "sensor_ble.h"
 
-#define TIMEOUT_MS 300000 /* 5 minutes */
+#include <zephyr/kernel.h>
+#include <zephyr/bluetooth/bluetooth.h>
 
-static const struct bt_data ad[] = {
-	BT_DATA_BYTES(BT_DATA_FLAGS, BT_LE_AD_NO_BREDR),
-};
-
-/* Set Scan Response data */
-static const struct bt_data sd[] = {
-	BT_DATA(BT_DATA_NAME_COMPLETE, DEVICE_NAME, DEVICE_NAME_LEN),
-};
-
-ZTEST_SUITE(adv_tests, NULL, NULL, NULL, NULL, NULL);
-
-ZTEST(adv_tests, test_adv_fast_ad_data_update)
+/**
+ * @brief Call after each test
+ * 
+ */
+static void *after_tests(void)
 {
-	int err;
+	bt_le_adv_stop();
+	bt_disable();
+}
 
-	printk("Starting Beacon Demo\n");
 
-	/* Initialize the Bluetooth Subsystem */
-	err = bt_enable(NULL);
-	zassert_equal(err, 0, "Bluetooth init failed (err %d)\n", err);
+ZTEST_SUITE(ble, NULL, NULL, NULL, after_tests, NULL);
 
-	printk("Bluetooth initialized\n");
+ZTEST(ble, test_ble_adv_init)
+{
+	ble_config_t ble_config = {
+		.adv_name = "BLE-LoRa-Sensor"
+	};
+	int ret;
+	ret = ble_setup(&ble_config);
+	zassert_ok(ret, "BLE setup failed (err %d)\n", ret);
+}
 
-	/* Start advertising */
-	err = bt_le_adv_start(BT_LE_ADV_NCONN, ad, ARRAY_SIZE(ad),
-			      sd, ARRAY_SIZE(sd));
-	zassert_equal(err, 0, "Advertising failed to start (err %d)\n", err);
-
-	printk("Advertising started\n");
-
-	while (k_uptime_get() < TIMEOUT_MS) {
-		err = bt_le_adv_update_data(ad, ARRAY_SIZE(ad),
-					    sd, ARRAY_SIZE(sd));
-		zassert_equal(err, 0, "Update adv data failed (err %d)\n", err);
-	}
+ZTEST(ble, test_ble_adv_name)
+{
+	ble_config_t ble_config = {
+		.adv_name = "BLE-LoRa-Sensor"
+	};
+	int ret;
+	ret = ble_setup(&ble_config);
+	zassert_ok(ret, "BLE setup failed (err %d)\n", ret);
+	zassert_str_equal(bt_get_name(), ble_config.adv_name, "BLE name is %s when it should be %s", bt_get_name(), ble_config.adv_name);
 }

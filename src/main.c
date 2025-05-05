@@ -7,10 +7,12 @@
 #include <stdio.h>
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
+#include <zephyr/drivers/adc.h>
+#include "sensor_ble.h"
 #include "sensor_lorawan.h"
 #include "sensor_power.h"
 #include "sensor_data.h"
-#include <zephyr/drivers/adc.h>
+
 
 LOG_MODULE_REGISTER(MAIN);
 
@@ -114,30 +116,36 @@ static void run_sensor_tests(void)
 	LOG_INF("PULSES2: %d", pulses2);
 }
 
+static void send_packet(void)
+{
+	// LOG_INF("Starting Application");
+    // lorawan_setup(&setup);
+
+	if(is_lorawan_connected())
+	{
+		LOG_INF("Sending LoRaWAN data");
+		int i = 0;
+		lorawan_data_t lorawan_data;
+		lorawan_data.data[i++] = 255;
+		lorawan_data.data[i++] = 255;
+		lorawan_data.data[i++] = 255;
+		lorawan_data.data[i++] = 255;
+		lorawan_data.length = i;
+		lorawan_data.port = 2;
+		lorawan_data.attempts = 10;
+		lorawan_data.delay = 1000;
+		lorawan_send_data(&lorawan_data);
+	}
+}
 int main(void)
 {
-	int accepted_error = 5;
+	ble_config_t ble_config = {
+		.adv_name = "BLE-LoRa-Sensor"
+	};
 	int ret;
-	LOG_INF("Starting Application");
-    ret = lorawan_setup(&setup);
+	ret = ble_setup(&ble_config);
 	while (1) 
 	{
-		k_msleep(1000);
-		if(is_lorawan_connected())
-		{
-			LOG_INF("Sending LoRaWAN data");
-			int i = 0;
-			lorawan_data_t lorawan_data;
-			lorawan_data.data[i++] = 255;
-			lorawan_data.data[i++] = 255;
-			lorawan_data.data[i++] = 255;
-			lorawan_data.data[i++] = 255;
-			lorawan_data.length = i;
-			lorawan_data.port = 2;
-			lorawan_data.attempts = 10;
-			lorawan_data.delay = 1000;
-			ret = lorawan_send_data(&lorawan_data);
-		}
 		k_sleep(K_MINUTES(1));
 	}
 	return 0;

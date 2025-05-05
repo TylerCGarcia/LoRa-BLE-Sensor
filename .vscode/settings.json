@@ -140,6 +140,10 @@
         "byteorder.h": "c",
         "stdint.h": "c",
         "errno.h": "c",
-        "slist.h": "c"
+        "slist.h": "c",
+        "hci.h": "c",
+        "bluetooth.h": "c",
+        "sensor_ble.h": "c",
+        "cstdlib": "c"
     }
 }
