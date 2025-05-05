@@ -14,7 +14,7 @@ typedef struct {
     enum lorawan_class uplink_class;
     /* LoRaWAN downlink callback. */
     struct lorawan_downlink_cb downlink_callback;
-    /* How many attempts to join the network. */
+    /* How many attempts to join the network. If 0, it will attempt to join indefinitely. */
     int join_attempts;
     /* Device Nonce for LoRaWAN Network. Should be tracked seperately for different euis. */
     uint16_t dev_nonce;

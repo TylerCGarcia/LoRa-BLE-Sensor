@@ -9,42 +9,26 @@ LOG_MODULE_REGISTER(SENSOR_LORAWAN);
 static int lorawan_connection_status = 0;
 
 /**
- * @brief Check if the lorawan is configured. Returns -1 if the dev_eui, join_eui or app_key are all zeros.	
+ * @brief Check if the lorawan is configured. If it is, setup the join config object.
  * 
  * @param setup lorawan setup struct
+ * @param join_cfg lorawan join config struct
  * @return int 0 if configured, -1 if not configured
  */
-static int is_lorawan_configured(const lorawan_setup_t *setup) {
+static int get_lorawan_config(const lorawan_setup_t *setup, struct lorawan_join_config *join_cfg)
+{
     // Helper arrays for comparison
     static const uint8_t zeros_8[8] = {0};
     static const uint8_t zeros_16[16] = {0};
     
     // Check if any of the identifiers are all zeros
-    if (memcmp(setup->dev_eui, zeros_8, 8) == 0 ||
-        memcmp(setup->join_eui, zeros_8, 8) == 0 ||
-        memcmp(setup->app_key, zeros_16, 16) == 0) {
+    if (memcmp(setup->dev_eui, zeros_8, 8) == 0 || memcmp(setup->join_eui, zeros_8, 8) == 0 || memcmp(setup->app_key, zeros_16, 16) == 0) 
+	{
+		LOG_ERR("LoRaWAN is NOT CONFIGURED");
         return -1;
     }
-    
-    return 0;  // Device is configured
-}
-
-int lorawan_setup(lorawan_setup_t *setup)
-{
-    const struct device *lora_dev = DEVICE_DT_GET(DT_ALIAS(lora0));
-	struct lorawan_join_config join_cfg = {0};
-	int ret;
-	
-	if (is_lorawan_configured(setup) < 0) {
-		LOG_ERR("LoRaWAN is NOT CONFIGURED");
-		return -1;
-	}
-	if (!device_is_ready(lora_dev)) {
-		LOG_ERR("%s: device not ready.", lora_dev->name);
-		return -1;
-	}
-
 	LOG_INF("LoRaWAN is CONFIGURED");
+
 	LOG_INF("DEV EUI:  0x%02x 0x%02x 0x%02x 0x%02x 0x%02x 0x%02x 0x%02x 0x%02x", \
 		setup->dev_eui[0],setup->dev_eui[1],setup->dev_eui[2],setup->dev_eui[3], \
 		setup->dev_eui[4],setup->dev_eui[5],setup->dev_eui[6],setup->dev_eui[7]);
@@ -57,26 +41,49 @@ int lorawan_setup(lorawan_setup_t *setup)
 		setup->app_key[8],setup->app_key[9],setup->app_key[10],setup->app_key[11], \
 		setup->app_key[12],setup->app_key[13],setup->app_key[14],setup->app_key[15]);
 	
-	join_cfg.mode = LORAWAN_ACT_OTAA;
-	join_cfg.dev_eui = setup->dev_eui;
-	join_cfg.otaa.join_eui = setup->join_eui;
-	join_cfg.otaa.app_key = setup->app_key;
-	join_cfg.otaa.nwk_key = setup->app_key;
-	join_cfg.otaa.dev_nonce = setup->dev_nonce;
+	join_cfg->mode = LORAWAN_ACT_OTAA;
+	join_cfg->dev_eui = setup->dev_eui;
+	join_cfg->otaa.join_eui = setup->join_eui;
+	join_cfg->otaa.app_key = setup->app_key;
+	join_cfg->otaa.nwk_key = setup->app_key;
+	join_cfg->otaa.dev_nonce = setup->dev_nonce;
+	return 0;  // Device is configured
+}
+
+int lorawan_setup(lorawan_setup_t *setup)
+{
+    const struct device *lora_dev = DEVICE_DT_GET(DT_ALIAS(lora0));
+	int ret;
+	
+	if (!device_is_ready(lora_dev)) {
+		LOG_ERR("%s: device not ready.", lora_dev->name);
+		return -1;
+	}
+
+	struct lorawan_join_config join_cfg;
+	if (get_lorawan_config(setup, &join_cfg) < 0) 
+	{
+		return -1;
+	}
+	
 	LOG_INF("Starting LoRaWAN");
 	ret = lorawan_start();
 	if (ret < 0) {
 		return ret;
 	}
+	// Setup downlink callback if there is one
 	if (setup->downlink_callback.cb != NULL) {
 		lorawan_register_downlink_callback(&setup->downlink_callback);
 	}
+	// Set the uplink class, default to A
 	ret = lorawan_set_class(setup->uplink_class);
 	if (ret < 0) {
 		LOG_ERR("Failed to set class");
 		return ret;
 	}
+
 	int i = 0;
+	// Join the network, if join_attempts is 0, it will join indefinitely
 	while (setup->join_attempts == 0 || i < setup->join_attempts) {
 		i++;
 		LOG_INF("Join Attempt %d: Dev Nonce: %d", i, join_cfg.otaa.dev_nonce);
@@ -137,13 +144,9 @@ int lorawan_send_data(lorawan_data_t *lorawan_data)
 		{
 			LOG_INF("Attempt %d", i);
 			ret = lorawan_send(lorawan_data->port, lorawan_data->data, lorawan_data->length, LORAWAN_MSG_CONFIRMED);
-	
-			if (ret == -EAGAIN) {
-				LOG_INF("Retrying in %d ms", lorawan_data->delay);
-				k_msleep(lorawan_data->delay);
-				continue;
-			} else if (ret < 0) {
+			if (ret < 0) {
 				LOG_ERR("Failed to send data with error %d", ret);
+				k_msleep(lorawan_data->delay);
 				continue;
 			} else {
 				LOG_INF("Data sent successfully");

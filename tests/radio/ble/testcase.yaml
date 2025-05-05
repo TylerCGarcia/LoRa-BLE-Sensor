@@ -1,0 +1,15 @@
+tests:  
+  sensor.ble:
+    tags:
+      - bluetooth
+    # harness: ztest
+    # harness: bsim
+    platform_allow:
+      - nrf52_bsim
+      - native_sim
+    slow: true
+    timeout: 360
+      # - qemu_cortex_m3 
+      # - nrf52_bsim/native
+    # harness_config:
+    #   bsim_exe_name: tests_bsim_bluetooth_host_scan_start_stop_prj_conf

@@ -7,6 +7,7 @@
  * - lorawan_setup can be called multiple times
  * - lorawan_setup_fails_only_first_try
  * - give out dev nonce requirement
+ * - give way to end join attempts early
  */
 
 #include <zephyr/ztest.h>
@@ -160,10 +161,15 @@ ZTEST(lorawan, test_send_packet)
     int ret;
     ret = lorawan_setup(&setup);
     zassert_equal(ret, 0, "lorawan_setup failed: %d", ret);
+    int i = 0;
     lorawan_data_t lorawan_data;
-    lorawan_data.data = "Hello, World!";
-    lorawan_data.length = strlen(lorawan_data.data);
-    lorawan_data.port = 1;
+    lorawan_data.data[i++] = "H";
+    lorawan_data.data[i++] = "e";
+    lorawan_data.data[i++] = "l";
+    lorawan_data.data[i++] = "l";
+    lorawan_data.data[i++] = "o";
+    lorawan_data.length = i;
+    lorawan_data.port = 2;
     lorawan_data.attempts = 0;
     ret = lorawan_send_data(&lorawan_data);
     zassert_ok(ret, "lorawan_send_data failed: %d", ret);
@@ -178,7 +184,7 @@ ZTEST(lorawan, test_send_data_fails_when_no_data)
     ret = lorawan_setup(&setup);
     zassert_equal(ret, 0, "lorawan_setup failed: %d", ret);
     lorawan_data_t lorawan_data;
-    lorawan_data.data = NULL;
+    lorawan_data.data[0] = NULL;
     lorawan_data.length = 0;
     lorawan_data.port = 1;
     lorawan_data.attempts = 0;
@@ -194,15 +200,20 @@ ZTEST(lorawan, test_send_data_resets_data_afer_send)
     int ret;
     ret = lorawan_setup(&setup);
     zassert_equal(ret, 0, "lorawan_setup failed: %d", ret);
+    int i = 0;
     lorawan_data_t lorawan_data;
-    lorawan_data.data = "Hello, World!";
-    lorawan_data.length = strlen(lorawan_data.data);
+    lorawan_data.data[i++] = "H";
+    lorawan_data.data[i++] = "e";
+    lorawan_data.data[i++] = "l";
+    lorawan_data.data[i++] = "l";
+    lorawan_data.data[i++] = "o";
+    lorawan_data.length = i;
     lorawan_data.port = 1;
     lorawan_data.attempts = 0;
     lorawan_data.delay = 1000;
     ret = lorawan_send_data(&lorawan_data);
     zassert_ok(ret, "lorawan_send_data failed: %d", ret);
-    zassert_is_null(lorawan_data.data, "lorawan_data.data should be NULL");
+    zassert_is_null(lorawan_data.data[0], "lorawan_data.data should be NULL");
     zassert_equal(lorawan_data.length, 0, "lorawan_data.length should be 0");
 }
 
@@ -214,10 +225,15 @@ ZTEST(lorawan, test_send_data_confirmed)
     int ret;
     ret = lorawan_setup(&setup);
     zassert_equal(ret, 0, "lorawan_setup failed: %d", ret);
+    int i = 0;
     lorawan_data_t lorawan_data;
-    lorawan_data.data = "Hello, World!";
-    lorawan_data.length = strlen(lorawan_data.data);
-    lorawan_data.port = 1;
+    lorawan_data.data[i++] = "H";
+    lorawan_data.data[i++] = "e";
+    lorawan_data.data[i++] = "l";
+    lorawan_data.data[i++] = "l";
+    lorawan_data.data[i++] = "o";
+    lorawan_data.length = i;
+    lorawan_data.port = 2;
     lorawan_data.attempts = 1;
     lorawan_data.delay = 1000;
     ret = lorawan_send_data(&lorawan_data);
