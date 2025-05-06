@@ -13,6 +13,7 @@
 #define SENSOR_BLE_H
 
 #include <stdint.h>
+#include <zephyr/bluetooth/bluetooth.h>
 
 
 /* Structure to hold the BLE setup. */
@@ -30,7 +31,27 @@ typedef struct {
 } ble_config_t;
 
 
-
+/**
+ * @brief Setup the BLE device, with advertisement and connection parameters.
+ * 
+ * @param config The configuration of the BLE device.
+ * @return int 0 on success, negative on failure.
+ */
 int ble_setup(ble_config_t *config);
+
+/**
+ * @brief Check if the BLE device is advertising.
+ * 
+ * @return int 1 if advertising, 0 if not.
+ */
+int is_ble_advertising(void);
+
+/**
+ * @brief Change the name of the BLE device.
+ * 
+ * @param config The configuration of the BLE device.
+ * @return int 0 on success, negative on failure.
+ */
+int ble_change_name(ble_config_t *config);
 
 #endif
