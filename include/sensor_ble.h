@@ -20,8 +20,14 @@
 typedef struct {
     /* Advertising options. */
     enum bt_le_adv_opt adv_opt;
-    /* Advertising interval in milliseconds. */
-    uint16_t adv_interval_ms;
+    /* Advertising interval min in milliseconds. */
+    uint32_t adv_interval_min_ms;
+    /* Advertising interval max in milliseconds. */
+    uint32_t adv_interval_max_ms;
+    /* Connection callbacks. */
+    struct bt_conn_cb *connection_callbacks;
+    /* If to add service uuid to the advertising data, 1 to add, 0 to not add. */
+    uint8_t add_service_uuid;
     /* Advertising name. */
     char adv_name[32];
     /* Advertising data. */
@@ -30,6 +36,13 @@ typedef struct {
     uint8_t adv_data_len;
 } ble_config_t;
 
+/* Structure to hold the advertising intervals using zephyr codes(not milliseconds). */
+typedef struct {
+    /* Advertising interval min in zephyr codes(not milliseconds). */
+    uint32_t min;
+    /* Advertising interval max in zephyr codes(not milliseconds). */
+    uint32_t max;
+} adv_interval_t;
 
 /**
  * @brief Setup the BLE device, with advertisement and connection parameters.
@@ -53,5 +66,12 @@ int is_ble_advertising(void);
  * @return int 0 on success, negative on failure.
  */
 int ble_change_name(ble_config_t *config);
+
+/**
+ * @brief Get the advertising interval of the BLE device.
+ * 
+ * @return adv_interval_t The advertising interval of the BLE device.
+ */
+adv_interval_t get_ble_adv_interval(void);
 
 #endif

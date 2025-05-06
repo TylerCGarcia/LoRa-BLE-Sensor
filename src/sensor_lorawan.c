@@ -4,7 +4,7 @@
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
 
-LOG_MODULE_REGISTER(SENSOR_LORAWAN);
+LOG_MODULE_REGISTER(SENSOR_LORAWAN, LOG_LEVEL_INF);
 
 static int lorawan_connection_status = 0;
 

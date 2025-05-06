@@ -2,14 +2,32 @@
 
 #include "sensor_ble.h"
 #include <zephyr/kernel.h>
+#include <zephyr/logging/log.h>
 #include <zephyr/bluetooth/bluetooth.h>
 
+LOG_MODULE_REGISTER(SENSOR_BLE, LOG_LEVEL_INF);
+
+static adv_interval_t adv_interval;
 
 static volatile int ble_is_advertising = 0;
+
+/**
+ * @brief Calculate the advertising interval in zephyr codes.
+ * 
+ * @param interval_ms The interval in milliseconds.
+ * @return The interval in zephyr codes.
+ */
+static int calculate_adv_interval(int interval_ms)
+{
+    return (interval_ms / 0.625);
+}
 
 int ble_setup(ble_config_t *config)
 {
     int ret;
+    adv_interval.min = calculate_adv_interval(config->adv_interval_min_ms);
+    adv_interval.max = calculate_adv_interval(config->adv_interval_max_ms);
+    LOG_INF("Advertising interval code min: %d, max: %d", adv_interval.min, adv_interval.max);
     /* Initialize the Bluetooth Subsystem */
     ret = bt_enable(NULL);
     if (ret) {
@@ -17,7 +35,7 @@ int ble_setup(ble_config_t *config)
     }
 
     struct bt_le_adv_param *adv_param =
-	BT_LE_ADV_PARAM(BT_LE_ADV_OPT_CONNECTABLE, 800, 801, NULL);
+	BT_LE_ADV_PARAM(config->adv_opt, adv_interval.min, adv_interval.max, NULL);
 
     const struct bt_data ad[] = {
 	    BT_DATA_BYTES(BT_DATA_FLAGS, BT_LE_AD_NO_BREDR),
@@ -44,7 +62,6 @@ int ble_end(void)
     return 0;
 }
 
-
 int is_ble_advertising(void)
 {
     return ble_is_advertising;
@@ -53,4 +70,9 @@ int is_ble_advertising(void)
 int ble_change_name(ble_config_t *config)
 {
     return bt_set_name(config->adv_name);
+}
+
+adv_interval_t get_ble_adv_interval(void)
+{
+    return adv_interval;
 }
