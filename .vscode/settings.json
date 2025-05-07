@@ -144,6 +144,8 @@
         "hci.h": "c",
         "bluetooth.h": "c",
         "sensor_ble.h": "c",
-        "cstdlib": "c"
+        "cstdlib": "c",
+        "uuid.h": "c",
+        "gatt.h": "c"
     }
 }

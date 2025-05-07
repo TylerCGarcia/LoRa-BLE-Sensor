@@ -53,11 +53,12 @@ int ble_setup(ble_config_t *config)
 
 int ble_end(void)
 {
-    if (!ble_is_advertising) {
-        bt_le_adv_stop();
-        ble_is_advertising = 0;
-        return 0;
-    }
+    // bt_disable might stop the advertising, so we don't need to call bt_le_adv_stop()
+    // if (!ble_is_advertising) {
+    //     bt_le_adv_stop();
+    //     ble_is_advertising = 0;
+    //     return 0;
+    // }
     bt_disable();
     return 0;
 }

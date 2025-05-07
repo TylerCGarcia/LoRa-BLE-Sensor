@@ -137,6 +137,7 @@ static void send_packet(void)
 		lorawan_send_data(&lorawan_data);
 	}
 }
+
 int main(void)
 {
 	ble_config_t ble_config = {

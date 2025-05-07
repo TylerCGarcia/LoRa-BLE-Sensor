@@ -93,11 +93,11 @@ ZTEST(ble, test_ble_adv_interval)
 	zassert_equal(adv_interval.max, max_interval, "BLE adv interval max is %d not %d", adv_interval.max, max_interval);
 }
 
-// /**
-//  * @brief Test the BLE advertisement interval change.
-//  * 
-//  */
-// ZTEST(ble, test_ble_adv_interval_change)
-// {
+/**
+ * @brief Test the BLE connection callback setup.
+ * 
+ */
+ZTEST(ble, test_ble_connectioncallback_setup)
+{
 
-// }
+}
