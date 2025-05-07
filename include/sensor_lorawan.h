@@ -43,12 +43,18 @@ typedef struct {
     uint32_t delay;
 } lorawan_data_t;
 
+/**
+ * @brief Print the LoRaWAN Network dev_eui, join_eui, and app_key for a given lorawan_setup_t configuration. 
+ * 
+ * @param setup setup configuration used to join lorawan network
+ */
+void lorawan_log_network_config(lorawan_setup_t *setup);
 
 /**
  * @brief Setup LoRaWAN Network with a given lorawan_setup_t configuration. 
  * 
- * @param setup 
- * @return int 
+ * @param setup setup configuration used to join lorawan network
+ * @return int 0 if successful connection, < 0 if unsuccessful
  */
 int lorawan_setup(lorawan_setup_t *setup);
 

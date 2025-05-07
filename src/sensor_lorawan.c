@@ -17,18 +17,31 @@ static int lorawan_connection_status = 0;
  */
 static int get_lorawan_config(const lorawan_setup_t *setup, struct lorawan_join_config *join_cfg)
 {
-    // Helper arrays for comparison
-    static const uint8_t zeros_8[8] = {0};
-    static const uint8_t zeros_16[16] = {0};
-    
-    // Check if any of the identifiers are all zeros
-    if (memcmp(setup->dev_eui, zeros_8, 8) == 0 || memcmp(setup->join_eui, zeros_8, 8) == 0 || memcmp(setup->app_key, zeros_16, 16) == 0) 
+	// Helper arrays for comparison
+	static const uint8_t zeros_8[8] = {0};
+	static const uint8_t zeros_16[16] = {0};
+
+	// Check if any of the identifiers are all zeros
+	if (memcmp(setup->dev_eui, zeros_8, 8) == 0 || memcmp(setup->join_eui, zeros_8, 8) == 0 || memcmp(setup->app_key, zeros_16, 16) == 0) 
 	{
 		LOG_ERR("LoRaWAN is NOT CONFIGURED");
-        return -1;
-    }
+		return -1;
+	}
 	LOG_INF("LoRaWAN is CONFIGURED");
 
+	lorawan_log_network_config(setup);
+
+	join_cfg->mode = LORAWAN_ACT_OTAA;
+	join_cfg->dev_eui = setup->dev_eui;
+	join_cfg->otaa.join_eui = setup->join_eui;
+	join_cfg->otaa.app_key = setup->app_key;
+	join_cfg->otaa.nwk_key = setup->app_key;
+	join_cfg->otaa.dev_nonce = setup->dev_nonce;
+	return 0;  // Device is configured
+}
+
+void lorawan_log_network_config(lorawan_setup_t *setup)
+{
 	LOG_INF("DEV EUI:  0x%02x 0x%02x 0x%02x 0x%02x 0x%02x 0x%02x 0x%02x 0x%02x", \
 		setup->dev_eui[0],setup->dev_eui[1],setup->dev_eui[2],setup->dev_eui[3], \
 		setup->dev_eui[4],setup->dev_eui[5],setup->dev_eui[6],setup->dev_eui[7]);
@@ -40,19 +53,11 @@ static int get_lorawan_config(const lorawan_setup_t *setup, struct lorawan_join_
 		setup->app_key[4],setup->app_key[5],setup->app_key[6],setup->app_key[7], \
 		setup->app_key[8],setup->app_key[9],setup->app_key[10],setup->app_key[11], \
 		setup->app_key[12],setup->app_key[13],setup->app_key[14],setup->app_key[15]);
-	
-	join_cfg->mode = LORAWAN_ACT_OTAA;
-	join_cfg->dev_eui = setup->dev_eui;
-	join_cfg->otaa.join_eui = setup->join_eui;
-	join_cfg->otaa.app_key = setup->app_key;
-	join_cfg->otaa.nwk_key = setup->app_key;
-	join_cfg->otaa.dev_nonce = setup->dev_nonce;
-	return 0;  // Device is configured
 }
 
 int lorawan_setup(lorawan_setup_t *setup)
 {
-    const struct device *lora_dev = DEVICE_DT_GET(DT_ALIAS(lora0));
+	const struct device *lora_dev = DEVICE_DT_GET(DT_ALIAS(lora0));
 	int ret;
 	
 	if (!device_is_ready(lora_dev)) {
@@ -107,8 +112,8 @@ int lorawan_setup(lorawan_setup_t *setup)
 		return ret;
 	}
 	LOG_INF("LoRaWAN joined");
-    lorawan_connection_status = 1;
-    return 0;
+	lorawan_connection_status = 1;
+	return 0;
 }
 
 /**

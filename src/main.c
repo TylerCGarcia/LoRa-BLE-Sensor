@@ -12,27 +12,32 @@
 #include "sensor_lorawan.h"
 #include "sensor_power.h"
 #include "sensor_data.h"
+#include "ble_lorawan_service.h"
 
 
 LOG_MODULE_REGISTER(MAIN);
 
-#define DEV_EUI {0x00, 0x80, 0xE1, 0x15, 0x00, 0x56, 0x9E, 0x08}
-#define JOIN_EUI {0x60, 0x81, 0xF9, 0x1D, 0xE0, 0x47, 0x30, 0xAB}
-#define APP_KEY {0xE1, 0x0E, 0x13, 0x72, 0xD6, 0xA4, 0x19, 0x95, 0x0C, 0x88, 0x19, 0x41, 0x04, 0x0D, 0x58, 0x03}
+// #define DEV_EUI {0x00, 0x80, 0xE1, 0x15, 0x00, 0x56, 0x9E, 0x08}
+// #define JOIN_EUI {0x60, 0x81, 0xF9, 0x1D, 0xE0, 0x47, 0x30, 0xAB}
+// #define APP_KEY {0xE1, 0x0E, 0x13, 0x72, 0xD6, 0xA4, 0x19, 0x95, 0x0C, 0x88, 0x19, 0x41, 0x04, 0x0D, 0x58, 0x03}
+
+#define DEV_EUI {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}
+#define JOIN_EUI {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}
+#define APP_KEY {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}
 
 static lorawan_setup_t setup = {
-    .lora_dev = DEVICE_DT_GET(DT_ALIAS(lora0)),
-    .uplink_class = LORAWAN_CLASS_A,
-    .downlink_callback = NULL,
-    .join_attempts = 0,
-    .dev_nonce = 100,
-    .delay = 1000,
-    .dev_eui = DEV_EUI,
-    .join_eui = JOIN_EUI,
-    .app_key = APP_KEY,
+	.lora_dev = DEVICE_DT_GET(DT_ALIAS(lora0)),
+	.uplink_class = LORAWAN_CLASS_A,
+	.downlink_callback = NULL,
+	.join_attempts = 0,
+	.dev_nonce = 100,
+	.delay = 1000,
+	.dev_eui = DEV_EUI,
+	.join_eui = JOIN_EUI,
+	.app_key = APP_KEY,
 };
 
-sensor_power_config_t sensor_output1 = {
+static sensor_power_config_t sensor_output1 = {
 	.power_id = SENSOR_POWER_1,
 	.boost_en = GPIO_DT_SPEC_GET(DT_ALIAS(boost1en), gpios),	
 	.boost_ctrl1 = GPIO_DT_SPEC_GET(DT_ALIAS(boost1ctrl1), gpios),
@@ -42,7 +47,7 @@ sensor_power_config_t sensor_output1 = {
 	.delay_ms = 100
 };
 
-sensor_power_config_t sensor_output2 = {
+static sensor_power_config_t sensor_output2 = {
 	.power_id = SENSOR_POWER_2,
 	.boost_en = GPIO_DT_SPEC_GET(DT_ALIAS(boost2en), gpios),	
 	.boost_ctrl1 = GPIO_DT_SPEC_GET(DT_ALIAS(boost2ctrl1), gpios),
@@ -52,20 +57,20 @@ sensor_power_config_t sensor_output2 = {
 	.delay_ms = 100
 };
 
-sensor_data_config_t sensor1_data_config = {
-    .id = SENSOR_1,
+static sensor_data_config_t sensor1_data_config = {
+	.id = SENSOR_1,
 	.d1 = GPIO_DT_SPEC_GET(DT_ALIAS(sensor1d1), gpios),	
 	.d2 = GPIO_DT_SPEC_GET(DT_ALIAS(sensor1d2), gpios),
 	.voltage_read = ADC_DT_SPEC_GET_BY_NAME(DT_PATH(zephyr_user), voltage_sensor1),
-    .current_read = ADC_DT_SPEC_GET_BY_NAME(DT_PATH(zephyr_user), current_sensor1)
+	.current_read = ADC_DT_SPEC_GET_BY_NAME(DT_PATH(zephyr_user), current_sensor1)
 };
 
-sensor_data_config_t sensor2_data_config = {
-    .id = SENSOR_2,
+static sensor_data_config_t sensor2_data_config = {
+	.id = SENSOR_2,
 	.d1 = GPIO_DT_SPEC_GET(DT_ALIAS(sensor2d1), gpios),	
 	.d2 = GPIO_DT_SPEC_GET(DT_ALIAS(sensor2d2), gpios),
 	.voltage_read = ADC_DT_SPEC_GET_BY_NAME(DT_PATH(zephyr_user), voltage_sensor2),
-    .current_read = ADC_DT_SPEC_GET_BY_NAME(DT_PATH(zephyr_user), current_sensor2)
+	.current_read = ADC_DT_SPEC_GET_BY_NAME(DT_PATH(zephyr_user), current_sensor2)
 };
 
 static void setup_power(void)
@@ -119,7 +124,7 @@ static void run_sensor_tests(void)
 static void send_packet(void)
 {
 	// LOG_INF("Starting Application");
-    // lorawan_setup(&setup);
+	// lorawan_setup(&setup);
 
 	if(is_lorawan_connected())
 	{
@@ -141,12 +146,18 @@ static void send_packet(void)
 int main(void)
 {
 	ble_config_t ble_config = {
-		.adv_name = "BLE-LoRa-Sensor"
+		.adv_opt = BT_LE_ADV_OPT_CONNECTABLE,
+		.adv_name = "BLE-LoRa-Sensor",
+		.adv_interval_min_ms = 500,
+		.adv_interval_max_ms = 510
 	};
 	int ret;
 	ret = ble_setup(&ble_config);
+	ret = ble_lorawan_service_init(&setup);
+
 	while (1) 
 	{
+		lorawan_log_network_config(&setup);
 		k_sleep(K_MINUTES(1));
 	}
 	return 0;

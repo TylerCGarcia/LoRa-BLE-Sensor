@@ -2,31 +2,155 @@
 #include "ble_lorawan_service.h"
 #include <zephyr/bluetooth/bluetooth.h>
 #include <zephyr/bluetooth/gatt.h>
+#include <zephyr/logging/log.h>
+
+LOG_MODULE_REGISTER(BLE_LORAWAN_SERVICE, LOG_LEVEL_INF);
 
 
+static lorawan_setup_t *lorawan_service_setup;
+static int is_lorawan_service_setup = 0;
 
-/* STEP 5 - Implement the read callback function of the Button characteristic */
 static ssize_t read_dev_eui(struct bt_conn *conn, const struct bt_gatt_attr *attr, void *buf, uint16_t len, uint16_t offset)
 {
-	// get a pointer to button_state which is passed in the BT_GATT_CHARACTERISTIC() and stored in attr->user_data
-	// const char *value = attr->user_data;
+	if(!is_lorawan_service_setup)
+	{
+		LOG_ERR("LoRaWAN BLE Service is not initialized");
+		return BT_GATT_ERR(BT_ATT_ERR_READ_NOT_PERMITTED);
+	}
 
-	// if (lorawan_cb.dev_eui_cb) {
-	// 	// Call the application callback function to update the get the current value of the button
-	// 	dev_eui = lorawan_cb.dev_eui_cb();
-	// 	return bt_gatt_attr_read(conn, attr, buf, len, offset, value, sizeof(*value));
-	// }
+	return bt_gatt_attr_read(conn, attr, buf, len, offset, lorawan_service_setup->dev_eui, sizeof(lorawan_service_setup->dev_eui));
+}
 
-	return 0;
+static ssize_t write_dev_eui(struct bt_conn *conn, const struct bt_gatt_attr *attr, void *buf, uint16_t len, uint16_t offset){
+	LOG_DBG("Attribute write, handle: %u, conn: %p", attr->handle, (void *)conn);
+	int err;
+
+	if(!is_lorawan_service_setup)
+	{
+		LOG_ERR("LoRaWAN BLE Service is not initialized");
+		return BT_GATT_ERR(BT_ATT_ERR_WRITE_NOT_PERMITTED);
+	}
+
+	// Check bounds of data
+	if (len != sizeof(lorawan_service_setup->dev_eui)) {
+		LOG_ERR("Write date: Data length incorrect for DEV EUI");
+		return BT_GATT_ERR(BT_ATT_ERR_INVALID_ATTRIBUTE_LEN);
+	}
+
+	if (offset != 0) {
+		LOG_ERR("Write date: Incorrect data offset for DEV EUI");
+		return BT_GATT_ERR(BT_ATT_ERR_INVALID_OFFSET);
+	}
+
+	// Store incoming data into dev_eui buffer
+	memcpy(lorawan_service_setup->dev_eui, buf, len);
+
+	LOG_INF("DEV EUI RECEIVED:  0x%02x 0x%02x 0x%02x 0x%02x 0x%02x 0x%02x 0x%02x 0x%02x", \
+		lorawan_service_setup->dev_eui[0],lorawan_service_setup->dev_eui[1],lorawan_service_setup->dev_eui[2],lorawan_service_setup->dev_eui[3], \
+		lorawan_service_setup->dev_eui[4],lorawan_service_setup->dev_eui[5],lorawan_service_setup->dev_eui[6],lorawan_service_setup->dev_eui[7]);
+
+	return len;
 }
 
 
-/* LED Button Service Declaration */
-/* STEP 2 - Create and add the MY LBS service to the Bluetooth LE stack */
+static ssize_t read_join_eui(struct bt_conn *conn, const struct bt_gatt_attr *attr, void *buf, uint16_t len, uint16_t offset)
+{
+	if(!is_lorawan_service_setup)
+	{
+		LOG_ERR("LoRaWAN BLE Service is not initialized");
+		return BT_GATT_ERR(BT_ATT_ERR_READ_NOT_PERMITTED);
+	}
+
+	return bt_gatt_attr_read(conn, attr, buf, len, offset, lorawan_service_setup->join_eui, sizeof(lorawan_service_setup->join_eui));
+}
+
+static ssize_t write_join_eui(struct bt_conn *conn, const struct bt_gatt_attr *attr, void *buf, uint16_t len, uint16_t offset){
+	LOG_DBG("Attribute write, handle: %u, conn: %p", attr->handle, (void *)conn);
+	int err;
+
+	if(!is_lorawan_service_setup)
+	{
+		LOG_ERR("LoRaWAN BLE Service is not initialized");
+		return BT_GATT_ERR(BT_ATT_ERR_WRITE_NOT_PERMITTED);
+	}
+
+	// Check bounds of data
+	if (len != sizeof(lorawan_service_setup->join_eui)) {
+		LOG_ERR("Write date: Data length incorrect for JOIN EUI");
+		return BT_GATT_ERR(BT_ATT_ERR_INVALID_ATTRIBUTE_LEN);
+	}
+
+	if (offset != 0) {
+		LOG_ERR("Write date: Incorrect data offset for JOIN EUI");
+		return BT_GATT_ERR(BT_ATT_ERR_INVALID_OFFSET);
+	}
+	
+	// Store incoming data into join_eui buffer
+	memcpy(lorawan_service_setup->join_eui, buf, len);
+
+	LOG_INF("JOIN EUI RECEIVED:  0x%02x 0x%02x 0x%02x 0x%02x 0x%02x 0x%02x 0x%02x 0x%02x", \
+		lorawan_service_setup->join_eui[0],lorawan_service_setup->join_eui[1],lorawan_service_setup->join_eui[2],lorawan_service_setup->join_eui[3], \
+		lorawan_service_setup->join_eui[4],lorawan_service_setup->join_eui[5],lorawan_service_setup->join_eui[6],lorawan_service_setup->join_eui[7]);
+
+	return len;
+}
+
+static ssize_t read_app_key(struct bt_conn *conn, const struct bt_gatt_attr *attr, void *buf, uint16_t len, uint16_t offset)
+{
+	if(!is_lorawan_service_setup)
+	{
+		LOG_ERR("LoRaWAN BLE Service is not initialized");
+		return BT_GATT_ERR(BT_ATT_ERR_READ_NOT_PERMITTED);
+	}
+
+	return bt_gatt_attr_read(conn, attr, buf, len, offset, lorawan_service_setup->app_key, sizeof(lorawan_service_setup->app_key));
+}
+
+static ssize_t write_app_key(struct bt_conn *conn, const struct bt_gatt_attr *attr, void *buf, uint16_t len, uint16_t offset){
+	LOG_DBG("Attribute write, handle: %u, conn: %p", attr->handle, (void *)conn);
+	int err;
+
+	if(!is_lorawan_service_setup)
+	{
+		LOG_ERR("LoRaWAN BLE Service is not initialized");
+		return BT_GATT_ERR(BT_ATT_ERR_WRITE_NOT_PERMITTED);
+	}
+
+	// Check bounds of data
+	if (len != sizeof(lorawan_service_setup->app_key)) {
+		LOG_ERR("Write date: Data length incorrect for APP KEY");
+		return BT_GATT_ERR(BT_ATT_ERR_INVALID_ATTRIBUTE_LEN);
+	}
+
+	if (offset != 0) {
+		LOG_ERR("Write date: Incorrect data offset for APP KEY");
+		return BT_GATT_ERR(BT_ATT_ERR_INVALID_OFFSET);
+	}
+	
+	// Store incoming data into app_key buffer
+	memcpy(lorawan_service_setup->app_key, buf, len);
+
+	LOG_INF("APP KEY RECEIVED:  0x%02x 0x%02x 0x%02x 0x%02x 0x%02x 0x%02x 0x%02x 0x%02x 0x%02x 0x%02x 0x%02x 0x%02x 0x%02x 0x%02x 0x%02x 0x%02x", \
+		lorawan_service_setup->app_key[0],lorawan_service_setup->app_key[1],lorawan_service_setup->app_key[2],lorawan_service_setup->app_key[3], \
+		lorawan_service_setup->app_key[4],lorawan_service_setup->app_key[5],lorawan_service_setup->app_key[6],lorawan_service_setup->app_key[7], \
+		lorawan_service_setup->app_key[8],lorawan_service_setup->app_key[9],lorawan_service_setup->app_key[10],lorawan_service_setup->app_key[11], \
+		lorawan_service_setup->app_key[12],lorawan_service_setup->app_key[13],lorawan_service_setup->app_key[14],lorawan_service_setup->app_key[15]);
+
+	return len;
+}
+
+/* LoRaWAN Service Declaration */
 BT_GATT_SERVICE_DEFINE(lorawan_svc, BT_GATT_PRIMARY_SERVICE(BT_UUID_LORAWAN),
-    
-	BT_GATT_CHARACTERISTIC(BT_UUID_LORAWAN_DEV_EUI, BT_GATT_CHRC_READ, BT_GATT_PERM_READ, read_dev_eui, NULL, &dev_eui),
-    BT_GATT_CHARACTERISTIC(BT_UUID_LORAWAN_APP_EUI, BT_GATT_CHRC_READ, BT_GATT_PERM_READ, read_app_eui, NULL, &app_eui),
-    BT_GATT_CHARACTERISTIC(BT_UUID_LORAWAN_NET_KEY, BT_GATT_CHRC_READ, BT_GATT_PERM_READ, read_net_key, NULL, &net_key),
+
+	BT_GATT_CHARACTERISTIC(BT_UUID_LORAWAN_DEV_EUI, BT_GATT_CHRC_READ | BT_GATT_CHRC_WRITE, BT_GATT_PERM_READ | BT_GATT_PERM_WRITE, read_dev_eui, write_dev_eui, NULL),
+	BT_GATT_CHARACTERISTIC(BT_UUID_LORAWAN_JOIN_EUI, BT_GATT_CHRC_READ | BT_GATT_CHRC_WRITE, BT_GATT_PERM_READ | BT_GATT_PERM_WRITE, read_join_eui, write_join_eui, NULL),
+	BT_GATT_CHARACTERISTIC(BT_UUID_LORAWAN_APP_KEY, BT_GATT_CHRC_READ | BT_GATT_CHRC_WRITE, BT_GATT_PERM_READ | BT_GATT_PERM_WRITE, read_app_key, write_app_key, NULL),
 
 );
+
+int ble_lorawan_service_init(lorawan_setup_t *setup)
+{
+	lorawan_service_setup = setup;
+	is_lorawan_service_setup = 1;
+	return 0;
+}

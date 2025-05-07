@@ -15,7 +15,8 @@
 #include <zephyr/ztest.h>
 
 #include "sensor_ble.h"
-
+#include "ble_lorawan_service.h"
+#include "ble_sensor_service.h"
 #include <zephyr/kernel.h>
 #include <zephyr/bluetooth/bluetooth.h>
 
@@ -91,13 +92,4 @@ ZTEST(ble, test_ble_adv_interval)
 	adv_interval_t adv_interval = get_ble_adv_interval();
 	zassert_equal(adv_interval.min, min_interval, "BLE adv interval min is %d not %d", adv_interval.min, min_interval);
 	zassert_equal(adv_interval.max, max_interval, "BLE adv interval max is %d not %d", adv_interval.max, max_interval);
-}
-
-/**
- * @brief Test the BLE connection callback setup.
- * 
- */
-ZTEST(ble, test_ble_connectioncallback_setup)
-{
-
 }
