@@ -146,7 +146,7 @@ static void send_packet(void)
 int main(void)
 {
 	ble_config_t ble_config = {
-		.adv_opt = BT_LE_ADV_OPT_CONNECTABLE,
+		.adv_opt = BT_LE_ADV_OPT_CONN,
 		.adv_name = "BLE-LoRa-Sensor",
 		.adv_interval_min_ms = 500,
 		.adv_interval_max_ms = 510
