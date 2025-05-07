@@ -14,11 +14,19 @@
 
 
 /* 
-- Service DEVICE_SETTINGS
-- device_name
-- hardware_version
-- firmware_version
-- device_type
+- Service DEVICE
+- device_name (r/w)
+- hardware_version (r)
+- firmware_version (r)
+- device_type (r)
+- Battery State (r)
+- Battery Level (r)
+- Battery Voltage (r)
+- Battery Current (r)
+- Battery Temperature (r)
+- Battery Percentage (r)
+- Battery Status (r)
+
 
 - Service SENSOR
 - sensor_power1_configuration
