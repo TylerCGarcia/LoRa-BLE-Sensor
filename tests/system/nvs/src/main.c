@@ -32,17 +32,17 @@ static uint8_t test_data[16] = {0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 
 
 ZTEST_SUITE(nvs, NULL, NULL, NULL, NULL, NULL);
 
-ZTEST(nvs, test_nvs_setup)
+ZTEST(nvs, test_sensor_nvs_setup)
 {
     int ret;
     ret = sensor_nvs_setup();
     zassert_ok(ret, "Failed to initialize NVS");
 }
 
-// ZTEST(nvs, test_nvs_write)
-// {
-//     int ret;
-//     ret = nvs_write();
-//     zassert_ok(ret, "Failed to write to NVS");
-// }
+ZTEST(nvs, test_sensor_nvs_write)
+{
+    int ret;
+    ret = sensor_nvs_write();
+    zassert_ok(ret, "Failed to write to NVS");
+}
 

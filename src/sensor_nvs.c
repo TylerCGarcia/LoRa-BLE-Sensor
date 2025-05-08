@@ -42,3 +42,7 @@ int sensor_nvs_setup(void)
     return 0;
 }
 
+int sensor_nvs_write(void)
+{
+    return 0;
+}

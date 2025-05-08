@@ -15,4 +15,6 @@
 
 int sensor_nvs_setup(void);
 
+int sensor_nvs_write(void);
+
 #endif
