@@ -16,7 +16,7 @@ static uint8_t sector_count = 2U;
 #define NVS_PARTITION_DEVICE	FIXED_PARTITION_DEVICE(NVS_PARTITION)
 #define NVS_PARTITION_OFFSET	FIXED_PARTITION_OFFSET(NVS_PARTITION)
 
-int nvs_setup(void)
+int sensor_nvs_setup(void)
 {
     int ret;
     struct flash_pages_info info;

@@ -13,6 +13,6 @@
 #ifndef SENSOR_NVS_H
 #define SENSOR_NVS_H
 
-int nvs_setup(void);
+int sensor_nvs_setup(void);
 
 #endif
