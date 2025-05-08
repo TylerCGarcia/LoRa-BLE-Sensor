@@ -21,7 +21,19 @@
  * @brief Setup sensor power systems 
  * 
  */
-static void *testsuite_setup(void)
+// static void *testsuite_setup(void)
+// {
+//     int ret;
+//     ret = sensor_nvs_setup();
+//     zassert_ok(ret, "Failed to initialize NVS");
+// }
+
+
+/**
+ * @brief Setup sensor power systems 
+ * 
+ */
+static void *before_tests(void)
 {
     int ret;
     ret = sensor_nvs_setup();
@@ -35,13 +47,11 @@ static void *testsuite_setup(void)
 static void *after_tests(void)
 {
     int ret;
-    /* Delete all data from NVS */
-    for (int i = 0; i < SENSOR_NVS_ADDRESS_LIMIT; i++) {
-        sensor_nvs_delete(i);
-    }
+    ret = sensor_nvs_clear();
+    zassert_ok(ret, "Failed to clear NVS");
 }
 
-ZTEST_SUITE(nvs, NULL, testsuite_setup, NULL, after_tests, NULL);
+ZTEST_SUITE(nvs, NULL, NULL, before_tests, after_tests, NULL);
 
 /* Test writing to NVS to make sure it works */
 ZTEST(nvs, test_sensor_nvs_write)

@@ -75,3 +75,8 @@ int sensor_nvs_delete(enum sensor_nvs_address address)
 {
     return nvs_delete(&fs, address);
 }
+
+int sensor_nvs_clear(void)
+{
+    return nvs_clear(&fs);
+}
