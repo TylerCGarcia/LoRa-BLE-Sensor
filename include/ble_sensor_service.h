@@ -19,28 +19,33 @@
 - hardware_version (r)
 - firmware_version (r)
 - device_type (r)
-- Battery State (r)
-- Battery Level (r)
-- Battery Voltage (r)
-- Battery Current (r)
-- Battery Temperature (r)
-- Battery Percentage (r)
+- Commands (w)
+    - clear and resetup nvs (w)
+    - restart device (w)
+- number of sensors (r)
+- number of power configurations (r)
 - Battery Status (r)
+    - Battery State (r)
+    - Battery Level (r)
+    - Battery Voltage (r)
+    - Battery Current (r)
+    - Battery Temperature (r)
+    - Battery Percentage (r)
 
 
 - Service SENSOR
-- sensor_power1_configuration
-- sensor_power2_configuration
+- sensor_power1_configuration (r/w)
+- sensor_power2_configuration (r/w)
 
-- sensor1_configuration_name
-- sensor1_read_timing
-- sensor1_data (string to keep all data the same format)
-- sensor1_data_time_since_last_capture (uint32_t)
+- sensor1_configuration_name (r/w)
+- sensor1_read_frequency (r/w)
+- sensor1_data (string to keep all data the same format) (r)
+- sensor1_data_time_since_last_capture (uint32_t) (r)
 
-- sensor2_configuration_name
-- sensor2_read_timing
-- sensor2_data (string to keep all data the same format)
-- sensor2_data_time_since_last_capture (uint32_t)
+- sensor2_configuration_name (r/w)
+- sensor2_read_frequency (r/w)
+- sensor2_data (string to keep all data the same format) (r)
+- sensor2_data_time_since_last_capture (uint32_t) (r)
 
 */
 

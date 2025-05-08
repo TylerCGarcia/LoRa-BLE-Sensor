@@ -155,6 +155,13 @@ int main(void)
 	ret = ble_setup(&ble_config);
 	ret = ble_lorawan_service_init(&setup);
 
+
+	while(is_lorawan_configured(&setup) < 0)
+	{
+		LOG_ERR("LoRaWAN is not configured, waiting for configuration");
+		k_sleep(K_SECONDS(1));
+	}
+
 	while (1) 
 	{
 		lorawan_log_network_config(&setup);

@@ -1,6 +1,7 @@
 
 
 #include "sensor_nvs.h"
+#include <zephyr/fs/nvs.h>
 #include <zephyr/logging/log.h>
 #include <zephyr/storage/flash_map.h>
 #include <zephyr/drivers/flash.h>

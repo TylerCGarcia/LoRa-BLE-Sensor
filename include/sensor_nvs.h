@@ -13,7 +13,8 @@
 #ifndef SENSOR_NVS_H
 #define SENSOR_NVS_H
 
-#include <zephyr/fs/nvs.h>
+#include <stdint.h>
+#include <stddef.h>
 
 #define SENSOR_NVS_MAX_SIZE 32
 
