@@ -105,3 +105,18 @@ ZTEST(nvs, test_sensor_nvs_delete)
     zassert_not_ok(ret, "Should fail to read from NVS after deletion");
 }
 
+ZTEST(nvs, test_sensor_nvs_write_index_out_of_bounds)
+{
+    int ret;
+    uint8_t test_data[16] = {0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F};
+    ret = sensor_nvs_write(SENSOR_NVS_ADDRESS_LIMIT, test_data, sizeof(test_data));
+    zassert_not_ok(ret, "Should fail to write to NVS out of bounds");
+}
+
+ZTEST(nvs, test_sensor_nvs_read_index_out_of_bounds)
+{
+    int ret;
+    static uint8_t test_data_read[SENSOR_NVS_MAX_SIZE] = {0};
+    ret = sensor_nvs_read(SENSOR_NVS_ADDRESS_LIMIT, test_data_read, sizeof(test_data_read));
+    zassert_not_ok(ret, "Should fail to read from NVS out of bounds");
+}   

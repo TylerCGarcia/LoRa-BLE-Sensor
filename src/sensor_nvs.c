@@ -44,6 +44,10 @@ int sensor_nvs_setup(void)
 int sensor_nvs_write(enum sensor_nvs_address address, const void *data, size_t length)
 {
     int ret;
+    if (address >= SENSOR_NVS_ADDRESS_LIMIT) {
+        LOG_ERR("Address is out of bounds, max address is %d", SENSOR_NVS_ADDRESS_LIMIT);
+        return -1;
+    }
     if (length > SENSOR_NVS_MAX_SIZE) {
         LOG_ERR("Data length is too large, max size is %d", SENSOR_NVS_MAX_SIZE);
         return -1;
@@ -59,6 +63,10 @@ int sensor_nvs_write(enum sensor_nvs_address address, const void *data, size_t l
 int sensor_nvs_read(enum sensor_nvs_address address, void *data, size_t length)
 {
     int ret;
+    if (address >= SENSOR_NVS_ADDRESS_LIMIT) {
+        LOG_ERR("Address is out of bounds, max address is %d", SENSOR_NVS_ADDRESS_LIMIT);
+        return -1;
+    }
     if (length > SENSOR_NVS_MAX_SIZE) {
         LOG_ERR("Data length is too large, max size is %d", SENSOR_NVS_MAX_SIZE);
         return -1;
