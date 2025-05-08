@@ -17,32 +17,81 @@
 #include <zephyr/ztest.h>
 #include "sensor_nvs.h"
 
-static uint8_t test_data[16] = {0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F};
-
 /**
  * @brief Setup sensor power systems 
  * 
  */
-// static void *testsuite_setup(void)
-// {
-//     int ret;
-//     ret = nvs_setup();
-//     zassert_ok(ret, "Failed to initialize NVS");
-// }
-
-ZTEST_SUITE(nvs, NULL, NULL, NULL, NULL, NULL);
-
-ZTEST(nvs, test_sensor_nvs_setup)
+static void *testsuite_setup(void)
 {
     int ret;
     ret = sensor_nvs_setup();
     zassert_ok(ret, "Failed to initialize NVS");
 }
 
+/**
+ * @brief Setup sensor power systems 
+ * 
+ */
+static void *after_tests(void)
+{
+    int ret;
+    /* Delete all data from NVS */
+    for (int i = 0; i < SENSOR_NVS_ADDRESS_LIMIT; i++) {
+        sensor_nvs_delete(i);
+    }
+}
+
+ZTEST_SUITE(nvs, NULL, testsuite_setup, NULL, after_tests, NULL);
+
+/* Test writing to NVS to make sure it works */
 ZTEST(nvs, test_sensor_nvs_write)
 {
     int ret;
-    ret = sensor_nvs_write();
+    static uint8_t test_data[16] = {0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F};
+    ret = sensor_nvs_write(SENSOR_NVS_ADDRESS_0, test_data, sizeof(test_data));
     zassert_ok(ret, "Failed to write to NVS");
+}
+
+ZTEST(nvs, test_sensor_nvs_write_out_of_bounds)
+{
+    static uint8_t test_data_out_of_bounds[SENSOR_NVS_MAX_SIZE+1] = {0};
+    int ret;
+    ret = sensor_nvs_write(SENSOR_NVS_ADDRESS_1, test_data_out_of_bounds, sizeof(test_data_out_of_bounds));
+    zassert_not_ok(ret, "Failed to write to NVS");
+}
+
+ZTEST(nvs, test_sensor_nvs_read)
+{
+    int ret;
+    uint8_t test_data[SENSOR_NVS_MAX_SIZE] = {0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F,
+        0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1A, 0x1B, 0x1C, 0x1D, 0x1E, 0x1F};
+    ret = sensor_nvs_write(SENSOR_NVS_ADDRESS_2, test_data, sizeof(test_data));
+    static uint8_t test_data_read[SENSOR_NVS_MAX_SIZE] = {0};
+    ret = sensor_nvs_read(SENSOR_NVS_ADDRESS_2, test_data_read, sizeof(test_data_read));
+    zassert_ok(ret, "Failed to read from NVS");
+    zassert_mem_equal(test_data, test_data_read, sizeof(test_data), "Data read from NVS does not match data written to NVS");
+}
+
+ZTEST(nvs, test_sensor_nvs_read_out_of_bounds)
+{
+    int ret;
+    static uint8_t test_data_read[SENSOR_NVS_MAX_SIZE+1] = {0};
+    ret = sensor_nvs_read(SENSOR_NVS_ADDRESS_2, test_data_read, sizeof(test_data_read));
+    zassert_not_ok(ret, "Failed to read from NVS");
+}
+
+ZTEST(nvs, test_sensor_nvs_delete)
+{
+    int ret;
+    static uint8_t test_data[16] = {0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F};
+    ret = sensor_nvs_write(SENSOR_NVS_ADDRESS_2, test_data, sizeof(test_data));
+    zassert_ok(ret, "Failed to write to NVS");
+    static uint8_t test_data_read[16] = {0};
+    ret = sensor_nvs_read(SENSOR_NVS_ADDRESS_2, test_data_read, sizeof(test_data_read));
+    zassert_mem_equal(test_data, test_data_read, sizeof(test_data), "Data read from NVS does not match data written to NVS");
+    ret = sensor_nvs_delete(SENSOR_NVS_ADDRESS_2);
+    zassert_ok(ret, "Failed to delete from NVS");
+    ret = sensor_nvs_read(SENSOR_NVS_ADDRESS_2, test_data_read, sizeof(test_data_read));
+    zassert_not_ok(ret, "Should fail to read from NVS after deletion");
 }
 
