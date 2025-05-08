@@ -188,9 +188,9 @@ static void *before_tests(void)
 }
 
 /**
- * @brief Test Asserts
+ * @brief Test Sensor Power
  *
- * This test verifies various assert macros provided by ztest.
+ * This test suite verifies the sensor power system is working correctly.
  *
  */
 ZTEST_SUITE(power, NULL, testsuite_setup, before_tests, after_tests, NULL);

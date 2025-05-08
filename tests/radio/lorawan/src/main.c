@@ -272,3 +272,29 @@ ZTEST(lorawan, test_send_data_downlink_callback)
     zassert_equal(last_downlink_len, strlen(payload), "Wrong length");
     zassert_mem_equal(last_downlink_data, payload, strlen(payload), "Wrong data");
 }
+
+/**
+ * @brief Test if the lorawan is configured
+ */
+ZTEST(lorawan, test_is_lorawan_configured)
+{
+    int ret;
+    ret = is_lorawan_configured(&setup);
+    zassert_equal(ret, 0, "lorawan is not configured");
+}   
+
+/**
+ * @brief Test if the lorawan is not configured
+ */
+ZTEST(lorawan, test_is_lorawan_configured_fails_when_no_dev_eui)
+{
+    int ret;
+    uint8_t dev_eui[8] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+    uint8_t join_eui[8] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+    uint8_t app_key[16] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+    memcpy(setup.dev_eui, dev_eui, sizeof(dev_eui));
+    memcpy(setup.join_eui, join_eui, sizeof(join_eui));
+    memcpy(setup.app_key, app_key, sizeof(app_key));
+    ret = is_lorawan_configured(&setup);
+    zassert_not_ok(ret, "lorawan is configured when it should not be");
+}

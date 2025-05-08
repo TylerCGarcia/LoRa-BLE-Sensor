@@ -15,19 +15,13 @@ static int lorawan_connection_status = 0;
  * @param join_cfg lorawan join config struct
  * @return int 0 if configured, -1 if not configured
  */
-static int get_lorawan_config(const lorawan_setup_t *setup, struct lorawan_join_config *join_cfg)
+static int get_lorawan_config(lorawan_setup_t *setup, struct lorawan_join_config *join_cfg)
 {
-	// Helper arrays for comparison
-	static const uint8_t zeros_8[8] = {0};
-	static const uint8_t zeros_16[16] = {0};
-
-	// Check if any of the identifiers are all zeros
-	if (memcmp(setup->dev_eui, zeros_8, 8) == 0 || memcmp(setup->join_eui, zeros_8, 8) == 0 || memcmp(setup->app_key, zeros_16, 16) == 0) 
-	{
-		LOG_ERR("LoRaWAN is NOT CONFIGURED");
-		return -1;
+	int ret;
+	ret = is_lorawan_configured(setup);
+	if (ret < 0) {
+		return ret;
 	}
-	LOG_INF("LoRaWAN is CONFIGURED");
 
 	lorawan_log_network_config(setup);
 
@@ -38,6 +32,21 @@ static int get_lorawan_config(const lorawan_setup_t *setup, struct lorawan_join_
 	join_cfg->otaa.nwk_key = setup->app_key;
 	join_cfg->otaa.dev_nonce = setup->dev_nonce;
 	return 0;  // Device is configured
+}
+
+int is_lorawan_configured(lorawan_setup_t *setup)
+{
+	// Helper arrays for comparison
+	static const uint8_t zeros_8[8] = {0};
+	static const uint8_t zeros_16[16] = {0};
+	// Check if any of the identifiers are all zeros
+	if (memcmp(setup->dev_eui, zeros_8, 8) == 0 || memcmp(setup->join_eui, zeros_8, 8) == 0 || memcmp(setup->app_key, zeros_16, 16) == 0) 
+	{
+		LOG_ERR("LoRaWAN is NOT CONFIGURED");
+		return -1;
+	}
+	LOG_INF("LoRaWAN is CONFIGURED");
+	return 0;
 }
 
 void lorawan_log_network_config(lorawan_setup_t *setup)

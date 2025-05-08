@@ -11,14 +11,17 @@ static struct nvs_fs fs;
 
 static uint8_t sector_count = 2U;
 
+static uint8_t nvs_address_limit = 0U;
+
 #define NVS_PARTITION		    storage_partition
 #define NVS_PARTITION_DEVICE	FIXED_PARTITION_DEVICE(NVS_PARTITION)
 #define NVS_PARTITION_OFFSET	FIXED_PARTITION_OFFSET(NVS_PARTITION)
 
-int sensor_nvs_setup(void)
+int sensor_nvs_setup(uint8_t nvs_address_count)
 {
     int ret;
     struct flash_pages_info info;
+    nvs_address_limit = nvs_address_count;
     fs.flash_device = NVS_PARTITION_DEVICE;
     if (!device_is_ready(fs.flash_device)) {
         LOG_ERR("Flash device %s is not ready", fs.flash_device->name);
@@ -41,11 +44,11 @@ int sensor_nvs_setup(void)
     return 0;
 }
 
-int sensor_nvs_write(enum sensor_nvs_address address, const void *data, size_t length)
+int sensor_nvs_write(uint8_t address, const void *data, size_t length)
 {
     int ret;
-    if (address >= SENSOR_NVS_ADDRESS_LIMIT) {
-        LOG_ERR("Address is out of bounds, max address is %d", SENSOR_NVS_ADDRESS_LIMIT);
+    if (address >= nvs_address_limit) {
+        LOG_ERR("Address is out of bounds, max address is %d", nvs_address_limit);
         return -1;
     }
     if (length > SENSOR_NVS_MAX_SIZE) {
@@ -60,11 +63,11 @@ int sensor_nvs_write(enum sensor_nvs_address address, const void *data, size_t l
     return 0;
 }
 
-int sensor_nvs_read(enum sensor_nvs_address address, void *data, size_t length)
+int sensor_nvs_read(uint8_t address, void *data, size_t length)
 {
     int ret;
-    if (address >= SENSOR_NVS_ADDRESS_LIMIT) {
-        LOG_ERR("Address is out of bounds, max address is %d", SENSOR_NVS_ADDRESS_LIMIT);
+    if (address >= nvs_address_limit) {
+        LOG_ERR("Address is out of bounds, max address is %d", nvs_address_limit);
         return -1;
     }
     if (length > SENSOR_NVS_MAX_SIZE) {
@@ -79,8 +82,12 @@ int sensor_nvs_read(enum sensor_nvs_address address, void *data, size_t length)
     return 0;
 }
 
-int sensor_nvs_delete(enum sensor_nvs_address address)
+int sensor_nvs_delete(uint8_t address)
 {
+    if (address >= nvs_address_limit) {
+        LOG_ERR("Address is out of bounds, max address is %d", nvs_address_limit);
+        return -1;
+    }
     return nvs_delete(&fs, address);
 }
 

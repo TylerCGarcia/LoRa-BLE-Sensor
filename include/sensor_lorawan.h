@@ -44,6 +44,14 @@ typedef struct {
 } lorawan_data_t;
 
 /**
+ * @brief Check if the LoRaWAN Network is configured with valid lorawan keys.
+ * 
+ * @param setup setup configuration used to join lorawan network
+ * @return int 1 if configured, 0 if not configured
+ */
+int is_lorawan_configured(lorawan_setup_t *setup);
+
+/**
  * @brief Print the LoRaWAN Network dev_eui, join_eui, and app_key for a given lorawan_setup_t configuration. 
  * 
  * @param setup setup configuration used to join lorawan network

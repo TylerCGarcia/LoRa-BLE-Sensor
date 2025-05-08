@@ -18,6 +18,23 @@
 #include "sensor_nvs.h"
 
 /**
+ * @brief Enum of addresses to use in the NVS partition.
+ */
+enum sensor_nvs_address {
+    SENSOR_NVS_ADDRESS_0,
+    SENSOR_NVS_ADDRESS_1,
+    SENSOR_NVS_ADDRESS_2,
+    SENSOR_NVS_ADDRESS_3,
+    SENSOR_NVS_ADDRESS_4,
+    SENSOR_NVS_ADDRESS_5,
+    SENSOR_NVS_ADDRESS_6,
+    SENSOR_NVS_ADDRESS_7,
+    SENSOR_NVS_ADDRESS_8,
+    SENSOR_NVS_ADDRESS_9,
+    SENSOR_NVS_ADDRESS_LIMIT
+};
+
+/**
  * @brief Setup sensor power systems 
  * 
  */
@@ -36,7 +53,7 @@
 static void *before_tests(void)
 {
     int ret;
-    ret = sensor_nvs_setup();
+    ret = sensor_nvs_setup(SENSOR_NVS_ADDRESS_LIMIT);
     zassert_ok(ret, "Failed to initialize NVS");
 }
 
@@ -51,9 +68,18 @@ static void *after_tests(void)
     zassert_ok(ret, "Failed to clear NVS");
 }
 
+/**
+ * @brief Test Sensor NVS
+ *
+ * This test suite verifies the Sensor NVS system is working correctly.
+ *
+ */
 ZTEST_SUITE(nvs, NULL, NULL, before_tests, after_tests, NULL);
 
-/* Test writing to NVS to make sure it works */
+/**
+ * @brief Confirm data can be written to NVS
+ * 
+ */
 ZTEST(nvs, test_sensor_nvs_write)
 {
     int ret;
@@ -62,7 +88,11 @@ ZTEST(nvs, test_sensor_nvs_write)
     zassert_ok(ret, "Failed to write to NVS");
 }
 
-ZTEST(nvs, test_sensor_nvs_write_out_of_bounds)
+/**
+ * @brief Confirm data can't be written to NVS with an out of bounds data length
+ * 
+ */
+ZTEST(nvs, test_sensor_nvs_write_length_out_of_bounds)
 {
     static uint8_t test_data_out_of_bounds[SENSOR_NVS_MAX_SIZE+1] = {0};
     int ret;
@@ -70,6 +100,10 @@ ZTEST(nvs, test_sensor_nvs_write_out_of_bounds)
     zassert_not_ok(ret, "Failed to write to NVS");
 }
 
+/**
+ * @brief Confirm data can be read from NVS
+ * 
+ */
 ZTEST(nvs, test_sensor_nvs_read)
 {
     int ret;
@@ -82,7 +116,11 @@ ZTEST(nvs, test_sensor_nvs_read)
     zassert_mem_equal(test_data, test_data_read, sizeof(test_data), "Data read from NVS does not match data written to NVS");
 }
 
-ZTEST(nvs, test_sensor_nvs_read_out_of_bounds)
+/**
+ * @brief Confirm data can't be read from NVS with an out of bounds data length
+ * 
+ */
+ZTEST(nvs, test_sensor_nvs_read_length_out_of_bounds)
 {
     int ret;
     static uint8_t test_data_read[SENSOR_NVS_MAX_SIZE+1] = {0};
@@ -90,6 +128,10 @@ ZTEST(nvs, test_sensor_nvs_read_out_of_bounds)
     zassert_not_ok(ret, "Failed to read from NVS");
 }
 
+/**
+ * @brief Confirm data can be deleted from NVS
+ * 
+ */
 ZTEST(nvs, test_sensor_nvs_delete)
 {
     int ret;
@@ -105,6 +147,10 @@ ZTEST(nvs, test_sensor_nvs_delete)
     zassert_not_ok(ret, "Should fail to read from NVS after deletion");
 }
 
+/**
+ * @brief Confirm data can't be written to NVS with an out of bounds address
+ * 
+ */
 ZTEST(nvs, test_sensor_nvs_write_index_out_of_bounds)
 {
     int ret;
@@ -113,6 +159,10 @@ ZTEST(nvs, test_sensor_nvs_write_index_out_of_bounds)
     zassert_not_ok(ret, "Should fail to write to NVS out of bounds");
 }
 
+/**
+ * @brief Confirm data can't be read from NVS with an out of bounds address
+ * 
+ */
 ZTEST(nvs, test_sensor_nvs_read_index_out_of_bounds)
 {
     int ret;
@@ -120,3 +170,15 @@ ZTEST(nvs, test_sensor_nvs_read_index_out_of_bounds)
     ret = sensor_nvs_read(SENSOR_NVS_ADDRESS_LIMIT, test_data_read, sizeof(test_data_read));
     zassert_not_ok(ret, "Should fail to read from NVS out of bounds");
 }   
+
+/**
+ * @brief Confirm data can't be deleted from NVS with an out of bounds address
+ * 
+ */
+ZTEST(nvs, test_sensor_nvs_delete_index_out_of_bounds)
+{
+    int ret;
+    ret = sensor_nvs_delete(SENSOR_NVS_ADDRESS_LIMIT);
+    zassert_not_ok(ret, "Should fail to delete from NVS out of bounds");
+}
+
