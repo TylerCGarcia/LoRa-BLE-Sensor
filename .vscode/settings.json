@@ -147,6 +147,7 @@
         "cstdlib": "c",
         "uuid.h": "c",
         "gatt.h": "c",
-        "sensor_nvs.h": "c"
+        "sensor_nvs.h": "c",
+        "random": "c"
     }
 }

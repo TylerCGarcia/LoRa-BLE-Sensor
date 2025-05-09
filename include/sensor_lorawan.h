@@ -1,3 +1,14 @@
+/**
+ * @file sensor_lorawan.h
+ * @author Tyler Garcia
+ * @brief This is a library to handle the LoRaWAN functionality for the sensor.
+ * @version 0.1
+ * @date 2025-05-01
+ * 
+ * @copyright Copyright (c) 2025
+ * 
+ */
+
 #ifndef SENSOR_LORAWAN_H
 #define SENSOR_LORAWAN_H
 
@@ -7,6 +18,9 @@
 
 #define MAX_LORAWAN_PAYLOAD 255
 
+/**
+ * @brief Structure to hold the LoRaWAN setup, used to join the network.
+ */
 typedef struct {
     /* LoRaWAN Device. */
     const struct device *lora_dev;
@@ -29,7 +43,9 @@ typedef struct {
 
 } lorawan_setup_t;
 
-
+/**
+ * @brief Structure to hold the LoRaWAN data to send.
+ */
 typedef struct {
     /* Data to send. */
     uint8_t data[MAX_LORAWAN_PAYLOAD];

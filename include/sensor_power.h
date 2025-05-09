@@ -1,3 +1,15 @@
+/**
+ * @file sensor_power.h
+ * @author Tyler Garcia
+ * @brief This is a library for sensor power configurations and control.
+ * This is manages the power configuration, pin configuration, and control of sensor power.
+ * @version 0.1
+ * @date 2025-05-09
+ * 
+ * @copyright Copyright (c) 2025
+ * 
+ */
+
 #ifndef SENSOR_POWER_H
 #define SENSOR_POWER_H
 
