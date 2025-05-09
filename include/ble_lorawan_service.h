@@ -30,6 +30,9 @@
 - lorawan_current_process
 - lorawan_commands
 
+To-Do
+- Add callbacks for write operations to have other funcitons store the data
+
 */
 
 
