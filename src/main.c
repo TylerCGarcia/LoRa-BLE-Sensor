@@ -12,10 +12,19 @@
 #include "sensor_lorawan.h"
 #include "sensor_power.h"
 #include "sensor_data.h"
+#include "sensor_nvs.h"
 #include "ble_lorawan_service.h"
 
-
 LOG_MODULE_REGISTER(MAIN);
+
+
+enum sensor_nvs_address {
+	SENSOR_NVS_ADDRESS_DEV_NONCE,
+	SENSOR_NVS_ADDRESS_JOIN_EUI,
+	SENSOR_NVS_ADDRESS_APP_KEY,
+	SENSOR_NVS_ADDRESS_DEV_EUI,
+	SENSOR_NVS_ADDRESS_LIMIT,
+};
 
 // #define DEV_EUI {0x00, 0x80, 0xE1, 0x15, 0x00, 0x56, 0x9E, 0x08}
 // #define JOIN_EUI {0x60, 0x81, 0xF9, 0x1D, 0xE0, 0x47, 0x30, 0xAB}
@@ -30,7 +39,7 @@ static lorawan_setup_t setup = {
 	.uplink_class = LORAWAN_CLASS_A,
 	.downlink_callback = NULL,
 	.join_attempts = 0,
-	.dev_nonce = 100,
+	.dev_nonce = 160,
 	.delay = 1000,
 	.dev_eui = DEV_EUI,
 	.join_eui = JOIN_EUI,
@@ -123,8 +132,6 @@ static void run_sensor_tests(void)
 
 static void send_packet(void)
 {
-	// LOG_INF("Starting Application");
-	// lorawan_setup(&setup);
 
 	if(is_lorawan_connected())
 	{
@@ -154,17 +161,41 @@ int main(void)
 	int ret;
 	ret = ble_setup(&ble_config);
 	ret = ble_lorawan_service_init(&setup);
-
+	ret = sensor_nvs_setup(SENSOR_NVS_ADDRESS_LIMIT);
+	sensor_nvs_read(SENSOR_NVS_ADDRESS_DEV_EUI, &setup.dev_eui, sizeof(setup.dev_eui));
+	sensor_nvs_read(SENSOR_NVS_ADDRESS_JOIN_EUI, &setup.join_eui, sizeof(setup.join_eui));
+	sensor_nvs_read(SENSOR_NVS_ADDRESS_APP_KEY, &setup.app_key, sizeof(setup.app_key));
 
 	while(is_lorawan_configured(&setup) < 0)
 	{
+		ret = -1; // set to -1 to indicate that the lorawan is not configured
 		LOG_ERR("LoRaWAN is not configured, waiting for configuration");
 		k_sleep(K_SECONDS(1));
 	}
+	if(ret < 0)
+	{
+		sensor_nvs_write(SENSOR_NVS_ADDRESS_DEV_EUI, &setup.dev_eui, sizeof(setup.dev_eui));
+		sensor_nvs_write(SENSOR_NVS_ADDRESS_JOIN_EUI, &setup.join_eui, sizeof(setup.join_eui));
+		sensor_nvs_write(SENSOR_NVS_ADDRESS_APP_KEY, &setup.app_key, sizeof(setup.app_key));
+	}
+	lorawan_log_network_config(&setup);
+	ret = sensor_nvs_read(SENSOR_NVS_ADDRESS_DEV_NONCE, &setup.dev_nonce, sizeof(setup.dev_nonce));
+	if(ret < 0)
+	{
+		LOG_INF("No Stored Dev Nonce, using default and storing it in nvs");
+		ret = sensor_nvs_write(SENSOR_NVS_ADDRESS_DEV_NONCE, &setup.dev_nonce, sizeof(setup.dev_nonce));
+		if(ret < 0)
+		{
+			LOG_ERR("Failed to store dev nonce in nvs");
+		}
+	}
 
+	lorawan_setup(&setup);
+	/* Store the dev nonce in nvs after finishing join attempts. */
+	sensor_nvs_write(SENSOR_NVS_ADDRESS_DEV_NONCE, &setup.dev_nonce, sizeof(setup.dev_nonce));
 	while (1) 
 	{
-		lorawan_log_network_config(&setup);
+		send_packet();
 		k_sleep(K_MINUTES(1));
 	}
 	return 0;
