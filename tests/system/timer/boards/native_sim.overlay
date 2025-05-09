@@ -1,0 +1,22 @@
+#include <posix/posix.dtsi>
+
+/ {
+
+    // aliases {
+	// 	lora0 = &lora;
+    // };
+
+	// counter1: counter1 {
+	// 	status = "okay";
+	// 	compatible = "zephyr,native-sim-counter";
+	// 	// compatible = "zephyr,counter-emul";
+	// 	label = "COUNTER_1";
+	// };
+	// counter1: counter1 {
+    //     compatible = "zephyr,native-sim-counter";
+    //     status = "okay";
+    //     label = "COUNTER_1";
+    //     clock-frequency = <32768>;
+    // };
+
+};
