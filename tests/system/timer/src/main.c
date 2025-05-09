@@ -11,6 +11,7 @@
 #include <zephyr/device.h>
 #include <sensor_timer.h>
 #include <zephyr/logging/log.h>
+#include <errno.h>
 
 LOG_MODULE_REGISTER(tests_timer, LOG_LEVEL_DBG);
 
@@ -81,10 +82,28 @@ static void alarm_callback(const struct device *dev, uint8_t chan_id, uint32_t t
 {
     LOG_INF("Alarm callback called");
     is_alarm_triggered = 1;
+    sensor_timer_reset(timer0);
 }
 
 ZTEST(timer, test_timer_set_alarm_callback)
 {
+    // Reset the alarm triggered flag
+    is_alarm_triggered = 0;
+    sensor_timer_alarm_cfg_t alarm_cfg = {
+        .callback = alarm_callback,
+        .alarm_seconds = 5,
+    };
+    int ret;
+    ret = sensor_timer_set_alarm(timer0, &alarm_cfg);
+    zassert_ok(ret, "Failed to set alarm");
+    k_sleep(K_SECONDS(5));
+    zassert_equal(is_alarm_triggered, 1, "Alarm did not trigger");    
+}
+
+ZTEST(timer, test_timer_resets_when_alarm_is_triggered)
+{
+    // Reset the alarm triggered flag
+    is_alarm_triggered = 0;
     sensor_timer_alarm_cfg_t alarm_cfg = {
         .callback = alarm_callback,
         .alarm_seconds = 5,
@@ -94,5 +113,23 @@ ZTEST(timer, test_timer_set_alarm_callback)
     zassert_ok(ret, "Failed to set alarm");
     k_sleep(K_SECONDS(5));
     zassert_equal(is_alarm_triggered, 1, "Alarm did not trigger");
+    k_sleep(K_SECONDS(1));
+    zassert_equal(sensor_timer_get_seconds(timer0), 1, "Timer did not reset");
 }
 
+ZTEST(timer, test_timer_alarm_)
+{
+    // Reset the alarm triggered flag
+    is_alarm_triggered = 0;
+    sensor_timer_alarm_cfg_t alarm_cfg = {
+        .callback = alarm_callback,
+        .alarm_seconds = 300,
+    };
+    int ret;
+    ret = sensor_timer_set_alarm(timer0, &alarm_cfg);
+    zassert_ok(ret, "Failed to set alarm");
+    k_sleep(K_SECONDS(5));
+    zassert_equal(is_alarm_triggered, 1, "Alarm did not trigger");
+    k_sleep(K_SECONDS(1));
+    zassert_equal(sensor_timer_get_seconds(timer0), 1, "Timer did not reset");
+}
