@@ -117,7 +117,7 @@ ZTEST(timer, test_timer_resets_when_alarm_is_triggered)
     zassert_equal(sensor_timer_get_seconds(timer0), 1, "Timer did not reset");
 }
 
-ZTEST(timer, test_timer_alarm_)
+ZTEST(timer, test_timer_alarm_5_minutes)
 {
     // Reset the alarm triggered flag
     is_alarm_triggered = 0;
@@ -128,8 +128,9 @@ ZTEST(timer, test_timer_alarm_)
     int ret;
     ret = sensor_timer_set_alarm(timer0, &alarm_cfg);
     zassert_ok(ret, "Failed to set alarm");
-    k_sleep(K_SECONDS(5));
+    k_sleep(K_MINUTES(5));
     zassert_equal(is_alarm_triggered, 1, "Alarm did not trigger");
     k_sleep(K_SECONDS(1));
+    LOG_INF("Number of channels for Timer: %d", counter_get_num_of_channels(timer0));
     zassert_equal(sensor_timer_get_seconds(timer0), 1, "Timer did not reset");
 }

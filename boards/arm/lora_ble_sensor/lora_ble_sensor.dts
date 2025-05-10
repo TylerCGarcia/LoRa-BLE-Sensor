@@ -125,14 +125,10 @@
 // 	prescaler = <4>;
 // };
 
-// &rtc0 {
-// 	 status = "okay";
-// 	 ppi-wrap;
-//  };
-	
-//  &rtc2 {
-// 	 status = "okay";
-//  };
+// RTC0 is used by BLE, RTC1 is used for system clock
+ &rtc2 {
+	 status = "okay";
+ };
 
 
 &reg0 {

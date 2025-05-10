@@ -14,8 +14,12 @@
 #include "sensor_data.h"
 #include "sensor_nvs.h"
 #include "ble_lorawan_service.h"
+#include "sensor_timer.h"
 
 LOG_MODULE_REGISTER(MAIN);
+
+
+const struct device *timer0 = DEVICE_DT_GET(DT_NODELABEL(rtc2));
 
 
 enum sensor_nvs_address {
@@ -146,7 +150,7 @@ static void send_packet(void)
 	}
 }
 
-int main(void)
+static void init_lora_ble(void)
 {
 	ble_config_t ble_config = {
 		.adv_opt = BT_LE_ADV_OPT_CONN,
@@ -189,9 +193,15 @@ int main(void)
 	lorawan_setup(&setup);
 	/* Store the dev nonce in nvs after finishing join attempts. */
 	sensor_nvs_write(SENSOR_NVS_ADDRESS_DEV_NONCE, &setup.dev_nonce, sizeof(setup.dev_nonce));
+}
+
+int main(void)
+{
+	// init_lora_ble();
 	while (1) 
 	{
-		send_packet();
+		LOG_INF("Number of channels for RTC2: %d", counter_get_num_of_channels(timer0));
+		// send_packet();
 		k_sleep(K_MINUTES(1));
 	}
 	return 0;
