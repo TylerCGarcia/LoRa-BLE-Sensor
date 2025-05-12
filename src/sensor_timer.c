@@ -50,7 +50,6 @@ int sensor_timer_set_alarm(const struct device *dev, sensor_timer_alarm_cfg_t *s
     //     // .user_data = sensor_timer_alarm_cfg->user_data,
     //     // .flags = 0,
     // };
-
     ret = counter_set_channel_alarm(dev, sensor_timer_alarm_cfg->channel, &alarm_cfg);
     if (ret != 0) {
         return ret;
