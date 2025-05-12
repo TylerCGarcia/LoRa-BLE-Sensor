@@ -112,6 +112,7 @@ static void alarm_callback(const struct device *dev, uint8_t chan_id, uint32_t t
     }
 }
 
+
 ZTEST(timer, test_timer_set_alarm_callback)
 {
     // Reset the alarm triggered flag
@@ -240,7 +241,7 @@ ZTEST(timer, test_timer_not_triggered_when_alarm_is_cancelled)
     assert_alarm_triggered_flags(0, 0, 0);
 }
 
-ZTEST(timer, test_timer_alarm_MINUTES_TO_SECONDS)
+ZTEST(timer, test_timer_alarm_minutes_to_seconds)
 {
     // Reset the alarm triggered flag
     reset_alarm_triggered_flags();
