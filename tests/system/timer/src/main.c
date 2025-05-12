@@ -15,6 +15,12 @@
 
 LOG_MODULE_REGISTER(tests_timer, LOG_LEVEL_DBG);
 
+enum sensor_timer_channel {
+    SENSOR_TIMER_CHANNEL_0,
+    SENSOR_TIMER_CHANNEL_1,
+    SENSOR_TIMER_CHANNEL_2,
+};
+
 const struct device *timer0 = DEVICE_DT_GET(DT_NODELABEL(counter0));
 // const struct device *timer1 = DEVICE_DT_GET(DT_NODELABEL(counter1));
 
@@ -76,61 +82,119 @@ ZTEST(timer, test_timer_get_seconds_doesn_t_change_when_timer_is_stopped)
     zassert_true(time > 0 && time < 2, "Timer time %d", time);
 }
 
-static int is_alarm_triggered = 0;
+static int channel_0_alarm_triggered = 0;
+static int channel_1_alarm_triggered = 0;
+static int channel_2_alarm_triggered = 0;
 
 static void alarm_callback(const struct device *dev, uint8_t chan_id, uint32_t ticks)
 {
     LOG_INF("Alarm callback called");
-    is_alarm_triggered = 1;
-    sensor_timer_reset(timer0);
+    if (chan_id == SENSOR_TIMER_CHANNEL_0) {
+        channel_0_alarm_triggered = 1;
+    } else if (chan_id == SENSOR_TIMER_CHANNEL_1) {
+        channel_1_alarm_triggered = 1;
+    } else if (chan_id == SENSOR_TIMER_CHANNEL_2) {
+        channel_2_alarm_triggered = 1;
+    }
 }
 
 ZTEST(timer, test_timer_set_alarm_callback)
 {
     // Reset the alarm triggered flag
-    is_alarm_triggered = 0;
+    channel_0_alarm_triggered = 0;
+    channel_1_alarm_triggered = 0;
+    channel_2_alarm_triggered = 0;
     sensor_timer_alarm_cfg_t alarm_cfg = {
         .callback = alarm_callback,
         .alarm_seconds = 5,
+        .channel = SENSOR_TIMER_CHANNEL_0, 
     };
     int ret;
     ret = sensor_timer_set_alarm(timer0, &alarm_cfg);
     zassert_ok(ret, "Failed to set alarm");
     k_sleep(K_SECONDS(5));
-    zassert_equal(is_alarm_triggered, 1, "Alarm did not trigger");    
-}
-
-ZTEST(timer, test_timer_resets_when_alarm_is_triggered)
-{
-    // Reset the alarm triggered flag
-    is_alarm_triggered = 0;
-    sensor_timer_alarm_cfg_t alarm_cfg = {
-        .callback = alarm_callback,
-        .alarm_seconds = 5,
-    };
-    int ret;
-    ret = sensor_timer_set_alarm(timer0, &alarm_cfg);
-    zassert_ok(ret, "Failed to set alarm");
-    k_sleep(K_SECONDS(5));
-    zassert_equal(is_alarm_triggered, 1, "Alarm did not trigger");
-    k_sleep(K_SECONDS(1));
-    zassert_equal(sensor_timer_get_seconds(timer0), 1, "Timer did not reset");
+    zassert_equal(channel_0_alarm_triggered, 1, "Alarm did not trigger");    
+    zassert_equal(channel_1_alarm_triggered, 0, "Alarm triggered for channel 1");
+    zassert_equal(channel_2_alarm_triggered, 0, "Alarm triggered for channel 2");
 }
 
 ZTEST(timer, test_timer_alarm_5_minutes)
 {
     // Reset the alarm triggered flag
-    is_alarm_triggered = 0;
+    channel_0_alarm_triggered = 0;
+    channel_1_alarm_triggered = 0;
+    channel_2_alarm_triggered = 0;
     sensor_timer_alarm_cfg_t alarm_cfg = {
         .callback = alarm_callback,
         .alarm_seconds = 300,
+        .channel = SENSOR_TIMER_CHANNEL_0,
     };
     int ret;
     ret = sensor_timer_set_alarm(timer0, &alarm_cfg);
     zassert_ok(ret, "Failed to set alarm");
     k_sleep(K_MINUTES(5));
-    zassert_equal(is_alarm_triggered, 1, "Alarm did not trigger");
-    k_sleep(K_SECONDS(1));
-    LOG_INF("Number of channels for Timer: %d", counter_get_num_of_channels(timer0));
-    zassert_equal(sensor_timer_get_seconds(timer0), 1, "Timer did not reset");
+    zassert_equal(channel_0_alarm_triggered, 1, "Alarm did not trigger");
+    zassert_equal(channel_1_alarm_triggered, 0, "Alarm triggered for channel 1");
+    zassert_equal(channel_2_alarm_triggered, 0, "Alarm triggered for channel 2");
+}
+
+ZTEST(timer, test_timer_alarm_5_minutes_channel_1)
+{
+    // Reset the alarm triggered flag
+    channel_0_alarm_triggered = 0;
+    channel_1_alarm_triggered = 0;
+    channel_2_alarm_triggered = 0;
+    sensor_timer_alarm_cfg_t alarm_cfg = {
+        .callback = alarm_callback,
+        .alarm_seconds = 300,
+        .channel = SENSOR_TIMER_CHANNEL_1,
+    };
+    int ret;
+    ret = sensor_timer_set_alarm(timer0, &alarm_cfg);
+    zassert_ok(ret, "Failed to set alarm");
+    k_sleep(K_MINUTES(5));
+    zassert_equal(channel_0_alarm_triggered, 0, "Alarm triggered for channel 0");
+    zassert_equal(channel_1_alarm_triggered, 1, "Alarm did not trigger");
+    zassert_equal(channel_2_alarm_triggered, 0, "Alarm triggered for channel 2");
+}   
+
+ZTEST(timer, test_timer_alarm_5_minutes_channel_2)
+{
+    // Reset the alarm triggered flag
+    channel_0_alarm_triggered = 0;
+    channel_1_alarm_triggered = 0;
+    channel_2_alarm_triggered = 0;
+    sensor_timer_alarm_cfg_t alarm_cfg = {
+        .callback = alarm_callback,
+        .alarm_seconds = 300,
+        .channel = SENSOR_TIMER_CHANNEL_2,
+    };
+    int ret;
+    ret = sensor_timer_set_alarm(timer0, &alarm_cfg);
+    zassert_ok(ret, "Failed to set alarm");
+    k_sleep(K_MINUTES(5));
+    zassert_equal(channel_0_alarm_triggered, 0, "Alarm triggered for channel 0");
+    zassert_equal(channel_1_alarm_triggered, 0, "Alarm triggered for channel 1");
+    zassert_equal(channel_2_alarm_triggered, 1, "Alarm did not trigger");
+}
+
+ZTEST(timer, test_timer_alarm_channel_0_and_1_with_same_callback)
+{
+    // Reset the alarm triggered flag
+    channel_0_alarm_triggered = 0;
+    channel_1_alarm_triggered = 0;
+    channel_2_alarm_triggered = 0;
+    sensor_timer_alarm_cfg_t alarm_cfg = {
+        .callback = alarm_callback,
+        .alarm_seconds = 300,
+        .channel = SENSOR_TIMER_CHANNEL_0,
+    };
+
+    int ret;
+    ret = sensor_timer_set_alarm(timer0, &alarm_cfg);
+    zassert_ok(ret, "Failed to set alarm");
+    k_sleep(K_MINUTES(5));
+    zassert_equal(channel_0_alarm_triggered, 1, "Alarm did not trigger");
+    zassert_equal(channel_1_alarm_triggered, 1, "Alarm did not trigger");
+    zassert_equal(channel_2_alarm_triggered, 0, "Alarm triggered for channel 2");
 }

@@ -22,6 +22,7 @@
 typedef struct {
 	counter_alarm_callback_t callback;
     uint32_t alarm_seconds;
+    uint8_t channel;
 } sensor_timer_alarm_cfg_t;
 
 
