@@ -38,18 +38,6 @@ enum sensor_nvs_address {
  * @brief Setup sensor power systems 
  * 
  */
-// static void *testsuite_setup(void)
-// {
-//     int ret;
-//     ret = sensor_nvs_setup();
-//     zassert_ok(ret, "Failed to initialize NVS");
-// }
-
-
-/**
- * @brief Setup sensor power systems 
- * 
- */
 static void *before_tests(void)
 {
     int ret;
