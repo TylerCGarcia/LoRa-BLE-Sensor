@@ -5,7 +5,7 @@
 
 LOG_MODULE_REGISTER(SENSOR_TIMER, LOG_LEVEL_INF);
 
-int sensor_timer_init(const struct device *dev)
+int sensor_timer_start(const struct device *dev)
 {
     return counter_start(dev);
 }

@@ -32,7 +32,7 @@ typedef struct {
  * @param dev The timer device to initialize.
  * @return 0 on success, negative error code on failure.
  */
-int sensor_timer_init(const struct device *dev);
+int sensor_timer_start(const struct device *dev);
 
 /**
  * @brief Get the seconds elapsed since the timer was started.

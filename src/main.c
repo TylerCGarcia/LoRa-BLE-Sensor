@@ -30,6 +30,12 @@ enum sensor_nvs_address {
 	SENSOR_NVS_ADDRESS_LIMIT,
 };
 
+enum sensor_timer_channel {
+    SENSOR_TIMER_CHANNEL_0,
+    SENSOR_TIMER_CHANNEL_1,
+    SENSOR_TIMER_CHANNEL_2,
+};
+
 #define DEV_EUI {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}
 #define JOIN_EUI {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}
 #define APP_KEY {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}
@@ -195,12 +201,33 @@ static void init_lora_ble(void)
 	sensor_nvs_write(SENSOR_NVS_ADDRESS_DEV_NONCE, &setup.dev_nonce, sizeof(setup.dev_nonce));
 }
 
+static void alarm_callback(const struct device *dev, uint8_t chan_id, uint32_t ticks)
+{
+    LOG_INF("Alarm callback called");
+    if (chan_id == SENSOR_TIMER_CHANNEL_0) {
+        LOG_INF("Channel 0 alarm triggered");
+    } else if (chan_id == SENSOR_TIMER_CHANNEL_1) {
+        LOG_INF("Channel 1 alarm triggered");
+    } else if (chan_id == SENSOR_TIMER_CHANNEL_2) {
+        LOG_INF("Channel 2 alarm triggered");
+    }
+}
+
 int main(void)
 {
+	int ret;
+	sensor_timer_alarm_cfg_t alarm_cfg = {
+        .callback = alarm_callback,
+        .alarm_seconds = 10,
+        .channel = SENSOR_TIMER_CHANNEL_0,
+    };
+	sensor_timer_start(timer0);
+	ret = sensor_timer_set_alarm(timer0, &alarm_cfg);
 	// init_lora_ble();
 	while (1) 
 	{
 		LOG_INF("Number of channels for RTC2: %d", counter_get_num_of_channels(timer0));
+		LOG_INF("Frequency for RTC2: %d", counter_get_frequency(timer0));
 		// send_packet();
 		k_sleep(K_MINUTES(1));
 	}

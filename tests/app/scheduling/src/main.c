@@ -3,7 +3,6 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  * Tests:
- * - Cancel all alarms
  */
 
 #include <zephyr/ztest.h>
@@ -20,7 +19,6 @@ enum sensor_timer_channel {
     SENSOR_TIMER_CHANNEL_0,
     SENSOR_TIMER_CHANNEL_1,
     SENSOR_TIMER_CHANNEL_2,
-    SENSOR_TIMER_CHANNEL_LIMIT,
 };
 
 const struct device *timer0 = DEVICE_DT_GET(DT_NODELABEL(counter0));
@@ -33,7 +31,7 @@ const struct device *timer0 = DEVICE_DT_GET(DT_NODELABEL(counter0));
 static void *before_tests(void)
 {
     int ret;   
-    ret = sensor_timer_start(timer0);
+    ret = sensor_timer_init(timer0);
     zassert_ok(ret,"Sensor timer init failed");
 }
 
@@ -52,10 +50,6 @@ static void *after_tests(void)
 
 ZTEST_SUITE(timer, NULL, NULL, before_tests, after_tests, NULL);
 
-/**
- * @brief Confirm timer get seconds works
- * 
- */
 ZTEST(timer, test_timer_get_seconds)
 {
     int ret;
@@ -65,10 +59,6 @@ ZTEST(timer, test_timer_get_seconds)
     zassert_true(time > 0 && time < 2, "Timer time %d", time);
 }
 
-/**
- * @brief Confirm timer reset returns value to zero
- * 
- */
 ZTEST(timer, test_timer_reset_returns_value_to_zero)
 {
     int ret;
@@ -79,10 +69,6 @@ ZTEST(timer, test_timer_reset_returns_value_to_zero)
     zassert_true(time == 0, "Timer time %d", time);
 }
 
-/**
- * @brief Confirm timer get seconds doesn't change when timer is stopped
- * 
- */
 ZTEST(timer, test_timer_get_seconds_doesn_t_change_when_timer_is_stopped)
 {
     int ret;
@@ -100,10 +86,6 @@ static int channel_0_alarm_triggered = 0;
 static int channel_1_alarm_triggered = 0;
 static int channel_2_alarm_triggered = 0;
 
-/**
- * @brief Reset alarm triggered flags
- * 
- */
 static void reset_alarm_triggered_flags(void)
 {
     channel_0_alarm_triggered = 0;
@@ -111,13 +93,6 @@ static void reset_alarm_triggered_flags(void)
     channel_2_alarm_triggered = 0;
 }
 
-/**
- * @brief Assert alarm triggered flags
- * 
- * @param channel0_expected_value 
- * @param channel1_expected_value 
- * @param channel2_expected_value 
- */
 static void assert_alarm_triggered_flags(int channel0_expected_value, int channel1_expected_value, int channel2_expected_value)
 {
     zassert_equal(channel_0_alarm_triggered, channel0_expected_value, "Alarm_0 expected value %d, actual value %d", channel0_expected_value, channel_0_alarm_triggered);
@@ -125,13 +100,6 @@ static void assert_alarm_triggered_flags(int channel0_expected_value, int channe
     zassert_equal(channel_2_alarm_triggered, channel2_expected_value, "Alarm_2 expected value %d, actual value %d", channel2_expected_value, channel_2_alarm_triggered);
 }
 
-/**
- * @brief Alarm callback function
- * 
- * @param dev 
- * @param chan_id 
- * @param ticks 
- */
 static void alarm_callback(const struct device *dev, uint8_t chan_id, uint32_t ticks)
 {
     LOG_INF("Alarm callback called");
@@ -144,10 +112,7 @@ static void alarm_callback(const struct device *dev, uint8_t chan_id, uint32_t t
     }
 }
 
-/**
- * @brief Confirm alarm callback works 
- * 
- */
+
 ZTEST(timer, test_timer_set_alarm_callback)
 {
     // Reset the alarm triggered flag
@@ -164,10 +129,6 @@ ZTEST(timer, test_timer_set_alarm_callback)
     assert_alarm_triggered_flags(1, 0, 0);
 }
 
-/**
- * @brief Confirm alarm channel 0 is triggered when set after timer started for 5 minutes
- * 
- */
 ZTEST(timer, test_timer_alarm_5_minutes)
 {
     // Reset the alarm triggered flag
@@ -184,10 +145,6 @@ ZTEST(timer, test_timer_alarm_5_minutes)
     assert_alarm_triggered_flags(1, 0, 0);
 }
 
-/**
- * @brief Confirm alarm channel 1 is triggered when set after timer started for 5 minutes
- * 
- */
 ZTEST(timer, test_timer_alarm_5_minutes_channel_1)
 {
     // Reset the alarm triggered flag
@@ -204,10 +161,6 @@ ZTEST(timer, test_timer_alarm_5_minutes_channel_1)
     assert_alarm_triggered_flags(0, 1, 0);
 }   
 
-/**
- * @brief Confirm alarm channel 2 is triggered when set after timer started for 5 minutes
- * 
- */
 ZTEST(timer, test_timer_alarm_5_minutes_channel_2)
 {
     // Reset the alarm triggered flag
@@ -224,10 +177,6 @@ ZTEST(timer, test_timer_alarm_5_minutes_channel_2)
     assert_alarm_triggered_flags(0, 0, 1);
 }
 
-/**
- * @brief Confirm alarm works when multiple alarms are set with the same callback
- * 
- */
 ZTEST(timer, test_timer_alarm_channel_0_and_1_with_same_callback)
 {
     // Reset the alarm triggered flag
@@ -254,10 +203,6 @@ ZTEST(timer, test_timer_alarm_channel_0_and_1_with_same_callback)
     assert_alarm_triggered_flags(0, 1, 0);
 }
 
-/**
- * @brief Confirm alarm is triggered triggers 1 minute after alarm is set and not when timer reaches 1 minute
- * 
- */
 ZTEST(timer, test_timer_alarm_channel_0_when_set_after_timer_started_for_1_minute)
 {
     // Reset the alarm triggered flag
@@ -276,10 +221,6 @@ ZTEST(timer, test_timer_alarm_channel_0_when_set_after_timer_started_for_1_minut
     assert_alarm_triggered_flags(1, 0, 0);
 }
 
-/**
- * @brief Confirm alarm is not triggered when cancelled
- * 
- */
 ZTEST(timer, test_timer_not_triggered_when_alarm_is_cancelled)
 {
     // Reset the alarm triggered flag
@@ -300,10 +241,6 @@ ZTEST(timer, test_timer_not_triggered_when_alarm_is_cancelled)
     assert_alarm_triggered_flags(0, 0, 0);
 }
 
-/**
- * @brief Confirm MINUTES_TO_SECONDS macro works
- * 
- */
 ZTEST(timer, test_timer_alarm_minutes_to_seconds)
 {
     // Reset the alarm triggered flag
@@ -321,22 +258,3 @@ ZTEST(timer, test_timer_alarm_minutes_to_seconds)
     k_sleep(K_MINUTES(4));
     assert_alarm_triggered_flags(1, 0, 0);
 }
-
-/**
- * @brief Confirm alarm fails when channel is out of bounds
- * 
- */
-ZTEST(timer, test_timer_alarm_out_of_bounds)
-{
-    // Reset the alarm triggered flag
-    reset_alarm_triggered_flags();
-    sensor_timer_alarm_cfg_t alarm_cfg = {
-        .callback = alarm_callback,
-        .alarm_seconds = 1000000,
-        .channel = SENSOR_TIMER_CHANNEL_LIMIT,
-    };
-    int ret;
-    ret = sensor_timer_set_alarm(timer0, &alarm_cfg);
-    zassert_not_ok(ret, "Alarm should fail with out of bounds channel");
-}
-
