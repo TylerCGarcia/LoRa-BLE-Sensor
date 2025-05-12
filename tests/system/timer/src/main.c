@@ -220,3 +220,40 @@ ZTEST(timer, test_timer_alarm_channel_0_when_set_after_timer_started_for_1_minut
     assert_alarm_triggered_flags(1, 0, 0);
 }
 
+ZTEST(timer, test_timer_not_triggered_when_alarm_is_cancelled)
+{
+    // Reset the alarm triggered flag
+    reset_alarm_triggered_flags();
+    sensor_timer_alarm_cfg_t alarm_cfg = {
+        .callback = alarm_callback,
+        .alarm_seconds = 60,
+        .channel = SENSOR_TIMER_CHANNEL_0,
+    };
+    int ret;
+    ret = sensor_timer_set_alarm(timer0, &alarm_cfg);
+    zassert_ok(ret, "Failed to set alarm");
+    k_sleep(K_SECONDS(30));
+    assert_alarm_triggered_flags(0, 0, 0);
+    ret = sensor_timer_cancel_alarm(timer0, &alarm_cfg);
+    zassert_ok(ret, "Failed to cancel alarm");
+    k_sleep(K_MINUTES(1));
+    assert_alarm_triggered_flags(0, 0, 0);
+}
+
+ZTEST(timer, test_timer_alarm_MINUTES_TO_SECONDS)
+{
+    // Reset the alarm triggered flag
+    reset_alarm_triggered_flags();
+    sensor_timer_alarm_cfg_t alarm_cfg = {
+        .callback = alarm_callback,
+        .alarm_seconds = MINUTES_TO_SECONDS(5),
+        .channel = SENSOR_TIMER_CHANNEL_0,
+    };
+    int ret;
+    ret = sensor_timer_set_alarm(timer0, &alarm_cfg);
+    zassert_ok(ret, "Failed to set alarm");
+    k_sleep(K_MINUTES(1));
+    assert_alarm_triggered_flags(0, 0, 0);
+    k_sleep(K_MINUTES(4));
+    assert_alarm_triggered_flags(1, 0, 0);
+}

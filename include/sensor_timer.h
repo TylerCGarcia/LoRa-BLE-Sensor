@@ -25,6 +25,7 @@ typedef struct {
     uint8_t channel;
 } sensor_timer_alarm_cfg_t;
 
+#define MINUTES_TO_SECONDS(minutes) (minutes * 60)
 
 /**
  * @brief Initialize the chosen sensor timer instance.
@@ -62,5 +63,14 @@ int sensor_timer_reset(const struct device *dev);
  * @return 0 on success, negative error code on failure.
  */
 int sensor_timer_set_alarm(const struct device *dev, sensor_timer_alarm_cfg_t *sensor_timer_alarm_cfg);
+
+/**
+ * @brief Cancel the alarm for the chosen channel of the sensor timer instance.
+ * @param dev The timer device to cancel the alarm for.
+ * @param sensor_timer_alarm_cfg The alarm configuration to cancel.
+ * @return 0 on success, negative error code on failure.
+ */
+int sensor_timer_cancel_alarm(const struct device *dev, sensor_timer_alarm_cfg_t *sensor_timer_alarm_cfg);
+
 
 #endif

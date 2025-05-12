@@ -44,14 +44,13 @@ int sensor_timer_set_alarm(const struct device *dev, sensor_timer_alarm_cfg_t *s
         .callback = sensor_timer_alarm_cfg->callback,
         .ticks = (sensor_timer_alarm_cfg->alarm_seconds * counter_get_frequency(dev))
     };
-    // const struct counter_top_cfg cfg = {
-    //     .ticks = sensor_timer_alarm_cfg->alarm_seconds * counter_get_frequency(dev),
-    //     .callback = sensor_timer_alarm_cfg->callback,
-    //     // .user_data = sensor_timer_alarm_cfg->user_data,
-    //     // .flags = 0,
-    // };
     ret = counter_set_channel_alarm(dev, sensor_timer_alarm_cfg->channel, &alarm_cfg);
     if (ret != 0) {
         return ret;
     }
+}
+
+int sensor_timer_cancel_alarm(const struct device *dev, sensor_timer_alarm_cfg_t *sensor_timer_alarm_cfg)
+{
+    return counter_cancel_channel_alarm(dev, sensor_timer_alarm_cfg->channel);
 }
