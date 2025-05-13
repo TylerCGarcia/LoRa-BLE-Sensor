@@ -1,8 +1,8 @@
 /**
  * @file sensor_timer.h
  * @author Tyler Garcia
- * @brief This is a library to keep track of sensor and radio timers. Manages when last readings were
- * taken and when the last radio transmission was sent.
+ * @brief This is a library to keep track of sensor and radio timers. Manages alarms for sensors and radio transmissions.
+ * This library is used by the sensor_scheduling library to schedule sensor readings and radio transmissions.
  * @version 0.1
  * @date 2025-05-09
  * 
@@ -20,9 +20,14 @@
  * @brief Structure to hold the sensor timer data.
  */
 typedef struct {
-	counter_alarm_callback_t callback;
+    /* Callback function to call when the alarm is triggered */
+    counter_alarm_callback_t callback;
+    /* Alarm time in seconds */
     uint32_t alarm_seconds;
+    /* Counter channel to set the alarm on */
     uint8_t channel;
+    /* 0 = alarm not set, 1 = alarm set */
+    uint8_t is_alarm_set;
 } sensor_timer_alarm_cfg_t;
 
 #define MINUTES_TO_SECONDS(minutes) (minutes * 60)
