@@ -46,6 +46,7 @@ int sensor_timer_set_alarm(const struct device *dev, sensor_timer_alarm_cfg_t *s
     };
     /* Make sure the alarm ticks are not greater than the top value of the timer */
     if(alarm_cfg.ticks > counter_get_top_value(dev)) {
+        LOG_ERR("Alarm ticks are greater than the top value of the timer");
         return -EINVAL;
     }
 

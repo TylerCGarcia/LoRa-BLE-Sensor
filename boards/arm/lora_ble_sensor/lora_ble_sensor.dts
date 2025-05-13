@@ -99,38 +99,11 @@
 	};
 };
 
-// timer for lorawan, sensor1, sensor2 
-// &timer0 {
-// 	status = "okay";
-// 	prescaler = <4>;
-// };
-	
-// &timer1 {
-// 	status = "okay";
-// 	prescaler = <4>;
-// };
-
-// &timer2 {
-// 	status = "okay";
-// 	prescaler = <4>;
-// };
-
-// &timer3 {
-// 	status = "okay";
-// 	prescaler = <4>;
-// };
-
-// &timer4 {
-// 	status = "okay";
-// 	prescaler = <4>;
-// };
-
 // RTC0 is used by BLE, RTC1 is used for system clock
- &rtc2 {
-	 status = "okay";
-	 prescaler = <1>; // 1 -> 511 seconds; 2 ->1023 seconds...
- };
-
+&rtc2 {
+	status = "okay";
+	prescaler = <255>; // 1 -> 511 seconds; 2 -> 1023 seconds ... 4095 -> 582.542 Hours
+};
 
 &reg0 {
 	status = "okay";

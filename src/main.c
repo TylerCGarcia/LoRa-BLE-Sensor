@@ -218,7 +218,7 @@ int main(void)
 	int ret;
 	sensor_timer_alarm_cfg_t alarm_cfg = {
         .callback = alarm_callback,
-        .alarm_seconds = 10,
+        .alarm_seconds = MINUTES_TO_SECONDS(10),
         .channel = SENSOR_TIMER_CHANNEL_0,
     };
 	sensor_timer_start(timer0);
@@ -228,6 +228,7 @@ int main(void)
 	LOG_INF("Max top value: %d", counter_get_max_top_value(timer0));
 	float max_seconds = (float)counter_get_max_top_value(timer0)/counter_get_frequency(timer0);
 	LOG_INF("Max seconds: %f", max_seconds);
+	LOG_INF("Max Hours: %f", (max_seconds / 3600));
 	// init_lora_ble();
 	while (1) 
 	{
