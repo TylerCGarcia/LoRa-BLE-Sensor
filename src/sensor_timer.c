@@ -44,6 +44,11 @@ int sensor_timer_set_alarm(const struct device *dev, sensor_timer_alarm_cfg_t *s
         .callback = sensor_timer_alarm_cfg->callback,
         .ticks = (sensor_timer_alarm_cfg->alarm_seconds * counter_get_frequency(dev))
     };
+    /* Make sure the alarm ticks are not greater than the top value of the timer */
+    if(alarm_cfg.ticks > counter_get_top_value(dev)) {
+        return -EINVAL;
+    }
+
     sensor_timer_alarm_cfg->is_alarm_set = 1;
     ret = counter_set_channel_alarm(dev, sensor_timer_alarm_cfg->channel, &alarm_cfg);
     if (ret != 0) {

@@ -149,6 +149,7 @@
         "gatt.h": "c",
         "sensor_nvs.h": "c",
         "random": "c",
-        "sensor_timer.h": "c"
+        "sensor_timer.h": "c",
+        "functional": "c"
     }
 }

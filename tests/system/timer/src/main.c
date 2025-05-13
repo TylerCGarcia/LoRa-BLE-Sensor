@@ -27,6 +27,8 @@ enum sensor_timer_channel {
 
 const struct device *timer0 = DEVICE_DT_GET(DT_NODELABEL(counter0));
 
+static int counter_top_value = 3600 * CONFIG_COUNTER_NATIVE_SIM_FREQUENCY;
+
 static int channel_0_alarm_triggered = 0;
 static int channel_1_alarm_triggered = 0;
 static int channel_2_alarm_triggered = 0;
@@ -95,6 +97,15 @@ static void assert_alarm_triggered_flags(int channel0_expected_value, int channe
     zassert_equal(channel_2_alarm_triggered, channel2_expected_value, "Alarm_2 expected value %d, actual value %d", channel2_expected_value, channel_2_alarm_triggered);
 }
 
+static void *testsuite_setup(void)
+{
+    /* Set the top value of the timer */
+    const struct counter_top_cfg top_cfg = {
+        .ticks = counter_top_value,
+    };
+    counter_set_top_value(timer0, &top_cfg);
+}
+
 /**
  * @brief Setup sensor power systems 
  * 
@@ -113,10 +124,6 @@ static void *before_tests(void)
 static void *after_tests(void)
 {
     int ret;
-    ret = sensor_timer_stop(timer0);
-    zassert_ok(ret, "Failed to clear NVS");
-    ret = sensor_timer_reset(timer0);
-    zassert_ok(ret, "Failed to clear NVS");
     if (alarm_cfg[SENSOR_TIMER_CHANNEL_0].is_alarm_set) {
         sensor_timer_cancel_alarm(timer0, &alarm_cfg[SENSOR_TIMER_CHANNEL_0]);
     }
@@ -126,9 +133,13 @@ static void *after_tests(void)
     if (alarm_cfg[SENSOR_TIMER_CHANNEL_2].is_alarm_set) {
         sensor_timer_cancel_alarm(timer0, &alarm_cfg[SENSOR_TIMER_CHANNEL_2]);
     }
+    ret = sensor_timer_stop(timer0);
+    zassert_ok(ret, "Failed to clear NVS");
+    ret = sensor_timer_reset(timer0);
+    zassert_ok(ret, "Failed to clear NVS");
 }
 
-ZTEST_SUITE(timer, NULL, NULL, before_tests, after_tests, NULL);
+ZTEST_SUITE(timer, NULL, testsuite_setup, before_tests, after_tests, NULL);
 
 /**
  * @brief Confirm timer get seconds works
@@ -332,4 +343,18 @@ ZTEST(timer, test_timer_alarm_out_of_bounds)
     int ret;
     ret = sensor_timer_set_alarm(timer0, &wrong_alarm_cfg);
     zassert_not_ok(ret, "Alarm should fail with out of bounds channel");
+}
+
+
+/**
+ * @brief Confirm alarm fails when channel is out of bounds
+ * 
+ */
+ZTEST(timer, test_timer_alarm_works_if_top_value_is_reached)
+{
+    reset_alarm_triggered_flags();
+    alarm_cfg[SENSOR_TIMER_CHANNEL_0].alarm_seconds = MINUTES_TO_SECONDS(1);
+    int ret;
+    ret = sensor_timer_set_alarm(timer0, &alarm_cfg[SENSOR_TIMER_CHANNEL_0]);
+    zassert_ok(ret, "Alarm should work");
 }

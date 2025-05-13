@@ -62,7 +62,7 @@ int sensor_timer_reset(const struct device *dev);
 
 /**
  * @brief Set the alarm for the chosen sensor timer instance, also setting the top value of the timer to the chosen alarm value. 
- * When the alarm is triggered, the callback function will be called and the timer will be reset.
+ * When the alarm is triggered, the callback function will be called and the timer will be reset. In alarm callback, the is_alarm_set needs to be set to 0 manually.
  * @param dev The timer device to set the alarm for.
  * @param sensor_timer_alarm_cfg The alarm configuration to set.
  * @return 0 on success, negative error code on failure.
