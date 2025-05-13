@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  * Tests:
  * - Cancel all alarms
- * - Add top value callback functionality
+ * - Add to total seconds way to incorporate top value remainder, since topvalueseconds is not a whole number
  */
 
 #include <zephyr/ztest.h>
