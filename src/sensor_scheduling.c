@@ -43,6 +43,11 @@ static void scheduling_callback(const struct device *dev, uint8_t chan_id, uint3
     }
 }
 
+/**
+ * @brief Add an alarm to a schedule, as of right now, the channel is the same as the schedule id
+ * 
+ * @param schedule 
+ */
 static void add_alarm_to_schedule(sensor_scheduling_cfg_t *schedule)
 {
     sensor_timer_alarm_cfg_t alarm_cfg = {
@@ -55,6 +60,13 @@ static void add_alarm_to_schedule(sensor_scheduling_cfg_t *schedule)
     sensor_timer_set_alarm(scheduling_timer, &alarm_cfg);
 }
 
+/**
+ * @brief Renew an alarm for a schedule, this is called when the schedule is reset
+ * 
+ * @param schedule the schedule to renew the alarm for
+ * @param time_to_next_event the time till the next alarm should go off
+ * @return int 0 on success, -EINVAL on failure
+ */
 static int renew_alarm_for_schedule(sensor_scheduling_cfg_t *schedule, uint32_t time_to_next_event)
 {
     if (schedule == NULL || !schedule->is_scheduled) {
@@ -100,7 +112,7 @@ int sensor_scheduling_remove_schedule(sensor_scheduling_cfg_t *schedule)
 {
     /* Remove the schedule from the local list of schedules */
     // scheduling_list[schedule->id] = NULL;
-    // sensor_timer_cancel_alarm(scheduling_timer, &scheduling_channels[schedule->id]);
+    sensor_timer_cancel_alarm(scheduling_timer, &scheduling_channels[schedule->id]);
     schedule->is_scheduled = 0;
     schedule->is_triggered = 0;
     return 0;

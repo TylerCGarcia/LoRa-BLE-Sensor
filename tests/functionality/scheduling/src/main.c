@@ -60,12 +60,20 @@ static void *after_tests(void)
 
 ZTEST_SUITE(scheduling, NULL, testsuite_setup, NULL, NULL, NULL);
 
+/**
+ * @brief Test that a schedule can be added to the timer
+ * 
+ */
 ZTEST(scheduling, test_scheduling_add_schedule)
 {
     int ret = sensor_scheduling_add_schedule(&radio_schedule);
     zassert_ok(ret, "Scheduling add schedule failed");
 }
 
+/**
+ * @brief Test that a schedule is scheduled
+ * 
+ */
 ZTEST(scheduling, test_scheduling_is_scheduled)
 {
     int ret = sensor_scheduling_add_schedule(&radio_schedule);
@@ -73,6 +81,10 @@ ZTEST(scheduling, test_scheduling_is_scheduled)
     zassert_true(radio_schedule.is_scheduled, "Schedule is not scheduled");
 }
 
+/**
+ * @brief Test that removing a schedule removes the schedule from the timer
+ * 
+ */
 ZTEST(scheduling, test_scheduling_remove_schedule)
 {
     int ret = sensor_scheduling_add_schedule(&radio_schedule);
@@ -82,6 +94,10 @@ ZTEST(scheduling, test_scheduling_remove_schedule)
     zassert_false(radio_schedule.is_scheduled, "Schedule is scheduled");
 }
 
+/**
+ * @brief Test that a schedule is triggered when the alarm goes off
+ * 
+ */
 ZTEST(scheduling, test_scheduling_is_triggered)
 {
     int ret = sensor_scheduling_add_schedule(&radio_schedule);
@@ -91,6 +107,10 @@ ZTEST(scheduling, test_scheduling_is_triggered)
     zassert_true(radio_schedule.is_triggered, "Schedule is not triggered");
 }
 
+/**
+ * @brief Test that multiple schedules can be triggered at the same time
+ * 
+ */
 ZTEST(scheduling, test_scheduling_is_triggered_multiple)
 {
     int ret = sensor_scheduling_add_schedule(&radio_schedule);
@@ -155,6 +175,10 @@ ZTEST(scheduling, test_scheduling_reset_when_elapsed_time_is_more_than_frequency
     zassert_true(radio_schedule.is_triggered, "Schedule is not triggered");
 }
 
+/**
+ * @brief Test that removing a schedule removes the alarm from the timer
+ * 
+ */
 ZTEST(scheduling, test_scheduling_removing_schedule_removes_alarm)
 {
     int ret = sensor_scheduling_add_schedule(&radio_schedule);
@@ -165,3 +189,20 @@ ZTEST(scheduling, test_scheduling_removing_schedule_removes_alarm)
     zassert_false(radio_schedule.is_triggered, "Schedule was triggered");
 }
 
+/**
+ * @brief Test that when the elapsed time is more than the frequency, the next event is scheduled from the reset call time
+ * 
+ */
+ZTEST(scheduling, test_scheduling_reset_when_elapsed_time_is_equal_to_frequency)
+{
+    int ret = sensor_scheduling_add_schedule(&radio_schedule);
+    zassert_ok(ret, "Scheduling add schedule failed");
+    k_sleep(K_SECONDS(radio_schedule.frequency_seconds));
+    zassert_true(radio_schedule.is_triggered, "Schedule is not triggered");
+    k_sleep(K_SECONDS(radio_schedule.frequency_seconds));
+    ret = sensor_scheduling_reset_schedule(&radio_schedule);
+    zassert_ok(ret, "Scheduling reset schedule failed");
+    zassert_false(radio_schedule.is_triggered, "Schedule is triggered");
+    k_sleep(K_SECONDS(radio_schedule.frequency_seconds));
+    zassert_true(radio_schedule.is_triggered, "Schedule is not triggered");
+}
