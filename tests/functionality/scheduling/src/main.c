@@ -206,3 +206,19 @@ ZTEST(scheduling, test_scheduling_reset_when_elapsed_time_is_equal_to_frequency)
     k_sleep(K_SECONDS(radio_schedule.frequency_seconds));
     zassert_true(radio_schedule.is_triggered, "Schedule is not triggered");
 }
+
+/**
+ * @brief Test that a schedule can be readded after it has been removed
+ * 
+ */
+ZTEST(scheduling, test_scheduling_schedule_can_be_readded_after_removed)
+{   
+    int ret = sensor_scheduling_add_schedule(&radio_schedule);
+    zassert_ok(ret, "Scheduling add schedule failed");
+    ret = sensor_scheduling_remove_schedule(&radio_schedule);
+    zassert_ok(ret, "Scheduling remove schedule failed");
+    ret = sensor_scheduling_add_schedule(&radio_schedule);
+    zassert_ok(ret, "Scheduling add schedule failed");
+    k_sleep(K_SECONDS(radio_schedule.frequency_seconds));
+    zassert_true(radio_schedule.is_triggered, "Schedule is not triggered");
+}

@@ -111,7 +111,6 @@ int sensor_scheduling_add_schedule(sensor_scheduling_cfg_t *schedule)
 int sensor_scheduling_remove_schedule(sensor_scheduling_cfg_t *schedule)
 {
     /* Remove the schedule from the local list of schedules */
-    // scheduling_list[schedule->id] = NULL;
     sensor_timer_cancel_alarm(scheduling_timer, &scheduling_channels[schedule->id]);
     schedule->is_scheduled = 0;
     schedule->is_triggered = 0;
