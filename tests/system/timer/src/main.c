@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  * Tests:
  * - Cancel all alarms
+ * - Add top value callback functionality
  */
 
 #include <zephyr/ztest.h>
@@ -13,6 +14,7 @@
 #include <sensor_timer.h>
 #include <zephyr/logging/log.h>
 #include <errno.h>
+
 
 LOG_MODULE_REGISTER(tests_timer, LOG_LEVEL_DBG);
 
@@ -27,7 +29,8 @@ enum sensor_timer_channel {
 
 const struct device *timer0 = DEVICE_DT_GET(DT_NODELABEL(counter0));
 
-static int counter_top_value = 3600 * CONFIG_COUNTER_NATIVE_SIM_FREQUENCY;
+static const int top_value_seconds = 3600;
+static const int counter_top_value_ticks = top_value_seconds * CONFIG_COUNTER_NATIVE_SIM_FREQUENCY;
 
 static int channel_0_alarm_triggered = 0;
 static int channel_1_alarm_triggered = 0;
@@ -99,11 +102,14 @@ static void assert_alarm_triggered_flags(int channel0_expected_value, int channe
 
 static void *testsuite_setup(void)
 {
+    int ret;
     /* Set the top value of the timer */
     const struct counter_top_cfg top_cfg = {
-        .ticks = counter_top_value,
+        .ticks = counter_top_value_ticks,
     };
     counter_set_top_value(timer0, &top_cfg);
+    ret = sensor_timer_init(timer0);
+    zassert_ok(ret, "Failed to initialize sensor timer");
 }
 
 /**
@@ -145,12 +151,12 @@ ZTEST_SUITE(timer, NULL, testsuite_setup, before_tests, after_tests, NULL);
  * @brief Confirm timer get seconds works
  * 
  */
-ZTEST(timer, test_timer_get_seconds)
+ZTEST(timer, test_timer_get_current_seconds)
 {
     int ret;
     LOG_INF("Timer Frequency: %d", counter_get_frequency(timer0));
     k_sleep(K_SECONDS(1));
-    int time = sensor_timer_get_seconds(timer0);
+    int time = sensor_timer_get_current_seconds(timer0);
     zassert_true(time > 0 && time < 2, "Timer time %d", time);
 }
 
@@ -164,7 +170,7 @@ ZTEST(timer, test_timer_reset_returns_value_to_zero)
     k_sleep(K_SECONDS(1));
     ret = sensor_timer_reset(timer0);
     zassert_ok(ret,"Sensor timer reset failed");
-    int time = sensor_timer_get_seconds(timer0);
+    int time = sensor_timer_get_current_seconds(timer0);
     zassert_true(time == 0, "Timer time %d", time);
 }
 
@@ -172,16 +178,16 @@ ZTEST(timer, test_timer_reset_returns_value_to_zero)
  * @brief Confirm timer get seconds doesn't change when timer is stopped
  * 
  */
-ZTEST(timer, test_timer_get_seconds_doesn_t_change_when_timer_is_stopped)
+ZTEST(timer, test_timer_get_current_seconds_doesn_t_change_when_timer_is_stopped)
 {
     int ret;
     k_sleep(K_SECONDS(1));
-    int time = sensor_timer_get_seconds(timer0);
+    int time = sensor_timer_get_current_seconds(timer0);
     zassert_true(time > 0 && time < 2, "Timer time %d", time);
     ret = sensor_timer_stop(timer0);
     k_sleep(K_SECONDS(5));
     zassert_ok(ret, "Failed to stop timer");
-    time = sensor_timer_get_seconds(timer0);
+    time = sensor_timer_get_current_seconds(timer0);
     zassert_true(time > 0 && time < 2, "Timer time %d", time);
 }
 
@@ -355,6 +361,51 @@ ZTEST(timer, test_timer_alarm_works_if_top_value_is_reached)
     reset_alarm_triggered_flags();
     alarm_cfg[SENSOR_TIMER_CHANNEL_0].alarm_seconds = MINUTES_TO_SECONDS(1);
     int ret;
+    k_sleep(K_SECONDS(top_value_seconds - 30));
     ret = sensor_timer_set_alarm(timer0, &alarm_cfg[SENSOR_TIMER_CHANNEL_0]);
     zassert_ok(ret, "Alarm should work");
+    assert_alarm_triggered_flags(0, 0, 0);
+    k_sleep(K_MINUTES(1));
+    assert_alarm_triggered_flags(1, 0, 0);
+}
+
+/**
+ * @brief Confirm total seconds is correct after top value is reached
+ * 
+ */
+ZTEST(timer, test_get_total_seconds_after_top_value_is_reached)
+{
+    int ret;
+    int expected_total_seconds = top_value_seconds + 50;
+    k_sleep(K_SECONDS(expected_total_seconds));
+    uint32_t total_seconds = sensor_timer_get_total_seconds(timer0);
+    zassert_true(total_seconds == expected_total_seconds, "Total seconds should be %d, actual value %d", expected_total_seconds, total_seconds);
+}
+
+/**
+ * @brief Confirm total seconds is correct after top value is reached
+ * 
+ */
+ZTEST(timer, test_get_total_seconds_after_top_value_is_reached_twice)
+{
+    int ret;
+    int expected_total_seconds = (top_value_seconds * 2) + 50;
+    k_sleep(K_SECONDS(expected_total_seconds));
+    uint32_t total_seconds = sensor_timer_get_total_seconds(timer0);
+    LOG_INF("Total seconds: %d with top value: %d", total_seconds, top_value_seconds);
+    zassert_true(total_seconds == expected_total_seconds, "Total seconds should be %d, actual value %d", expected_total_seconds, total_seconds);
+}
+
+/**
+ * @brief Confirm total seconds is correct before top value is reached
+ * 
+ */
+ZTEST(timer, test_get_total_seconds_before_top_value_is_reached)
+{
+    int ret;
+    int expected_total_seconds = (top_value_seconds - 50);
+    k_sleep(K_SECONDS(expected_total_seconds));
+    uint32_t total_seconds = sensor_timer_get_total_seconds(timer0);
+    LOG_INF("Total seconds: %d with top value: %d", total_seconds, top_value_seconds);
+    zassert_true(total_seconds == expected_total_seconds, "Total seconds should be %d, actual value %d", expected_total_seconds, total_seconds);
 }

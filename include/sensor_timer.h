@@ -33,18 +33,32 @@ typedef struct {
 #define MINUTES_TO_SECONDS(minutes) (minutes * 60)
 
 /**
- * @brief Initialize the chosen sensor timer instance.
+ * @brief Initialize the chosen sensor timer instance and create a top value callback to increment the total overflown seconds.
  * @param dev The timer device to initialize.
+ * @return 0 on success, negative error code on failure.
+ */
+int sensor_timer_init(const struct device *dev);
+
+/**
+ * @brief Start the chosen sensor timer instance.
+ * @param dev The timer device to start.
  * @return 0 on success, negative error code on failure.
  */
 int sensor_timer_start(const struct device *dev);
 
 /**
- * @brief Get the seconds elapsed since the timer was started.
+ * @brief Get the current seconds the timer was started. This value resets every time the timer is reset or top value is reached.
  * @param dev The timer device to get the seconds from.
  * @return The seconds elapsed since the timer was started, or negative error code on failure.
  */
-int sensor_timer_get_seconds(const struct device *dev);
+int sensor_timer_get_current_seconds(const struct device *dev);
+
+/**
+ * @brief Get the total seconds the timer has been running.
+ * @param dev The timer device to get the total seconds from.
+ * @return The total seconds the timer has been running, or negative error code on failure.
+ */
+int sensor_timer_get_total_seconds(const struct device *dev);
 
 /**
  * @brief Stop the chosen sensor timer instance. Timer will remain at the current value.
@@ -54,7 +68,7 @@ int sensor_timer_get_seconds(const struct device *dev);
 int sensor_timer_stop(const struct device *dev);
 
 /**
- * @brief Reset the chosen sensor timer instance.
+ * @brief Reset the chosen sensor timer instance. This also resets the total seconds to 0.
  * @param dev The timer device to reset.
  * @return 0 on success, negative error code on failure.
  */
@@ -76,6 +90,5 @@ int sensor_timer_set_alarm(const struct device *dev, sensor_timer_alarm_cfg_t *s
  * @return 0 on success, negative error code on failure.
  */
 int sensor_timer_cancel_alarm(const struct device *dev, sensor_timer_alarm_cfg_t *sensor_timer_alarm_cfg);
-
 
 #endif
