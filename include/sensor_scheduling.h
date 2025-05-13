@@ -23,11 +23,12 @@ enum sensor_scheduling_id{
     SENSOR_SCHEDULING_ID_LIMIT,
 };
 
+/* The configuration for a schedule */
 typedef struct {
     /* The id of the component to schedule */
     enum sensor_scheduling_id id;
-    // void (*callback)(void);        // Callback function for the scheduled event
-    uint32_t frequency_seconds;       // Frequency between events in seconds
+    /* The frequency of the schedule in seconds */
+    uint32_t frequency_seconds;
     /* Whether this component is currently scheduled */
     uint8_t is_scheduled;
     /* Whether this component schedule has been triggered */
@@ -42,5 +43,7 @@ int sensor_scheduling_init(const struct device *timer);
 int sensor_scheduling_add_schedule(sensor_scheduling_cfg_t *schedule);
 
 int sensor_scheduling_remove_schedule(sensor_scheduling_cfg_t *schedule);
+
+int sensor_scheduling_reset_schedule(sensor_scheduling_cfg_t *schedule);
 
 #endif
