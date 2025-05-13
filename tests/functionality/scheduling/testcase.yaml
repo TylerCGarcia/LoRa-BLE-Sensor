@@ -1,0 +1,6 @@
+tests:  
+  functionality.scheduling:
+    harness: ztest
+    platform_allow:
+      - native_sim
+      - qemu_cortex_m3 

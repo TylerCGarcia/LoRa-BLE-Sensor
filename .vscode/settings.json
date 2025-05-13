@@ -63,22 +63,13 @@
                 "command": "west twister -T tests/ -vv -W",
             },
             {
-                "name" : "qemu",
-                "terminalName" : "Zephyr Terminal",
-                "color": "white",
-				"useVsCodeApi": false,
-                "ignoreClear": true,
-                "singleInstance": false,
-                "command": "west build -b qemu_cortex_m3 -t run tests/system/timer",
-            },
-            {
                 "name" : "sim",
                 "terminalName" : "Zephyr Terminal",
                 "color": "white",
 				"useVsCodeApi": false,
                 "ignoreClear": true,
                 "singleInstance": false,
-                "command": "west build -b native_sim -t run tests/system/timer",
+                "command": "west build -b native_sim -t run tests/functionality/scheduling",
             },
             {
                 "name" : "venv",
