@@ -30,10 +30,11 @@ typedef struct {
     uint8_t is_alarm_set;
 } sensor_timer_alarm_cfg_t;
 
+/* Convert minutes to seconds to use in the sensor timer */
 #define MINUTES_TO_SECONDS(minutes) (minutes * 60)
 
 /**
- * @brief Initialize the chosen sensor timer instance and create a top value callback to increment the total overflown seconds.
+ * @brief Initialize the chosen sensor timer instance and create a top value callback to increment the total overflown seconds. This also starts the timer.
  * @param dev The timer device to initialize.
  * @return 0 on success, negative error code on failure.
  */
@@ -54,7 +55,7 @@ int sensor_timer_start(const struct device *dev);
 int sensor_timer_get_current_seconds(const struct device *dev);
 
 /**
- * @brief Get the total seconds the timer has been running.
+ * @brief Get the total seconds the timer has been running. This value is reset when the timer is reset.
  * @param dev The timer device to get the total seconds from.
  * @return The total seconds the timer has been running, or negative error code on failure.
  */

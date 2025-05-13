@@ -10,18 +10,13 @@ static uint32_t total_overflown_seconds = 0;
 static void top_value_callback(const struct device *dev, void *user_data)
 {
     LOG_DBG("Top value callback called");
-    uint32_t top_value_seconds = counter_get_top_value(dev) * counter_get_frequency(dev);
+    uint32_t top_value_seconds = counter_get_top_value(dev) / counter_get_frequency(dev);
     total_overflown_seconds += (top_value_seconds + 1);
 }
 
 int sensor_timer_init(const struct device *dev)
 {
     int ret; 
-    ret = sensor_timer_reset(dev);
-    if (ret != 0) {
-        LOG_ERR("Failed to reset counter for initialization");
-        return ret;
-    }
     const struct counter_top_cfg top_cfg = {
         .callback = top_value_callback,
         .ticks = counter_get_top_value(dev),

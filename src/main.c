@@ -218,14 +218,15 @@ int main(void)
 	int ret;
 	sensor_timer_alarm_cfg_t alarm_cfg = {
         .callback = alarm_callback,
-        .alarm_seconds = MINUTES_TO_SECONDS(10),
+        .alarm_seconds = MINUTES_TO_SECONDS(2),
         .channel = SENSOR_TIMER_CHANNEL_0,
     };
-	sensor_timer_start(timer0);
+	sensor_timer_init(timer0);
 	ret = sensor_timer_set_alarm(timer0, &alarm_cfg);
 	LOG_INF("Number of channels for RTC2: %d", counter_get_num_of_channels(timer0));
 	LOG_INF("Frequency for RTC2: %d", counter_get_frequency(timer0));
 	LOG_INF("Max top value: %d", counter_get_max_top_value(timer0));
+	LOG_INF("Top value: %d", counter_get_top_value(timer0));
 	float max_seconds = (float)counter_get_max_top_value(timer0)/counter_get_frequency(timer0);
 	LOG_INF("Max seconds: %f", max_seconds);
 	LOG_INF("Max Hours: %f", (max_seconds / 3600));
@@ -233,7 +234,8 @@ int main(void)
 	while (1) 
 	{
 		// send_packet();
-		LOG_INF("Timer seconds: %d", sensor_timer_get_seconds(timer0));
+		LOG_INF("Timer seconds: %d", sensor_timer_get_current_seconds(timer0));
+		LOG_INF("Timer total seconds: %d", sensor_timer_get_total_seconds(timer0));
 		k_sleep(K_SECONDS(1));
 	}
 	return 0;

@@ -101,8 +101,8 @@
 
 // RTC0 is used by BLE, RTC1 is used for system clock
 &rtc2 {
-	status = "okay";
-	prescaler = <255>; // 1 -> 511 seconds; 2 -> 1023 seconds ... 4095 -> 582.542 Hours
+	status = "okay"; 
+	prescaler = <1>; // 1 -> 511 seconds; 2 -> 1023 seconds ... 255 -> 36.409 Hours ... 4095 -> 582.542 Hours
 };
 
 &reg0 {
