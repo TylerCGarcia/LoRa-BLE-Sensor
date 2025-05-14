@@ -69,7 +69,7 @@
 				"useVsCodeApi": false,
                 "ignoreClear": true,
                 "singleInstance": false,
-                "command": "west build -b native_sim -t run tests/functionality/scheduling",
+                "command": "west build -b native_sim -t run tests/functionality/data",
             },
             {
                 "name" : "venv",
