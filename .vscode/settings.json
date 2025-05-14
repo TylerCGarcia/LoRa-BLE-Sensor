@@ -145,6 +145,9 @@
         "sensor_scheduling.h": "c",
         "sensor_reading.h": "c",
         "sensor_power_fakes.h": "c",
-        "stddef.h": "c"
+        "stddef.h": "c",
+        "mem_manage.h": "c",
+        "sensor_reading_fakes.h": "c",
+        "ring_buffer.h": "c"
     }
 }

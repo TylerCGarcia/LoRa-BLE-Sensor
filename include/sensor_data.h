@@ -21,6 +21,7 @@
  * @brief Types of data that can be stored in the sensor data buffer.
  */
 typedef enum sensor_data_type {
+    DATA_TYPE_INT,
     DATA_TYPE_UINT8,
     DATA_TYPE_UINT16,
     DATA_TYPE_UINT32,
@@ -33,6 +34,21 @@ typedef struct {
     enum sensor_id id;
     /* Power id to use for the sensor. */
     enum sensor_power_id power_id;
+    /* Type of data in the buffer. */
+    enum sensor_data_type data_type;
+    /* Maximum number of samples to store in the buffer. */
+    size_t max_samples;
+    /* Buffer to store the sensor data. */
+    void *data_buffer;
+    /* Buffer to store the timestamps. */
+    uint32_t *timestamp_buffer;
+    /* Size of the buffer. */
+    size_t buffer_size;
+    /* Size of the data in the buffer. */
+    size_t data_size;
+    /* Number of samples in the buffer. */
+    size_t num_samples;
+
 } sensor_data_t;
 
 /**
@@ -55,12 +71,11 @@ int sensor_data_setup(sensor_data_t *sensor_data, enum sensor_types type, enum s
  */
 int sensor_data_read(sensor_data_t *sensor_data, uint32_t timestamp);
 
-// /**
-//  * @brief Get the sensor data buffer.
-//  * 
-//  * @param sensor_data The sensor data to get the buffer from.
-//  * @return sensor_data_buffer_t* The buffer.
-//  */
-// sensor_data_buffer_t *sensor_data_get_buffer(sensor_data_t *sensor_data);
+/**
+ * @brief Clear the sensor data.
+ * 
+ * @param sensor_data The sensor data to clear.
+ */
+int sensor_data_clear(sensor_data_t *sensor_data);
 
 #endif

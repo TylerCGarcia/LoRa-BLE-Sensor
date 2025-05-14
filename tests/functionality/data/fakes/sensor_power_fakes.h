@@ -1,5 +1,5 @@
-#ifndef SENSOR_POWER_H
-#define SENSOR_POWER_H
+#ifndef SENSOR_POWER_FAKES_H
+#define SENSOR_POWER_FAKES_H
 
 #include "sensor_id.h"
 #include <zephyr/drivers/gpio.h>

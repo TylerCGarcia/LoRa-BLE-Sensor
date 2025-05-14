@@ -14,5 +14,5 @@ target_include_directories(app PRIVATE
 target_sources(app PRIVATE src/main.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../../../src/sensor_data.c
     ${CMAKE_CURRENT_SOURCE_DIR}/fakes/sensor_power_fakes.c
-    # ${CMAKE_CURRENT_SOURCE_DIR}/../../../src/sensor_power.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/fakes/sensor_reading_fakes.c
 )

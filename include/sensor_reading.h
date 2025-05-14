@@ -10,8 +10,8 @@
  * 
  */
 
-#ifndef SENSOR_DATA_H
-#define SENSOR_DATA_H
+#ifndef SENSOR_READING_H
+#define SENSOR_READING_H
 
 #include "sensor_id.h"
 #include <zephyr/drivers/gpio.h>

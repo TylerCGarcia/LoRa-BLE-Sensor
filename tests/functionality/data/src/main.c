@@ -9,9 +9,11 @@
 #include <zephyr/ztest.h>
 #include "sensor_data.h"
 #include "sensor_power_fakes.h"
+#include "sensor_reading_fakes.h"
 #include <zephyr/logging/log.h>
 #include "sensor_id.h"
 #include <zephyr/fff.h>
+#include <zephyr/sys/ring_buffer.h>
 
 LOG_MODULE_REGISTER(tests_data, LOG_LEVEL_INF);
 
@@ -20,11 +22,23 @@ DEFINE_FFF_GLOBALS;
 sensor_data_t sensor1_data = {
     .id = SENSOR_1,
     .power_id = SENSOR_POWER_1,
+    .max_samples = 100,
+    // .data_buffer = NULL,
+    // .timestamp_buffer = NULL,
+    // .buffer_size = 0,
+    // .data_size = 0,
+    // .num_samples = 0,
 };
 
 sensor_data_t sensor2_data = {
     .id = SENSOR_2,
     .power_id = SENSOR_POWER_2,
+    .max_samples = 100,
+    // .data_buffer = NULL,
+    // .timestamp_buffer = NULL,
+    // .buffer_size = 0,
+    // .data_size = 0,
+    // .num_samples = 0,
 };
 
 /**
@@ -33,13 +47,20 @@ sensor_data_t sensor2_data = {
  */
 static void reset_all_fakes(void)
 {
-	// Clear previous call history
+    /* clear sensor power fakes */
 	RESET_FAKE(sensor_power_init);
     RESET_FAKE(get_sensor_output);
     RESET_FAKE(set_sensor_output);
     RESET_FAKE(read_sensor_output);
     RESET_FAKE(validate_output);
     RESET_FAKE(get_sensor_voltage_name);
+    /* clear sensor reading fakes */
+    RESET_FAKE(sensor_reading_setup);
+    RESET_FAKE(get_sensor_reading_setup);
+    RESET_FAKE(get_sensor_voltage_reading);
+    RESET_FAKE(get_sensor_current_reading);
+    RESET_FAKE(get_sensor_pulse_count);
+    RESET_FAKE(reset_sensor_pulse_count);
 }
 
 /**
@@ -53,6 +74,10 @@ static void *after_tests(void)
     sensor1_data.power_id = SENSOR_POWER_1;
     sensor2_data.id = SENSOR_2;
     sensor2_data.power_id = SENSOR_POWER_2;
+    int ret = sensor_data_clear(&sensor1_data);
+    zassert_ok(ret, "Sensor data clear failed");
+    ret = sensor_data_clear(&sensor2_data);
+    zassert_ok(ret, "Sensor data clear failed");
 }
 
 ZTEST_SUITE(data, NULL, NULL, NULL, after_tests, NULL);
@@ -67,6 +92,9 @@ ZTEST(data, test_sensor_data_setup)
     zassert_ok(ret, "Sensor data setup failed");
     zassert_equal(sensor_power_init_fake.call_count, 1, "Sensor power init should be called");
     zassert_equal(set_sensor_output_fake.call_count, 0, "Set sensor output should not be called for VOLTAGE_SENSOR");
+    zassert_equal(sensor_reading_setup_fake.call_count, 1, "Sensor reading setup should be called");
+    zassert_equal(sensor_reading_setup_fake.arg1_val, VOLTAGE_SENSOR, "Sensor reading setup should be called with VOLTAGE_SENSOR");
+
 }
 
 /**
@@ -125,22 +153,69 @@ ZTEST(data, test_sensor_data_setup_pulse_sensor)
     zassert_ok(ret, "Sensor data setup failed");
     zassert_equal(sensor_power_init_fake.call_count, 1, "Sensor power init should be called");
     zassert_equal(set_sensor_output_fake.call_count, 1, "Set sensor output should be called");
+    zassert_equal(sensor_reading_setup_fake.call_count, 1, "Sensor reading setup should be called");
+    zassert_equal(sensor_reading_setup_fake.arg1_val, PULSE_SENSOR, "Sensor reading setup should be called with PULSE_SENSOR");
 }
 
 /**
- * @brief Test that the sensor can be read from
+ * @brief Test that the sensor can be read from the pulse sensor
  * 
  */
-ZTEST(data, test_sensor_data_read)
+ZTEST(data, test_sensor_data_read_pulse_sensor)
 {
+    get_sensor_pulse_count_fake.return_val = 100;
     uint32_t timestamp = 1000;
-    int ret = sensor_data_setup(&sensor1_data, VOLTAGE_SENSOR, SENSOR_VOLTAGE_3V3);
+    int ret = sensor_data_setup(&sensor1_data, PULSE_SENSOR, SENSOR_VOLTAGE_3V3);
     zassert_ok(ret, "Sensor data setup failed");
     ret = sensor_data_read(&sensor1_data, timestamp);
     zassert_ok(ret, "Sensor data read failed");
+    zassert_equal(get_sensor_pulse_count_fake.call_count, 1, "Get sensor pulse count should be called");
+    zassert_equal(sensor1_data.num_samples, 1, "Number of samples should be 1");
+    int *pulse_counts = (int *)sensor1_data.data_buffer;
+    zassert_equal(pulse_counts[sensor1_data.num_samples - 1], 100, "Buffer size should be correct");
+    zassert_equal(sensor1_data.timestamp_buffer[sensor1_data.num_samples - 1], timestamp, "Timestamp should be correct");
 }
 
+/**
+ * @brief Test that the stores multiple samples correctly
+ * 
+ */
+ZTEST(data, test_sensor_data_read_multiple_samples)
+{
+    get_sensor_pulse_count_fake.return_val = 100;
+    uint32_t timestamp = 1000;
+    int ret = sensor_data_setup(&sensor1_data, PULSE_SENSOR, SENSOR_VOLTAGE_3V3);
+    zassert_ok(ret, "Sensor data setup failed");
+    ret = sensor_data_read(&sensor1_data, timestamp);
+    zassert_ok(ret, "Sensor data read failed");
+    get_sensor_pulse_count_fake.return_val = 130;
+    uint32_t timestamp2 = 1500;
+    ret = sensor_data_read(&sensor1_data, timestamp2);
+    zassert_ok(ret, "Sensor data read failed");
+    zassert_equal(sensor1_data.num_samples, 2, "Number of samples should be 2");
 
+    int *pulse_counts = (int *)sensor1_data.data_buffer;
+    zassert_equal(pulse_counts[0], 100, "Buffer size should be correct");
+    zassert_equal(sensor1_data.timestamp_buffer[0], timestamp, "Timestamp should be correct");
+    zassert_equal(pulse_counts[1], 130, "Buffer size should be correct");
+    zassert_equal(sensor1_data.timestamp_buffer[1], timestamp2, "Timestamp should be correct");
+}
 
-
-
+/**
+ * @brief Test that sensor data clear
+ * 
+ */
+ZTEST(data, test_sensor_data_clear)
+{
+    get_sensor_pulse_count_fake.return_val = 100;
+    uint32_t timestamp = 1000;
+    int ret = sensor_data_setup(&sensor1_data, PULSE_SENSOR, SENSOR_VOLTAGE_3V3);
+    zassert_ok(ret, "Sensor data setup failed");
+    ret = sensor_data_read(&sensor1_data, timestamp);
+    zassert_ok(ret, "Sensor data read failed");
+    ret = sensor_data_clear(&sensor1_data);
+    zassert_ok(ret, "Sensor data clear failed");
+    zassert_equal(sensor1_data.num_samples, 0, "Number of samples should be 0");
+    // ieee_float
+    LOG_INF("atoi(\"1243\") = %d", atoi("1243"));
+}
