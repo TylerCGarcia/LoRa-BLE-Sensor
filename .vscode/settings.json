@@ -142,6 +142,7 @@
         "random": "c",
         "sensor_timer.h": "c",
         "functional": "c",
-        "sensor_scheduling.h": "c"
+        "sensor_scheduling.h": "c",
+        "sensor_reading.h": "c"
     }
 }

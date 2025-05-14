@@ -9,6 +9,7 @@
  */
 
 #include <zephyr/ztest.h>
+#include <zephyr/logging/log.h>
 
 LOG_MODULE_REGISTER(tests_app, LOG_LEVEL_DBG);
 

@@ -1,6 +1,6 @@
 
 
-#include "sensor_data.h"
+#include "sensor_reading.h"
 #include <zephyr/kernel.h>
 
 typedef struct {
@@ -29,7 +29,7 @@ static void pulse_captured(const struct device *dev, struct gpio_callback *cb, u
     }
 }
 
-static int sensor_data_pulse_setup(sensor_data_config_t *config)
+static int sensor_reading_pulse_setup(sensor_reading_config_t *config)
 {
     int ret;
 
@@ -58,7 +58,7 @@ static int sensor_data_pulse_setup(sensor_data_config_t *config)
     return 0;
 }
 
-static int sensor_data_adc_setup(sensor_data_config_t *config, enum sensor_types sensor_type)
+static int sensor_reading_adc_setup(sensor_reading_config_t *config, enum sensor_types sensor_type)
 {
     int ret;
     if(sensor_type == VOLTAGE_SENSOR)
@@ -89,7 +89,7 @@ static int sensor_data_adc_setup(sensor_data_config_t *config, enum sensor_types
     }
 }
 
-int sensor_data_setup(sensor_data_config_t *config, enum sensor_types sensor_type)
+int sensor_reading_setup(sensor_reading_config_t *config, enum sensor_types sensor_type)
 {
     int ret;
     // If switching from pulse sensor to any other sensor remove the callback
@@ -105,13 +105,13 @@ int sensor_data_setup(sensor_data_config_t *config, enum sensor_types sensor_typ
         
         break;
     case VOLTAGE_SENSOR:
-        ret = sensor_data_adc_setup(config, sensor_type);
+        ret = sensor_reading_adc_setup(config, sensor_type);
         break;
     case CURRENT_SENSOR:
-        ret = sensor_data_adc_setup(config, sensor_type);
+        ret = sensor_reading_adc_setup(config, sensor_type);
         break;
     case PULSE_SENSOR:
-        ret = sensor_data_pulse_setup(config);
+        ret = sensor_reading_pulse_setup(config);
         break;
     default:
         sensor_setups[config->id] = NULL_SENSOR;
@@ -128,7 +128,7 @@ int sensor_data_setup(sensor_data_config_t *config, enum sensor_types sensor_typ
     return 0;
 }
 
-enum sensor_types get_sensor_data_setup(sensor_data_config_t *config)
+enum sensor_types get_sensor_reading_setup(sensor_reading_config_t *config)
 {
     return sensor_setups[config->id];
 }
@@ -156,9 +156,9 @@ static int read_sensor_output_raw(const struct adc_dt_spec *spec)
     return buf;
 }
 
-float get_sensor_voltage_reading(sensor_data_config_t *config)
+float get_sensor_voltage_reading(sensor_reading_config_t *config)
 {
-    if(get_sensor_data_setup(config) != VOLTAGE_SENSOR)
+    if(get_sensor_reading_setup(config) != VOLTAGE_SENSOR)
     {
         return -1;
     }
@@ -171,9 +171,9 @@ float get_sensor_voltage_reading(sensor_data_config_t *config)
 	return (((float)val_mv/1000.0) * (((float)VOLTAGE_READ_DIVIDER_HIGH + (float)VOLTAGE_READ_DIVIDER_LOW)/(float)VOLTAGE_READ_DIVIDER_LOW));
 }
 
-float get_sensor_current_reading(sensor_data_config_t *config)
+float get_sensor_current_reading(sensor_reading_config_t *config)
 {
-    if(get_sensor_data_setup(config) != CURRENT_SENSOR)
+    if(get_sensor_reading_setup(config) != CURRENT_SENSOR)
     {
         return -1;
     }
@@ -187,18 +187,18 @@ float get_sensor_current_reading(sensor_data_config_t *config)
     return (float)val_mv / (float)CURRENT_READ_RESISTOR;
 }
 
-int get_sensor_pulse_count(sensor_data_config_t *config)
+int get_sensor_pulse_count(sensor_reading_config_t *config)
 {
-    if(get_sensor_data_setup(config) != PULSE_SENSOR)
+    if(get_sensor_reading_setup(config) != PULSE_SENSOR)
     {
         return -1;
     }
     return pulse_count[config->id];
 }
 
-int reset_sensor_pulse_count(sensor_data_config_t *config)
+int reset_sensor_pulse_count(sensor_reading_config_t *config)
 {
-    if(get_sensor_data_setup(config) != PULSE_SENSOR)
+    if(get_sensor_reading_setup(config) != PULSE_SENSOR)
     {
         return -1;
     }
