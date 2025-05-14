@@ -4,33 +4,25 @@
 
 LOG_MODULE_REGISTER(SENSOR_SCHEDULING, LOG_LEVEL_INF);
 
+/* The timer device to use for scheduling, this is set with calling the init function */
 static const struct device *scheduling_timer;
 
+/* The list of schedules, allowing the schedules to be accessed throughtout the library*/
 static sensor_scheduling_cfg_t *scheduling_list[SENSOR_SCHEDULING_ID_LIMIT];
 
 /* The channel id of the alarm for each scheduling id */
 static uint8_t scheduling_channels[SENSOR_SCHEDULING_ID_LIMIT];
-static uint8_t channel_frequencies[SENSOR_SCHEDULING_ID_LIMIT];
 
-
-
-// static int determine_channel_for_schedule(sensor_scheduling_cfg_t *schedule)
-// {
-//     // First check if there's an existing alarm with the same frequency
-//     for (int i = 0; i < SENSOR_SCHEDULING_ID_LIMIT; i++) {
-//         LOG_DBG("Checking schedule %d with frequency %d", i, scheduling_list[i]->frequency_seconds);
-//         if (scheduling_list[i] != NULL && scheduling_list[i]->frequency_seconds == schedule->frequency_seconds) {
-//             // Found a schedule with same frequency, share its channel
-//             scheduling_channels[schedule->id] = scheduling_channels[i];
-//             return scheduling_channels[i];
-//         }
-//     }
-//     return -1;
-// }
-
+/**
+ * @brief Callback function for the scheduling timer
+ * 
+ * @param dev The device that triggered the callback
+ * @param chan_id The channel id that triggered the callback
+ * @param ticks The ticks of the callback
+ */
 static void scheduling_callback(const struct device *dev, uint8_t chan_id, uint32_t ticks)
 {
-    LOG_INF("Scheduling callback called for channel %d", chan_id);
+    LOG_DBG("Scheduling callback called for channel %d", chan_id);
     for(int i = 0; i < SENSOR_SCHEDULING_ID_LIMIT; i++) 
     {
         if(scheduling_list[i] != NULL) 
@@ -72,7 +64,7 @@ static int renew_alarm_for_schedule(sensor_scheduling_cfg_t *schedule, uint32_t 
     if (schedule == NULL || !schedule->is_scheduled) {
         return -EINVAL;
     }
-    LOG_INF("Renewing alarm for schedule %d", schedule->id);
+    LOG_INF("Renewing alarm for schedule %d, time to next alarm: %d seconds", schedule->id, time_to_next_event);
     LOG_DBG("current time: %d", sensor_timer_get_total_seconds(scheduling_timer));
     LOG_DBG("Time of last event: %d", schedule->last_event_time);
     LOG_DBG("Time to next event: %d", time_to_next_event);

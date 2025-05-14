@@ -8,6 +8,7 @@
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
 #include <zephyr/drivers/adc.h>
+
 #include "sensor_ble.h"
 #include "sensor_lorawan.h"
 #include "sensor_power.h"
@@ -15,12 +16,12 @@
 #include "sensor_nvs.h"
 #include "ble_lorawan_service.h"
 #include "sensor_timer.h"
+#include "sensor_scheduling.h"
 
 LOG_MODULE_REGISTER(MAIN);
 
-
+/* The timer device to use for scheduling */
 const struct device *timer0 = DEVICE_DT_GET(DT_NODELABEL(rtc2));
-
 
 enum sensor_nvs_address {
 	SENSOR_NVS_ADDRESS_DEV_NONCE,
@@ -216,27 +217,49 @@ static void alarm_callback(const struct device *dev, uint8_t chan_id, uint32_t t
 int main(void)
 {
 	int ret;
-	sensor_timer_alarm_cfg_t alarm_cfg = {
-        .callback = alarm_callback,
-        .alarm_seconds = MINUTES_TO_SECONDS(2),
-        .channel = SENSOR_TIMER_CHANNEL_0,
-    };
-	sensor_timer_init(timer0);
-	ret = sensor_timer_set_alarm(timer0, &alarm_cfg);
-	LOG_INF("Number of channels for RTC2: %d", counter_get_num_of_channels(timer0));
-	LOG_INF("Frequency for RTC2: %d", counter_get_frequency(timer0));
-	LOG_INF("Max top value: %d", counter_get_max_top_value(timer0));
-	LOG_INF("Top value: %d", counter_get_top_value(timer0));
-	float max_seconds = (float)counter_get_max_top_value(timer0)/counter_get_frequency(timer0);
-	LOG_INF("Max seconds: %f", max_seconds);
-	LOG_INF("Max Hours: %f", (max_seconds / 3600));
-	// init_lora_ble();
+	sensor_scheduling_cfg_t radio_schedule = {
+		.id = SENSOR_SCHEDULING_ID_RADIO,
+		.frequency_seconds = MINUTES_TO_SECONDS(5)
+	};
+
+	sensor_scheduling_cfg_t sensor1_schedule = {
+		.id = SENSOR_SCHEDULING_ID_SENSOR1,
+		.frequency_seconds = MINUTES_TO_SECONDS(5)
+	};
+
+	sensor_scheduling_cfg_t sensor2_schedule = {
+		.id = SENSOR_SCHEDULING_ID_SENSOR2,
+		.frequency_seconds = MINUTES_TO_SECONDS(5)
+	};
+
+	ret = sensor_scheduling_init(timer0);
+	init_lora_ble();
+	ret = sensor_scheduling_add_schedule(&sensor1_schedule);
+	ret = sensor_scheduling_add_schedule(&sensor2_schedule);
+	ret = sensor_scheduling_add_schedule(&radio_schedule);
+	sensor1_schedule.is_triggered = 1;
+	sensor2_schedule.is_triggered = 1;
+	radio_schedule.is_triggered = 1;
+	
 	while (1) 
 	{
-		// send_packet();
-		LOG_INF("Timer seconds: %d", sensor_timer_get_current_seconds(timer0));
-		LOG_INF("Timer total seconds: %d", sensor_timer_get_total_seconds(timer0));
-		k_sleep(K_SECONDS(1));
+		if(sensor1_schedule.is_triggered)
+		{
+			LOG_INF("Sensor 1 schedule triggered");
+			sensor_scheduling_reset_schedule(&sensor1_schedule);
+		}
+		if(sensor2_schedule.is_triggered)
+		{
+			LOG_INF("Sensor 2 schedule triggered");
+			sensor_scheduling_reset_schedule(&sensor2_schedule);
+		}
+		if(radio_schedule.is_triggered)
+		{
+			LOG_INF("Radio schedule triggered");
+			send_packet();
+			sensor_scheduling_reset_schedule(&radio_schedule);
+		}
+		k_msleep(100);
 	}
 	return 0;
 }

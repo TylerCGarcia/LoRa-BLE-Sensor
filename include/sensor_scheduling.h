@@ -38,12 +38,37 @@ typedef struct {
 
 } sensor_scheduling_cfg_t;
 
+/**
+ * @brief Initialize the sensor scheduling module
+ * 
+ * @param timer The timer device to use for scheduling
+ * @return int 0 on success, negative error code on failure
+ */
 int sensor_scheduling_init(const struct device *timer);
 
+/**
+ * @brief Add a schedule to the sensor scheduling module
+ * 
+ * @param schedule The schedule to add
+ * @return int 0 on success, negative error code on failure
+ */
 int sensor_scheduling_add_schedule(sensor_scheduling_cfg_t *schedule);
 
+/**
+ * @brief Remove a schedule from the sensor scheduling module
+ * 
+ * @param schedule The schedule to remove
+ * @return int 0 on success, negative error code on failure
+ */
 int sensor_scheduling_remove_schedule(sensor_scheduling_cfg_t *schedule);
 
+/**
+ * @brief Reset a schedule in the sensor scheduling module. This will set the alarm to trigger at the given frequency from the last event time.
+ * Triggering the next event based on the last event time keeps the schedule from drifting.
+ * 
+ * @param schedule The schedule to reset
+ * @return int 0 on success, negative error code on failure
+ */
 int sensor_scheduling_reset_schedule(sensor_scheduling_cfg_t *schedule);
 
 #endif

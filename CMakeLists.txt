@@ -33,4 +33,5 @@ target_sources(app PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/src/ble_lorawan_service.c
     ${CMAKE_CURRENT_SOURCE_DIR}/src/sensor_nvs.c
     ${CMAKE_CURRENT_SOURCE_DIR}/src/sensor_timer.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/sensor_scheduling.c
 )
