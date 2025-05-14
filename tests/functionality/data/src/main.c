@@ -141,3 +141,6 @@ ZTEST(data, test_sensor_data_read)
 }
 
 
+
+
+

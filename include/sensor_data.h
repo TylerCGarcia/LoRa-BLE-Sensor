@@ -17,23 +17,22 @@
 #include <stddef.h>
 #include <stdint.h>
 
+typedef enum sensor_data_type {
+    DATA_TYPE_UINT8,
+    DATA_TYPE_UINT16,
+    DATA_TYPE_UINT32,
+    DATA_TYPE_FLOAT,
+    DATA_TYPE_STRING,
+    DATA_TYPE_BOOLEAN,
+    DATA_TYPE_LIMIT
+};
+
 typedef struct {
     /* Sensor id to use for the sensor. */
     enum sensor_id id;
     /* Power id to use for the sensor. */
     enum sensor_power_id power_id;
 } sensor_data_t;
-
-typedef struct {
-    /* Buffer to store the sensor data. */
-    void *buffer;
-    /* Timestamp of the data. */
-    uint32_t timestamp;
-    /* Size of the buffer. */
-    size_t buffer_size;
-    /* Number of samples in the buffer. */
-    size_t num_samples;
-} sensor_data_buffer_t;
 
 /**
  * @brief Setup the sensor data. If the sensor chosen has continuous power, the power will be turned on when the sensor is setup. If not 
@@ -54,5 +53,13 @@ int sensor_data_setup(sensor_data_t *sensor_data, enum sensor_types type, enum s
  * @return int 0 if successful, -1 if failed.
  */
 int sensor_data_read(sensor_data_t *sensor_data, uint32_t timestamp);
+
+// /**
+//  * @brief Get the sensor data buffer.
+//  * 
+//  * @param sensor_data The sensor data to get the buffer from.
+//  * @return sensor_data_buffer_t* The buffer.
+//  */
+// sensor_data_buffer_t *sensor_data_get_buffer(sensor_data_t *sensor_data);
 
 #endif

@@ -12,6 +12,8 @@ typedef struct {
     uint8_t is_sensor_power_initialized;
     /* 1 if the power to sensor should always be on. 0 if only turned on when data is being read. */
     uint8_t is_sensor_power_continuous;
+    // /* Type of data in the buffer. */
+    // enum sensor_data_type data_type;
 } sensor_data_config_t;
 
 /* Sensor data configurations. */

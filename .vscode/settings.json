@@ -144,6 +144,7 @@
         "functional": "c",
         "sensor_scheduling.h": "c",
         "sensor_reading.h": "c",
-        "sensor_power_fakes.h": "c"
+        "sensor_power_fakes.h": "c",
+        "stddef.h": "c"
     }
 }
