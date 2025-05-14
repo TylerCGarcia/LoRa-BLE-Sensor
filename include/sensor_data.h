@@ -17,13 +17,14 @@
 #include <stddef.h>
 #include <stdint.h>
 
+/**
+ * @brief Types of data that can be stored in the sensor data buffer.
+ */
 typedef enum sensor_data_type {
     DATA_TYPE_UINT8,
     DATA_TYPE_UINT16,
     DATA_TYPE_UINT32,
     DATA_TYPE_FLOAT,
-    DATA_TYPE_STRING,
-    DATA_TYPE_BOOLEAN,
     DATA_TYPE_LIMIT
 };
 

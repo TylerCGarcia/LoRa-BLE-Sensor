@@ -3,6 +3,14 @@
 #include "sensor_power.h"
 #include <stdint.h>
 
+
+// typedef struct data_type_info{
+//     /* Type of data in the buffer. */
+//     enum sensor_data_type data_type;
+//     /* Size of the data in the buffer. */
+//     size_t data_size;
+// } data_type_info_t;
+
 typedef struct {
     /* Power id to use for the sensor. */
     enum sensor_types type;
