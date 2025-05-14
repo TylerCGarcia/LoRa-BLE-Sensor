@@ -224,12 +224,12 @@ int main(void)
 
 	sensor_scheduling_cfg_t sensor1_schedule = {
 		.id = SENSOR_SCHEDULING_ID_SENSOR1,
-		.frequency_seconds = MINUTES_TO_SECONDS(5)
+		.frequency_seconds = MINUTES_TO_SECONDS(1)
 	};
 
 	sensor_scheduling_cfg_t sensor2_schedule = {
 		.id = SENSOR_SCHEDULING_ID_SENSOR2,
-		.frequency_seconds = MINUTES_TO_SECONDS(5)
+		.frequency_seconds = MINUTES_TO_SECONDS(3)
 	};
 
 	ret = sensor_scheduling_init(timer0);
