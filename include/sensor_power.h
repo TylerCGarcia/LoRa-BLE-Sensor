@@ -17,19 +17,6 @@
 #include <zephyr/drivers/gpio.h>
 #include <zephyr/drivers/adc.h>
 
-/**
- * @brief Voltage levels for sensor power
- */
-typedef enum sensor_voltage {
-    SENSOR_VOLTAGE_OFF = 0,
-    SENSOR_VOLTAGE_3V3,
-    SENSOR_VOLTAGE_5V,
-    SENSOR_VOLTAGE_6V,
-    SENSOR_VOLTAGE_12V,
-    SENSOR_VOLTAGE_24V,
-    SENSOR_VOLTAGE_INDEX_LIMIT
-};
-
 #define VOLTAGE_NAME_LENGTH         20
 #define OUTUT_READ_DIVIDER_HIGH     100
 #define OUTUT_READ_DIVIDER_LOW      13

@@ -1,7 +1,7 @@
 /**
  * @file sensor_id.h
  * @author Tyler Garcia
- * @brief This is a library to keep track of sensor ids and sensor power ids.
+ * @brief This is a library to keep track of sensor ids and sensor power ids. As well as the configuration for sensors and sensor power.
  * This is to keep track of how many power configurations or sensor configurations a 
  * specific board may have.
  * @version 0.1
@@ -15,6 +15,31 @@
 #define SENSOR_ID_H
 
 /**
+ * @brief Sensor identifiers
+ */
+typedef enum sensor_id {
+    SENSOR_1 = 0,
+    SENSOR_2,
+    SENSOR_INDEX_LIMIT // This is used to get the size of the enum
+};
+
+/**
+ * @brief Types of sensors that can be configured.
+ */
+typedef enum sensor_types {
+    /* No sensor configuration is set. */
+    NULL_SENSOR = 0,
+    /* Sensor is set to read from voltage_read pin. */
+    VOLTAGE_SENSOR,
+    /* Sensor is set to read from current_read pin. */
+    CURRENT_SENSOR,
+    /* Sensor is set to read low pulses from d1 pin. */
+    PULSE_SENSOR,
+    /* Used to denote size of enum. */
+    SENSOR_TYPE_LIMIT
+};
+
+/**
  * @brief Sensor power identifiers
  */
 typedef enum sensor_power_id {
@@ -24,12 +49,16 @@ typedef enum sensor_power_id {
 };
 
 /**
- * @brief Sensor identifiers
+ * @brief Voltage levels for sensor power
  */
-typedef enum sensor_id {
-    SENSOR_1 = 0,
-    SENSOR_2,
-    SENSOR_INDEX_LIMIT // This is used to get the size of the enum
+typedef enum sensor_voltage {
+    SENSOR_VOLTAGE_OFF = 0,
+    SENSOR_VOLTAGE_3V3,
+    SENSOR_VOLTAGE_5V,
+    SENSOR_VOLTAGE_6V,
+    SENSOR_VOLTAGE_12V,
+    SENSOR_VOLTAGE_24V,
+    SENSOR_VOLTAGE_INDEX_LIMIT
 };
 
 #endif

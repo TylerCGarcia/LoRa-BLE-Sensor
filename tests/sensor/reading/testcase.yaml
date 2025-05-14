@@ -1,9 +1,5 @@
 tests:  
   sensor.reading:
-    tags:    
-      - drivers
-      - gpio    
-      - adc
     harness: ztest
     platform_allow:
       - native_sim

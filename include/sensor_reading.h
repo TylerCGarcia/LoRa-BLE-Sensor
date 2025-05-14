@@ -18,22 +18,6 @@
 #include <zephyr/drivers/adc.h>
 
 /**
- * @brief Regulator identifiers
- */
-typedef enum sensor_types {
-    /* No sensor configuration is set. */
-    NULL_SENSOR = 0,
-    /* Sensor is set to read from voltage_read pin. */
-    VOLTAGE_SENSOR,
-    /* Sensor is set to read from current_read pin. */
-    CURRENT_SENSOR,
-    /* Sensor is set to read low pulses from d1 pin. */
-    PULSE_SENSOR,
-    /* Used to denote size of enum. */
-    SENSOR_TYPE_LIMIT
-};
-
-/**
  * @brief Sensor data pin configuration
  */
 typedef struct {
