@@ -227,7 +227,7 @@ static void data_read_loop(sensor_data_t *sensor_data, loop_data_t *loop_data)
  * @brief Test that multiple readings can be read from the pulse sensor
  * 
  */
-ZTEST(data, test_sensor_data_read_multiple_samples)
+ZTEST(data, test_sensor_data_get_latest_reading_two_samples)
 {
     get_sensor_pulse_count_fake.return_val = 100;
     uint32_t timestamp = 1000;
@@ -243,7 +243,30 @@ ZTEST(data, test_sensor_data_read_multiple_samples)
     ret = sensor_data_read(&sensor1_data, timestamp2);
     zassert_ok(ret, "Sensor data read 2 failed");
     zassert_equal(get_sensor_pulse_count_fake.call_count, 2, "Get sensor pulse count should be called");
+    // Get latest reading
+    int value;
+    uint32_t read_timestamp;
+    ret = sensor_data_get_latest_reading(&sensor1_data, &value, &read_timestamp);
+    zassert_ok(ret, "Failed to get latest reading");
+    zassert_equal(value, 100, "Expected pulse count is %d, actual is %d", 100, value);
+    zassert_equal(read_timestamp, timestamp, "Expected timestamp is %d, actual is %d", timestamp, read_timestamp);
+    
+    ret = sensor_data_get_latest_reading(&sensor1_data, &value, &read_timestamp);
+    zassert_ok(ret, "Failed to get latest reading");
+    zassert_equal(value, 130, "Expected pulse count is %d, actual is %d", 130, value);
+    zassert_equal(read_timestamp, timestamp2, "Expected timestamp is %d, actual is %d", timestamp2, read_timestamp);
+}
 
+/**
+ * @brief Test that the stores multiple samples correctly
+ * 
+ */
+ZTEST(data, test_sensor_data_read_multiple_samples)
+{
+    get_sensor_pulse_count_fake.return_val = 100;
+    uint32_t timestamp = 1000;
+    int ret = sensor_data_setup(&sensor1_data, PULSE_SENSOR, SENSOR_VOLTAGE_3V3);
+    zassert_ok(ret, "Sensor data setup failed");
     loop_data_t loop_data = {
         .initial_timestamp = 1000,
         .num_samples = 2,
@@ -255,31 +278,6 @@ ZTEST(data, test_sensor_data_read_multiple_samples)
     ((int *)loop_data.fake_return_val)[1] = 180;
     data_read_loop(&sensor1_data, &loop_data);
 }
-
-// /**
-//  * @brief Test that the stores multiple samples correctly
-//  * 
-//  */
-// ZTEST(data, test_sensor_data_read_multiple_samples)
-// {
-//     get_sensor_pulse_count_fake.return_val = 100;
-//     uint32_t timestamp = 1000;
-//     int ret = sensor_data_setup(&sensor1_data, PULSE_SENSOR, SENSOR_VOLTAGE_3V3);
-//     zassert_ok(ret, "Sensor data setup failed");
-//     ret = sensor_data_read(&sensor1_data, timestamp);
-//     zassert_ok(ret, "Sensor data read failed");
-//     get_sensor_pulse_count_fake.return_val = 130;
-//     uint32_t timestamp2 = 1500;
-//     ret = sensor_data_read(&sensor1_data, timestamp2);
-//     zassert_ok(ret, "Sensor data read failed");
-//     zassert_equal(sensor1_data.num_samples, 2, "Number of samples should be 2");
-
-//     int *pulse_counts = (int *)sensor1_data.data_buffer;
-//     zassert_equal(pulse_counts[0], 100, "Buffer size should be correct");
-//     zassert_equal(sensor1_data.timestamp_buffer[0], timestamp, "Timestamp should be correct");
-//     zassert_equal(pulse_counts[1], 130, "Buffer size should be correct");
-//     zassert_equal(sensor1_data.timestamp_buffer[1], timestamp2, "Timestamp should be correct");
-// }
 
 // /**
 //  * @brief Test that sensor data clear

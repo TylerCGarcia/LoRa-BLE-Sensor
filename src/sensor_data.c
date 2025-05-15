@@ -162,6 +162,11 @@ int sensor_data_get_latest_reading(sensor_data_t *sensor_data, void *value, uint
 {
     uint32_t size;
     int ret;
+    // Get the size of data in the ring buffer
+    uint32_t data_size = ring_buf_size_get(&sensor_data->data_ring_buf);
+    LOG_DBG("Ring Buffer Data size: %d", data_size);
+    uint32_t timestamp_size = ring_buf_size_get(&sensor_data->timestamp_ring_buf);
+    LOG_DBG("Ring Buffer Timestamp size: %d", timestamp_size);
     // Get the latest timestamp
     size = ring_buf_get(&sensor_data->timestamp_ring_buf, (uint8_t *)timestamp, sensor_data->timestamp_size);
     if (size != sensor_data->timestamp_size) {
@@ -171,6 +176,8 @@ int sensor_data_get_latest_reading(sensor_data_t *sensor_data, void *value, uint
 
     // Get the latest data
     if (sensor_data_config[sensor_data->id].type == PULSE_SENSOR) {
+        // Peek at the latest timestamp
+    // size = ring_buf_peek(&sensor_data->timestamp_ring_buf, (uint8_t *)timestamp, sensor_data->timestamp_size, timestamp_size - sensor_data->timestamp_size);  // Offset to get the last entry
         // uint8_t data_bytes[sensor_data->data_size];
         size = ring_buf_get(&sensor_data->data_ring_buf, (uint8_t *)value,  sizeof(int));        
         if (size != sensor_data->data_size) {
