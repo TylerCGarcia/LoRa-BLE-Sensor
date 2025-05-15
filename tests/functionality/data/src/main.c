@@ -253,8 +253,6 @@ ZTEST(data, test_sensor_data_read_voltage_sensor)
  */
 ZTEST(data, test_sensor_data_read_multiple_voltage_samples)
 {
-    get_sensor_voltage_reading_fake.return_val = 5.3;
-    uint32_t timestamp = 1000;
     int ret = sensor_data_setup(&sensor1_data, VOLTAGE_SENSOR, SENSOR_VOLTAGE_3V3);
     loop_data_t loop_data = {
         .initial_timestamp = 1000,
@@ -264,7 +262,7 @@ ZTEST(data, test_sensor_data_read_multiple_voltage_samples)
     };
     loop_data.fake_return_val = (void *)k_malloc(loop_data.num_samples * sizeof(int));
     for (uint32_t i = 0; i < loop_data.num_samples; i++) {
-        ((float *)loop_data.fake_return_val)[i] = 5.3 + (i * 0.1);
+        ((float *)loop_data.fake_return_val)[i] = 1.0 + (i * 0.1);
     }
     zassert_ok(ret, "Sensor data setup failed");
     data_read_loop(&sensor1_data, &loop_data);
@@ -273,10 +271,10 @@ ZTEST(data, test_sensor_data_read_multiple_voltage_samples)
 }
 
 /**
- * @brief Test that the sensor_get_latest_reading returns the newest reading
+ * @brief Test that the sensor_get_latest_reading returns the newest reading for a PULSE_SENSOR
  * 
  */
-ZTEST(data, test_sensor_data_get_latest_reading)
+ZTEST(data, test_sensor_data_get_latest_reading_pulse_sensor)
 {
     int ret = sensor_data_setup(&sensor1_data, PULSE_SENSOR, SENSOR_VOLTAGE_3V3);
     zassert_ok(ret, "Sensor data setup failed");
@@ -297,8 +295,53 @@ ZTEST(data, test_sensor_data_get_latest_reading)
     uint32_t read_timestamp;
     // Get latest reading
     ret = sensor_data_get_latest_reading(&sensor1_data, &value, &read_timestamp);
+    int expected_value = ((int *)loop_data.fake_return_val)[loop_data.num_samples - 1];
     zassert_ok(ret, "Failed to get latest reading");
-    zassert_equal(value, 100, "Expected pulse count is %d, actual is %d", ((int *)loop_data.fake_return_val)[loop_data.num_samples - 1], value);
+    zassert_equal(value, expected_value, "Expected pulse count is %d, actual is %d", expected_value, value);
+}
+
+/**
+ * @brief Test that the sensor_get_latest_reading returns the newest reading for a VOLTAGE_SENSOR
+ * 
+ */
+ZTEST(data, test_sensor_data_get_latest_reading_voltage_sensor)
+{
+    int ret = sensor_data_setup(&sensor1_data, VOLTAGE_SENSOR, SENSOR_VOLTAGE_3V3);
+    zassert_ok(ret, "Sensor data setup failed");
+    loop_data_t loop_data = {
+        .initial_timestamp = 1000,
+        .num_samples = 15,
+        .reading_interval = 100,
+        .data_type = VOLTAGE_SENSOR,
+    };
+    loop_data.fake_return_val = (void *)k_malloc(loop_data.num_samples * sizeof(float));
+    for (uint32_t i = 0; i < loop_data.num_samples; i++) {
+        ((float *)loop_data.fake_return_val)[i] = 1.0 + (i * 0.1);
+    }
+    data_read_loop(&sensor1_data, &loop_data);
+    k_free(loop_data.fake_return_val);
+    // Get and verify the reading
+    float value;
+    uint32_t read_timestamp;
+    // Get latest reading
+    ret = sensor_data_get_latest_reading(&sensor1_data, &value, &read_timestamp);
+    float expected_value = ((float *)loop_data.fake_return_val)[loop_data.num_samples - 1];
+    zassert_ok(ret, "Failed to get latest reading");
+    zassert_equal(value, expected_value, "Expected voltage is %f, actual is %f", expected_value, value);
+}
+        
+/**
+ * @brief Test that the sensor_get_latest_reading fails when there is no data
+ * 
+ */
+ZTEST(data, test_sensor_data_get_latest_reading_fails_with_no_data)
+{
+    int ret = sensor_data_setup(&sensor1_data, PULSE_SENSOR, SENSOR_VOLTAGE_3V3);
+    zassert_ok(ret, "Sensor data setup failed");
+    int value;
+    uint32_t read_timestamp;
+    ret = sensor_data_get_latest_reading(&sensor1_data, &value, &read_timestamp);
+    zassert_not_ok(ret, "Expected get latest reading to fail");
 }
 
 /**
@@ -320,19 +363,3 @@ ZTEST(data, test_sensor_data_clear)
     zassert_equal(ring_buf_size_get(&sensor1_data.data_ring_buf), 0, "Data ring buffer should be empty");
     zassert_equal(ring_buf_size_get(&sensor1_data.timestamp_ring_buf), 0, "Timestamp ring buffer should be empty");
 }
-
-
-
-// /**
-//  * @brief Test that the sensor data can be cleared and new readings can be stored
-//  * 
-//  */
-// ZTEST(data, test_sensor_data_setup)
-// {
-//     int ret = sensor_data_setup(&sensor1_data, VOLTAGE_SENSOR, SENSOR_VOLTAGE_3V3);
-//     zassert_ok(ret, "Sensor data setup failed");
-//     ret = sensor_data_clear(&sensor1_data);
-//     zassert_ok(ret, "Sensor data clear failed");
-//     ret = sensor_data_setup(&sensor1_data, PULSE_SENSOR, SENSOR_VOLTAGE_3V3);
-//     zassert_ok(ret, "Sensor data setup failed");
-// }
