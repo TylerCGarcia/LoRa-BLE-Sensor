@@ -52,6 +52,8 @@ typedef struct {
     void *latest_data;
     /* Latest timestamp. */
     uint32_t latest_timestamp;
+    /* Number of samples in the buffer. */
+    uint32_t num_samples;
 } sensor_data_t;
 
 /**
@@ -81,14 +83,14 @@ int sensor_data_read(sensor_data_t *sensor_data, uint32_t timestamp);
  */
 int sensor_data_print_data(sensor_data_t *sensor_data);
 
-/**
- * @brief Get the latest reading from the sensor data.
- * 
- * @param sensor_data The sensor data to get the latest reading from.
- * @param value The value to store the latest reading in.
- * @param timestamp The timestamp to store the latest reading in.
- */
-int sensor_data_get_latest_reading(sensor_data_t *sensor_data, void *value, uint32_t *timestamp);
+// /**
+//  * @brief Get the latest reading from the sensor data.
+//  * 
+//  * @param sensor_data The sensor data to get the latest reading from.
+//  * @param value The value to store the latest reading in.
+//  * @param timestamp The timestamp to store the latest reading in.
+//  */
+// int sensor_data_get_latest_reading(sensor_data_t *sensor_data, void *value, uint32_t *timestamp);
 
 /**
  * @brief Clear the sensor data.
