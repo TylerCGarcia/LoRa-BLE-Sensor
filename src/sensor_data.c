@@ -25,6 +25,8 @@ typedef struct {
     enum sensor_voltage voltage_enum;
     /* 1 if the power to sensor should always be on. 0 if only turned on when data is being read. */
     uint8_t is_sensor_power_continuous;
+    /* 1 if the sensor is setup. 0 if the sensor is not setup. */
+    uint8_t is_sensor_setup;
     // /* Type of data in the buffer. */
     // enum sensor_data_type data_type;
 } sensor_data_config_t;
@@ -108,17 +110,16 @@ int sensor_data_setup(sensor_data_t *sensor_data, enum sensor_types type, enum s
     }
 
     sensor_data->data_ring_buf.buffer = k_malloc(sensor_data->data_size * sensor_data->max_samples);
-    // sensor_data->timestamp_ring_buf.buffer = malloc(sensor_data->timestamp_size * sensor_data->max_samples);
+    sensor_data->timestamp_ring_buf.buffer = k_malloc(sensor_data->timestamp_size * sensor_data->max_samples);
 
     ring_buf_init(&sensor_data->data_ring_buf, sensor_data->data_size, sensor_data->data_ring_buf.buffer);
-    // ring_buf_init(&sensor_data->timestamp_ring_buf, sensor_data->timestamp_size, sensor_data->timestamp_buffer);
+    ring_buf_init(&sensor_data->timestamp_ring_buf, sensor_data->timestamp_size, sensor_data->timestamp_ring_buf.buffer);
+    sensor_data_config[sensor_data->id].is_sensor_setup = 1;
     return 0;
 }
 
 int sensor_data_read(sensor_data_t *sensor_data, uint32_t timestamp)
 {
-    // ring_buf_init(&sensor_data->data_ring_buf, sensor_data->data_size, sensor_data->data_ring_buf.buffer);
-    // ring_buf_init(&sensor_data->timestamp_ring_buf, sensor_data->timestamp_size, sensor_data->timestamp_buffer);
     if (&sensor_data->data_ring_buf == NULL || &sensor_data->timestamp_ring_buf == NULL) {
         LOG_ERR("Ring buffers not initialized");
         return -1;  // Ring buffers not initialized
@@ -126,15 +127,13 @@ int sensor_data_read(sensor_data_t *sensor_data, uint32_t timestamp)
     int ret;
     if(sensor_data_config[sensor_data->id].type == PULSE_SENSOR)
     {
-        // int pulse_count = get_sensor_pulse_count(sensor_reading_configs[sensor_data->id]);
+        int pulse_count = get_sensor_pulse_count(sensor_reading_configs[sensor_data->id]);
         
-        uint8_t bytes[sensor_data->data_size];
+        // uint8_t bytes[sensor_data->data_size];
         // memcpy(bytes, &pulse_count, 4);
-        // Put data into ring buffer
-        ret = ring_buf_put(&sensor_data->data_ring_buf, bytes, 4);
-        // ret = ring_buf_put(&sensor_data->data_ring_buf, bytes, sensor_data->data_size);
-        // int pulse_count = 100;
-        // ret = ring_buf_put(&sensor_data->data_ring_buf, (uint8_t *)&pulse_count, sizeof(int));
+        // // Put data into ring buffer
+        // ret = ring_buf_put(&sensor_data->data_ring_buf, bytes, 4);
+        ret = ring_buf_put(&sensor_data->data_ring_buf, (uint8_t *)&pulse_count, sizeof(int));
         if (ret != sensor_data->data_size) {
             LOG_ERR("Failed to put data into data ring buffer");
             return -1;
@@ -157,16 +156,11 @@ int sensor_data_read(sensor_data_t *sensor_data, uint32_t timestamp)
     // uint8_t timestamp_bytes[sensor_data->timestamp_size];
     // memcpy(timestamp_bytes, &timestamp, sensor_data->timestamp_size);
     // ret = ring_buf_put(&sensor_data->timestamp_ring_buf, timestamp_bytes, sensor_data->timestamp_size);
-    // // ret = ring_buf_put(&sensor_data->timestamp_ring_buf, (uint8_t *)&timestamp, sizeof(uint32_t));
-    // if (ret != sensor_data->timestamp_size) {
-    //     LOG_ERR("Failed to put timestamp into timestamp ring buffer");
-    //     return -1;
-    // }
-    // ret = ring_buf_put_finish(&sensor_data->timestamp_ring_buf, sensor_data->timestamp_size);
-    // if (ret != 0) {
-    //     LOG_ERR("Failed to put timestamp into timestamp ring buffer");
-    //     return -1;
-    // }
+    ret = ring_buf_put(&sensor_data->timestamp_ring_buf, (uint8_t *)&timestamp, sizeof(uint32_t));
+    if (ret != sensor_data->timestamp_size) {
+        LOG_ERR("Failed to put timestamp into timestamp ring buffer");
+        return -1;
+    }
     return 0;
 }
 
@@ -174,36 +168,22 @@ int sensor_data_get_latest_reading(sensor_data_t *sensor_data, void *value, uint
 {
     uint32_t size;
     int ret;
-    uint8_t timestamp_bytes[sensor_data->timestamp_size];
     // Get the latest timestamp
-    size = ring_buf_get_claim(&sensor_data->timestamp_ring_buf, timestamp_bytes, sensor_data->timestamp_size);
+    size = ring_buf_get(&sensor_data->timestamp_ring_buf, (uint8_t *)timestamp, sensor_data->timestamp_size);
     if (size != sensor_data->timestamp_size) {
         LOG_ERR("Failed to get timestamp from timestamp ring buffer");
         return -1;
     }
-    ret = ring_buf_get_finish(&sensor_data->timestamp_ring_buf, sensor_data->timestamp_size);
-    if (ret != 0) {
-        LOG_ERR("Failed to get timestamp from timestamp ring buffer");
-        return -1;
-    }
-    memcpy(timestamp, timestamp_bytes, sensor_data->timestamp_size);
 
     // Get the latest data
     if (sensor_data_config[sensor_data->id].type == PULSE_SENSOR) {
-        uint8_t data_bytes[sensor_data->data_size];
-        size = ring_buf_get_claim(&sensor_data->data_ring_buf, data_bytes, sensor_data->data_size);
+        // uint8_t data_bytes[sensor_data->data_size];
+        size = ring_buf_get(&sensor_data->data_ring_buf, (uint8_t *)value,  sizeof(int));        
         if (size != sensor_data->data_size) {
             LOG_ERR("Failed to get data from data ring buffer");
             return -1;
         }
-        ret = ring_buf_get_finish(&sensor_data->data_ring_buf, sensor_data->data_size);
-        if (ret != 0) {
-            LOG_ERR("Failed to get data from data ring buffer");
-            return -1;
-        }
-        memcpy(value, data_bytes, sensor_data->data_size);
     }
-    // ... handle other sensor types ...
 
     return 0;
 }
@@ -211,19 +191,26 @@ int sensor_data_get_latest_reading(sensor_data_t *sensor_data, void *value, uint
 
 int sensor_data_clear(sensor_data_t *sensor_data)
 {
-    if (sensor_data->data_ring_buf.buffer != NULL) 
+    /* If the sensor is setup, clear the ring buffers and reset the ring buffers. */
+    if (sensor_data_config[sensor_data->id].is_sensor_setup == 1) 
     {
-        k_free(sensor_data->data_ring_buf.buffer);
-    }
-    // if (sensor_data->timestamp_ring_buf.buffer != NULL) {
-    //     k_free(sensor_data->timestamp_ring_buf.buffer);
-    // }
-    // if (&sensor_data->data_ring_buf != NULL) {
-    //     ring_buf_reset(&sensor_data->data_ring_buf);  // Note: removed & since it's a pointer
-    // }
+        if (sensor_data->data_ring_buf.buffer != NULL) 
+        {
+            k_free(sensor_data->data_ring_buf.buffer);
+        }
+        if (sensor_data->timestamp_ring_buf.buffer != NULL) {
+            k_free(sensor_data->timestamp_ring_buf.buffer);
+        }
+        if (&sensor_data->data_ring_buf != NULL) 
+        {
+            ring_buf_reset(&sensor_data->data_ring_buf);  // Note: removed & since it's a pointer
+        }
     
-    // if (&sensor_data->timestamp_ring_buf != NULL) {
-    //     ring_buf_reset(&sensor_data->timestamp_ring_buf);  // Note: removed & since it's a pointer
-    // }
+        if (&sensor_data->timestamp_ring_buf != NULL) 
+        {
+            ring_buf_reset(&sensor_data->timestamp_ring_buf);  // Note: removed & since it's a pointer
+        }
+        sensor_data_config[sensor_data->id].is_sensor_setup = 0;
+    }
     return 0;
 }

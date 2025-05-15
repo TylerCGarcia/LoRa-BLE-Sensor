@@ -183,26 +183,26 @@ ZTEST(data, test_sensor_data_read_pulse_sensor)
  * @brief Test that the sensor data read can store multiple samples
  * 
  */
-// ZTEST(data, test_sensor_data_get_latest_reading)
-// {
-//     get_sensor_pulse_count_fake.return_val = 100;
-//     uint32_t timestamp = 1000;
-//     int ret = sensor_data_setup(&sensor1_data, PULSE_SENSOR, SENSOR_VOLTAGE_3V3);
-//     zassert_ok(ret, "Sensor data setup failed");
+ZTEST(data, test_sensor_data_get_latest_reading)
+{
+    get_sensor_pulse_count_fake.return_val = 100;
+    uint32_t timestamp = 1000;
+    int ret = sensor_data_setup(&sensor1_data, PULSE_SENSOR, SENSOR_VOLTAGE_3V3);
+    zassert_ok(ret, "Sensor data setup failed");
     
-//     ret = sensor_data_read(&sensor1_data, timestamp);
-//     zassert_ok(ret, "Sensor data read failed");
+    ret = sensor_data_read(&sensor1_data, timestamp);
+    zassert_ok(ret, "Sensor data read failed");
 
-//     // Get and verify the reading
-//     int value;
-//     uint32_t read_timestamp;
+    // Get and verify the reading
+    int value;
+    uint32_t read_timestamp;
 
-//     // Get latest reading
-//     ret = sensor_data_get_latest_reading(&sensor1_data, &value, &read_timestamp);
-//     zassert_ok(ret, "Failed to get latest reading");
-//     zassert_equal(value, 100, "Expected pulse count is %d, actual is %d", 100, value);
-//     zassert_equal(read_timestamp, timestamp, "Expected timestamp is %d, actual is %d", timestamp, read_timestamp);
-// }
+    // Get latest reading
+    ret = sensor_data_get_latest_reading(&sensor1_data, &value, &read_timestamp);
+    zassert_ok(ret, "Failed to get latest reading");
+    zassert_equal(value, 100, "Expected pulse count is %d, actual is %d", 100, value);
+    zassert_equal(read_timestamp, timestamp, "Expected timestamp is %d, actual is %d", timestamp, read_timestamp);
+}
 
 // /**
 //  * @brief Test that the sensor can be read from the pulse sensor
