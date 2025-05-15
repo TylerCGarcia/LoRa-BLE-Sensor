@@ -6,7 +6,7 @@
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
 
-LOG_MODULE_REGISTER(sensor_data, LOG_LEVEL_DBG);
+LOG_MODULE_REGISTER(sensor_data, LOG_LEVEL_INF);
 
 typedef struct {
     /* Power id to use for the sensor. */
@@ -190,7 +190,11 @@ int sensor_data_read(sensor_data_t *sensor_data, uint32_t timestamp)
         }
         case CURRENT_SENSOR:
         {
-            // sensor_data->buffer = get_sensor_current_reading(sensor_data);
+            float current = get_sensor_current_reading(sensor_reading_configs[sensor_data->id]);
+            ret = put_data_into_ring_buffer(sensor_data, &current);
+            if (ret < 0) {
+                return -1;
+            }
             break;
         }
     }
@@ -340,7 +344,6 @@ int sensor_data_get_latest_reading(sensor_data_t *sensor_data, void *value, uint
 
     return 0;
 }
-
 
 int sensor_data_clear(sensor_data_t *sensor_data)
 {

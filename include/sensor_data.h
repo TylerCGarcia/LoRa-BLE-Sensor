@@ -21,7 +21,8 @@
 #define MAX_DATA_BUFFER_SIZE 100
 
 /**
- * @brief Types of data that can be stored in the sensor data buffer.
+ * @brief Types of data that can be stored in the sensor data buffer. Currently unused, plans to keep it
+ * for future use to potentially store in sensor_data_t struct.
  */
 typedef enum sensor_data_type {
     DATA_TYPE_INT,
@@ -37,23 +38,20 @@ typedef struct {
     enum sensor_id id;
     /* Power id to use for the sensor. */
     enum sensor_power_id power_id;
-    /* Type of data in the buffer. */
-    enum sensor_data_type data_type;
     /* Ring buffer for sensor data. */
     struct ring_buf data_ring_buf;
     /* Ring buffer for timestamps. */
     struct ring_buf timestamp_ring_buf;
     /* Maximum number of samples to store in the buffer. */
     size_t max_samples;
-    /* Buffer to store the sensor data. */
-    void *data_buffer; // need to allocate memory for this
-    /* Buffer to store the timestamps. */
-    uint32_t *timestamp_buffer;
     /* Size of the data in the buffer. */
     size_t data_size;
     /* Size of the timestamp in the buffer. */
     size_t timestamp_size;
-
+    /* Pointer to latest data. */
+    void *latest_data;
+    /* Latest timestamp. */
+    uint32_t latest_timestamp;
 } sensor_data_t;
 
 /**

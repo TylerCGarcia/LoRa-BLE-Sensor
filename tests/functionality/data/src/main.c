@@ -232,7 +232,7 @@ ZTEST(data, test_sensor_data_read_multiple_pulse_samples)
 }
 
 /**
- * @brief Test that the sensor can be read from the pulse sensor
+ * @brief Test that the sensor can be read from the voltage sensor
  * 
  */
 ZTEST(data, test_sensor_data_read_voltage_sensor)
@@ -263,6 +263,44 @@ ZTEST(data, test_sensor_data_read_multiple_voltage_samples)
     loop_data.fake_return_val = (void *)k_malloc(loop_data.num_samples * sizeof(int));
     for (uint32_t i = 0; i < loop_data.num_samples; i++) {
         ((float *)loop_data.fake_return_val)[i] = 1.0 + (i * 0.1);
+    }
+    zassert_ok(ret, "Sensor data setup failed");
+    data_read_loop(&sensor1_data, &loop_data);
+    sensor_data_print_data(&sensor1_data);
+    zassert_ok(ret, "Sensor data print failed");
+}
+
+/**
+ * @brief Test that the sensor can be read from the current sensor
+ * 
+ */
+ZTEST(data, test_sensor_data_read_current_sensor)
+{
+    get_sensor_current_reading_fake.return_val = 0.5;
+    uint32_t timestamp = 1000;
+    int ret = sensor_data_setup(&sensor1_data, CURRENT_SENSOR, SENSOR_VOLTAGE_3V3);
+    zassert_ok(ret, "Sensor data setup failed");
+    ret = sensor_data_read(&sensor1_data, timestamp);
+    zassert_ok(ret, "Sensor data read failed");
+    zassert_equal(get_sensor_current_reading_fake.call_count, 1, "Sensor data get latest reading should be called");
+}
+
+/**
+ * @brief Test that the sensor can store multiple voltage samples
+ * 
+ */
+ZTEST(data, test_sensor_data_read_multiple_current_samples)
+{
+    int ret = sensor_data_setup(&sensor1_data, CURRENT_SENSOR, SENSOR_VOLTAGE_3V3);
+    loop_data_t loop_data = {
+        .initial_timestamp = 5000,
+        .num_samples = 15,
+        .reading_interval = 100,
+        .data_type = CURRENT_SENSOR,
+    };
+    loop_data.fake_return_val = (void *)k_malloc(loop_data.num_samples * sizeof(int));
+    for (uint32_t i = 0; i < loop_data.num_samples; i++) {
+        ((float *)loop_data.fake_return_val)[i] = 5.0 + (i * 0.1);
     }
     zassert_ok(ret, "Sensor data setup failed");
     data_read_loop(&sensor1_data, &loop_data);
