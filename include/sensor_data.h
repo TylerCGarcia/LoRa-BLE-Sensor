@@ -53,8 +53,6 @@ typedef struct {
     size_t data_size;
     /* Size of the timestamp in the buffer. */
     size_t timestamp_size;
-    /* Number of samples in the buffer. */
-    size_t num_samples;
 
 } sensor_data_t;
 

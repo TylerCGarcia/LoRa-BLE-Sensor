@@ -16,7 +16,7 @@
 
 #include <zephyr/logging/log.h>
 
-LOG_MODULE_REGISTER(sensor_data, LOG_LEVEL_DBG);
+LOG_MODULE_REGISTER(sensor_data, LOG_LEVEL_INF);
 
 typedef struct {
     /* Power id to use for the sensor. */
@@ -127,8 +127,9 @@ static int put_data_into_ring_buffer(sensor_data_t *sensor_data, void *data)
     uint32_t data_size = ring_buf_size_get(&sensor_data->data_ring_buf);
     if (data_size >= (sensor_data->data_size * sensor_data->max_samples))
     {
+        uint8_t temp_data[sensor_data->data_size];
         LOG_DBG("Data ring buffer is full, removing oldest data");
-        ring_buf_get(&sensor_data->data_ring_buf, (uint8_t *)data, sensor_data->data_size);
+        ring_buf_get(&sensor_data->data_ring_buf, (uint8_t *)temp_data, sensor_data->data_size);
     }
     // Put data into ring buffer
     ret = ring_buf_put(&sensor_data->data_ring_buf, (uint8_t *)data, sensor_data->data_size);
@@ -146,11 +147,12 @@ static int put_timestamp_into_ring_buffer(sensor_data_t *sensor_data, uint32_t t
     uint32_t timestamp_size = ring_buf_size_get(&sensor_data->timestamp_ring_buf);
     if (timestamp_size >= (sensor_data->timestamp_size * sensor_data->max_samples))
     {
+        uint8_t temp_timestamp[sensor_data->timestamp_size];
         LOG_DBG("Timestamp ring buffer is full, removing oldest data");
-        ring_buf_get(&sensor_data->timestamp_ring_buf, (uint8_t *)&timestamp, sensor_data->timestamp_size);
+        ring_buf_get(&sensor_data->timestamp_ring_buf, (uint8_t *)temp_timestamp, sensor_data->timestamp_size);
     }
     // Put timestamp into ring buffer
-    ret = ring_buf_put(&sensor_data->timestamp_ring_buf, (uint8_t *)&timestamp, sensor_data->data_size);
+    ret = ring_buf_put(&sensor_data->timestamp_ring_buf, (uint8_t *)&timestamp, sensor_data->timestamp_size);
     if (ret < 0) {
         LOG_ERR("Failed to put timestamp into timestamp ring buffer");
         return -1;
@@ -167,21 +169,31 @@ int sensor_data_read(sensor_data_t *sensor_data, uint32_t timestamp)
     uint32_t data_size = ring_buf_size_get(&sensor_data->data_ring_buf);
     // uint32_t timestamp_size = ring_buf_size_get(&sensor_data->timestamp_ring_buf);
     int ret;
-    if(sensor_data_config[sensor_data->id].type == PULSE_SENSOR)
+    switch(sensor_data_config[sensor_data->id].type)
     {
-        int pulse_count = get_sensor_pulse_count(sensor_reading_configs[sensor_data->id]);
-        ret = put_data_into_ring_buffer(sensor_data, &pulse_count);
-        if (ret < 0) {
-            return -1;
+        case PULSE_SENSOR:
+        {
+            int pulse_count = get_sensor_pulse_count(sensor_reading_configs[sensor_data->id]);
+            ret = put_data_into_ring_buffer(sensor_data, &pulse_count);
+            if (ret < 0) {
+                return -1;
+            }
+            break;
         }
-    }
-    else if(sensor_data_config[sensor_data->id].type == VOLTAGE_SENSOR)
-    {
-        // sensor_data->buffer = get_sensor_voltage_reading(sensor_data);
-    }
-    else if(sensor_data_config[sensor_data->id].type == CURRENT_SENSOR)
-    {
-        // sensor_data->buffer = get_sensor_current_reading(sensor_data);
+        case VOLTAGE_SENSOR:
+        {
+            float voltage = get_sensor_voltage_reading(sensor_reading_configs[sensor_data->id]);
+            ret = put_data_into_ring_buffer(sensor_data, &voltage);
+            if (ret < 0) {
+                return -1;
+            }
+            break;
+        }
+        case CURRENT_SENSOR:
+        {
+            // sensor_data->buffer = get_sensor_current_reading(sensor_data);
+            break;
+        }
     }
     ret = put_timestamp_into_ring_buffer(sensor_data, timestamp);
     if (ret < 0) {
@@ -221,14 +233,22 @@ int sensor_data_print_data(sensor_data_t *sensor_data)
             LOG_ERR("Failed to read timestamp from ring buffer");
             return -1;
         }
-        
+        uint32_t timestamp;
+        memcpy(&timestamp, temp_timestamp, sensor_data->timestamp_size);
         // Print the data based on sensor type
-        if (sensor_data_config[sensor_data->id].type == PULSE_SENSOR) {
-            int pulse_count;
-            memcpy(&pulse_count, temp_data, sensor_data->data_size);
-            uint32_t timestamp;
-            memcpy(&timestamp, temp_timestamp, sensor_data->timestamp_size);
-            LOG_INF("Sample %d: Pulse Count = %d, Timestamp = %u", i, pulse_count, timestamp);
+        switch (sensor_data_config[sensor_data->id].type) {
+            case PULSE_SENSOR:
+                int pulse_count;
+                memcpy(&pulse_count, temp_data, sensor_data->data_size);
+                LOG_INF("Sample %d: Pulse Count = %d, Timestamp = %u", i, pulse_count, timestamp);
+                break;
+            case VOLTAGE_SENSOR:
+                float voltage;
+                memcpy(&voltage, temp_data, sensor_data->data_size);
+                LOG_INF("Sample %d: Voltage = %f, Timestamp = %u", i, voltage, timestamp);
+                break;
+            default:
+                break;
         }
         
         // Put the data back
@@ -248,6 +268,7 @@ int sensor_data_print_data(sensor_data_t *sensor_data)
     
     return 0;
 }
+
 int sensor_data_get_latest_reading(sensor_data_t *sensor_data, void *value, uint32_t *timestamp) 
 {
     uint32_t size;
