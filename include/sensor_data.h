@@ -16,6 +16,9 @@
 #include "sensor_id.h"
 #include <stddef.h>
 #include <stdint.h>
+#include <zephyr/sys/ring_buffer.h>
+
+#define MAX_DATA_BUFFER_SIZE 100
 
 /**
  * @brief Types of data that can be stored in the sensor data buffer.
@@ -36,16 +39,22 @@ typedef struct {
     enum sensor_power_id power_id;
     /* Type of data in the buffer. */
     enum sensor_data_type data_type;
+    /* Ring buffer for sensor data. */
+    struct ring_buf data_ring_buf;
+    /* Ring buffer for timestamps. */
+    struct ring_buf timestamp_ring_buf;
     /* Maximum number of samples to store in the buffer. */
     size_t max_samples;
     /* Buffer to store the sensor data. */
-    void *data_buffer;
+    void *data_buffer; // need to allocate memory for this
     /* Buffer to store the timestamps. */
     uint32_t *timestamp_buffer;
-    /* Size of the buffer. */
-    size_t buffer_size;
+    // /* Size of the buffer. */
+    // size_t buffer_size;
     /* Size of the data in the buffer. */
     size_t data_size;
+    /* Size of the timestamp in the buffer. */
+    size_t timestamp_size;
     /* Number of samples in the buffer. */
     size_t num_samples;
 
@@ -70,6 +79,15 @@ int sensor_data_setup(sensor_data_t *sensor_data, enum sensor_types type, enum s
  * @return int 0 if successful, -1 if failed.
  */
 int sensor_data_read(sensor_data_t *sensor_data, uint32_t timestamp);
+
+/**
+ * @brief Get the latest reading from the sensor data.
+ * 
+ * @param sensor_data The sensor data to get the latest reading from.
+ * @param value The value to store the latest reading in.
+ * @param timestamp The timestamp to store the latest reading in.
+ */
+int sensor_data_get_latest_reading(sensor_data_t *sensor_data, void *value, uint32_t *timestamp);
 
 /**
  * @brief Clear the sensor data.
