@@ -214,12 +214,14 @@ typedef struct {
 
 static void data_read_loop(sensor_data_t *sensor_data, loop_data_t *loop_data)
 {
+    int ret;
     for (uint32_t i = 0; i < loop_data->num_samples; i++) {
         if (loop_data->data_type == PULSE_SENSOR) {
             get_sensor_pulse_count_fake.return_val = ((int *)loop_data->fake_return_val)[i];
         }
         uint32_t timestamp = loop_data->initial_timestamp + (i * loop_data->reading_interval);
-        sensor_data_read(sensor_data, timestamp);
+        ret = sensor_data_read(sensor_data, timestamp);
+        zassert_ok(ret, "Sensor data read failed");
     }
 }
 
@@ -269,14 +271,17 @@ ZTEST(data, test_sensor_data_read_multiple_samples)
     zassert_ok(ret, "Sensor data setup failed");
     loop_data_t loop_data = {
         .initial_timestamp = 1000,
-        .num_samples = 2,
-        .reading_interval = 500,
+        .num_samples = 15,
+        .reading_interval = 100,
         .data_type = PULSE_SENSOR,
     };
     loop_data.fake_return_val = (void *)malloc(loop_data.num_samples * sizeof(int));
-    ((int *)loop_data.fake_return_val)[0] = 130;
-    ((int *)loop_data.fake_return_val)[1] = 180;
+    for (uint32_t i = 0; i < loop_data.num_samples; i++) {
+        ((int *)loop_data.fake_return_val)[i] = 100 + (i * 10);
+    }
     data_read_loop(&sensor1_data, &loop_data);
+    sensor_data_print_data(&sensor1_data);
+    sensor_data_print_data(&sensor1_data);
 }
 
 // /**

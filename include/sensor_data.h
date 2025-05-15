@@ -49,8 +49,6 @@ typedef struct {
     void *data_buffer; // need to allocate memory for this
     /* Buffer to store the timestamps. */
     uint32_t *timestamp_buffer;
-    // /* Size of the buffer. */
-    // size_t buffer_size;
     /* Size of the data in the buffer. */
     size_t data_size;
     /* Size of the timestamp in the buffer. */
@@ -79,6 +77,13 @@ int sensor_data_setup(sensor_data_t *sensor_data, enum sensor_types type, enum s
  * @return int 0 if successful, -1 if failed.
  */
 int sensor_data_read(sensor_data_t *sensor_data, uint32_t timestamp);
+
+/**
+ * @brief Print the sensor data.
+ * 
+ * @param sensor_data The sensor data to print.
+ */
+int sensor_data_print_data(sensor_data_t *sensor_data);
 
 /**
  * @brief Get the latest reading from the sensor data.
