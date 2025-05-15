@@ -77,7 +77,7 @@ int sensor_data_setup(sensor_data_t *sensor_data, enum sensor_types type, enum s
 int sensor_data_read(sensor_data_t *sensor_data, uint32_t timestamp);
 
 /**
- * @brief Print the sensor data.
+ * @brief Print the sensor data from data and timestamp ring buffers. Displaying it from the oldest to newest.
  * 
  * @param sensor_data The sensor data to print.
  */

@@ -363,3 +363,37 @@ ZTEST(data, test_sensor_data_clear)
     zassert_equal(ring_buf_size_get(&sensor1_data.data_ring_buf), 0, "Data ring buffer should be empty");
     zassert_equal(ring_buf_size_get(&sensor1_data.timestamp_ring_buf), 0, "Timestamp ring buffer should be empty");
 }
+
+/**
+ * @brief Test that the sensor data can be cleared and new readings can be stored
+ * 
+ */
+ZTEST(data, test_sensor_data_clear_and_read_after_clear)
+{
+    get_sensor_pulse_count_fake.return_val = 100;
+    uint32_t timestamp = 1000;
+    int ret = sensor_data_setup(&sensor1_data, PULSE_SENSOR, SENSOR_VOLTAGE_3V3);
+    zassert_ok(ret, "Sensor data setup failed");
+    ret = sensor_data_read(&sensor1_data, timestamp);
+    zassert_ok(ret, "Sensor data read failed");
+    zassert_equal(ring_buf_size_get(&sensor1_data.data_ring_buf), sensor1_data.data_size, "Data ring buffer should be empty");
+    zassert_equal(ring_buf_size_get(&sensor1_data.timestamp_ring_buf), sensor1_data.timestamp_size, "Timestamp ring buffer should be empty");
+    ret = sensor_data_clear(&sensor1_data);
+    zassert_ok(ret, "Sensor data clear failed");
+    zassert_equal(ring_buf_size_get(&sensor1_data.data_ring_buf), 0, "Data ring buffer should be empty");
+    zassert_equal(ring_buf_size_get(&sensor1_data.timestamp_ring_buf), 0, "Timestamp ring buffer should be empty");
+    ret = sensor_data_read(&sensor1_data, timestamp);
+    zassert_ok(ret, "Sensor data read failed");
+    zassert_equal(ring_buf_size_get(&sensor1_data.data_ring_buf), sensor1_data.data_size, "Data ring buffer should be empty");
+    zassert_equal(ring_buf_size_get(&sensor1_data.timestamp_ring_buf), sensor1_data.timestamp_size, "Timestamp ring buffer should be empty");
+    // Get and verify the reading
+    int value;
+    uint32_t read_timestamp;
+    // Get latest reading
+    ret = sensor_data_get_latest_reading(&sensor1_data, &value, &read_timestamp);
+    int expected_value = get_sensor_pulse_count_fake.return_val;
+    zassert_ok(ret, "Failed to get latest reading");
+    zassert_equal(value, expected_value, "Expected pulse count is %d, actual is %d", expected_value, value);
+    ret = sensor_data_print_data(&sensor1_data);
+    zassert_ok(ret, "Sensor data print failed");
+}

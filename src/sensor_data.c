@@ -4,19 +4,9 @@
 #include "sensor_reading.h"
 #include <stdint.h>
 #include <zephyr/kernel.h>
-/* Library for memory allocation. */
-#include <zephyr/sys/mem_manage.h>
-
-// typedef struct data_type_info{
-//     /* Type of data in the buffer. */
-//     enum sensor_data_type data_type;
-//     /* Size of the data in the buffer. */
-//     size_t data_size;
-// } data_type_info_t;
-
 #include <zephyr/logging/log.h>
 
-LOG_MODULE_REGISTER(sensor_data, LOG_LEVEL_INF);
+LOG_MODULE_REGISTER(sensor_data, LOG_LEVEL_DBG);
 
 typedef struct {
     /* Power id to use for the sensor. */
@@ -109,6 +99,16 @@ int sensor_data_setup(sensor_data_t *sensor_data, enum sensor_types type, enum s
         sensor_data_config[sensor_data->id].is_sensor_power_continuous = 0;
     }
 
+    // Free existing buffers if they exist
+    if (sensor_data->data_ring_buf.buffer != NULL) {
+        LOG_DBG("Freeing data ring buffer since it already exists");
+        k_free(sensor_data->data_ring_buf.buffer);
+    }
+    if (sensor_data->timestamp_ring_buf.buffer != NULL) {
+        LOG_DBG("Freeing timestamp ring buffer since it already exists");
+        k_free(sensor_data->timestamp_ring_buf.buffer);
+    }
+
     uint32_t buffer_size = sensor_data->data_size * sensor_data->max_samples;
     uint32_t timestamp_buffer_size = sensor_data->timestamp_size * sensor_data->max_samples;
 
@@ -139,7 +139,6 @@ static int put_data_into_ring_buffer(sensor_data_t *sensor_data, void *data)
     }
     return 0;
 }
-
 
 static int put_timestamp_into_ring_buffer(sensor_data_t *sensor_data, uint32_t timestamp)
 {
@@ -348,20 +347,15 @@ int sensor_data_clear(sensor_data_t *sensor_data)
     /* If the sensor is setup, clear the ring buffers and reset the ring buffers. */
     if (sensor_data_config[sensor_data->id].is_sensor_setup == 1) 
     {
-        if (sensor_data->data_ring_buf.buffer != NULL) 
-        {
-            k_free(sensor_data->data_ring_buf.buffer);
-        }
-        if (sensor_data->timestamp_ring_buf.buffer != NULL) {
-            k_free(sensor_data->timestamp_ring_buf.buffer);
-        }
         if (&sensor_data->data_ring_buf != NULL) 
         {
+            LOG_DBG("Resetting data ring buffer");
             ring_buf_reset(&sensor_data->data_ring_buf);  // Note: removed & since it's a pointer
         }
     
         if (&sensor_data->timestamp_ring_buf != NULL) 
         {
+            LOG_DBG("Resetting timestamp ring buffer");
             ring_buf_reset(&sensor_data->timestamp_ring_buf);  // Note: removed & since it's a pointer
         }
         sensor_data_config[sensor_data->id].is_sensor_setup = 0;
