@@ -321,6 +321,10 @@ int sensor_data_clear(sensor_data_t *sensor_data)
             ring_buf_reset(&sensor_data->timestamp_ring_buf);  // Note: removed & since it's a pointer
         }
         sensor_data->num_samples = 0;
+        if (sensor_data_config[sensor_data->id].type == PULSE_SENSOR)
+        {
+            reset_sensor_pulse_count(sensor_reading_configs[sensor_data->id]);
+        }
     }
     return 0;
 }

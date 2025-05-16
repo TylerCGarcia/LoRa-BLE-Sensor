@@ -296,9 +296,16 @@ int main(void)
 			radio_first_time_trigger = 0;
 			LOG_INF("Radio schedule triggered");
 			send_packet();
-			sensor_scheduling_reset_schedule(&radio_schedule);
-			sensor_data_clear(&sensor1_data);
-			sensor_data_clear(&sensor2_data);
+			ret = sensor_scheduling_reset_schedule(&radio_schedule);
+			if(ret == 0)
+			{
+				sensor_data_clear(&sensor1_data);
+				sensor_data_clear(&sensor2_data);
+			}
+			else
+			{
+				LOG_ERR("Failed to send packet");
+			}
 		}
 		k_msleep(100);
 		// LOG_INF("Hello");
