@@ -17,7 +17,8 @@ ZTEST_SUITE(app, NULL, NULL, NULL, NULL, NULL);
 
 ZTEST(app, test_app_init)
 {
-    
-    zassert_true(true, "App init failed");
+    int ret;
+    ret = sensor_app_init();
+    zassert_ok(ret, "App init failed");
 }
 

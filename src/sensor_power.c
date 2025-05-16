@@ -162,7 +162,6 @@ int sensor_power_init(sensor_power_config_t *config)
     {
         return -1;
     }
-    return 0;
     if(sensor_output_adc_setup(config) != 0)
     {
         return -1;
