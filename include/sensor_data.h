@@ -52,6 +52,8 @@ typedef struct {
     void *latest_data;
     /* Latest timestamp. */
     uint32_t latest_timestamp;
+    /* Number of samples in the buffer. */
+    uint32_t num_samples;
 } sensor_data_t;
 
 /**

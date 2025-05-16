@@ -432,7 +432,7 @@ ZTEST(data, test_sensor_data_deinit_sensor_with_null_sensor_type)
 }
 
 /**
- * @brief Test that the sensor data can be formatted for LoRaWAN
+ * @brief Test that pulse sensor data can be formatted for LoRaWAN
  * 
  */
 ZTEST(data, test_sensor_data_format_pulse_sensor_for_lorawan)
@@ -461,11 +461,48 @@ ZTEST(data, test_sensor_data_format_pulse_sensor_for_lorawan)
     zassert_equal(data_len, expected_data_len, "Sensor data length was %d, expected %d", data_len, expected_data_len);
     // Check timestamp (first 4 bytes)
     uint32_t timestamp;
-    memcpy(&timestamp, data, sizeof(uint32_t));
+    memcpy(&timestamp, data, sensor1_data.timestamp_size);
     zassert_equal(timestamp, 1000, "First timestamp should be 1000, got %u", timestamp);
 
     // Check data (next 4 bytes)
     int value;
-    memcpy(&value, data + sizeof(uint32_t), sizeof(int));
+    memcpy(&value, data + sensor1_data.timestamp_size, sensor1_data.data_size);
     zassert_equal(value, 100, "First data value should be 100, got %d", value);
+}
+
+/**
+ * @brief Test that voltage sensor data can be formatted for LoRaWAN
+ * 
+ */
+ZTEST(data, test_sensor_data_format_voltage_sensor_for_lorawan)
+{
+    int ret = sensor_data_setup(&sensor1_data, VOLTAGE_SENSOR, SENSOR_VOLTAGE_3V3);
+    loop_data_t loop_data = {
+        .initial_timestamp = 1000,
+        .num_samples = 10,
+        .reading_interval = 100,
+        .data_type = VOLTAGE_SENSOR,
+    };
+    loop_data.fake_return_val = (void *)k_malloc(loop_data.num_samples * sizeof(int));
+    for (uint32_t i = 0; i < loop_data.num_samples; i++) {
+        ((float *)loop_data.fake_return_val)[i] = 1.0 + (i * 0.1);
+    }
+    zassert_ok(ret, "Sensor data setup failed");
+    data_read_loop(&sensor1_data, &loop_data);
+
+    uint8_t data[(sensor1_data.data_size * sensor1_data.num_samples) + (sensor1_data.timestamp_size * sensor1_data.num_samples)];
+    uint8_t data_len = 0;
+    uint8_t expected_data_len = (sensor1_data.num_samples * sensor1_data.data_size) + (sensor1_data.num_samples * sensor1_data.timestamp_size);
+    ret = sensor_data_format_for_lorawan(&sensor1_data, data, &data_len);
+    zassert_ok(ret, "Sensor data format for LoRaWAN failed");
+    zassert_equal(data_len, expected_data_len, "Sensor data length was %d, expected %d", data_len, expected_data_len);
+    // Check timestamp (first 4 bytes)
+    uint32_t timestamp;
+    memcpy(&timestamp, data, sensor1_data.timestamp_size);
+    zassert_equal(timestamp, 1000, "First timestamp should be 1000, got %u", timestamp);
+
+    // Check data (next 4 bytes)
+    float value;
+    memcpy(&value, data + sensor1_data.timestamp_size, sensor1_data.data_size);
+    zassert_equal(value, 1.0, "First data value should be 1.0, got %f", value);
 }

@@ -121,7 +121,6 @@ int sensor_data_setup(sensor_data_t *sensor_data, enum sensor_types type, enum s
         LOG_ERR("Failed to allocate memory for latest data");
         return -1;
     }
-    // sensor_data->num_samples = 0;
 
     uint32_t buffer_size = sensor_data->data_size * sensor_data->max_samples;
     uint32_t timestamp_buffer_size = sensor_data->timestamp_size * sensor_data->max_samples;
@@ -132,6 +131,7 @@ int sensor_data_setup(sensor_data_t *sensor_data, enum sensor_types type, enum s
     ring_buf_init(&sensor_data->data_ring_buf, buffer_size, sensor_data->data_ring_buf.buffer);
     ring_buf_init(&sensor_data->timestamp_ring_buf, timestamp_buffer_size, sensor_data->timestamp_ring_buf.buffer);
     sensor_data_config[sensor_data->id].is_sensor_setup = 1;
+    sensor_data->num_samples = 0;
     return 0;
 }
 
@@ -144,6 +144,10 @@ static int put_data_into_ring_buffer(sensor_data_t *sensor_data, void *data)
         uint8_t temp_data[sensor_data->data_size];
         LOG_DBG("Data ring buffer is full, removing oldest data");
         ring_buf_get(&sensor_data->data_ring_buf, (uint8_t *)temp_data, sensor_data->data_size);
+    }
+    else
+    {
+        sensor_data->num_samples++;
     }
     // Put data into ring buffer
     ret = ring_buf_put(&sensor_data->data_ring_buf, (uint8_t *)data, sensor_data->data_size);
@@ -179,8 +183,6 @@ int sensor_data_read(sensor_data_t *sensor_data, uint32_t timestamp)
         LOG_ERR("Ring buffers not initialized");
         return -1;  // Ring buffers not initialized
     }
-    uint32_t data_size = ring_buf_size_get(&sensor_data->data_ring_buf);
-    // uint32_t timestamp_size = ring_buf_size_get(&sensor_data->timestamp_ring_buf);
     int ret;
     if (sensor_data_config[sensor_data->id].is_sensor_power_continuous == 0)
     {
@@ -319,7 +321,7 @@ int sensor_data_clear(sensor_data_t *sensor_data)
             LOG_DBG("Resetting timestamp ring buffer");
             ring_buf_reset(&sensor_data->timestamp_ring_buf);  // Note: removed & since it's a pointer
         }
-        sensor_data_config[sensor_data->id].is_sensor_setup = 0;
+        sensor_data->num_samples = 0;
     }
     return 0;
 }
