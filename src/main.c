@@ -54,41 +54,41 @@ static lorawan_setup_t setup = {
 	.app_key = APP_KEY,
 };
 
-static sensor_power_config_t sensor_output1 = {
-	.power_id = SENSOR_POWER_1,
-	.boost_en = GPIO_DT_SPEC_GET(DT_ALIAS(boost1en), gpios),	
-	.boost_ctrl1 = GPIO_DT_SPEC_GET(DT_ALIAS(boost1ctrl1), gpios),
-	.boost_ctrl2 = GPIO_DT_SPEC_GET(DT_ALIAS(boost1ctrl2), gpios),
-	.ldo_dev = DEVICE_DT_GET(DT_NODELABEL(npm1300_ek_ldo1)),
-	.output_read = ADC_DT_SPEC_GET_BY_NAME(DT_PATH(zephyr_user), sensor_output1),
-	.delay_ms = 100
-};
+// static sensor_power_config_t sensor_output1 = {
+// 	.power_id = SENSOR_POWER_1,
+// 	.boost_en = GPIO_DT_SPEC_GET(DT_ALIAS(boost1en), gpios),	
+// 	.boost_ctrl1 = GPIO_DT_SPEC_GET(DT_ALIAS(boost1ctrl1), gpios),
+// 	.boost_ctrl2 = GPIO_DT_SPEC_GET(DT_ALIAS(boost1ctrl2), gpios),
+// 	.ldo_dev = DEVICE_DT_GET(DT_NODELABEL(npm1300_ek_ldo1)),
+// 	.output_read = ADC_DT_SPEC_GET_BY_NAME(DT_PATH(zephyr_user), sensor_output1),
+// 	.delay_ms = 100
+// };
 
-static sensor_power_config_t sensor_output2 = {
-	.power_id = SENSOR_POWER_2,
-	.boost_en = GPIO_DT_SPEC_GET(DT_ALIAS(boost2en), gpios),	
-	.boost_ctrl1 = GPIO_DT_SPEC_GET(DT_ALIAS(boost2ctrl1), gpios),
-	.boost_ctrl2 = GPIO_DT_SPEC_GET(DT_ALIAS(boost2ctrl2), gpios),
-	.ldo_dev = DEVICE_DT_GET(DT_NODELABEL(npm1300_ek_ldo2)),
-	.output_read = ADC_DT_SPEC_GET_BY_NAME(DT_PATH(zephyr_user), sensor_output2),
-	.delay_ms = 100
-};
+// static sensor_power_config_t sensor_output2 = {
+// 	.power_id = SENSOR_POWER_2,
+// 	.boost_en = GPIO_DT_SPEC_GET(DT_ALIAS(boost2en), gpios),	
+// 	.boost_ctrl1 = GPIO_DT_SPEC_GET(DT_ALIAS(boost2ctrl1), gpios),
+// 	.boost_ctrl2 = GPIO_DT_SPEC_GET(DT_ALIAS(boost2ctrl2), gpios),
+// 	.ldo_dev = DEVICE_DT_GET(DT_NODELABEL(npm1300_ek_ldo2)),
+// 	.output_read = ADC_DT_SPEC_GET_BY_NAME(DT_PATH(zephyr_user), sensor_output2),
+// 	.delay_ms = 100
+// };
 
-static sensor_reading_config_t sensor1_reading_config = {
-	.id = SENSOR_1,
-	.d1 = GPIO_DT_SPEC_GET(DT_ALIAS(sensor1d1), gpios),	
-	.d2 = GPIO_DT_SPEC_GET(DT_ALIAS(sensor1d2), gpios),
-	.voltage_read = ADC_DT_SPEC_GET_BY_NAME(DT_PATH(zephyr_user), voltage_sensor1),
-	.current_read = ADC_DT_SPEC_GET_BY_NAME(DT_PATH(zephyr_user), current_sensor1)
-};
+// static sensor_reading_config_t sensor1_reading_config = {
+// 	.id = SENSOR_1,
+// 	.d1 = GPIO_DT_SPEC_GET(DT_ALIAS(sensor1d1), gpios),	
+// 	.d2 = GPIO_DT_SPEC_GET(DT_ALIAS(sensor1d2), gpios),
+// 	.voltage_read = ADC_DT_SPEC_GET_BY_NAME(DT_PATH(zephyr_user), voltage_sensor1),
+// 	.current_read = ADC_DT_SPEC_GET_BY_NAME(DT_PATH(zephyr_user), current_sensor1)
+// };
 
-static sensor_reading_config_t sensor2_reading_config = {
-	.id = SENSOR_2,
-	.d1 = GPIO_DT_SPEC_GET(DT_ALIAS(sensor2d1), gpios),	
-	.d2 = GPIO_DT_SPEC_GET(DT_ALIAS(sensor2d2), gpios),
-	.voltage_read = ADC_DT_SPEC_GET_BY_NAME(DT_PATH(zephyr_user), voltage_sensor2),
-	.current_read = ADC_DT_SPEC_GET_BY_NAME(DT_PATH(zephyr_user), current_sensor2)
-};
+// static sensor_reading_config_t sensor2_reading_config = {
+// 	.id = SENSOR_2,
+// 	.d1 = GPIO_DT_SPEC_GET(DT_ALIAS(sensor2d1), gpios),	
+// 	.d2 = GPIO_DT_SPEC_GET(DT_ALIAS(sensor2d2), gpios),
+// 	.voltage_read = ADC_DT_SPEC_GET_BY_NAME(DT_PATH(zephyr_user), voltage_sensor2),
+// 	.current_read = ADC_DT_SPEC_GET_BY_NAME(DT_PATH(zephyr_user), current_sensor2)
+// };
 
 sensor_data_t sensor1_data = {
     .id = SENSOR_1,
@@ -106,11 +106,11 @@ sensor_data_t sensor2_data = {
     .timestamp_size = 4,
 };
 
-static void setup_power(void)
-{
-	sensor_power_init(&sensor_output1);
-	sensor_power_init(&sensor_output2);
-}
+// static void setup_power(void)
+// {
+// 	sensor_power_init(&sensor_output1);
+// 	sensor_power_init(&sensor_output2);
+// }
 
 static void set_and_validate_output(sensor_power_config_t *sensor, enum sensor_voltage index, int accepted_error)
 {
@@ -129,30 +129,30 @@ static void set_and_validate_output(sensor_power_config_t *sensor, enum sensor_v
 
 }
 
-static void setup_sensor_data(void)
-{
-	int accepted_error = 5;
-	sensor_reading_setup(&sensor1_reading_config, PULSE_SENSOR);
-	sensor_reading_setup(&sensor2_reading_config, PULSE_SENSOR);
-	set_and_validate_output(&sensor_output1, SENSOR_VOLTAGE_3V3, accepted_error);
-	set_and_validate_output(&sensor_output2, SENSOR_VOLTAGE_3V3, accepted_error);
-}
+// static void setup_sensor_data(void)
+// {
+// 	int accepted_error = 5;
+// 	sensor_reading_setup(&sensor1_reading_config, PULSE_SENSOR);
+// 	sensor_reading_setup(&sensor2_reading_config, PULSE_SENSOR);
+// 	set_and_validate_output(&sensor_output1, SENSOR_VOLTAGE_3V3, accepted_error);
+// 	set_and_validate_output(&sensor_output2, SENSOR_VOLTAGE_3V3, accepted_error);
+// }
 
-static void run_sensor_tests(void)
-{
-	float voltage1 = get_sensor_voltage_reading(&sensor1_reading_config);
-	LOG_INF("VOLTAGE1: %f", voltage1);
-	float voltage2 = get_sensor_voltage_reading(&sensor2_reading_config);
-	LOG_INF("VOLTAGE2: %f", voltage2);
-	float current1 = get_sensor_current_reading(&sensor1_reading_config);
-	LOG_INF("CURRENT1: %f", current1);
-	float current2 = get_sensor_current_reading(&sensor2_reading_config);
-	LOG_INF("CURRENT2: %f", current2);
-	int pulses1 = get_sensor_pulse_count(&sensor1_reading_config);
-	LOG_INF("PULSES1: %d", pulses1);
-	int pulses2 = get_sensor_pulse_count(&sensor2_reading_config);
-	LOG_INF("PULSES2: %d", pulses2);
-}
+// static void run_sensor_tests(void)
+// {
+// 	float voltage1 = get_sensor_voltage_reading(&sensor1_reading_config);
+// 	LOG_INF("VOLTAGE1: %f", voltage1);
+// 	float voltage2 = get_sensor_voltage_reading(&sensor2_reading_config);
+// 	LOG_INF("VOLTAGE2: %f", voltage2);
+// 	float current1 = get_sensor_current_reading(&sensor1_reading_config);
+// 	LOG_INF("CURRENT1: %f", current1);
+// 	float current2 = get_sensor_current_reading(&sensor2_reading_config);
+// 	LOG_INF("CURRENT2: %f", current2);
+// 	int pulses1 = get_sensor_pulse_count(&sensor1_reading_config);
+// 	LOG_INF("PULSES1: %d", pulses1);
+// 	int pulses2 = get_sensor_pulse_count(&sensor2_reading_config);
+// 	LOG_INF("PULSES2: %d", pulses2);
+// }
 
 static void send_packet(void)
 {
@@ -267,20 +267,20 @@ int main(void)
 	ret = sensor_scheduling_add_schedule(&sensor2_schedule);
 	ret = sensor_scheduling_add_schedule(&radio_schedule);
 	k_sleep(K_SECONDS(2));
-    // ret = sensor_data_setup(&sensor1_data, PULSE_SENSOR, SENSOR_VOLTAGE_3V3);
+    ret = sensor_data_setup(&sensor1_data, PULSE_SENSOR, SENSOR_VOLTAGE_3V3);
     ret = sensor_data_setup(&sensor2_data, PULSE_SENSOR, SENSOR_VOLTAGE_3V3);
 
 	uint8_t sensor_first_time_trigger = 1;
 	while (1) 
 	{
-		// if(sensor1_schedule.is_triggered || sensor_first_time_trigger)
-		// {
-		// 	sensor_first_time_trigger = 0;
-		// 	LOG_INF("Sensor 1 schedule triggered");
-		// 	sensor_data_read(&sensor1_data, sensor_timer_get_total_seconds(timer0));
-		// 	sensor_data_print_data(&sensor1_data);
-		// 	sensor_scheduling_reset_schedule(&sensor1_schedule);
-		// }
+		if(sensor1_schedule.is_triggered || sensor_first_time_trigger)
+		{
+			sensor_first_time_trigger = 0;
+			LOG_INF("Sensor 1 schedule triggered");
+			sensor_data_read(&sensor1_data, sensor_timer_get_total_seconds(timer0));
+			sensor_data_print_data(&sensor1_data);
+			sensor_scheduling_reset_schedule(&sensor1_schedule);
+		}
 		if(sensor2_schedule.is_triggered || sensor_first_time_trigger)
 		{
 			sensor_first_time_trigger = 0;
@@ -299,6 +299,7 @@ int main(void)
 			sensor_data_clear(&sensor2_data);
 		}
 		k_msleep(100);
+		// LOG_INF("Hello");
 	}
 	return 0;
 }

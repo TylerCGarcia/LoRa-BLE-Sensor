@@ -100,33 +100,41 @@ int set_sensor_output(sensor_power_config_t *config, enum sensor_voltage voltage
 static int sensor_power_setup(sensor_power_config_t *config)
 {
     int ret;
-	if (!gpio_is_ready_dt(&config->boost_en)) {
+	if (!gpio_is_ready_dt(&config->boost_en)) 
+    {
 		return -1;
 	}
-	if (!gpio_is_ready_dt(&config->boost_ctrl1)) {
+	if (!gpio_is_ready_dt(&config->boost_ctrl1)) 
+    {
 		return -1;
 	}
-	if (!gpio_is_ready_dt(&config->boost_ctrl2)) {
+	if (!gpio_is_ready_dt(&config->boost_ctrl2)) 
+    {
 		return -1;
 	}
 	ret = gpio_pin_configure_dt(&config->boost_en, GPIO_OUTPUT_INACTIVE);
-	if (ret < 0) {
+	if (ret < 0) 
+    {
 		return ret;
 	}
 	ret = gpio_pin_configure_dt(&config->boost_ctrl1, GPIO_OUTPUT_INACTIVE);
-	if (ret < 0) {
+	if (ret < 0) 
+    {
 		return ret;
 	}
 	ret = gpio_pin_configure_dt(&config->boost_ctrl2, GPIO_OUTPUT_INACTIVE);
-	if (ret < 0) {
+	if (ret < 0) 
+    {
 		return ret;
 	}
-    if (!device_is_ready(config->ldo_dev)) {
+    if (!device_is_ready(config->ldo_dev)) 
+    {
         return -1;
 	}	
     /* Now set the final desired voltage */
     ret = regulator_set_voltage(config->ldo_dev, 3300000, 3300000);
-    if (ret < 0) {
+    if (ret < 0) 
+    {
 		return ret;
     }
 
@@ -154,6 +162,7 @@ int sensor_power_init(sensor_power_config_t *config)
     {
         return -1;
     }
+    return 0;
     if(sensor_output_adc_setup(config) != 0)
     {
         return -1;

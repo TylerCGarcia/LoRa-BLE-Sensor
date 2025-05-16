@@ -80,25 +80,24 @@ int sensor_data_setup(sensor_data_t *sensor_data, enum sensor_types type, enum s
         LOG_ERR("Sensor data setup failed, invalid sensor id, power id, type, or voltage enum");
         return -1;
     }
-    sensor_power_init(&sensor_power_configs[sensor_data->power_id]);
-
+    sensor_power_init(sensor_power_configs[sensor_data->power_id]);
     /* Set the sensor data config. */
     sensor_data_config[sensor_data->id].type = type;
     sensor_data_config[sensor_data->id].voltage_enum = voltage_enum;
     /* Setup the sensor reading configuration. */
-    sensor_reading_setup(&sensor_reading_configs[sensor_data->id], type);
+    sensor_reading_setup(sensor_reading_configs[sensor_data->id], type);
 
     if(sensor_data_config[sensor_data->id].type == PULSE_SENSOR) 
     {
         sensor_data_config[sensor_data->id].is_sensor_power_continuous = 1;
         /* If the sensor type is continuous, the power should be on all the time. */
-        set_sensor_output(&sensor_power_configs[sensor_data->power_id], voltage_enum);
-        // validate_output(&sensor_power_configs[sensor_data->power_id], voltage_enum, 10);
+        set_sensor_output(sensor_power_configs[sensor_data->power_id], voltage_enum);
+        // validate_output(sensor_power_configs[sensor_data->power_id], voltage_enum, 10);
     }
     else
     {
         sensor_data_config[sensor_data->id].is_sensor_power_continuous = 0;
-        set_sensor_output(&sensor_power_configs[sensor_data->power_id], SENSOR_VOLTAGE_OFF);
+        set_sensor_output(sensor_power_configs[sensor_data->power_id], SENSOR_VOLTAGE_OFF);
     }
 
     // Free existing buffers if they exist
@@ -186,7 +185,7 @@ int sensor_data_read(sensor_data_t *sensor_data, int timestamp)
     int ret;
     if (sensor_data_config[sensor_data->id].is_sensor_power_continuous == 0)
     {
-        set_sensor_output(&sensor_power_configs[sensor_data->power_id], sensor_data_config[sensor_data->id].voltage_enum);
+        set_sensor_output(sensor_power_configs[sensor_data->power_id], sensor_data_config[sensor_data->id].voltage_enum);
     }
     switch(sensor_data_config[sensor_data->id].type)
     {
@@ -228,7 +227,7 @@ int sensor_data_read(sensor_data_t *sensor_data, int timestamp)
     }
     if (sensor_data_config[sensor_data->id].is_sensor_power_continuous == 0)
     {
-        set_sensor_output(&sensor_power_configs[sensor_data->power_id], SENSOR_VOLTAGE_OFF);
+        set_sensor_output(sensor_power_configs[sensor_data->power_id], SENSOR_VOLTAGE_OFF);
     }
     return 0;
 }
