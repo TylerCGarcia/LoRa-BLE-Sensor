@@ -10,9 +10,20 @@
  * 
  */
 
- #ifndef SENSOR_APP_H
- #define SENSOR_APP_H
- 
+#ifndef SENSOR_APP_H
+#define SENSOR_APP_H
+/**
+ * @brief Initialize the sensor app, handle anything that needs to be initialized for the app such as timers, etc.
+ * 
+ * @return int 0 on success, -1 on failure
+ */
 int sensor_app_init(void);
- 
- #endif
+
+/**
+ * @brief Start the BLE advertising and services.
+ * 
+ * @return int 0 on success, -1 on failure
+ */
+int sensor_app_ble_start(void);
+
+#endif

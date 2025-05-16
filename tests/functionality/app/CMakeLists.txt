@@ -8,8 +8,10 @@ project(sensor_app_tests)
 
 target_include_directories(app PRIVATE 
     ${CMAKE_CURRENT_SOURCE_DIR}/../../../include
+    ${CMAKE_CURRENT_SOURCE_DIR}/fakes
 )
 
 target_sources(app PRIVATE src/main.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../../../src/sensor_app.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/fakes/sensor_ble_fakes.c
 )
