@@ -70,9 +70,9 @@ sensor_data_t sensor2_data = {
     .timestamp_size = 4,
 };
 
-static void send_packet(void)
+static int send_packet(void)
 {
-
+	int ret;
 	if(is_lorawan_connected())
 	{
 		LOG_INF("Sending LoRaWAN data");
@@ -98,7 +98,18 @@ static void send_packet(void)
 		lorawan_data.port = 2;
 		lorawan_data.attempts = 10;
 		lorawan_data.delay = 1000;
-		lorawan_send_data(&lorawan_data);
+		ret = lorawan_send_data(&lorawan_data);
+		if(ret < 0)
+		{
+			LOG_ERR("Failed to send packet");
+			return -1;
+		}
+		return 0;
+	}
+	else
+	{
+		LOG_ERR("LoRaWAN is not connected");
+		return -1;
 	}
 }
 
@@ -181,8 +192,8 @@ int main(void)
 	init_lora_ble();
 	ret = sensor_scheduling_add_schedule(&sensor1_schedule);
 	ret = sensor_scheduling_add_schedule(&sensor2_schedule);
-	ret = sensor_scheduling_add_schedule(&radio_schedule);
 	k_sleep(K_SECONDS(2));// Set radio schedule to seconds later to make sure the sensors are read first
+	ret = sensor_scheduling_add_schedule(&radio_schedule);
     ret = sensor_data_setup(&sensor1_data, PULSE_SENSOR, SENSOR_VOLTAGE_3V3);
     ret = sensor_data_setup(&sensor2_data, PULSE_SENSOR, SENSOR_VOLTAGE_3V3);
 
@@ -211,8 +222,9 @@ int main(void)
 		{
 			radio_first_time_trigger = 0;
 			LOG_INF("Radio schedule triggered");
-			send_packet();
-			ret = sensor_scheduling_reset_schedule(&radio_schedule);
+			sensor_scheduling_reset_schedule(&radio_schedule);
+			
+			ret = send_packet();
 			if(ret == 0)
 			{
 				sensor_data_clear(&sensor1_data);
@@ -224,7 +236,6 @@ int main(void)
 			}
 		}
 		k_msleep(100);
-		// LOG_INF("Hello");
 	}
 	return 0;
 }
