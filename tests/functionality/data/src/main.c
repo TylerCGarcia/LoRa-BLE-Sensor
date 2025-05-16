@@ -430,3 +430,42 @@ ZTEST(data, test_sensor_data_deinit_sensor_with_null_sensor_type)
     zassert_equal(set_sensor_output_fake.call_count, 2, "Set sensor output should be called twice, once to enable and once to disable");
     zassert_equal(set_sensor_output_fake.arg1_history[1], SENSOR_VOLTAGE_OFF, "Set sensor output should be called with SENSOR_VOLTAGE_OFF");
 }
+
+/**
+ * @brief Test that the sensor data can be formatted for LoRaWAN
+ * 
+ */
+ZTEST(data, test_sensor_data_format_pulse_sensor_for_lorawan)
+{
+    int ret = sensor_data_setup(&sensor1_data, PULSE_SENSOR, SENSOR_VOLTAGE_3V3);
+    zassert_ok(ret, "Sensor data setup failed");
+    loop_data_t loop_data = {
+        .initial_timestamp = 1000,
+        .num_samples = 10,
+        .reading_interval = 100,
+        .data_type = PULSE_SENSOR,
+    };
+    loop_data.fake_return_val = (void *)k_malloc(loop_data.num_samples * sizeof(int));
+    for (uint32_t i = 0; i < loop_data.num_samples; i++) {
+        ((int *)loop_data.fake_return_val)[i] = 100 + (i * 10);
+    }
+    data_read_loop(&sensor1_data, &loop_data);
+    zassert_ok(ret, "Sensor data print failed");
+    k_free(loop_data.fake_return_val);
+
+    uint8_t data[(sensor1_data.data_size * sensor1_data.max_samples) + (sensor1_data.timestamp_size * sensor1_data.max_samples)];
+    uint8_t data_len = 0;
+    uint8_t expected_data_len = (ring_buf_size_get(&sensor1_data.data_ring_buf)) + (ring_buf_size_get(&sensor1_data.timestamp_ring_buf));
+    ret = sensor_data_format_for_lorawan(&sensor1_data, data, &data_len);
+    zassert_ok(ret, "Sensor data format for LoRaWAN failed");
+    zassert_equal(data_len, expected_data_len, "Sensor data length was %d, expected %d", data_len, expected_data_len);
+    // Check timestamp (first 4 bytes)
+    uint32_t timestamp;
+    memcpy(&timestamp, data, sizeof(uint32_t));
+    zassert_equal(timestamp, 1000, "First timestamp should be 1000, got %u", timestamp);
+
+    // Check data (next 4 bytes)
+    int value;
+    memcpy(&value, data + sizeof(uint32_t), sizeof(int));
+    zassert_equal(value, 100, "First data value should be 100, got %d", value);
+}

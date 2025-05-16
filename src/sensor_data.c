@@ -6,7 +6,7 @@
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
 
-LOG_MODULE_REGISTER(sensor_data, LOG_LEVEL_DBG);
+LOG_MODULE_REGISTER(sensor_data, LOG_LEVEL_INF);
 
 typedef struct {
     /* Power id to use for the sensor. */
@@ -321,5 +321,83 @@ int sensor_data_clear(sensor_data_t *sensor_data)
         }
         sensor_data_config[sensor_data->id].is_sensor_setup = 0;
     }
+    return 0;
+}
+
+int sensor_data_format_for_lorawan(sensor_data_t *sensor_data, uint8_t *data, uint8_t *data_len)
+{
+    // Get the size of data in the ring buffer
+    uint32_t data_size = ring_buf_size_get(&sensor_data->data_ring_buf);
+    uint32_t timestamp_size = ring_buf_size_get(&sensor_data->timestamp_ring_buf);
+    
+    // Calculate number of samples
+    size_t num_samples = data_size / sensor_data->data_size;
+    if (num_samples == 0) {
+        LOG_ERR("No data in buffer");
+        return -1;
+    }
+
+    // Allocate temporary buffers on the heap
+    uint8_t *temp_data = k_malloc(data_size);
+    uint8_t *temp_timestamp = k_malloc(timestamp_size);
+    
+    if (temp_data == NULL || temp_timestamp == NULL) 
+    {
+        LOG_ERR("Failed to allocate temporary buffers");
+        if (temp_data) 
+        {
+            LOG_ERR("Freeing temp_data");
+            k_free(temp_data);
+        }
+        if (temp_timestamp) 
+        {
+            LOG_ERR("Freeing temp_timestamp");
+            k_free(temp_timestamp);
+        }
+        return -1;
+    }
+    
+    // Peek all data at once
+    size_t size = ring_buf_peek(&sensor_data->data_ring_buf, temp_data, data_size);
+    if (size != data_size) 
+    {
+        LOG_ERR("Failed to peek data from ring buffer");
+        k_free(temp_data);
+        k_free(temp_timestamp);
+        return -1;
+    }
+    
+    // Peek all timestamps at once
+    size = ring_buf_peek(&sensor_data->timestamp_ring_buf, temp_timestamp, timestamp_size);
+    if (size != timestamp_size) 
+    {
+        LOG_ERR("Failed to peek timestamps from ring buffer");
+        k_free(temp_data);
+        k_free(temp_timestamp);
+        return -1;
+    }
+
+    // Calculate total size needed for the formatted data
+    *data_len = num_samples * (sensor_data->timestamp_size + sensor_data->data_size);
+    
+    // Format the data
+    for (size_t i = 0; i < num_samples; i++) 
+    {
+        // Calculate offsets
+        size_t data_offset = i * sensor_data->data_size;
+        size_t timestamp_offset = i * sensor_data->timestamp_size;
+        size_t output_offset = i * (sensor_data->timestamp_size + sensor_data->data_size);
+        
+        // Copy timestamp first (4 bytes)
+        memcpy(data + output_offset, temp_timestamp + timestamp_offset, sensor_data->timestamp_size);
+        
+        // Copy data next (4 bytes)
+        memcpy(data + output_offset + sensor_data->timestamp_size, temp_data + data_offset, sensor_data->data_size);
+    }
+    
+    // Free temporary buffers
+    k_free(temp_data);
+    k_free(temp_timestamp);
+    
     return 0;
 }

@@ -94,8 +94,9 @@ int sensor_data_clear(sensor_data_t *sensor_data);
  * 
  * @param sensor_data The sensor data to format.
  * @param data The data to format.
+ * @param data_len The length of the data.
  * @return int 0 if successful, -1 if failed.
  */
-// int sensor_data_format_for_lorawan(sensor_data_t *sensor_data, uint8_t *data);
+int sensor_data_format_for_lorawan(sensor_data_t *sensor_data, uint8_t *data, uint8_t *data_len);
 
 #endif
