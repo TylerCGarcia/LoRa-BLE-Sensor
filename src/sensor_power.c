@@ -136,6 +136,7 @@ static int sensor_power_setup(sensor_power_config_t *config)
 static int sensor_output_adc_setup(sensor_power_config_t *config)
 {
     int ret;
+    LOG_DBG("Setting up ADC for sensor output");
     if (!adc_is_ready_dt(&config->output_read)) {
 		return -1;
 	}
@@ -148,6 +149,7 @@ static int sensor_output_adc_setup(sensor_power_config_t *config)
 
 int sensor_power_init(sensor_power_config_t *config)
 {
+    LOG_DBG("Initializing sensor power");
     if(sensor_power_setup(config) != 0)
     {
         return -1;
@@ -162,11 +164,13 @@ int sensor_power_init(sensor_power_config_t *config)
 
 enum sensor_voltage get_sensor_output(sensor_power_config_t *config)
 {
+    LOG_DBG("Getting sensor output");
     return sensor_state[config->power_id];
 }
 
 static int read_sensor_output_raw(sensor_power_config_t *config)
 {
+    LOG_DBG("Reading sensor output raw");
 	int16_t buf;
 	struct adc_sequence sequence = {
 		.buffer = &buf,
@@ -190,7 +194,7 @@ static int read_sensor_output_raw(sensor_power_config_t *config)
 
 float read_sensor_output(sensor_power_config_t *config)
 {
-
+    LOG_DBG("Reading sensor output");
 	int val_mv = (int)read_sensor_output_raw(config);
     // val_mv = (val_mv*600*6) / 4095; // Unused custom calculations
 	int err = adc_raw_to_millivolts_dt(&config->output_read, &val_mv);
@@ -203,6 +207,7 @@ float read_sensor_output(sensor_power_config_t *config)
 
 int validate_output(sensor_power_config_t *config, enum sensor_voltage voltage, uint8_t accepted_error)
 {
+    LOG_DBG("Validating output");
     if(voltage != get_sensor_output(config))
     {
         return -1;
@@ -212,6 +217,7 @@ int validate_output(sensor_power_config_t *config, enum sensor_voltage voltage, 
     float lower_bounds = sensor_voltage_table[voltage].expected_output * (float)((100.0 - (float)accepted_error)/100.0);
     if(sensor_reading < lower_bounds || sensor_reading > upper_bounds)
     {
+        LOG_ERR("Sensor output out of bounds, expected %f, got %f", sensor_voltage_table[voltage].expected_output, sensor_reading);
         return -1;
     }
     return 0;
@@ -219,8 +225,10 @@ int validate_output(sensor_power_config_t *config, enum sensor_voltage voltage, 
 
 int get_sensor_voltage_name(char * voltage_name, enum sensor_voltage voltage)
 {
+    LOG_DBG("Getting sensor voltage name");
     if(voltage < 0 || voltage >= SENSOR_VOLTAGE_INDEX_LIMIT)
     {
+        LOG_ERR("Invalid voltage");
         return -1;
     }
     strcpy(voltage_name, sensor_voltage_table[voltage].name);
