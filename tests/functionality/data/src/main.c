@@ -3,7 +3,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  * Tests:
- * - Confirm sensor data can be setup
+ * - test correct power calls for each sensor type
  */
 
 #include <zephyr/ztest.h>
@@ -23,13 +23,6 @@ sensor_data_t sensor1_data = {
     .id = SENSOR_1,
     .power_id = SENSOR_POWER_1,
     .max_samples = 10,
-    // .data_ring_buf = NULL,
-    // .timestamp_ring_buf = NULL,
-    // .data_buffer = NULL,
-    // .timestamp_buffer = NULL,
-    // .buffer_size = 0,
-    // .data_size = sizeof(int),
-    // .timestamp_size = sizeof(uint32_t),
     .data_size = 4,
     .timestamp_size = 4,
 };
@@ -38,11 +31,6 @@ sensor_data_t sensor2_data = {
     .id = SENSOR_2,
     .power_id = SENSOR_POWER_2,
     .max_samples = 10,
-    // .data_ring_buf = NULL,
-    // .timestamp_ring_buf = NULL,
-    // .data_buffer = NULL,
-    // .timestamp_buffer = NULL,
-    // .buffer_size = 0,
     .data_size = 4,
     .timestamp_size = 4,
 };
@@ -90,6 +78,9 @@ static void data_read_loop(sensor_data_t *sensor_data, loop_data_t *loop_data)
         case VOLTAGE_SENSOR:
             get_sensor_voltage_reading_fake.return_val = ((float *)loop_data->fake_return_val)[i];
             break;
+        case CURRENT_SENSOR:
+            get_sensor_current_reading_fake.return_val = ((float *)loop_data->fake_return_val)[i];
+            break;
         default:
             break;
         }
@@ -127,10 +118,8 @@ ZTEST(data, test_sensor_data_setup)
     int ret = sensor_data_setup(&sensor1_data, VOLTAGE_SENSOR, SENSOR_VOLTAGE_3V3);
     zassert_ok(ret, "Sensor data setup failed");
     zassert_equal(sensor_power_init_fake.call_count, 1, "Sensor power init should be called");
-    zassert_equal(set_sensor_output_fake.call_count, 0, "Set sensor output should not be called for VOLTAGE_SENSOR");
     zassert_equal(sensor_reading_setup_fake.call_count, 1, "Sensor reading setup should be called");
     zassert_equal(sensor_reading_setup_fake.arg1_val, VOLTAGE_SENSOR, "Sensor reading setup should be called with VOLTAGE_SENSOR");
-
 }
 
 /**
@@ -308,80 +297,6 @@ ZTEST(data, test_sensor_data_read_multiple_current_samples)
     zassert_ok(ret, "Sensor data print failed");
 }
 
-// /**
-//  * @brief Test that the sensor_get_latest_reading returns the newest reading for a PULSE_SENSOR
-//  * 
-//  */
-// ZTEST(data, test_sensor_data_get_latest_reading_pulse_sensor)
-// {
-//     int ret = sensor_data_setup(&sensor1_data, PULSE_SENSOR, SENSOR_VOLTAGE_3V3);
-//     zassert_ok(ret, "Sensor data setup failed");
-//     loop_data_t loop_data = {
-//         .initial_timestamp = 1000,
-//         .num_samples = 15,
-//         .reading_interval = 100,
-//         .data_type = PULSE_SENSOR,
-//     };
-//     loop_data.fake_return_val = (void *)k_malloc(loop_data.num_samples * sizeof(int));
-//     for (uint32_t i = 0; i < loop_data.num_samples; i++) {
-//         ((int *)loop_data.fake_return_val)[i] = 100 + (i * 10);
-//     }
-//     data_read_loop(&sensor1_data, &loop_data);
-//     k_free(loop_data.fake_return_val);
-//     // Get and verify the reading
-//     int value;
-//     uint32_t read_timestamp;
-//     // Get latest reading
-//     ret = sensor_data_get_latest_reading(&sensor1_data, &value, &read_timestamp);
-//     int expected_value = ((int *)loop_data.fake_return_val)[loop_data.num_samples - 1];
-//     zassert_ok(ret, "Failed to get latest reading");
-//     zassert_equal(value, expected_value, "Expected pulse count is %d, actual is %d", expected_value, value);
-// }
-
-// /**
-//  * @brief Test that the sensor_get_latest_reading returns the newest reading for a VOLTAGE_SENSOR
-//  * 
-//  */
-// ZTEST(data, test_sensor_data_get_latest_reading_voltage_sensor)
-// {
-//     int ret = sensor_data_setup(&sensor1_data, VOLTAGE_SENSOR, SENSOR_VOLTAGE_3V3);
-//     zassert_ok(ret, "Sensor data setup failed");
-//     loop_data_t loop_data = {
-//         .initial_timestamp = 1000,
-//         .num_samples = 15,
-//         .reading_interval = 100,
-//         .data_type = VOLTAGE_SENSOR,
-//     };
-//     loop_data.fake_return_val = (void *)k_malloc(loop_data.num_samples * sizeof(float));
-//     for (uint32_t i = 0; i < loop_data.num_samples; i++) {
-//         ((float *)loop_data.fake_return_val)[i] = 1.0 + (i * 0.1);
-//     }
-//     data_read_loop(&sensor1_data, &loop_data);
-//     k_free(loop_data.fake_return_val);
-//     // Get and verify the reading
-//     float value;
-//     uint32_t read_timestamp;
-//     // Get latest reading
-//     ret = sensor_data_get_latest_reading(&sensor1_data, &value, &read_timestamp);
-//     float expected_value = ((float *)loop_data.fake_return_val)[loop_data.num_samples - 1];
-//     zassert_ok(ret, "Failed to get latest reading");
-//     zassert_equal(value, expected_value, "Expected voltage is %f, actual is %f", expected_value, value);
-// }
-        
-// /**
-//  * @brief Test that the sensor_get_latest_reading fails when there is no data
-//  * 
-//  */
-// ZTEST(data, test_sensor_data_get_latest_reading_fails_with_no_data)
-// {
-//     int ret = sensor_data_setup(&sensor1_data, PULSE_SENSOR, SENSOR_VOLTAGE_3V3);
-//     zassert_ok(ret, "Sensor data setup failed");
-//     int value;
-//     uint32_t read_timestamp;
-//     ret = sensor_data_get_latest_reading(&sensor1_data, &value, &read_timestamp);
-//     zassert_not_ok(ret, "Expected get latest reading to fail");
-// }
-
 /**
  * @brief Test that sensor data clear
  * 
@@ -433,4 +348,85 @@ ZTEST(data, test_sensor_data_clear_and_read_after_clear)
     zassert_equal(value, expected_value, "Expected pulse count is %d, actual is %d", expected_value, value);
     ret = sensor_data_print_data(&sensor1_data);
     zassert_ok(ret, "Sensor data print failed");
+}
+
+/**
+ * @brief Test that the correct power calls are made for a voltage sensor with 24V power
+ * 
+ */
+ZTEST(data, test_sensor_data_power_calls_for_voltage_sensor_24v_power)
+{
+    int ret;
+    uint32_t timestamp = 1000;
+    ret = sensor_data_setup(&sensor1_data, VOLTAGE_SENSOR, SENSOR_VOLTAGE_24V);
+    zassert_ok(ret, "Sensor data setup failed");
+    zassert_equal(sensor_power_init_fake.call_count, 1, "Sensor power init should be called");
+    zassert_equal(set_sensor_output_fake.call_count, 1, "Set sensor output should be called once for VOLTAGE_SENSOR to turn off the power");
+    zassert_equal(set_sensor_output_fake.arg1_history[0], SENSOR_VOLTAGE_OFF, "Set sensor output should be called with SENSOR_VOLTAGE_OFF");
+    RESET_FAKE(set_sensor_output);
+    ret = sensor_data_read(&sensor1_data, timestamp);
+    zassert_ok(ret, "Sensor data read failed");
+    zassert_equal(set_sensor_output_fake.call_count, 2, "Set sensor output should be called twice, once to enable and once to disable");
+    zassert_equal(set_sensor_output_fake.arg1_history[0], SENSOR_VOLTAGE_24V, "Set sensor output should be called with SENSOR_VOLTAGE_3V3");
+    zassert_equal(set_sensor_output_fake.arg1_history[1], SENSOR_VOLTAGE_OFF, "Set sensor output should be called with SENSOR_VOLTAGE_OFF");
+}
+
+/**
+ * @brief Test that the correct power calls are made for a current sensor with 12V power
+ * 
+ */
+ZTEST(data, test_sensor_data_power_calls_for_current_sensor_12v_power)
+{
+    int ret;
+    uint32_t timestamp = 1000;
+    ret = sensor_data_setup(&sensor1_data, CURRENT_SENSOR, SENSOR_VOLTAGE_12V);
+    zassert_ok(ret, "Sensor data setup failed");
+    zassert_equal(sensor_power_init_fake.call_count, 1, "Sensor power init should be called");
+    zassert_equal(set_sensor_output_fake.call_count, 1, "Set sensor output should be called once for CURRENT_SENSOR to turn off the power");
+    zassert_equal(set_sensor_output_fake.arg1_history[0], SENSOR_VOLTAGE_OFF, "Set sensor output should be called with SENSOR_VOLTAGE_OFF");
+    RESET_FAKE(set_sensor_output);
+    ret = sensor_data_read(&sensor1_data, timestamp);
+    zassert_ok(ret, "Sensor data read failed");
+    zassert_equal(set_sensor_output_fake.call_count, 2, "Set sensor output should be called twice, once to enable and once to disable");
+    zassert_equal(set_sensor_output_fake.arg1_history[0], SENSOR_VOLTAGE_12V, "Set sensor output should be called with SENSOR_VOLTAGE_12V");
+    zassert_equal(set_sensor_output_fake.arg1_history[1], SENSOR_VOLTAGE_OFF, "Set sensor output should be called with SENSOR_VOLTAGE_OFF");
+}
+
+
+/**
+ * @brief Test that the correct power calls are made for a PULSE_SENSOR with 3.3V power
+ * 
+ */
+ZTEST(data, test_sensor_data_power_calls_for_pulse_sensor_3v3_power)
+{
+    int ret;
+    uint32_t timestamp = 1000;
+    ret = sensor_data_setup(&sensor1_data, PULSE_SENSOR, SENSOR_VOLTAGE_3V3);
+    zassert_ok(ret, "Sensor data setup failed");
+    zassert_equal(sensor_power_init_fake.call_count, 1, "Sensor power init should be called");
+    zassert_equal(set_sensor_output_fake.call_count, 1, "Set sensor output should be called once for PULSE_SENSOR since it is continuous power");
+    zassert_equal(set_sensor_output_fake.arg1_history[0], SENSOR_VOLTAGE_3V3, "Set sensor output should be called with SENSOR_VOLTAGE_3V3");
+    RESET_FAKE(set_sensor_output);
+    ret = sensor_data_read(&sensor1_data, timestamp);
+    zassert_ok(ret, "Sensor data read failed");
+    zassert_equal(set_sensor_output_fake.call_count, 0, "Set sensor output should not be called for PULSE_SENSOR during read since it is continuous power");
+}
+
+/**
+ * @brief Test that the PULSE SENSOR power is turned off when the sensor is deinitialized with NULL sensor type
+ * 
+ */
+ZTEST(data, test_sensor_data_deinit_sensor_with_null_sensor_type)
+{
+    int ret;
+    uint32_t timestamp = 1000;
+    ret = sensor_data_setup(&sensor1_data, PULSE_SENSOR, SENSOR_VOLTAGE_3V3);
+    zassert_ok(ret, "Sensor data setup failed");
+    zassert_equal(sensor_power_init_fake.call_count, 1, "Sensor power init should be called");
+    zassert_equal(set_sensor_output_fake.call_count, 1, "Set sensor output should be called once for PULSE_SENSOR since it is continuous power");
+    zassert_equal(set_sensor_output_fake.arg1_history[0], SENSOR_VOLTAGE_3V3, "Set sensor output should be called with SENSOR_VOLTAGE_3V3");
+    ret = sensor_data_setup(&sensor1_data, NULL_SENSOR, SENSOR_VOLTAGE_OFF);
+    zassert_ok(ret, "Sensor data setup failed");
+    zassert_equal(set_sensor_output_fake.call_count, 2, "Set sensor output should be called twice, once to enable and once to disable");
+    zassert_equal(set_sensor_output_fake.arg1_history[1], SENSOR_VOLTAGE_OFF, "Set sensor output should be called with SENSOR_VOLTAGE_OFF");
 }

@@ -52,13 +52,12 @@ typedef struct {
     void *latest_data;
     /* Latest timestamp. */
     uint32_t latest_timestamp;
-    /* Number of samples in the buffer. */
-    uint32_t num_samples;
 } sensor_data_t;
 
 /**
  * @brief Setup the sensor data. If the sensor chosen has continuous power, the power will be turned on when the sensor is setup. If not 
- * the power will be turned on only when the data is read. PULSE_SENSORs use continuous power. 
+ * the power will be turned on only when the data is read. PULSE_SENSORs use continuous power. To disable a sensor, set the type to NULL_SENSOR.
+ * This is important when using a sensor with continuous power, as it will turn off the power when the sensor is deinitialized.
  * 
  * @param sensor_data The sensor data to setup holding the sensor id and power id.
  * @param type The type of sensor to setup.
@@ -83,20 +82,20 @@ int sensor_data_read(sensor_data_t *sensor_data, uint32_t timestamp);
  */
 int sensor_data_print_data(sensor_data_t *sensor_data);
 
-// /**
-//  * @brief Get the latest reading from the sensor data.
-//  * 
-//  * @param sensor_data The sensor data to get the latest reading from.
-//  * @param value The value to store the latest reading in.
-//  * @param timestamp The timestamp to store the latest reading in.
-//  */
-// int sensor_data_get_latest_reading(sensor_data_t *sensor_data, void *value, uint32_t *timestamp);
-
 /**
  * @brief Clear the sensor data.
  * 
  * @param sensor_data The sensor data to clear.
  */
 int sensor_data_clear(sensor_data_t *sensor_data);
+
+/**
+ * @brief Format the sensor data for LoRaWAN, this breaks the data into a uint8_t array.
+ * 
+ * @param sensor_data The sensor data to format.
+ * @param data The data to format.
+ * @return int 0 if successful, -1 if failed.
+ */
+// int sensor_data_format_for_lorawan(sensor_data_t *sensor_data, uint8_t *data);
 
 #endif

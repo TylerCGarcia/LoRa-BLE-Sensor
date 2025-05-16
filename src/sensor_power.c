@@ -6,6 +6,9 @@
 #include <zephyr/drivers/adc.h>
 #include <stdio.h>
 #include <string.h>
+#include <zephyr/logging/log.h>
+
+LOG_MODULE_REGISTER(sensor_power, LOG_LEVEL_DBG);
 
 const sensor_voltage_info_t sensor_voltage_table[] = {
     { SENSOR_VOLTAGE_OFF, "SENSOR_VOLTAGE_OFF", 2.75 },
@@ -22,6 +25,7 @@ static int turn_off_regulator(sensor_power_config_t *config)
 {
     if(regulator_is_enabled(config->ldo_dev))
     {
+        LOG_DBG("Disabling regulator");
         regulator_disable(config->ldo_dev);
     }
 }
@@ -29,6 +33,7 @@ static int turn_on_regulator(sensor_power_config_t *config)
 {
     if(!regulator_is_enabled(config->ldo_dev))
     {
+        LOG_DBG("Enabling regulator");
         regulator_enable(config->ldo_dev);
     }
 }
@@ -43,36 +48,42 @@ int set_sensor_output(sensor_power_config_t *config, enum sensor_voltage voltage
     sensor_state[config->power_id] = voltage;
     switch (voltage) {
     case SENSOR_VOLTAGE_OFF:
+        LOG_DBG("Setting voltage to OFF");
         turn_off_regulator(config);
         gpio_pin_set_dt(&config->boost_en, 0);
         gpio_pin_set_dt(&config->boost_ctrl1, 0);
         gpio_pin_set_dt(&config->boost_ctrl2, 0);
         break;
     case SENSOR_VOLTAGE_3V3:
+        LOG_DBG("Setting voltage to 3.3V");
         turn_on_regulator(config);
         gpio_pin_set_dt(&config->boost_en, 0);
         gpio_pin_set_dt(&config->boost_ctrl1, 0);
         gpio_pin_set_dt(&config->boost_ctrl2, 0);
         break;
     case SENSOR_VOLTAGE_5V:
+        LOG_DBG("Setting voltage to 5V");
         turn_off_regulator(config);
         gpio_pin_set_dt(&config->boost_en, 1);
         gpio_pin_set_dt(&config->boost_ctrl1, 1);
         gpio_pin_set_dt(&config->boost_ctrl2, 1);
         break;
     case SENSOR_VOLTAGE_6V:
+        LOG_DBG("Setting voltage to 6V");
         turn_off_regulator(config);
         gpio_pin_set_dt(&config->boost_en, 1);
         gpio_pin_set_dt(&config->boost_ctrl1, 0);
         gpio_pin_set_dt(&config->boost_ctrl2, 1);
         break;  
     case SENSOR_VOLTAGE_12V:
+        LOG_DBG("Setting voltage to 12V");
         turn_off_regulator(config);
         gpio_pin_set_dt(&config->boost_en, 1);
         gpio_pin_set_dt(&config->boost_ctrl1, 1);
         gpio_pin_set_dt(&config->boost_ctrl2, 0);
         break;
     case SENSOR_VOLTAGE_24V:
+        LOG_DBG("Setting voltage to 24V");
         turn_off_regulator(config);
         gpio_pin_set_dt(&config->boost_en, 1);
         gpio_pin_set_dt(&config->boost_ctrl1, 0);
