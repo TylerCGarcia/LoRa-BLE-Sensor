@@ -24,22 +24,6 @@ LOG_MODULE_REGISTER(MAIN);
 /* The timer device to use for scheduling */
 const struct device *timer0 = DEVICE_DT_GET(DT_NODELABEL(rtc2));
 
-sensor_data_t sensor1_data = {
-    .id = SENSOR_1,
-    .power_id = SENSOR_POWER_1,
-    .max_samples = 10,
-    .data_size = 4,
-    .timestamp_size = 4,
-};
-
-sensor_data_t sensor2_data = {
-    .id = SENSOR_2,
-    .power_id = SENSOR_POWER_2,
-    .max_samples = 10,
-    .data_size = 4,
-    .timestamp_size = 4,
-};
-
 enum sensor_nvs_address {
 	SENSOR_NVS_ADDRESS_DEV_NONCE,
 	SENSOR_NVS_ADDRESS_JOIN_EUI,
@@ -104,6 +88,22 @@ static sensor_reading_config_t sensor2_reading_config = {
 	.d2 = GPIO_DT_SPEC_GET(DT_ALIAS(sensor2d2), gpios),
 	.voltage_read = ADC_DT_SPEC_GET_BY_NAME(DT_PATH(zephyr_user), voltage_sensor2),
 	.current_read = ADC_DT_SPEC_GET_BY_NAME(DT_PATH(zephyr_user), current_sensor2)
+};
+
+sensor_data_t sensor1_data = {
+    .id = SENSOR_1,
+    .power_id = SENSOR_POWER_1,
+    .max_samples = 10,
+    .data_size = 4,
+    .timestamp_size = 4,
+};
+
+sensor_data_t sensor2_data = {
+    .id = SENSOR_2,
+    .power_id = SENSOR_POWER_2,
+    .max_samples = 10,
+    .data_size = 4,
+    .timestamp_size = 4,
 };
 
 static void setup_power(void)
@@ -188,15 +188,15 @@ static void send_packet(void)
 
 static void init_lora_ble(void)
 {
-	ble_config_t ble_config = {
-		.adv_opt = BT_LE_ADV_OPT_CONN,
-		.adv_name = "BLE-LoRa-Sensor",
-		.adv_interval_min_ms = 500,
-		.adv_interval_max_ms = 510
-	};
+	// ble_config_t ble_config = {
+	// 	.adv_opt = BT_LE_ADV_OPT_CONN,
+	// 	.adv_name = "BLE-LoRa-Sensor",
+	// 	.adv_interval_min_ms = 500,
+	// 	.adv_interval_max_ms = 510
+	// };
 	int ret;
-	ret = ble_setup(&ble_config);
-	ret = ble_lorawan_service_init(&setup);
+	// ret = ble_setup(&ble_config);
+	// ret = ble_lorawan_service_init(&setup);
 	ret = sensor_nvs_setup(SENSOR_NVS_ADDRESS_LIMIT);
 	sensor_nvs_read(SENSOR_NVS_ADDRESS_DEV_EUI, &setup.dev_eui, sizeof(setup.dev_eui));
 	sensor_nvs_read(SENSOR_NVS_ADDRESS_JOIN_EUI, &setup.join_eui, sizeof(setup.join_eui));
@@ -248,17 +248,17 @@ int main(void)
 	int ret;
 	sensor_scheduling_cfg_t radio_schedule = {
 		.id = SENSOR_SCHEDULING_ID_RADIO,
-		.frequency_seconds = MINUTES_TO_SECONDS(10)
+		.frequency_seconds = MINUTES_TO_SECONDS(5)
 	};
 
 	sensor_scheduling_cfg_t sensor1_schedule = {
 		.id = SENSOR_SCHEDULING_ID_SENSOR1,
-		.frequency_seconds = MINUTES_TO_SECONDS(5)
+		.frequency_seconds = MINUTES_TO_SECONDS(1)
 	};
 
 	sensor_scheduling_cfg_t sensor2_schedule = {
 		.id = SENSOR_SCHEDULING_ID_SENSOR2,
-		.frequency_seconds = MINUTES_TO_SECONDS(5)
+		.frequency_seconds = MINUTES_TO_SECONDS(1)
 	};
 
 	ret = sensor_scheduling_init(timer0);
@@ -266,22 +266,24 @@ int main(void)
 	ret = sensor_scheduling_add_schedule(&sensor1_schedule);
 	ret = sensor_scheduling_add_schedule(&sensor2_schedule);
 	ret = sensor_scheduling_add_schedule(&radio_schedule);
-
-    ret = sensor_data_setup(&sensor1_data, VOLTAGE_SENSOR, SENSOR_VOLTAGE_5V);
+	k_sleep(K_SECONDS(2));
+    // ret = sensor_data_setup(&sensor1_data, PULSE_SENSOR, SENSOR_VOLTAGE_3V3);
     ret = sensor_data_setup(&sensor2_data, PULSE_SENSOR, SENSOR_VOLTAGE_3V3);
 
 	uint8_t sensor_first_time_trigger = 1;
 	while (1) 
 	{
-		if(sensor1_schedule.is_triggered || sensor_first_time_trigger)
-		{
-			LOG_INF("Sensor 1 schedule triggered");
-			sensor_data_read(&sensor1_data, sensor_timer_get_total_seconds(timer0));
-			sensor_data_print_data(&sensor1_data);
-			sensor_scheduling_reset_schedule(&sensor1_schedule);
-		}
+		// if(sensor1_schedule.is_triggered || sensor_first_time_trigger)
+		// {
+		// 	sensor_first_time_trigger = 0;
+		// 	LOG_INF("Sensor 1 schedule triggered");
+		// 	sensor_data_read(&sensor1_data, sensor_timer_get_total_seconds(timer0));
+		// 	sensor_data_print_data(&sensor1_data);
+		// 	sensor_scheduling_reset_schedule(&sensor1_schedule);
+		// }
 		if(sensor2_schedule.is_triggered || sensor_first_time_trigger)
 		{
+			sensor_first_time_trigger = 0;
 			LOG_INF("Sensor 2 schedule triggered");
 			sensor_data_read(&sensor2_data, sensor_timer_get_total_seconds(timer0));
 			sensor_data_print_data(&sensor2_data);
@@ -289,9 +291,12 @@ int main(void)
 		}
 		if(radio_schedule.is_triggered || sensor_first_time_trigger)
 		{
+			sensor_first_time_trigger = 0;
 			LOG_INF("Radio schedule triggered");
 			send_packet();
 			sensor_scheduling_reset_schedule(&radio_schedule);
+			sensor_data_clear(&sensor1_data);
+			sensor_data_clear(&sensor2_data);
 		}
 		k_msleep(100);
 	}

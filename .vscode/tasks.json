@@ -1,21 +1,31 @@
 {
-    // See https://go.microsoft.com/fwlink/?LinkId=733558
-    // for the documentation about the tasks.json format
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Build",
-            "group": "build",
+            "label": "Activate venv",
             "type": "shell",
-            "command": "west",
-            "args": ["build"]
+            "command": "source ~/zephyrproject/.venv/bin/activate && source ~/zephyrproject/zephyr/zephyr-env.sh",
+            "presentation": {
+                "reveal": "silent"
+            }
         },
         {
-            "label": "Flash",
-            "group": "build",
+            "label": "Build",
             "type": "shell",
-            "command": "west",
-            "args": ["flash"]
+            "command": "west build",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Prepare and Build",
+            "dependsOrder": "sequence",
+            "dependsOn": ["Activate venv", "Build"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
         }
     ]
 }

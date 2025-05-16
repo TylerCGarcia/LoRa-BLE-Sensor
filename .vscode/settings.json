@@ -19,8 +19,8 @@
         "PATH": "C:\\zephyrproject\\zephyr\\scripts;${env:PATH}",
         "ZEPHYR_BASE": "C:\\zephyrproject\\zephyr",
     },
-    "cortex-debug.gdbPath": "/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/12.2 mpacbti-rel1/bin/arm-none-eabi-gdb",
-    "cortex-debug.JLinkGDBServerPath": "/Program Files/SEGGER/JLink/JLinkGDBServerCL",
+    "cortex-debug.gdbPath": "/usr/bin/gdb",
+    "cortex-debug.JLinkGDBServerPath": "/usr/bin/JLinkGDBServerCLExe",
     "cortex-debug.variableUseNaturalFormat": true,
 
     "actionButtons": {

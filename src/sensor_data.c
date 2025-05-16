@@ -114,14 +114,14 @@ int sensor_data_setup(sensor_data_t *sensor_data, enum sensor_types type, enum s
         LOG_DBG("Freeing latest data since it already exists");
         k_free(sensor_data->latest_data);
     }
-
+    LOG_DBG("Allocating memory for latest data");
     // Allocate memory for latest data
     sensor_data->latest_data = k_malloc(sensor_data->data_size);
     if (sensor_data->latest_data == NULL) {
         LOG_ERR("Failed to allocate memory for latest data");
         return -1;
     }
-
+    LOG_DBG("Allocating memory for data ring buffers");
     uint32_t buffer_size = sensor_data->data_size * sensor_data->max_samples;
     uint32_t timestamp_buffer_size = sensor_data->timestamp_size * sensor_data->max_samples;
 

@@ -79,7 +79,7 @@ int lorawan_setup(lorawan_setup_t *setup)
 	{
 		return -1;
 	}
-	
+	lorawan_enable_adr(true);
 	LOG_INF("Starting LoRaWAN");
 	ret = lorawan_start();
 	if (ret < 0) {
