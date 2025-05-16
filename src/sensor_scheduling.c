@@ -111,8 +111,12 @@ int sensor_scheduling_remove_schedule(sensor_scheduling_cfg_t *schedule)
 
 int sensor_scheduling_reset_schedule(sensor_scheduling_cfg_t *schedule)
 {
+    /* If the schedule is not triggered, do not reset it */
+    if(schedule->is_triggered == 0)
+    {
+        return 0;
+    }
     /* Reset the schedule */
-    schedule->is_triggered = 0;
     uint32_t time_to_next_event;
     int current_time = sensor_timer_get_total_seconds(scheduling_timer);
     if(current_time < 0)
@@ -120,6 +124,7 @@ int sensor_scheduling_reset_schedule(sensor_scheduling_cfg_t *schedule)
         LOG_ERR("Failed to get current time for renewing schedule");
         return -EINVAL;
     }
+    /* If the time since the last event is less than the frequency, reset the alarm */
     if(current_time - schedule->last_event_time < schedule->frequency_seconds)
     {
         time_to_next_event = schedule->frequency_seconds - (current_time - schedule->last_event_time);
@@ -129,6 +134,6 @@ int sensor_scheduling_reset_schedule(sensor_scheduling_cfg_t *schedule)
         LOG_ERR("Failed to reset schedule because the time since the last event is more than the frequency");
         time_to_next_event = schedule->frequency_seconds;
     }
-
+    schedule->is_triggered = 0;
     return renew_alarm_for_schedule(schedule, time_to_next_event);
 }

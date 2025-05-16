@@ -158,7 +158,7 @@ static int put_data_into_ring_buffer(sensor_data_t *sensor_data, void *data)
     return 0;
 }
 
-static int put_timestamp_into_ring_buffer(sensor_data_t *sensor_data, uint32_t timestamp)
+static int put_timestamp_into_ring_buffer(sensor_data_t *sensor_data, int timestamp)
 {
     int ret;
     uint32_t timestamp_size = ring_buf_size_get(&sensor_data->timestamp_ring_buf);
@@ -177,7 +177,7 @@ static int put_timestamp_into_ring_buffer(sensor_data_t *sensor_data, uint32_t t
     return 0;
 }
 
-int sensor_data_read(sensor_data_t *sensor_data, uint32_t timestamp)
+int sensor_data_read(sensor_data_t *sensor_data, int timestamp)
 {
     if (&sensor_data->data_ring_buf == NULL || &sensor_data->timestamp_ring_buf == NULL) {
         LOG_ERR("Ring buffers not initialized");

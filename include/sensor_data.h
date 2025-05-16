@@ -51,7 +51,7 @@ typedef struct {
     /* Pointer to latest data. */
     void *latest_data;
     /* Latest timestamp. */
-    uint32_t latest_timestamp;
+    int latest_timestamp;
     /* Number of samples in the buffer. */
     uint32_t num_samples;
 } sensor_data_t;
@@ -75,7 +75,7 @@ int sensor_data_setup(sensor_data_t *sensor_data, enum sensor_types type, enum s
  * @param timestamp The timestamp to add to the data buffer.
  * @return int 0 if successful, -1 if failed.
  */
-int sensor_data_read(sensor_data_t *sensor_data, uint32_t timestamp);
+int sensor_data_read(sensor_data_t *sensor_data, int timestamp);
 
 /**
  * @brief Print the sensor data from data and timestamp ring buffers. Displaying it from the oldest to newest.

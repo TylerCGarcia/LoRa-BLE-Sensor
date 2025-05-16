@@ -17,11 +17,28 @@
 #include "ble_lorawan_service.h"
 #include "sensor_timer.h"
 #include "sensor_scheduling.h"
+#include "sensor_data.h"
 
 LOG_MODULE_REGISTER(MAIN);
 
 /* The timer device to use for scheduling */
 const struct device *timer0 = DEVICE_DT_GET(DT_NODELABEL(rtc2));
+
+sensor_data_t sensor1_data = {
+    .id = SENSOR_1,
+    .power_id = SENSOR_POWER_1,
+    .max_samples = 10,
+    .data_size = 4,
+    .timestamp_size = 4,
+};
+
+sensor_data_t sensor2_data = {
+    .id = SENSOR_2,
+    .power_id = SENSOR_POWER_2,
+    .max_samples = 10,
+    .data_size = 4,
+    .timestamp_size = 4,
+};
 
 enum sensor_nvs_address {
 	SENSOR_NVS_ADDRESS_DEV_NONCE,
@@ -145,11 +162,23 @@ static void send_packet(void)
 		LOG_INF("Sending LoRaWAN data");
 		int i = 0;
 		lorawan_data_t lorawan_data;
-		lorawan_data.data[i++] = 255;
-		lorawan_data.data[i++] = 255;
-		lorawan_data.data[i++] = 255;
-		lorawan_data.data[i++] = 255;
-		lorawan_data.length = i;
+		uint8_t sensor1_data_buffer[(sensor1_data.data_size * sensor1_data.num_samples) + (sensor1_data.timestamp_size * sensor1_data.num_samples)];
+		uint8_t sensor2_data_buffer[(sensor2_data.data_size * sensor2_data.num_samples) + (sensor2_data.timestamp_size * sensor2_data.num_samples)];
+		uint8_t sensor1_data_buffer_len;
+		uint8_t sensor2_data_buffer_len;
+		sensor_data_format_for_lorawan(&sensor1_data, sensor1_data_buffer, &sensor1_data_buffer_len);
+		sensor_data_format_for_lorawan(&sensor2_data, sensor2_data_buffer, &sensor2_data_buffer_len);
+
+		for(int i = 0; i < sensor1_data_buffer_len; i++)
+		{
+			lorawan_data.data[i] = sensor1_data_buffer[i];
+		}
+		for(int i = 0; i < sensor2_data_buffer_len; i++)
+		{
+			lorawan_data.data[i + sensor1_data_buffer_len] = sensor2_data_buffer[i];
+		}
+
+		lorawan_data.length = sensor1_data_buffer_len + sensor2_data_buffer_len;
 		lorawan_data.port = 2;
 		lorawan_data.attempts = 10;
 		lorawan_data.delay = 1000;
@@ -219,17 +248,17 @@ int main(void)
 	int ret;
 	sensor_scheduling_cfg_t radio_schedule = {
 		.id = SENSOR_SCHEDULING_ID_RADIO,
-		.frequency_seconds = MINUTES_TO_SECONDS(5)
+		.frequency_seconds = MINUTES_TO_SECONDS(10)
 	};
 
 	sensor_scheduling_cfg_t sensor1_schedule = {
 		.id = SENSOR_SCHEDULING_ID_SENSOR1,
-		.frequency_seconds = MINUTES_TO_SECONDS(1)
+		.frequency_seconds = MINUTES_TO_SECONDS(5)
 	};
 
 	sensor_scheduling_cfg_t sensor2_schedule = {
 		.id = SENSOR_SCHEDULING_ID_SENSOR2,
-		.frequency_seconds = MINUTES_TO_SECONDS(3)
+		.frequency_seconds = MINUTES_TO_SECONDS(5)
 	};
 
 	ret = sensor_scheduling_init(timer0);
@@ -237,23 +266,28 @@ int main(void)
 	ret = sensor_scheduling_add_schedule(&sensor1_schedule);
 	ret = sensor_scheduling_add_schedule(&sensor2_schedule);
 	ret = sensor_scheduling_add_schedule(&radio_schedule);
-	sensor1_schedule.is_triggered = 1;
-	sensor2_schedule.is_triggered = 1;
-	radio_schedule.is_triggered = 1;
-	
+
+    ret = sensor_data_setup(&sensor1_data, VOLTAGE_SENSOR, SENSOR_VOLTAGE_5V);
+    ret = sensor_data_setup(&sensor2_data, PULSE_SENSOR, SENSOR_VOLTAGE_3V3);
+
+	uint8_t sensor_first_time_trigger = 1;
 	while (1) 
 	{
-		if(sensor1_schedule.is_triggered)
+		if(sensor1_schedule.is_triggered || sensor_first_time_trigger)
 		{
 			LOG_INF("Sensor 1 schedule triggered");
+			sensor_data_read(&sensor1_data, sensor_timer_get_total_seconds(timer0));
+			sensor_data_print_data(&sensor1_data);
 			sensor_scheduling_reset_schedule(&sensor1_schedule);
 		}
-		if(sensor2_schedule.is_triggered)
+		if(sensor2_schedule.is_triggered || sensor_first_time_trigger)
 		{
 			LOG_INF("Sensor 2 schedule triggered");
+			sensor_data_read(&sensor2_data, sensor_timer_get_total_seconds(timer0));
+			sensor_data_print_data(&sensor2_data);
 			sensor_scheduling_reset_schedule(&sensor2_schedule);
 		}
-		if(radio_schedule.is_triggered)
+		if(radio_schedule.is_triggered || sensor_first_time_trigger)
 		{
 			LOG_INF("Radio schedule triggered");
 			send_packet();

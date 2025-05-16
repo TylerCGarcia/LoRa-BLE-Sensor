@@ -58,8 +58,8 @@ static void reset_all_fakes(void)
 }
 
 typedef struct {
-    uint32_t initial_timestamp;
-    uint32_t reading_interval;
+    int initial_timestamp;
+    int reading_interval;
     uint32_t num_samples;
     enum sensor_data_type data_type;
     void *fake_return_val;
@@ -70,7 +70,7 @@ static void data_read_loop(sensor_data_t *sensor_data, loop_data_t *loop_data)
 {
     int ret;
     for (uint32_t i = 0; i < loop_data->num_samples; i++) {
-        uint32_t timestamp = loop_data->initial_timestamp + (i * loop_data->reading_interval);
+        int timestamp = loop_data->initial_timestamp + (i * loop_data->reading_interval);
         switch (loop_data->data_type) {
         case PULSE_SENSOR:
             get_sensor_pulse_count_fake.return_val = ((int *)loop_data->fake_return_val)[i];
@@ -189,7 +189,7 @@ ZTEST(data, test_sensor_data_setup_pulse_sensor)
 ZTEST(data, test_sensor_data_read_pulse_sensor)
 {
     get_sensor_pulse_count_fake.return_val = 100;
-    uint32_t timestamp = 1000;
+    int timestamp = 1000;
     int ret = sensor_data_setup(&sensor1_data, PULSE_SENSOR, SENSOR_VOLTAGE_3V3);
     zassert_ok(ret, "Sensor data setup failed");
     ret = sensor_data_read(&sensor1_data, timestamp);
@@ -227,7 +227,7 @@ ZTEST(data, test_sensor_data_read_multiple_pulse_samples)
 ZTEST(data, test_sensor_data_read_voltage_sensor)
 {
     get_sensor_voltage_reading_fake.return_val = 5.3;
-    uint32_t timestamp = 1000;
+    int timestamp = 1000;
     int ret = sensor_data_setup(&sensor1_data, VOLTAGE_SENSOR, SENSOR_VOLTAGE_3V3);
     zassert_ok(ret, "Sensor data setup failed");
     ret = sensor_data_read(&sensor1_data, timestamp);
@@ -266,7 +266,7 @@ ZTEST(data, test_sensor_data_read_multiple_voltage_samples)
 ZTEST(data, test_sensor_data_read_current_sensor)
 {
     get_sensor_current_reading_fake.return_val = 0.5;
-    uint32_t timestamp = 1000;
+    int timestamp = 1000;
     int ret = sensor_data_setup(&sensor1_data, CURRENT_SENSOR, SENSOR_VOLTAGE_3V3);
     zassert_ok(ret, "Sensor data setup failed");
     ret = sensor_data_read(&sensor1_data, timestamp);
@@ -304,7 +304,7 @@ ZTEST(data, test_sensor_data_read_multiple_current_samples)
 ZTEST(data, test_sensor_data_clear)
 {
     get_sensor_pulse_count_fake.return_val = 100;
-    uint32_t timestamp = 1000;
+    int timestamp = 1000;
     int ret = sensor_data_setup(&sensor1_data, PULSE_SENSOR, SENSOR_VOLTAGE_3V3);
     zassert_ok(ret, "Sensor data setup failed");
     ret = sensor_data_read(&sensor1_data, timestamp);
@@ -324,7 +324,7 @@ ZTEST(data, test_sensor_data_clear)
 ZTEST(data, test_sensor_data_clear_and_read_after_clear)
 {
     get_sensor_pulse_count_fake.return_val = 100;
-    uint32_t timestamp = 1000;
+    int timestamp = 1000;
     int ret = sensor_data_setup(&sensor1_data, PULSE_SENSOR, SENSOR_VOLTAGE_3V3);
     int value1 = *(int *)sensor1_data.latest_data;
     zassert_ok(ret, "Sensor data setup failed");
@@ -342,7 +342,7 @@ ZTEST(data, test_sensor_data_clear_and_read_after_clear)
     zassert_equal(ring_buf_size_get(&sensor1_data.timestamp_ring_buf), sensor1_data.timestamp_size, "Timestamp ring buffer should be empty");
     // Get and verify the reading
     int value = *(int *)sensor1_data.latest_data;
-    uint32_t read_timestamp = sensor1_data.latest_timestamp;
+    int read_timestamp = sensor1_data.latest_timestamp;
     int expected_value = get_sensor_pulse_count_fake.return_val;
     zassert_ok(ret, "Failed to get latest reading");
     zassert_equal(value, expected_value, "Expected pulse count is %d, actual is %d", expected_value, value);
@@ -357,7 +357,7 @@ ZTEST(data, test_sensor_data_clear_and_read_after_clear)
 ZTEST(data, test_sensor_data_power_calls_for_voltage_sensor_24v_power)
 {
     int ret;
-    uint32_t timestamp = 1000;
+    int timestamp = 1000;
     ret = sensor_data_setup(&sensor1_data, VOLTAGE_SENSOR, SENSOR_VOLTAGE_24V);
     zassert_ok(ret, "Sensor data setup failed");
     zassert_equal(sensor_power_init_fake.call_count, 1, "Sensor power init should be called");
@@ -378,7 +378,7 @@ ZTEST(data, test_sensor_data_power_calls_for_voltage_sensor_24v_power)
 ZTEST(data, test_sensor_data_power_calls_for_current_sensor_12v_power)
 {
     int ret;
-    uint32_t timestamp = 1000;
+    int timestamp = 1000;
     ret = sensor_data_setup(&sensor1_data, CURRENT_SENSOR, SENSOR_VOLTAGE_12V);
     zassert_ok(ret, "Sensor data setup failed");
     zassert_equal(sensor_power_init_fake.call_count, 1, "Sensor power init should be called");
@@ -400,7 +400,7 @@ ZTEST(data, test_sensor_data_power_calls_for_current_sensor_12v_power)
 ZTEST(data, test_sensor_data_power_calls_for_pulse_sensor_3v3_power)
 {
     int ret;
-    uint32_t timestamp = 1000;
+    int timestamp = 1000;
     ret = sensor_data_setup(&sensor1_data, PULSE_SENSOR, SENSOR_VOLTAGE_3V3);
     zassert_ok(ret, "Sensor data setup failed");
     zassert_equal(sensor_power_init_fake.call_count, 1, "Sensor power init should be called");
@@ -419,7 +419,7 @@ ZTEST(data, test_sensor_data_power_calls_for_pulse_sensor_3v3_power)
 ZTEST(data, test_sensor_data_deinit_sensor_with_null_sensor_type)
 {
     int ret;
-    uint32_t timestamp = 1000;
+    int timestamp = 1000;
     ret = sensor_data_setup(&sensor1_data, PULSE_SENSOR, SENSOR_VOLTAGE_3V3);
     zassert_ok(ret, "Sensor data setup failed");
     zassert_equal(sensor_power_init_fake.call_count, 1, "Sensor power init should be called");
@@ -460,7 +460,7 @@ ZTEST(data, test_sensor_data_format_pulse_sensor_for_lorawan)
     zassert_ok(ret, "Sensor data format for LoRaWAN failed");
     zassert_equal(data_len, expected_data_len, "Sensor data length was %d, expected %d", data_len, expected_data_len);
     // Check timestamp (first 4 bytes)
-    uint32_t timestamp;
+    int timestamp;
     memcpy(&timestamp, data, sensor1_data.timestamp_size);
     zassert_equal(timestamp, 1000, "First timestamp should be 1000, got %u", timestamp);
 
@@ -497,7 +497,7 @@ ZTEST(data, test_sensor_data_format_voltage_sensor_for_lorawan)
     zassert_ok(ret, "Sensor data format for LoRaWAN failed");
     zassert_equal(data_len, expected_data_len, "Sensor data length was %d, expected %d", data_len, expected_data_len);
     // Check timestamp (first 4 bytes)
-    uint32_t timestamp;
+    int timestamp;
     memcpy(&timestamp, data, sensor1_data.timestamp_size);
     zassert_equal(timestamp, 1000, "First timestamp should be 1000, got %u", timestamp);
 
