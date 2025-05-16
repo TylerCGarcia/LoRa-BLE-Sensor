@@ -270,28 +270,30 @@ int main(void)
     ret = sensor_data_setup(&sensor1_data, PULSE_SENSOR, SENSOR_VOLTAGE_3V3);
     ret = sensor_data_setup(&sensor2_data, PULSE_SENSOR, SENSOR_VOLTAGE_3V3);
 
-	uint8_t sensor_first_time_trigger = 1;
+	uint8_t sensor1_first_time_trigger = 1;
+	uint8_t sensor2_first_time_trigger = 1;
+	uint8_t radio_first_time_trigger = 1;
 	while (1) 
 	{
-		if(sensor1_schedule.is_triggered || sensor_first_time_trigger)
+		if(sensor1_schedule.is_triggered || sensor1_first_time_trigger)
 		{
-			sensor_first_time_trigger = 0;
+			sensor1_first_time_trigger = 0;
 			LOG_INF("Sensor 1 schedule triggered");
 			sensor_data_read(&sensor1_data, sensor_timer_get_total_seconds(timer0));
 			sensor_data_print_data(&sensor1_data);
 			sensor_scheduling_reset_schedule(&sensor1_schedule);
 		}
-		if(sensor2_schedule.is_triggered || sensor_first_time_trigger)
+		if(sensor2_schedule.is_triggered || sensor2_first_time_trigger)
 		{
-			sensor_first_time_trigger = 0;
+			sensor2_first_time_trigger = 0;
 			LOG_INF("Sensor 2 schedule triggered");
 			sensor_data_read(&sensor2_data, sensor_timer_get_total_seconds(timer0));
 			sensor_data_print_data(&sensor2_data);
 			sensor_scheduling_reset_schedule(&sensor2_schedule);
 		}
-		if(radio_schedule.is_triggered || sensor_first_time_trigger)
+		if(radio_schedule.is_triggered || radio_first_time_trigger)
 		{
-			sensor_first_time_trigger = 0;
+			radio_first_time_trigger = 0;
 			LOG_INF("Radio schedule triggered");
 			send_packet();
 			sensor_scheduling_reset_schedule(&radio_schedule);

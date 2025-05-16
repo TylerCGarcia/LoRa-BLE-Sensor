@@ -79,7 +79,6 @@ int lorawan_setup(lorawan_setup_t *setup)
 	{
 		return -1;
 	}
-	lorawan_enable_adr(true);
 	LOG_INF("Starting LoRaWAN");
 	ret = lorawan_start();
 	if (ret < 0) {
@@ -137,13 +136,37 @@ static void reset_data(lorawan_data_t *data)
 	data->length = 0;
 }
 
+static int set_datarate(uint8_t payload_length)
+{
+	if(payload_length > 125)
+	{
+		lorawan_set_datarate(LORAWAN_DR_3);
+		return 0;
+	}
+	else if(payload_length > 53)
+	{
+		lorawan_set_datarate(LORAWAN_DR_2);
+		return 0;
+	}
+	else if(payload_length > 11)
+	{
+		lorawan_set_datarate(LORAWAN_DR_1);
+		return 0;
+	}
+	else
+	{
+		lorawan_set_datarate(LORAWAN_DR_0);
+		return 0;
+	}
+}
+
 int lorawan_send_data(lorawan_data_t *lorawan_data)
 {
 	int ret;
 	if (lorawan_data->length == 0) {
 		return -1;
 	}
-
+	set_datarate(lorawan_data->length);
 	if(lorawan_data->attempts == 0)
 	{
 		LOG_INF("Sending unconfirmed data");
