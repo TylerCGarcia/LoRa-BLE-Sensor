@@ -10,15 +10,19 @@
 
 #include <zephyr/ztest.h>
 #include <zephyr/logging/log.h>
+#include "sensor_app.h"
 
 LOG_MODULE_REGISTER(tests_app, LOG_LEVEL_DBG);
 
 ZTEST_SUITE(app, NULL, NULL, NULL, NULL, NULL);
 
+/**
+ * @brief Test that the sensor app can be initialized
+ * 
+ */
 ZTEST(app, test_app_init)
 {
     int ret;
     ret = sensor_app_init();
     zassert_ok(ret, "App init failed");
 }
-

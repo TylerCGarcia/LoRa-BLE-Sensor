@@ -13,6 +13,6 @@
  #ifndef SENSOR_APP_H
  #define SENSOR_APP_H
  
-
+int sensor_app_init(void);
  
  #endif

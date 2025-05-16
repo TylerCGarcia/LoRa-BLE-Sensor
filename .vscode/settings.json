@@ -69,7 +69,7 @@
 				"useVsCodeApi": false,
                 "ignoreClear": true,
                 "singleInstance": false,
-                "command": "west build -b native_sim -t run tests/functionality/data",
+                "command": "west build -b native_sim -t run tests/functionality/app",
             },
             {
                 "name" : "venv",
@@ -148,6 +148,7 @@
         "stddef.h": "c",
         "mem_manage.h": "c",
         "sensor_reading_fakes.h": "c",
-        "ring_buffer.h": "c"
+        "ring_buffer.h": "c",
+        "sensor_app.h": "c"
     }
 }
