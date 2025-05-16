@@ -17,9 +17,9 @@
 #include <zephyr/device.h>
 
 enum sensor_scheduling_id{
-    SENSOR_SCHEDULING_ID_RADIO,
     SENSOR_SCHEDULING_ID_SENSOR1,
     SENSOR_SCHEDULING_ID_SENSOR2,
+    SENSOR_SCHEDULING_ID_RADIO, // Radio is the last scheduled component in case sensors are triggered at the same time
     SENSOR_SCHEDULING_ID_LIMIT,
 };
 
