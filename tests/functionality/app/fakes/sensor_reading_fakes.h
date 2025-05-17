@@ -30,4 +30,7 @@ DECLARE_FAKE_VALUE_FUNC(float, get_sensor_current_reading, sensor_reading_config
 DECLARE_FAKE_VALUE_FUNC(int, get_sensor_pulse_count, sensor_reading_config_t *);
 DECLARE_FAKE_VALUE_FUNC(int, reset_sensor_pulse_count, sensor_reading_config_t *);
 
+// Reset all fakes
+void sensor_reading_fakes_reset(void);
+
 #endif

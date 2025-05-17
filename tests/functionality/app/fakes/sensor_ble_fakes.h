@@ -38,4 +38,7 @@ DECLARE_FAKE_VALUE_FUNC(int, is_ble_advertising);
 DECLARE_FAKE_VALUE_FUNC(int, ble_change_name, ble_config_t *);
 DECLARE_FAKE_VALUE_FUNC(adv_interval_t, get_ble_adv_interval);
 
+// Reset all fakes
+void sensor_ble_fakes_reset(void);
+
 #endif /* SENSOR_BLE_FAKES_H */ 

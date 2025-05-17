@@ -14,7 +14,7 @@
 #include <zephyr/kernel.h>
 LOG_MODULE_REGISTER(tests_scheduling, LOG_LEVEL_DBG);
 
-const struct device *timer0 = DEVICE_DT_GET(DT_NODELABEL(counter0));
+const struct device *timer0 = DEVICE_DT_GET(DT_ALIAS(sensortimer));
 
 static void *testsuite_setup(void)
 {
@@ -221,4 +221,18 @@ ZTEST(scheduling, test_scheduling_schedule_can_be_readded_after_removed)
     zassert_ok(ret, "Scheduling add schedule failed");
     k_sleep(K_SECONDS(radio_schedule.frequency_seconds));
     zassert_true(radio_schedule.is_triggered, "Schedule is not triggered");
+}
+
+/**
+ * @brief Test that the sensor scheduling can return the time 
+ * 
+ */
+ZTEST(scheduling, test_scheduling_multiple_schedules_can_be_added_at_the_same_time)
+{
+    int ret;
+    int initial_time = sensor_scheduling_get_seconds();
+    // zassert_true(initial_time > 0, "Scheduling get seconds returned %d, expected > 0", initial_time);
+    k_sleep(K_SECONDS(10));
+    int current_time = sensor_scheduling_get_seconds();
+    zassert_true(current_time - initial_time == 10, "Scheduling get seconds returned %d, expected %d", current_time - initial_time, 10);
 }

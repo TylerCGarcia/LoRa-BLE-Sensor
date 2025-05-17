@@ -71,4 +71,11 @@ int sensor_scheduling_remove_schedule(sensor_scheduling_cfg_t *schedule);
  */
 int sensor_scheduling_reset_schedule(sensor_scheduling_cfg_t *schedule);
 
+/**
+ * @brief Get the current time in seconds since the scheduling module was initialized
+ * 
+ * @return int The current time in seconds
+ */
+int sensor_scheduling_get_seconds(void);
+
 #endif

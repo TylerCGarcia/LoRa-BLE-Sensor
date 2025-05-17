@@ -7,3 +7,14 @@ DEFINE_FAKE_VALUE_FUNC(float, get_sensor_voltage_reading, sensor_reading_config_
 DEFINE_FAKE_VALUE_FUNC(float, get_sensor_current_reading, sensor_reading_config_t *);
 DEFINE_FAKE_VALUE_FUNC(int, get_sensor_pulse_count, sensor_reading_config_t *);
 DEFINE_FAKE_VALUE_FUNC(int, reset_sensor_pulse_count, sensor_reading_config_t *);
+
+// Reset all fakes
+void sensor_reading_fakes_reset(void)
+{
+    RESET_FAKE(sensor_reading_setup);
+    RESET_FAKE(get_sensor_reading_setup);
+    RESET_FAKE(get_sensor_voltage_reading);
+    RESET_FAKE(get_sensor_current_reading);
+    RESET_FAKE(get_sensor_pulse_count);
+    RESET_FAKE(reset_sensor_pulse_count);
+}

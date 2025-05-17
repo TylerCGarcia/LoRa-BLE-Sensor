@@ -42,26 +42,25 @@ sensor_data_t sensor2_data = {
 static void reset_all_fakes(void)
 {
     /* clear sensor power fakes */
-	RESET_FAKE(sensor_power_init);
-    RESET_FAKE(get_sensor_output);
-    RESET_FAKE(set_sensor_output);
-    RESET_FAKE(read_sensor_output);
-    RESET_FAKE(validate_output);
-    RESET_FAKE(get_sensor_voltage_name);
+    sensor_power_fakes_reset();
     /* clear sensor reading fakes */
-    RESET_FAKE(sensor_reading_setup);
-    RESET_FAKE(get_sensor_reading_setup);
-    RESET_FAKE(get_sensor_voltage_reading);
-    RESET_FAKE(get_sensor_current_reading);
-    RESET_FAKE(get_sensor_pulse_count);
-    RESET_FAKE(reset_sensor_pulse_count);
+    sensor_reading_fakes_reset();
 }
 
+/**
+ * @brief Loop data structure to input fake data into ring buffers
+ * 
+ */
 typedef struct {
+    /* Initial timestamp to start the loop */
     int initial_timestamp;
+    /* Reading interval in ms */
     int reading_interval;
+    /* Number of samples to read */
     uint32_t num_samples;
+    /* Data type to read */
     enum sensor_data_type data_type;
+    /* Fake return value */
     void *fake_return_val;
 } loop_data_t;
 

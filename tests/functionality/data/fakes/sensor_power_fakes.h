@@ -33,4 +33,7 @@ DECLARE_FAKE_VALUE_FUNC(float, read_sensor_output, sensor_power_config_t *);
 DECLARE_FAKE_VALUE_FUNC(int, validate_output, sensor_power_config_t *, enum sensor_voltage, uint8_t);
 DECLARE_FAKE_VALUE_FUNC(int, get_sensor_voltage_name, char *, enum sensor_voltage);
 
+// Reset all fakes
+void sensor_power_fakes_reset(void);
+
 #endif

@@ -149,6 +149,7 @@
         "mem_manage.h": "c",
         "sensor_reading_fakes.h": "c",
         "ring_buffer.h": "c",
-        "sensor_app.h": "c"
+        "sensor_app.h": "c",
+        "ble_lorawan_service.h": "c"
     }
 }

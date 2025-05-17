@@ -137,3 +137,8 @@ int sensor_scheduling_reset_schedule(sensor_scheduling_cfg_t *schedule)
     schedule->is_triggered = 0;
     return renew_alarm_for_schedule(schedule, time_to_next_event);
 }
+
+int sensor_scheduling_get_seconds(void)
+{
+    return sensor_timer_get_total_seconds(scheduling_timer);
+}
