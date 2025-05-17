@@ -3,7 +3,7 @@
 #include "sensor_ble.h"
 #include "sensor_scheduling.h"
 #include "sensor_nvs.h"
-// #include "sensor_data.h"
+#include "sensor_lorawan.h"
 #include <zephyr/logging/log.h>
 #include <zephyr/kernel.h>
 
@@ -31,21 +31,21 @@ enum sensor_timer_channel {
     SENSOR_TIMER_CHANNEL_LIMIT,
 };
 
-// #define DEV_EUI {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}
-// #define JOIN_EUI {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}
-// #define APP_KEY {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}
+#define DEV_EUI {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}
+#define JOIN_EUI {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}
+#define APP_KEY {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}
 
-// static lorawan_setup_t setup = {
-// 	.lora_dev = DEVICE_DT_GET(DT_ALIAS(lora0)),
-// 	.uplink_class = LORAWAN_CLASS_A,
-// 	.downlink_callback = NULL,
-// 	.join_attempts = 0,
-// 	.dev_nonce = 160,
-// 	.delay = 1000,
-// 	.dev_eui = DEV_EUI,
-// 	.join_eui = JOIN_EUI,
-// 	.app_key = APP_KEY,
-// };
+static lorawan_setup_t setup = {
+	.lora_dev = DEVICE_DT_GET(DT_ALIAS(lora0)),
+	.uplink_class = LORAWAN_CLASS_A,
+	.downlink_callback = NULL,
+	.join_attempts = 0,
+	.dev_nonce = 160,
+	.delay = 1000,
+	.dev_eui = DEV_EUI,
+	.join_eui = JOIN_EUI,
+	.app_key = APP_KEY,
+};
 
 // sensor_data_t sensor1_data = {
 //     .id = SENSOR_1,

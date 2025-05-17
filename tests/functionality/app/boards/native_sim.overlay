@@ -1,5 +1,6 @@
 #include <zephyr/dt-bindings/gpio/gpio.h>
 #include <dt-bindings/regulator/npm1300.h>
+#include <zephyr/dt-bindings/lora/sx126x.h>
 
 / {
 
@@ -48,6 +49,7 @@
 	};
     aliases {
 		sensortimer = &counter0;
+		lora0 = &lora;
 		boost1en = &boost1_en;
 		boost1ctrl1 = &boost1_ctrl1;
 		boost1ctrl2 = &boost1_ctrl2;
@@ -59,6 +61,37 @@
 		sensor2d1 = &sensor2_d1;
 		sensor2d2 = &sensor2_d2;
     };
+
+	test {
+		#address-cells = <1>;
+		#size-cells = <1>;
+
+		test_spi: spi@33334444 {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			compatible = "vnd,spi";
+			reg = <0x33334444 0x1000>;
+			status = "okay";
+			clock-frequency = <2000000>;
+
+			cs-gpios = <&gpio0 1 GPIO_ACTIVE_LOW>;
+
+			lora: lora@0 {
+				compatible = "semtech,sx1262";
+				status = "okay";
+				reg = <0>;
+				reset-gpios = <&gpio0 2 GPIO_ACTIVE_LOW>;
+				busy-gpios = <&gpio0 3 GPIO_ACTIVE_HIGH>;
+				tx-enable-gpios = <&gpio0 4 GPIO_ACTIVE_LOW>;
+				rx-enable-gpios = <&gpio0 5 GPIO_ACTIVE_LOW>;
+				dio1-gpios = <&gpio0 5 GPIO_ACTIVE_HIGH>;
+				dio2-tx-enable;
+				dio3-tcxo-voltage = <SX126X_DIO3_TCXO_3V3>;
+				tcxo-power-startup-delay-ms = <5>;
+				spi-max-frequency = <1000000>;
+			};
+		};
+	};
 
 	npm1300_ek_pmic: pmic {
 
