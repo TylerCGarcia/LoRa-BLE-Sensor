@@ -158,6 +158,17 @@ static int initialize_lorawan_nvs(void)
 static int initialize_sensor_nvs(void)
 {
     int ret;
+    /* Read stored app state */
+    ret = sensor_nvs_read(SENSOR_NVS_ADDRESS_APP_STATE, &sensor_app_config->state, sizeof(sensor_app_config->state));
+    if(ret < 0)
+    {
+        LOG_INF("No App State found in NVS");
+        if(sensor_nvs_write(SENSOR_NVS_ADDRESS_APP_STATE, &sensor_app_config->state, sizeof(sensor_app_config->state)) < 0)
+        {
+            LOG_ERR("Failed to write App State to NVS");
+            return ret;
+        }
+    }
     /* Read if LoRaWAN Enabled */
     ret = sensor_nvs_read(SENSOR_NVS_ADDRESS_LORAWAN_ENABLED, &sensor_app_config->is_lorawan_enabled, sizeof(sensor_app_config->is_lorawan_enabled));
     if(ret < 0)
@@ -227,10 +238,10 @@ static int initialize_sensor_nvs(void)
     /* Read Stored Sensor 2 Power */
     ret = sensor_nvs_read(SENSOR_NVS_ADDRESS_SENSOR_2_POWER, &sensor_app_config->sensor_2_voltage, sizeof(sensor_app_config->sensor_2_voltage));
     {
-        LOG_INF("No Sensor 2 Enabled found in NVS");
-        if(sensor_nvs_write(SENSOR_NVS_ADDRESS_SENSOR_2_ENABLED, &sensor_app_config->is_sensor_2_enabled, sizeof(sensor_app_config->is_sensor_2_enabled)) < 0)
+        LOG_INF("No Sensor 2 Power found in NVS");
+        if(sensor_nvs_write(SENSOR_NVS_ADDRESS_SENSOR_2_POWER, &sensor_app_config->sensor_2_voltage, sizeof(sensor_app_config->sensor_2_voltage)) < 0)
         {
-            LOG_ERR("Failed to write Sensor 2 Enabled to NVS");
+            LOG_ERR("Failed to write Sensor 2 Power to NVS");
             return ret;
         }
     }
