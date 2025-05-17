@@ -270,7 +270,7 @@ static int initialize_sensor_nvs(void)
     return 0;
 }
 
-int initialize_nvs(void)
+static int initialize_nvs(void)
 {
     int ret;
     ret = sensor_nvs_setup(SENSOR_NVS_ADDRESS_LIMIT);
