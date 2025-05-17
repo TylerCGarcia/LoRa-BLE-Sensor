@@ -16,15 +16,22 @@ LOG_MODULE_REGISTER(SENSOR_APP, LOG_LEVEL_DBG);
 K_THREAD_STACK_DEFINE(ble_stack, BLE_STACKSIZE);
 struct k_thread blethread_id;
 
+static sensor_app_config_t *sensor_app_config;
+
 enum sensor_nvs_address {
     SENSOR_NVS_ADDRESS_APP_STATE,
+    SENSOR_NVS_ADDRESS_LORAWAN_ENABLED,
 	SENSOR_NVS_ADDRESS_DEV_NONCE,
 	SENSOR_NVS_ADDRESS_JOIN_EUI,
 	SENSOR_NVS_ADDRESS_APP_KEY,
 	SENSOR_NVS_ADDRESS_DEV_EUI,
+    SENSOR_NVS_ADDRESS_LORAWAN_JOIN_ATTEMPTS,
+    SENSOR_NVS_ADDRESS_LORAWAN_SEND_ATTEMPTS,
+    SENSOR_NVS_ADDRESS_SENSOR_1_ENABLED,
     SENSOR_NVS_ADDRESS_SENSOR_1_POWER,
     SENSOR_NVS_ADDRESS_SENSOR_1_TYPE,
     SENSOR_NVS_ADDRESS_SENSOR_1_FREQUENCY,
+    SENSOR_NVS_ADDRESS_SENSOR_2_ENABLED,
     SENSOR_NVS_ADDRESS_SENSOR_2_POWER,
     SENSOR_NVS_ADDRESS_SENSOR_2_TYPE,
     SENSOR_NVS_ADDRESS_SENSOR_2_FREQUENCY,
@@ -52,23 +59,24 @@ static lorawan_setup_t lorawan_setup = {
 	.dev_eui = DEV_EUI,
 	.join_eui = JOIN_EUI,
 	.app_key = APP_KEY,
+	.send_attempts = 0,
 };
 
-// sensor_data_t sensor1_data = {
-//     .id = SENSOR_1,
-//     .power_id = SENSOR_POWER_1,
-//     .max_samples = 10,
-//     .data_size = 4,
-//     .timestamp_size = 4,
-// };
+static sensor_data_t sensor1_data = {
+    .id = SENSOR_1,
+    .power_id = SENSOR_POWER_1,
+    .max_samples = 10,
+    .data_size = 4,
+    .timestamp_size = 4,
+};
 
-// sensor_data_t sensor2_data = {
-//     .id = SENSOR_2,
-//     .power_id = SENSOR_POWER_2,
-//     .max_samples = 10,
-//     .data_size = 4,
-//     .timestamp_size = 4,
-// };
+static sensor_data_t sensor2_data = {
+    .id = SENSOR_2,
+    .power_id = SENSOR_POWER_2,
+    .max_samples = 10,
+    .data_size = 4,
+    .timestamp_size = 4,
+};
 
 /* The timer device to use for scheduling */
 static const struct device *sensor_timer = DEVICE_DT_GET(DT_ALIAS(sensortimer));
@@ -124,6 +132,130 @@ static int initialize_lorawan_nvs(void)
             return ret;
         }
     }
+    ret = sensor_nvs_read(SENSOR_NVS_ADDRESS_LORAWAN_JOIN_ATTEMPTS, &lorawan_setup.join_attempts, sizeof(lorawan_setup.join_attempts));
+    if(ret < 0)
+    {
+        LOG_INF("No LoRaWAN Join Attempts found in NVS");
+        if(sensor_nvs_write(SENSOR_NVS_ADDRESS_LORAWAN_JOIN_ATTEMPTS, &lorawan_setup.join_attempts, sizeof(lorawan_setup.join_attempts)) < 0)
+        {
+            LOG_ERR("Failed to write LoRaWAN Join Attempts to NVS");
+            return ret;
+        }
+    }
+    ret = sensor_nvs_read(SENSOR_NVS_ADDRESS_LORAWAN_SEND_ATTEMPTS, &lorawan_setup.send_attempts, sizeof(lorawan_setup.send_attempts));
+    if(ret < 0)
+    {
+        LOG_INF("No LoRaWAN Send Attempts found in NVS");
+        if(sensor_nvs_write(SENSOR_NVS_ADDRESS_LORAWAN_SEND_ATTEMPTS, &lorawan_setup.send_attempts, sizeof(lorawan_setup.send_attempts)) < 0)
+        {
+            LOG_ERR("Failed to write LoRaWAN Send Attempts to NVS");
+            return ret;
+        }
+    }
+    return 0;
+}
+
+static int initialize_sensor_nvs(void)
+{
+    int ret;
+    /* Read if LoRaWAN Enabled */
+    ret = sensor_nvs_read(SENSOR_NVS_ADDRESS_LORAWAN_ENABLED, &sensor_app_config->is_lorawan_enabled, sizeof(sensor_app_config->is_lorawan_enabled));
+    if(ret < 0)
+    {
+        LOG_INF("No LoRaWAN Enabled found in NVS");
+        if(sensor_nvs_write(SENSOR_NVS_ADDRESS_LORAWAN_ENABLED, &sensor_app_config->is_lorawan_enabled, sizeof(sensor_app_config->is_lorawan_enabled)) < 0)
+        {
+            LOG_ERR("Failed to write LoRaWAN Enabled to NVS");
+            return ret;
+        }
+    }
+    /* Read Stored Sensor 1 Configuration */
+    ret = sensor_nvs_read(SENSOR_NVS_ADDRESS_SENSOR_1_TYPE, &sensor_app_config->sensor_1_type, sizeof(sensor_app_config->sensor_1_type));
+    if(ret < 0)
+    {
+        LOG_INF("No Sensor 1 Type found in NVS");
+        if(sensor_nvs_write(SENSOR_NVS_ADDRESS_SENSOR_1_TYPE, &sensor_app_config->sensor_1_type, sizeof(sensor_app_config->sensor_1_type)) < 0)
+        {
+            LOG_ERR("Failed to write Sensor 1 Type to NVS");
+            return ret;
+        }
+    }
+    /* Read Stored Sensor 1 Power */
+    ret = sensor_nvs_read(SENSOR_NVS_ADDRESS_SENSOR_1_POWER, &sensor_app_config->sensor_1_voltage, sizeof(sensor_app_config->sensor_1_voltage));
+    if(ret < 0)
+    {
+        LOG_INF("No Sensor 1 Power found in NVS");
+        if(sensor_nvs_write(SENSOR_NVS_ADDRESS_SENSOR_1_POWER, &sensor_app_config->sensor_1_voltage, sizeof(sensor_app_config->sensor_1_voltage)) < 0)
+        {
+            LOG_ERR("Failed to write Sensor 1 Power to NVS");
+            return ret;
+        }
+    }
+    /* Read Stored Sensor 1 Frequency */
+    ret = sensor_nvs_read(SENSOR_NVS_ADDRESS_SENSOR_1_FREQUENCY, &sensor_app_config->sensor_1_frequency, sizeof(sensor_app_config->sensor_1_frequency));
+    if(ret < 0)
+    {
+        LOG_INF("No Sensor 1 Frequency found in NVS");
+        if(sensor_nvs_write(SENSOR_NVS_ADDRESS_SENSOR_1_FREQUENCY, &sensor_app_config->sensor_1_frequency, sizeof(sensor_app_config->sensor_1_frequency)) < 0)
+        {
+            LOG_ERR("Failed to write Sensor 1 Frequency to NVS");
+            return ret;
+        }
+    }
+    /* Read Stored Sensor 1 Enabled */
+    ret = sensor_nvs_read(SENSOR_NVS_ADDRESS_SENSOR_1_ENABLED, &sensor_app_config->is_sensor_1_enabled, sizeof(sensor_app_config->is_sensor_1_enabled));
+    if(ret < 0)
+    {
+        LOG_INF("No Sensor 1 Enabled found in NVS");
+        if(sensor_nvs_write(SENSOR_NVS_ADDRESS_SENSOR_1_ENABLED, &sensor_app_config->is_sensor_1_enabled, sizeof(sensor_app_config->is_sensor_1_enabled)) < 0)
+        {
+            LOG_ERR("Failed to write Sensor 1 Enabled to NVS");
+            return ret;
+        }
+    }
+    /* Read Stored Sensor 2 Configuration */
+    ret = sensor_nvs_read(SENSOR_NVS_ADDRESS_SENSOR_2_TYPE, &sensor_app_config->sensor_2_type, sizeof(sensor_app_config->sensor_2_type));
+    if(ret < 0)
+    {
+        LOG_INF("No Sensor 2 Type found in NVS");
+        if(sensor_nvs_write(SENSOR_NVS_ADDRESS_SENSOR_2_TYPE, &sensor_app_config->sensor_2_type, sizeof(sensor_app_config->sensor_2_type)) < 0)
+        {
+            LOG_ERR("Failed to write Sensor 2 Type to NVS");
+            return ret;
+        }
+    }
+    /* Read Stored Sensor 2 Power */
+    ret = sensor_nvs_read(SENSOR_NVS_ADDRESS_SENSOR_2_POWER, &sensor_app_config->sensor_2_voltage, sizeof(sensor_app_config->sensor_2_voltage));
+    {
+        LOG_INF("No Sensor 2 Enabled found in NVS");
+        if(sensor_nvs_write(SENSOR_NVS_ADDRESS_SENSOR_2_ENABLED, &sensor_app_config->is_sensor_2_enabled, sizeof(sensor_app_config->is_sensor_2_enabled)) < 0)
+        {
+            LOG_ERR("Failed to write Sensor 2 Enabled to NVS");
+            return ret;
+        }
+    }
+    /* Read Stored Sensor 2 Frequency */
+    ret = sensor_nvs_read(SENSOR_NVS_ADDRESS_SENSOR_2_FREQUENCY, &sensor_app_config->sensor_2_frequency, sizeof(sensor_app_config->sensor_2_frequency));
+    if(ret < 0)
+    {
+        LOG_INF("No Sensor 2 Frequency found in NVS");
+        if(sensor_nvs_write(SENSOR_NVS_ADDRESS_SENSOR_2_FREQUENCY, &sensor_app_config->sensor_2_frequency, sizeof(sensor_app_config->sensor_2_frequency)) < 0)
+        {
+            LOG_ERR("Failed to write Sensor 2 Frequency to NVS");
+            return ret;
+        }
+    }
+    /* Read Stored Sensor 2 Enabled */
+    ret = sensor_nvs_read(SENSOR_NVS_ADDRESS_SENSOR_2_ENABLED, &sensor_app_config->is_sensor_2_enabled, sizeof(sensor_app_config->is_sensor_2_enabled));
+    if(ret < 0)
+    {
+        LOG_INF("No Sensor 2 Enabled found in NVS");
+        if(sensor_nvs_write(SENSOR_NVS_ADDRESS_SENSOR_2_ENABLED, &sensor_app_config->is_sensor_2_enabled, sizeof(sensor_app_config->is_sensor_2_enabled)) < 0)
+        {
+            LOG_ERR("Failed to write Sensor 2 Enabled to NVS");
+            return ret;
+        }
+    }
     return 0;
 }
 
@@ -142,18 +274,19 @@ int initialize_nvs(void)
         LOG_ERR("Failed to initialize LoRaWAN NVS");
         return ret;
     }
-    // ret = initialize_sensor_nvs();
-    // if(ret < 0)
-    // {
-    //     LOG_ERR("Failed to initialize Sensor NVS");
-    //     return ret;
-    // }
+    ret = initialize_sensor_nvs();
+    if(ret < 0)
+    {
+        LOG_ERR("Failed to initialize Sensor NVS");
+        return ret;
+    }
     return 0;
 }
 
-int sensor_app_init(void)
+int sensor_app_init(sensor_app_config_t *config)
 {
     int ret;
+    sensor_app_config = config;
     ret = sensor_scheduling_init(sensor_timer);
     if(ret < 0)
     {

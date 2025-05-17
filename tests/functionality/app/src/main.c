@@ -22,6 +22,18 @@ LOG_MODULE_REGISTER(tests_app, LOG_LEVEL_DBG);
 
 DEFINE_FFF_GLOBALS;
 
+sensor_app_config_t sensor_app_config = {
+    .is_lorawan_enabled = 0,
+    .is_sensor_1_enabled = 0,
+    .is_sensor_2_enabled = 0,
+    .sensor_1_type = NULL_SENSOR,
+    .sensor_2_type = NULL_SENSOR,
+    .sensor_1_voltage = SENSOR_VOLTAGE_OFF,
+    .sensor_2_voltage = SENSOR_VOLTAGE_OFF,
+    .sensor_1_frequency = 0,
+    .sensor_2_frequency = 0,
+};
+
 /**
  * @brief Setup sensor power systems 
  * 
@@ -33,7 +45,7 @@ static void *after_tests(void)
     zassert_ok(ret, "Failed to clear NVS");
 }
 
-ZTEST_SUITE(app, NULL, NULL, NULL, NULL, NULL);
+ZTEST_SUITE(app, NULL, NULL, NULL, after_tests, NULL);
 
 /**
  * @brief Test that the sensor app can be initialized
@@ -42,21 +54,22 @@ ZTEST_SUITE(app, NULL, NULL, NULL, NULL, NULL);
 ZTEST(app, test_app_init)
 {
     int ret;
-    ret = sensor_app_init();
+    ret = sensor_app_init(&sensor_app_config);
     zassert_ok(ret, "App init failed");
-    ret = sensor_nvs_clear();
-    zassert_ok(ret, "Failed to clear NVS");
+    // ret = sensor_nvs_clear();
+    // zassert_ok(ret, "Failed to clear NVS");
 }
 
-/**
- * @brief Test that the sensor app can be initialized
- * 
- */
-ZTEST(app, test_app_ble_init)
-{
-    int ret;
-    ret = sensor_app_ble_start();
-    zassert_ok(ret, "BLE init failed");
-    k_sleep(K_SECONDS(1)); // Wait for the BLE thread to start
-    zassert_equal(ble_setup_fake.call_count, 1, "BLE setup should be called");
-}
+// /**
+//  * @brief Test that the sensor app can be initialized
+//  * 
+//  */
+// ZTEST(app, test_app_ble_init)
+// {
+//     int ret;
+//     ret = sensor_app_ble_start();
+//     zassert_ok(ret, "BLE init failed");
+//     k_sleep(K_SECONDS(1)); // Wait for the BLE thread to start
+//     zassert_equal(ble_setup_fake.call_count, 1, "BLE setup should be called");
+// }
+

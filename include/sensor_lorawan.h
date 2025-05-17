@@ -40,7 +40,8 @@ typedef struct {
     uint8_t join_eui[8];
     /* App Key for LoRaWAN Network. */
     uint8_t app_key[16];
-
+    /* How many attempts to send data when waiting for an ack, if 0, it will send an unconfirmed message. */
+    uint8_t send_attempts;
 } lorawan_setup_t;
 
 /**
