@@ -74,7 +74,7 @@ ZTEST_SUITE(lorawan, NULL, testsuite_setup, NULL, after_tests, NULL);
 ZTEST(lorawan, test_setup)
 {
 	int ret;
-    ret = lorawan_setup(&setup);
+    ret = sensor_lorawan_setup(&setup);
     zassert_equal(ret, 0, "lorawan_setup failed: %d", ret);
 }
 
@@ -85,7 +85,7 @@ ZTEST(lorawan, test_setup_fails_when_invalid_uplink_class)
 {
 	int ret;
     setup.uplink_class = 5;
-    ret = lorawan_setup(&setup);
+    ret = sensor_lorawan_setup(&setup);
     zassert_not_ok(ret, "lorawan_setup should fail");
 }
 
@@ -96,7 +96,7 @@ ZTEST(lorawan, test_setup_fails_when_invalid_uplink_class)
 ZTEST(lorawan, test_is_lorawan_connected)
 {
 	int ret;
-    ret = lorawan_setup(&setup);
+    ret = sensor_lorawan_setup(&setup);
     zassert_equal(ret, 0, "lorawan_setup failed: %d", ret);
 	ret = is_lorawan_connected();
 	zassert_equal(ret, 1, "lorawan is not connected after setup");
@@ -110,7 +110,7 @@ ZTEST(lorawan, test_setup_fails_when_no_dev_eui)
     int ret;
     uint8_t dev_eui[8] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
     memcpy(setup.dev_eui, dev_eui, sizeof(dev_eui));
-    ret = lorawan_setup(&setup);
+    ret = sensor_lorawan_setup(&setup);
     zassert_not_ok(ret, "lorawan_setup should fail");
 }
 
@@ -122,7 +122,7 @@ ZTEST(lorawan, test_setup_fails_when_no_join_eui)
     int ret;
     uint8_t join_eui[8] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
     memcpy(setup.join_eui, join_eui, sizeof(join_eui));
-    ret = lorawan_setup(&setup);
+    ret = sensor_lorawan_setup(&setup);
     zassert_not_ok(ret, "lorawan_setup should fail");
 }
 
@@ -135,7 +135,7 @@ ZTEST(lorawan, test_setup_fails_when_no_app_key)
     uint8_t app_key[16] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
     memcpy(setup.app_key, app_key, sizeof(app_key));
     
-    ret = lorawan_setup(&setup);
+    ret = sensor_lorawan_setup(&setup);
     zassert_not_ok(ret, "lorawan_setup should fail");
 }
 
@@ -149,7 +149,7 @@ ZTEST(lorawan, test_setup_fails_when_no_dev_eui_and_join_eui)
     uint8_t join_eui[8] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
     memcpy(setup.dev_eui, dev_eui, sizeof(dev_eui));
     memcpy(setup.join_eui, join_eui, sizeof(join_eui));
-    ret = lorawan_setup(&setup);
+    ret = sensor_lorawan_setup(&setup);
     zassert_not_ok(ret, "lorawan_setup should fail");
 }
 
@@ -159,7 +159,7 @@ ZTEST(lorawan, test_setup_fails_when_no_dev_eui_and_join_eui)
 ZTEST(lorawan, test_send_packet)
 {
     int ret;
-    ret = lorawan_setup(&setup);
+    ret = sensor_lorawan_setup(&setup);
     zassert_equal(ret, 0, "lorawan_setup failed: %d", ret);
     int i = 0;
     lorawan_data_t lorawan_data;
@@ -171,7 +171,7 @@ ZTEST(lorawan, test_send_packet)
     lorawan_data.length = i;
     lorawan_data.port = 2;
     lorawan_data.attempts = 0;
-    ret = lorawan_send_data(&lorawan_data);
+    ret = sensor_lorawan_send_data(&lorawan_data);
     zassert_ok(ret, "lorawan_send_data failed: %d", ret);
 }
 
@@ -181,14 +181,14 @@ ZTEST(lorawan, test_send_packet)
 ZTEST(lorawan, test_send_data_fails_when_no_data)
 {
     int ret;
-    ret = lorawan_setup(&setup);
+    ret = sensor_lorawan_setup(&setup);
     zassert_equal(ret, 0, "lorawan_setup failed: %d", ret);
     lorawan_data_t lorawan_data;
     lorawan_data.data[0] = NULL;
     lorawan_data.length = 0;
     lorawan_data.port = 1;
     lorawan_data.attempts = 0;
-    ret = lorawan_send_data(&lorawan_data);
+    ret = sensor_lorawan_send_data(&lorawan_data);
     zassert_not_ok(ret, "lorawan_send_data should fail");
 }
 
@@ -198,7 +198,7 @@ ZTEST(lorawan, test_send_data_fails_when_no_data)
 ZTEST(lorawan, test_send_data_resets_data_afer_send)
 {
     int ret;
-    ret = lorawan_setup(&setup);
+    ret = sensor_lorawan_setup(&setup);
     zassert_equal(ret, 0, "lorawan_setup failed: %d", ret);
     int i = 0;
     lorawan_data_t lorawan_data;
@@ -211,7 +211,7 @@ ZTEST(lorawan, test_send_data_resets_data_afer_send)
     lorawan_data.port = 1;
     lorawan_data.attempts = 0;
     lorawan_data.delay = 1000;
-    ret = lorawan_send_data(&lorawan_data);
+    ret = sensor_lorawan_send_data(&lorawan_data);
     zassert_ok(ret, "lorawan_send_data failed: %d", ret);
     zassert_is_null(lorawan_data.data[0], "lorawan_data.data should be NULL");
     zassert_equal(lorawan_data.length, 0, "lorawan_data.length should be 0");
@@ -223,7 +223,7 @@ ZTEST(lorawan, test_send_data_resets_data_afer_send)
 ZTEST(lorawan, test_send_data_confirmed)
 {
     int ret;
-    ret = lorawan_setup(&setup);
+    ret = sensor_lorawan_setup(&setup);
     zassert_equal(ret, 0, "lorawan_setup failed: %d", ret);
     int i = 0;
     lorawan_data_t lorawan_data;
@@ -236,7 +236,7 @@ ZTEST(lorawan, test_send_data_confirmed)
     lorawan_data.port = 2;
     lorawan_data.attempts = 1;
     lorawan_data.delay = 1000;
-    ret = lorawan_send_data(&lorawan_data);
+    ret = sensor_lorawan_send_data(&lorawan_data);
     zassert_ok(ret, "lorawan_send_data failed: %d", ret);
 }
 
@@ -260,7 +260,7 @@ ZTEST(lorawan, test_send_data_downlink_callback)
     setup.downlink_callback.cb = dl_callback;
     setup.downlink_callback.port = LW_RECV_PORT_ANY;
 
-    ret = lorawan_setup(&setup);
+    ret = sensor_lorawan_setup(&setup);
     zassert_equal(ret, 0, "lorawan_setup failed: %d", ret);
 
     const uint8_t *payload = "Hello";

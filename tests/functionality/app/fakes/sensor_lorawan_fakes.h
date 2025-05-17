@@ -52,9 +52,9 @@ typedef struct {
 
 // Declare fake functions
 DECLARE_FAKE_VALUE_FUNC(int, is_lorawan_configured, lorawan_setup_t*);
-DECLARE_FAKE_VOID_FUNC(lorawan_log_network_config, lorawan_setup_t*);
-DECLARE_FAKE_VALUE_FUNC(int, lorawan_setup, lorawan_setup_t*);
-DECLARE_FAKE_VALUE_FUNC(int, lorawan_send_data, lorawan_data_t*);
+DECLARE_FAKE_VOID_FUNC(sensor_lorawan_log_network_config, lorawan_setup_t*);
+DECLARE_FAKE_VALUE_FUNC(int, sensor_lorawan_setup, lorawan_setup_t*);
+DECLARE_FAKE_VALUE_FUNC(int, sensor_lorawan_send_data, lorawan_data_t*);
 DECLARE_FAKE_VALUE_FUNC(int, is_lorawan_connected);
 
 // Reset all fakes

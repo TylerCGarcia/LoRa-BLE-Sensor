@@ -9,49 +9,17 @@
 #include <zephyr/logging/log.h>
 #include <zephyr/drivers/adc.h>
 
-#include "sensor_ble.h"
-#include "sensor_lorawan.h"
-#include "sensor_power.h"
-#include "sensor_reading.h"
-#include "sensor_nvs.h"
-#include "ble_lorawan_service.h"
-#include "sensor_timer.h"
-#include "sensor_scheduling.h"
-#include "sensor_data.h"
+#include "sensor_app.h"
 
 LOG_MODULE_REGISTER(MAIN);
 
-#define DEV_EUI {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}
-#define JOIN_EUI {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}
-#define APP_KEY {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}
-
-static lorawan_setup_t setup = {
-	.lora_dev = DEVICE_DT_GET(DT_ALIAS(lora0)),
-	.uplink_class = LORAWAN_CLASS_A,
-	.downlink_callback = NULL,
-	.join_attempts = 0,
-	.dev_nonce = 160,
-	.delay = 1000,
-	.dev_eui = DEV_EUI,
-	.join_eui = JOIN_EUI,
-	.app_key = APP_KEY,
-};
+sensor_app_config_t sensor_app_config;
 
 // static void init_lora_ble(void)
 // {
-// 	// ble_config_t ble_config = {
-// 	// 	.adv_opt = BT_LE_ADV_OPT_CONN,
-// 	// 	.adv_name = "BLE-LoRa-Sensor",
-// 	// 	.adv_interval_min_ms = 500,
-// 	// 	.adv_interval_max_ms = 510
-// 	// };
 // 	int ret;
 // 	// ret = ble_setup(&ble_config);
 // 	// ret = ble_lorawan_service_init(&setup);
-// 	ret = sensor_nvs_setup(SENSOR_NVS_ADDRESS_LIMIT);
-// 	sensor_nvs_read(SENSOR_NVS_ADDRESS_DEV_EUI, &setup.dev_eui, sizeof(setup.dev_eui));
-// 	sensor_nvs_read(SENSOR_NVS_ADDRESS_JOIN_EUI, &setup.join_eui, sizeof(setup.join_eui));
-// 	sensor_nvs_read(SENSOR_NVS_ADDRESS_APP_KEY, &setup.app_key, sizeof(setup.app_key));
 
 // 	while(is_lorawan_configured(&setup) < 0)
 // 	{
@@ -59,12 +27,7 @@ static lorawan_setup_t setup = {
 // 		LOG_ERR("LoRaWAN is not configured, waiting for configuration");
 // 		k_sleep(K_SECONDS(1));
 // 	}
-// 	if(ret < 0)
-// 	{
-// 		sensor_nvs_write(SENSOR_NVS_ADDRESS_DEV_EUI, &setup.dev_eui, sizeof(setup.dev_eui));
-// 		sensor_nvs_write(SENSOR_NVS_ADDRESS_JOIN_EUI, &setup.join_eui, sizeof(setup.join_eui));
-// 		sensor_nvs_write(SENSOR_NVS_ADDRESS_APP_KEY, &setup.app_key, sizeof(setup.app_key));
-// 	}
+
 // 	lorawan_log_network_config(&setup);
 // 	ret = sensor_nvs_read(SENSOR_NVS_ADDRESS_DEV_NONCE, &setup.dev_nonce, sizeof(setup.dev_nonce));
 // 	if(ret < 0)
@@ -195,7 +158,7 @@ int main(void)
 {
 	while (1) 
 	{
-
+		
 	}
 	return 0;
 }

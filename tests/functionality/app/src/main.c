@@ -22,6 +22,17 @@ LOG_MODULE_REGISTER(tests_app, LOG_LEVEL_DBG);
 
 DEFINE_FFF_GLOBALS;
 
+/**
+ * @brief Setup sensor power systems 
+ * 
+ */
+static void *after_tests(void)
+{
+    int ret;
+    ret = sensor_nvs_clear();
+    zassert_ok(ret, "Failed to clear NVS");
+}
+
 ZTEST_SUITE(app, NULL, NULL, NULL, NULL, NULL);
 
 /**
@@ -33,6 +44,8 @@ ZTEST(app, test_app_init)
     int ret;
     ret = sensor_app_init();
     zassert_ok(ret, "App init failed");
+    ret = sensor_nvs_clear();
+    zassert_ok(ret, "Failed to clear NVS");
 }
 
 /**

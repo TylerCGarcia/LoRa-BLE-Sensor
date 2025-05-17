@@ -2,6 +2,7 @@
 #include "sensor_app.h"
 #include "sensor_ble.h"
 #include "sensor_scheduling.h"
+#include "sensor_data.h"
 #include "sensor_nvs.h"
 #include "sensor_lorawan.h"
 #include <zephyr/logging/log.h>
@@ -16,11 +17,17 @@ K_THREAD_STACK_DEFINE(ble_stack, BLE_STACKSIZE);
 struct k_thread blethread_id;
 
 enum sensor_nvs_address {
+    SENSOR_NVS_ADDRESS_APP_STATE,
 	SENSOR_NVS_ADDRESS_DEV_NONCE,
 	SENSOR_NVS_ADDRESS_JOIN_EUI,
 	SENSOR_NVS_ADDRESS_APP_KEY,
 	SENSOR_NVS_ADDRESS_DEV_EUI,
-	SENSOR_NVS_ADDRESS_APP_STATE,
+    SENSOR_NVS_ADDRESS_SENSOR_1_POWER,
+    SENSOR_NVS_ADDRESS_SENSOR_1_TYPE,
+    SENSOR_NVS_ADDRESS_SENSOR_1_FREQUENCY,
+    SENSOR_NVS_ADDRESS_SENSOR_2_POWER,
+    SENSOR_NVS_ADDRESS_SENSOR_2_TYPE,
+    SENSOR_NVS_ADDRESS_SENSOR_2_FREQUENCY,
 	SENSOR_NVS_ADDRESS_LIMIT,
 };
 
@@ -35,7 +42,7 @@ enum sensor_timer_channel {
 #define JOIN_EUI {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}
 #define APP_KEY {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}
 
-static lorawan_setup_t setup = {
+static lorawan_setup_t lorawan_setup = {
 	.lora_dev = DEVICE_DT_GET(DT_ALIAS(lora0)),
 	.uplink_class = LORAWAN_CLASS_A,
 	.downlink_callback = NULL,
@@ -73,7 +80,52 @@ static ble_config_t ble_config = {
 	.adv_interval_max_ms = 510
 };
 
-
+static int initialize_lorawan_nvs(void)
+{
+    int ret;
+    LOG_INF("Reading LoRaWAN NVS");
+	ret = sensor_nvs_read(SENSOR_NVS_ADDRESS_DEV_EUI, &lorawan_setup.dev_eui, sizeof(lorawan_setup.dev_eui));
+	if(ret < 0)
+	{
+		LOG_INF("No LoRaWAN Dev EUI found in NVS");
+		if(sensor_nvs_write(SENSOR_NVS_ADDRESS_DEV_EUI, &lorawan_setup.dev_eui, sizeof(lorawan_setup.dev_eui)) < 0)
+		{
+			LOG_ERR("Failed to write LoRaWAN Dev EUI to NVS");
+			return ret;
+		}
+	}
+	ret = sensor_nvs_read(SENSOR_NVS_ADDRESS_JOIN_EUI, &lorawan_setup.join_eui, sizeof(lorawan_setup.join_eui));
+	if(ret < 0)
+	{
+		LOG_INF("No LoRaWAN Join EUI found in NVS");
+		if(sensor_nvs_write(SENSOR_NVS_ADDRESS_JOIN_EUI, &lorawan_setup.join_eui, sizeof(lorawan_setup.join_eui)) < 0)
+		{
+			LOG_ERR("Failed to write LoRaWAN Join EUI to NVS");
+			return ret;
+		}
+	}
+	ret = sensor_nvs_read(SENSOR_NVS_ADDRESS_APP_KEY, &lorawan_setup.app_key, sizeof(lorawan_setup.app_key));
+	if(ret < 0)
+	{
+		LOG_INF("No LoRaWAN App Key found in NVS");
+		if(sensor_nvs_write(SENSOR_NVS_ADDRESS_APP_KEY, &lorawan_setup.app_key, sizeof(lorawan_setup.app_key)) < 0)
+		{
+			LOG_ERR("Failed to write LoRaWAN App Key to NVS");
+			return ret;
+		}
+	}
+    ret = sensor_nvs_read(SENSOR_NVS_ADDRESS_DEV_NONCE, &lorawan_setup.dev_nonce, sizeof(lorawan_setup.dev_nonce));
+    if(ret < 0)
+    {
+        LOG_INF("No LoRaWAN Dev Nonce found in NVS");
+        if(sensor_nvs_write(SENSOR_NVS_ADDRESS_DEV_NONCE, &lorawan_setup.dev_nonce, sizeof(lorawan_setup.dev_nonce)) < 0)
+        {
+            LOG_ERR("Failed to write LoRaWAN Dev Nonce to NVS");
+            return ret;
+        }
+    }
+    return 0;
+}
 
 int initialize_nvs(void)
 {
@@ -83,12 +135,19 @@ int initialize_nvs(void)
     {
         return ret;
     }
-
     /* Pull all data from NVS */
-
-	// sensor_nvs_read(SENSOR_NVS_ADDRESS_DEV_EUI, &setup.dev_eui, sizeof(setup.dev_eui));
-	// sensor_nvs_read(SENSOR_NVS_ADDRESS_JOIN_EUI, &setup.join_eui, sizeof(setup.join_eui));
-	// sensor_nvs_read(SENSOR_NVS_ADDRESS_APP_KEY, &setup.app_key, sizeof(setup.app_key));
+    ret = initialize_lorawan_nvs();
+    if(ret < 0)
+    {
+        LOG_ERR("Failed to initialize LoRaWAN NVS");
+        return ret;
+    }
+    // ret = initialize_sensor_nvs();
+    // if(ret < 0)
+    // {
+    //     LOG_ERR("Failed to initialize Sensor NVS");
+    //     return ret;
+    // }
     return 0;
 }
 

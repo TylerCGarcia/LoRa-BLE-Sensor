@@ -13,6 +13,8 @@
 #ifndef SENSOR_APP_H
 #define SENSOR_APP_H
 
+#include "sensor_id.h"
+#include <stdint.h>
 // In sensor_app.h
 typedef enum sensor_app_state{
     SENSOR_APP_STATE_UNINITIALIZED = 0,
@@ -23,6 +25,20 @@ typedef enum sensor_app_state{
 
 typedef struct {
     enum sensor_app_state state;
+    /* Sensor type used for sensor 1 */
+    enum sensor_types sensor_1_type;
+    /* Sensor type used for sensor 2 */
+    enum sensor_types sensor_2_type;
+    /* Power voltage used for sensor 1 */
+    enum sensor_voltage sensor_1_voltage;
+    /* Power voltage used for sensor 2 */
+    enum sensor_voltage sensor_2_voltage;
+    /* Whether sensor 1 is enabled */
+    uint8_t is_sensor_1_enabled;
+    /* Whether sensor 2 is enabled */
+    uint8_t is_sensor_2_enabled;
+    /* Whether LoRaWAN is enabled */
+    uint8_t is_lorawan_enabled;
 } sensor_app_config_t;
 
 /**

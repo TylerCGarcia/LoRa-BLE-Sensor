@@ -72,7 +72,7 @@ int is_lorawan_configured(lorawan_setup_t *setup);
  * 
  * @param setup setup configuration used to join lorawan network
  */
-void lorawan_log_network_config(lorawan_setup_t *setup);
+void sensor_lorawan_log_network_config(lorawan_setup_t *setup);
 
 /**
  * @brief Setup LoRaWAN Network with a given lorawan_setup_t configuration. 
@@ -80,7 +80,7 @@ void lorawan_log_network_config(lorawan_setup_t *setup);
  * @param setup setup configuration used to join lorawan network
  * @return int 0 if successful connection, < 0 if unsuccessful
  */
-int lorawan_setup(lorawan_setup_t *setup);
+int sensor_lorawan_setup(lorawan_setup_t *setup);
 
 /**
  * @brief Send data to the LoRaWAN Network.
@@ -88,7 +88,7 @@ int lorawan_setup(lorawan_setup_t *setup);
  * @param data lorawan_data_t structure containing the data to send.
  * @return int 0 if successful, -1 if failed.
  */
-int lorawan_send_data(lorawan_data_t *data);
+int sensor_lorawan_send_data(lorawan_data_t *data);
 
 /**
  * @brief Check if the LoRaWAN Network is connected.

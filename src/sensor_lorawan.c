@@ -23,7 +23,7 @@ static int get_lorawan_config(lorawan_setup_t *setup, struct lorawan_join_config
 		return ret;
 	}
 
-	lorawan_log_network_config(setup);
+	sensor_lorawan_log_network_config(setup);
 
 	join_cfg->mode = LORAWAN_ACT_OTAA;
 	join_cfg->dev_eui = setup->dev_eui;
@@ -49,7 +49,7 @@ int is_lorawan_configured(lorawan_setup_t *setup)
 	return 0;
 }
 
-void lorawan_log_network_config(lorawan_setup_t *setup)
+void sensor_lorawan_log_network_config(lorawan_setup_t *setup)
 {
 	LOG_INF("DEV EUI:  0x%02x 0x%02x 0x%02x 0x%02x 0x%02x 0x%02x 0x%02x 0x%02x", \
 		setup->dev_eui[0],setup->dev_eui[1],setup->dev_eui[2],setup->dev_eui[3], \
@@ -64,7 +64,7 @@ void lorawan_log_network_config(lorawan_setup_t *setup)
 		setup->app_key[12],setup->app_key[13],setup->app_key[14],setup->app_key[15]);
 }
 
-int lorawan_setup(lorawan_setup_t *setup)
+int sensor_lorawan_setup(lorawan_setup_t *setup)
 {
 	const struct device *lora_dev = DEVICE_DT_GET(DT_ALIAS(lora0));
 	int ret;
@@ -160,7 +160,7 @@ static int set_datarate(uint8_t payload_length)
 	}
 }
 
-int lorawan_send_data(lorawan_data_t *lorawan_data)
+int sensor_lorawan_send_data(lorawan_data_t *lorawan_data)
 {
 	int ret;
 	if (lorawan_data->length == 0) {
