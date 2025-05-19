@@ -182,10 +182,68 @@ int sensor_app_configuration_state(void)
     return 0;
 }
 
-// int sensor_app_running_state(void)
-// {
-//     return 0;
-// }
+static int initialize_sensor_schedule(void)
+{
+    int ret;
+    if(sensor_app_config->is_sensor_1_enabled && sensor_app_config->sensor_1_frequency > 0)
+    {
+        sensor_scheduling_cfg_t sensor1_schedule = {
+            .id = SENSOR_SCHEDULING_ID_SENSOR1,
+            .frequency_seconds = MINUTES_TO_SECONDS(sensor_app_config->sensor_1_frequency)
+	    };
+        ret = sensor_scheduling_add_schedule(&sensor1_schedule);
+        if(ret < 0)
+        {
+            LOG_ERR("Failed to add sensor 1 schedule");
+        }
+    }
+    if(sensor_app_config->is_sensor_2_enabled && sensor_app_config->sensor_2_frequency > 0)
+    {
+        sensor_scheduling_cfg_t sensor2_schedule = {
+            .id = SENSOR_SCHEDULING_ID_SENSOR2,
+            .frequency_seconds = MINUTES_TO_SECONDS(sensor_app_config->sensor_2_frequency)
+        };
+        ret = sensor_scheduling_add_schedule(&sensor2_schedule);
+        if(ret < 0)
+        {
+            LOG_ERR("Failed to add sensor 2 schedule");
+        }
+    }
+    if(sensor_app_config->is_lorawan_enabled && sensor_app_config->lorawan_frequency > 0)
+    {
+        sensor_scheduling_cfg_t radio_schedule = {
+            .id = SENSOR_SCHEDULING_ID_RADIO,
+            .frequency_seconds = MINUTES_TO_SECONDS(sensor_app_config->lorawan_frequency)
+        };
+        ret = sensor_scheduling_add_schedule(&radio_schedule);
+        if(ret < 0)
+        {
+            LOG_ERR("Failed to add radio schedule");
+        }
+    }
+    return 0;
+}
+
+int sensor_app_running_state(void)
+{
+    int ret;
+    if(sensor_app_config->state != SENSOR_APP_STATE_RUNNING)
+    {
+        LOG_ERR("App is not in the running state");
+        return -1;
+    }
+    /* Check that either sensor 1 or sensor 2 is enabled. */
+    if(sensor_app_config->is_sensor_1_enabled || sensor_app_config->is_sensor_2_enabled)
+    {
+        LOG_ERR("Either sensor 1 or sensor 2 is enabled");
+        return -1;
+    }
+
+    
+
+
+    return 0;
+}
 
 // int sensor_app_error_state(void)
 // {

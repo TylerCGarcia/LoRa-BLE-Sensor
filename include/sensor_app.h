@@ -27,6 +27,8 @@ typedef struct {
     enum sensor_app_state state;
     /* Whether LoRaWAN is enabled */
     uint8_t is_lorawan_enabled;
+    /* Frequency of LoRaWAN */
+    uint32_t lorawan_frequency;
     /* Sensor type used for sensor 1 */
     enum sensor_types sensor_1_type;
     /* Sensor type used for sensor 2 */
@@ -58,6 +60,13 @@ int sensor_app_init(sensor_app_config_t *config);
  * @return int 0 on success, -1 on failure
  */
 int sensor_app_configuration_state(void);
+
+/**
+ * @brief Execute the sensor app running state.
+ * 
+ * @return int 0 on success, -1 on failure
+ */
+int sensor_app_running_state(void);
 
 /**
  * @brief Start the BLE advertising and services.
