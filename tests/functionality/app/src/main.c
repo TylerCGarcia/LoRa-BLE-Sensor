@@ -57,8 +57,19 @@ ZTEST(app, test_app_init)
     int ret;
     ret = sensor_app_init(&sensor_app_config);
     zassert_ok(ret, "App init failed");
-    // ret = sensor_nvs_clear();
-    // zassert_ok(ret, "Failed to clear NVS");
+}
+
+/**
+ * @brief Test that the sensor app can be initialized
+ * 
+ */
+ZTEST(app, test_app_configuration_state)
+{
+    int ret;
+    ret = sensor_app_init(&sensor_app_config);
+    zassert_ok(ret, "App init failed");
+    ret = sensor_app_configuration_state();
+    zassert_ok(ret, "App configuration state failed");
 }
 
 // /**

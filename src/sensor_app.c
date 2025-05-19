@@ -177,10 +177,10 @@ int sensor_app_init(sensor_app_config_t *config)
     return 0;
 }
 
-// int sensor_app_configuration_state(void)
-// {
-//     return 0;
-// }
+int sensor_app_configuration_state(void)
+{
+    return 0;
+}
 
 // int sensor_app_running_state(void)
 // {

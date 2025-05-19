@@ -53,6 +53,13 @@ typedef struct {
 int sensor_app_init(sensor_app_config_t *config);
 
 /**
+ * @brief Execute the sensor app configuration state.
+ * 
+ * @return int 0 on success, -1 on failure
+ */
+int sensor_app_configuration_state(void);
+
+/**
  * @brief Start the BLE advertising and services.
  * 
  * @return int 0 on success, -1 on failure
