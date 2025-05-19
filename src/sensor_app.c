@@ -208,9 +208,39 @@ static int running_state_initialization_check(void)
         LOG_ERR("Neither sensor 1 or sensor 2 is enabled");
         return -1;
     }
+    if(sensor1_data.id == NULL_SENSOR && sensor2_data.id == NULL_SENSOR)
+    {
+        LOG_ERR("Sensor 1 and sensor 2 are not initialized to any sensor types");
+        return -1;
+    }
+    if(sensor_app_config->is_sensor_1_enabled && sensor_app_config->sensor_1_type == NULL_SENSOR)
+    {
+        LOG_ERR("Sensor 1 is enabled but not initialized to any sensor types");
+        return -1;
+    }
+    if(sensor_app_config->is_sensor_2_enabled && sensor_app_config->sensor_2_type == NULL_SENSOR)
+    {
+        LOG_ERR("Sensor 2 is enabled but not initialized to any sensor types");
+        return -1;
+    }
+    if(sensor_app_config->is_sensor_1_enabled && sensor_app_config->sensor_1_frequency == 0)
+    {
+        LOG_ERR("Sensor 1 is enabled but has 0 frequency");
+        return -1;
+    }
+    if(sensor_app_config->is_sensor_2_enabled && sensor_app_config->sensor_2_frequency == 0)
+    {
+        LOG_ERR("Sensor 2 is enabled but has 0 frequency");
+        return -1;
+    }
     return 0;
 }
 
+/**
+ * @brief Initialize the sensor schedules.
+ * 
+ * @return int 0 on success, -1 on failure
+ */
 static int initialize_sensor_schedule(void)
 {
     int ret;
@@ -260,6 +290,35 @@ static int initialize_sensor_schedule(void)
     return 0;
 }
 
+/**
+ * @brief Initialize the sensor data to read from the correct sensor configuration.
+ * 
+ * @return int 0 on success, -1 on failure
+ */
+static int initialize_sensor_data(void)
+{
+    int ret;
+    if(sensor_app_config->is_sensor_1_enabled && sensor_app_config->sensor_1_type != NULL_SENSOR)
+    {
+        ret = sensor_data_setup(&sensor1_data, sensor_app_config->sensor_1_type, sensor_app_config->sensor_1_voltage);
+        if(ret < 0)
+        {
+            LOG_ERR("Failed to initialize sensor 1 data");
+            return ret;
+        }
+    }
+    if(sensor_app_config->is_sensor_2_enabled && sensor_app_config->sensor_2_type != NULL_SENSOR)
+    {
+        ret = sensor_data_setup(&sensor2_data, sensor_app_config->sensor_2_type, sensor_app_config->sensor_2_voltage);
+        if(ret < 0)
+        {
+            LOG_ERR("Failed to initialize sensor 2 data");
+            return ret;
+        }
+    }
+    return 0;
+}
+
 int sensor_app_running_state(void)
 {
     int ret;
@@ -267,14 +326,24 @@ int sensor_app_running_state(void)
     if(ret < 0)
     {
         LOG_ERR("Failed to check running state initialization");
+        sensor_app_config->state = SENSOR_APP_STATE_ERROR;
         return ret;
     }
     ret = initialize_sensor_schedule();
     if(ret < 0)
     {
-        LOG_ERR("Failed to initialize sensor schedule");
+        LOG_ERR("Failed to initialize sensor schedules");
+        sensor_app_config->state = SENSOR_APP_STATE_ERROR;
         return ret;
     }
+    ret = initialize_sensor_data();
+    if(ret < 0)
+    {
+        LOG_ERR("Failed to initialize sensor data");
+        sensor_app_config->state = SENSOR_APP_STATE_ERROR;
+        return ret;
+    }
+
     while(sensor_app_config->state == SENSOR_APP_STATE_RUNNING)
     {
         if(sensor1_schedule.is_triggered || sensor1_schedule.one_time_trigger)

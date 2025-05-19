@@ -44,6 +44,7 @@ static void *after_tests(void)
     int ret;
     ret = sensor_nvs_clear();
     zassert_ok(ret, "Failed to clear NVS");
+    memset(&sensor_app_config, 0, sizeof(sensor_app_config_t)); // reset the sensor app config
 }
 
 ZTEST_SUITE(app, NULL, NULL, NULL, after_tests, NULL);
@@ -113,8 +114,46 @@ ZTEST(app, test_app_running_state_fails_when_neither_sensor_is_enabled)
     /* Set the app to the running state. */
     ret = sensor_app_running_state();
     zassert_not_ok(ret, "App running state should fail when neither sensor is enabled");
+    zassert_equal(sensor_app_config.state, SENSOR_APP_STATE_ERROR, "App state is not error");
 }
 
+/**
+ * @brief Test that the sensor fails when sensor 1 is enabled but has 0 frequency
+ * 
+ */
+ZTEST(app, test_app_running_state_fails_when_sensor_1_is_enabled_but_has_0_frequency)
+{
+    int ret;
+    ret = sensor_app_init(&sensor_app_config);
+    zassert_ok(ret, "App init failed");
+    sensor_app_config.state = SENSOR_APP_STATE_RUNNING;
+    sensor_app_config.is_sensor_1_enabled = 1;
+    sensor_app_config.sensor_1_frequency = 0;
+    sensor_app_config.sensor_1_type = PULSE_SENSOR;
+    /* Set the app to the running state. */
+    ret = sensor_app_running_state();
+    zassert_not_ok(ret, "App running state should fail when sensor 1 is enabled but has 0 frequency");
+    zassert_equal(sensor_app_config.state, SENSOR_APP_STATE_ERROR, "App state is not error");
+}
+
+/**
+ * @brief Test that the sensor fails when sensor 2 is enabled but has 0 frequency
+ * 
+ */
+ZTEST(app, test_app_running_state_fails_when_sensor_2_is_enabled_but_has_0_frequency)
+{
+    int ret;
+    ret = sensor_app_init(&sensor_app_config);
+    zassert_ok(ret, "App init failed");
+    sensor_app_config.state = SENSOR_APP_STATE_RUNNING;
+    sensor_app_config.is_sensor_2_enabled = 1;
+    sensor_app_config.sensor_2_frequency = 0;
+    sensor_app_config.sensor_2_type = PULSE_SENSOR;
+    /* Set the app to the running state. */
+    ret = sensor_app_running_state();
+    zassert_not_ok(ret, "App running state should fail when sensor 2 is enabled but has 0 frequency");
+    zassert_equal(sensor_app_config.state, SENSOR_APP_STATE_ERROR, "App state is not error");
+}
 // /**
 //  * @brief Test that the sensor app can be initialized
 //  * 

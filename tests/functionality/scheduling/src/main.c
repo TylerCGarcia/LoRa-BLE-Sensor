@@ -6,6 +6,7 @@
  * - Confirm schedule can be initialized
  * - multiple actions can be tied to one alarm 
  * - actions can be scheduled to occur at different times
+ * - add tests for one-time triggers
  */
 
 #include <zephyr/ztest.h>

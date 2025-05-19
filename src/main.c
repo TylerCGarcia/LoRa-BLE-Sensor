@@ -90,68 +90,9 @@ sensor_app_config_t sensor_app_config;
 
 // int sensor_app_running_state(void)
 // {
-//     int ret;
-// 	sensor_scheduling_cfg_t radio_schedule = {
-// 		.id = SENSOR_SCHEDULING_ID_RADIO,
-// 		.frequency_seconds = MINUTES_TO_SECONDS(5)
-// 	};
 
-// 	sensor_scheduling_cfg_t sensor1_schedule = {
-// 		.id = SENSOR_SCHEDULING_ID_SENSOR1,
-// 		.frequency_seconds = MINUTES_TO_SECONDS(1)
-// 	};
-
-// 	sensor_scheduling_cfg_t sensor2_schedule = {
-// 		.id = SENSOR_SCHEDULING_ID_SENSOR2,
-// 		.frequency_seconds = MINUTES_TO_SECONDS(1)
-// 	};
-//     ret = sensor_scheduling_add_schedule(&sensor1_schedule);
-// 	ret = sensor_scheduling_add_schedule(&sensor2_schedule);
-// 	k_sleep(K_SECONDS(2));// Set radio schedule to seconds later to make sure the sensors are read first
-// 	ret = sensor_scheduling_add_schedule(&radio_schedule);
 //     ret = sensor_data_setup(&sensor1_data, PULSE_SENSOR, SENSOR_VOLTAGE_3V3);
 //     ret = sensor_data_setup(&sensor2_data, PULSE_SENSOR, SENSOR_VOLTAGE_3V3);
-
-// 	uint8_t sensor1_first_time_trigger = 1;
-// 	uint8_t sensor2_first_time_trigger = 1;
-// 	uint8_t radio_first_time_trigger = 1;
-//     while (1) 
-// 	{
-// 		if(sensor1_schedule.is_triggered || sensor1_first_time_trigger)
-// 		{
-// 			sensor1_first_time_trigger = 0;
-// 			LOG_INF("Sensor 1 schedule triggered");
-// 			sensor_data_read(&sensor1_data, sensor_scheduling_get_seconds());
-// 			sensor_data_print_data(&sensor1_data);
-// 			sensor_scheduling_reset_schedule(&sensor1_schedule);
-// 		}
-// 		if(sensor2_schedule.is_triggered || sensor2_first_time_trigger)
-// 		{
-// 			sensor2_first_time_trigger = 0;
-// 			LOG_INF("Sensor 2 schedule triggered");
-// 			sensor_data_read(&sensor2_data, sensor_scheduling_get_seconds());
-// 			sensor_data_print_data(&sensor2_data);
-// 			sensor_scheduling_reset_schedule(&sensor2_schedule);
-// 		}
-// 		if(radio_schedule.is_triggered || radio_first_time_trigger)
-// 		{
-// 			radio_first_time_trigger = 0;
-// 			LOG_INF("Radio schedule triggered");
-// 			sensor_scheduling_reset_schedule(&radio_schedule);
-			
-// 			ret = send_packet();
-// 			if(ret == 0)
-// 			{
-// 				sensor_data_clear(&sensor1_data);
-// 				sensor_data_clear(&sensor2_data);
-// 			}
-// 			else
-// 			{
-// 				LOG_ERR("Failed to send packet");
-// 			}
-// 		}
-// 		k_msleep(100);
-// 	}
 // }
 
 int main(void)
