@@ -21,6 +21,7 @@ static sensor_app_config_t *sensor_app_config;
 enum sensor_nvs_address {
     SENSOR_NVS_ADDRESS_APP_STATE,
     SENSOR_NVS_ADDRESS_LORAWAN_ENABLED,
+    SENSOR_NVS_ADDRESS_LORAWAN_FREQUENCY,
     SENSOR_NVS_ADDRESS_LORAWAN_DEV_EUI,
 	SENSOR_NVS_ADDRESS_LORAWAN_JOIN_EUI,
 	SENSOR_NVS_ADDRESS_LORAWAN_APP_KEY,
@@ -59,6 +60,7 @@ static sensor_scheduling_cfg_t radio_schedule = {
 
 static lorawan_setup_t lorawan_setup = {
     .is_lorawan_enabled = 0,
+    .lorawan_frequency = 0,
 	.lora_dev = DEVICE_DT_GET(DT_ALIAS(lora0)),
 	.uplink_class = LORAWAN_CLASS_A,
 	.downlink_callback = NULL,
@@ -117,6 +119,7 @@ static int initialize_lorawan_nvs(void)
 {
     LOG_INF("Reading LoRaWAN NVS");
     initialize_nvs_address(SENSOR_NVS_ADDRESS_LORAWAN_ENABLED, &lorawan_setup.is_lorawan_enabled, sizeof(lorawan_setup.is_lorawan_enabled));
+    initialize_nvs_address(SENSOR_NVS_ADDRESS_LORAWAN_FREQUENCY, &lorawan_setup.lorawan_frequency, sizeof(lorawan_setup.lorawan_frequency));
     initialize_nvs_address(SENSOR_NVS_ADDRESS_LORAWAN_DEV_EUI, &lorawan_setup.dev_eui, sizeof(lorawan_setup.dev_eui));
     initialize_nvs_address(SENSOR_NVS_ADDRESS_LORAWAN_JOIN_EUI, &lorawan_setup.join_eui, sizeof(lorawan_setup.join_eui));
     initialize_nvs_address(SENSOR_NVS_ADDRESS_LORAWAN_APP_KEY, &lorawan_setup.app_key, sizeof(lorawan_setup.app_key));
@@ -216,16 +219,16 @@ int sensor_app_configuration_state(void)
         k_sleep(K_SECONDS(1));
     }
     
-    if(lorawan_setup.is_lorawan_enabled && sensor_app_config->connect_lorawan_during_configuration)
-    {
-        ret = sensor_lorawan_connection();
-        if(ret < 0)
-        {
-            LOG_ERR("Failed to connect to LoRaWAN");
-            sensor_app_config->state = SENSOR_APP_STATE_ERROR;
-            return ret;
-        }
-    }
+    // if(lorawan_setup.is_lorawan_enabled)
+    // {
+    //     ret = sensor_lorawan_connection();
+    //     if(ret < 0)
+    //     {
+    //         LOG_ERR("Failed to connect to LoRaWAN");
+    //         sensor_app_config->state = SENSOR_APP_STATE_ERROR;
+    //         return ret;
+    //     }
+    // }
     return 0;
 }
 
@@ -274,7 +277,7 @@ static int running_state_initialization_check(void)
         return -1;
     }
     /* Make sure that if lorawan is enabled, it has a valid frequency. */
-    if(lorawan_setup.is_lorawan_enabled && sensor_app_config->lorawan_frequency == 0)
+    if(lorawan_setup.is_lorawan_enabled && lorawan_setup.lorawan_frequency == 0)
     {
         LOG_ERR("LoRaWAN is enabled but has 0 frequency");
         lorawan_setup.is_lorawan_enabled = 0;
@@ -319,10 +322,10 @@ static int initialize_sensor_schedule(void)
             LOG_INF("Sensor 2 schedule added at a frequency of %d seconds", sensor2_schedule.frequency_seconds);
         }
     }
-    if(lorawan_setup.is_lorawan_enabled && sensor_app_config->lorawan_frequency > 0)
+    if(lorawan_setup.is_lorawan_enabled && lorawan_setup.lorawan_frequency > 0)
     {
         k_sleep(K_SECONDS(2)); // schedule radio to start after sensors are read
-        radio_schedule.frequency_seconds = MINUTES_TO_SECONDS(sensor_app_config->lorawan_frequency);
+        radio_schedule.frequency_seconds = MINUTES_TO_SECONDS(lorawan_setup.lorawan_frequency);
         ret = sensor_scheduling_add_schedule(&radio_schedule);
         if(ret < 0)
         {

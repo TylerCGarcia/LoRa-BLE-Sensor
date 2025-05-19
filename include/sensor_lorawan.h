@@ -24,6 +24,8 @@
 typedef struct {
     /* Whether the LoRaWAN is enabled. */
     uint8_t is_lorawan_enabled;
+    /* LoRaWAN frequency. */
+    uint32_t lorawan_frequency;
     /* LoRaWAN Device. */
     const struct device *lora_dev;
     /* LoRaWAN uplink class. */

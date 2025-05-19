@@ -25,8 +25,6 @@ typedef enum sensor_app_state{
 typedef struct {
     /* Current state of the app */
     enum sensor_app_state state;
-    /* Frequency of LoRaWAN */
-    uint32_t lorawan_frequency;
     /* Tells whether or not to connect lorawan during configuration */
     uint8_t connect_lorawan_during_configuration;
     /* Sensor type used for sensor 1 */

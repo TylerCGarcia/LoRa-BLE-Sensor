@@ -42,10 +42,50 @@ static ssize_t write_enabled(struct bt_conn *conn, const struct bt_gatt_attr *at
 		return BT_GATT_ERR(BT_ATT_ERR_INVALID_OFFSET);
 	}
 
-	// Store incoming data into dev_eui buffer
+	// Store incoming data into lorawan enabled buffer
 	memcpy(&lorawan_service_setup->is_lorawan_enabled, buf, len);
 
 	LOG_INF("LoRaWAN enabled new value: %d", lorawan_service_setup->is_lorawan_enabled);
+
+	return len;
+}
+
+static ssize_t read_frequency(struct bt_conn *conn, const struct bt_gatt_attr *attr, void *buf, uint16_t len, uint16_t offset)
+{
+	if(!is_lorawan_service_setup)
+	{
+		LOG_ERR("LoRaWAN BLE Service is not initialized");
+		return BT_GATT_ERR(BT_ATT_ERR_READ_NOT_PERMITTED);
+	}
+
+	return bt_gatt_attr_read(conn, attr, buf, len, offset, &lorawan_service_setup->lorawan_frequency, sizeof(lorawan_service_setup->lorawan_frequency));
+}
+
+static ssize_t write_frequency(struct bt_conn *conn, const struct bt_gatt_attr *attr, void *buf, uint16_t len, uint16_t offset){
+	LOG_DBG("Attribute write, handle: %u, conn: %p", attr->handle, (void *)conn);
+	int err;
+
+	if(!is_lorawan_service_setup)
+	{
+		LOG_ERR("LoRaWAN BLE Service is not initialized");
+		return BT_GATT_ERR(BT_ATT_ERR_WRITE_NOT_PERMITTED);
+	}
+
+	// Check bounds of data
+	if (len != sizeof(lorawan_service_setup->lorawan_frequency)) {
+		LOG_ERR("Write date: Data length incorrect for LoRaWAN frequency");
+		return BT_GATT_ERR(BT_ATT_ERR_INVALID_ATTRIBUTE_LEN);
+	}
+
+	if (offset != 0) {
+		LOG_ERR("Write date: Incorrect data offset for LoRaWAN frequency");
+		return BT_GATT_ERR(BT_ATT_ERR_INVALID_OFFSET);
+	}
+
+	// Store incoming data into lorawan enabled buffer
+	memcpy(&lorawan_service_setup->lorawan_frequency, buf, len);
+
+	LOG_INF("LoRaWAN frequency new value: %d", lorawan_service_setup->lorawan_frequency);
 
 	return len;
 }
@@ -182,6 +222,7 @@ static ssize_t write_app_key(struct bt_conn *conn, const struct bt_gatt_attr *at
 BT_GATT_SERVICE_DEFINE(lorawan_svc, BT_GATT_PRIMARY_SERVICE(BT_UUID_LORAWAN),
 
 	BT_GATT_CHARACTERISTIC(BT_UUID_LORAWAN_ENABLED, BT_GATT_CHRC_READ | BT_GATT_CHRC_WRITE, BT_GATT_PERM_READ | BT_GATT_PERM_WRITE, read_enabled, write_enabled, NULL),
+	BT_GATT_CHARACTERISTIC(BT_UUID_LORAWAN_FREQUENCY, BT_GATT_CHRC_READ | BT_GATT_CHRC_WRITE, BT_GATT_PERM_READ | BT_GATT_PERM_WRITE, read_frequency, write_frequency, NULL),
 	BT_GATT_CHARACTERISTIC(BT_UUID_LORAWAN_DEV_EUI, BT_GATT_CHRC_READ | BT_GATT_CHRC_WRITE, BT_GATT_PERM_READ | BT_GATT_PERM_WRITE, read_dev_eui, write_dev_eui, NULL),
 	BT_GATT_CHARACTERISTIC(BT_UUID_LORAWAN_JOIN_EUI, BT_GATT_CHRC_READ | BT_GATT_CHRC_WRITE, BT_GATT_PERM_READ | BT_GATT_PERM_WRITE, read_join_eui, write_join_eui, NULL),
 	BT_GATT_CHARACTERISTIC(BT_UUID_LORAWAN_APP_KEY, BT_GATT_CHRC_READ | BT_GATT_CHRC_WRITE, BT_GATT_PERM_READ | BT_GATT_PERM_WRITE, read_app_key, write_app_key, NULL),

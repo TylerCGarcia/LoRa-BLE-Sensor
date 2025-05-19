@@ -15,7 +15,6 @@ LOG_MODULE_REGISTER(MAIN);
 
 sensor_app_config_t sensor_app_config = {
 	.state = SENSOR_APP_STATE_CONFIGURATION,
-	.lorawan_frequency = 0,
 	.connect_lorawan_during_configuration = 1,
 	.is_sensor_1_enabled = 0,
 	.sensor_1_voltage = SENSOR_VOLTAGE_OFF,
