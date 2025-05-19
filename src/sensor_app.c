@@ -72,6 +72,8 @@ static lorawan_setup_t lorawan_setup = {
 	.app_key = APP_KEY,
 	.send_attempts = 10,
 };
+/* LoRaWAN data structure. */
+static lorawan_data_t lorawan_data;
 
 static sensor_data_t sensor1_data = {
     .id = SENSOR_1,
@@ -170,26 +172,6 @@ static int initialize_nvs(void)
     return 0;
 }
 
-int sensor_app_init(sensor_app_config_t *config)
-{
-    int ret;
-    sensor_app_config = config;
-    ret = sensor_scheduling_init(sensor_timer);
-    if(ret < 0)
-    {
-        LOG_ERR("Failed to initialize scheduling");
-        return ret;
-    }
-    ret = initialize_nvs();
-    if(ret < 0)
-    {
-        LOG_ERR("Failed to initialize NVS");
-        return ret;
-    }
-    return 0;
-}
-
-
 static int sensor_lorawan_connection(void)
 {
     int ret;
@@ -207,28 +189,6 @@ static int sensor_lorawan_connection(void)
         {
         LOG_INF("LoRaWAN is enabled but not configured");
     }
-    return 0;
-}
-
-int sensor_app_configuration_state(void)
-{
-    int ret; 
-    while(sensor_app_config->state == SENSOR_APP_STATE_CONFIGURATION)
-    {
-        LOG_DBG("App is in the configuration state");
-        k_sleep(K_SECONDS(1));
-    }
-    
-    // if(lorawan_setup.is_lorawan_enabled)
-    // {
-    //     ret = sensor_lorawan_connection();
-    //     if(ret < 0)
-    //     {
-    //         LOG_ERR("Failed to connect to LoRaWAN");
-    //         sensor_app_config->state = SENSOR_APP_STATE_ERROR;
-    //         return ret;
-    //     }
-    // }
     return 0;
 }
 
@@ -363,6 +323,47 @@ static int initialize_sensor_data(void)
         if(ret < 0)
         {
             LOG_ERR("Failed to initialize sensor 2 data");
+            return ret;
+        }
+    }
+    return 0;
+}
+
+int sensor_app_init(sensor_app_config_t *config)
+{
+    int ret;
+    sensor_app_config = config;
+    ret = sensor_scheduling_init(sensor_timer);
+    if(ret < 0)
+    {
+        LOG_ERR("Failed to initialize scheduling");
+        return ret;
+    }
+    ret = initialize_nvs();
+    if(ret < 0)
+    {
+        LOG_ERR("Failed to initialize NVS");
+        return ret;
+    }
+    return 0;
+}
+
+int sensor_app_configuration_state(void)
+{
+    int ret; 
+    while(sensor_app_config->state == SENSOR_APP_STATE_CONFIGURATION)
+    {
+        LOG_DBG("App is in the configuration state");
+        k_sleep(K_SECONDS(1));
+    }
+    
+    if(lorawan_setup.is_lorawan_enabled && sensor_app_config->connect_network_during_configuration)
+    {
+        ret = sensor_lorawan_connection();
+        if(ret < 0)
+        {
+            LOG_ERR("Failed to connect to LoRaWAN, returning to configuration state");
+            sensor_app_config->state = SENSOR_APP_STATE_CONFIGURATION;
             return ret;
         }
     }

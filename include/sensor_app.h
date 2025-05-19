@@ -25,8 +25,8 @@ typedef enum sensor_app_state{
 typedef struct {
     /* Current state of the app */
     enum sensor_app_state state;
-    /* Tells whether or not to connect lorawan during configuration */
-    uint8_t connect_lorawan_during_configuration;
+    /* Tells whether or not to connect network during configuration */
+    uint8_t connect_network_during_configuration;
     /* Sensor type used for sensor 1 */
     enum sensor_types sensor_1_type;
     /* Sensor type used for sensor 2 */
