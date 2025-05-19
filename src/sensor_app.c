@@ -398,10 +398,15 @@ int sensor_app_running_state(void)
     return 0;
 }
 
-// int sensor_app_error_state(void)
-// {
-//     return 0;
-// }
+int sensor_app_error_state(void)
+{
+    while(sensor_app_config->state == SENSOR_APP_STATE_ERROR)
+    {
+        LOG_ERR("App is in the error state");
+        k_sleep(K_SECONDS(1));
+    }
+    return 0;
+}
 
 static void ble_thread(void *arg1, void *arg2, void *arg3)
 {

@@ -71,6 +71,13 @@ int sensor_app_configuration_state(void);
 int sensor_app_running_state(void);
 
 /**
+ * @brief Execute the sensor app error state.
+ * 
+ * @return int 0 on success, -1 on failure
+ */
+int sensor_app_error_state(void);
+
+/**
  * @brief Start the BLE advertising and services.
  * 
  * @return int 0 on success, -1 on failure
