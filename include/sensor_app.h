@@ -17,7 +17,6 @@
 #include <stdint.h>
 // In sensor_app.h
 typedef enum sensor_app_state{
-    SENSOR_APP_STATE_UNINITIALIZED = 0,
     SENSOR_APP_STATE_CONFIGURATION,    // Device is in configuration mode (BLE active, waiting for setup)
     SENSOR_APP_STATE_RUNNING,         // Device is actively reading sensors and transmitting
     SENSOR_APP_STATE_ERROR,           // Error state
