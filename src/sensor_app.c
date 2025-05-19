@@ -5,10 +5,12 @@
 #include "sensor_data.h"
 #include "sensor_nvs.h"
 #include "sensor_lorawan.h"
+#include "ble_sensor_service.h"
+#include "ble_lorawan_service.h"
 #include <zephyr/logging/log.h>
 #include <zephyr/kernel.h>
 
-LOG_MODULE_REGISTER(SENSOR_APP, LOG_LEVEL_DBG);
+LOG_MODULE_REGISTER(SENSOR_APP, LOG_LEVEL_INF);
 
 #define BLE_STACKSIZE			1024
 #define BLE_THREAD_PRIORITY		1
@@ -173,6 +175,64 @@ static int sensor_lorawan_connection(void)
     return 0;
 }
 
+static int add_sensor_data_to_lorawan_payload(sensor_data_t *sensor_data)
+{
+    int ret;
+    uint8_t sensor_data_buffer[(sensor_data->data_size * sensor_data->num_samples) + (sensor_data->timestamp_size * sensor_data->num_samples)];
+    uint8_t sensor_data_buffer_len;
+    ret = sensor_data_format_for_lorawan(sensor_data, sensor_data_buffer, &sensor_data_buffer_len);
+    if(ret < 0)
+    {
+        LOG_ERR("Failed to format sensor data for LoRaWAN");
+        return -1;
+    }
+    uint8_t initial_data_length = lorawan_data.length;
+    for(int i = 0; i < sensor_data_buffer_len; i++)
+    {
+        lorawan_data.data[i + initial_data_length] = sensor_data_buffer[i];
+    }
+    lorawan_data.length = sensor_data_buffer_len + initial_data_length;
+
+    return 0;
+}
+
+static int format_and_send_lorawan_payload(void)
+{
+    int ret;
+
+    /* Add the sensor data to the LoRaWAN payload. */
+    if(sensor_app_config->is_sensor_1_enabled)
+    {
+        add_sensor_data_to_lorawan_payload(&sensor1_data);
+    }
+    if(sensor_app_config->is_sensor_2_enabled)
+    {
+        add_sensor_data_to_lorawan_payload(&sensor2_data);
+    }
+    LOG_INF("Sending LoRaWAN payload with length %d", lorawan_data.length);
+    lorawan_data.port = 2;
+    lorawan_data.attempts = lorawan_setup.send_attempts;
+    lorawan_data.delay = lorawan_setup.delay;
+    ret = sensor_lorawan_send_data(&lorawan_data);
+    memset(&lorawan_data, 0, sizeof(lorawan_data));
+    if(ret < 0)
+    {
+        LOG_ERR("Failed to send LoRaWAN payload");
+        return -1;
+    }
+    LOG_INF("LoRaWAN payload sent successfully");
+    /* Clear the sensor data. */
+    if(sensor_app_config->is_sensor_1_enabled)
+    {
+        sensor_data_clear(&sensor1_data);
+    }
+    if(sensor_app_config->is_sensor_2_enabled)
+    {
+        sensor_data_clear(&sensor2_data);
+    }
+    return 0;
+}
+
 /**
  * @brief Check that the app passes all the requirements to be in the running state.
  * 
@@ -310,6 +370,25 @@ static int initialize_sensor_data(void)
     return 0;
 }
 
+static int disable_sensors(void)
+{
+    int ret;
+    ret = sensor_data_setup(&sensor1_data, NULL_SENSOR, SENSOR_VOLTAGE_OFF);
+    if(ret < 0)
+    {
+        LOG_ERR("Failed to disable sensor 1");
+        return ret;
+    }
+    ret = sensor_data_setup(&sensor2_data, NULL_SENSOR, SENSOR_VOLTAGE_OFF);
+    if(ret < 0)
+    {
+        LOG_ERR("Failed to disable sensor 2");
+        return ret;
+    }
+
+    return 0;
+}
+
 int sensor_app_init(sensor_app_config_t *config)
 {
     int ret;
@@ -393,43 +472,46 @@ int sensor_app_running_state(void)
     
     while(sensor_app_config->state == SENSOR_APP_STATE_RUNNING)
     {
-        if(sensor1_schedule.is_triggered || sensor1_schedule.one_time_trigger)
+        if(sensor_app_config->is_sensor_1_enabled && (sensor1_schedule.is_triggered || sensor1_schedule.one_time_trigger))
 		{
 			sensor1_schedule.one_time_trigger = 0;
 			LOG_INF("Sensor 1 schedule triggered");
-			// sensor_data_read(&sensor1_data, sensor_scheduling_get_seconds());
-			// sensor_data_print_data(&sensor1_data);
+			sensor_data_read(&sensor1_data, sensor_scheduling_get_seconds());
+			sensor_data_print_data(&sensor1_data);
 			sensor_scheduling_reset_schedule(&sensor1_schedule);
 		}
-		if(sensor2_schedule.is_triggered || sensor2_schedule.one_time_trigger)
+		if(sensor_app_config->is_sensor_2_enabled && (sensor2_schedule.is_triggered || sensor2_schedule.one_time_trigger))
 		{
 			sensor2_schedule.one_time_trigger = 0;
 			LOG_INF("Sensor 2 schedule triggered");
-			// sensor_data_read(&sensor2_data, sensor_scheduling_get_seconds());
-			// sensor_data_print_data(&sensor2_data);
+			sensor_data_read(&sensor2_data, sensor_scheduling_get_seconds());
+			sensor_data_print_data(&sensor2_data);
 			sensor_scheduling_reset_schedule(&sensor2_schedule);
 		}
-		if(radio_schedule.is_triggered || radio_schedule.one_time_trigger)
+		if(lorawan_setup.is_lorawan_enabled && (radio_schedule.is_triggered || radio_schedule.one_time_trigger))
 		{
 			radio_schedule.one_time_trigger = 0;
 			LOG_INF("Radio schedule triggered");
+
 			sensor_scheduling_reset_schedule(&radio_schedule);
-			
-			// ret = send_packet();
-			// if(ret == 0)
-			// {
-			// 	sensor_data_clear(&sensor1_data);
-			// 	sensor_data_clear(&sensor2_data);
-			// }
-			// else
-			// {
-			// 	LOG_ERR("Failed to send packet");
-			// }
+            /* Send the LoRaWAN payload. */
+			ret = format_and_send_lorawan_payload();
+            if(ret < 0)
+            {
+                LOG_ERR("Failed to send LoRaWAN payload");
+            }
 		}
         LOG_DBG("App is in the running state");
-        k_msleep(100);
+        k_msleep(1000);
     }
-
+    /* Disable sensors.*/
+    ret = disable_sensors();
+    if(ret < 0)
+    {
+        LOG_ERR("Failed to disable sensors");
+        sensor_app_config->state = SENSOR_APP_STATE_ERROR;
+        return ret;
+    }
     return 0;
 }
 
@@ -476,12 +558,3 @@ int sensor_app_ble_start(void)
 	k_thread_start(&blethread_id);
     return 0;
 }
-
-// int sensor_app_ble_stop(void)
-// {
-//     int ret;
-//     ret = ble_end();
-//     LOG_INF("Stopping BLE Thread");
-//     k_thread_suspend(&blethread_id);
-//     return ret;
-// }

@@ -76,6 +76,7 @@ static ssize_t write_frequency(struct bt_conn *conn, const struct bt_gatt_attr *
 	// Check bounds of data
 	if (len != sizeof(lorawan_service_setup->lorawan_frequency)) {
 		LOG_ERR("Write date: Data length incorrect for LoRaWAN frequency");
+		LOG_ERR("len: %d, expected: %d", len, sizeof(lorawan_service_setup->lorawan_frequency));
 		return BT_GATT_ERR(BT_ATT_ERR_INVALID_ATTRIBUTE_LEN);
 	}
 

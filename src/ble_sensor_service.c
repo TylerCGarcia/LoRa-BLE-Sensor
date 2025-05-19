@@ -51,7 +51,6 @@ static ssize_t write_sensor_state(struct bt_conn *conn, const struct bt_gatt_att
 	return len;
 }
 
-
 static ssize_t read_sensor1_enabled(struct bt_conn *conn, const struct bt_gatt_attr *attr, void *buf, uint16_t len, uint16_t offset)
 {
 	if(!is_sensor_service_setup)
@@ -232,5 +231,6 @@ BT_GATT_SERVICE_DEFINE(sensor_svc, BT_GATT_PRIMARY_SERVICE(BT_UUID_SENSOR),
 int ble_sensor_service_init(sensor_app_config_t *config)
 {
     sensor_app_config = config;
+    is_sensor_service_setup = 1;
     return 0;
 }

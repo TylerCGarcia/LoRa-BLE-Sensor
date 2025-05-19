@@ -62,9 +62,9 @@ typedef struct {
     /* Whether sensor 2 is enabled */
     uint8_t is_sensor_2_enabled;
     /* Frequency of sensor 1 */
-    uint32_t sensor_1_frequency;
+    uint8_t sensor_1_frequency;
     /* Frequency of sensor 2 */
-    uint32_t sensor_2_frequency;
+    uint8_t sensor_2_frequency;
 } sensor_app_config_t;
 
 /**
