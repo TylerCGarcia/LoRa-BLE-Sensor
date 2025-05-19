@@ -38,11 +38,19 @@ enum sensor_nvs_address {
 	SENSOR_NVS_ADDRESS_LIMIT,
 };
 
-enum sensor_timer_channel {
-    SENSOR_TIMER_CHANNEL_0,
-    SENSOR_TIMER_CHANNEL_1,
-    SENSOR_TIMER_CHANNEL_2,
-    SENSOR_TIMER_CHANNEL_LIMIT,
+static sensor_scheduling_cfg_t sensor1_schedule = {
+    .id = SENSOR_SCHEDULING_ID_SENSOR1,
+    .frequency_seconds = 0
+};
+
+static sensor_scheduling_cfg_t sensor2_schedule = {
+    .id = SENSOR_SCHEDULING_ID_SENSOR2,
+    .frequency_seconds = 0
+};
+
+static sensor_scheduling_cfg_t radio_schedule = {
+    .id = SENSOR_SCHEDULING_ID_RADIO,
+    .frequency_seconds = 0
 };
 
 #define DEV_EUI {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}
@@ -182,43 +190,71 @@ int sensor_app_configuration_state(void)
     return 0;
 }
 
+/**
+ * @brief Check that the app passes all the requirements to be in the running state.
+ * 
+ * @return int 0 on success, -1 on failure
+ */
+static int running_state_initialization_check(void)
+{
+    if(sensor_app_config->state != SENSOR_APP_STATE_RUNNING)
+    {
+        LOG_ERR("App is not in the running state");
+        return -1;
+    }
+    /* Check that either sensor 1 or sensor 2 is enabled. */
+    if(!sensor_app_config->is_sensor_1_enabled && !sensor_app_config->is_sensor_2_enabled)
+    {
+        LOG_ERR("Neither sensor 1 or sensor 2 is enabled");
+        return -1;
+    }
+    return 0;
+}
+
 static int initialize_sensor_schedule(void)
 {
     int ret;
     if(sensor_app_config->is_sensor_1_enabled && sensor_app_config->sensor_1_frequency > 0)
     {
-        sensor_scheduling_cfg_t sensor1_schedule = {
-            .id = SENSOR_SCHEDULING_ID_SENSOR1,
-            .frequency_seconds = MINUTES_TO_SECONDS(sensor_app_config->sensor_1_frequency)
-	    };
+        sensor1_schedule.frequency_seconds = MINUTES_TO_SECONDS(sensor_app_config->sensor_1_frequency);
         ret = sensor_scheduling_add_schedule(&sensor1_schedule);
         if(ret < 0)
         {
             LOG_ERR("Failed to add sensor 1 schedule");
         }
+        else
+        {
+            sensor1_schedule.one_time_trigger = 1;
+            LOG_INF("Sensor 1 schedule added at a frequency of %d seconds", sensor1_schedule.frequency_seconds);
+        }
     }
     if(sensor_app_config->is_sensor_2_enabled && sensor_app_config->sensor_2_frequency > 0)
     {
-        sensor_scheduling_cfg_t sensor2_schedule = {
-            .id = SENSOR_SCHEDULING_ID_SENSOR2,
-            .frequency_seconds = MINUTES_TO_SECONDS(sensor_app_config->sensor_2_frequency)
-        };
+        sensor2_schedule.frequency_seconds = MINUTES_TO_SECONDS(sensor_app_config->sensor_2_frequency);
         ret = sensor_scheduling_add_schedule(&sensor2_schedule);
         if(ret < 0)
         {
             LOG_ERR("Failed to add sensor 2 schedule");
         }
+        else
+        {
+            sensor2_schedule.one_time_trigger = 1;
+            LOG_INF("Sensor 2 schedule added at a frequency of %d seconds", sensor2_schedule.frequency_seconds);
+        }
     }
     if(sensor_app_config->is_lorawan_enabled && sensor_app_config->lorawan_frequency > 0)
     {
-        sensor_scheduling_cfg_t radio_schedule = {
-            .id = SENSOR_SCHEDULING_ID_RADIO,
-            .frequency_seconds = MINUTES_TO_SECONDS(sensor_app_config->lorawan_frequency)
-        };
+        k_sleep(K_SECONDS(2)); // schedule radio to start after sensors are read
+        radio_schedule.frequency_seconds = MINUTES_TO_SECONDS(sensor_app_config->lorawan_frequency);
         ret = sensor_scheduling_add_schedule(&radio_schedule);
         if(ret < 0)
         {
             LOG_ERR("Failed to add radio schedule");
+        }
+        else
+        {
+            radio_schedule.one_time_trigger = 1;
+            LOG_INF("Radio schedule added at a frequency of %d seconds", radio_schedule.frequency_seconds);
         }
     }
     return 0;
@@ -227,20 +263,55 @@ static int initialize_sensor_schedule(void)
 int sensor_app_running_state(void)
 {
     int ret;
-    if(sensor_app_config->state != SENSOR_APP_STATE_RUNNING)
+    ret = running_state_initialization_check();
+    if(ret < 0)
     {
-        LOG_ERR("App is not in the running state");
-        return -1;
+        LOG_ERR("Failed to check running state initialization");
+        return ret;
     }
-    /* Check that either sensor 1 or sensor 2 is enabled. */
-    if(sensor_app_config->is_sensor_1_enabled || sensor_app_config->is_sensor_2_enabled)
+    ret = initialize_sensor_schedule();
+    if(ret < 0)
     {
-        LOG_ERR("Either sensor 1 or sensor 2 is enabled");
-        return -1;
+        LOG_ERR("Failed to initialize sensor schedule");
+        return ret;
     }
-
-    
-
+    while(sensor_app_config->state == SENSOR_APP_STATE_RUNNING)
+    {
+        if(sensor1_schedule.is_triggered || sensor1_schedule.one_time_trigger)
+		{
+			sensor1_schedule.one_time_trigger = 0;
+			LOG_INF("Sensor 1 schedule triggered");
+			// sensor_data_read(&sensor1_data, sensor_scheduling_get_seconds());
+			// sensor_data_print_data(&sensor1_data);
+			sensor_scheduling_reset_schedule(&sensor1_schedule);
+		}
+		if(sensor2_schedule.is_triggered || sensor2_schedule.one_time_trigger)
+		{
+			sensor2_schedule.one_time_trigger = 0;
+			LOG_INF("Sensor 2 schedule triggered");
+			// sensor_data_read(&sensor2_data, sensor_scheduling_get_seconds());
+			// sensor_data_print_data(&sensor2_data);
+			sensor_scheduling_reset_schedule(&sensor2_schedule);
+		}
+		if(radio_schedule.is_triggered || radio_schedule.one_time_trigger)
+		{
+			radio_schedule.one_time_trigger = 0;
+			LOG_INF("Radio schedule triggered");
+			sensor_scheduling_reset_schedule(&radio_schedule);
+			
+			// ret = send_packet();
+			// if(ret == 0)
+			// {
+			// 	sensor_data_clear(&sensor1_data);
+			// 	sensor_data_clear(&sensor2_data);
+			// }
+			// else
+			// {
+			// 	LOG_ERR("Failed to send packet");
+			// }
+		}
+        k_msleep(100);
+    }
 
     return 0;
 }

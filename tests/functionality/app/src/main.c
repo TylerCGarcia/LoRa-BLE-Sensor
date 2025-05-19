@@ -109,6 +109,7 @@ ZTEST(app, test_app_running_state_fails_when_neither_sensor_is_enabled)
     int ret;
     ret = sensor_app_init(&sensor_app_config);
     zassert_ok(ret, "App init failed");
+    sensor_app_config.state = SENSOR_APP_STATE_RUNNING;
     /* Set the app to the running state. */
     ret = sensor_app_running_state();
     zassert_not_ok(ret, "App running state should fail when neither sensor is enabled");

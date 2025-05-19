@@ -12,6 +12,7 @@
 #ifndef SENSOR_SCHEDULING_H
 #define SENSOR_SCHEDULING_H
 
+#include "sensor_timer.h"
 #include <stdint.h>
 #include <zephyr/kernel.h>
 #include <zephyr/device.h>
@@ -35,7 +36,8 @@ typedef struct {
     uint8_t is_triggered;
     /* Last event time in seconds */
     uint32_t last_event_time;
-
+    /* An optional trigger that isn't based on the frequency and is used for one-time events */
+    uint8_t one_time_trigger;
 } sensor_scheduling_cfg_t;
 
 /**

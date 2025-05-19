@@ -158,7 +158,22 @@ int main(void)
 {
 	while (1) 
 	{
-
+		switch(sensor_app_config.state)
+		{
+			case SENSOR_APP_STATE_CONFIGURATION:
+				sensor_app_configuration_state();
+				break;
+			case SENSOR_APP_STATE_RUNNING:
+				sensor_app_running_state();
+				break;
+			case SENSOR_APP_STATE_ERROR:
+				sensor_app_error_state();
+				break;
+			default:
+				LOG_ERR("Invalid state");
+				break;
+		}
+		k_sleep(K_SECONDS(1));
 	}
 	return 0;
 }
