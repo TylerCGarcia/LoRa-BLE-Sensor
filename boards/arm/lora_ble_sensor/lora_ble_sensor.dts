@@ -80,6 +80,7 @@
 	aliases {
 		sw0 = &button0;
 		lora0 = &lora;
+		sensortimer = &rtc2;
 		watchdog0 = &wdt0;
 		boost1en = &boost1_en;
 		boost1ctrl1 = &boost1_ctrl1;

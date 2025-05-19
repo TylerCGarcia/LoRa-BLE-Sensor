@@ -190,6 +190,7 @@ int sensor_app_configuration_state(void)
     int ret; 
     while(sensor_app_config->state == SENSOR_APP_STATE_CONFIGURATION)
     {
+        LOG_DBG("App is in the configuration state");
         k_sleep(K_SECONDS(1));
     }
     return 0;
@@ -392,6 +393,7 @@ int sensor_app_running_state(void)
 			// 	LOG_ERR("Failed to send packet");
 			// }
 		}
+        LOG_DBG("App is in the running state");
         k_msleep(100);
     }
 
@@ -414,10 +416,23 @@ static void ble_thread(void *arg1, void *arg2, void *arg3)
     int ret;
     ret = ble_setup(&ble_config);
     LOG_INF("Setting up LoRaWAN BLE Service");
-
+    ret = ble_sensor_service_init(sensor_app_config);
+    if(ret < 0)
+    {
+        LOG_ERR("Failed to initialize BLE sensor service");
+        sensor_app_config->state = SENSOR_APP_STATE_ERROR;
+        return;
+    }
+    ret = ble_lorawan_service_init(&lorawan_setup);
+    if(ret < 0)
+    {
+        LOG_ERR("Failed to initialize LoRaWAN BLE service");
+        sensor_app_config->state = SENSOR_APP_STATE_ERROR;
+        return;
+    }
     while(1)
     {
-        LOG_INF("BLE Thread Running");
+        LOG_DBG("BLE Thread Running");
         k_sleep(K_SECONDS(1));
     }
 }

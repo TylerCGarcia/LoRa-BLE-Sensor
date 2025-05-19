@@ -35,4 +35,5 @@ target_sources(app PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/src/sensor_timer.c
     ${CMAKE_CURRENT_SOURCE_DIR}/src/sensor_scheduling.c
     ${CMAKE_CURRENT_SOURCE_DIR}/src/sensor_data.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/sensor_app.c
 )

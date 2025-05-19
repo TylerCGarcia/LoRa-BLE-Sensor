@@ -12,7 +12,7 @@
 #ifndef BLE_SENSOR_SERVICE_H
 #define BLE_SENSOR_SERVICE_H
 
-
+#include "sensor_app.h"
 /* 
 - Service DEVICE
 - device_name (r/w)
@@ -58,14 +58,20 @@
 #define BT_UUID_SENSOR1_DATA_TIME_VAL       BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c5)
 #define BT_UUID_SENSOR1_DATA_FREQ_VAL       BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c6)
 
+
 #define BT_UUID_SENSOR                      BT_UUID_DECLARE_128(BT_UUID_SENSOR_VAL)
-#define BT_UUID_SENSOR1_PWR_ID              BT_UUID_DECLARE_128(BT_UUID_SENSOR1_PWR_ID_VAL)
-#define BT_UUID_SENSOR1_PWR_CONFIG          BT_UUID_DECLARE_128(BT_UUID_SENSOR1_PWR_CONFIG_VAL)
 #define BT_UUID_SENSOR1_CONFIG              BT_UUID_DECLARE_128(BT_UUID_SENSOR1_CONFIG_VAL)
+#define BT_UUID_SENSOR1_PWR_CONFIG          BT_UUID_DECLARE_128(BT_UUID_SENSOR1_PWR_CONFIG_VAL)
 #define BT_UUID_SENSOR1_DATA                BT_UUID_DECLARE_128(BT_UUID_SENSOR1_DATA_VAL)
 #define BT_UUID_SENSOR1_DATA_TIME           BT_UUID_DECLARE_128(BT_UUID_SENSOR1_DATA_TIME_VAL)
 #define BT_UUID_SENSOR1_DATA_FREQ           BT_UUID_DECLARE_128(BT_UUID_SENSOR1_DATA_FREQ_VAL)
 
-
+/**
+ * @brief Initialize the BLE sensor service
+ * 
+ * @param config Pointer to the sensor app config
+ * @return int 0 if successful, < 0 if unsuccessful
+ */
+int ble_sensor_service_init(sensor_app_config_t *config);
 
 #endif

@@ -13,7 +13,20 @@
 
 LOG_MODULE_REGISTER(MAIN);
 
-sensor_app_config_t sensor_app_config;
+sensor_app_config_t sensor_app_config = {
+	.state = SENSOR_APP_STATE_CONFIGURATION,
+	.is_lorawan_enabled = 0,
+	.lorawan_frequency = 0,
+	.connect_lorawan_during_configuration = 1,
+	.is_sensor_1_enabled = 0,
+	.sensor_1_voltage = SENSOR_VOLTAGE_OFF,
+	.sensor_1_type = NULL_SENSOR,
+	.sensor_1_frequency = 0,
+	.is_sensor_2_enabled = 0,
+	.sensor_2_voltage = SENSOR_VOLTAGE_OFF,
+	.sensor_2_type = NULL_SENSOR,
+	.sensor_2_frequency = 0,
+};
 
 // static void init_lora_ble(void)
 // {
@@ -88,13 +101,6 @@ sensor_app_config_t sensor_app_config;
 // 	}
 // }
 
-// int sensor_app_running_state(void)
-// {
-
-//     ret = sensor_data_setup(&sensor1_data, PULSE_SENSOR, SENSOR_VOLTAGE_3V3);
-//     ret = sensor_data_setup(&sensor2_data, PULSE_SENSOR, SENSOR_VOLTAGE_3V3);
-// }
-
 int main(void)
 {
 	int ret; 
@@ -105,6 +111,8 @@ int main(void)
 		sensor_app_config.state = SENSOR_APP_STATE_ERROR;
 		return -1;
 	}
+	sensor_app_ble_start();
+
 	while (1) 
 	{
 		switch(sensor_app_config.state)
