@@ -15,7 +15,6 @@ LOG_MODULE_REGISTER(MAIN);
 
 sensor_app_config_t sensor_app_config = {
 	.state = SENSOR_APP_STATE_CONFIGURATION,
-	.is_lorawan_enabled = 0,
 	.lorawan_frequency = 0,
 	.connect_lorawan_during_configuration = 1,
 	.is_sensor_1_enabled = 0,
@@ -27,36 +26,6 @@ sensor_app_config_t sensor_app_config = {
 	.sensor_2_type = NULL_SENSOR,
 	.sensor_2_frequency = 0,
 };
-
-// static void init_lora_ble(void)
-// {
-// 	int ret;
-// 	// ret = ble_setup(&ble_config);
-// 	// ret = ble_lorawan_service_init(&setup);
-
-// 	while(is_lorawan_configured(&setup) < 0)
-// 	{
-// 		ret = -1; // set to -1 to indicate that the lorawan is not configured
-// 		LOG_ERR("LoRaWAN is not configured, waiting for configuration");
-// 		k_sleep(K_SECONDS(1));
-// 	}
-
-// 	lorawan_log_network_config(&setup);
-// 	ret = sensor_nvs_read(SENSOR_NVS_ADDRESS_DEV_NONCE, &setup.dev_nonce, sizeof(setup.dev_nonce));
-// 	if(ret < 0)
-// 	{
-// 		LOG_INF("No Stored Dev Nonce, using default and storing it in nvs");
-// 		ret = sensor_nvs_write(SENSOR_NVS_ADDRESS_DEV_NONCE, &setup.dev_nonce, sizeof(setup.dev_nonce));
-// 		if(ret < 0)
-// 		{
-// 			LOG_ERR("Failed to store dev nonce in nvs");
-// 		}
-// 	}
-
-// 	lorawan_setup(&setup);
-// 	/* Store the dev nonce in nvs after finishing join attempts. */
-// 	sensor_nvs_write(SENSOR_NVS_ADDRESS_DEV_NONCE, &setup.dev_nonce, sizeof(setup.dev_nonce));
-// }
 
 // static int send_packet(void)
 // {

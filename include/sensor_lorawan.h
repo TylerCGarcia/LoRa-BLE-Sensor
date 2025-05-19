@@ -22,6 +22,8 @@
  * @brief Structure to hold the LoRaWAN setup, used to join the network.
  */
 typedef struct {
+    /* Whether the LoRaWAN is enabled. */
+    uint8_t is_lorawan_enabled;
     /* LoRaWAN Device. */
     const struct device *lora_dev;
     /* LoRaWAN uplink class. */

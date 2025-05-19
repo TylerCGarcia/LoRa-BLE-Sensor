@@ -24,7 +24,6 @@ DEFINE_FFF_GLOBALS;
 
 sensor_app_config_t sensor_app_config = {
     .state = SENSOR_APP_STATE_CONFIGURATION,
-    .is_lorawan_enabled = 0,
     .is_sensor_1_enabled = 0,
     .is_sensor_2_enabled = 0,
     .sensor_1_type = NULL_SENSOR,
