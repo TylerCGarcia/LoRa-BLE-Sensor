@@ -180,16 +180,3 @@ ZTEST(app, test_app_running_state_fails_when_sensor_2_is_enabled_but_has_null_se
     zassert_equal(sensor_app_config.state, SENSOR_APP_STATE_ERROR, "App state is not error");
 }
 
-// /**
-//  * @brief Test that the sensor app can be initialized
-//  * 
-//  */
-// ZTEST(app, test_app_ble_init)
-// {
-//     int ret;
-//     ret = sensor_app_ble_start();
-//     zassert_ok(ret, "BLE init failed");
-//     k_sleep(K_SECONDS(1)); // Wait for the BLE thread to start
-//     zassert_equal(ble_setup_fake.call_count, 1, "BLE setup should be called");
-// }
-
