@@ -158,11 +158,13 @@ static int sensor_lorawan_connection(void)
     if(is_lorawan_configured(&lorawan_setup) == 0)
     {
         ret = sensor_lorawan_setup(&lorawan_setup);
-            if(ret < 0)
-            {
-                LOG_ERR("Failed to connect to LoRaWAN");
-                return -1;
-            }
+        /* Save the dev nonce to NVS after connection attempt. */
+        sensor_nvs_write(SENSOR_NVS_ADDRESS_LORAWAN_DEV_NONCE, &lorawan_setup.dev_nonce, sizeof(lorawan_setup.dev_nonce));
+        if(ret < 0)
+        {
+            LOG_ERR("Failed to connect to LoRaWAN");
+            return -1;
+        }
         }
         else
         {

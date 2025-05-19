@@ -15,6 +15,7 @@
 
 #include "sensor_id.h"
 #include <stdint.h>
+
 // In sensor_app.h
 typedef enum sensor_app_state{
     SENSOR_APP_STATE_CONFIGURATION,    // Device is in configuration mode (BLE active, waiting for setup)

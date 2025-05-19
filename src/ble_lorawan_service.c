@@ -3,6 +3,8 @@
 #include <zephyr/bluetooth/bluetooth.h>
 #include <zephyr/bluetooth/gatt.h>
 #include <zephyr/logging/log.h>
+#include "sensor_nvs.h"
+#include "sensor_app.h"
 
 LOG_MODULE_REGISTER(BLE_LORAWAN_SERVICE, LOG_LEVEL_INF);
 
@@ -46,7 +48,7 @@ static ssize_t write_enabled(struct bt_conn *conn, const struct bt_gatt_attr *at
 	memcpy(&lorawan_service_setup->is_lorawan_enabled, buf, len);
 
 	LOG_INF("LoRaWAN enabled new value: %d", lorawan_service_setup->is_lorawan_enabled);
-
+	sensor_nvs_write(SENSOR_NVS_ADDRESS_LORAWAN_ENABLED, &lorawan_service_setup->is_lorawan_enabled, sizeof(lorawan_service_setup->is_lorawan_enabled));
 	return len;
 }
 
@@ -86,7 +88,7 @@ static ssize_t write_frequency(struct bt_conn *conn, const struct bt_gatt_attr *
 	memcpy(&lorawan_service_setup->lorawan_frequency, buf, len);
 
 	LOG_INF("LoRaWAN frequency new value: %d", lorawan_service_setup->lorawan_frequency);
-
+	sensor_nvs_write(SENSOR_NVS_ADDRESS_LORAWAN_FREQUENCY, &lorawan_service_setup->lorawan_frequency, sizeof(lorawan_service_setup->lorawan_frequency));
 	return len;
 }
 
@@ -128,7 +130,7 @@ static ssize_t write_dev_eui(struct bt_conn *conn, const struct bt_gatt_attr *at
 	LOG_INF("DEV EUI RECEIVED:  0x%02x 0x%02x 0x%02x 0x%02x 0x%02x 0x%02x 0x%02x 0x%02x", \
 		lorawan_service_setup->dev_eui[0],lorawan_service_setup->dev_eui[1],lorawan_service_setup->dev_eui[2],lorawan_service_setup->dev_eui[3], \
 		lorawan_service_setup->dev_eui[4],lorawan_service_setup->dev_eui[5],lorawan_service_setup->dev_eui[6],lorawan_service_setup->dev_eui[7]);
-
+	sensor_nvs_write(SENSOR_NVS_ADDRESS_LORAWAN_DEV_EUI, lorawan_service_setup->dev_eui, sizeof(lorawan_service_setup->dev_eui));
 	return len;
 }
 
@@ -170,7 +172,7 @@ static ssize_t write_join_eui(struct bt_conn *conn, const struct bt_gatt_attr *a
 	LOG_INF("JOIN EUI RECEIVED:  0x%02x 0x%02x 0x%02x 0x%02x 0x%02x 0x%02x 0x%02x 0x%02x", \
 		lorawan_service_setup->join_eui[0],lorawan_service_setup->join_eui[1],lorawan_service_setup->join_eui[2],lorawan_service_setup->join_eui[3], \
 		lorawan_service_setup->join_eui[4],lorawan_service_setup->join_eui[5],lorawan_service_setup->join_eui[6],lorawan_service_setup->join_eui[7]);
-
+	sensor_nvs_write(SENSOR_NVS_ADDRESS_LORAWAN_JOIN_EUI, lorawan_service_setup->join_eui, sizeof(lorawan_service_setup->join_eui));
 	return len;
 }
 
@@ -214,7 +216,7 @@ static ssize_t write_app_key(struct bt_conn *conn, const struct bt_gatt_attr *at
 		lorawan_service_setup->app_key[4],lorawan_service_setup->app_key[5],lorawan_service_setup->app_key[6],lorawan_service_setup->app_key[7], \
 		lorawan_service_setup->app_key[8],lorawan_service_setup->app_key[9],lorawan_service_setup->app_key[10],lorawan_service_setup->app_key[11], \
 		lorawan_service_setup->app_key[12],lorawan_service_setup->app_key[13],lorawan_service_setup->app_key[14],lorawan_service_setup->app_key[15]);
-
+	sensor_nvs_write(SENSOR_NVS_ADDRESS_LORAWAN_APP_KEY, lorawan_service_setup->app_key, sizeof(lorawan_service_setup->app_key));
 	return len;
 }
 

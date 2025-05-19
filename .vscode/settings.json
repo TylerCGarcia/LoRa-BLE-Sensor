@@ -150,6 +150,7 @@
         "sensor_reading_fakes.h": "c",
         "ring_buffer.h": "c",
         "sensor_app.h": "c",
-        "ble_lorawan_service.h": "c"
+        "ble_lorawan_service.h": "c",
+        "ble_sensor_service.h": "c"
     }
 }
