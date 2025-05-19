@@ -97,6 +97,14 @@ sensor_app_config_t sensor_app_config;
 
 int main(void)
 {
+	int ret; 
+	ret = sensor_app_init(&sensor_app_config);
+	if(ret < 0)
+	{
+		LOG_ERR("Failed to initialize sensor app");
+		sensor_app_config.state = SENSOR_APP_STATE_ERROR;
+		return -1;
+	}
 	while (1) 
 	{
 		switch(sensor_app_config.state)

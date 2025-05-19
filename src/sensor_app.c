@@ -187,6 +187,11 @@ int sensor_app_init(sensor_app_config_t *config)
 
 int sensor_app_configuration_state(void)
 {
+    int ret; 
+    while(sensor_app_config->state == SENSOR_APP_STATE_CONFIGURATION)
+    {
+        k_sleep(K_SECONDS(1));
+    }
     return 0;
 }
 
