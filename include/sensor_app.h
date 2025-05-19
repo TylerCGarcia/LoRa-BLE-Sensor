@@ -29,6 +29,8 @@ typedef struct {
     uint8_t is_lorawan_enabled;
     /* Frequency of LoRaWAN */
     uint32_t lorawan_frequency;
+    /* Tells whether or not to connect lorawan during configuration */
+    uint8_t connect_lorawan_during_configuration;
     /* Sensor type used for sensor 1 */
     enum sensor_types sensor_1_type;
     /* Sensor type used for sensor 2 */

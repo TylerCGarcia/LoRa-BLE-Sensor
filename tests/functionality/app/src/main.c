@@ -154,6 +154,45 @@ ZTEST(app, test_app_running_state_fails_when_sensor_2_is_enabled_but_has_0_frequ
     zassert_not_ok(ret, "App running state should fail when sensor 2 is enabled but has 0 frequency");
     zassert_equal(sensor_app_config.state, SENSOR_APP_STATE_ERROR, "App state is not error");
 }
+
+/**
+ * @brief Test that the sensor fails when sensor 1 is enabled but has null sensor type
+ * 
+ */
+ZTEST(app, test_app_running_state_fails_when_sensor_1_is_enabled_but_has_null_sensor_type)
+{
+    int ret;
+    ret = sensor_app_init(&sensor_app_config);
+    zassert_ok(ret, "App init failed");
+    sensor_app_config.state = SENSOR_APP_STATE_RUNNING;
+    sensor_app_config.is_sensor_1_enabled = 1;
+    sensor_app_config.sensor_1_frequency = 1;
+    sensor_app_config.sensor_1_type = NULL_SENSOR;
+    /* Set the app to the running state. */
+    ret = sensor_app_running_state();
+    zassert_not_ok(ret, "App running state should fail when sensor 1 is enabled but has null sensor type");
+    zassert_equal(sensor_app_config.state, SENSOR_APP_STATE_ERROR, "App state is not error");
+}
+
+/**
+ * @brief Test that the sensor fails when sensor 2 is enabled but has null sensor type
+ * 
+ */
+ZTEST(app, test_app_running_state_fails_when_sensor_2_is_enabled_but_has_null_sensor_type)
+{
+    int ret;
+    ret = sensor_app_init(&sensor_app_config);
+    zassert_ok(ret, "App init failed");
+    sensor_app_config.state = SENSOR_APP_STATE_RUNNING;
+    sensor_app_config.is_sensor_2_enabled = 1;
+    sensor_app_config.sensor_2_frequency = 1;
+    sensor_app_config.sensor_2_type = NULL_SENSOR;
+    /* Set the app to the running state. */
+    ret = sensor_app_running_state();
+    zassert_not_ok(ret, "App running state should fail when sensor 2 is enabled but has null sensor type");
+    zassert_equal(sensor_app_config.state, SENSOR_APP_STATE_ERROR, "App state is not error");
+}
+
 // /**
 //  * @brief Test that the sensor app can be initialized
 //  * 

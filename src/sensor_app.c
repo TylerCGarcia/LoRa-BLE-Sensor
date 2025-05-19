@@ -208,29 +208,37 @@ static int running_state_initialization_check(void)
         LOG_ERR("Neither sensor 1 or sensor 2 is enabled");
         return -1;
     }
-    if(sensor1_data.id == NULL_SENSOR && sensor2_data.id == NULL_SENSOR)
-    {
-        LOG_ERR("Sensor 1 and sensor 2 are not initialized to any sensor types");
-        return -1;
-    }
+    /* Make sure that if sensor 1 is enabled, it is initialized to a valid sensor type and has a non-zero frequency. */
     if(sensor_app_config->is_sensor_1_enabled && sensor_app_config->sensor_1_type == NULL_SENSOR)
     {
         LOG_ERR("Sensor 1 is enabled but not initialized to any sensor types");
-        return -1;
-    }
-    if(sensor_app_config->is_sensor_2_enabled && sensor_app_config->sensor_2_type == NULL_SENSOR)
-    {
-        LOG_ERR("Sensor 2 is enabled but not initialized to any sensor types");
+        sensor_app_config->is_sensor_1_enabled = 0;
         return -1;
     }
     if(sensor_app_config->is_sensor_1_enabled && sensor_app_config->sensor_1_frequency == 0)
     {
         LOG_ERR("Sensor 1 is enabled but has 0 frequency");
+        sensor_app_config->is_sensor_1_enabled = 0;
         return -1;
     }
+    /* Make sure that if sensor 2 is enabled, it is initialized to a valid sensor type and has a non-zero frequency. */
     if(sensor_app_config->is_sensor_2_enabled && sensor_app_config->sensor_2_frequency == 0)
     {
         LOG_ERR("Sensor 2 is enabled but has 0 frequency");
+        sensor_app_config->is_sensor_2_enabled = 0;
+        return -1;
+    }
+    if(sensor_app_config->is_sensor_2_enabled && sensor_app_config->sensor_2_type == NULL_SENSOR)
+    {
+        LOG_ERR("Sensor 2 is enabled but not initialized to any sensor types");
+        sensor_app_config->is_sensor_2_enabled = 0;
+        return -1;
+    }
+    /* Make sure that if lorawan is enabled, it has a valid frequency. */
+    if(sensor_app_config->is_lorawan_enabled && sensor_app_config->lorawan_frequency == 0)
+    {
+        LOG_ERR("LoRaWAN is enabled but has 0 frequency");
+        sensor_app_config->is_lorawan_enabled = 0;
         return -1;
     }
     return 0;
