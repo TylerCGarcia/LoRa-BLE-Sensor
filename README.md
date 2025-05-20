@@ -20,7 +20,7 @@ ZTEST and TWISTER are used for creating and running the unit tests for the devic
   * Controlling LED
 
 # Revision History
-Current Version: **V0.2.0**
+Current Version: **V0.2.1**
 
 Version Breakdown: `[Major API Change]`.`[Minor Change/Added Functionality]`.`[Patch/bug fixes]`
 
