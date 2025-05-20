@@ -12,6 +12,4 @@ target_include_directories(app PRIVATE
 
 target_sources(app PRIVATE src/main.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../../../src/sensor_ble.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../../src/ble_sensor_service.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../../src/ble_lorawan_service.c
 )

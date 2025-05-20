@@ -26,49 +26,6 @@ sensor_app_config_t sensor_app_config = {
 	.sensor_2_frequency = 0,
 };
 
-// static int send_packet(void)
-// {
-// 	int ret;
-// 	if(is_lorawan_connected())
-// 	{
-// 		LOG_INF("Sending LoRaWAN data");
-// 		int i = 0;
-// 		lorawan_data_t lorawan_data;
-// 		uint8_t sensor1_data_buffer[(sensor1_data.data_size * sensor1_data.num_samples) + (sensor1_data.timestamp_size * sensor1_data.num_samples)];
-// 		uint8_t sensor2_data_buffer[(sensor2_data.data_size * sensor2_data.num_samples) + (sensor2_data.timestamp_size * sensor2_data.num_samples)];
-// 		uint8_t sensor1_data_buffer_len;
-// 		uint8_t sensor2_data_buffer_len;
-// 		sensor_data_format_for_lorawan(&sensor1_data, sensor1_data_buffer, &sensor1_data_buffer_len);
-// 		sensor_data_format_for_lorawan(&sensor2_data, sensor2_data_buffer, &sensor2_data_buffer_len);
-
-// 		for(int i = 0; i < sensor1_data_buffer_len; i++)
-// 		{
-// 			lorawan_data.data[i] = sensor1_data_buffer[i];
-// 		}
-// 		for(int i = 0; i < sensor2_data_buffer_len; i++)
-// 		{
-// 			lorawan_data.data[i + sensor1_data_buffer_len] = sensor2_data_buffer[i];
-// 		}
-
-// 		lorawan_data.length = sensor1_data_buffer_len + sensor2_data_buffer_len;
-// 		lorawan_data.port = 2;
-// 		lorawan_data.attempts = 10;
-// 		lorawan_data.delay = 1000;
-// 		ret = lorawan_send_data(&lorawan_data);
-// 		if(ret < 0)
-// 		{
-// 			LOG_ERR("Failed to send packet");
-// 			return -1;
-// 		}
-// 		return 0;
-// 	}
-// 	else
-// 	{
-// 		LOG_ERR("LoRaWAN is not connected");
-// 		return -1;
-// 	}
-// }
-
 int main(void)
 {
 	int ret; 
