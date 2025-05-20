@@ -213,19 +213,37 @@ static ssize_t write_sensor1_data_freq(struct bt_conn *conn, const struct bt_gat
 	return len;
 }
 
+static ssize_t read_sensor1_data(struct bt_conn *conn, const struct bt_gatt_attr *attr, void *buf, uint16_t len, uint16_t offset)
+{
+    if(!is_sensor_service_setup)
+	{
+		LOG_ERR("Sensor BLE Service is not initialized");
+		return BT_GATT_ERR(BT_ATT_ERR_READ_NOT_PERMITTED);
+	}
 
+    return bt_gatt_attr_read(conn, attr, buf, len, offset, sensor_app_config->sensor_1_latest_data, sizeof(sensor_app_config->sensor_1_latest_data));
+}
+
+static ssize_t read_sensor1_data_time(struct bt_conn *conn, const struct bt_gatt_attr *attr, void *buf, uint16_t len, uint16_t offset)
+{
+    if(!is_sensor_service_setup)
+	{
+		LOG_ERR("Sensor BLE Service is not initialized");
+		return BT_GATT_ERR(BT_ATT_ERR_READ_NOT_PERMITTED);
+	}
+    return bt_gatt_attr_read(conn, attr, buf, len, offset, &sensor_app_config->sensor_1_latest_data_timestamp, sizeof(sensor_app_config->sensor_1_latest_data_timestamp));
+}
 /* LED Button Service Declaration */
 BT_GATT_SERVICE_DEFINE(sensor_svc, BT_GATT_PRIMARY_SERVICE(BT_UUID_SENSOR),
 
     BT_GATT_CHARACTERISTIC(BT_UUID_SENSOR_STATE, BT_GATT_CHRC_READ | BT_GATT_CHRC_WRITE, BT_GATT_PERM_READ | BT_GATT_PERM_WRITE, read_sensor_state, write_sensor_state, NULL),
     BT_GATT_CHARACTERISTIC(BT_UUID_SENSOR1_ENABLED, BT_GATT_CHRC_READ | BT_GATT_CHRC_WRITE, BT_GATT_PERM_READ | BT_GATT_PERM_WRITE, read_sensor1_enabled, write_sensor1_enabled, NULL),
-	BT_GATT_CHARACTERISTIC(BT_UUID_SENSOR1_CONFIG, BT_GATT_CHRC_READ | BT_GATT_CHRC_WRITE, BT_GATT_PERM_READ | BT_GATT_PERM_WRITE, read_sensor1_config, write_sensor1_config, NULL),
+    BT_GATT_CHARACTERISTIC(BT_UUID_SENSOR1_CONFIG, BT_GATT_CHRC_READ | BT_GATT_CHRC_WRITE, BT_GATT_PERM_READ | BT_GATT_PERM_WRITE, read_sensor1_config, write_sensor1_config, NULL),
     BT_GATT_CHARACTERISTIC(BT_UUID_SENSOR1_PWR_CONFIG, BT_GATT_CHRC_READ | BT_GATT_CHRC_WRITE, BT_GATT_PERM_READ | BT_GATT_PERM_WRITE, read_sensor1_pwr_config, write_sensor1_pwr_config, NULL),
-	BT_GATT_CHARACTERISTIC(BT_UUID_SENSOR1_DATA_FREQ, BT_GATT_CHRC_READ | BT_GATT_CHRC_WRITE, BT_GATT_PERM_READ | BT_GATT_PERM_WRITE, read_sensor1_data_freq, write_sensor1_data_freq, NULL),
-
-    // BT_GATT_CHARACTERISTIC(BT_UUID_SENSOR1_DATA, BT_GATT_CHRC_READ | BT_GATT_CHRC_WRITE, BT_GATT_PERM_READ | BT_GATT_PERM_WRITE, read_sensor1_data, write_sensor1_data, NULL),
-	// BT_GATT_CHARACTERISTIC(BT_UUID_SENSOR1_DATA_TIME, BT_GATT_CHRC_READ | BT_GATT_CHRC_WRITE, BT_GATT_PERM_READ | BT_GATT_PERM_WRITE, read_sensor1_data_time, write_sensor1_data_time, NULL),
-
+    BT_GATT_CHARACTERISTIC(BT_UUID_SENSOR1_DATA_FREQ, BT_GATT_CHRC_READ | BT_GATT_CHRC_WRITE, BT_GATT_PERM_READ | BT_GATT_PERM_WRITE, read_sensor1_data_freq, write_sensor1_data_freq, NULL),
+    BT_GATT_CHARACTERISTIC(BT_UUID_SENSOR1_DATA, BT_GATT_CHRC_READ, BT_GATT_PERM_READ, read_sensor1_data, NULL, NULL),
+    BT_GATT_CHARACTERISTIC(BT_UUID_SENSOR1_DATA_TIMESTAMP, BT_GATT_CHRC_READ, BT_GATT_PERM_READ, read_sensor1_data_time, NULL, NULL),
+    
 );
 
 int ble_sensor_service_init(sensor_app_config_t *config)

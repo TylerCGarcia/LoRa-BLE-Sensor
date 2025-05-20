@@ -370,22 +370,62 @@ static int initialize_sensor_data(void)
     return 0;
 }
 
-static int disable_sensors(void)
+static int disable_sensor(void)
 {
     int ret;
-    ret = sensor_data_setup(&sensor1_data, NULL_SENSOR, SENSOR_VOLTAGE_OFF);
-    if(ret < 0)
+    if(sensor_app_config->is_sensor_1_enabled)
     {
-        LOG_ERR("Failed to disable sensor 1");
-        return ret;
+        ret = sensor_data_setup(&sensor1_data, NULL_SENSOR, SENSOR_VOLTAGE_OFF);
+        if(ret < 0)
+        {
+            LOG_ERR("Failed to disable sensor 1");
+            return ret;
+        }
+        ret = sensor_scheduling_remove_schedule(&sensor1_schedule);
+        if(ret < 0)
+        {
+            LOG_ERR("Failed to remove sensor 1 schedule");
+            return ret;
+        }
     }
-    ret = sensor_data_setup(&sensor2_data, NULL_SENSOR, SENSOR_VOLTAGE_OFF);
-    if(ret < 0)
+    if(sensor_app_config->is_sensor_2_enabled)
     {
-        LOG_ERR("Failed to disable sensor 2");
-        return ret;
+        ret = sensor_data_setup(&sensor2_data, NULL_SENSOR, SENSOR_VOLTAGE_OFF);
+        if(ret < 0)
+        {
+            LOG_ERR("Failed to disable sensor 2");
+            return ret;
+        }
+        ret = sensor_scheduling_remove_schedule(&sensor2_schedule);
+        if(ret < 0)
+        {
+            LOG_ERR("Failed to remove sensor 2 schedule");
+            return ret;
+        }
     }
+    LOG_INF("Sensors disabled");
+    if(lorawan_setup.is_lorawan_enabled)
+    {
+        ret = sensor_scheduling_remove_schedule(&radio_schedule);
+        if(ret < 0)
+        {
+            LOG_ERR("Failed to remove radio schedule");
+            return ret;
+        }
+    }
+    return 0;
+}
 
+static int update_sensor_data_timestamps(void)
+{
+    if(sensor_app_config->is_sensor_1_enabled)
+    {
+        sensor_app_config->sensor_1_latest_data_timestamp = (sensor_scheduling_get_seconds() - sensor1_data.latest_timestamp);
+    }
+    if(sensor_app_config->is_sensor_2_enabled)
+    {
+        sensor_app_config->sensor_2_latest_data_timestamp = (sensor_scheduling_get_seconds() - sensor2_data.latest_timestamp);
+    }
     return 0;
 }
 
@@ -479,12 +519,16 @@ int sensor_app_running_state(void)
 			sensor_data_read(&sensor1_data, sensor_scheduling_get_seconds());
 			sensor_data_print_data(&sensor1_data);
 			sensor_scheduling_reset_schedule(&sensor1_schedule);
+            sensor_app_config->sensor_1_latest_data = sensor1_data.latest_data;
+            sensor_app_config->sensor_1_latest_data_timestamp = (sensor_scheduling_get_seconds() - sensor1_data.latest_timestamp);
 		}
 		if(sensor_app_config->is_sensor_2_enabled && (sensor2_schedule.is_triggered || sensor2_schedule.one_time_trigger))
 		{
 			sensor2_schedule.one_time_trigger = 0;
 			LOG_INF("Sensor 2 schedule triggered");
 			sensor_data_read(&sensor2_data, sensor_scheduling_get_seconds());
+            sensor_app_config->sensor_2_latest_data = sensor2_data.latest_data;
+            sensor_app_config->sensor_2_latest_data_timestamp = (sensor_scheduling_get_seconds() - sensor2_data.latest_timestamp);
 			sensor_data_print_data(&sensor2_data);
 			sensor_scheduling_reset_schedule(&sensor2_schedule);
 		}
@@ -503,9 +547,10 @@ int sensor_app_running_state(void)
 		}
         LOG_DBG("App is in the running state");
         k_msleep(1000);
+        update_sensor_data_timestamps();
     }
     /* Disable sensors.*/
-    ret = disable_sensors();
+    ret = disable_sensor();
     if(ret < 0)
     {
         LOG_ERR("Failed to disable sensors");

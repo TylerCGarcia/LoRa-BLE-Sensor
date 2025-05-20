@@ -65,6 +65,14 @@ typedef struct {
     uint8_t sensor_1_frequency;
     /* Frequency of sensor 2 */
     uint8_t sensor_2_frequency;
+    /* Data from sensor 1 */
+    uint8_t *sensor_1_latest_data;
+    /* Time since the latest data was received from sensor 1 */
+    uint32_t sensor_1_latest_data_timestamp;
+    /* Data from sensor 2 */
+    uint8_t *sensor_2_latest_data;
+    /* Time since the latest data was received from sensor 2 */
+    uint32_t sensor_2_latest_data_timestamp;
 } sensor_app_config_t;
 
 /**
