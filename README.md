@@ -24,6 +24,11 @@ Current Version: **V0.2.0**
 
 Version Breakdown: `[Major API Change]`.`[Minor Change/Added Functionality]`.`[Patch/bug fixes]`
 
+### V0.2.1
+- Changes made for low power consumption
+  * Digital inputs changed to active low in dts 
+  * CONFIF_PM_DEVICE enabled
+
 ### V0.2.0
 - version.conf file is created from git tags when device is built
   * the code for this is in CMakeLists.txt
