@@ -28,7 +28,11 @@ sensor_app_config_t sensor_app_config = {
 
 int main(void)
 {
-	int ret; 
+	int ret;
+	LOG_INF("LoRa-BLE-Sensor");
+	LOG_INF("Hardware Version: %d.%d", CONFIG_HW_VERSION_MAJOR, CONFIG_HW_VERSION_MINOR);
+	LOG_INF("Firmware Version: %s", CONFIG_APP_VERSION);
+
 	ret = sensor_app_init(&sensor_app_config);
 	if(ret < 0)
 	{

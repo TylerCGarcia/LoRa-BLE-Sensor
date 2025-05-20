@@ -196,10 +196,51 @@ static int add_sensor_data_to_lorawan_payload(sensor_data_t *sensor_data)
     return 0;
 }
 
+static int add_sensor_configuration_to_lorawan_payload(void)
+{
+    int ret;
+    uint8_t i = lorawan_data.length;
+    lorawan_data.data[i++] = CONFIG_HW_VERSION_MAJOR;
+    lorawan_data.data[i++] = CONFIG_HW_VERSION_MINOR;
+
+    lorawan_data.data[i++] = CONFIG_APP_VERSION_MAJOR;
+    lorawan_data.data[i++] = CONFIG_APP_VERSION_MINOR;
+    lorawan_data.data[i++] = CONFIG_APP_VERSION_PATCH;
+    lorawan_data.data[i++] = CONFIG_APP_VERSION_COMMIT;
+
+    // Get timestamp and check for error
+    int timestamp = sensor_scheduling_get_seconds();
+    lorawan_data.data[i++] = (timestamp >> 24) & 0xFF;  // Most significant byte
+    lorawan_data.data[i++] = (timestamp >> 16) & 0xFF;
+    lorawan_data.data[i++] = (timestamp >> 8) & 0xFF;
+    lorawan_data.data[i++] = timestamp & 0xFF;  
+
+    lorawan_data.data[i++] = lorawan_setup.lorawan_frequency;
+    lorawan_data.data[i++] = lorawan_setup.send_attempts;
+    lorawan_data.data[i++] = (sensor_app_config->is_sensor_1_enabled << 0) | (sensor_app_config->is_sensor_2_enabled << 1);
+    if(sensor_app_config->is_sensor_1_enabled)
+    {
+        LOG_DBG("Adding Sensor 1 configuration to LoRaWAN payload");
+        lorawan_data.data[i++] = sensor_app_config->sensor_1_voltage;
+        lorawan_data.data[i++] = sensor_app_config->sensor_1_type;
+        lorawan_data.data[i++] = sensor_app_config->sensor_1_frequency;
+    }
+    if(sensor_app_config->is_sensor_2_enabled)
+    {
+        LOG_DBG("Adding Sensor 2 configuration to LoRaWAN payload");
+        lorawan_data.data[i++] = sensor_app_config->sensor_2_voltage;
+        lorawan_data.data[i++] = sensor_app_config->sensor_2_type;
+        lorawan_data.data[i++] = sensor_app_config->sensor_2_frequency;
+    }
+    lorawan_data.length = i;
+    LOG_DBG("Added %d bytes to payload for Sensor Configuration", i);
+    return 0;
+}
+
 static int format_and_send_lorawan_payload(void)
 {
     int ret;
-
+    add_sensor_configuration_to_lorawan_payload();
     /* Add the sensor data to the LoRaWAN payload. */
     if(sensor_app_config->is_sensor_1_enabled)
     {

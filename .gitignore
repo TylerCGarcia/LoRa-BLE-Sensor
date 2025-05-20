@@ -7,5 +7,5 @@
 twister-out*/
 
 
-# Remove Version folder
-# conf/version.conf
+# Remove Version file
+conf/version.conf

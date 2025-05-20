@@ -194,6 +194,10 @@ int sensor_lorawan_send_data(lorawan_data_t *lorawan_data)
 	}
 
 	reset_data(lorawan_data);
+	if(ret < 0)
+	{
+		return ret;
+	}
 	return 0;
 }
 
