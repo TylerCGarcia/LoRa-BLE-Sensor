@@ -31,27 +31,12 @@
     - Battery Current (r)
     - Battery Temperature (r)
     - Battery Percentage (r)
-
-
-- Service SENSOR
-- sensor_power1_configuration (r/w)
-- sensor_power2_configuration (r/w)
-
-- sensor1_configuration_name (r/w)
-- sensor1_read_frequency (r/w)
-- sensor1_data (string to keep all data the same format) (r)
-- sensor1_data_time_since_last_capture (uint32_t) (r)
-
-- sensor2_configuration_name (r/w)
-- sensor2_read_frequency (r/w)
-- sensor2_data (string to keep all data the same format) (r)
-- sensor2_data_time_since_last_capture (uint32_t) (r)
-
 */
 
 /* Define the UUIDs for the Sensor service */
 #define BT_UUID_SENSOR_VAL                  BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c0)
 #define BT_UUID_SENSOR_STATE_VAL            BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c1)
+
 #define BT_UUID_SENSOR1_ENABLED_VAL         BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c2)
 #define BT_UUID_SENSOR1_CONFIG_VAL          BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c3)
 #define BT_UUID_SENSOR1_PWR_CONFIG_VAL      BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c4)
@@ -59,14 +44,30 @@
 #define BT_UUID_SENSOR1_DATA_VAL            BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c6)
 #define BT_UUID_SENSOR1_DATA_TIMESTAMP_VAL  BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c7)
 
+#define BT_UUID_SENSOR2_ENABLED_VAL         BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c8)
+#define BT_UUID_SENSOR2_CONFIG_VAL          BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c9)
+#define BT_UUID_SENSOR2_PWR_CONFIG_VAL      BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2ca)
+#define BT_UUID_SENSOR2_DATA_FREQ_VAL       BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2cb)
+#define BT_UUID_SENSOR2_DATA_VAL            BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2cc)
+#define BT_UUID_SENSOR2_DATA_TIMESTAMP_VAL  BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2cd)
+
+/* Attach the UUIDs for the Sensor service */
 #define BT_UUID_SENSOR                      BT_UUID_DECLARE_128(BT_UUID_SENSOR_VAL)
 #define BT_UUID_SENSOR_STATE                BT_UUID_DECLARE_128(BT_UUID_SENSOR_STATE_VAL)
+
 #define BT_UUID_SENSOR1_ENABLED             BT_UUID_DECLARE_128(BT_UUID_SENSOR1_ENABLED_VAL)
 #define BT_UUID_SENSOR1_CONFIG              BT_UUID_DECLARE_128(BT_UUID_SENSOR1_CONFIG_VAL)
 #define BT_UUID_SENSOR1_PWR_CONFIG          BT_UUID_DECLARE_128(BT_UUID_SENSOR1_PWR_CONFIG_VAL)
 #define BT_UUID_SENSOR1_DATA_FREQ           BT_UUID_DECLARE_128(BT_UUID_SENSOR1_DATA_FREQ_VAL)
 #define BT_UUID_SENSOR1_DATA                BT_UUID_DECLARE_128(BT_UUID_SENSOR1_DATA_VAL)
 #define BT_UUID_SENSOR1_DATA_TIMESTAMP      BT_UUID_DECLARE_128(BT_UUID_SENSOR1_DATA_TIMESTAMP_VAL)
+
+#define BT_UUID_SENSOR2_ENABLED             BT_UUID_DECLARE_128(BT_UUID_SENSOR2_ENABLED_VAL)
+#define BT_UUID_SENSOR2_CONFIG              BT_UUID_DECLARE_128(BT_UUID_SENSOR2_CONFIG_VAL)
+#define BT_UUID_SENSOR2_PWR_CONFIG          BT_UUID_DECLARE_128(BT_UUID_SENSOR2_PWR_CONFIG_VAL)
+#define BT_UUID_SENSOR2_DATA_FREQ           BT_UUID_DECLARE_128(BT_UUID_SENSOR2_DATA_FREQ_VAL)
+#define BT_UUID_SENSOR2_DATA                BT_UUID_DECLARE_128(BT_UUID_SENSOR2_DATA_VAL)
+#define BT_UUID_SENSOR2_DATA_TIMESTAMP      BT_UUID_DECLARE_128(BT_UUID_SENSOR2_DATA_TIMESTAMP_VAL)
 
 /**
  * @brief Initialize the BLE sensor service
