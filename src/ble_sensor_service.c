@@ -414,7 +414,7 @@ static ssize_t read_sensor2_data_time(struct bt_conn *conn, const struct bt_gatt
 		LOG_ERR("Sensor BLE Service is not initialized");
 		return BT_GATT_ERR(BT_ATT_ERR_READ_NOT_PERMITTED);
 	}
-    return bt_gatt_attr_read(conn, attr, buf, len, offset, &sensor_app_config->sensor_2_latest_data, sizeof(sensor_app_config->sensor_2_latest_data));
+    return bt_gatt_attr_read(conn, attr, buf, len, offset, &sensor_app_config->sensor_2_latest_data_timestamp, sizeof(sensor_app_config->sensor_2_latest_data_timestamp));
 }
 
 /* LED Button Service Declaration */

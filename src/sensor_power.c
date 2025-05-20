@@ -8,7 +8,7 @@
 #include <string.h>
 #include <zephyr/logging/log.h>
 
-LOG_MODULE_REGISTER(sensor_power, LOG_LEVEL_DBG);
+LOG_MODULE_REGISTER(sensor_power, LOG_LEVEL_INF);
 
 const sensor_voltage_info_t sensor_voltage_table[] = {
     { SENSOR_VOLTAGE_OFF, "SENSOR_VOLTAGE_OFF", 2.75 },

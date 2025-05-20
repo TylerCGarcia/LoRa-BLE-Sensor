@@ -527,10 +527,10 @@ int sensor_app_running_state(void)
 			sensor2_schedule.one_time_trigger = 0;
 			LOG_INF("Sensor 2 schedule triggered");
 			sensor_data_read(&sensor2_data, sensor_scheduling_get_seconds());
-            sensor_app_config->sensor_2_latest_data = sensor2_data.latest_data;
-            sensor_app_config->sensor_2_latest_data_timestamp = (sensor_scheduling_get_seconds() - sensor2_data.latest_timestamp);
 			sensor_data_print_data(&sensor2_data);
 			sensor_scheduling_reset_schedule(&sensor2_schedule);
+            sensor_app_config->sensor_2_latest_data = sensor2_data.latest_data;
+            sensor_app_config->sensor_2_latest_data_timestamp = (sensor_scheduling_get_seconds() - sensor2_data.latest_timestamp);
 		}
 		if(lorawan_setup.is_lorawan_enabled && (radio_schedule.is_triggered || radio_schedule.one_time_trigger))
 		{

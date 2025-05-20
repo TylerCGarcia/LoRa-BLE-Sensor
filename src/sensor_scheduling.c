@@ -2,7 +2,7 @@
 #include "sensor_timer.h"
 #include <zephyr/logging/log.h>
 
-LOG_MODULE_REGISTER(SENSOR_SCHEDULING, LOG_LEVEL_DBG);
+LOG_MODULE_REGISTER(SENSOR_SCHEDULING, LOG_LEVEL_INF);
 
 /* The timer device to use for scheduling, this is set with calling the init function */
 static const struct device *scheduling_timer;
