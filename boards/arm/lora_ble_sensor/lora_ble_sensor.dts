@@ -50,19 +50,19 @@
 			label = "Boost 2 Ctrl 2";
 		};
 		sensor1_d1: sensor1_d1 {
-			gpios = <&gpio1 2 GPIO_ACTIVE_HIGH>;
+			gpios = <&gpio1 2 GPIO_ACTIVE_LOW>;
 			label = "Sensor 1 Digital 1";
 		};
 		sensor1_d2: sensor1_d2 {
-			gpios = <&gpio1 1 GPIO_ACTIVE_HIGH>;
+			gpios = <&gpio1 1 GPIO_ACTIVE_LOW>;
 			label = "Sensor 1 Digital 2";
 		};
 		sensor2_d1: sensor2_d1 {
-			gpios = <&gpio0 29 GPIO_ACTIVE_HIGH>;
+			gpios = <&gpio0 29 GPIO_ACTIVE_LOW>;
 			label = "Sensor 2 Digital 1";
 		};
 		sensor2_d2: sensor2_d2 {
-			gpios = <&gpio0 28 GPIO_ACTIVE_HIGH>;
+			gpios = <&gpio0 28 GPIO_ACTIVE_LOW>;
 			label = "Sensor 2 Digital 2";
 		};
 	};
