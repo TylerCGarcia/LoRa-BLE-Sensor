@@ -12,6 +12,10 @@ set(BOARD lora_ble_sensor)
 set(DTC_OVERLAY_FILE 
     ${CMAKE_CURRENT_SOURCE_DIR}/conf/pmic.overlay)
 
+
+
+
+    
 # Define configuration files.
 list(APPEND CONF_FILE
   ${CMAKE_CURRENT_SOURCE_DIR}/conf/prj.conf)
