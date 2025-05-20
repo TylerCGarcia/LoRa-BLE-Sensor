@@ -4,12 +4,22 @@
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
 #include <zephyr/bluetooth/bluetooth.h>
+#include <zephyr/bluetooth/conn.h>
 
 LOG_MODULE_REGISTER(SENSOR_BLE, LOG_LEVEL_INF);
 
-static adv_interval_t adv_interval;
-
+// static adv_interval_t adv_interval;
 static volatile int ble_is_advertising = 0;
+static struct bt_conn *my_conn = NULL;
+
+typedef struct {
+    enum bt_le_adv_opt adv_opt;
+    adv_interval_t adv_interval;
+    char adv_name[32];
+} ble_adv_params_t;
+
+static ble_adv_params_t ble_adv_params;
+static int start_advertising(void);
 
 /**
  * @brief Calculate the advertising interval in zephyr codes.
@@ -22,32 +32,77 @@ static int calculate_adv_interval(int interval_ms)
     return (interval_ms / 0.625);
 }
 
+static void on_connected(struct bt_conn *conn, uint8_t err)
+{
+    if (err) {
+        LOG_ERR("Connection error %d", err);
+        return;
+    }
+    LOG_INF("Connected");
+    my_conn = bt_conn_ref(conn);
+}
+
+static void on_disconnected(struct bt_conn *conn, uint8_t reason)
+{
+    LOG_INF("Disconnected. Reason %d", reason);
+    bt_conn_unref(my_conn);
+}
+
+static void on_recycled(void)
+{
+    LOG_INF("Recycled");
+    start_advertising();
+}
+
+struct bt_conn_cb connection_callbacks = {
+	.connected = on_connected,
+	.disconnected = on_disconnected,
+	.recycled = on_recycled,
+};
+
+static int start_advertising(void)
+{
+    int ret;
+    /* Create the advertising structure. */
+    struct bt_le_adv_param *adv_param =
+    BT_LE_ADV_PARAM(ble_adv_params.adv_opt, ble_adv_params.adv_interval.min, ble_adv_params.adv_interval.max, NULL);
+
+    const struct bt_data ad[] = {
+        BT_DATA_BYTES(BT_DATA_FLAGS, BT_LE_AD_NO_BREDR),
+        BT_DATA(BT_DATA_NAME_COMPLETE, ble_adv_params.adv_name, strlen(ble_adv_params.adv_name)),
+    };
+
+    /* Start advertising */
+    ret = bt_le_adv_start(adv_param, ad, ARRAY_SIZE(ad), NULL, 0);
+    if (ret) {
+        return ret;
+    }
+    ble_is_advertising = 1;
+    return 0;
+}
+
 int ble_setup(ble_config_t *config)
 {
     int ret;
-    adv_interval.min = calculate_adv_interval(config->adv_interval_min_ms);
-    adv_interval.max = calculate_adv_interval(config->adv_interval_max_ms);
-    LOG_INF("Advertising interval code min: %d, max: %d", adv_interval.min, adv_interval.max);
+    /* Initialize the advertising parameters. */
+    ble_adv_params.adv_opt = config->adv_opt;
+    strcpy(ble_adv_params.adv_name, config->adv_name);
+    ble_adv_params.adv_interval.min = calculate_adv_interval(config->adv_interval_min_ms);
+    ble_adv_params.adv_interval.max = calculate_adv_interval(config->adv_interval_max_ms);
+
+    /* Register the connection callbacks. */
+    bt_conn_cb_register(&connection_callbacks);
+
+    LOG_INF("Advertising interval code min: %d, max: %d", ble_adv_params.adv_interval.min, ble_adv_params.adv_interval.max);
     /* Initialize the Bluetooth Subsystem */
     ret = bt_enable(NULL);
     if (ret) {
         return ret;
     }
-
-    struct bt_le_adv_param *adv_param =
-	BT_LE_ADV_PARAM(config->adv_opt, adv_interval.min, adv_interval.max, NULL);
-
-    const struct bt_data ad[] = {
-	    BT_DATA_BYTES(BT_DATA_FLAGS, BT_LE_AD_NO_BREDR),
-        BT_DATA(BT_DATA_NAME_COMPLETE, config->adv_name, strlen(config->adv_name)),
-    };
-
-    /* Start advertising */
-	ret = bt_le_adv_start(adv_param, ad, ARRAY_SIZE(ad), NULL, 0);
+    ret = start_advertising();
     if (ret) {
         return ret;
     }
-    ble_is_advertising = 1;
     return 0;
 }
 
@@ -75,5 +130,5 @@ int ble_change_name(ble_config_t *config)
 
 adv_interval_t get_ble_adv_interval(void)
 {
-    return adv_interval;
+    return ble_adv_params.adv_interval;
 }

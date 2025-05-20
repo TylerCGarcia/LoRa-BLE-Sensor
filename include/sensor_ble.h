@@ -24,16 +24,8 @@ typedef struct {
     uint32_t adv_interval_min_ms;
     /* Advertising interval max in milliseconds. */
     uint32_t adv_interval_max_ms;
-    /* Connection callbacks. */
-    struct bt_conn_cb *connection_callbacks;
-    /* If to add service uuid to the advertising data, 1 to add, 0 to not add. */
-    uint8_t add_service_uuid;
     /* Advertising name. */
     char adv_name[32];
-    /* Advertising data. */
-    uint8_t *adv_data;
-    /* Advertising data length. */
-    uint8_t adv_data_len;
 } ble_config_t;
 
 /* Structure to hold the advertising intervals using zephyr codes(not milliseconds). */
