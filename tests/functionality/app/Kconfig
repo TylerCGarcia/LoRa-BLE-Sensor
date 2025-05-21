@@ -1,0 +1,39 @@
+menu "App Version"
+
+config HW_VERSION_MAJOR
+	int "Hardware major version number"
+	default 1
+
+config HW_VERSION_MINOR
+	int "Hardware minor version number"
+	default 0
+
+config APP_VERSION_MAJOR
+	int "Firmware major verison number"
+	default 1
+
+config APP_VERSION_MINOR
+	int "Firmware minor verison number"
+	default 0
+
+config APP_VERSION_PATCH
+	int "Firmware patch verison number"
+	default 0
+
+config APP_VERSION_COMMIT
+	int "Firmware commit verison number"
+	default 0
+
+config APP_VERSION_HASH
+	string "Firmware version hash provided by Git"
+	default ""
+
+config APP_VERSION
+	string "Full firmware version string provided by Git"
+	default "1.0.0"
+
+endmenu
+
+menu "Zephyr Kernel"
+source "Kconfig.zephyr"
+endmenu
