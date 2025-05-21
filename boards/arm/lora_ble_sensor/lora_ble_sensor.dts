@@ -185,24 +185,6 @@
 	status = "okay";
 };
 
-// &uart0 {
-// 	compatible = "nordic,nrf-uart";
-// 	status = "okay";
-// 	current-speed = <115200>;
-// 	pinctrl-0 = <&uart0_default>;
-// 	pinctrl-1 = <&uart0_sleep>;
-// 	pinctrl-names = "default", "sleep";
-// };
-
-// &uart1 {
-// 	compatible = "nordic,nrf-uarte";
-// 	current-speed = <115200>;
-// 	status = "disabled";
-// 	pinctrl-0 = <&uart1_default>;
-// 	pinctrl-1 = <&uart1_sleep>;
-// 	pinctrl-names = "default", "sleep";
-// };
-
 &i2c0 {
 	compatible = "nordic,nrf-twi";
 	status = "okay";
@@ -210,15 +192,6 @@
 	pinctrl-1 = <&i2c0_sleep>;
 	pinctrl-names = "default", "sleep";
 };
-
-// &i2c1 {
-// 	compatible = "nordic,nrf-twi";
-// 	/* Cannot be used together with spi1. */
-// 	/* status = "okay"; */
-// 	pinctrl-0 = <&i2c1_default>;
-// 	pinctrl-1 = <&i2c1_sleep>;
-// 	pinctrl-names = "default", "sleep";
-// };
 
 &spi1 {
 	compatible = "nordic,nrf-spi";
