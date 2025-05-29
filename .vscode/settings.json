@@ -5,6 +5,7 @@
     // These commands are needed to fix the JLink connection issue everytime jlink is attached to wsl
     // sudo service udev restart
     // sudo udevadm control --reload
+    // For plain zephyr venv -> source ~/zephyrproject/.venv/bin/activate
     // west twister --device-testing --device-serial /dev/ttyACM0 -p lora_ble_sensor -T tests/ -A ~/Work/CyberJungle/Code/LoRa-BLE-Sensor/
     // west twister --device-testing --device-serial /dev/ttyACM0 --west-flash="--erase" -p lora_ble_sensor -T tests/ -A ~/Work/CyberJungle/Code/LoRa-BLE-Sensor/ -vv
     "terminal.integrated.env.osx": {
@@ -28,7 +29,7 @@
         "commands": [
             {
                 "name" : "✔",
-                "terminalName" : "Zephyr Terminal",
+                "terminalName" : "nRF $(nrf-connect-sdk) $(nrf-connect-tcm) v3.0.1",
                 "color": "white",
 				"useVsCodeApi": false,
                 "ignoreClear": true,
@@ -37,7 +38,7 @@
             },
             {
                 "name" : "✔✔",
-                "terminalName" : "Zephyr Terminal",
+                "terminalName" : "nRF $(nrf-connect-sdk) $(nrf-connect-tcm) v3.0.1",
                 "color": "white",
 				"useVsCodeApi": false,
                 "ignoreClear": true,
@@ -46,7 +47,7 @@
             },
             {
                 "name" : "🡅",
-                "terminalName" : "Zephyr Terminal",
+                "terminalName" : "nRF $(nrf-connect-sdk) $(nrf-connect-tcm) v3.0.1",
                 "color": "white",
 				"useVsCodeApi": false,
                 "ignoreClear": true,
@@ -55,7 +56,7 @@
             },
             {
                 "name" : "Twister",
-                "terminalName" : "Zephyr Terminal",
+                "terminalName" : "nRF $(nrf-connect-sdk) $(nrf-connect-tcm) v3.0.1",
                 "color": "white",
 				"useVsCodeApi": false,
                 "ignoreClear": true,
@@ -64,21 +65,12 @@
             },
             {
                 "name" : "sim",
-                "terminalName" : "Zephyr Terminal",
+                "terminalName" : "nRF $(nrf-connect-sdk) $(nrf-connect-tcm) v3.0.1",
                 "color": "white",
 				"useVsCodeApi": false,
                 "ignoreClear": true,
                 "singleInstance": false,
                 "command": "west build -b native_sim -t run tests/functionality/app",
-            },
-            {
-                "name" : "venv",
-                "terminalName" : "Zephyr Terminal",
-                "color": "white",
-				"useVsCodeApi": false,
-                "ignoreClear": true,
-                "singleInstance": false,
-                "command": "source ~/zephyrproject/.venv/bin/activate",
             }
         ]
     },
