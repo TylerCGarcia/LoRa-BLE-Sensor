@@ -18,6 +18,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     python3-venv \
     wget \
     xz-utils \
+    tree \ 
     && rm -rf /var/lib/apt/lists/*
 
 # install the Zephyr toolchain
@@ -47,7 +48,10 @@ COPY west.yml /workspace/
 RUN . /venv/bin/activate \
     && west init -l . \
     && west update \
-    && pip install --no-cache-dir -r zephyr/scripts/requirements-base.txt
+    && echo "Directory structure after west update:" \
+    && tree -L 3 \
+    && echo "Checking zephyr/scripts directory:" \
+    && tree zephyr/scripts || echo "zephyr/scripts not found"
 
 # Set up environment variables
 ENV ZEPHYR_BASE=/workspace/zephyr
