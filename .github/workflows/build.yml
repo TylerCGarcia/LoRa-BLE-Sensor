@@ -13,6 +13,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container: zephyrprojectrtos/ci:v0.28.0
+    env:
+      CMAKE_PREFIX_PATH: /opt/toolchains
     steps:
       - name: Clean up disk space
         run: |
@@ -29,29 +31,29 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Set variables
-        id: vars
-        run: |
-             echo "branch=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
-             echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+      # - name: Set variables
+      #   id: vars
+      #   run: |
+      #        echo "branch=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
+      #        echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
 
-      - name: Initialize
-        run: |
-          pip3 install -U west
-          west init -l .
-          west update
-          pip3 install -r ../zephyr/scripts/requirements-base.txt
+      # - name: Initialize
+      #   run: |
+      #     pip3 install -U west
+      #     west init -l .
+      #     west update
+      #     pip3 install -r ../zephyr/scripts/requirements-base.txt
 
-      - name: Build 
-        run: |
-          west build -p
-          mkdir -p .out
-          cp build/zephyr/zephyr.elf .out/
-          cp build/zephyr/zephyr.bin .out/
-          cp build/zephyr/zephyr.hex .out/
+      # - name: Build 
+      #   run: |
+      #     west build -p
+      #     mkdir -p .out
+      #     cp build/zephyr/zephyr.elf .out/
+      #     cp build/zephyr/zephyr.bin .out/
+      #     cp build/zephyr/zephyr.hex .out/
   
-      - name: Save Build Artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-artifacts
-          path: .out/
+      # - name: Save Build Artifacts
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: build-artifacts
+      #     path: .out/
