@@ -7,5 +7,5 @@ manifest:
       remote: zephyrproject-rtos
       revision: main # or v4.1.99
       import: true
-  self:
-    path: application
+  # self:
+    # path: application
