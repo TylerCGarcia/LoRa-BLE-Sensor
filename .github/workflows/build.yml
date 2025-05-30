@@ -12,17 +12,17 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: zephyrprojectrtos/ci:v0.27.5
+    container: zephyrprojectrtos/ci:v0.27.3
     env:
       CMAKE_PREFIX_PATH: /opt/toolchains
     steps:
-      - name: Clean up disk space
-        run: |
-          swapoff -a
-          rm -f /swapfile
-          apt clean
-          docker rmi $(docker image ls -aq)
-          df -h
+      # - name: Clean up disk space
+      #   run: |
+      #     swapoff -a
+      #     rm -f /swapfile
+      #     apt clean
+      #     docker rmi $(docker image ls -aq)
+      #     df -h
 
       - name: Checkout
         uses: actions/checkout@v4
