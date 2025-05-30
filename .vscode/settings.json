@@ -1,19 +1,4 @@
-{
-    // Opening nrf connect terminal, go to manage toolchains, press create terminal profile, optionally press change terminal configuration if not set correctly
-    // .bashrc has source ~/zephyrproject/zephyr/zephyr-env.sh
-    // "terminal.integrated.env.osx": {
-    //     "PATH": "$HOME/zephyrproject/zephyr/scripts",
-    //     "ZEPHYR_BASE": "${env:HOME}/zephyrproject/zephyr",
-    // },
-    // "terminal.integrated.env.linux": {
-    //     "PATH": "$HOME/zephyrproject/zephyr/scripts:${env:PATH}",
-    //     "ZEPHYR_BASE": "${env:HOME}/zephyrproject/zephyr",
-    // },
-    // "terminal.integrated.env.windows": {
-    //     "PATH": "C:\\zephyrproject\\zephyr\\scripts;${env:PATH}",
-    //     "ZEPHYR_BASE": "C:\\zephyrproject\\zephyr",
-    // },
-
+{       
     "cortex-debug.gdbPath": "/usr/bin/gdb",
     "cortex-debug.JLinkGDBServerPath": "/usr/bin/JLinkGDBServerCLExe",
     "cortex-debug.variableUseNaturalFormat": true,
@@ -73,7 +58,7 @@
 				"useVsCodeApi": false,
                 "ignoreClear": true,
                 "singleInstance": false,
-                "command": "source ~/zephyrproject/.venv/bin/activate"
+                "command": "source ~/zephyrproject/zephyr/zephyr-env.sh && source ~/zephyrproject/.venv/bin/activate"
             }
         ]
     },
