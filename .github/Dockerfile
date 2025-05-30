@@ -43,13 +43,10 @@ WORKDIR /workspace
 # Copy your west.yml
 COPY west.yml /workspace/
 
-# Initialize west workspace
+# Initialize west workspace and install dependencies in one step
 RUN . /venv/bin/activate \
     && west init -l . \
-    && west update
-
-# Install Python dependencies
-RUN . /venv/bin/activate \
+    && west update \
     && pip install --no-cache-dir -r zephyr/scripts/requirements.txt
 
 # Set up environment variables

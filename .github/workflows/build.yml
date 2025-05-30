@@ -21,8 +21,8 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: .  # Changed from ./.github to .
-          file: ./.github/Dockerfile  # Explicitly specify the Dockerfile location
+          context: .
+          file: ./.github/Dockerfile
           push: false
           load: true
           tags: zephyr-build:latest
