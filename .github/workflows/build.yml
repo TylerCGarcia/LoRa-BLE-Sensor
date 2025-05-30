@@ -19,6 +19,8 @@ jobs:
       - name: Clean up disk space
         run: |
           rm -rf /opt/hostedtoolcache
+          sudo swapoff /swapfile
+          sudo rm -rf /swapfile /usr/share/dotnet /usr/local/lib/android /opt/ghc
 
       - name: Checkout
         uses: actions/checkout@v4
