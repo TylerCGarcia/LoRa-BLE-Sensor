@@ -46,11 +46,8 @@ COPY west.yml /workspace/
 # Initialize west workspace and install dependencies in one step
 RUN . /venv/bin/activate \
     && west init -l . \
-    && west update -v \
-    && echo "After west update:" \
-    && ls -la \
-    && echo "Checking zephyr directory:" \
-    && ls -la zephyr/scripts/ || echo "zephyr/scripts/ not found"
+    && west update \
+    && pip install --no-cache-dir -r zephyr/scripts/requirements-base.txt
 
 # Set up environment variables
 ENV ZEPHYR_BASE=/workspace/zephyr

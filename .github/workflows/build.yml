@@ -29,7 +29,10 @@ jobs:
 
       - name: Build
         run: |
-          docker run --rm -v ${{ github.workspace }}:/workspace zephyr-build:latest west build -p
+          docker run --rm \
+            -v ${{ github.workspace }}:/workspace \
+            -e ZEPHYR_BASE=/workspace/zephyr \
+            zephyr-build:latest west build -p
           mkdir -p .out
           cp build/zephyr/zephyr.elf .out/
           cp build/zephyr/zephyr.bin .out/
