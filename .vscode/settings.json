@@ -1,13 +1,6 @@
 {
-    // usbipd list -> usbipd bind --busid <busid> -> usbipd attach --wsl --busid <busid> -> lsusb ->usbipd deattach --busid <busid>
-    // west twister -n -T tests/ -A ~/Work/CyberJungle/Code/LoRa-BLE-Sensor/ -p lora_ble_sensor
-    // https://devzone.nordicsemi.com/f/nordic-q-a/82738/jlink-fails-to-connect-using-nrfjprog-inside-windows-subsystem-linux-2
-    // These commands are needed to fix the JLink connection issue everytime jlink is attached to wsl
-    // sudo service udev restart
-    // sudo udevadm control --reload
-    // For plain zephyr venv -> source ~/zephyrproject/.venv/bin/activate
-    // west twister --device-testing --device-serial /dev/ttyACM0 -p lora_ble_sensor -T tests/ -A ~/Work/CyberJungle/Code/LoRa-BLE-Sensor/
-    // west twister --device-testing --device-serial /dev/ttyACM0 --west-flash="--erase" -p lora_ble_sensor -T tests/ -A ~/Work/CyberJungle/Code/LoRa-BLE-Sensor/ -vv
+    // Opening nrf connect terminal, go to manage toolchains, press create terminal profile, optionally press change terminal configuration if not set correctly
+    // .bashrc has source zephyr-env.sh
     "terminal.integrated.env.osx": {
         "PATH": "$HOME/zephyrproject/zephyr/scripts",
         "ZEPHYR_BASE": "${env:HOME}/zephyrproject/zephyr",
@@ -20,6 +13,7 @@
         "PATH": "C:\\zephyrproject\\zephyr\\scripts;${env:PATH}",
         "ZEPHYR_BASE": "C:\\zephyrproject\\zephyr",
     },
+
     "cortex-debug.gdbPath": "/usr/bin/gdb",
     "cortex-debug.JLinkGDBServerPath": "/usr/bin/JLinkGDBServerCLExe",
     "cortex-debug.variableUseNaturalFormat": true,
@@ -29,7 +23,7 @@
         "commands": [
             {
                 "name" : "✔",
-                "terminalName" : "nRF $(nrf-connect-sdk) $(nrf-connect-tcm) v3.0.1",
+                "terminalName" : "ZEPHYR",
                 "color": "white",
 				"useVsCodeApi": false,
                 "ignoreClear": true,
@@ -38,7 +32,7 @@
             },
             {
                 "name" : "✔✔",
-                "terminalName" : "nRF $(nrf-connect-sdk) $(nrf-connect-tcm) v3.0.1",
+                "terminalName" : "ZEPHYR",
                 "color": "white",
 				"useVsCodeApi": false,
                 "ignoreClear": true,
@@ -47,7 +41,7 @@
             },
             {
                 "name" : "🡅",
-                "terminalName" : "nRF $(nrf-connect-sdk) $(nrf-connect-tcm) v3.0.1",
+                "terminalName" : "ZEPHYR",
                 "color": "white",
 				"useVsCodeApi": false,
                 "ignoreClear": true,
@@ -56,7 +50,7 @@
             },
             {
                 "name" : "Twister",
-                "terminalName" : "nRF $(nrf-connect-sdk) $(nrf-connect-tcm) v3.0.1",
+                "terminalName" : "ZEPHYR",
                 "color": "white",
 				"useVsCodeApi": false,
                 "ignoreClear": true,
@@ -65,12 +59,21 @@
             },
             {
                 "name" : "sim",
-                "terminalName" : "nRF $(nrf-connect-sdk) $(nrf-connect-tcm) v3.0.1",
+                "terminalName" : "ZEPHYR",
                 "color": "white",
 				"useVsCodeApi": false,
                 "ignoreClear": true,
                 "singleInstance": false,
                 "command": "west build -b native_sim -t run tests/functionality/app",
+            },
+            {
+                "name" : "venv",
+                "terminalName" : "ZEPHYR",
+                "color": "white",
+				"useVsCodeApi": false,
+                "ignoreClear": true,
+                "singleInstance": false,
+                "command": "source ~/zephyrproject/.venv/bin/activate"
             }
         ]
     },

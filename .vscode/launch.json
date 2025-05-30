@@ -1,5 +1,6 @@
 // Configure debug launch settings
 // Feel free to copy these and modify them for your debugger and MCU
+//  west build -p -b lora_ble_sensor -- -DBOARD_ROOT=~/Work/CyberJunle/Code/LoRa-BLE-Sensor
 {
     "version": "0.2.0",
     "projectName": "LoRa-BLE-Sensor",
