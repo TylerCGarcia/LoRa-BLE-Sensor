@@ -36,7 +36,7 @@ ENV CMAKE_PREFIX_PATH=/opt/toolchains
 RUN python3 -m venv /venv \
     && . /venv/bin/activate \
     && pip install --no-cache-dir \
-    west==1.2.0
+    west==1.3.0
 
 # Set up workspace
 WORKDIR /workspace

@@ -13,10 +13,23 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: 💾 Cache Zephyr Workspace
+        uses: actions/cache@v4
+        with:
+          path: zephyr-workspace
+          key: zephyr-workspace-v1-${{ runner.os }}-${{ hashFiles('west.yml') }}
+          restore-keys: |
+            zephyr-workspace-v1-${{ runner.os }}-
+
+      - name: 🧹 Clean Landing Site
+        run: |
+          rm -rf zephyr-workspace
+
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          path: zephyr-workspace
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
@@ -27,19 +40,29 @@ jobs:
           load: true
           tags: zephyr-build:latest
 
-      - name: Build
+      - name: 💾 Cache ~/.cache/ccache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ccache
+          key: ccache-v1-${{ runner.os }}-${{ hashFiles('west.yml') }}
+          restore-keys: |
+            ccache-v1-${{ runner.os }}-
+
+      - name: ♻️ Initialize Zephyr Workspace
         run: |
           docker run --rm \
             -v ${{ github.workspace }}:/workspace \
             -e ZEPHYR_BASE=/workspace/zephyr \
-            zephyr-build:latest west build -p
-          mkdir -p .out
-          cp build/zephyr/zephyr.elf .out/
-          cp build/zephyr/zephyr.bin .out/
-          cp build/zephyr/zephyr.hex .out/
+            zephyr-build:latest bash -c '
+              cd /workspace && \
+              rm -rf .west && \
+              west init -l . && \
+              west update --narrow -o=--depth=1 && \
+              west build -p
+            '
 
       - name: Save Build Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: build-artifacts
-          path: .out/
+          path: build/zephyr/zephyr.elf
