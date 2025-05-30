@@ -41,20 +41,24 @@ RUN python3 -m venv /venv \
 # Set up workspace
 WORKDIR /workspace
 
-# Copy your west.yml
-COPY west.yml /workspace/
+# Copy your west.yml to a cache directory
+COPY west.yml /zephyr-workspace-cache/.manifest/west.yml
 
-# Initialize west workspace and install dependencies in one step
+# retrieve a lighter version of the Zephyr workspace, which is enough to
+# populate a cache for use when building. we'll need to re-generate this image
+# if the manifest changes, to keep the benefit.
 RUN . /venv/bin/activate \
-    && west init -l . \
-    && west update --narrow --fetch-opt=--filter=tree:0 \
-    && echo "Directory structure after west update:" \
-    && tree -L 3 \
-    && echo "Checking zephyr/scripts directory:" \
-    && tree zephyr/scripts || echo "zephyr/scripts not found"
+  && cd /zephyr-workspace-cache \
+  && west init -l .manifest \
+  && west update --narrow --fetch-opt=--filter=tree:0
+
+# install Python dependencies for the Zephyr workspace
+RUN . /venv/bin/activate \
+  && cd /zephyr-workspace-cache \
+  && pip install --no-cache-dir -r zephyr/scripts/requirements.txt
 
 # Set up environment variables
-ENV ZEPHYR_BASE=/workspace/zephyr
+ENV ZEPHYR_BASE=/zephyr-workspace-cache/zephyr
 ENV PATH="/venv/bin:${PATH}"
 
 # Set the working directory
