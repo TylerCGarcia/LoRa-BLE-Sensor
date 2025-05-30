@@ -12,7 +12,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: zephyrprojectrtos/ci:v0.24.8
+    container: zephyrprojectrtos/ci:v0.27.6
     env:
       CMAKE_PREFIX_PATH: /opt/toolchains
     steps:
