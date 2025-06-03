@@ -13,7 +13,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/noahp/memfault-nrfconnect-ci-app:2024-01-17
+      image: ghcr.io/tylercgarcia/zephyr:arm-0.17.0SDK
     steps:
       - uses: actions/checkout@v4
         with:
