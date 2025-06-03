@@ -5,6 +5,11 @@ Hardware: LoRa-BLE-Sensor
 An nRF52 and SX1262 based LoRaWAN node that uses 2 configurable sensors, each with its own configurable power supply. The firmware for this node is built around the Zephyr RTOS. 
 ZTEST and TWISTER are used for creating and running the unit tests for the device.
 
+# Project Initialization
+
+**west init**
+**west update**
+
 # Code Breakdown
 **main.c** 
 - Calls functions in **sensor_app** library

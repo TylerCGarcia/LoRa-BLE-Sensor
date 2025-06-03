@@ -7,9 +7,9 @@ find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
 project(sensor_ble_tests)
 
 target_include_directories(app PRIVATE 
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../../include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../../app/include
 )
 
 target_sources(app PRIVATE src/main.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../../src/sensor_ble.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../../app/src/sensor_ble.c
 )

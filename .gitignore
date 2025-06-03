@@ -6,6 +6,11 @@
 /build*/
 twister-out*/
 
-
 # Remove Version file
-conf/version.conf
+app/conf/version.conf
+
+# dependencies
+deps/
+
+# python
+.venv/

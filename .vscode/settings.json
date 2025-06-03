@@ -13,7 +13,7 @@
 				"useVsCodeApi": false,
                 "ignoreClear": true,
                 "singleInstance": false,
-                "command": "west build"
+                "command": "west build app"
             },
             {
                 "name" : "✔✔",
@@ -22,7 +22,7 @@
 				"useVsCodeApi": false,
                 "ignoreClear": true,
                 "singleInstance": false,
-                "command": "west build -p"
+                "command": "west build app --pristine"
             },
             {
                 "name" : "🡅",
@@ -49,7 +49,7 @@
 				"useVsCodeApi": false,
                 "ignoreClear": true,
                 "singleInstance": false,
-                "command": "west build -b native_sim -t run tests/functionality/app",
+                "command": "west build -b native_sim tests/functionality/app -t run ",
             },
             {
                 "name" : "venv",
@@ -59,6 +59,15 @@
                 "ignoreClear": true,
                 "singleInstance": false,
                 "command": "source ~/zephyrproject/zephyr/zephyr-env.sh && source ~/zephyrproject/.venv/bin/activate"
+            },
+            {
+                "name" : "🗑",
+                "terminalName" : "ZEPHYR",
+                "color": "white",
+				"useVsCodeApi": false,
+                "ignoreClear": true,
+                "singleInstance": false,
+                "command": "rm -rf build"
             }
         ]
     },
