@@ -6,10 +6,9 @@ manifest:
     - name: zephyr
       repo-path: zephyr
       remote: zephyrproject-rtos
-      revision: v4.1.99
+      revision: v4.1.0
       import:
         path-prefix: deps
-        path: zephyr
         name-allowlist:
           - hostap
           - zephyr
@@ -17,3 +16,4 @@ manifest:
           - nrfxlib
           - cmsis
           - hal_nordic
+          - loramac-node
