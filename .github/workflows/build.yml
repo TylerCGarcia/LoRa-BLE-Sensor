@@ -28,14 +28,12 @@ jobs:
 
       - name: ♻️ Initialize Zephyr Workspace
         run: |
-          . /venv/bin/activate
           cd zephyr-workspace
           west init -l LoRa-BLE-Sensor
           west update --narrow -o=--depth=1 
 
       - name: Build
         run: |
-          . /venv/bin/activate
           cd zephyr-workspace
           cd LoRa-BLE-Sensor
           west build -p
