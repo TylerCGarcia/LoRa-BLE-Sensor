@@ -1,0 +1,44 @@
+name: Build
+
+on: 
+    pull_request:
+        branches:
+            - main
+    push:
+        branches:
+            - main
+    workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/noahp/memfault-nrfconnect-ci-app:2024-01-17
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Clone the repo to a subdirectory, so we can initialize the Zephyr
+          # workspace in the parent directory.
+          path: zephyr-workspace/LoRa-BLE-Sensor
+          # Fetch all history, so we can use git describe
+          fetch-depth: 0
+
+      - name: ♻️ Initialize Zephyr Workspace
+        run: |
+          . /venv/bin/activate
+          cd zephyr-workspace
+          west init -l LoRa-BLE-Sensor
+          west update --narrow -o=--depth=1 
+
+      - name: Build
+        run: |
+          . /venv/bin/activate
+          cd zephyr-workspace
+          cd LoRa-BLE-Sensor
+          west build -p
+
+      - name: 📦 Save Build Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: custom-docker-image-artifacts
+          path: zephyr-workspace/build/zephyr/zephyr.elf
