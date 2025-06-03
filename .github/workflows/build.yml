@@ -13,7 +13,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/tylercgarcia/zephyr:arm-0.17.0SDK
+      image: ghcr.io/tylercgarcia/zephyr:posix-0.17.0SDK
     steps:
       - uses: actions/checkout@v4
         with:
