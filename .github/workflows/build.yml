@@ -14,6 +14,9 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/tylercgarcia/zephyr:posix-0.17.0SDK
+      credentials:
+        username: TylerCGarcia
+        password: ${{ secrets.DOCKER_PULL }}
     steps:
       - uses: actions/checkout@v4
         with:
