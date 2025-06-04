@@ -33,6 +33,7 @@ jobs:
         run: |
           cd LoRa-BLE-Sensor
           scripts/init_ci.sh
+          west build app -p
 
       - name: Build
         run: |
