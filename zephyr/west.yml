@@ -4,16 +4,12 @@ manifest:
       url-base: https://github.com/zephyrproject-rtos
   projects:
     - name: zephyr
-      repo-path: zephyr
       remote: zephyrproject-rtos
-      revision: v4.1.0
+      revision: main
       import:
         path-prefix: deps
         name-allowlist:
-          - hostap
           - zephyr
-          - mbedtls
-          - nrfxlib
-          - cmsis
+          - cmsis_6
           - hal_nordic
           - loramac-node
