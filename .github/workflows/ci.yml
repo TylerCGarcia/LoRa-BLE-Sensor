@@ -45,3 +45,45 @@ jobs:
         with:
           name: custom-docker-image-artifacts
           path: LoRa-BLE-Sensor/build/zephyr/zephyr.elf
+
+  tests:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/tylercgarcia/zephyr:posix-0.17.0SDK
+      credentials:
+        username: TylerCGarcia
+        password: ${{ secrets.DOCKER_PULL }}
+    env:
+      # Tell cmake where to find the zephyr sdk
+      CMAKE_PREFIX_PATH: /opt/toolchains
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Clone the repo to a subdirectory
+          path: LoRa-BLE-Sensor
+          # Fetch all history, so we can use git describe
+          fetch-depth: 0
+
+      - name: ♻️ Initialize Zephyr Workspace
+        run: |
+          cd LoRa-BLE-Sensor
+          scripts/init_ci.sh
+
+      - name: Build
+        run: |
+          ls -a
+          cd LoRa-BLE-Sensor
+          . .venv/bin/activate
+          west twister -W -T tests/
+
+      - name: 📦 Archive test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: Twister-Test-Results
+          path: |
+            LoRa-BLE-Sensor/twister-out/testplan.json
+            LoRa-BLE-Sensor/twister-out/twister_report.xml
+            LoRa-BLE-Sensor/twister-out/twister_suite_report.xml
+            LoRa-BLE-Sensor/twister-out/twister.json
+            LoRa-BLE-Sensor/twister-out/testplan.json
+            LoRa-BLE-Sensor/twister-out/**/*.log
