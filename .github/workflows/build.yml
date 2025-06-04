@@ -36,6 +36,7 @@ jobs:
 
       - name: Build
         run: |
+          source .venv/bin/activate
           west build app -p
 
       - name: 📦 Save Build Artifacts
