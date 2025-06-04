@@ -17,6 +17,9 @@ jobs:
       credentials:
         username: TylerCGarcia
         password: ${{ secrets.DOCKER_PULL }}
+    env:
+      # Tell cmake where to find the zephyr sdk
+      CMAKE_PREFIX_PATH: /opt/toolchains
     steps:
       - uses: actions/checkout@v4
         with:
@@ -33,7 +36,6 @@ jobs:
         run: |
           cd LoRa-BLE-Sensor
           scripts/init_ci.sh
-          west build app -p
 
       - name: Build
         run: |
