@@ -32,11 +32,11 @@ jobs:
       - name: ♻️ Initialize Zephyr Workspace
         run: |
           cd LoRa-BLE-Sensor
-          scripts/initialize_project.sh
+          scripts/initialize_ci.sh
 
       - name: Build
         run: |
-          source .venv/bin/activate
+          ls -a
           west build app -p
 
       - name: 📦 Save Build Artifacts
