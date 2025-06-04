@@ -22,24 +22,24 @@ jobs:
         with:
           # Clone the repo to a subdirectory, so we can initialize the Zephyr
           # workspace in the parent directory.
-          path: zephyr-workspace/LoRa-BLE-Sensor
+          path: LoRa-BLE-Sensor
           # Fetch all history, so we can use git describe
           fetch-depth: 0
+          # west init -l zephyr
+          # west update --narrow -o=--depth=1 
+          # west build -p
 
       - name: ♻️ Initialize Zephyr Workspace
         run: |
-          cd zephyr-workspace
-          west init -l LoRa-BLE-Sensor
-          west update --narrow -o=--depth=1 
+          cd LoRa-BLE-Sensor
+          scripts/initialize_project.sh
 
       - name: Build
         run: |
-          cd zephyr-workspace
-          cd LoRa-BLE-Sensor
-          west build -p
+          west build app -p
 
       - name: 📦 Save Build Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: custom-docker-image-artifacts
-          path: zephyr-workspace/build/zephyr/zephyr.elf
+          path: LoRa-BLE-Sensor/build/zephyr/zephyr.elf
