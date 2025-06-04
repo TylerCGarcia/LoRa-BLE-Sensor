@@ -17,3 +17,6 @@ deps/
 
 # .west
 .west/
+
+# vscode
+.vscode/

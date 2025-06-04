@@ -19,6 +19,7 @@
 #include "ble_sensor_service.h"
 #include <zephyr/kernel.h>
 #include <zephyr/bluetooth/bluetooth.h>
+#include <errno.h>
 
 static ble_config_t ble_config = {
 	.adv_opt = BT_LE_ADV_OPT_CONN,
