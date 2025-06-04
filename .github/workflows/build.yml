@@ -38,6 +38,7 @@ jobs:
         run: |
           ls -a
           cd LoRa-BLE-Sensor
+          . .venv/bin/activate
           west build app -p
 
       - name: 📦 Save Build Artifacts
