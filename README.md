@@ -7,8 +7,13 @@ ZTEST and TWISTER are used for creating and running the unit tests for the devic
 
 # Project Initialization
 
-**west init**
-**west update**
+After pulling down the repository, run the following command in the projects root directory:
+
+```bash
+scripts/init_project.sh
+```
+
+This will initialize the python environment(.venv), initialize west(.west), and update west, pulling down the appropriate zephyr dependencies needed for this project. These dependencies are determined by the west manifest(west.yml) in the ``zephyr`` folder. The update process may take time, when finished all of the dependencies should be located in the ``deps`` folder. After this the ``app`` folder can be built and twister can be used to run the ``tests`` folder.
 
 # Code Breakdown
 **main.c** 

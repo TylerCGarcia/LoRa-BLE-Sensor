@@ -43,7 +43,7 @@ jobs:
       - name: 📦 Save Build Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: custom-docker-image-artifacts
+          name: Build-Results
           path: LoRa-BLE-Sensor/build/zephyr/zephyr.elf
 
   tests:
@@ -79,7 +79,7 @@ jobs:
       - name: 📦 Archive test results
         uses: actions/upload-artifact@v4
         with:
-          name: Twister-Test-Results
+          name: Test-Results
           path: |
             LoRa-BLE-Sensor/twister-out/testplan.json
             LoRa-BLE-Sensor/twister-out/twister_report.xml
