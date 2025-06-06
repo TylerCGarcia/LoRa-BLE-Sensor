@@ -6,7 +6,7 @@ source .venv/bin/activate
 
 pip install west
 
-west init -l zephyr
+west init -l manifest
 
 west update
 

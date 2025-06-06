@@ -6,7 +6,7 @@ python3 -m venv .venv
 
 pip install west
 
-west init -l zephyr
+west init -l manifest
 
 west update --narrow -o=--depth=1 
 

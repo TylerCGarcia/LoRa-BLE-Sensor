@@ -1,0 +1,4 @@
+build:
+  settings:
+    # Add root for custom boards to the directory
+    board_root: ../

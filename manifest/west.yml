@@ -13,3 +13,5 @@ manifest:
           - cmsis_6
           - hal_nordic
           - loramac-node
+          - mcuboot
+          - mbedtls

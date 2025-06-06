@@ -3,10 +3,8 @@
 cmake_minimum_required(VERSION 3.20.0)
 
 
-# Add local board directory to selection
-list(APPEND BOARD_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/../)
-
-set(BOARD lora_ble_sensor)
+# # Add local board directory to selection
+# list(APPEND BOARD_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/../)
 
 # Set the overlay file
 set(DTC_OVERLAY_FILE 
