@@ -11,7 +11,7 @@
 #include "lora_ble_sensor-pinctrl.dtsi"
 #include <zephyr/dt-bindings/input/input-event-codes.h>
 
-	/ {
+/ {
 	model = "LoRa_BLE_Sensor with a Nordic NRF52840 SoC";
 	compatible = "arm,lora_ble_sensor";
 

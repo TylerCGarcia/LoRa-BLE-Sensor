@@ -8,6 +8,7 @@
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
 #include <zephyr/drivers/adc.h>
+#include <zephyr/linker/linker-defs.h>
 
 #include "sensor_app.h"
 
@@ -29,6 +30,7 @@ sensor_app_config_t sensor_app_config = {
 int main(void)
 {
 	int ret;
+	printk("Address of sample %p\n", (void *)__rom_region_start);
 	LOG_INF("LoRa-BLE-Sensor");
 	LOG_INF("Hardware Version: %d.%d", CONFIG_HW_VERSION_MAJOR, CONFIG_HW_VERSION_MINOR);
 	LOG_INF("Firmware Version: %s", CONFIG_APP_VERSION);
