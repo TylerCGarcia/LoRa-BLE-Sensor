@@ -4,6 +4,7 @@
 #include <zephyr/bluetooth/gatt.h>
 #include <zephyr/logging/log.h>
 #include "sensor_nvs.h"
+#include "sensor_names.h"
 
 LOG_MODULE_REGISTER(BLE_SENSOR_SERVICE, LOG_LEVEL_DBG);
 
@@ -139,13 +140,12 @@ static ssize_t read_sensor1_pwr_config(struct bt_conn *conn, const struct bt_gat
 		LOG_ERR("Sensor BLE Service is not initialized");
 		return BT_GATT_ERR(BT_ATT_ERR_READ_NOT_PERMITTED);
 	}
-    uint8_t sensor_1_voltage = sensor_app_config->sensor_1_voltage;
-	return bt_gatt_attr_read(conn, attr, buf, len, offset, &sensor_1_voltage, sizeof(sensor_1_voltage));
+	return bt_gatt_attr_read(conn, attr, buf, len, offset, &sensor_app_config->sensor_1_voltage_name, sizeof(sensor_app_config->sensor_1_voltage_name));
 }
 
 static ssize_t write_sensor1_pwr_config(struct bt_conn *conn, const struct bt_gatt_attr *attr, void *buf, uint16_t len, uint16_t offset)
 {
-    uint8_t sensor_1_voltage = 0;
+    char sensor_1_voltage_name[SENSOR_VOLTAGE_NAME_LENGTH];
     LOG_DBG("Attribute write, handle: %u, conn: %p", attr->handle, (void *)conn);
     if(!is_sensor_service_setup)
 	{
@@ -154,22 +154,34 @@ static ssize_t write_sensor1_pwr_config(struct bt_conn *conn, const struct bt_ga
 	}
 
     // Check bounds of data
-	if (len != sizeof(sensor_1_voltage)) {
-		LOG_ERR("Write date: Data length incorrect for sensor 1 voltage");
+	if (len > sizeof(sensor_1_voltage_name)) {
+		LOG_ERR("Write date: Data length incorrect for Sensor 1 Voltage");
 		return BT_GATT_ERR(BT_ATT_ERR_INVALID_ATTRIBUTE_LEN);
 	}
 
 	if (offset != 0) {
-		LOG_ERR("Write date: Incorrect data offset for sensor 1 voltage");
+		LOG_ERR("Write date: Incorrect data offset for Sensor 1 Voltage");
 		return BT_GATT_ERR(BT_ATT_ERR_INVALID_OFFSET);
 	}
 
 	// Store incoming data into dev_eui buffer
-	memcpy(&sensor_1_voltage, buf, len);
+	memcpy(sensor_1_voltage_name, buf, len);
+	sensor_1_voltage_name[len] = '\0';  // Add null terminator to end of string
 
-	LOG_INF("Sensor 1 Voltage RECEIVED: %d", sensor_1_voltage);
-    sensor_app_config->sensor_1_voltage = sensor_1_voltage;
-    sensor_nvs_write(SENSOR_NVS_ADDRESS_SENSOR_1_POWER, &sensor_app_config->sensor_1_voltage, sizeof(sensor_app_config->sensor_1_voltage));
+	LOG_INF("Sensor 1 Voltage RECEIVED: %s", sensor_1_voltage_name);
+	// Get index of output voltage from name and check if it is valid
+    int ret_index = get_sensor_voltage_index_from_name(sensor_1_voltage_name);
+	if(ret_index < 0)
+	{
+		LOG_ERR("Invalid sensor 1 voltage");
+		return BT_GATT_ERR(BT_ATT_ERR_INVALID_ATTRIBUTE_LEN);
+	}
+	// Store index of output voltage to config
+	sensor_app_config->sensor_1_voltage = ret_index;
+	// Copy name of output voltage to config
+	strcpy(sensor_app_config->sensor_1_voltage_name, sensor_1_voltage_name);
+	// Store index of output voltage to nvs
+    sensor_nvs_write(SENSOR_NVS_ADDRESS_SENSOR_1_POWER, &sensor_app_config->sensor_1_voltage, strlen(sensor_app_config->sensor_1_voltage_name));
 	return len;
 }
 
@@ -322,13 +334,12 @@ static ssize_t read_sensor2_pwr_config(struct bt_conn *conn, const struct bt_gat
 		LOG_ERR("Sensor BLE Service is not initialized");
 		return BT_GATT_ERR(BT_ATT_ERR_READ_NOT_PERMITTED);
 	}
-    uint8_t sensor_2_voltage = sensor_app_config->sensor_2_voltage;
-	return bt_gatt_attr_read(conn, attr, buf, len, offset, &sensor_2_voltage, sizeof(sensor_2_voltage));
+	return bt_gatt_attr_read(conn, attr, buf, len, offset, &sensor_app_config->sensor_2_voltage_name, strlen(sensor_app_config->sensor_2_voltage_name));
 }
 
 static ssize_t write_sensor2_pwr_config(struct bt_conn *conn, const struct bt_gatt_attr *attr, void *buf, uint16_t len, uint16_t offset)
 {
-    uint8_t sensor_2_voltage = 0;
+    char sensor_2_voltage_name[SENSOR_VOLTAGE_NAME_LENGTH];
     LOG_DBG("Attribute write, handle: %u, conn: %p", attr->handle, (void *)conn);
     if(!is_sensor_service_setup)
 	{
@@ -337,7 +348,7 @@ static ssize_t write_sensor2_pwr_config(struct bt_conn *conn, const struct bt_ga
 	}
 
     // Check bounds of data
-	if (len != sizeof(sensor_2_voltage)) {
+	if (len > sizeof(sensor_2_voltage_name)) {
 		LOG_ERR("Write date: Data length incorrect for Sensor 2 Voltage");
 		return BT_GATT_ERR(BT_ATT_ERR_INVALID_ATTRIBUTE_LEN);
 	}
@@ -348,11 +359,23 @@ static ssize_t write_sensor2_pwr_config(struct bt_conn *conn, const struct bt_ga
 	}
 
 	// Store incoming data into dev_eui buffer
-	memcpy(&sensor_2_voltage, buf, len);
-
-	LOG_INF("Sensor 2 Voltage RECEIVED: %d", sensor_2_voltage);
-    sensor_app_config->sensor_2_voltage = sensor_2_voltage;
-    sensor_nvs_write(SENSOR_NVS_ADDRESS_SENSOR_2_POWER, &sensor_app_config->sensor_2_voltage, sizeof(sensor_app_config->sensor_2_voltage));
+	memcpy(sensor_2_voltage_name, buf, len);
+	sensor_2_voltage_name[len] = '\0';  // Add null terminator to end of string
+	
+	LOG_INF("Sensor 2 Voltage RECEIVED: %s", sensor_2_voltage_name);
+	// Get index of output voltage from name and check if it is valid
+    int ret_index = get_sensor_voltage_index_from_name(sensor_2_voltage_name);
+	if(ret_index < 0)
+	{
+		LOG_ERR("Invalid sensor 2 voltage");
+		return BT_GATT_ERR(BT_ATT_ERR_INVALID_ATTRIBUTE_LEN);
+	}
+	// Store index of output voltage to config
+	sensor_app_config->sensor_2_voltage = ret_index;
+	// Copy name of output voltage to config
+	strcpy(sensor_app_config->sensor_2_voltage_name, sensor_2_voltage_name);
+	// Store index of output voltage to nvs
+    sensor_nvs_write(SENSOR_NVS_ADDRESS_SENSOR_2_POWER, &sensor_app_config->sensor_2_voltage, strlen(sensor_app_config->sensor_2_voltage_name));
 	return len;
 }
 

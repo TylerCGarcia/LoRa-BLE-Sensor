@@ -17,15 +17,8 @@
 #include <zephyr/drivers/gpio.h>
 #include <zephyr/drivers/adc.h>
 
-#define VOLTAGE_NAME_LENGTH         20
 #define OUTUT_READ_DIVIDER_HIGH     100
 #define OUTUT_READ_DIVIDER_LOW      13
-
-typedef struct {
-    enum sensor_voltage voltage_enum;
-    const char *name;
-    float expected_output;
-} sensor_voltage_info_t;
 
 /**
  * @brief Sensor power configuration
@@ -91,23 +84,6 @@ float read_sensor_output(sensor_power_config_t *config);
  * @return int 0 if successful, -1 if not
  */
 int validate_output(sensor_power_config_t *config, enum sensor_voltage voltage, uint8_t accepted_error);
-
-/**
- * @brief Get the name for the selected sensor voltage
- * 
- * @param voltage_name char array for the name to be saved to
- * @param voltage enum sensor_voltage setting selected
- * @return int 0 if successful, -1 if invalid input
- */
-int get_sensor_voltage_name_from_index(char * voltage_name, enum sensor_voltage voltage);
-
-/**
- * @brief Get the index for the selected sensor voltage
- * 
- * @param voltage_name char array for the name to be saved to
- * @return int index of the selected sensor voltage
- */
-enum sensor_voltage get_sensor_voltage_index_from_name(char * voltage_name);
 
 #endif
 

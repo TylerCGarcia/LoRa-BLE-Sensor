@@ -16,6 +16,9 @@
 #include "sensor_id.h"
 #include <stdint.h>
 
+#define SENSOR_VOLTAGE_NAME_LENGTH      20
+#define SENSOR_TYPE_NAME_LENGTH         20
+
 // In sensor_app.h
 typedef enum sensor_app_state{
     SENSOR_APP_STATE_CONFIGURATION,    // Device is in configuration mode (BLE active, waiting for setup)
@@ -51,12 +54,20 @@ typedef struct {
     uint8_t connect_network_during_configuration;
     /* Sensor type used for sensor 1 */
     enum sensor_types sensor_1_type;
+    /* Sensor power name used for sensor 1 */
+    char sensor_1_type_name[SENSOR_TYPE_NAME_LENGTH];
     /* Sensor type used for sensor 2 */
     enum sensor_types sensor_2_type;
+    /* Sensor type name used for sensor 2 */
+    char sensor_2_type_name[SENSOR_TYPE_NAME_LENGTH];
     /* Power voltage used for sensor 1 */
     enum sensor_voltage sensor_1_voltage;
+    /* Power voltage name used for sensor 1 */
+    char sensor_1_voltage_name[SENSOR_VOLTAGE_NAME_LENGTH];
     /* Power voltage used for sensor 2 */
     enum sensor_voltage sensor_2_voltage;
+    /* Power voltage name used for sensor 2 */
+    char sensor_2_voltage_name[SENSOR_VOLTAGE_NAME_LENGTH];
     /* Whether sensor 1 is enabled */
     uint8_t is_sensor_1_enabled;
     /* Whether sensor 2 is enabled */

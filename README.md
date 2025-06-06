@@ -28,6 +28,9 @@ This will initialize the python environment(.venv), initialize west(.west), and 
 - Add nPM1300 functionality
   * Voltage, Current, Temperature, and Charge of the battery
   * Controlling LED
+- Put all sensor names into their own library
+  * only used for ble configurations
+- Error handling when state given is out of bounds
 
 # Revision History
 Current Version: **V0.2.1**

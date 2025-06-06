@@ -1,0 +1,41 @@
+#include <zephyr/logging/log.h>
+#include <zephyr/kernel.h>
+
+#include "sensor_names.h"
+
+LOG_MODULE_REGISTER(SENSOR_NAMES, LOG_LEVEL_DBG);
+
+const char *sensor_voltage_names[] = {
+    [SENSOR_VOLTAGE_OFF] = "SENSOR_VOLTAGE_OFF",
+    [SENSOR_VOLTAGE_3V3] = "SENSOR_VOLTAGE_3V3",
+    [SENSOR_VOLTAGE_5V]  = "SENSOR_VOLTAGE_5V",
+    [SENSOR_VOLTAGE_6V]  = "SENSOR_VOLTAGE_6V",
+    [SENSOR_VOLTAGE_12V] = "SENSOR_VOLTAGE_12V",
+    [SENSOR_VOLTAGE_24V] = "SENSOR_VOLTAGE_24V",
+};
+
+int get_sensor_voltage_name_from_index(char * voltage_name, enum sensor_voltage voltage)
+{
+    LOG_DBG("Getting sensor voltage name");
+    if(voltage < 0 || voltage >= SENSOR_VOLTAGE_INDEX_LIMIT)
+    {
+        LOG_ERR("Invalid voltage");
+        return -1;
+    }
+    strcpy(voltage_name, sensor_voltage_names[voltage]);
+    return 0;
+}
+
+int get_sensor_voltage_index_from_name(char * voltage_name)
+{
+    LOG_DBG("Getting sensor voltage index from name %s", voltage_name);
+    for(int i = 0; i < SENSOR_VOLTAGE_INDEX_LIMIT; i++)
+    {
+        if(strcmp(voltage_name, sensor_voltage_names[i]) == 0)
+        {
+            return i;
+        }
+    }
+
+    return -1;
+}

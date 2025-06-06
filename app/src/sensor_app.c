@@ -7,6 +7,7 @@
 #include "sensor_lorawan.h"
 #include "ble_sensor_service.h"
 #include "ble_lorawan_service.h"
+#include "sensor_names.h"
 #include <zephyr/logging/log.h>
 #include <zephyr/kernel.h>
 
@@ -35,9 +36,9 @@ static sensor_scheduling_cfg_t radio_schedule = {
     .frequency_seconds = 0
 };
 
-#define DEV_EUI {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}
-#define JOIN_EUI {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}
-#define APP_KEY {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}
+#define DEV_EUI    {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}
+#define JOIN_EUI   {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}
+#define APP_KEY    {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}
 
 static lorawan_setup_t lorawan_setup = {
     .is_lorawan_enabled = 0,
@@ -119,11 +120,14 @@ static int initialize_sensor_nvs(void)
 
     initialize_nvs_address(SENSOR_NVS_ADDRESS_SENSOR_1_ENABLED, &sensor_app_config->is_sensor_1_enabled, sizeof(sensor_app_config->is_sensor_1_enabled));
     initialize_nvs_address(SENSOR_NVS_ADDRESS_SENSOR_1_POWER, &sensor_app_config->sensor_1_voltage, sizeof(sensor_app_config->sensor_1_voltage));
+    get_sensor_voltage_name_from_index(sensor_app_config->sensor_1_voltage_name, sensor_app_config->sensor_1_voltage);
     initialize_nvs_address(SENSOR_NVS_ADDRESS_SENSOR_1_TYPE, &sensor_app_config->sensor_1_type, sizeof(sensor_app_config->sensor_1_type));
+    // get_sensor_type_name_from_index(sensor_app_config->sensor_1_type_name, sensor_app_config->sensor_1_type);
     initialize_nvs_address(SENSOR_NVS_ADDRESS_SENSOR_1_FREQUENCY, &sensor_app_config->sensor_1_frequency, sizeof(sensor_app_config->sensor_1_frequency));
 
     initialize_nvs_address(SENSOR_NVS_ADDRESS_SENSOR_2_ENABLED, &sensor_app_config->is_sensor_2_enabled, sizeof(sensor_app_config->is_sensor_2_enabled));
     initialize_nvs_address(SENSOR_NVS_ADDRESS_SENSOR_2_POWER, &sensor_app_config->sensor_2_voltage, sizeof(sensor_app_config->sensor_2_voltage));
+    get_sensor_voltage_name_from_index(sensor_app_config->sensor_2_voltage_name, sensor_app_config->sensor_2_voltage);
     initialize_nvs_address(SENSOR_NVS_ADDRESS_SENSOR_2_TYPE, &sensor_app_config->sensor_2_type, sizeof(sensor_app_config->sensor_2_type));
     initialize_nvs_address(SENSOR_NVS_ADDRESS_SENSOR_2_FREQUENCY, &sensor_app_config->sensor_2_frequency, sizeof(sensor_app_config->sensor_2_frequency));
     return 0;
