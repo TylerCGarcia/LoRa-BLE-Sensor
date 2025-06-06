@@ -299,11 +299,11 @@ ZTEST(power, test_invalid_output_sets_voltage_off)
  * @brief Get correct name associated to a sensor value for Voltage OFF
  * 
  */
-ZTEST(power, test_get_sensor_output_name_off)
+ZTEST(power, test_get_sensor_output_name_from_index_off)
 {
 	char voltage_name[20];
 	char * expected_name = "SENSOR_VOLTAGE_OFF";
-	int ret = get_sensor_voltage_name(voltage_name, SENSOR_VOLTAGE_OFF);
+	int ret = get_sensor_voltage_name_from_index(voltage_name, SENSOR_VOLTAGE_OFF);
 	zassert_ok(ret, "Issue getting the correct name");
 	zassert_str_equal(voltage_name, expected_name, "%s is not %s", voltage_name, expected_name);
 }
@@ -312,11 +312,11 @@ ZTEST(power, test_get_sensor_output_name_off)
  * @brief Get correct name associated to a sensor value for 3v3
  * 
  */
-ZTEST(power, test_get_sensor_output_name_3v3)
+ZTEST(power, test_get_sensor_output_name_from_index_3v3)
 {
 	char voltage_name[20];
 	char * expected_name = "SENSOR_VOLTAGE_3V3";
-	int ret = get_sensor_voltage_name(voltage_name, SENSOR_VOLTAGE_3V3);
+	int ret = get_sensor_voltage_name_from_index(voltage_name, SENSOR_VOLTAGE_3V3);
 	zassert_ok(ret, "Issue getting the correct name");
 	zassert_str_equal(voltage_name, expected_name, "%s is not %s", voltage_name, expected_name);
 }
@@ -325,11 +325,11 @@ ZTEST(power, test_get_sensor_output_name_3v3)
  * @brief Get correct name associated to a sensor value for 5V
  * 
  */
-ZTEST(power, test_get_sensor_output_name_5v)
+ZTEST(power, test_get_sensor_output_name_from_index_5v)
 {
 	char voltage_name[20];
 	char * expected_name = "SENSOR_VOLTAGE_5V";
-	int ret = get_sensor_voltage_name(voltage_name, SENSOR_VOLTAGE_5V);
+	int ret = get_sensor_voltage_name_from_index(voltage_name, SENSOR_VOLTAGE_5V);
 	zassert_ok(ret, "Issue getting the correct name");
 	zassert_str_equal(voltage_name, expected_name, "%s is not %s", voltage_name, expected_name);
 }
@@ -338,11 +338,11 @@ ZTEST(power, test_get_sensor_output_name_5v)
  * @brief Get correct name associated to a sensor value for 5V
  * 
  */
-ZTEST(power, test_get_sensor_output_name_6v)
+ZTEST(power, test_get_sensor_output_name_from_index_6v)
 {
 	char voltage_name[20];
 	char * expected_name = "SENSOR_VOLTAGE_6V";
-	int ret = get_sensor_voltage_name(voltage_name, SENSOR_VOLTAGE_6V);
+	int ret = get_sensor_voltage_name_from_index(voltage_name, SENSOR_VOLTAGE_6V);
 	zassert_ok(ret, "Issue getting the correct name");
 	zassert_str_equal(voltage_name, expected_name, "%s is not %s", voltage_name, expected_name);
 }
@@ -351,11 +351,11 @@ ZTEST(power, test_get_sensor_output_name_6v)
  * @brief Get correct name associated to a sensor value for 12V
  * 
  */
-ZTEST(power, test_get_sensor_output_name_12v)
+ZTEST(power, test_get_sensor_output_name_from_index_12v)
 {
 	char voltage_name[20];
 	char * expected_name = "SENSOR_VOLTAGE_12V";
-	int ret = get_sensor_voltage_name(voltage_name, SENSOR_VOLTAGE_12V);
+	int ret = get_sensor_voltage_name_from_index(voltage_name, SENSOR_VOLTAGE_12V);
 	zassert_ok(ret, "Issue getting the correct name");
 	zassert_str_equal(voltage_name, expected_name, "%s is not %s", voltage_name, expected_name);
 }
@@ -364,26 +364,110 @@ ZTEST(power, test_get_sensor_output_name_12v)
  * @brief Get correct name associated to a sensor value for 24V
  * 
  */
-ZTEST(power, test_get_sensor_output_name_24v)	
+ZTEST(power, test_get_sensor_output_name_from_index_24v)	
 {
 	char voltage_name[20];
 	char * expected_name = "SENSOR_VOLTAGE_24V";
-	int ret = get_sensor_voltage_name(voltage_name, SENSOR_VOLTAGE_24V);
+	int ret = get_sensor_voltage_name_from_index(voltage_name, SENSOR_VOLTAGE_24V);
 	zassert_ok(ret, "Issue getting the correct name");
 	zassert_str_equal(voltage_name, expected_name, "%s is not %s", voltage_name, expected_name);
 }
 
 /**
- * @brief Test upper and lower bounds return of get_sensor_voltage_name
+ * @brief Test upper and lower bounds return of get_sensor_voltage_name_from_index
  * 
  */
-ZTEST(power, test_sensor_output_name_out_of_bounds)
+ZTEST(power, test_get_sensor_output_name_from_index_out_of_bounds)
 {
 	char voltage_name[20];
-	int ret = get_sensor_voltage_name(voltage_name, SENSOR_VOLTAGE_INDEX_LIMIT);
+	int ret = get_sensor_voltage_name_from_index(voltage_name, SENSOR_VOLTAGE_INDEX_LIMIT);
 	zassert_not_ok(ret, "did not detect out of bounds name");
-	ret = get_sensor_voltage_name(voltage_name, -1);
+	ret = get_sensor_voltage_name_from_index(voltage_name, -1);
 	zassert_not_ok(ret, "did not detect out of bounds name");
+}
+
+/**
+ * @brief Test getting the index from the name for SENSOR_VOLTAGE_OFF
+ * 
+ */
+ZTEST(power,test_get_sensor_output_index_from_name_off)
+{
+	char voltage_name[20];
+	strcpy(voltage_name, "SENSOR_VOLTAGE_OFF");
+	int ret_index = get_sensor_voltage_index_from_name(voltage_name);
+	zassert_equal(ret_index, SENSOR_VOLTAGE_OFF, "Expected SENSOR_VOLTAGE_OFF");
+}
+
+/**
+ * @brief Test getting the index from the name for SENSOR_VOLTAGE_3V3
+ * 
+ */
+ZTEST(power,test_get_sensor_output_index_from_name_3v3)
+{
+	char voltage_name[20];
+	strcpy(voltage_name, "SENSOR_VOLTAGE_3V3");
+	int ret_index = get_sensor_voltage_index_from_name(voltage_name);
+	zassert_equal(ret_index, SENSOR_VOLTAGE_3V3, "Expected SENSOR_VOLTAGE_3V3");
+}
+
+/**
+ * @brief Test getting the index from the name for SENSOR_VOLTAGE_5V
+ * 
+ */
+ZTEST(power,test_get_sensor_output_index_from_name_5v)
+{
+	char voltage_name[20];
+	strcpy(voltage_name, "SENSOR_VOLTAGE_5V");
+	int ret_index = get_sensor_voltage_index_from_name(voltage_name);
+	zassert_equal(ret_index, SENSOR_VOLTAGE_5V, "Expected SENSOR_VOLTAGE_5V");
+}
+
+/**
+ * @brief Test getting the index from the name for SENSOR_VOLTAGE_6V
+ * 
+ */
+ZTEST(power,test_get_sensor_output_index_from_name_6v)
+{
+	char voltage_name[20];
+	strcpy(voltage_name, "SENSOR_VOLTAGE_6V");
+	int ret_index = get_sensor_voltage_index_from_name(voltage_name);
+	zassert_equal(ret_index, SENSOR_VOLTAGE_6V, "Expected SENSOR_VOLTAGE_6V");
+}	
+
+/**
+ * @brief Test getting the index from the name for SENSOR_VOLTAGE_12V
+ * 
+ */
+ZTEST(power,test_get_sensor_output_index_from_name_12v)
+{	
+	char voltage_name[20];
+	strcpy(voltage_name, "SENSOR_VOLTAGE_12V");
+	int ret_index = get_sensor_voltage_index_from_name(voltage_name);
+	zassert_equal(ret_index, SENSOR_VOLTAGE_12V, "Expected SENSOR_VOLTAGE_12V");
+}
+
+/**
+ * @brief Test getting the index from the name for SENSOR_VOLTAGE_24V
+ * 
+ */
+ZTEST(power,test_get_sensor_output_index_from_name_24v)
+{
+	char voltage_name[20];
+	strcpy(voltage_name, "SENSOR_VOLTAGE_24V");
+	int ret_index = get_sensor_voltage_index_from_name(voltage_name);
+	zassert_equal(ret_index, SENSOR_VOLTAGE_24V, "Expected SENSOR_VOLTAGE_24V");
+}
+
+/**
+ * @brief Test getting the index from the name for an invalid name
+ * 
+ */
+ZTEST(power,test_get_sensor_output_index_from_name_invalid)
+{
+	char voltage_name[20];
+	strcpy(voltage_name, "INVALID");
+	int ret_index = get_sensor_voltage_index_from_name(voltage_name);
+	zassert_equal(ret_index, -1, "Expected invalid name to return SENSOR_VOLTAGE_INDEX_LIMIT");
 }
 
 /**

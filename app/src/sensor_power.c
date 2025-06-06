@@ -231,7 +231,7 @@ int validate_output(sensor_power_config_t *config, enum sensor_voltage voltage, 
     return 0;
 }
 
-int get_sensor_voltage_name(char * voltage_name, enum sensor_voltage voltage)
+int get_sensor_voltage_name_from_index(char * voltage_name, enum sensor_voltage voltage)
 {
     LOG_DBG("Getting sensor voltage name");
     if(voltage < 0 || voltage >= SENSOR_VOLTAGE_INDEX_LIMIT)
@@ -241,5 +241,19 @@ int get_sensor_voltage_name(char * voltage_name, enum sensor_voltage voltage)
     }
     strcpy(voltage_name, sensor_voltage_table[voltage].name);
     return 0;
+}
+
+enum sensor_voltage get_sensor_voltage_index_from_name(char * voltage_name)
+{
+    LOG_DBG("Getting sensor voltage index from name %s", voltage_name);
+    for(int i = 0; i < SENSOR_VOLTAGE_INDEX_LIMIT; i++)
+    {
+        if(strcmp(voltage_name, sensor_voltage_table[i].name) == 0)
+        {
+            return i;
+        }
+    }
+
+    return -1;
 }
 
