@@ -17,6 +17,7 @@ target_sources(app PRIVATE src/main.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../../../app/src/sensor_timer.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../../../app/src/sensor_nvs.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../../../app/src/sensor_data.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../../app/src/sensor_names.c
     ${CMAKE_CURRENT_SOURCE_DIR}/fakes/sensor_ble_fakes.c
     ${CMAKE_CURRENT_SOURCE_DIR}/fakes/sensor_power_fakes.c
     ${CMAKE_CURRENT_SOURCE_DIR}/fakes/sensor_reading_fakes.c
