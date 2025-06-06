@@ -295,16 +295,80 @@ ZTEST(power, test_invalid_output_sets_voltage_off)
 	confirm_voltage(&sensor_output1, SENSOR_VOLTAGE_OFF);
 }
 
-
 /**
- * @brief Get correct name associated to a sensor value
+ * @brief Get correct name associated to a sensor value for Voltage OFF
  * 
  */
-ZTEST(power, test_get_sensor_output_name)
+ZTEST(power, test_get_sensor_output_name_off)
+{
+	char voltage_name[20];
+	char * expected_name = "SENSOR_VOLTAGE_OFF";
+	int ret = get_sensor_voltage_name(voltage_name, SENSOR_VOLTAGE_OFF);
+	zassert_ok(ret, "Issue getting the correct name");
+	zassert_str_equal(voltage_name, expected_name, "%s is not %s", voltage_name, expected_name);
+}
+
+/**
+ * @brief Get correct name associated to a sensor value for 3v3
+ * 
+ */
+ZTEST(power, test_get_sensor_output_name_3v3)
 {
 	char voltage_name[20];
 	char * expected_name = "SENSOR_VOLTAGE_3V3";
 	int ret = get_sensor_voltage_name(voltage_name, SENSOR_VOLTAGE_3V3);
+	zassert_ok(ret, "Issue getting the correct name");
+	zassert_str_equal(voltage_name, expected_name, "%s is not %s", voltage_name, expected_name);
+}
+
+/**
+ * @brief Get correct name associated to a sensor value for 5V
+ * 
+ */
+ZTEST(power, test_get_sensor_output_name_5v)
+{
+	char voltage_name[20];
+	char * expected_name = "SENSOR_VOLTAGE_5V";
+	int ret = get_sensor_voltage_name(voltage_name, SENSOR_VOLTAGE_5V);
+	zassert_ok(ret, "Issue getting the correct name");
+	zassert_str_equal(voltage_name, expected_name, "%s is not %s", voltage_name, expected_name);
+}
+
+/**
+ * @brief Get correct name associated to a sensor value for 5V
+ * 
+ */
+ZTEST(power, test_get_sensor_output_name_6v)
+{
+	char voltage_name[20];
+	char * expected_name = "SENSOR_VOLTAGE_6V";
+	int ret = get_sensor_voltage_name(voltage_name, SENSOR_VOLTAGE_6V);
+	zassert_ok(ret, "Issue getting the correct name");
+	zassert_str_equal(voltage_name, expected_name, "%s is not %s", voltage_name, expected_name);
+}
+
+/**
+ * @brief Get correct name associated to a sensor value for 12V
+ * 
+ */
+ZTEST(power, test_get_sensor_output_name_12v)
+{
+	char voltage_name[20];
+	char * expected_name = "SENSOR_VOLTAGE_12V";
+	int ret = get_sensor_voltage_name(voltage_name, SENSOR_VOLTAGE_12V);
+	zassert_ok(ret, "Issue getting the correct name");
+	zassert_str_equal(voltage_name, expected_name, "%s is not %s", voltage_name, expected_name);
+}
+
+/**
+ * @brief Get correct name associated to a sensor value for 24V
+ * 
+ */
+ZTEST(power, test_get_sensor_output_name_24v)	
+{
+	char voltage_name[20];
+	char * expected_name = "SENSOR_VOLTAGE_24V";
+	int ret = get_sensor_voltage_name(voltage_name, SENSOR_VOLTAGE_24V);
 	zassert_ok(ret, "Issue getting the correct name");
 	zassert_str_equal(voltage_name, expected_name, "%s is not %s", voltage_name, expected_name);
 }
