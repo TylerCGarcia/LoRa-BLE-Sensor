@@ -102,7 +102,7 @@ ZTEST(names, test_get_sensor_output_name_from_index_24v)
 }
 
 /**
- * @brief Test upper and lower bounds return of get_sensor_voltage_name_from_index
+ * @brief Test upper and lower bounds return of get_sensor_voltage_name_from_index for out of bounds value too high
  * 
  */
 ZTEST(names, test_get_sensor_output_name_from_index_out_of_bounds_high)
@@ -275,4 +275,64 @@ ZTEST(names, test_get_sensor_type_name_from_index_out_of_bounds_low)
 	char sensor_type_name[20];
 	int ret = get_sensor_type_name_from_index(sensor_type_name, -1);
 	zassert_not_ok(ret, "Expected out of bounds sensor type to return -1");
+}
+
+/**
+ * @brief Test getting the sensor type index from the name for NULL_SENSOR
+ * 
+ */
+ZTEST(names, test_get_sensor_type_index_from_name_null_sensor)
+{
+	char sensor_type_name[20];
+	strcpy(sensor_type_name, "NULL_SENSOR");
+	int ret_index = get_sensor_type_index_from_name(sensor_type_name);
+	zassert_equal(ret_index, NULL_SENSOR, "Expected NULL_SENSOR");
+}
+
+/**
+ * @brief Test getting the sensor type index from the name for VOLTAGE_SENSOR
+ * 
+ */
+ZTEST(names, test_get_sensor_type_index_from_name_voltage_sensor)
+{
+	char sensor_type_name[20];
+	strcpy(sensor_type_name, "VOLTAGE_SENSOR");
+	int ret_index = get_sensor_type_index_from_name(sensor_type_name);
+	zassert_equal(ret_index, VOLTAGE_SENSOR, "Expected VOLTAGE_SENSOR");
+}
+
+/**
+ * @brief Test getting the sensor type index from the name for CURRENT_SENSOR
+ * 
+ */
+ZTEST(names, test_get_sensor_type_index_from_name_current_sensor)
+{
+	char sensor_type_name[20];
+	strcpy(sensor_type_name, "CURRENT_SENSOR");
+	int ret_index = get_sensor_type_index_from_name(sensor_type_name);
+	zassert_equal(ret_index, CURRENT_SENSOR, "Expected CURRENT_SENSOR");
+}
+
+/**
+ * @brief Test getting the sensor type index from the name for PULSE_SENSOR
+ * 
+ */
+ZTEST(names, test_get_sensor_type_index_from_name_pulse_sensor)
+{
+	char sensor_type_name[20];
+	strcpy(sensor_type_name, "PULSE_SENSOR");
+	int ret_index = get_sensor_type_index_from_name(sensor_type_name);
+	zassert_equal(ret_index, PULSE_SENSOR, "Expected PULSE_SENSOR");
+}
+
+/**
+ * @brief Test getting the sensor type index from the name for an invalid name
+ * 
+ */
+ZTEST(names, test_get_sensor_type_index_from_name_invalid)
+{
+	char sensor_type_name[20];
+	strcpy(sensor_type_name, "INVALID");
+	int ret_index = get_sensor_type_index_from_name(sensor_type_name);
+	zassert_equal(ret_index, -1, "Expected invalid name to return -1");
 }

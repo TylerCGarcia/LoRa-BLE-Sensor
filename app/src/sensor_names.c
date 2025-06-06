@@ -58,3 +58,17 @@ int get_sensor_type_name_from_index(char * sensor_type_name, enum sensor_types s
     strcpy(sensor_type_name, sensor_type_names[sensor_type]);
     return 0;
 }
+
+int get_sensor_type_index_from_name(char * sensor_type_name)
+{
+    LOG_DBG("Getting sensor type index from name %s", sensor_type_name);
+    for(int i = 0; i < SENSOR_TYPE_LIMIT; i++)
+    {
+        if(strcmp(sensor_type_name, sensor_type_names[i]) == 0)
+        {
+            return i;
+        }
+    }
+    LOG_ERR("Invalid sensor type name");
+    return -1;
+}
