@@ -31,4 +31,10 @@ int get_sensor_voltage_name_from_index(char * voltage_name, enum sensor_voltage 
  */
 int get_sensor_voltage_index_from_name(char * voltage_name);
 
+/**
+ * @brief Get the name for the selected sensor type
+ * 
+ */
+int get_sensor_type_name_from_index(char * sensor_type_name, enum sensor_types sensor_type);
+
 #endif

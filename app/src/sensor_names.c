@@ -14,6 +14,13 @@ const char *sensor_voltage_names[] = {
     [SENSOR_VOLTAGE_24V] = "SENSOR_VOLTAGE_24V",
 };
 
+const char *sensor_type_names[] = {
+    [NULL_SENSOR] = "NULL_SENSOR",
+    [VOLTAGE_SENSOR] = "VOLTAGE_SENSOR",
+    [CURRENT_SENSOR] = "CURRENT_SENSOR",
+    [PULSE_SENSOR] = "PULSE_SENSOR",
+};
+
 int get_sensor_voltage_name_from_index(char * voltage_name, enum sensor_voltage voltage)
 {
     LOG_DBG("Getting sensor voltage name");
@@ -38,4 +45,16 @@ int get_sensor_voltage_index_from_name(char * voltage_name)
     }
 
     return -1;
+}
+
+int get_sensor_type_name_from_index(char * sensor_type_name, enum sensor_types sensor_type)
+{
+    LOG_DBG("Getting sensor type name");
+    if(sensor_type < 0 || sensor_type >= SENSOR_TYPE_LIMIT)
+    {
+        LOG_ERR("Invalid sensor type");
+        return -1;
+    }
+    strcpy(sensor_type_name, sensor_type_names[sensor_type]);
+    return 0;
 }
