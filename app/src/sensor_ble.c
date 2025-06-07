@@ -5,6 +5,8 @@
 #include <zephyr/logging/log.h>
 #include <zephyr/bluetooth/bluetooth.h>
 #include <zephyr/bluetooth/conn.h>
+#include <zephyr/mgmt/mcumgr/transport/smp_bt.h>
+#include <zephyr/settings/settings.h>
 
 LOG_MODULE_REGISTER(SENSOR_BLE, LOG_LEVEL_INF);
 
@@ -68,7 +70,7 @@ static int start_advertising(void)
     BT_LE_ADV_PARAM(ble_adv_params.adv_opt, ble_adv_params.adv_interval.min, ble_adv_params.adv_interval.max, NULL);
 
     const struct bt_data ad[] = {
-        BT_DATA_BYTES(BT_DATA_FLAGS, BT_LE_AD_NO_BREDR),
+        BT_DATA_BYTES(BT_DATA_FLAGS, (BT_LE_AD_GENERAL | BT_LE_AD_NO_BREDR)),
         BT_DATA(BT_DATA_NAME_COMPLETE, ble_adv_params.adv_name, strlen(ble_adv_params.adv_name)),
     };
 
@@ -83,6 +85,10 @@ static int start_advertising(void)
 
 int ble_setup(ble_config_t *config)
 {
+
+    // if (IS_ENABLED(CONFIG_SETTINGS)) {
+	// 	settings_load();
+	// }
     int ret;
     /* Initialize the advertising parameters. */
     ble_adv_params.adv_opt = config->adv_opt;
