@@ -33,9 +33,15 @@ This will initialize the python environment(.venv), initialize west(.west), and 
 - Error handling when state given is out of bounds
 
 # Revision History
-Current Version: **V0.2.1**
+Current Version: **V0.2.2**
 
 Version Breakdown: `[Major API Change]`.`[Minor Change/Added Functionality]`.`[Patch/bug fixes]`
+
+### V0.2.2
+- Names for sensor types and output voltages added to their own library
+  * Relates indexes to strings to make the ble interaction more human readable
+- MCUBOOT is added to project
+  * For later use with OTA updates
 
 ### V0.2.1
 - Changes made for low power consumption
