@@ -2,14 +2,6 @@
 
 cmake_minimum_required(VERSION 3.20.0)
 
-
-# # Add local board directory to selection
-# list(APPEND BOARD_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/../)
-
-# Set the overlay file
-set(DTC_OVERLAY_FILE 
-    ${CMAKE_CURRENT_SOURCE_DIR}/conf/pmic.overlay)
-
 # Get the version from Git
 find_package(Git QUIET)
 if(GIT_FOUND)
@@ -52,6 +44,10 @@ if(BOARD STREQUAL "lora_ble_sensor")
 else()
     message(STATUS "Building for ${BOARD}")
 endif()
+
+# Set the overlay file
+set(DTC_OVERLAY_FILE 
+    ${CMAKE_CURRENT_SOURCE_DIR}/conf/pmic.overlay)
 
 # Define configuration files.
 list(APPEND CONF_FILE

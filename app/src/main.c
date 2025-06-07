@@ -20,10 +20,12 @@ sensor_app_config_t sensor_app_config = {
 	.is_sensor_1_enabled = 0,
 	.sensor_1_voltage = SENSOR_VOLTAGE_OFF,
 	.sensor_1_type = NULL_SENSOR,
+	.sensor_1_type_name = "NULL_SENSOR",
 	.sensor_1_frequency = 0,
 	.is_sensor_2_enabled = 0,
 	.sensor_2_voltage = SENSOR_VOLTAGE_OFF,
 	.sensor_2_type = NULL_SENSOR,
+	.sensor_2_type_name = "NULL_SENSOR",
 	.sensor_2_frequency = 0,
 };
 

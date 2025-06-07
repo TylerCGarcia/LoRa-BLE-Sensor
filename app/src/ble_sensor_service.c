@@ -43,7 +43,7 @@ static ssize_t write_sensor_state(struct bt_conn *conn, const struct bt_gatt_att
 		return BT_GATT_ERR(BT_ATT_ERR_INVALID_OFFSET);
 	}
 
-	// Store incoming data into dev_eui buffer
+	// Store incoming data into buffer
 	memcpy(&sensor_state, buf, len);
 
 	LOG_INF("Sensor state RECEIVED: %d", sensor_state);
@@ -99,13 +99,12 @@ static ssize_t read_sensor1_config(struct bt_conn *conn, const struct bt_gatt_at
 		LOG_ERR("Sensor BLE Service is not initialized");
 		return BT_GATT_ERR(BT_ATT_ERR_READ_NOT_PERMITTED);
 	}
-    uint8_t sensor_1_config = sensor_app_config->sensor_1_type;
-	return bt_gatt_attr_read(conn, attr, buf, len, offset, &sensor_1_config, sizeof(sensor_1_config));
+	return bt_gatt_attr_read(conn, attr, buf, len, offset, sensor_app_config->sensor_1_type_name, sizeof(sensor_app_config->sensor_1_type_name));
 }
 
 static ssize_t write_sensor1_config(struct bt_conn *conn, const struct bt_gatt_attr *attr, void *buf, uint16_t len, uint16_t offset)
 {
-    uint8_t sensor_1_config = 0;
+    char sensor_1_config_name[SENSOR_TYPE_NAME_LENGTH];
     LOG_DBG("Attribute write, handle: %u, conn: %p", attr->handle, (void *)conn);
     if(!is_sensor_service_setup)
 	{
@@ -114,7 +113,7 @@ static ssize_t write_sensor1_config(struct bt_conn *conn, const struct bt_gatt_a
 	}
 
     // Check bounds of data
-	if (len != sizeof(sensor_1_config)) {
+	if (len > sizeof(sensor_1_config_name)) {
 		LOG_ERR("Write date: Data length incorrect for sensor 1 config");
 		return BT_GATT_ERR(BT_ATT_ERR_INVALID_ATTRIBUTE_LEN);
 	}
@@ -124,11 +123,23 @@ static ssize_t write_sensor1_config(struct bt_conn *conn, const struct bt_gatt_a
 		return BT_GATT_ERR(BT_ATT_ERR_INVALID_OFFSET);
 	}
 
-	// Store incoming data into dev_eui buffer
-	memcpy(&sensor_1_config, buf, len);
+	// Store incoming data into buffer
+	memcpy(sensor_1_config_name, buf, len);
+	sensor_1_config_name[len] = '\0';  // Add null terminator to end of string
+	LOG_INF("Sensor 1 config RECEIVED: %s", sensor_1_config_name);
 
-	LOG_INF("Sensor 1 config RECEIVED: %d", sensor_1_config);
-    sensor_app_config->sensor_1_type = sensor_1_config;
+	// Get index of sensor type from name and check if it is valid
+    int ret_index = get_sensor_type_index_from_name(sensor_1_config_name);
+	if(ret_index < 0)
+	{
+		LOG_ERR("Invalid sensor 1 config");
+		return BT_GATT_ERR(BT_ATT_ERR_INVALID_ATTRIBUTE_LEN);
+	}
+	// Store index of sensor type to config
+    sensor_app_config->sensor_1_type = ret_index;
+	// Copy name of sensor type to config
+	strcpy(sensor_app_config->sensor_1_type_name, sensor_1_config_name);
+	// Store index of sensor type to nvs
     sensor_nvs_write(SENSOR_NVS_ADDRESS_SENSOR_1_TYPE, &sensor_app_config->sensor_1_type, sizeof(sensor_app_config->sensor_1_type));
 	return len;
 }
@@ -164,7 +175,7 @@ static ssize_t write_sensor1_pwr_config(struct bt_conn *conn, const struct bt_ga
 		return BT_GATT_ERR(BT_ATT_ERR_INVALID_OFFSET);
 	}
 
-	// Store incoming data into dev_eui buffer
+	// Store incoming data into buffer
 	memcpy(sensor_1_voltage_name, buf, len);
 	sensor_1_voltage_name[len] = '\0';  // Add null terminator to end of string
 
@@ -293,13 +304,12 @@ static ssize_t read_sensor2_config(struct bt_conn *conn, const struct bt_gatt_at
 		LOG_ERR("Sensor BLE Service is not initialized");
 		return BT_GATT_ERR(BT_ATT_ERR_READ_NOT_PERMITTED);
 	}
-    uint8_t sensor_2_config = sensor_app_config->sensor_2_type;
-	return bt_gatt_attr_read(conn, attr, buf, len, offset, &sensor_2_config, sizeof(sensor_2_config));
+	return bt_gatt_attr_read(conn, attr, buf, len, offset, sensor_app_config->sensor_2_type_name, sizeof(sensor_app_config->sensor_2_type_name));
 }
 
 static ssize_t write_sensor2_config(struct bt_conn *conn, const struct bt_gatt_attr *attr, void *buf, uint16_t len, uint16_t offset)
 {
-    uint8_t sensor_2_config = 0;
+    char sensor_2_config_name[SENSOR_TYPE_NAME_LENGTH];
     LOG_DBG("Attribute write, handle: %u, conn: %p", attr->handle, (void *)conn);
     if(!is_sensor_service_setup)
 	{
@@ -308,7 +318,7 @@ static ssize_t write_sensor2_config(struct bt_conn *conn, const struct bt_gatt_a
 	}
 
     // Check bounds of data
-	if (len != sizeof(sensor_2_config)) {
+	if (len > sizeof(sensor_2_config_name)) {
 		LOG_ERR("Write date: Data length incorrect for sensor 2 config");
 		return BT_GATT_ERR(BT_ATT_ERR_INVALID_ATTRIBUTE_LEN);
 	}
@@ -318,11 +328,23 @@ static ssize_t write_sensor2_config(struct bt_conn *conn, const struct bt_gatt_a
 		return BT_GATT_ERR(BT_ATT_ERR_INVALID_OFFSET);
 	}
 
-	// Store incoming data into dev_eui buffer
-	memcpy(&sensor_2_config, buf, len);
+	// Store incoming data into buffer
+	memcpy(sensor_2_config_name, buf, len);
+	sensor_2_config_name[len] = '\0';  // Add null terminator to end of string
+	LOG_INF("Sensor 2 config RECEIVED: %s", sensor_2_config_name);
 
-	LOG_INF("Sensor 2 config RECEIVED: %d", sensor_2_config);
-    sensor_app_config->sensor_2_type = sensor_2_config;
+	// Get index of sensor type from name and check if it is valid
+    int ret_index = get_sensor_type_index_from_name(sensor_2_config_name);
+	if(ret_index < 0)
+	{
+		LOG_ERR("Invalid sensor 2 config");
+		return BT_GATT_ERR(BT_ATT_ERR_INVALID_ATTRIBUTE_LEN);
+	}
+	// Store index of sensor type to config
+    sensor_app_config->sensor_2_type = ret_index;
+	// Copy name of sensor type to config
+	strcpy(sensor_app_config->sensor_2_type_name, sensor_2_config_name);
+	// Store index of sensor type to nvs
     sensor_nvs_write(SENSOR_NVS_ADDRESS_SENSOR_2_TYPE, &sensor_app_config->sensor_2_type, sizeof(sensor_app_config->sensor_2_type));
 	return len;
 }
@@ -358,7 +380,7 @@ static ssize_t write_sensor2_pwr_config(struct bt_conn *conn, const struct bt_ga
 		return BT_GATT_ERR(BT_ATT_ERR_INVALID_OFFSET);
 	}
 
-	// Store incoming data into dev_eui buffer
+	// Store incoming data into buffer
 	memcpy(sensor_2_voltage_name, buf, len);
 	sensor_2_voltage_name[len] = '\0';  // Add null terminator to end of string
 	

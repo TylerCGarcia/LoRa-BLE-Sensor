@@ -122,13 +122,14 @@ static int initialize_sensor_nvs(void)
     initialize_nvs_address(SENSOR_NVS_ADDRESS_SENSOR_1_POWER, &sensor_app_config->sensor_1_voltage, sizeof(sensor_app_config->sensor_1_voltage));
     get_sensor_voltage_name_from_index(sensor_app_config->sensor_1_voltage_name, sensor_app_config->sensor_1_voltage);
     initialize_nvs_address(SENSOR_NVS_ADDRESS_SENSOR_1_TYPE, &sensor_app_config->sensor_1_type, sizeof(sensor_app_config->sensor_1_type));
-    // get_sensor_type_name_from_index(sensor_app_config->sensor_1_type_name, sensor_app_config->sensor_1_type);
+    get_sensor_type_name_from_index(sensor_app_config->sensor_1_type_name, sensor_app_config->sensor_1_type);
     initialize_nvs_address(SENSOR_NVS_ADDRESS_SENSOR_1_FREQUENCY, &sensor_app_config->sensor_1_frequency, sizeof(sensor_app_config->sensor_1_frequency));
 
     initialize_nvs_address(SENSOR_NVS_ADDRESS_SENSOR_2_ENABLED, &sensor_app_config->is_sensor_2_enabled, sizeof(sensor_app_config->is_sensor_2_enabled));
     initialize_nvs_address(SENSOR_NVS_ADDRESS_SENSOR_2_POWER, &sensor_app_config->sensor_2_voltage, sizeof(sensor_app_config->sensor_2_voltage));
     get_sensor_voltage_name_from_index(sensor_app_config->sensor_2_voltage_name, sensor_app_config->sensor_2_voltage);
     initialize_nvs_address(SENSOR_NVS_ADDRESS_SENSOR_2_TYPE, &sensor_app_config->sensor_2_type, sizeof(sensor_app_config->sensor_2_type));
+    get_sensor_type_name_from_index(sensor_app_config->sensor_2_type_name, sensor_app_config->sensor_2_type);
     initialize_nvs_address(SENSOR_NVS_ADDRESS_SENSOR_2_FREQUENCY, &sensor_app_config->sensor_2_frequency, sizeof(sensor_app_config->sensor_2_frequency));
     return 0;
 }
@@ -553,8 +554,12 @@ int sensor_app_running_state(void)
         sensor_app_config->state = SENSOR_APP_STATE_ERROR;
         return ret;
     }
+    LOG_INF("LoRaWAN: %s", lorawan_setup.is_lorawan_enabled ? "Enabled" : "Disabled");
+    LOG_INF("Sensor 1: INDEX: %d NAME: %s", sensor_app_config->sensor_1_type, sensor_app_config->sensor_1_type_name);
+    LOG_INF("Sensor 1 Power: INDEX: %d NAME: %s", sensor_app_config->sensor_1_voltage, sensor_app_config->sensor_1_voltage_name);
+    LOG_INF("Sensor 2: INDEX: %d NAME: %s", sensor_app_config->sensor_2_type, sensor_app_config->sensor_2_type_name);
+    LOG_INF("Sensor 2 Power: INDEX: %d NAME: %s", sensor_app_config->sensor_2_voltage, sensor_app_config->sensor_2_voltage_name);
 
-    
     while(sensor_app_config->state == SENSOR_APP_STATE_RUNNING)
     {
         if(sensor_app_config->is_sensor_1_enabled && (sensor1_schedule.is_triggered || sensor1_schedule.one_time_trigger))

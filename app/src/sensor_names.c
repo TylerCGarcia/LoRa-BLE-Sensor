@@ -15,10 +15,10 @@ const char *sensor_voltage_names[] = {
 };
 
 const char *sensor_type_names[] = {
-    [NULL_SENSOR] = "NULL_SENSOR",
+    [NULL_SENSOR]    = "NULL_SENSOR",
     [VOLTAGE_SENSOR] = "VOLTAGE_SENSOR",
     [CURRENT_SENSOR] = "CURRENT_SENSOR",
-    [PULSE_SENSOR] = "PULSE_SENSOR",
+    [PULSE_SENSOR]   = "PULSE_SENSOR",
 };
 
 int get_sensor_voltage_name_from_index(char * voltage_name, enum sensor_voltage voltage)

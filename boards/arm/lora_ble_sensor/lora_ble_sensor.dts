@@ -6,7 +6,7 @@
 
 /dts-v1/;
 #include <nordic/nrf52840_qiaa.dtsi>
-#include <nordic/nrf52840_partition.dtsi>
+// #include <nordic/nrf52840_partition.dtsi>
 #include <zephyr/dt-bindings/lora/sx126x.h>
 #include "lora_ble_sensor-pinctrl.dtsi"
 #include <zephyr/dt-bindings/input/input-event-codes.h>
@@ -21,6 +21,9 @@
 		zephyr,uart-mcumgr = &cdc_acm_uart0;
 		zephyr,bt-mon-uart = &cdc_acm_uart0;
 		zephyr,bt-c2h-uart = &cdc_acm_uart0;
+		zephyr,sram = &sram0;
+		zephyr,flash = &flash0;
+		zephyr,code-partition = &slot0_partition;
 	};
 
 	leds {
@@ -228,5 +231,74 @@ zephyr_udc0: &usbd {
 	cdc_acm_uart0: cdc_acm_uart0 {
 		compatible = "zephyr,cdc-acm-uart";
 		label = "CDC_ACM_0";
+	};
+};
+
+// &flash0 {
+//     partitions {
+//         compatible = "fixed-partitions";
+//         #address-cells = <1>;
+//         #size-cells = <1>;
+
+//         boot_partition: partition@0 {
+//             label = "mcuboot";
+//             reg = <0x00000000 0x00018000>;  /* 96KB was 48KB */
+//         };
+
+//         slot0_partition: partition@18000 {
+//             label = "image-0";
+//             reg = <0x00018000 0x00070000>;  /* 448KB was 476KB */
+//         };
+
+//         slot1_partition: partition@88000 {
+//             label = "image-1";
+//             reg = <0x00088000 0x00070000>;  /* 448KB was 476KB */
+//         };
+
+//         /*
+//          * Storage partition will be used by FCB/LittleFS/NVS
+//          * if enabled.
+//          */
+//         storage_partition: partition@f8000 {
+//             label = "storage";
+//             reg = <0x000f8000 0x00008000>;  /* 32KB */
+//         };
+//     };
+// };
+
+&flash0 {
+	partitions {
+		compatible = "fixed-partitions";
+		#address-cells = <1>;
+		#size-cells = <1>;
+
+		boot_partition: partition@0 {
+			label = "mcuboot";
+			reg = <0x00000000 0x0000C000>;
+		};
+
+		slot0_partition: partition@c000 {
+			label = "image-0";
+			reg = <0x0000C000 0x00077000>;
+		};
+
+		slot1_partition: partition@83000 {
+			label = "image-1";
+			reg = <0x00083000 0x00075000>;
+		};
+
+		/*
+		 * The flash starting at 0x000f8000 and ending at
+		 * 0x000fffff is reserved for use by the application.
+		 */
+
+		/*
+		 * Storage partition will be used by FCB/LittleFS/NVS
+		 * if enabled.
+		 */
+		storage_partition: partition@f8000 {
+			label = "storage";
+			reg = <0x000f8000 0x00008000>;
+		};
 	};
 };
