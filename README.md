@@ -37,6 +37,12 @@ Current Version: **V0.2.2**
 
 Version Breakdown: `[Major API Change]`.`[Minor Change/Added Functionality]`.`[Patch/bug fixes]`
 
+### V0.3.0
+- BLE DFU is implemented using SMP Server
+  * MCUMGR is what controls this
+- Logging for MCUBOOT is used with USB
+  * lora_ble_sensor flash partitions are edited to give mcuboot enough memory for usb logging
+
 ### V0.2.2
 - Names for sensor types and output voltages added to their own library
   * Relates indexes to strings to make the ble interaction more human readable

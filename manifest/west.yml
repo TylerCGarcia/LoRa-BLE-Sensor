@@ -16,4 +16,3 @@ manifest:
           - mcuboot
           - mbedtls
           - zcbor
-          - littlefs #only for smp sample
