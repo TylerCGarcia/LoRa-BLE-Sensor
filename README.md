@@ -24,16 +24,14 @@ This will initialize the python environment(.venv), initialize west(.west), and 
 - No power analysis is done yet
 
 # Bugs/To-Do
-- Add OTA Functionality
 - Add nPM1300 functionality
   * Voltage, Current, Temperature, and Charge of the battery
   * Controlling LED
-- Put all sensor names into their own library
-  * only used for ble configurations
+- Add NFC for BLE Configurations
 - Error handling when state given is out of bounds
 
 # Revision History
-Current Version: **V0.2.2**
+Current Version: **V0.3.0**
 
 Version Breakdown: `[Major API Change]`.`[Minor Change/Added Functionality]`.`[Patch/bug fixes]`
 
