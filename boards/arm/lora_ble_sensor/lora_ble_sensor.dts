@@ -234,71 +234,71 @@ zephyr_udc0: &usbd {
 	};
 };
 
-// &flash0 {
-//     partitions {
-//         compatible = "fixed-partitions";
-//         #address-cells = <1>;
-//         #size-cells = <1>;
-
-//         boot_partition: partition@0 {
-//             label = "mcuboot";
-//             reg = <0x00000000 0x00018000>;  /* 96KB was 48KB */
-//         };
-
-//         slot0_partition: partition@18000 {
-//             label = "image-0";
-//             reg = <0x00018000 0x00070000>;  /* 448KB was 476KB */
-//         };
-
-//         slot1_partition: partition@88000 {
-//             label = "image-1";
-//             reg = <0x00088000 0x00070000>;  /* 448KB was 476KB */
-//         };
-
-//         /*
-//          * Storage partition will be used by FCB/LittleFS/NVS
-//          * if enabled.
-//          */
-//         storage_partition: partition@f8000 {
-//             label = "storage";
-//             reg = <0x000f8000 0x00008000>;  /* 32KB */
-//         };
-//     };
-// };
-
 &flash0 {
-	partitions {
-		compatible = "fixed-partitions";
-		#address-cells = <1>;
-		#size-cells = <1>;
+    partitions {
+        compatible = "fixed-partitions";
+        #address-cells = <1>;
+        #size-cells = <1>;
 
-		boot_partition: partition@0 {
-			label = "mcuboot";
-			reg = <0x00000000 0x0000C000>;
-		};
+        boot_partition: partition@0 {
+            label = "mcuboot";
+            reg = <0x00000000 0x00018000>;  /* 96KB was 48KB */
+        };
 
-		slot0_partition: partition@c000 {
-			label = "image-0";
-			reg = <0x0000C000 0x00077000>;
-		};
+        slot0_partition: partition@18000 {
+            label = "image-0";
+            reg = <0x00018000 0x00070000>;  /* 448KB was 476KB */
+        };
 
-		slot1_partition: partition@83000 {
-			label = "image-1";
-			reg = <0x00083000 0x00075000>;
-		};
+        slot1_partition: partition@88000 {
+            label = "image-1";
+            reg = <0x00088000 0x00070000>;  /* 448KB was 476KB */
+        };
 
-		/*
-		 * The flash starting at 0x000f8000 and ending at
-		 * 0x000fffff is reserved for use by the application.
-		 */
-
-		/*
-		 * Storage partition will be used by FCB/LittleFS/NVS
-		 * if enabled.
-		 */
-		storage_partition: partition@f8000 {
-			label = "storage";
-			reg = <0x000f8000 0x00008000>;
-		};
-	};
+        /*
+         * Storage partition will be used by FCB/LittleFS/NVS
+         * if enabled.
+         */
+        storage_partition: partition@f8000 {
+            label = "storage";
+            reg = <0x000f8000 0x00008000>;  /* 32KB */
+        };
+    };
 };
+
+// &flash0 {
+// 	partitions {
+// 		compatible = "fixed-partitions";
+// 		#address-cells = <1>;
+// 		#size-cells = <1>;
+
+// 		boot_partition: partition@0 {
+// 			label = "mcuboot";
+// 			reg = <0x00000000 0x0000C000>;
+// 		};
+
+// 		slot0_partition: partition@c000 {
+// 			label = "image-0";
+// 			reg = <0x0000C000 0x00077000>;
+// 		};
+
+// 		slot1_partition: partition@83000 {
+// 			label = "image-1";
+// 			reg = <0x00083000 0x00075000>;
+// 		};
+
+// 		/*
+// 		 * The flash starting at 0x000f8000 and ending at
+// 		 * 0x000fffff is reserved for use by the application.
+// 		 */
+
+// 		/*
+// 		 * Storage partition will be used by FCB/LittleFS/NVS
+// 		 * if enabled.
+// 		 */
+// 		storage_partition: partition@f8000 {
+// 			label = "storage";
+// 			reg = <0x000f8000 0x00008000>;
+// 		};
+// 	};
+// };

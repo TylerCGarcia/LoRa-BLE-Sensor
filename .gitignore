@@ -20,3 +20,5 @@ deps/
 
 # vscode
 .vscode/
+
+app_smp/
