@@ -625,7 +625,6 @@ static void ble_thread(void *arg1, void *arg2, void *arg3)
     LOG_INF("BLE Thread Started");
     int ret;
     ret = ble_setup(&ble_config);
-    LOG_INF("BLE Name: %s", CONFIG_BT_DEVICE_NAME);
     LOG_INF("Setting up LoRaWAN BLE Service");
     ret = ble_sensor_service_init(sensor_app_config);
     if(ret < 0)
@@ -642,7 +641,6 @@ static void ble_thread(void *arg1, void *arg2, void *arg3)
         return;
     }
     ble_change_name(&ble_config);
-    LOG_INF("BLE Name: %s", CONFIG_BT_DEVICE_NAME);
     while(1)
     {
         LOG_DBG("BLE Thread Running");
