@@ -6,7 +6,6 @@
 
 /dts-v1/;
 #include <nordic/nrf52840_qiaa.dtsi>
-// #include <nordic/nrf52840_partition.dtsi>
 #include <zephyr/dt-bindings/lora/sx126x.h>
 #include "lora_ble_sensor-pinctrl.dtsi"
 #include <zephyr/dt-bindings/input/input-event-codes.h>
@@ -26,80 +25,11 @@
 		zephyr,code-partition = &slot0_partition;
 	};
 
-	leds {
-		compatible = "gpio-leds";
-		boost1_en: boost1_en {
-			gpios = <&gpio0 17 GPIO_ACTIVE_HIGH>;
-			label = "Boost 1 Enable";
-		};
-		boost1_ctrl1: boost1_ctrl1 {
-			gpios = <&gpio0 15 GPIO_ACTIVE_HIGH>;
-			label = "Boost 1 Ctrl 1";
-		};
-		boost1_ctrl2: boost1_ctrl2 {
-			gpios = <&gpio0 16 GPIO_ACTIVE_HIGH>;
-			label = "Boost 1 Ctrl 2";
-		};
-		boost2_en: boost2_en {
-			gpios = <&gpio0 14 GPIO_ACTIVE_HIGH>;
-			label = "Boost 2 Enable";
-		};
-		boost2_ctrl1: boost2_ctrl1 {
-			gpios = <&gpio0 26 GPIO_ACTIVE_HIGH>;
-			label = "Boost 2 Ctrl 1";
-		};
-		boost2_ctrl2: boost2_ctrl2 {
-			gpios = <&gpio0 13 GPIO_ACTIVE_HIGH>;
-			label = "Boost 2 Ctrl 2";
-		};
-		sensor1_d1: sensor1_d1 {
-			gpios = <&gpio1 2 GPIO_ACTIVE_LOW>;
-			label = "Sensor 1 Digital 1";
-		};
-		sensor1_d2: sensor1_d2 {
-			gpios = <&gpio1 1 GPIO_ACTIVE_LOW>;
-			label = "Sensor 1 Digital 2";
-		};
-		sensor2_d1: sensor2_d1 {
-			gpios = <&gpio0 29 GPIO_ACTIVE_LOW>;
-			label = "Sensor 2 Digital 1";
-		};
-		sensor2_d2: sensor2_d2 {
-			gpios = <&gpio0 28 GPIO_ACTIVE_LOW>;
-			label = "Sensor 2 Digital 2";
-		};
-	};
-
-	buttons {
-		compatible = "gpio-keys";
-		button0: button_0 {
-			gpios = <&gpio0 9  (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
-			label = "Button 0";
-			zephyr,code = <INPUT_KEY_0>;
-		};
-	};
-
 	/* Declaration of aliases */
 	aliases {
-		sw0 = &button0;
 		lora0 = &lora;
 		sensortimer = &rtc2;
 		watchdog0 = &wdt0;
-		boost1en = &boost1_en;
-		boost1ctrl1 = &boost1_ctrl1;
-		boost1ctrl2 = &boost1_ctrl2;
-		boost2en = &boost2_en;
-		boost2ctrl1 = &boost2_ctrl1;
-		boost2ctrl2 = &boost2_ctrl2;
-		sensor1d1 = &sensor1_d1;
-		sensor1d2 = &sensor1_d2;
-		sensor2d1 = &sensor2_d1;
-		sensor2d2 = &sensor2_d2;
-	};
-	zephyr,user {
-		/* adjust channel number according to pinmux in board.dts */
-		io-channels = <&adc 0>, <&adc 1>, <&adc 2>, <&adc 3>, <&adc 4>, <&adc 5>;
-		io-channel-names = "sensor_output1", "sensor_output2", "voltage_sensor1", "current_sensor1", "voltage_sensor2", "current_sensor2";
 	};
 };
 
@@ -115,60 +45,6 @@
 
 &reg1 {
 	regulator-initial-mode = <NRF5X_REG_MODE_DCDC>;
-};
-
-&adc {
-	status = "okay";
-	#address-cells = <1>;
-	#size-cells = <0>;
-	channel@0 {
-		reg = <0>;
-		zephyr,gain = "ADC_GAIN_1_6";
-		zephyr,reference = "ADC_REF_INTERNAL";
-		zephyr,acquisition-time = <ADC_ACQ_TIME_DEFAULT>;
-		zephyr,input-positive = <NRF_SAADC_AIN2>; 
-		zephyr,resolution = <12>;
-	};
-    channel@1 {
-		reg = <1>;
-		zephyr,gain = "ADC_GAIN_1_6";
-		zephyr,reference = "ADC_REF_INTERNAL";
-		zephyr,acquisition-time = <ADC_ACQ_TIME_DEFAULT>;
-		zephyr,input-positive = <NRF_SAADC_AIN3>; 
-		zephyr,resolution = <12>;
-	};
-	channel@2 {
-		reg = <2>;
-		zephyr,gain = "ADC_GAIN_1_6";
-		zephyr,reference = "ADC_REF_INTERNAL";
-		zephyr,acquisition-time = <ADC_ACQ_TIME_DEFAULT>;
-		zephyr,input-positive = <NRF_SAADC_AIN1>; 
-		zephyr,resolution = <12>;
-	};
-    channel@3 {
-		reg = <3>;
-		zephyr,gain = "ADC_GAIN_1_2";
-		zephyr,reference = "ADC_REF_INTERNAL";
-		zephyr,acquisition-time = <ADC_ACQ_TIME_DEFAULT>;
-		zephyr,input-positive = <NRF_SAADC_AIN0>; 
-		zephyr,resolution = <12>;
-	};
-	channel@4 {
-		reg = <4>;
-		zephyr,gain = "ADC_GAIN_1_6";
-		zephyr,reference = "ADC_REF_INTERNAL";
-		zephyr,acquisition-time = <ADC_ACQ_TIME_DEFAULT>;
-		zephyr,input-positive = <NRF_SAADC_AIN6>; 
-		zephyr,resolution = <12>;
-	};
-    channel@5 {
-		reg = <5>;
-		zephyr,gain = "ADC_GAIN_1_2";
-		zephyr,reference = "ADC_REF_INTERNAL";
-		zephyr,acquisition-time = <ADC_ACQ_TIME_DEFAULT>;
-		zephyr,input-positive = <NRF_SAADC_AIN7>; 
-		zephyr,resolution = <12>;
-	};
 };
 
 &uicr {
@@ -265,40 +141,3 @@ zephyr_udc0: &usbd {
         };
     };
 };
-
-// &flash0 {
-// 	partitions {
-// 		compatible = "fixed-partitions";
-// 		#address-cells = <1>;
-// 		#size-cells = <1>;
-
-// 		boot_partition: partition@0 {
-// 			label = "mcuboot";
-// 			reg = <0x00000000 0x0000C000>;
-// 		};
-
-// 		slot0_partition: partition@c000 {
-// 			label = "image-0";
-// 			reg = <0x0000C000 0x00077000>;
-// 		};
-
-// 		slot1_partition: partition@83000 {
-// 			label = "image-1";
-// 			reg = <0x00083000 0x00075000>;
-// 		};
-
-// 		/*
-// 		 * The flash starting at 0x000f8000 and ending at
-// 		 * 0x000fffff is reserved for use by the application.
-// 		 */
-
-// 		/*
-// 		 * Storage partition will be used by FCB/LittleFS/NVS
-// 		 * if enabled.
-// 		 */
-// 		storage_partition: partition@f8000 {
-// 			label = "storage";
-// 			reg = <0x000f8000 0x00008000>;
-// 		};
-// 	};
-// };
