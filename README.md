@@ -29,6 +29,7 @@ This will initialize the python environment(.venv), initialize west(.west), and 
   * Controlling LED
 - Add NFC for BLE Configurations
 - Error handling when state given is out of bounds
+- Update CI to attach tags to each saved build
 
 # Revision History
 Current Version: **V0.3.0**

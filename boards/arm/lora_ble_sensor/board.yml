@@ -4,7 +4,7 @@ board:
   vendor: arm
   revision:
     format: major.minor.patch
-    default: "1.0.0"
+    default: "1.1.0"
     revisions:
       - name: "1.0.0"
       - name: "1.1.0"

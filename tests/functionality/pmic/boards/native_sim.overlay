@@ -1,0 +1,47 @@
+#include <zephyr/dt-bindings/gpio/gpio.h>
+#include <dt-bindings/regulator/npm1300.h>
+
+/ {
+	npm1300_ek_pmic: pmic {
+
+        npm1300_ek_regulators: regulators {
+            compatible = "zephyr,fake-regulator";
+
+            npm1300_ek_buck1: buck1 {
+                regulator-min-microvolt = <3000000>;
+                regulator-max-microvolt = <3000000>;
+            };
+
+            npm1300_ek_ldo1: ldo1 {
+                regulator-initial-mode = <NPM1300_LDSW_MODE_LDO>;
+                /delete-property/ enable-gpios;
+                /delete-property/ regulator-init-microvolt;
+                regulator-boot-off;
+            };
+
+            npm1300_ek_ldo2: ldo2 {
+                regulator-initial-mode = <NPM1300_LDSW_MODE_LDO>;
+                /delete-property/ enable-gpios;
+                /delete-property/ regulator-init-microvolt;
+                regulator-boot-off;
+            };
+        };
+
+        npm1300_ek_charger: charger {
+            compatible = "test-charger"; // Dummy compatible
+        };
+
+        npm1300_ek_leds: leds {
+            compatible = "nordic,npm1300-led";
+            nordic,led0-mode = "error";    
+            nordic,led1-mode = "charging";    
+            nordic,led2-mode = "host";
+        };
+    };
+
+    zephyr,user {
+		/* adjust channel number according to pinmux in board.dts */
+		io-channels = <&adc0 0>, <&adc0 1>, <&adc0 2>, <&adc0 3>, <&adc0 4>, <&adc0 5>;
+		io-channel-names = "sensor_output1", "sensor_output2", "voltage_sensor1", "current_sensor1", "voltage_sensor2", "current_sensor2";
+	};
+};
