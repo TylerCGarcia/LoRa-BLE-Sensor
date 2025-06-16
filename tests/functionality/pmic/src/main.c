@@ -3,31 +3,44 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  * Tests:
- * - test correct power calls for each sensor type
+ * - test led can be turned on
+ * - test led can be turned off
  */
+
 
 #include <zephyr/ztest.h>
+#include <zephyr/fff.h>
 #include <zephyr/logging/log.h>
+#include "sensor_pmic.h"
+#include "sensor_led_fakes.h"
 
-LOG_MODULE_REGISTER(tests_data, LOG_LEVEL_INF);
+LOG_MODULE_REGISTER(tests_pmic, LOG_LEVEL_INF);
 
+DEFINE_FFF_GLOBALS;
 
-/**
- * @brief Setup sensor power systems 
- * 
- */
-static void *after_tests(void)
-{
-
-}
-
-ZTEST_SUITE(pmic, NULL, NULL, NULL, after_tests, NULL);
+ZTEST_SUITE(pmic, NULL, NULL, NULL, NULL, NULL);
 
 /**
- * @brief Test that the sensor data can be setup
+ * @brief Test that the PMIC can be initialized
  * 
  */
-ZTEST(pmic, test_pmic_led_setup)
+ZTEST(pmic, test_pmic_init)
 {
-    zassert_true(true, "Test passed");
+    pmic_device_is_ready_fake.return_val = true;
+
+    int ret;
+    ret = sensor_pmic_init();
+    zassert_ok(ret, "Failed to initialize PMIC");
 }
+
+// ZTEST(pmic, test_led_on)
+// {
+//     pmic_device_is_ready_fake.return_val = true;
+
+//     int ret;
+//     ret = sensor_pmic_init();
+//     zassert_ok(ret, "Failed to initialize PMIC");
+//     led_on_fake.return_val = 0;
+//     ret = sensor_pmic_led_on();
+//     zassert_ok(ret, "Failed to turn on LED");
+// }

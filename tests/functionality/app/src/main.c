@@ -17,6 +17,7 @@
 #include "sensor_power_fakes.h"
 #include "sensor_reading_fakes.h"
 #include "sensor_lorawan_fakes.h"
+#include "sensor_pmic_fakes.h"
 
 LOG_MODULE_REGISTER(tests_app, LOG_LEVEL_DBG);
 
@@ -44,6 +45,7 @@ static void *after_tests(void)
     ret = sensor_nvs_clear();
     zassert_ok(ret, "Failed to clear NVS");
     memset(&sensor_app_config, 0, sizeof(sensor_app_config_t)); // reset the sensor app config
+    sensor_pmic_fakes_reset();
 }
 
 ZTEST_SUITE(app, NULL, NULL, NULL, after_tests, NULL);
@@ -55,8 +57,10 @@ ZTEST_SUITE(app, NULL, NULL, NULL, after_tests, NULL);
 ZTEST(app, test_app_init)
 {
     int ret;
+    sensor_pmic_init_fake.return_val = 0;
     ret = sensor_app_init(&sensor_app_config);
     zassert_ok(ret, "App init failed");
+    zassert_equal(sensor_pmic_init_fake.call_count, 1, "PMIC init should be called");
 }
 
 

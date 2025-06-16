@@ -1,47 +1,118 @@
-#include <zephyr/dt-bindings/gpio/gpio.h>
+/*
+* Copyright (C) 2023 Nordic Semiconductor ASA
+* SPDX-License-Identifier: Apache-2.0
+*/
+
 #include <dt-bindings/regulator/npm1300.h>
+#include <zephyr/dt-bindings/input/input-event-codes.h>
 
-/ {
-	npm1300_ek_pmic: pmic {
+&i2c0 {
+    compatible = "zephyr,i2c-emul-controller";
+    status = "okay";  // Enable the I2C1 interface
+    // pinctrl-0 = <&i2c0_default>;
+    // pinctrl-1 = <&i2c0_sleep>;
+    // pinctrl-names = "default", "sleep";
+    
+    npm1300_ek_pmic: pmic@6b {
 
-        npm1300_ek_regulators: regulators {
-            compatible = "zephyr,fake-regulator";
+        compatible = "nordic,npm1300";
+        // compatible = "vnd,emul-tester";
 
-            npm1300_ek_buck1: buck1 {
-                regulator-min-microvolt = <3000000>;
-                regulator-max-microvolt = <3000000>;
-            };
+        reg = <0x6b>;
+       
+        long-press-reset = "one-button";
+        // ship-to-active-time = <96>;
 
-            npm1300_ek_ldo1: ldo1 {
-                regulator-initial-mode = <NPM1300_LDSW_MODE_LDO>;
-                /delete-property/ enable-gpios;
-                /delete-property/ regulator-init-microvolt;
-                regulator-boot-off;
-            };
+        npm1300_ek_gpio: gpio-controller {
+            compatible = "nordic,npm1300-gpio";
+            gpio-controller;
+            #gpio-cells = <2>;
+            ngpios = <5>;
 
-            npm1300_ek_ldo2: ldo2 {
-                regulator-initial-mode = <NPM1300_LDSW_MODE_LDO>;
-                /delete-property/ enable-gpios;
-                /delete-property/ regulator-init-microvolt;
-                regulator-boot-off;
-            };
+            // npm1300_button: button {
+            //     compatible = "gpio-keys";
+            //     button0 {
+            //         gpios = <&npm1300_ek_gpio 0 (GPIO_PULL_UP | GPIO_ACTIVE_LOW)>;
+            //         label = "NPM1300 Button";
+            //     };
+            // };
         };
 
+       npm1300_ek_regulators: regulators {
+           compatible = "nordic,npm1300-regulator";
+
+            npm1300_ek_buck1: BUCK1 {
+                // regulator-min-microvolt = <1000000>;
+                // regulator-max-microvolt = <3300000>;
+                // regulator-init-microvolt =  <3000000>;
+                // retention-microvolt = <1200000>;
+                regulator-initial-mode = <NPM1300_BUCK_MODE_AUTO>;
+                /delete-property/ enable-gpios;
+                /delete-property/ retention-gpios;
+                /delete-property/ pwm-gpios;
+                /delete-property/ regulator-init-microvolt;
+                regulator-boot-off;
+
+            };
+
+            npm1300_ek_buck2: BUCK2 {
+                // regulator-min-microvolt = <1000000>;
+                // regulator-max-microvolt = <3300000>;
+                // regulator-init-microvolt =  <3300000>;
+                // retention-microvolt = <1800000>;
+                regulator-initial-mode = <NPM1300_BUCK_MODE_AUTO>;
+                regulator-always-on;
+                /delete-property/ enable-gpios;
+                /delete-property/ retention-gpios;
+                /delete-property/ pwm-gpios;
+                /delete-property/ regulator-init-microvolt;
+
+            };
+
+            npm1300_ek_ldo1: LDO1 {
+                // regulator-min-microvolt = <1000000>;
+                // regulator-max-microvolt = <3300000>;
+                // regulator-init-microvolt = <3300000>;
+                regulator-initial-mode = <NPM1300_LDSW_MODE_LDO>;
+                // soft-start-microamp = <10000>;
+                /delete-property/ enable-gpios;
+                /delete-property/ regulator-init-microvolt;
+                regulator-boot-off;
+            };
+
+            npm1300_ek_ldo2: LDO2 {
+                // regulator-min-microvolt = <1000000>;
+                // regulator-max-microvolt = <3300000>;
+                // regulator-init-microvolt = <3300000>;
+                regulator-initial-mode = <NPM1300_LDSW_MODE_LDO>;
+                // soft-start-microamp = <10000>;
+                regulator-boot-off;
+                /delete-property/ enable-gpios;
+                /delete-property/ regulator-init-microvolt;
+            };
+
+       };
+       
         npm1300_ek_charger: charger {
-            compatible = "test-charger"; // Dummy compatible
+            compatible = "nordic,npm1300-charger";
+            term-microvolt = <4200000>;
+            term-warm-microvolt = <3600000>;
+            // term-current-percent = <10>;
+            current-microamp = <500000>;
+            // trickle-microvolt = <2900000>;
+            dischg-limit-microamp = <1000000>;
+            vbus-limit-microamp = <500000>;
+            thermistor-ohms = <10000>;
+            thermistor-beta = <3380>;
         };
-
+       
         npm1300_ek_leds: leds {
             compatible = "nordic,npm1300-led";
+            // compatible = "vnd,emul-tester";
             nordic,led0-mode = "error";    
             nordic,led1-mode = "charging";    
             nordic,led2-mode = "host";
         };
-    };
-
-    zephyr,user {
-		/* adjust channel number according to pinmux in board.dts */
-		io-channels = <&adc0 0>, <&adc0 1>, <&adc0 2>, <&adc0 3>, <&adc0 4>, <&adc0 5>;
-		io-channel-names = "sensor_output1", "sensor_output2", "voltage_sensor1", "current_sensor1", "voltage_sensor2", "current_sensor2";
-	};
+   };
 };
+

@@ -8,7 +8,10 @@ project(sensor_pmic_tests)
 
 target_include_directories(app PRIVATE 
     ${CMAKE_CURRENT_SOURCE_DIR}/../../../app/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/fakes
 )
 
 target_sources(app PRIVATE src/main.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../../app/src/sensor_pmic.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/fakes/sensor_led_fakes.c
 )

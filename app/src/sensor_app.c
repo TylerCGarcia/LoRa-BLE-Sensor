@@ -5,6 +5,7 @@
 #include "sensor_data.h"
 #include "sensor_nvs.h"
 #include "sensor_lorawan.h"
+#include "sensor_pmic.h"
 #include "ble_sensor_service.h"
 #include "ble_lorawan_service.h"
 #include "sensor_names.h"
@@ -491,6 +492,12 @@ int sensor_app_init(sensor_app_config_t *config)
         LOG_ERR("Failed to initialize NVS");
         return ret;
     }
+    ret = sensor_pmic_init();
+    if(ret < 0)
+    {
+        LOG_ERR("Failed to initialize PMIC");
+        return ret;
+    }
     return 0;
 }
 
@@ -500,11 +507,15 @@ int sensor_app_configuration_state(void)
     while(sensor_app_config->state == SENSOR_APP_STATE_CONFIGURATION)
     {
         LOG_DBG("App is in the configuration state");
-        k_sleep(K_SECONDS(1));
+        sensor_pmic_led_on();
+        k_msleep(500);
+        sensor_pmic_led_off();
+        k_msleep(500);
     }
     
     if(lorawan_setup.is_lorawan_enabled && sensor_app_config->connect_network_during_configuration)
     {
+        sensor_pmic_led_on();
         ret = sensor_lorawan_connection();
         if(ret < 0)
         {
@@ -512,6 +523,7 @@ int sensor_app_configuration_state(void)
             sensor_app_config->state = SENSOR_APP_STATE_CONFIGURATION;
             return ret;
         }
+        sensor_pmic_led_off();
     }
     return 0;
 }
@@ -530,6 +542,7 @@ int sensor_app_running_state(void)
     /* Connect to LoRaWAN if it was enabled and not connected to during configuration. */
     if(lorawan_setup.is_lorawan_enabled && !is_lorawan_connected())
     {
+        sensor_pmic_led_on();
         ret = sensor_lorawan_connection();
         if(ret < 0)
         {
@@ -537,6 +550,7 @@ int sensor_app_running_state(void)
             sensor_app_config->state = SENSOR_APP_STATE_ERROR;
             return ret;
         }
+        sensor_pmic_led_off();
     }
     /* Initialize the sensor schedules. */
     ret = initialize_sensor_schedule();
@@ -564,6 +578,7 @@ int sensor_app_running_state(void)
     {
         if(sensor_app_config->is_sensor_1_enabled && (sensor1_schedule.is_triggered || sensor1_schedule.one_time_trigger))
 		{
+            sensor_pmic_led_on();
 			sensor1_schedule.one_time_trigger = 0;
 			LOG_INF("Sensor 1 schedule triggered");
 			sensor_data_read(&sensor1_data, sensor_scheduling_get_seconds());
@@ -571,9 +586,11 @@ int sensor_app_running_state(void)
 			sensor_scheduling_reset_schedule(&sensor1_schedule);
             sensor_app_config->sensor_1_latest_data = sensor1_data.latest_data;
             sensor_app_config->sensor_1_latest_data_timestamp = (sensor_scheduling_get_seconds() - sensor1_data.latest_timestamp);
-		}
+            sensor_pmic_led_off();
+        }
 		if(sensor_app_config->is_sensor_2_enabled && (sensor2_schedule.is_triggered || sensor2_schedule.one_time_trigger))
 		{
+            sensor_pmic_led_on();
 			sensor2_schedule.one_time_trigger = 0;
 			LOG_INF("Sensor 2 schedule triggered");
 			sensor_data_read(&sensor2_data, sensor_scheduling_get_seconds());
@@ -581,9 +598,11 @@ int sensor_app_running_state(void)
 			sensor_scheduling_reset_schedule(&sensor2_schedule);
             sensor_app_config->sensor_2_latest_data = sensor2_data.latest_data;
             sensor_app_config->sensor_2_latest_data_timestamp = (sensor_scheduling_get_seconds() - sensor2_data.latest_timestamp);
-		}
+            sensor_pmic_led_off();
+        }
 		if(lorawan_setup.is_lorawan_enabled && (radio_schedule.is_triggered || radio_schedule.one_time_trigger))
 		{
+            sensor_pmic_led_on();
 			radio_schedule.one_time_trigger = 0;
 			LOG_INF("Radio schedule triggered");
 
@@ -594,6 +613,7 @@ int sensor_app_running_state(void)
             {
                 LOG_ERR("Failed to send LoRaWAN payload");
             }
+            sensor_pmic_led_off();
 		}
         LOG_DBG("App is in the running state");
         k_msleep(1000);

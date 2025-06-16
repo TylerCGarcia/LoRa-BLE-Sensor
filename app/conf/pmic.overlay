@@ -18,9 +18,8 @@
         reg = <0x6b>;
 
        
-    long-press-reset = "one-button";
-    // ship-to-active-time = <96>;
-
+        long-press-reset = "one-button";
+        // ship-to-active-time = <96>;
 
         npm1300_ek_gpio: gpio-controller {
             compatible = "nordic,npm1300-gpio";

@@ -22,4 +22,5 @@ target_sources(app PRIVATE src/main.c
     ${CMAKE_CURRENT_SOURCE_DIR}/fakes/sensor_power_fakes.c
     ${CMAKE_CURRENT_SOURCE_DIR}/fakes/sensor_reading_fakes.c
     ${CMAKE_CURRENT_SOURCE_DIR}/fakes/sensor_lorawan_fakes.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/fakes/sensor_pmic_fakes.c
 )
