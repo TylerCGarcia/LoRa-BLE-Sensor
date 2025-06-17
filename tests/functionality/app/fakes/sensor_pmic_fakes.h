@@ -1,6 +1,8 @@
+// In tests/fakes/sensor_pmic_fakes.h
+#ifndef SENSOR_PMIC_FAKES_H
+#define SENSOR_PMIC_FAKES_H
 
-#include "sensor_power_fakes.h"
-
+#include <zephyr/fff.h>
 
 DECLARE_FAKE_VALUE_FUNC(int, sensor_pmic_init);
 DECLARE_FAKE_VALUE_FUNC(int, sensor_pmic_led_on);
@@ -8,3 +10,5 @@ DECLARE_FAKE_VALUE_FUNC(int, sensor_pmic_led_off);
 
 // Reset all fakes
 void sensor_pmic_fakes_reset(void);
+
+#endif

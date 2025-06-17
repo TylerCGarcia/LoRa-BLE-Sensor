@@ -26,6 +26,7 @@ This will initialize the python environment(.venv), initialize west(.west), and 
 # Bugs/To-Do
 - Add nPM1300 functionality
   * Voltage, Current, Temperature, and Charge of the battery
+  * Enable Charging
   * Controlling LED
 - Add NFC for BLE Configurations
 - Error handling when state given is out of bounds
