@@ -95,6 +95,7 @@
        
         npm1300_ek_charger: charger {
             compatible = "nordic,npm1300-charger";
+            
             term-microvolt = <4200000>;
             term-warm-microvolt = <3600000>;
             // term-current-percent = <10>;

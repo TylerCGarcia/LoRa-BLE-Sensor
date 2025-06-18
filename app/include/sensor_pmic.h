@@ -14,31 +14,63 @@
 
 #include <zephyr/device.h>
 #include <stdbool.h>
+#include <stdint.h>
+#include <zephyr/drivers/sensor.h>
+
+typedef struct {
+    float voltage;
+    float current;
+    float temp;
+    uint32_t chg_status;
+    uint32_t chg_error;
+    bool vbus_present;
+} pmic_sensor_status_t;
 
 /**
- * @brief Initialize the PMIC, with its charging and led configuration.
+ * @brief Structure containing function pointers for PMIC operations
+ */
+typedef struct {
+    bool (*device_is_ready)(const struct device *dev);
+    int (*led_on)(const struct device *dev, uint32_t led);
+    int (*led_off)(const struct device *dev, uint32_t led);
+    int (*sensor_status_get)(const struct device *dev, pmic_sensor_status_t *status);
+} sensor_pmic_ops_t;
+
+/**
+ * @brief Initialize the PMIC with custom operations
  * 
+ * @param ops Pointer to operations structure. If NULL, default operations will be used
+ * @return int 0 on success, negative error code on failure
+ */
+int sensor_pmic_init_with_ops(const sensor_pmic_ops_t *ops);
+
+/**
+ * @brief Initialize the PMIC, with default operations.
+ * 
+ * @return int 0 on success, negative error code on failure
  */
 int sensor_pmic_init(void);
 
 /**
  * @brief Turn on the LED
  * 
+ * @return int 0 on success, negative error code on failure
  */
 int sensor_pmic_led_on(void);
 
 /**
  * @brief Turn off the LED
  * 
+ * @return int 0 on success, negative error code on failure
  */
 int sensor_pmic_led_off(void);
 
 /**
- * @brief Check if the PMIC device is ready. This is defined as weak to be overridden during testing.
+ * @brief Get the status of the PMIC sensors
  * 
- * @param dev 
- * @return true if the device is ready, false otherwise
+ * @param status Pointer to the status structure
+ * @return int 0 on success, negative error code on failure
  */
-__attribute__((weak)) bool pmic_device_is_ready(const struct device *dev);
+int sensor_pmic_status_get(pmic_sensor_status_t *status);
 
 #endif

@@ -3,7 +3,7 @@
 
 #include "sensor_names.h"
 
-LOG_MODULE_REGISTER(SENSOR_NAMES, LOG_LEVEL_DBG);
+LOG_MODULE_REGISTER(SENSOR_NAMES, LOG_LEVEL_INF);
 
 const char *sensor_voltage_names[] = {
     [SENSOR_VOLTAGE_OFF] = "SENSOR_VOLTAGE_OFF",

@@ -32,7 +32,7 @@ static sensor_power_config_t sensor_output1 = {
 	.boost_ctrl2 = GPIO_DT_SPEC_GET(DT_ALIAS(boost1ctrl2), gpios),
 	.ldo_dev = DEVICE_DT_GET(DT_NODELABEL(npm1300_ek_ldo1)),
 	.output_read = ADC_DT_SPEC_GET_BY_NAME(DT_PATH(zephyr_user), sensor_output1),
-	.delay_ms = 500
+	.delay_ms = 1000
 };
 
 /* Sensor power configurations for power 2. */
@@ -43,7 +43,7 @@ static sensor_power_config_t sensor_output2 = {
 	.boost_ctrl2 = GPIO_DT_SPEC_GET(DT_ALIAS(boost2ctrl2), gpios),
 	.ldo_dev = DEVICE_DT_GET(DT_NODELABEL(npm1300_ek_ldo2)),
 	.output_read = ADC_DT_SPEC_GET_BY_NAME(DT_PATH(zephyr_user), sensor_output2),
-	.delay_ms = 500
+	.delay_ms = 1000
 };
 
 /* Array of sensor power configurations. */

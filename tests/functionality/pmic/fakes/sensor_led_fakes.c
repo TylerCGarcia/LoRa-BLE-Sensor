@@ -1,19 +1,22 @@
 #include "sensor_led_fakes.h"
 
-DEFINE_FAKE_VALUE_FUNC(bool, pmic_device_is_ready, const struct device *);
-
-// Basic LED operations
-DEFINE_FAKE_VALUE_FUNC(int, led_on, const struct device *, uint32_t);
-DEFINE_FAKE_VALUE_FUNC(int, led_off, const struct device *, uint32_t);
-DEFINE_FAKE_VALUE_FUNC(int, led_set_brightness, const struct device *, uint32_t, uint8_t);
-DEFINE_FAKE_VALUE_FUNC(int, led_blink, const struct device *, uint32_t, uint32_t, uint32_t);
-
-// Reset all fakes
-void sensor_led_fakes_reset(void)
+bool device_is_ready_wrapper(const struct device *dev)
 {
-    RESET_FAKE(pmic_device_is_ready);
-    RESET_FAKE(led_on);
-    RESET_FAKE(led_off);
-    RESET_FAKE(led_set_brightness);
-    RESET_FAKE(led_blink);
+    return true;
+}
+
+// Wrapper functions to match the expected function signatures
+int led_on_wrapper(const struct device *dev, uint32_t led)
+{
+    return 0;
+}
+
+int led_off_wrapper(const struct device *dev, uint32_t led)
+{
+    return 0;
+}
+
+int sensor_status_get_wrapper(const struct device *dev, pmic_sensor_status_t *status)
+{
+    return 0;
 }
