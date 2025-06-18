@@ -1,4 +1,4 @@
-#include <sensor_pmic.h>
+#include "sensor_pmic.h"
 #include <zephyr/logging/log.h>
 #include <zephyr/drivers/led.h>
 #include <zephyr/drivers/charger.h>

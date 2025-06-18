@@ -67,6 +67,7 @@ target_sources(app PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/src/sensor_reading.c
     ${CMAKE_CURRENT_SOURCE_DIR}/src/sensor_lorawan.c
     ${CMAKE_CURRENT_SOURCE_DIR}/src/sensor_ble.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/ble_device_service.c
     ${CMAKE_CURRENT_SOURCE_DIR}/src/ble_sensor_service.c
     ${CMAKE_CURRENT_SOURCE_DIR}/src/ble_lorawan_service.c
     ${CMAKE_CURRENT_SOURCE_DIR}/src/sensor_nvs.c

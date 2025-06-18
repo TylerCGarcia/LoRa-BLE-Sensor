@@ -27,6 +27,7 @@ typedef enum sensor_app_state{
 };
 
 enum sensor_nvs_address {
+    SENSOR_NVS_ADDRESS_DEVICE_NAME,
     SENSOR_NVS_ADDRESS_APP_STATE,
     SENSOR_NVS_ADDRESS_LORAWAN_ENABLED,
     SENSOR_NVS_ADDRESS_LORAWAN_FREQUENCY,

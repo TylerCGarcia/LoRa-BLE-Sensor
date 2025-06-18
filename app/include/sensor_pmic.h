@@ -18,6 +18,7 @@
 #include <zephyr/drivers/sensor.h>
 
 typedef struct {
+    float percentage;
     float voltage;
     float current;
     float temp;
