@@ -8,6 +8,7 @@
 #include "sensor_pmic.h"
 #include "ble_sensor_service.h"
 #include "ble_lorawan_service.h"
+#include "ble_device_service.h"
 #include "sensor_names.h"
 #include <zephyr/logging/log.h>
 #include <zephyr/kernel.h>
@@ -73,6 +74,9 @@ static sensor_data_t sensor2_data = {
     .data_size = 4,
     .timestamp_size = 4,
 };
+
+/* PMIC sensor status */
+static pmic_sensor_status_t pmic_status;
 
 /* The timer device to use for scheduling */
 static const struct device *sensor_timer = DEVICE_DT_GET(DT_ALIAS(sensortimer));
@@ -511,6 +515,7 @@ int sensor_app_configuration_state(void)
         k_msleep(500);
         sensor_pmic_led_off();
         k_msleep(500);
+        sensor_pmic_status_get(&pmic_status);
     }
     
     if(lorawan_setup.is_lorawan_enabled && sensor_app_config->connect_network_during_configuration)
@@ -618,6 +623,7 @@ int sensor_app_running_state(void)
         LOG_DBG("App is in the running state");
         k_msleep(1000);
         update_sensor_data_timestamps();
+        sensor_pmic_status_get(&pmic_status);
     }
     /* Disable sensors.*/
     ret = disable_sensor();
@@ -645,7 +651,14 @@ static void ble_thread(void *arg1, void *arg2, void *arg3)
     LOG_INF("BLE Thread Started");
     int ret;
     ret = ble_setup(&ble_config);
-    LOG_INF("Setting up LoRaWAN BLE Service");
+    LOG_INF("Setting up BLE Services");
+    ret = ble_device_service_init(&pmic_status);
+    if(ret < 0)
+    {
+        LOG_ERR("Failed to initialize Device BLE service");
+        sensor_app_config->state = SENSOR_APP_STATE_ERROR;
+        return;
+    }
     ret = ble_sensor_service_init(sensor_app_config);
     if(ret < 0)
     {
