@@ -1,6 +1,6 @@
 
 #include <sensor_timer.h>
-
+#include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
 
 LOG_MODULE_REGISTER(SENSOR_TIMER, LOG_LEVEL_INF);
@@ -45,12 +45,12 @@ int sensor_timer_get_current_seconds(const struct device *dev)
 {
     int ret;
     LOG_DBG("Timer Frequency: %d", counter_get_frequency(dev));
-    int time;
-    ret = counter_get_value(dev, &time);
+    uint32_t ticks;
+    ret = counter_get_value(dev, &ticks);
     if (ret != 0) {
         return ret;
     }
-    return time / counter_get_frequency(dev);
+    return (int)(ticks / counter_get_frequency(dev));
 }
 
 int sensor_timer_get_total_seconds(const struct device *dev)
@@ -66,12 +66,39 @@ int sensor_timer_get_total_seconds(const struct device *dev)
 int sensor_timer_reset(const struct device *dev)
 {
     int ret;
-    ret = counter_reset(dev);
+    
+    /* Stop the counter */
+    ret = counter_stop(dev);
     if (ret != 0) {
-        LOG_ERR("Failed to reset counter");
+        LOG_ERR("Failed to stop counter");
         return ret;
     }
+    
+    /* Wait a bit to ensure counter is fully stopped */
+    k_sleep(K_MSEC(1));
+    
+    /* Reinitialize the counter with the same top value */
+    const struct counter_top_cfg top_cfg = {
+        .callback = top_value_callback,
+        .ticks = counter_get_top_value(dev),
+    };
+    
+    ret = counter_set_top_value(dev, &top_cfg);
+    if (ret != 0) {
+        LOG_ERR("Failed to set top value for reset");
+        return ret;
+    }
+    
+    /* Restart the counter */
+    ret = counter_start(dev);
+    if (ret != 0) {
+        LOG_ERR("Failed to restart counter");
+        return ret;
+    }
+    
+    /* Reset our overflow tracking */
     total_overflown_seconds = 0;
+    
     return 0;
 }
 
@@ -80,16 +107,25 @@ int sensor_timer_stop(const struct device *dev)
     return counter_stop(dev);
 }
 
+// Replace the entire function from line 111 to 128 with:
 int sensor_timer_set_alarm(const struct device *dev, sensor_timer_alarm_cfg_t *sensor_timer_alarm_cfg)
 {
     int ret;
+    uint32_t alarm_ticks;
+    
+    // Convert seconds to ticks by multiplying by frequency
+    alarm_ticks = sensor_timer_alarm_cfg->alarm_seconds * counter_get_frequency(dev);
+    
     struct counter_alarm_cfg alarm_cfg = {
         .callback = sensor_timer_alarm_cfg->callback,
-        .ticks = (sensor_timer_alarm_cfg->alarm_seconds * counter_get_frequency(dev))
+        .ticks = alarm_ticks,
+        .flags = 0,  // Relative alarm
     };
+    
     /* Make sure the alarm ticks are not greater than the top value of the timer */
-    if(alarm_cfg.ticks > counter_get_top_value(dev)) {
-        LOG_ERR("Alarm ticks are greater than the top value of the timer");
+    if (alarm_ticks > counter_get_top_value(dev)) {
+        LOG_ERR("Alarm ticks (%u) are greater than the top value (%u) of the timer", 
+                alarm_ticks, counter_get_top_value(dev));
         return -EINVAL;
     }
 
@@ -98,6 +134,8 @@ int sensor_timer_set_alarm(const struct device *dev, sensor_timer_alarm_cfg_t *s
     if (ret != 0) {
         return ret;
     }
+    
+    return 0;  // Add missing return statement
 }
 
 int sensor_timer_cancel_alarm(const struct device *dev, sensor_timer_alarm_cfg_t *sensor_timer_alarm_cfg)

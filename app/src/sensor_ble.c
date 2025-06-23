@@ -14,7 +14,6 @@ static volatile int ble_is_advertising = 0;
 static struct bt_conn *my_conn = NULL;
 
 typedef struct {
-    enum bt_le_adv_opt adv_opt;
     adv_interval_t adv_interval;
     char adv_name[32];
 } ble_adv_params_t;
@@ -64,9 +63,8 @@ struct bt_conn_cb connection_callbacks = {
 static int start_advertising(void)
 {
     int ret;
-    /* Create the advertising structure. */
-    struct bt_le_adv_param *adv_param =
-    BT_LE_ADV_PARAM(ble_adv_params.adv_opt, ble_adv_params.adv_interval.min, ble_adv_params.adv_interval.max, NULL);
+
+    const struct bt_le_adv_param *adv_param = BT_LE_ADV_CONN_FAST_1;
 
     const struct bt_data ad[] = {
         BT_DATA_BYTES(BT_DATA_FLAGS, (BT_LE_AD_NO_BREDR)),
@@ -87,7 +85,6 @@ int ble_setup(ble_config_t *config)
 
     int ret;
     /* Initialize the advertising parameters. */
-    ble_adv_params.adv_opt = config->adv_opt;
     strcpy(ble_adv_params.adv_name, config->adv_name);
     ble_adv_params.adv_interval.min = calculate_adv_interval(config->adv_interval_min_ms);
     ble_adv_params.adv_interval.max = calculate_adv_interval(config->adv_interval_max_ms);

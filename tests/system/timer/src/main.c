@@ -30,7 +30,7 @@ enum sensor_timer_channel {
 const struct device *timer0 = DEVICE_DT_GET(DT_NODELABEL(counter0));
 
 static const int top_value_seconds = 3600;
-static const int counter_top_value_ticks = top_value_seconds / CONFIG_COUNTER_NATIVE_SIM_FREQUENCY;
+static int counter_top_value_ticks;
 
 static int channel_0_alarm_triggered = 0;
 static int channel_1_alarm_triggered = 0;
@@ -103,6 +103,7 @@ static void assert_alarm_triggered_flags(int channel0_expected_value, int channe
 static void *testsuite_setup(void)
 {
     int ret;
+    counter_top_value_ticks = top_value_seconds / counter_get_frequency(timer0);
     /* Set the top value of the timer */
     const struct counter_top_cfg top_cfg = {
         .ticks = counter_top_value_ticks,

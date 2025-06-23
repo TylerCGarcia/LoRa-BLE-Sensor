@@ -7,8 +7,6 @@
 
 /* Structure to hold the BLE setup. */
 typedef struct {
-    /* Advertising options. */
-    enum bt_le_adv_opt adv_opt;
     /* Advertising interval min in milliseconds. */
     uint32_t adv_interval_min_ms;
     /* Advertising interval max in milliseconds. */

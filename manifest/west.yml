@@ -5,11 +5,12 @@ manifest:
   projects:
     - name: zephyr
       remote: zephyrproject-rtos
-      revision: main
+      revision: v4.1.0
       import:
         path-prefix: deps
         name-allowlist:
           - zephyr
+          - cmsis
           - cmsis_6
           - hal_nordic
           - loramac-node
