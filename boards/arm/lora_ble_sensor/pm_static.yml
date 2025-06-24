@@ -1,0 +1,13 @@
+# boards/arm/lora_ble_sensor/pm_static.yml
+# Partition layout for LoRa BLE Sensor board (nRF52840)
+# Total flash: 1MB (0x100000)
+
+# MCUboot bootloader partition
+mcuboot:
+  address: 0x0
+  size: 0x18000  # 96KB - matches your current boot_partition
+
+# Storage partition for NVS, FCB, LittleFS, etc.
+storage:
+  address: 0xf8000
+  size: 0x8000   # 32KB - matches your current storage_partition

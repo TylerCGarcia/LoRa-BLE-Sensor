@@ -55,6 +55,7 @@ list(APPEND CONF_FILE
     ${CMAKE_CURRENT_SOURCE_DIR}/conf/prj.conf)
 
 find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
+
 project(LoRa-BLE-Sensor)
 
 target_include_directories(app PRIVATE 
