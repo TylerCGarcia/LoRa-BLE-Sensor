@@ -209,9 +209,12 @@ static int add_sensor_configuration_to_lorawan_payload(void)
 {
     int ret;
     uint8_t i = lorawan_data.length;
-    lorawan_data.data[i++] = CONFIG_HW_VERSION_MAJOR;
-    lorawan_data.data[i++] = CONFIG_HW_VERSION_MINOR;
-
+    uint8_t hw_version_major;
+    uint8_t hw_version_minor;
+    uint8_t hw_version_patch; // Not added to payload yet
+    sscanf(CONFIG_BOARD_REVISION, "%d.%d.%d", &hw_version_major, &hw_version_minor, &hw_version_patch);
+    lorawan_data.data[i++] = hw_version_major;
+    lorawan_data.data[i++] = hw_version_minor;
     lorawan_data.data[i++] = CONFIG_APP_VERSION_MAJOR;
     lorawan_data.data[i++] = CONFIG_APP_VERSION_MINOR;
     lorawan_data.data[i++] = CONFIG_APP_VERSION_PATCH;
@@ -224,8 +227,22 @@ static int add_sensor_configuration_to_lorawan_payload(void)
     lorawan_data.data[i++] = (timestamp >> 8) & 0xFF;
     lorawan_data.data[i++] = timestamp & 0xFF;  
 
+    // LoRaWAN configuration
     lorawan_data.data[i++] = lorawan_setup.lorawan_frequency;
     lorawan_data.data[i++] = lorawan_setup.send_attempts;
+    // PMIC Information
+    sensor_pmic_status_get(&pmic_status);
+    // Break voltage into 2 bytes (high byte first, then low byte)
+    int16_t voltage_hundreths = (int16_t)(pmic_status.voltage * 100.0f);
+    lorawan_data.data[i++] = (voltage_hundreths >> 8) & 0xFF;  // High byte
+    lorawan_data.data[i++] = voltage_hundreths & 0xFF;         // Low byte
+
+    // Break temperature into 2 bytes (high byte first, then low byte)
+    int16_t temperature_hundreths = (int16_t)(pmic_status.temp * 100.0f);
+    lorawan_data.data[i++] = (temperature_hundreths >> 8) & 0xFF;  // High byte
+    lorawan_data.data[i++] = temperature_hundreths & 0xFF;         // Low byte
+
+    // Sensor configuration
     lorawan_data.data[i++] = (sensor_app_config->is_sensor_1_enabled << 0) | (sensor_app_config->is_sensor_2_enabled << 1);
     if(sensor_app_config->is_sensor_1_enabled)
     {

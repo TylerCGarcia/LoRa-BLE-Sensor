@@ -32,10 +32,7 @@ sensor_app_config_t sensor_app_config = {
 int main(void)
 {
 	int ret;
-	// LOG_INF("Address of sample %p", (void *)__rom_region_start);
-	// LOG_INF("OTA TEST RUN NEW");
 	LOG_INF("%s: %s",CONFIG_BOARD, CONFIG_BOARD_REVISION);
-	// LOG_INF("Hardware Version: %d.%d", CONFIG_HW_VERSION_MAJOR, CONFIG_HW_VERSION_MINOR);
 	LOG_INF("Firmware Version: %s", CONFIG_APP_VERSION);
 
 	ret = sensor_app_init(&sensor_app_config);
