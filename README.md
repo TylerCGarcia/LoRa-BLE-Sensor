@@ -34,9 +34,14 @@ This will initialize the python environment(.venv), initialize west(.west), and 
 - Add pmic values to lorawan
 
 # Revision History
-Current Version: **V0.3.0**
+Current Version: **V0.4.0**
 
 Version Breakdown: `[Major API Change]`.`[Minor Change/Added Functionality]`.`[Patch/bug fixes]`
+
+### V0.4.0
+- PMIC LED is used for running an configuration state
+- PMIC battery voltage, temperature, current usb connections are added
+  * Battery voltage and battery temperature are sent over ble and lora
 
 ### V0.3.0
 - BLE DFU is implemented using SMP Server
