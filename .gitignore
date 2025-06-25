@@ -20,5 +20,5 @@ deps/
 
 # vscode
 .vscode/
-
-app_smp/
+# remove all testing apps
+app_*/
