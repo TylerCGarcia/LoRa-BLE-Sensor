@@ -25,13 +25,12 @@ This will initialize the python environment(.venv), initialize west(.west), and 
 
 # Bugs/To-Do
 - Add nPM1300 functionality
-  * Voltage, Current, Temperature, and Charge of the battery
+  * Current, and Charge of the battery
   * Enable Charging
   * Controlling LED
 - Add NFC for BLE Configurations
 - Error handling when state given is out of bounds
 - Update CI to attach tags to each saved build
-- Add pmic values to lorawan
 
 # Revision History
 Current Version: **V0.4.0**
