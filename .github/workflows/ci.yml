@@ -40,13 +40,29 @@ jobs:
           . .venv/bin/activate
           west build app -b lora_ble_sensor --pristine --sysbuild
 
+      # - name: 📦 Save Build Artifacts
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: Build-Results-${{ github.ref_name }}
+      #     path: |
+      #       LoRa-BLE-Sensor/build/app/zephyr/zephyr.elf
+      #     # LoRa-BLE-Sensor/build/mcuboot/zephyr/zephyr.elf
+      - name: Set artifact name
+        id: artifact-name
+        run: |
+          if [[ $GITHUB_REF == refs/tags/* ]]; then
+            TAG_NAME=${GITHUB_REF#refs/tags/}
+            echo "name=Build-Results-$TAG_NAME-${{ github.sha }}" >> $GITHUB_OUTPUT
+          else
+            echo "name=Build-Results-${{ github.ref_name }}-${{ github.sha }}" >> $GITHUB_OUTPUT
+          fi
+
       - name: 📦 Save Build Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: Build-Results-${{ github.ref_name }}
+          name: ${{ steps.artifact-name.outputs.name }}
           path: |
             LoRa-BLE-Sensor/build/app/zephyr/zephyr.elf
-          # LoRa-BLE-Sensor/build/mcuboot/zephyr/zephyr.elf
   tests:
     runs-on: ubuntu-latest
     container:
