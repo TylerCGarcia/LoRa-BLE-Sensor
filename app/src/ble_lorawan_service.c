@@ -23,9 +23,9 @@ static ssize_t read_enabled(struct bt_conn *conn, const struct bt_gatt_attr *att
 	return bt_gatt_attr_read(conn, attr, buf, len, offset, &lorawan_service_setup->is_lorawan_enabled, sizeof(lorawan_service_setup->is_lorawan_enabled));
 }
 
-static ssize_t write_enabled(struct bt_conn *conn, const struct bt_gatt_attr *attr, void *buf, uint16_t len, uint16_t offset){
+static ssize_t write_enabled(struct bt_conn *conn, const struct bt_gatt_attr *attr, const void *buf, uint16_t len, uint16_t offset, uint8_t flags)
+{
 	LOG_DBG("Attribute write, handle: %u, conn: %p", attr->handle, (void *)conn);
-	int err;
 
 	if(!is_lorawan_service_setup)
 	{
@@ -63,9 +63,9 @@ static ssize_t read_frequency(struct bt_conn *conn, const struct bt_gatt_attr *a
 	return bt_gatt_attr_read(conn, attr, buf, len, offset, &lorawan_service_setup->lorawan_frequency, sizeof(lorawan_service_setup->lorawan_frequency));
 }
 
-static ssize_t write_frequency(struct bt_conn *conn, const struct bt_gatt_attr *attr, void *buf, uint16_t len, uint16_t offset){
+static ssize_t write_frequency(struct bt_conn *conn, const struct bt_gatt_attr *attr, const void *buf, uint16_t len, uint16_t offset, uint8_t flags)
+{
 	LOG_DBG("Attribute write, handle: %u, conn: %p", attr->handle, (void *)conn);
-	int err;
 
 	if(!is_lorawan_service_setup)
 	{
@@ -104,9 +104,9 @@ static ssize_t read_dev_eui(struct bt_conn *conn, const struct bt_gatt_attr *att
 	return bt_gatt_attr_read(conn, attr, buf, len, offset, lorawan_service_setup->dev_eui, sizeof(lorawan_service_setup->dev_eui));
 }
 
-static ssize_t write_dev_eui(struct bt_conn *conn, const struct bt_gatt_attr *attr, void *buf, uint16_t len, uint16_t offset){
+static ssize_t write_dev_eui(struct bt_conn *conn, const struct bt_gatt_attr *attr, const void *buf, uint16_t len, uint16_t offset, uint8_t flags)
+{
 	LOG_DBG("Attribute write, handle: %u, conn: %p", attr->handle, (void *)conn);
-	int err;
 
 	if(!is_lorawan_service_setup)
 	{
@@ -146,9 +146,9 @@ static ssize_t read_join_eui(struct bt_conn *conn, const struct bt_gatt_attr *at
 	return bt_gatt_attr_read(conn, attr, buf, len, offset, lorawan_service_setup->join_eui, sizeof(lorawan_service_setup->join_eui));
 }
 
-static ssize_t write_join_eui(struct bt_conn *conn, const struct bt_gatt_attr *attr, void *buf, uint16_t len, uint16_t offset){
+static ssize_t write_join_eui(struct bt_conn *conn, const struct bt_gatt_attr *attr, const void *buf, uint16_t len, uint16_t offset, uint8_t flags)
+{
 	LOG_DBG("Attribute write, handle: %u, conn: %p", attr->handle, (void *)conn);
-	int err;
 
 	if(!is_lorawan_service_setup)
 	{
@@ -188,9 +188,9 @@ static ssize_t read_app_key(struct bt_conn *conn, const struct bt_gatt_attr *att
 	return bt_gatt_attr_read(conn, attr, buf, len, offset, lorawan_service_setup->app_key, sizeof(lorawan_service_setup->app_key));
 }
 
-static ssize_t write_app_key(struct bt_conn *conn, const struct bt_gatt_attr *attr, void *buf, uint16_t len, uint16_t offset){
+static ssize_t write_app_key(struct bt_conn *conn, const struct bt_gatt_attr *attr, const void *buf, uint16_t len, uint16_t offset, uint8_t flags)
+{
 	LOG_DBG("Attribute write, handle: %u, conn: %p", attr->handle, (void *)conn);
-	int err;
 
 	if(!is_lorawan_service_setup)
 	{

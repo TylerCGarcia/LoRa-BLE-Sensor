@@ -24,7 +24,7 @@
  * @brief Types of data that can be stored in the sensor data buffer. Currently unused, plans to keep it
  * for future use to potentially store in sensor_data_t struct.
  */
-typedef enum sensor_data_type {
+enum sensor_data_type {
     DATA_TYPE_INT,
     DATA_TYPE_UINT8,
     DATA_TYPE_UINT16,

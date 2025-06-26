@@ -178,7 +178,7 @@ static int put_timestamp_into_ring_buffer(sensor_data_t *sensor_data, int timest
 
 int sensor_data_read(sensor_data_t *sensor_data, int timestamp)
 {
-    if (&sensor_data->data_ring_buf == NULL || &sensor_data->timestamp_ring_buf == NULL) {
+    if (sensor_data->data_ring_buf.buffer == NULL || sensor_data->timestamp_ring_buf.buffer == NULL) {
         LOG_ERR("Ring buffers not initialized");
         return -1;  // Ring buffers not initialized
     }
@@ -189,6 +189,11 @@ int sensor_data_read(sensor_data_t *sensor_data, int timestamp)
     }
     switch(sensor_data_config[sensor_data->id].type)
     {
+        case NULL_SENSOR:
+        {
+            LOG_ERR("Sensor %d is a null sensor", sensor_data->id);
+            return -1;
+        }
         case PULSE_SENSOR:
         {
             int pulse_count = get_sensor_pulse_count(sensor_reading_configs[sensor_data->id]);
@@ -218,6 +223,11 @@ int sensor_data_read(sensor_data_t *sensor_data, int timestamp)
                 return -1;
             }
             break;
+        }
+        default:
+        {
+            LOG_ERR("Sensor %d is an invalid sensor type", sensor_data->id);
+            return -1;
         }
     }
     sensor_data->latest_timestamp = timestamp;
@@ -275,12 +285,12 @@ int sensor_data_print_data(sensor_data_t *sensor_data)
             case VOLTAGE_SENSOR:
                 float voltage;
                 memcpy(&voltage, temp_data, sensor_data->data_size);
-                LOG_INF("Sample %d: Voltage = %f, Timestamp = %u", i, voltage, timestamp);
+                LOG_INF("Sample %d: Voltage = %f, Timestamp = %u", i, (double)voltage, timestamp);
                 break;
             case CURRENT_SENSOR:
                 float current;
                 memcpy(&current, temp_data, sensor_data->data_size);
-                LOG_INF("Sample %d: Current = %f, Timestamp = %u", i, current, timestamp);
+                LOG_INF("Sample %d: Current = %f, Timestamp = %u", i, (double)current, timestamp);
                 break;
             default:
                 break;
@@ -309,13 +319,13 @@ int sensor_data_clear(sensor_data_t *sensor_data)
     /* If the sensor is setup, clear the ring buffers and reset the ring buffers. */
     if (sensor_data_config[sensor_data->id].is_sensor_setup == 1) 
     {
-        if (&sensor_data->data_ring_buf != NULL) 
+        if (sensor_data->data_ring_buf.buffer != NULL) 
         {
             LOG_DBG("Resetting data ring buffer");
             ring_buf_reset(&sensor_data->data_ring_buf);  // Note: removed & since it's a pointer
         }
     
-        if (&sensor_data->timestamp_ring_buf != NULL) 
+        if (sensor_data->timestamp_ring_buf.buffer != NULL) 
         {
             LOG_DBG("Resetting timestamp ring buffer");
             ring_buf_reset(&sensor_data->timestamp_ring_buf);  // Note: removed & since it's a pointer

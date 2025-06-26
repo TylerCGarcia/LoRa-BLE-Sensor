@@ -38,22 +38,18 @@ static sensor_scheduling_cfg_t radio_schedule = {
     .frequency_seconds = 0
 };
 
-#define DEV_EUI    {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}
-#define JOIN_EUI   {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}
-#define APP_KEY    {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}
-
 static lorawan_setup_t lorawan_setup = {
     .is_lorawan_enabled = 0,
     .lorawan_frequency = 0,
 	.lora_dev = DEVICE_DT_GET(DT_ALIAS(lora0)),
 	.uplink_class = LORAWAN_CLASS_A,
-	.downlink_callback = NULL,
+	.downlink_callback = {0},
 	.join_attempts = 20,
 	.dev_nonce = 240,
 	.delay = 1000,
-	.dev_eui = DEV_EUI,
-	.join_eui = JOIN_EUI,
-	.app_key = APP_KEY,
+	.dev_eui =  {0},
+	.join_eui = {0},
+	.app_key =  {0},
 	.send_attempts = 10,
 };
 /* LoRaWAN data structure. */
@@ -207,12 +203,12 @@ static int add_sensor_data_to_lorawan_payload(sensor_data_t *sensor_data)
 
 static int add_sensor_configuration_to_lorawan_payload(void)
 {
-    int ret;
     uint8_t i = lorawan_data.length;
     uint8_t hw_version_major;
     uint8_t hw_version_minor;
     uint8_t hw_version_patch; // Not added to payload yet
-    sscanf(CONFIG_BOARD_REVISION, "%d.%d.%d", &hw_version_major, &hw_version_minor, &hw_version_patch);
+    sscanf(CONFIG_BOARD_REVISION, "%hhu.%hhu.%hhu", &hw_version_major, &hw_version_minor, &hw_version_patch);
+    LOG_DBG("HW Version: %hhu.%hhu.%hhu", hw_version_major, hw_version_minor, hw_version_patch);
     lorawan_data.data[i++] = hw_version_major;
     lorawan_data.data[i++] = hw_version_minor;
     lorawan_data.data[i++] = CONFIG_APP_VERSION_MAJOR;

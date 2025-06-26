@@ -17,7 +17,7 @@
 /**
  * @brief Sensor identifiers
  */
-typedef enum sensor_id {
+enum sensor_id {
     SENSOR_1 = 0,
     SENSOR_2,
     SENSOR_INDEX_LIMIT // This is used to get the size of the enum
@@ -26,7 +26,7 @@ typedef enum sensor_id {
 /**
  * @brief Types of sensors that can be configured.
  */
-typedef enum sensor_types {
+enum sensor_types {
     /* No sensor configuration is set. */
     NULL_SENSOR = 0,
     /* Sensor is set to read from voltage_read pin. */
@@ -42,7 +42,7 @@ typedef enum sensor_types {
 /**
  * @brief Sensor power identifiers
  */
-typedef enum sensor_power_id {
+enum sensor_power_id {
     SENSOR_POWER_1 = 0,
     SENSOR_POWER_2,
     SENSOR_POWER_INDEX_LIMIT // This is used to get the size of the enum
@@ -51,7 +51,7 @@ typedef enum sensor_power_id {
 /**
  * @brief Voltage levels for sensor power
  */
-typedef enum sensor_voltage {
+enum sensor_voltage {
     SENSOR_VOLTAGE_OFF = 0,
     SENSOR_VOLTAGE_3V3,
     SENSOR_VOLTAGE_5V,

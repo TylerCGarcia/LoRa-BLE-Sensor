@@ -20,7 +20,7 @@ static uint8_t scheduling_channels[SENSOR_SCHEDULING_ID_LIMIT];
  * @param chan_id The channel id that triggered the callback
  * @param ticks The ticks of the callback
  */
-static void scheduling_callback(const struct device *dev, uint8_t chan_id, uint32_t ticks)
+static void scheduling_callback(const struct device *dev, uint8_t chan_id, uint32_t counter, void *user_data)
 {
     LOG_DBG("Scheduling callback called for channel %d", chan_id);
     for(int i = 0; i < SENSOR_SCHEDULING_ID_LIMIT; i++) 
@@ -103,7 +103,7 @@ int sensor_scheduling_add_schedule(sensor_scheduling_cfg_t *schedule)
 int sensor_scheduling_remove_schedule(sensor_scheduling_cfg_t *schedule)
 {
     /* Remove the schedule from the local list of schedules */
-    sensor_timer_cancel_alarm(scheduling_timer, &scheduling_channels[schedule->id]);
+    sensor_timer_cancel_alarm(scheduling_timer, scheduling_channels[schedule->id]);
     schedule->is_scheduled = 0;
     schedule->is_triggered = 0;
     return 0;

@@ -168,7 +168,7 @@ float get_sensor_voltage_reading(sensor_reading_config_t *config)
     {
         return err;
     }
-	return (((float)val_mv/1000.0) * (((float)VOLTAGE_READ_DIVIDER_HIGH + (float)VOLTAGE_READ_DIVIDER_LOW)/(float)VOLTAGE_READ_DIVIDER_LOW));
+	return (((float)val_mv/1000.0f) * (((float)VOLTAGE_READ_DIVIDER_HIGH + (float)VOLTAGE_READ_DIVIDER_LOW)/(float)VOLTAGE_READ_DIVIDER_LOW));
 }
 
 float get_sensor_current_reading(sensor_reading_config_t *config)

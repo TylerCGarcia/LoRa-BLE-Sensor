@@ -132,13 +132,13 @@ static void *after_tests(void)
 {
     int ret;
     if (alarm_cfg[SENSOR_TIMER_CHANNEL_0].is_alarm_set) {
-        sensor_timer_cancel_alarm(timer0, &alarm_cfg[SENSOR_TIMER_CHANNEL_0]);
+        sensor_timer_cancel_alarm(timer0, SENSOR_TIMER_CHANNEL_0);
     }
     if (alarm_cfg[SENSOR_TIMER_CHANNEL_1].is_alarm_set) {
-        sensor_timer_cancel_alarm(timer0, &alarm_cfg[SENSOR_TIMER_CHANNEL_1]);
+        sensor_timer_cancel_alarm(timer0, SENSOR_TIMER_CHANNEL_1);
     }
     if (alarm_cfg[SENSOR_TIMER_CHANNEL_2].is_alarm_set) {
-        sensor_timer_cancel_alarm(timer0, &alarm_cfg[SENSOR_TIMER_CHANNEL_2]);
+        sensor_timer_cancel_alarm(timer0, SENSOR_TIMER_CHANNEL_2);
     }
     ret = sensor_timer_stop(timer0);
     zassert_ok(ret, "Failed to clear NVS");
@@ -310,7 +310,7 @@ ZTEST(timer, test_timer_not_triggered_when_alarm_is_cancelled)
     zassert_ok(ret, "Failed to set alarm");
     k_sleep(K_SECONDS(30));
     assert_alarm_triggered_flags(0, 0, 0);
-    ret = sensor_timer_cancel_alarm(timer0, &alarm_cfg[SENSOR_TIMER_CHANNEL_0]);
+    ret = sensor_timer_cancel_alarm(timer0, SENSOR_TIMER_CHANNEL_0);
     zassert_ok(ret, "Failed to cancel alarm");
     k_sleep(K_MINUTES(1));
     assert_alarm_triggered_flags(0, 0, 0);

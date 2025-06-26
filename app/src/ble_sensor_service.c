@@ -22,7 +22,7 @@ static ssize_t read_sensor_state(struct bt_conn *conn, const struct bt_gatt_attr
 	return bt_gatt_attr_read(conn, attr, buf, len, offset, &sensor_state, sizeof(sensor_state));
 }
 
-static ssize_t write_sensor_state(struct bt_conn *conn, const struct bt_gatt_attr *attr, void *buf, uint16_t len, uint16_t offset)
+static ssize_t write_sensor_state(struct bt_conn *conn, const struct bt_gatt_attr *attr, const void *buf, uint16_t len, uint16_t offset, uint8_t flags)
 {
     uint8_t sensor_state = 0;
     LOG_DBG("Attribute write, handle: %u, conn: %p", attr->handle, (void *)conn);
@@ -63,9 +63,9 @@ static ssize_t read_sensor1_enabled(struct bt_conn *conn, const struct bt_gatt_a
 	return bt_gatt_attr_read(conn, attr, buf, len, offset, &sensor_app_config->is_sensor_1_enabled, sizeof(sensor_app_config->is_sensor_1_enabled));
 }
 
-static ssize_t write_sensor1_enabled(struct bt_conn *conn, const struct bt_gatt_attr *attr, void *buf, uint16_t len, uint16_t offset){
+static ssize_t write_sensor1_enabled(struct bt_conn *conn, const struct bt_gatt_attr *attr, const void *buf, uint16_t len, uint16_t offset, uint8_t flags)
+{
 	LOG_DBG("Attribute write, handle: %u, conn: %p", attr->handle, (void *)conn);
-	int err;
 
 	if(!is_sensor_service_setup)
 	{
@@ -102,7 +102,7 @@ static ssize_t read_sensor1_config(struct bt_conn *conn, const struct bt_gatt_at
 	return bt_gatt_attr_read(conn, attr, buf, len, offset, sensor_app_config->sensor_1_type_name, sizeof(sensor_app_config->sensor_1_type_name));
 }
 
-static ssize_t write_sensor1_config(struct bt_conn *conn, const struct bt_gatt_attr *attr, void *buf, uint16_t len, uint16_t offset)
+static ssize_t write_sensor1_config(struct bt_conn *conn, const struct bt_gatt_attr *attr, const void *buf, uint16_t len, uint16_t offset, uint8_t flags)
 {
     char sensor_1_config_name[SENSOR_TYPE_NAME_LENGTH];
     LOG_DBG("Attribute write, handle: %u, conn: %p", attr->handle, (void *)conn);
@@ -154,7 +154,7 @@ static ssize_t read_sensor1_pwr_config(struct bt_conn *conn, const struct bt_gat
 	return bt_gatt_attr_read(conn, attr, buf, len, offset, &sensor_app_config->sensor_1_voltage_name, sizeof(sensor_app_config->sensor_1_voltage_name));
 }
 
-static ssize_t write_sensor1_pwr_config(struct bt_conn *conn, const struct bt_gatt_attr *attr, void *buf, uint16_t len, uint16_t offset)
+static ssize_t write_sensor1_pwr_config(struct bt_conn *conn, const struct bt_gatt_attr *attr, const void *buf, uint16_t len, uint16_t offset, uint8_t flags)
 {
     char sensor_1_voltage_name[SENSOR_VOLTAGE_NAME_LENGTH];
     LOG_DBG("Attribute write, handle: %u, conn: %p", attr->handle, (void *)conn);
@@ -207,9 +207,9 @@ static ssize_t read_sensor1_data_freq(struct bt_conn *conn, const struct bt_gatt
 	return bt_gatt_attr_read(conn, attr, buf, len, offset, &sensor_app_config->sensor_1_frequency, sizeof(sensor_app_config->sensor_1_frequency));
 }
 
-static ssize_t write_sensor1_data_freq(struct bt_conn *conn, const struct bt_gatt_attr *attr, void *buf, uint16_t len, uint16_t offset){
+static ssize_t write_sensor1_data_freq(struct bt_conn *conn, const struct bt_gatt_attr *attr, const void *buf, uint16_t len, uint16_t offset, uint8_t flags)
+{
 	LOG_DBG("Attribute write, handle: %u, conn: %p", attr->handle, (void *)conn);
-	int err;
 
 	if(!is_sensor_service_setup)
 	{
@@ -268,9 +268,9 @@ static ssize_t read_sensor2_enabled(struct bt_conn *conn, const struct bt_gatt_a
 	return bt_gatt_attr_read(conn, attr, buf, len, offset, &sensor_app_config->is_sensor_2_enabled, sizeof(sensor_app_config->is_sensor_2_enabled));
 }
 
-static ssize_t write_sensor2_enabled(struct bt_conn *conn, const struct bt_gatt_attr *attr, void *buf, uint16_t len, uint16_t offset){
+static ssize_t write_sensor2_enabled(struct bt_conn *conn, const struct bt_gatt_attr *attr, const void *buf, uint16_t len, uint16_t offset, uint8_t flags)
+{
 	LOG_DBG("Attribute write, handle: %u, conn: %p", attr->handle, (void *)conn);
-	int err;
 
 	if(!is_sensor_service_setup)
 	{
@@ -307,7 +307,7 @@ static ssize_t read_sensor2_config(struct bt_conn *conn, const struct bt_gatt_at
 	return bt_gatt_attr_read(conn, attr, buf, len, offset, sensor_app_config->sensor_2_type_name, sizeof(sensor_app_config->sensor_2_type_name));
 }
 
-static ssize_t write_sensor2_config(struct bt_conn *conn, const struct bt_gatt_attr *attr, void *buf, uint16_t len, uint16_t offset)
+static ssize_t write_sensor2_config(struct bt_conn *conn, const struct bt_gatt_attr *attr, const void *buf, uint16_t len, uint16_t offset, uint8_t flags)
 {
     char sensor_2_config_name[SENSOR_TYPE_NAME_LENGTH];
     LOG_DBG("Attribute write, handle: %u, conn: %p", attr->handle, (void *)conn);
@@ -359,7 +359,7 @@ static ssize_t read_sensor2_pwr_config(struct bt_conn *conn, const struct bt_gat
 	return bt_gatt_attr_read(conn, attr, buf, len, offset, &sensor_app_config->sensor_2_voltage_name, strlen(sensor_app_config->sensor_2_voltage_name));
 }
 
-static ssize_t write_sensor2_pwr_config(struct bt_conn *conn, const struct bt_gatt_attr *attr, void *buf, uint16_t len, uint16_t offset)
+static ssize_t write_sensor2_pwr_config(struct bt_conn *conn, const struct bt_gatt_attr *attr, const void *buf, uint16_t len, uint16_t offset, uint8_t flags)
 {
     char sensor_2_voltage_name[SENSOR_VOLTAGE_NAME_LENGTH];
     LOG_DBG("Attribute write, handle: %u, conn: %p", attr->handle, (void *)conn);
@@ -412,9 +412,9 @@ static ssize_t read_sensor2_data_freq(struct bt_conn *conn, const struct bt_gatt
 	return bt_gatt_attr_read(conn, attr, buf, len, offset, &sensor_app_config->sensor_2_frequency, sizeof(sensor_app_config->sensor_2_frequency));
 }
 
-static ssize_t write_sensor2_data_freq(struct bt_conn *conn, const struct bt_gatt_attr *attr, void *buf, uint16_t len, uint16_t offset){
+static ssize_t write_sensor2_data_freq(struct bt_conn *conn, const struct bt_gatt_attr *attr, const void *buf, uint16_t len, uint16_t offset, uint8_t flags)
+{
 	LOG_DBG("Attribute write, handle: %u, conn: %p", attr->handle, (void *)conn);
-	int err;
 
 	if(!is_sensor_service_setup)
 	{

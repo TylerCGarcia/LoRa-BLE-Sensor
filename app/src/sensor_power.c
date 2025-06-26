@@ -21,7 +21,7 @@ const float sensor_voltage_values[] = {
 
 enum sensor_voltage sensor_state[SENSOR_POWER_INDEX_LIMIT];
 
-static int turn_off_regulator(sensor_power_config_t *config)
+static void turn_off_regulator(sensor_power_config_t *config)
 {
     if(regulator_is_enabled(config->ldo_dev))
     {
@@ -29,7 +29,7 @@ static int turn_off_regulator(sensor_power_config_t *config)
         regulator_disable(config->ldo_dev);
     }
 }
-static int turn_on_regulator(sensor_power_config_t *config)
+static void turn_on_regulator(sensor_power_config_t *config)
 {
     if(!regulator_is_enabled(config->ldo_dev))
     {
@@ -210,7 +210,7 @@ float read_sensor_output(sensor_power_config_t *config)
     {
         return err;
     }
-	return (((float)val_mv/1000.0) * (((float)OUTUT_READ_DIVIDER_HIGH + (float)OUTUT_READ_DIVIDER_LOW)/(float)OUTUT_READ_DIVIDER_LOW));
+	return (((float)val_mv/1000.0f) * (((float)OUTUT_READ_DIVIDER_HIGH + (float)OUTUT_READ_DIVIDER_LOW)/(float)OUTUT_READ_DIVIDER_LOW));
 }
 
 int validate_output(sensor_power_config_t *config, enum sensor_voltage voltage, uint8_t accepted_error)
@@ -221,11 +221,11 @@ int validate_output(sensor_power_config_t *config, enum sensor_voltage voltage, 
         return -1;
     }
     float sensor_reading = read_sensor_output(config);
-    float upper_bounds = sensor_voltage_values[voltage] * (float)((100.0 + (float)accepted_error)/100.0);
-    float lower_bounds = sensor_voltage_values[voltage] * (float)((100.0 - (float)accepted_error)/100.0);
+    float upper_bounds = sensor_voltage_values[voltage] * (float)((100.0f + (float)accepted_error)/100.0f);
+    float lower_bounds = sensor_voltage_values[voltage] * (float)((100.0f - (float)accepted_error)/100.0f);
     if(sensor_reading < lower_bounds || sensor_reading > upper_bounds)
     {
-        LOG_ERR("Sensor output out of bounds, expected %f, got %f", sensor_voltage_values[voltage], sensor_reading);
+        LOG_ERR("Sensor output out of bounds, expected %f, got %f", (double)sensor_voltage_values[voltage], (double)sensor_reading);
         return -1;
     }
     return 0;

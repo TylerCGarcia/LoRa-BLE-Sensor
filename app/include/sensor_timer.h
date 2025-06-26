@@ -87,9 +87,9 @@ int sensor_timer_set_alarm(const struct device *dev, sensor_timer_alarm_cfg_t *s
 /**
  * @brief Cancel the alarm for the chosen channel of the sensor timer instance.
  * @param dev The timer device to cancel the alarm for.
- * @param sensor_timer_alarm_cfg The alarm configuration to cancel.
+ * @param channel The channel to cancel the alarm for.
  * @return 0 on success, negative error code on failure.
  */
-int sensor_timer_cancel_alarm(const struct device *dev, sensor_timer_alarm_cfg_t *sensor_timer_alarm_cfg);
+int sensor_timer_cancel_alarm(const struct device *dev, uint8_t channel);
 
 #endif

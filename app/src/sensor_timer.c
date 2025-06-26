@@ -138,8 +138,7 @@ int sensor_timer_set_alarm(const struct device *dev, sensor_timer_alarm_cfg_t *s
     return 0;  // Add missing return statement
 }
 
-int sensor_timer_cancel_alarm(const struct device *dev, sensor_timer_alarm_cfg_t *sensor_timer_alarm_cfg)
+int sensor_timer_cancel_alarm(const struct device *dev, uint8_t channel)
 {
-    sensor_timer_alarm_cfg->is_alarm_set = 0;
-    return counter_cancel_channel_alarm(dev, sensor_timer_alarm_cfg->channel);
+    return counter_cancel_channel_alarm(dev, channel);
 }

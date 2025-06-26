@@ -23,7 +23,7 @@ static ssize_t read_firmware_version(struct bt_conn *conn, const struct bt_gatt_
 
 static ssize_t read_battery_voltage(struct bt_conn *conn, const struct bt_gatt_attr *attr, void *buf, uint16_t len, uint16_t offset)
 {
-	LOG_INF("Battery Voltage: %f", device_status->voltage);
+	LOG_INF("Battery Voltage: %f", (double)device_status->voltage);
 	// Convert float voltage to hundredths of a volt (e.g., 3.75V becomes 375)
 	int16_t voltage_hundreths = (int16_t)(device_status->voltage * 100.0f);
 	return bt_gatt_attr_read(conn, attr, buf, len, offset, &voltage_hundreths, sizeof(voltage_hundreths));
@@ -31,7 +31,7 @@ static ssize_t read_battery_voltage(struct bt_conn *conn, const struct bt_gatt_a
 
 static ssize_t read_battery_temperature(struct bt_conn *conn, const struct bt_gatt_attr *attr, void *buf, uint16_t len, uint16_t offset)
 {
-	LOG_INF("Battery Temperature: %f", device_status->temp);
+	LOG_INF("Battery Temperature: %f", (double)device_status->temp);
 	// Convert float temperature to hundredths of a degree (e.g., 25.61°C becomes 2561)
 	int16_t temp_hundredths = (int16_t)(device_status->temp * 100.0f);
 	return bt_gatt_attr_read(conn, attr, buf, len, offset, &temp_hundredths, sizeof(temp_hundredths));

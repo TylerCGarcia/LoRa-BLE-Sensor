@@ -81,13 +81,13 @@ int sensor_status_get(const struct device *dev, pmic_sensor_status_t *status)
 
 	sensor_channel_get(charger, SENSOR_CHAN_GAUGE_VOLTAGE, &value);
 	status->voltage = (float)value.val1 + ((float)value.val2 / 1000000);
-    LOG_DBG("Voltage: %f", status->voltage);
+    LOG_DBG("Voltage: %f", (double)status->voltage);
 	sensor_channel_get(charger, SENSOR_CHAN_GAUGE_TEMP, &value);
 	status->temp = (float)value.val1 + ((float)value.val2 / 1000000);
-    LOG_DBG("Temp: %f", status->temp);
+    LOG_DBG("Temp: %f", (double)status->temp);
 	sensor_channel_get(charger, SENSOR_CHAN_GAUGE_AVG_CURRENT, &value);
 	status->current = (float)value.val1 + ((float)value.val2 / 1000000);
-    LOG_DBG("Current: %f", status->current);
+    LOG_DBG("Current: %f", (double)status->current);
 
 	sensor_channel_get(charger, (enum sensor_channel)SENSOR_CHAN_NPM1300_CHARGER_STATUS, &value);
 	status->chg_status = value.val1;
