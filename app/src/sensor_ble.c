@@ -64,7 +64,16 @@ static int start_advertising(void)
 {
     int ret;
 
-    const struct bt_le_adv_param *adv_param = BT_LE_ADV_CONN_FAST_1;
+    // Create custom advertising parameters 
+    struct bt_le_adv_param adv_param = {
+        .id = BT_ID_DEFAULT,
+        .sid = 0,
+        .secondary_max_skip = 0,
+        .options = BT_LE_ADV_OPT_CONN,
+        .interval_min = ble_adv_params.adv_interval.min,
+        .interval_max = ble_adv_params.adv_interval.max,
+        .peer = NULL,
+    };
 
     const struct bt_data ad[] = {
         BT_DATA_BYTES(BT_DATA_FLAGS, (BT_LE_AD_NO_BREDR)),
@@ -72,7 +81,7 @@ static int start_advertising(void)
     };
 
     /* Start advertising */
-    ret = bt_le_adv_start(adv_param, ad, ARRAY_SIZE(ad), NULL, 0);
+    ret = bt_le_adv_start(&adv_param, ad, ARRAY_SIZE(ad), NULL, 0);
     if (ret) {
         return ret;
     }
