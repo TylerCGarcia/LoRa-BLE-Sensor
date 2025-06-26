@@ -48,6 +48,8 @@ jobs:
           name: Build-Results-${{ github.ref_name }}
           path: |
             LoRa-BLE-Sensor/build/app/zephyr/zephyr.elf
+            LoRa-BLE-Sensor/build/app/zephyr/zephyr.signed.bin
+            LoRa-BLE-Sensor/build/merged.hex
 
   tests:
     runs-on: ubuntu-latest
