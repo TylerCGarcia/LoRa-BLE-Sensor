@@ -30,12 +30,16 @@ This will initialize the python environment(.venv), initialize west(.west), and 
   * Controlling LED
 - Add NFC for BLE Configurations
 - Error handling when state given is out of bounds
-- Update CI to attach tags to each saved build
 
 # Revision History
-Current Version: **V0.4.0**
+Current Version: **V0.4.1**
 
 Version Breakdown: `[Major API Change]`.`[Minor Change/Added Functionality]`.`[Patch/bug fixes]`
+
+### V0.4.1
+- Switched SDK to nRF Connect SDK V3.0.2
+  * Some functionality needed to change(e.g. resetting counter in **sensor_timer.h**)
+- Cleaned code to remove compile warnings
 
 ### V0.4.0
 - PMIC LED is used for running an configuration state
