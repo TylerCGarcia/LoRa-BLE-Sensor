@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['pmic_5fsensor_5fstatus_5ft_0',['pmic_sensor_status_t',['../structpmic__sensor__status__t.html',1,'']]],
-  ['power_20analysis_1',['Power Analysis',['../md_README.html#autotoc_md4',1,'']]],
-  ['project_20initialization_2',['Project Initialization',['../md_README.html#autotoc_md2',1,'']]]
+  ['k_5fthread_5fstack_5fdefine_0',['K_THREAD_STACK_DEFINE',['../sensor__app_8c.html#a5001f2d3651508a0c2bb0a9f2fb54888',1,'sensor_app.c']]]
 ];

@@ -6,100 +6,79 @@ This is a library to handle the BLE services for the sensor.
 
 
 {\ttfamily \#include "{}sensor\+\_\+app.\+h"{}}\newline
-Include dependency graph for ble\+\_\+sensor\+\_\+service.\+h\+:
-\nopagebreak
+Include dependency graph for ble\+\_\+sensor\+\_\+service.\+h\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=224pt]{ble__sensor__service_8h__incl}
 \end{center}
 \end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=324pt]{ble__sensor__service_8h__dep__incl}
+\end{center}
+\end{figure}
 \doxysubsubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{ble__sensor__service_8h_a7609fe9368a18da46d9159d81457c55f}\label{ble__sensor__service_8h_a7609fe9368a18da46d9159d81457c55f} 
-\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR\+\_\+\+VAL}~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c0)
+\#define \mbox{\hyperlink{ble__sensor__service_8h_a7609fe9368a18da46d9159d81457c55f}{BT\+\_\+\+UUID\+\_\+\+SENSOR\+\_\+\+VAL}}~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c0)
 \item 
-\Hypertarget{ble__sensor__service_8h_ae1e2816b27ceb96447eeca79cd3a54aa}\label{ble__sensor__service_8h_ae1e2816b27ceb96447eeca79cd3a54aa} 
-\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR\+\_\+\+STATE\+\_\+\+VAL}~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c1)
+\#define \mbox{\hyperlink{ble__sensor__service_8h_ae1e2816b27ceb96447eeca79cd3a54aa}{BT\+\_\+\+UUID\+\_\+\+SENSOR\+\_\+\+STATE\+\_\+\+VAL}}~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c1)
 \item 
-\Hypertarget{ble__sensor__service_8h_a9495df86d19cae504ef3095758f433ed}\label{ble__sensor__service_8h_a9495df86d19cae504ef3095758f433ed} 
-\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+ENABLED\+\_\+\+VAL}~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c2)
+\#define \mbox{\hyperlink{ble__sensor__service_8h_a9495df86d19cae504ef3095758f433ed}{BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+ENABLED\+\_\+\+VAL}}~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c2)
 \item 
-\Hypertarget{ble__sensor__service_8h_a364d37dca81586b1855e032c23025e86}\label{ble__sensor__service_8h_a364d37dca81586b1855e032c23025e86} 
-\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+CONFIG\+\_\+\+VAL}~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c3)
+\#define \mbox{\hyperlink{ble__sensor__service_8h_a364d37dca81586b1855e032c23025e86}{BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+CONFIG\+\_\+\+VAL}}~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c3)
 \item 
-\Hypertarget{ble__sensor__service_8h_a409d01f220f5bc7479d4b1ee89f4124e}\label{ble__sensor__service_8h_a409d01f220f5bc7479d4b1ee89f4124e} 
-\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+PWR\+\_\+\+CONFIG\+\_\+\+VAL}~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c4)
+\#define \mbox{\hyperlink{ble__sensor__service_8h_a409d01f220f5bc7479d4b1ee89f4124e}{BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+PWR\+\_\+\+CONFIG\+\_\+\+VAL}}~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c4)
 \item 
-\Hypertarget{ble__sensor__service_8h_aba2ce1d421b7df4a3c445cea5157a863}\label{ble__sensor__service_8h_aba2ce1d421b7df4a3c445cea5157a863} 
-\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+DATA\+\_\+\+FREQ\+\_\+\+VAL}~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c5)
+\#define \mbox{\hyperlink{ble__sensor__service_8h_aba2ce1d421b7df4a3c445cea5157a863}{BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+DATA\+\_\+\+FREQ\+\_\+\+VAL}}~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c5)
 \item 
-\Hypertarget{ble__sensor__service_8h_a6dc8a6806c02c32de044b8c6025ca943}\label{ble__sensor__service_8h_a6dc8a6806c02c32de044b8c6025ca943} 
-\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+DATA\+\_\+\+VAL}~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c6)
+\#define \mbox{\hyperlink{ble__sensor__service_8h_a6dc8a6806c02c32de044b8c6025ca943}{BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+DATA\+\_\+\+VAL}}~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c6)
 \item 
-\Hypertarget{ble__sensor__service_8h_ad7cc5ce2932558ea222151debba3a5e2}\label{ble__sensor__service_8h_ad7cc5ce2932558ea222151debba3a5e2} 
-\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+DATA\+\_\+\+TIMESTAMP\+\_\+\+VAL}~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c7)
+\#define \mbox{\hyperlink{ble__sensor__service_8h_ad7cc5ce2932558ea222151debba3a5e2}{BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+DATA\+\_\+\+TIMESTAMP\+\_\+\+VAL}}~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c7)
 \item 
-\Hypertarget{ble__sensor__service_8h_ab6a364c5baaae7562902399a53269327}\label{ble__sensor__service_8h_ab6a364c5baaae7562902399a53269327} 
-\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+ENABLED\+\_\+\+VAL}~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c8)
+\#define \mbox{\hyperlink{ble__sensor__service_8h_ab6a364c5baaae7562902399a53269327}{BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+ENABLED\+\_\+\+VAL}}~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c8)
 \item 
-\Hypertarget{ble__sensor__service_8h_ae3c0f4df45e112784ad4427f953cf840}\label{ble__sensor__service_8h_ae3c0f4df45e112784ad4427f953cf840} 
-\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+CONFIG\+\_\+\+VAL}~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c9)
+\#define \mbox{\hyperlink{ble__sensor__service_8h_ae3c0f4df45e112784ad4427f953cf840}{BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+CONFIG\+\_\+\+VAL}}~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c9)
 \item 
-\Hypertarget{ble__sensor__service_8h_ab9d89f7e53a9ce3a04bf90506c33ada7}\label{ble__sensor__service_8h_ab9d89f7e53a9ce3a04bf90506c33ada7} 
-\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+PWR\+\_\+\+CONFIG\+\_\+\+VAL}~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2ca)
+\#define \mbox{\hyperlink{ble__sensor__service_8h_ab9d89f7e53a9ce3a04bf90506c33ada7}{BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+PWR\+\_\+\+CONFIG\+\_\+\+VAL}}~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2ca)
 \item 
-\Hypertarget{ble__sensor__service_8h_a001c3c40e140cc332ace158eb1495bd2}\label{ble__sensor__service_8h_a001c3c40e140cc332ace158eb1495bd2} 
-\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+DATA\+\_\+\+FREQ\+\_\+\+VAL}~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2cb)
+\#define \mbox{\hyperlink{ble__sensor__service_8h_a001c3c40e140cc332ace158eb1495bd2}{BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+DATA\+\_\+\+FREQ\+\_\+\+VAL}}~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2cb)
 \item 
-\Hypertarget{ble__sensor__service_8h_a559e8a8038aab80da93ee2ecede33b70}\label{ble__sensor__service_8h_a559e8a8038aab80da93ee2ecede33b70} 
-\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+DATA\+\_\+\+VAL}~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2cc)
+\#define \mbox{\hyperlink{ble__sensor__service_8h_a559e8a8038aab80da93ee2ecede33b70}{BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+DATA\+\_\+\+VAL}}~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2cc)
 \item 
-\Hypertarget{ble__sensor__service_8h_a5dba36b59755c6daed49bfb8463f26a0}\label{ble__sensor__service_8h_a5dba36b59755c6daed49bfb8463f26a0} 
-\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+DATA\+\_\+\+TIMESTAMP\+\_\+\+VAL}~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2cd)
+\#define \mbox{\hyperlink{ble__sensor__service_8h_a5dba36b59755c6daed49bfb8463f26a0}{BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+DATA\+\_\+\+TIMESTAMP\+\_\+\+VAL}}~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2cd)
 \item 
-\Hypertarget{ble__sensor__service_8h_aa797ca11be4f3ccb0bbea76d283ecb5c}\label{ble__sensor__service_8h_aa797ca11be4f3ccb0bbea76d283ecb5c} 
-\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR}~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(BT\+\_\+\+UUID\+\_\+\+SENSOR\+\_\+\+VAL)
+\#define \mbox{\hyperlink{ble__sensor__service_8h_aa797ca11be4f3ccb0bbea76d283ecb5c}{BT\+\_\+\+UUID\+\_\+\+SENSOR}}~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(\mbox{\hyperlink{ble__sensor__service_8h_a7609fe9368a18da46d9159d81457c55f}{BT\+\_\+\+UUID\+\_\+\+SENSOR\+\_\+\+VAL}})
 \item 
-\Hypertarget{ble__sensor__service_8h_a5b19179eec9b53729f842613e17748d6}\label{ble__sensor__service_8h_a5b19179eec9b53729f842613e17748d6} 
-\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR\+\_\+\+STATE}~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(BT\+\_\+\+UUID\+\_\+\+SENSOR\+\_\+\+STATE\+\_\+\+VAL)
+\#define \mbox{\hyperlink{ble__sensor__service_8h_a5b19179eec9b53729f842613e17748d6}{BT\+\_\+\+UUID\+\_\+\+SENSOR\+\_\+\+STATE}}~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(\mbox{\hyperlink{ble__sensor__service_8h_ae1e2816b27ceb96447eeca79cd3a54aa}{BT\+\_\+\+UUID\+\_\+\+SENSOR\+\_\+\+STATE\+\_\+\+VAL}})
 \item 
-\Hypertarget{ble__sensor__service_8h_a3ef16e0c505b1e56bde252c0dd2349f9}\label{ble__sensor__service_8h_a3ef16e0c505b1e56bde252c0dd2349f9} 
-\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+ENABLED}~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+ENABLED\+\_\+\+VAL)
+\#define \mbox{\hyperlink{ble__sensor__service_8h_a3ef16e0c505b1e56bde252c0dd2349f9}{BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+ENABLED}}~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(\mbox{\hyperlink{ble__sensor__service_8h_a9495df86d19cae504ef3095758f433ed}{BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+ENABLED\+\_\+\+VAL}})
 \item 
-\Hypertarget{ble__sensor__service_8h_a0cdb18c2002a9059167be991769a6e02}\label{ble__sensor__service_8h_a0cdb18c2002a9059167be991769a6e02} 
-\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+CONFIG}~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+CONFIG\+\_\+\+VAL)
+\#define \mbox{\hyperlink{ble__sensor__service_8h_a0cdb18c2002a9059167be991769a6e02}{BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+CONFIG}}~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(\mbox{\hyperlink{ble__sensor__service_8h_a364d37dca81586b1855e032c23025e86}{BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+CONFIG\+\_\+\+VAL}})
 \item 
-\Hypertarget{ble__sensor__service_8h_ac16149698bcb76dce31557fb1149b483}\label{ble__sensor__service_8h_ac16149698bcb76dce31557fb1149b483} 
-\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+PWR\+\_\+\+CONFIG}~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+PWR\+\_\+\+CONFIG\+\_\+\+VAL)
+\#define \mbox{\hyperlink{ble__sensor__service_8h_ac16149698bcb76dce31557fb1149b483}{BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+PWR\+\_\+\+CONFIG}}~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(\mbox{\hyperlink{ble__sensor__service_8h_a409d01f220f5bc7479d4b1ee89f4124e}{BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+PWR\+\_\+\+CONFIG\+\_\+\+VAL}})
 \item 
-\Hypertarget{ble__sensor__service_8h_a7d0bef6bc8a2d42f39445e0278aa0c66}\label{ble__sensor__service_8h_a7d0bef6bc8a2d42f39445e0278aa0c66} 
-\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+DATA\+\_\+\+FREQ}~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+DATA\+\_\+\+FREQ\+\_\+\+VAL)
+\#define \mbox{\hyperlink{ble__sensor__service_8h_a7d0bef6bc8a2d42f39445e0278aa0c66}{BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+DATA\+\_\+\+FREQ}}~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(\mbox{\hyperlink{ble__sensor__service_8h_aba2ce1d421b7df4a3c445cea5157a863}{BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+DATA\+\_\+\+FREQ\+\_\+\+VAL}})
 \item 
-\Hypertarget{ble__sensor__service_8h_a4a6a8a0de8bf514e238fe88f1e4c4b51}\label{ble__sensor__service_8h_a4a6a8a0de8bf514e238fe88f1e4c4b51} 
-\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+DATA}~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+DATA\+\_\+\+VAL)
+\#define \mbox{\hyperlink{ble__sensor__service_8h_a4a6a8a0de8bf514e238fe88f1e4c4b51}{BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+DATA}}~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(\mbox{\hyperlink{ble__sensor__service_8h_a6dc8a6806c02c32de044b8c6025ca943}{BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+DATA\+\_\+\+VAL}})
 \item 
-\Hypertarget{ble__sensor__service_8h_ac8324c6a40bf9eef7dd68da0a35c7c81}\label{ble__sensor__service_8h_ac8324c6a40bf9eef7dd68da0a35c7c81} 
-\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+DATA\+\_\+\+TIMESTAMP}~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+DATA\+\_\+\+TIMESTAMP\+\_\+\+VAL)
+\#define \mbox{\hyperlink{ble__sensor__service_8h_ac8324c6a40bf9eef7dd68da0a35c7c81}{BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+DATA\+\_\+\+TIMESTAMP}}~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(\mbox{\hyperlink{ble__sensor__service_8h_ad7cc5ce2932558ea222151debba3a5e2}{BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+DATA\+\_\+\+TIMESTAMP\+\_\+\+VAL}})
 \item 
-\Hypertarget{ble__sensor__service_8h_a9d34bddf53ccdd46676f3dc8f64b1bfd}\label{ble__sensor__service_8h_a9d34bddf53ccdd46676f3dc8f64b1bfd} 
-\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+ENABLED}~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+ENABLED\+\_\+\+VAL)
+\#define \mbox{\hyperlink{ble__sensor__service_8h_a9d34bddf53ccdd46676f3dc8f64b1bfd}{BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+ENABLED}}~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(\mbox{\hyperlink{ble__sensor__service_8h_ab6a364c5baaae7562902399a53269327}{BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+ENABLED\+\_\+\+VAL}})
 \item 
-\Hypertarget{ble__sensor__service_8h_a650182789bb650e81b6c9e182bc755f7}\label{ble__sensor__service_8h_a650182789bb650e81b6c9e182bc755f7} 
-\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+CONFIG}~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+CONFIG\+\_\+\+VAL)
+\#define \mbox{\hyperlink{ble__sensor__service_8h_a650182789bb650e81b6c9e182bc755f7}{BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+CONFIG}}~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(\mbox{\hyperlink{ble__sensor__service_8h_ae3c0f4df45e112784ad4427f953cf840}{BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+CONFIG\+\_\+\+VAL}})
 \item 
-\Hypertarget{ble__sensor__service_8h_afdeec143b37bd0e8a75cf5f613eef26a}\label{ble__sensor__service_8h_afdeec143b37bd0e8a75cf5f613eef26a} 
-\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+PWR\+\_\+\+CONFIG}~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+PWR\+\_\+\+CONFIG\+\_\+\+VAL)
+\#define \mbox{\hyperlink{ble__sensor__service_8h_afdeec143b37bd0e8a75cf5f613eef26a}{BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+PWR\+\_\+\+CONFIG}}~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(\mbox{\hyperlink{ble__sensor__service_8h_ab9d89f7e53a9ce3a04bf90506c33ada7}{BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+PWR\+\_\+\+CONFIG\+\_\+\+VAL}})
 \item 
-\Hypertarget{ble__sensor__service_8h_a0073cd6236d38a133c8f66379c05ec6a}\label{ble__sensor__service_8h_a0073cd6236d38a133c8f66379c05ec6a} 
-\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+DATA\+\_\+\+FREQ}~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+DATA\+\_\+\+FREQ\+\_\+\+VAL)
+\#define \mbox{\hyperlink{ble__sensor__service_8h_a0073cd6236d38a133c8f66379c05ec6a}{BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+DATA\+\_\+\+FREQ}}~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(\mbox{\hyperlink{ble__sensor__service_8h_a001c3c40e140cc332ace158eb1495bd2}{BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+DATA\+\_\+\+FREQ\+\_\+\+VAL}})
 \item 
-\Hypertarget{ble__sensor__service_8h_ab4a8bcf4b5c6501ffe53dff446492a44}\label{ble__sensor__service_8h_ab4a8bcf4b5c6501ffe53dff446492a44} 
-\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+DATA}~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+DATA\+\_\+\+VAL)
+\#define \mbox{\hyperlink{ble__sensor__service_8h_ab4a8bcf4b5c6501ffe53dff446492a44}{BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+DATA}}~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(\mbox{\hyperlink{ble__sensor__service_8h_a559e8a8038aab80da93ee2ecede33b70}{BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+DATA\+\_\+\+VAL}})
 \item 
-\Hypertarget{ble__sensor__service_8h_a9c84c0094f373d8ac6f1b95b824b2a04}\label{ble__sensor__service_8h_a9c84c0094f373d8ac6f1b95b824b2a04} 
-\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+DATA\+\_\+\+TIMESTAMP}~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+DATA\+\_\+\+TIMESTAMP\+\_\+\+VAL)
+\#define \mbox{\hyperlink{ble__sensor__service_8h_a9c84c0094f373d8ac6f1b95b824b2a04}{BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+DATA\+\_\+\+TIMESTAMP}}~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(\mbox{\hyperlink{ble__sensor__service_8h_a5dba36b59755c6daed49bfb8463f26a0}{BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+DATA\+\_\+\+TIMESTAMP\+\_\+\+VAL}})
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
@@ -123,6 +102,177 @@ Tyler Garcia
 \begin{DoxyCopyright}{Copyright}
 Copyright (c) 2025 
 \end{DoxyCopyright}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{ble__sensor__service_8h_aa797ca11be4f3ccb0bbea76d283ecb5c}\label{ble__sensor__service_8h_aa797ca11be4f3ccb0bbea76d283ecb5c} 
+\index{ble\_sensor\_service.h@{ble\_sensor\_service.h}!BT\_UUID\_SENSOR@{BT\_UUID\_SENSOR}}
+\index{BT\_UUID\_SENSOR@{BT\_UUID\_SENSOR}!ble\_sensor\_service.h@{ble\_sensor\_service.h}}
+\doxysubsubsection{\texorpdfstring{BT\_UUID\_SENSOR}{BT\_UUID\_SENSOR}}
+{\footnotesize\ttfamily \#define BT\+\_\+\+UUID\+\_\+\+SENSOR~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(\mbox{\hyperlink{ble__sensor__service_8h_a7609fe9368a18da46d9159d81457c55f}{BT\+\_\+\+UUID\+\_\+\+SENSOR\+\_\+\+VAL}})}
+
+\Hypertarget{ble__sensor__service_8h_a0cdb18c2002a9059167be991769a6e02}\label{ble__sensor__service_8h_a0cdb18c2002a9059167be991769a6e02} 
+\index{ble\_sensor\_service.h@{ble\_sensor\_service.h}!BT\_UUID\_SENSOR1\_CONFIG@{BT\_UUID\_SENSOR1\_CONFIG}}
+\index{BT\_UUID\_SENSOR1\_CONFIG@{BT\_UUID\_SENSOR1\_CONFIG}!ble\_sensor\_service.h@{ble\_sensor\_service.h}}
+\doxysubsubsection{\texorpdfstring{BT\_UUID\_SENSOR1\_CONFIG}{BT\_UUID\_SENSOR1\_CONFIG}}
+{\footnotesize\ttfamily \#define BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+CONFIG~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(\mbox{\hyperlink{ble__sensor__service_8h_a364d37dca81586b1855e032c23025e86}{BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+CONFIG\+\_\+\+VAL}})}
+
+\Hypertarget{ble__sensor__service_8h_a364d37dca81586b1855e032c23025e86}\label{ble__sensor__service_8h_a364d37dca81586b1855e032c23025e86} 
+\index{ble\_sensor\_service.h@{ble\_sensor\_service.h}!BT\_UUID\_SENSOR1\_CONFIG\_VAL@{BT\_UUID\_SENSOR1\_CONFIG\_VAL}}
+\index{BT\_UUID\_SENSOR1\_CONFIG\_VAL@{BT\_UUID\_SENSOR1\_CONFIG\_VAL}!ble\_sensor\_service.h@{ble\_sensor\_service.h}}
+\doxysubsubsection{\texorpdfstring{BT\_UUID\_SENSOR1\_CONFIG\_VAL}{BT\_UUID\_SENSOR1\_CONFIG\_VAL}}
+{\footnotesize\ttfamily \#define BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+CONFIG\+\_\+\+VAL~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c3)}
+
+\Hypertarget{ble__sensor__service_8h_a4a6a8a0de8bf514e238fe88f1e4c4b51}\label{ble__sensor__service_8h_a4a6a8a0de8bf514e238fe88f1e4c4b51} 
+\index{ble\_sensor\_service.h@{ble\_sensor\_service.h}!BT\_UUID\_SENSOR1\_DATA@{BT\_UUID\_SENSOR1\_DATA}}
+\index{BT\_UUID\_SENSOR1\_DATA@{BT\_UUID\_SENSOR1\_DATA}!ble\_sensor\_service.h@{ble\_sensor\_service.h}}
+\doxysubsubsection{\texorpdfstring{BT\_UUID\_SENSOR1\_DATA}{BT\_UUID\_SENSOR1\_DATA}}
+{\footnotesize\ttfamily \#define BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+DATA~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(\mbox{\hyperlink{ble__sensor__service_8h_a6dc8a6806c02c32de044b8c6025ca943}{BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+DATA\+\_\+\+VAL}})}
+
+\Hypertarget{ble__sensor__service_8h_a7d0bef6bc8a2d42f39445e0278aa0c66}\label{ble__sensor__service_8h_a7d0bef6bc8a2d42f39445e0278aa0c66} 
+\index{ble\_sensor\_service.h@{ble\_sensor\_service.h}!BT\_UUID\_SENSOR1\_DATA\_FREQ@{BT\_UUID\_SENSOR1\_DATA\_FREQ}}
+\index{BT\_UUID\_SENSOR1\_DATA\_FREQ@{BT\_UUID\_SENSOR1\_DATA\_FREQ}!ble\_sensor\_service.h@{ble\_sensor\_service.h}}
+\doxysubsubsection{\texorpdfstring{BT\_UUID\_SENSOR1\_DATA\_FREQ}{BT\_UUID\_SENSOR1\_DATA\_FREQ}}
+{\footnotesize\ttfamily \#define BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+DATA\+\_\+\+FREQ~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(\mbox{\hyperlink{ble__sensor__service_8h_aba2ce1d421b7df4a3c445cea5157a863}{BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+DATA\+\_\+\+FREQ\+\_\+\+VAL}})}
+
+\Hypertarget{ble__sensor__service_8h_aba2ce1d421b7df4a3c445cea5157a863}\label{ble__sensor__service_8h_aba2ce1d421b7df4a3c445cea5157a863} 
+\index{ble\_sensor\_service.h@{ble\_sensor\_service.h}!BT\_UUID\_SENSOR1\_DATA\_FREQ\_VAL@{BT\_UUID\_SENSOR1\_DATA\_FREQ\_VAL}}
+\index{BT\_UUID\_SENSOR1\_DATA\_FREQ\_VAL@{BT\_UUID\_SENSOR1\_DATA\_FREQ\_VAL}!ble\_sensor\_service.h@{ble\_sensor\_service.h}}
+\doxysubsubsection{\texorpdfstring{BT\_UUID\_SENSOR1\_DATA\_FREQ\_VAL}{BT\_UUID\_SENSOR1\_DATA\_FREQ\_VAL}}
+{\footnotesize\ttfamily \#define BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+DATA\+\_\+\+FREQ\+\_\+\+VAL~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c5)}
+
+\Hypertarget{ble__sensor__service_8h_ac8324c6a40bf9eef7dd68da0a35c7c81}\label{ble__sensor__service_8h_ac8324c6a40bf9eef7dd68da0a35c7c81} 
+\index{ble\_sensor\_service.h@{ble\_sensor\_service.h}!BT\_UUID\_SENSOR1\_DATA\_TIMESTAMP@{BT\_UUID\_SENSOR1\_DATA\_TIMESTAMP}}
+\index{BT\_UUID\_SENSOR1\_DATA\_TIMESTAMP@{BT\_UUID\_SENSOR1\_DATA\_TIMESTAMP}!ble\_sensor\_service.h@{ble\_sensor\_service.h}}
+\doxysubsubsection{\texorpdfstring{BT\_UUID\_SENSOR1\_DATA\_TIMESTAMP}{BT\_UUID\_SENSOR1\_DATA\_TIMESTAMP}}
+{\footnotesize\ttfamily \#define BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+DATA\+\_\+\+TIMESTAMP~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(\mbox{\hyperlink{ble__sensor__service_8h_ad7cc5ce2932558ea222151debba3a5e2}{BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+DATA\+\_\+\+TIMESTAMP\+\_\+\+VAL}})}
+
+\Hypertarget{ble__sensor__service_8h_ad7cc5ce2932558ea222151debba3a5e2}\label{ble__sensor__service_8h_ad7cc5ce2932558ea222151debba3a5e2} 
+\index{ble\_sensor\_service.h@{ble\_sensor\_service.h}!BT\_UUID\_SENSOR1\_DATA\_TIMESTAMP\_VAL@{BT\_UUID\_SENSOR1\_DATA\_TIMESTAMP\_VAL}}
+\index{BT\_UUID\_SENSOR1\_DATA\_TIMESTAMP\_VAL@{BT\_UUID\_SENSOR1\_DATA\_TIMESTAMP\_VAL}!ble\_sensor\_service.h@{ble\_sensor\_service.h}}
+\doxysubsubsection{\texorpdfstring{BT\_UUID\_SENSOR1\_DATA\_TIMESTAMP\_VAL}{BT\_UUID\_SENSOR1\_DATA\_TIMESTAMP\_VAL}}
+{\footnotesize\ttfamily \#define BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+DATA\+\_\+\+TIMESTAMP\+\_\+\+VAL~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c7)}
+
+\Hypertarget{ble__sensor__service_8h_a6dc8a6806c02c32de044b8c6025ca943}\label{ble__sensor__service_8h_a6dc8a6806c02c32de044b8c6025ca943} 
+\index{ble\_sensor\_service.h@{ble\_sensor\_service.h}!BT\_UUID\_SENSOR1\_DATA\_VAL@{BT\_UUID\_SENSOR1\_DATA\_VAL}}
+\index{BT\_UUID\_SENSOR1\_DATA\_VAL@{BT\_UUID\_SENSOR1\_DATA\_VAL}!ble\_sensor\_service.h@{ble\_sensor\_service.h}}
+\doxysubsubsection{\texorpdfstring{BT\_UUID\_SENSOR1\_DATA\_VAL}{BT\_UUID\_SENSOR1\_DATA\_VAL}}
+{\footnotesize\ttfamily \#define BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+DATA\+\_\+\+VAL~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c6)}
+
+\Hypertarget{ble__sensor__service_8h_a3ef16e0c505b1e56bde252c0dd2349f9}\label{ble__sensor__service_8h_a3ef16e0c505b1e56bde252c0dd2349f9} 
+\index{ble\_sensor\_service.h@{ble\_sensor\_service.h}!BT\_UUID\_SENSOR1\_ENABLED@{BT\_UUID\_SENSOR1\_ENABLED}}
+\index{BT\_UUID\_SENSOR1\_ENABLED@{BT\_UUID\_SENSOR1\_ENABLED}!ble\_sensor\_service.h@{ble\_sensor\_service.h}}
+\doxysubsubsection{\texorpdfstring{BT\_UUID\_SENSOR1\_ENABLED}{BT\_UUID\_SENSOR1\_ENABLED}}
+{\footnotesize\ttfamily \#define BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+ENABLED~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(\mbox{\hyperlink{ble__sensor__service_8h_a9495df86d19cae504ef3095758f433ed}{BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+ENABLED\+\_\+\+VAL}})}
+
+\Hypertarget{ble__sensor__service_8h_a9495df86d19cae504ef3095758f433ed}\label{ble__sensor__service_8h_a9495df86d19cae504ef3095758f433ed} 
+\index{ble\_sensor\_service.h@{ble\_sensor\_service.h}!BT\_UUID\_SENSOR1\_ENABLED\_VAL@{BT\_UUID\_SENSOR1\_ENABLED\_VAL}}
+\index{BT\_UUID\_SENSOR1\_ENABLED\_VAL@{BT\_UUID\_SENSOR1\_ENABLED\_VAL}!ble\_sensor\_service.h@{ble\_sensor\_service.h}}
+\doxysubsubsection{\texorpdfstring{BT\_UUID\_SENSOR1\_ENABLED\_VAL}{BT\_UUID\_SENSOR1\_ENABLED\_VAL}}
+{\footnotesize\ttfamily \#define BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+ENABLED\+\_\+\+VAL~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c2)}
+
+\Hypertarget{ble__sensor__service_8h_ac16149698bcb76dce31557fb1149b483}\label{ble__sensor__service_8h_ac16149698bcb76dce31557fb1149b483} 
+\index{ble\_sensor\_service.h@{ble\_sensor\_service.h}!BT\_UUID\_SENSOR1\_PWR\_CONFIG@{BT\_UUID\_SENSOR1\_PWR\_CONFIG}}
+\index{BT\_UUID\_SENSOR1\_PWR\_CONFIG@{BT\_UUID\_SENSOR1\_PWR\_CONFIG}!ble\_sensor\_service.h@{ble\_sensor\_service.h}}
+\doxysubsubsection{\texorpdfstring{BT\_UUID\_SENSOR1\_PWR\_CONFIG}{BT\_UUID\_SENSOR1\_PWR\_CONFIG}}
+{\footnotesize\ttfamily \#define BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+PWR\+\_\+\+CONFIG~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(\mbox{\hyperlink{ble__sensor__service_8h_a409d01f220f5bc7479d4b1ee89f4124e}{BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+PWR\+\_\+\+CONFIG\+\_\+\+VAL}})}
+
+\Hypertarget{ble__sensor__service_8h_a409d01f220f5bc7479d4b1ee89f4124e}\label{ble__sensor__service_8h_a409d01f220f5bc7479d4b1ee89f4124e} 
+\index{ble\_sensor\_service.h@{ble\_sensor\_service.h}!BT\_UUID\_SENSOR1\_PWR\_CONFIG\_VAL@{BT\_UUID\_SENSOR1\_PWR\_CONFIG\_VAL}}
+\index{BT\_UUID\_SENSOR1\_PWR\_CONFIG\_VAL@{BT\_UUID\_SENSOR1\_PWR\_CONFIG\_VAL}!ble\_sensor\_service.h@{ble\_sensor\_service.h}}
+\doxysubsubsection{\texorpdfstring{BT\_UUID\_SENSOR1\_PWR\_CONFIG\_VAL}{BT\_UUID\_SENSOR1\_PWR\_CONFIG\_VAL}}
+{\footnotesize\ttfamily \#define BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+PWR\+\_\+\+CONFIG\+\_\+\+VAL~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c4)}
+
+\Hypertarget{ble__sensor__service_8h_a650182789bb650e81b6c9e182bc755f7}\label{ble__sensor__service_8h_a650182789bb650e81b6c9e182bc755f7} 
+\index{ble\_sensor\_service.h@{ble\_sensor\_service.h}!BT\_UUID\_SENSOR2\_CONFIG@{BT\_UUID\_SENSOR2\_CONFIG}}
+\index{BT\_UUID\_SENSOR2\_CONFIG@{BT\_UUID\_SENSOR2\_CONFIG}!ble\_sensor\_service.h@{ble\_sensor\_service.h}}
+\doxysubsubsection{\texorpdfstring{BT\_UUID\_SENSOR2\_CONFIG}{BT\_UUID\_SENSOR2\_CONFIG}}
+{\footnotesize\ttfamily \#define BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+CONFIG~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(\mbox{\hyperlink{ble__sensor__service_8h_ae3c0f4df45e112784ad4427f953cf840}{BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+CONFIG\+\_\+\+VAL}})}
+
+\Hypertarget{ble__sensor__service_8h_ae3c0f4df45e112784ad4427f953cf840}\label{ble__sensor__service_8h_ae3c0f4df45e112784ad4427f953cf840} 
+\index{ble\_sensor\_service.h@{ble\_sensor\_service.h}!BT\_UUID\_SENSOR2\_CONFIG\_VAL@{BT\_UUID\_SENSOR2\_CONFIG\_VAL}}
+\index{BT\_UUID\_SENSOR2\_CONFIG\_VAL@{BT\_UUID\_SENSOR2\_CONFIG\_VAL}!ble\_sensor\_service.h@{ble\_sensor\_service.h}}
+\doxysubsubsection{\texorpdfstring{BT\_UUID\_SENSOR2\_CONFIG\_VAL}{BT\_UUID\_SENSOR2\_CONFIG\_VAL}}
+{\footnotesize\ttfamily \#define BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+CONFIG\+\_\+\+VAL~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c9)}
+
+\Hypertarget{ble__sensor__service_8h_ab4a8bcf4b5c6501ffe53dff446492a44}\label{ble__sensor__service_8h_ab4a8bcf4b5c6501ffe53dff446492a44} 
+\index{ble\_sensor\_service.h@{ble\_sensor\_service.h}!BT\_UUID\_SENSOR2\_DATA@{BT\_UUID\_SENSOR2\_DATA}}
+\index{BT\_UUID\_SENSOR2\_DATA@{BT\_UUID\_SENSOR2\_DATA}!ble\_sensor\_service.h@{ble\_sensor\_service.h}}
+\doxysubsubsection{\texorpdfstring{BT\_UUID\_SENSOR2\_DATA}{BT\_UUID\_SENSOR2\_DATA}}
+{\footnotesize\ttfamily \#define BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+DATA~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(\mbox{\hyperlink{ble__sensor__service_8h_a559e8a8038aab80da93ee2ecede33b70}{BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+DATA\+\_\+\+VAL}})}
+
+\Hypertarget{ble__sensor__service_8h_a0073cd6236d38a133c8f66379c05ec6a}\label{ble__sensor__service_8h_a0073cd6236d38a133c8f66379c05ec6a} 
+\index{ble\_sensor\_service.h@{ble\_sensor\_service.h}!BT\_UUID\_SENSOR2\_DATA\_FREQ@{BT\_UUID\_SENSOR2\_DATA\_FREQ}}
+\index{BT\_UUID\_SENSOR2\_DATA\_FREQ@{BT\_UUID\_SENSOR2\_DATA\_FREQ}!ble\_sensor\_service.h@{ble\_sensor\_service.h}}
+\doxysubsubsection{\texorpdfstring{BT\_UUID\_SENSOR2\_DATA\_FREQ}{BT\_UUID\_SENSOR2\_DATA\_FREQ}}
+{\footnotesize\ttfamily \#define BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+DATA\+\_\+\+FREQ~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(\mbox{\hyperlink{ble__sensor__service_8h_a001c3c40e140cc332ace158eb1495bd2}{BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+DATA\+\_\+\+FREQ\+\_\+\+VAL}})}
+
+\Hypertarget{ble__sensor__service_8h_a001c3c40e140cc332ace158eb1495bd2}\label{ble__sensor__service_8h_a001c3c40e140cc332ace158eb1495bd2} 
+\index{ble\_sensor\_service.h@{ble\_sensor\_service.h}!BT\_UUID\_SENSOR2\_DATA\_FREQ\_VAL@{BT\_UUID\_SENSOR2\_DATA\_FREQ\_VAL}}
+\index{BT\_UUID\_SENSOR2\_DATA\_FREQ\_VAL@{BT\_UUID\_SENSOR2\_DATA\_FREQ\_VAL}!ble\_sensor\_service.h@{ble\_sensor\_service.h}}
+\doxysubsubsection{\texorpdfstring{BT\_UUID\_SENSOR2\_DATA\_FREQ\_VAL}{BT\_UUID\_SENSOR2\_DATA\_FREQ\_VAL}}
+{\footnotesize\ttfamily \#define BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+DATA\+\_\+\+FREQ\+\_\+\+VAL~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2cb)}
+
+\Hypertarget{ble__sensor__service_8h_a9c84c0094f373d8ac6f1b95b824b2a04}\label{ble__sensor__service_8h_a9c84c0094f373d8ac6f1b95b824b2a04} 
+\index{ble\_sensor\_service.h@{ble\_sensor\_service.h}!BT\_UUID\_SENSOR2\_DATA\_TIMESTAMP@{BT\_UUID\_SENSOR2\_DATA\_TIMESTAMP}}
+\index{BT\_UUID\_SENSOR2\_DATA\_TIMESTAMP@{BT\_UUID\_SENSOR2\_DATA\_TIMESTAMP}!ble\_sensor\_service.h@{ble\_sensor\_service.h}}
+\doxysubsubsection{\texorpdfstring{BT\_UUID\_SENSOR2\_DATA\_TIMESTAMP}{BT\_UUID\_SENSOR2\_DATA\_TIMESTAMP}}
+{\footnotesize\ttfamily \#define BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+DATA\+\_\+\+TIMESTAMP~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(\mbox{\hyperlink{ble__sensor__service_8h_a5dba36b59755c6daed49bfb8463f26a0}{BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+DATA\+\_\+\+TIMESTAMP\+\_\+\+VAL}})}
+
+\Hypertarget{ble__sensor__service_8h_a5dba36b59755c6daed49bfb8463f26a0}\label{ble__sensor__service_8h_a5dba36b59755c6daed49bfb8463f26a0} 
+\index{ble\_sensor\_service.h@{ble\_sensor\_service.h}!BT\_UUID\_SENSOR2\_DATA\_TIMESTAMP\_VAL@{BT\_UUID\_SENSOR2\_DATA\_TIMESTAMP\_VAL}}
+\index{BT\_UUID\_SENSOR2\_DATA\_TIMESTAMP\_VAL@{BT\_UUID\_SENSOR2\_DATA\_TIMESTAMP\_VAL}!ble\_sensor\_service.h@{ble\_sensor\_service.h}}
+\doxysubsubsection{\texorpdfstring{BT\_UUID\_SENSOR2\_DATA\_TIMESTAMP\_VAL}{BT\_UUID\_SENSOR2\_DATA\_TIMESTAMP\_VAL}}
+{\footnotesize\ttfamily \#define BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+DATA\+\_\+\+TIMESTAMP\+\_\+\+VAL~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2cd)}
+
+\Hypertarget{ble__sensor__service_8h_a559e8a8038aab80da93ee2ecede33b70}\label{ble__sensor__service_8h_a559e8a8038aab80da93ee2ecede33b70} 
+\index{ble\_sensor\_service.h@{ble\_sensor\_service.h}!BT\_UUID\_SENSOR2\_DATA\_VAL@{BT\_UUID\_SENSOR2\_DATA\_VAL}}
+\index{BT\_UUID\_SENSOR2\_DATA\_VAL@{BT\_UUID\_SENSOR2\_DATA\_VAL}!ble\_sensor\_service.h@{ble\_sensor\_service.h}}
+\doxysubsubsection{\texorpdfstring{BT\_UUID\_SENSOR2\_DATA\_VAL}{BT\_UUID\_SENSOR2\_DATA\_VAL}}
+{\footnotesize\ttfamily \#define BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+DATA\+\_\+\+VAL~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2cc)}
+
+\Hypertarget{ble__sensor__service_8h_a9d34bddf53ccdd46676f3dc8f64b1bfd}\label{ble__sensor__service_8h_a9d34bddf53ccdd46676f3dc8f64b1bfd} 
+\index{ble\_sensor\_service.h@{ble\_sensor\_service.h}!BT\_UUID\_SENSOR2\_ENABLED@{BT\_UUID\_SENSOR2\_ENABLED}}
+\index{BT\_UUID\_SENSOR2\_ENABLED@{BT\_UUID\_SENSOR2\_ENABLED}!ble\_sensor\_service.h@{ble\_sensor\_service.h}}
+\doxysubsubsection{\texorpdfstring{BT\_UUID\_SENSOR2\_ENABLED}{BT\_UUID\_SENSOR2\_ENABLED}}
+{\footnotesize\ttfamily \#define BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+ENABLED~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(\mbox{\hyperlink{ble__sensor__service_8h_ab6a364c5baaae7562902399a53269327}{BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+ENABLED\+\_\+\+VAL}})}
+
+\Hypertarget{ble__sensor__service_8h_ab6a364c5baaae7562902399a53269327}\label{ble__sensor__service_8h_ab6a364c5baaae7562902399a53269327} 
+\index{ble\_sensor\_service.h@{ble\_sensor\_service.h}!BT\_UUID\_SENSOR2\_ENABLED\_VAL@{BT\_UUID\_SENSOR2\_ENABLED\_VAL}}
+\index{BT\_UUID\_SENSOR2\_ENABLED\_VAL@{BT\_UUID\_SENSOR2\_ENABLED\_VAL}!ble\_sensor\_service.h@{ble\_sensor\_service.h}}
+\doxysubsubsection{\texorpdfstring{BT\_UUID\_SENSOR2\_ENABLED\_VAL}{BT\_UUID\_SENSOR2\_ENABLED\_VAL}}
+{\footnotesize\ttfamily \#define BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+ENABLED\+\_\+\+VAL~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c8)}
+
+\Hypertarget{ble__sensor__service_8h_afdeec143b37bd0e8a75cf5f613eef26a}\label{ble__sensor__service_8h_afdeec143b37bd0e8a75cf5f613eef26a} 
+\index{ble\_sensor\_service.h@{ble\_sensor\_service.h}!BT\_UUID\_SENSOR2\_PWR\_CONFIG@{BT\_UUID\_SENSOR2\_PWR\_CONFIG}}
+\index{BT\_UUID\_SENSOR2\_PWR\_CONFIG@{BT\_UUID\_SENSOR2\_PWR\_CONFIG}!ble\_sensor\_service.h@{ble\_sensor\_service.h}}
+\doxysubsubsection{\texorpdfstring{BT\_UUID\_SENSOR2\_PWR\_CONFIG}{BT\_UUID\_SENSOR2\_PWR\_CONFIG}}
+{\footnotesize\ttfamily \#define BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+PWR\+\_\+\+CONFIG~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(\mbox{\hyperlink{ble__sensor__service_8h_ab9d89f7e53a9ce3a04bf90506c33ada7}{BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+PWR\+\_\+\+CONFIG\+\_\+\+VAL}})}
+
+\Hypertarget{ble__sensor__service_8h_ab9d89f7e53a9ce3a04bf90506c33ada7}\label{ble__sensor__service_8h_ab9d89f7e53a9ce3a04bf90506c33ada7} 
+\index{ble\_sensor\_service.h@{ble\_sensor\_service.h}!BT\_UUID\_SENSOR2\_PWR\_CONFIG\_VAL@{BT\_UUID\_SENSOR2\_PWR\_CONFIG\_VAL}}
+\index{BT\_UUID\_SENSOR2\_PWR\_CONFIG\_VAL@{BT\_UUID\_SENSOR2\_PWR\_CONFIG\_VAL}!ble\_sensor\_service.h@{ble\_sensor\_service.h}}
+\doxysubsubsection{\texorpdfstring{BT\_UUID\_SENSOR2\_PWR\_CONFIG\_VAL}{BT\_UUID\_SENSOR2\_PWR\_CONFIG\_VAL}}
+{\footnotesize\ttfamily \#define BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+PWR\+\_\+\+CONFIG\+\_\+\+VAL~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2ca)}
+
+\Hypertarget{ble__sensor__service_8h_a5b19179eec9b53729f842613e17748d6}\label{ble__sensor__service_8h_a5b19179eec9b53729f842613e17748d6} 
+\index{ble\_sensor\_service.h@{ble\_sensor\_service.h}!BT\_UUID\_SENSOR\_STATE@{BT\_UUID\_SENSOR\_STATE}}
+\index{BT\_UUID\_SENSOR\_STATE@{BT\_UUID\_SENSOR\_STATE}!ble\_sensor\_service.h@{ble\_sensor\_service.h}}
+\doxysubsubsection{\texorpdfstring{BT\_UUID\_SENSOR\_STATE}{BT\_UUID\_SENSOR\_STATE}}
+{\footnotesize\ttfamily \#define BT\+\_\+\+UUID\+\_\+\+SENSOR\+\_\+\+STATE~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(\mbox{\hyperlink{ble__sensor__service_8h_ae1e2816b27ceb96447eeca79cd3a54aa}{BT\+\_\+\+UUID\+\_\+\+SENSOR\+\_\+\+STATE\+\_\+\+VAL}})}
+
+\Hypertarget{ble__sensor__service_8h_ae1e2816b27ceb96447eeca79cd3a54aa}\label{ble__sensor__service_8h_ae1e2816b27ceb96447eeca79cd3a54aa} 
+\index{ble\_sensor\_service.h@{ble\_sensor\_service.h}!BT\_UUID\_SENSOR\_STATE\_VAL@{BT\_UUID\_SENSOR\_STATE\_VAL}}
+\index{BT\_UUID\_SENSOR\_STATE\_VAL@{BT\_UUID\_SENSOR\_STATE\_VAL}!ble\_sensor\_service.h@{ble\_sensor\_service.h}}
+\doxysubsubsection{\texorpdfstring{BT\_UUID\_SENSOR\_STATE\_VAL}{BT\_UUID\_SENSOR\_STATE\_VAL}}
+{\footnotesize\ttfamily \#define BT\+\_\+\+UUID\+\_\+\+SENSOR\+\_\+\+STATE\+\_\+\+VAL~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c1)}
+
+\Hypertarget{ble__sensor__service_8h_a7609fe9368a18da46d9159d81457c55f}\label{ble__sensor__service_8h_a7609fe9368a18da46d9159d81457c55f} 
+\index{ble\_sensor\_service.h@{ble\_sensor\_service.h}!BT\_UUID\_SENSOR\_VAL@{BT\_UUID\_SENSOR\_VAL}}
+\index{BT\_UUID\_SENSOR\_VAL@{BT\_UUID\_SENSOR\_VAL}!ble\_sensor\_service.h@{ble\_sensor\_service.h}}
+\doxysubsubsection{\texorpdfstring{BT\_UUID\_SENSOR\_VAL}{BT\_UUID\_SENSOR\_VAL}}
+{\footnotesize\ttfamily \#define BT\+\_\+\+UUID\+\_\+\+SENSOR\+\_\+\+VAL~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c0)}
+
 
 
 \doxysubsection{Function Documentation}

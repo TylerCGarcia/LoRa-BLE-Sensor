@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['read_5fsensor_5foutput_0',['read_sensor_output',['../sensor__power_8h.html#ab807eed06a3e1579a7fa930c582df33a',1,'sensor_power.h']]],
-  ['reset_5fsensor_5fpulse_5fcount_1',['reset_sensor_pulse_count',['../sensor__reading_8h.html#af605cb54eb7cca3d5a90da406a1b14a7',1,'sensor_reading.h']]]
+  ['k_5fthread_5fstack_5fdefine_0',['K_THREAD_STACK_DEFINE',['../sensor__app_8c.html#a5001f2d3651508a0c2bb0a9f2fb54888',1,'sensor_app.c']]]
 ];

@@ -1,0 +1,156 @@
+\doxysection{app/src/sensor\+\_\+app.c File Reference}
+\hypertarget{sensor__app_8c}{}\label{sensor__app_8c}\index{app/src/sensor\_app.c@{app/src/sensor\_app.c}}
+{\ttfamily \#include "{}sensor\+\_\+app.\+h"{}}\newline
+{\ttfamily \#include "{}sensor\+\_\+ble.\+h"{}}\newline
+{\ttfamily \#include "{}sensor\+\_\+scheduling.\+h"{}}\newline
+{\ttfamily \#include "{}sensor\+\_\+data.\+h"{}}\newline
+{\ttfamily \#include "{}sensor\+\_\+nvs.\+h"{}}\newline
+{\ttfamily \#include "{}sensor\+\_\+lorawan.\+h"{}}\newline
+{\ttfamily \#include "{}sensor\+\_\+pmic.\+h"{}}\newline
+{\ttfamily \#include "{}ble\+\_\+sensor\+\_\+service.\+h"{}}\newline
+{\ttfamily \#include "{}ble\+\_\+lorawan\+\_\+service.\+h"{}}\newline
+{\ttfamily \#include "{}ble\+\_\+device\+\_\+service.\+h"{}}\newline
+{\ttfamily \#include "{}sensor\+\_\+names.\+h"{}}\newline
+{\ttfamily \#include $<$zephyr/logging/log.\+h$>$}\newline
+{\ttfamily \#include $<$zephyr/kernel.\+h$>$}\newline
+Include dependency graph for sensor\+\_\+app.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sensor__app_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{sensor__app_8c_ababc8792e188f33a5144e9504c0ebb1e}{BLE\+\_\+\+STACKSIZE}}~1024
+\item 
+\#define \mbox{\hyperlink{sensor__app_8c_a4777fbbdd2c40e7fda3c2da2f8410d08}{BLE\+\_\+\+THREAD\+\_\+\+PRIORITY}}~1
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{sensor__app_8c_ae839dcb59891db8a0b7b1fc5581de47c}{LOG\+\_\+\+MODULE\+\_\+\+REGISTER}} (SENSOR\+\_\+\+APP, LOG\+\_\+\+LEVEL\+\_\+\+INF)
+\item 
+\mbox{\hyperlink{sensor__app_8c_a5001f2d3651508a0c2bb0a9f2fb54888}{K\+\_\+\+THREAD\+\_\+\+STACK\+\_\+\+DEFINE}} (ble\+\_\+stack, \mbox{\hyperlink{sensor__app_8c_ababc8792e188f33a5144e9504c0ebb1e}{BLE\+\_\+\+STACKSIZE}})
+\item 
+int \mbox{\hyperlink{sensor__app_8c_abea55631949306c2a0f82ddf35229087}{sensor\+\_\+app\+\_\+init}} (\mbox{\hyperlink{structsensor__app__config__t}{sensor\+\_\+app\+\_\+config\+\_\+t}} \texorpdfstring{$\ast$}{*}config)
+\begin{DoxyCompactList}\small\item\em Initialize the sensor app, handle anything that needs to be initialized for the app such as timers, nvs, etc. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{sensor__app_8c_a42c2202edc8ee7e6c735115215f2aae0}{sensor\+\_\+app\+\_\+configuration\+\_\+state}} (void)
+\begin{DoxyCompactList}\small\item\em Execute the sensor app configuration state. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{sensor__app_8c_af7b48579dad8956c9ccc318612d1ea02}{sensor\+\_\+app\+\_\+running\+\_\+state}} (void)
+\begin{DoxyCompactList}\small\item\em Execute the sensor app running state. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{sensor__app_8c_a450c3a51ecd9475363f0122f84cee0c2}{sensor\+\_\+app\+\_\+error\+\_\+state}} (void)
+\begin{DoxyCompactList}\small\item\em Execute the sensor app error state. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{sensor__app_8c_aa77b4db9e6c6a78c51af3acdc155f9a6}{sensor\+\_\+app\+\_\+ble\+\_\+start}} (void)
+\begin{DoxyCompactList}\small\item\em Start the BLE advertising and services. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+struct k\+\_\+thread \mbox{\hyperlink{sensor__app_8c_ab9cde14293552e128ff011c9ecc554bc}{blethread\+\_\+id}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{sensor__app_8c_ababc8792e188f33a5144e9504c0ebb1e}\label{sensor__app_8c_ababc8792e188f33a5144e9504c0ebb1e} 
+\index{sensor\_app.c@{sensor\_app.c}!BLE\_STACKSIZE@{BLE\_STACKSIZE}}
+\index{BLE\_STACKSIZE@{BLE\_STACKSIZE}!sensor\_app.c@{sensor\_app.c}}
+\doxysubsubsection{\texorpdfstring{BLE\_STACKSIZE}{BLE\_STACKSIZE}}
+{\footnotesize\ttfamily \#define BLE\+\_\+\+STACKSIZE~1024}
+
+\Hypertarget{sensor__app_8c_a4777fbbdd2c40e7fda3c2da2f8410d08}\label{sensor__app_8c_a4777fbbdd2c40e7fda3c2da2f8410d08} 
+\index{sensor\_app.c@{sensor\_app.c}!BLE\_THREAD\_PRIORITY@{BLE\_THREAD\_PRIORITY}}
+\index{BLE\_THREAD\_PRIORITY@{BLE\_THREAD\_PRIORITY}!sensor\_app.c@{sensor\_app.c}}
+\doxysubsubsection{\texorpdfstring{BLE\_THREAD\_PRIORITY}{BLE\_THREAD\_PRIORITY}}
+{\footnotesize\ttfamily \#define BLE\+\_\+\+THREAD\+\_\+\+PRIORITY~1}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{sensor__app_8c_a5001f2d3651508a0c2bb0a9f2fb54888}\label{sensor__app_8c_a5001f2d3651508a0c2bb0a9f2fb54888} 
+\index{sensor\_app.c@{sensor\_app.c}!K\_THREAD\_STACK\_DEFINE@{K\_THREAD\_STACK\_DEFINE}}
+\index{K\_THREAD\_STACK\_DEFINE@{K\_THREAD\_STACK\_DEFINE}!sensor\_app.c@{sensor\_app.c}}
+\doxysubsubsection{\texorpdfstring{K\_THREAD\_STACK\_DEFINE()}{K\_THREAD\_STACK\_DEFINE()}}
+{\footnotesize\ttfamily K\+\_\+\+THREAD\+\_\+\+STACK\+\_\+\+DEFINE (\begin{DoxyParamCaption}\item[{ble\+\_\+stack}]{,  }\item[{\mbox{\hyperlink{sensor__app_8c_ababc8792e188f33a5144e9504c0ebb1e}{BLE\+\_\+\+STACKSIZE}}}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{sensor__app_8c_ae839dcb59891db8a0b7b1fc5581de47c}\label{sensor__app_8c_ae839dcb59891db8a0b7b1fc5581de47c} 
+\index{sensor\_app.c@{sensor\_app.c}!LOG\_MODULE\_REGISTER@{LOG\_MODULE\_REGISTER}}
+\index{LOG\_MODULE\_REGISTER@{LOG\_MODULE\_REGISTER}!sensor\_app.c@{sensor\_app.c}}
+\doxysubsubsection{\texorpdfstring{LOG\_MODULE\_REGISTER()}{LOG\_MODULE\_REGISTER()}}
+{\footnotesize\ttfamily LOG\+\_\+\+MODULE\+\_\+\+REGISTER (\begin{DoxyParamCaption}\item[{SENSOR\+\_\+\+APP}]{,  }\item[{LOG\+\_\+\+LEVEL\+\_\+\+INF}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{sensor__app_8c_aa77b4db9e6c6a78c51af3acdc155f9a6}\label{sensor__app_8c_aa77b4db9e6c6a78c51af3acdc155f9a6} 
+\index{sensor\_app.c@{sensor\_app.c}!sensor\_app\_ble\_start@{sensor\_app\_ble\_start}}
+\index{sensor\_app\_ble\_start@{sensor\_app\_ble\_start}!sensor\_app.c@{sensor\_app.c}}
+\doxysubsubsection{\texorpdfstring{sensor\_app\_ble\_start()}{sensor\_app\_ble\_start()}}
+{\footnotesize\ttfamily int sensor\+\_\+app\+\_\+ble\+\_\+start (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Start the BLE advertising and services. 
+
+\begin{DoxyReturn}{Returns}
+int 0 on success, -\/1 on failure 
+\end{DoxyReturn}
+\Hypertarget{sensor__app_8c_a42c2202edc8ee7e6c735115215f2aae0}\label{sensor__app_8c_a42c2202edc8ee7e6c735115215f2aae0} 
+\index{sensor\_app.c@{sensor\_app.c}!sensor\_app\_configuration\_state@{sensor\_app\_configuration\_state}}
+\index{sensor\_app\_configuration\_state@{sensor\_app\_configuration\_state}!sensor\_app.c@{sensor\_app.c}}
+\doxysubsubsection{\texorpdfstring{sensor\_app\_configuration\_state()}{sensor\_app\_configuration\_state()}}
+{\footnotesize\ttfamily int sensor\+\_\+app\+\_\+configuration\+\_\+state (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Execute the sensor app configuration state. 
+
+\begin{DoxyReturn}{Returns}
+int 0 on success, -\/1 on failure 
+\end{DoxyReturn}
+\Hypertarget{sensor__app_8c_a450c3a51ecd9475363f0122f84cee0c2}\label{sensor__app_8c_a450c3a51ecd9475363f0122f84cee0c2} 
+\index{sensor\_app.c@{sensor\_app.c}!sensor\_app\_error\_state@{sensor\_app\_error\_state}}
+\index{sensor\_app\_error\_state@{sensor\_app\_error\_state}!sensor\_app.c@{sensor\_app.c}}
+\doxysubsubsection{\texorpdfstring{sensor\_app\_error\_state()}{sensor\_app\_error\_state()}}
+{\footnotesize\ttfamily int sensor\+\_\+app\+\_\+error\+\_\+state (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Execute the sensor app error state. 
+
+\begin{DoxyReturn}{Returns}
+int 0 on success, -\/1 on failure 
+\end{DoxyReturn}
+\Hypertarget{sensor__app_8c_abea55631949306c2a0f82ddf35229087}\label{sensor__app_8c_abea55631949306c2a0f82ddf35229087} 
+\index{sensor\_app.c@{sensor\_app.c}!sensor\_app\_init@{sensor\_app\_init}}
+\index{sensor\_app\_init@{sensor\_app\_init}!sensor\_app.c@{sensor\_app.c}}
+\doxysubsubsection{\texorpdfstring{sensor\_app\_init()}{sensor\_app\_init()}}
+{\footnotesize\ttfamily int sensor\+\_\+app\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structsensor__app__config__t}{sensor\+\_\+app\+\_\+config\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{config }\end{DoxyParamCaption})}
+
+
+
+Initialize the sensor app, handle anything that needs to be initialized for the app such as timers, nvs, etc. 
+
+\begin{DoxyReturn}{Returns}
+int 0 on success, -\/1 on failure 
+\end{DoxyReturn}
+\Hypertarget{sensor__app_8c_af7b48579dad8956c9ccc318612d1ea02}\label{sensor__app_8c_af7b48579dad8956c9ccc318612d1ea02} 
+\index{sensor\_app.c@{sensor\_app.c}!sensor\_app\_running\_state@{sensor\_app\_running\_state}}
+\index{sensor\_app\_running\_state@{sensor\_app\_running\_state}!sensor\_app.c@{sensor\_app.c}}
+\doxysubsubsection{\texorpdfstring{sensor\_app\_running\_state()}{sensor\_app\_running\_state()}}
+{\footnotesize\ttfamily int sensor\+\_\+app\+\_\+running\+\_\+state (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Execute the sensor app running state. 
+
+\begin{DoxyReturn}{Returns}
+int 0 on success, -\/1 on failure 
+\end{DoxyReturn}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{sensor__app_8c_ab9cde14293552e128ff011c9ecc554bc}\label{sensor__app_8c_ab9cde14293552e128ff011c9ecc554bc} 
+\index{sensor\_app.c@{sensor\_app.c}!blethread\_id@{blethread\_id}}
+\index{blethread\_id@{blethread\_id}!sensor\_app.c@{sensor\_app.c}}
+\doxysubsubsection{\texorpdfstring{blethread\_id}{blethread\_id}}
+{\footnotesize\ttfamily struct k\+\_\+thread blethread\+\_\+id}
+

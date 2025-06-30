@@ -1,4 +1,21 @@
 var searchData=
 [
-  ['do_0',['Bugs/To-Do',['../md_README.html#autotoc_md5',1,'']]]
+  ['d1_0',['d1',['../structsensor__reading__config__t.html#a38711b289af0c77e1d13b9115acb3361',1,'sensor_reading_config_t']]],
+  ['d2_1',['d2',['../structsensor__reading__config__t.html#a40d30ea09797f8879d5850c8cfc53415',1,'sensor_reading_config_t']]],
+  ['data_2',['data',['../structlorawan__data__t.html#ac539567596c2a3da0949ae081ea51722',1,'lorawan_data_t']]],
+  ['data_5fring_5fbuf_3',['data_ring_buf',['../structsensor__data__t.html#aa9c840bb68bb0fdebda958a53edad868',1,'sensor_data_t']]],
+  ['data_5fsize_4',['data_size',['../structsensor__data__t.html#a0d0ff2e4cd05265413e08e4ec1eea7ee',1,'sensor_data_t']]],
+  ['data_5ftype_5ffloat_5',['DATA_TYPE_FLOAT',['../sensor__data_8h.html#ae58811ccec39232f9c49d149eed4a324a0992e2c702acfcdc10275890e0b47536',1,'sensor_data.h']]],
+  ['data_5ftype_5fint_6',['DATA_TYPE_INT',['../sensor__data_8h.html#ae58811ccec39232f9c49d149eed4a324abf231dfe26eff989df3b697df1a45522',1,'sensor_data.h']]],
+  ['data_5ftype_5flimit_7',['DATA_TYPE_LIMIT',['../sensor__data_8h.html#ae58811ccec39232f9c49d149eed4a324af73c2cae683ca2c2d0bdc721def1bc93',1,'sensor_data.h']]],
+  ['data_5ftype_5fuint16_8',['DATA_TYPE_UINT16',['../sensor__data_8h.html#ae58811ccec39232f9c49d149eed4a324a245ae0de48bc92048c53ff8bd44fb850',1,'sensor_data.h']]],
+  ['data_5ftype_5fuint32_9',['DATA_TYPE_UINT32',['../sensor__data_8h.html#ae58811ccec39232f9c49d149eed4a324aeb75b61567450ccd47baf77d95efa3f6',1,'sensor_data.h']]],
+  ['data_5ftype_5fuint8_10',['DATA_TYPE_UINT8',['../sensor__data_8h.html#ae58811ccec39232f9c49d149eed4a324a332c1c608bc4515a9ca3a2589a361128',1,'sensor_data.h']]],
+  ['delay_11',['delay',['../structlorawan__setup__t.html#a46a9e1e7f56a2d5485c616af952c6f03',1,'lorawan_setup_t::delay'],['../structlorawan__data__t.html#adf69756d4c9e3f105b3ee05b07e8a548',1,'lorawan_data_t::delay']]],
+  ['delay_5fms_12',['delay_ms',['../structsensor__power__config__t.html#a5e50d2b8a592e0bd9d86c635d777677f',1,'sensor_power_config_t']]],
+  ['dev_5feui_13',['dev_eui',['../structlorawan__setup__t.html#af6caac617460dbcc7f5ca2c856f279b6',1,'lorawan_setup_t']]],
+  ['dev_5fnonce_14',['dev_nonce',['../structlorawan__setup__t.html#aee4609d455698f63fbcc25bee3264df0',1,'lorawan_setup_t']]],
+  ['device_5fis_5fready_15',['device_is_ready',['../structsensor__pmic__ops__t.html#a7c66e190128cc2dc83c5f71367dbfd47',1,'sensor_pmic_ops_t']]],
+  ['do_16',['Bugs/To-Do',['../index.html#autotoc_md5',1,'']]],
+  ['downlink_5fcallback_17',['downlink_callback',['../structlorawan__setup__t.html#a42f28c20456a119c45dfae81284855ba',1,'lorawan_setup_t']]]
 ];

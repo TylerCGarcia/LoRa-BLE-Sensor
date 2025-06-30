@@ -1,0 +1,179 @@
+\doxysection{app/include/ble\+\_\+device\+\_\+service.h File Reference}
+\hypertarget{ble__device__service_8h}{}\label{ble__device__service_8h}\index{app/include/ble\_device\_service.h@{app/include/ble\_device\_service.h}}
+{\ttfamily \#include "{}sensor\+\_\+pmic.\+h"{}}\newline
+Include dependency graph for ble\+\_\+device\+\_\+service.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ble__device__service_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=324pt]{ble__device__service_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{ble__device__service_8h_ab8f024ce00779c33cede93806bc0a7d5}{BT\+\_\+\+UUID\+\_\+\+DEVICE\+\_\+\+VAL}}~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c90)
+\item 
+\#define \mbox{\hyperlink{ble__device__service_8h_a4c16c030f8d53db5da2333efdf0bae02}{BT\+\_\+\+UUID\+\_\+\+DEVICE\+\_\+\+NAME\+\_\+\+VAL}}~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c91)
+\item 
+\#define \mbox{\hyperlink{ble__device__service_8h_a4c033ba48815dc778fbf53ca13f9c2c9}{BT\+\_\+\+UUID\+\_\+\+DEVICE\+\_\+\+HARDWARE\+\_\+\+VERSION\+\_\+\+VAL}}~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c92)
+\item 
+\#define \mbox{\hyperlink{ble__device__service_8h_abad43012b424214325d32007116a49b1}{BT\+\_\+\+UUID\+\_\+\+DEVICE\+\_\+\+FIRMWARE\+\_\+\+VERSION\+\_\+\+VAL}}~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c93)
+\item 
+\#define \mbox{\hyperlink{ble__device__service_8h_a15690d963d43cf502d4113ac05e10087}{BT\+\_\+\+UUID\+\_\+\+DEVICE\+\_\+\+BATTERY\+\_\+\+PERCENT\+\_\+\+VAL}}~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c94)
+\item 
+\#define \mbox{\hyperlink{ble__device__service_8h_a50b8c97520b6019bc8bef64dd4c9cf39}{BT\+\_\+\+UUID\+\_\+\+DEVICE\+\_\+\+BATTERY\+\_\+\+VOLTAGE\+\_\+\+VAL}}~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c95)
+\item 
+\#define \mbox{\hyperlink{ble__device__service_8h_a879b66838d19118d1dd87df4aa076be4}{BT\+\_\+\+UUID\+\_\+\+DEVICE\+\_\+\+BATTERY\+\_\+\+CURRENT\+\_\+\+VAL}}~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c96)
+\item 
+\#define \mbox{\hyperlink{ble__device__service_8h_a5a24bd2199f560aa35b1e2c2870d64f6}{BT\+\_\+\+UUID\+\_\+\+DEVICE\+\_\+\+BATTERY\+\_\+\+TEMPERATURE\+\_\+\+VAL}}~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c97)
+\item 
+\#define \mbox{\hyperlink{ble__device__service_8h_a7c39e51331b7b5f547d6619add432e83}{BT\+\_\+\+UUID\+\_\+\+DEVICE}}~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(\mbox{\hyperlink{ble__device__service_8h_ab8f024ce00779c33cede93806bc0a7d5}{BT\+\_\+\+UUID\+\_\+\+DEVICE\+\_\+\+VAL}})
+\item 
+\#define \mbox{\hyperlink{ble__device__service_8h_a913eb6600790b462ae5f5fd31acbf49a}{BT\+\_\+\+UUID\+\_\+\+DEVICE\+\_\+\+NAME}}~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(\mbox{\hyperlink{ble__device__service_8h_a4c16c030f8d53db5da2333efdf0bae02}{BT\+\_\+\+UUID\+\_\+\+DEVICE\+\_\+\+NAME\+\_\+\+VAL}})
+\item 
+\#define \mbox{\hyperlink{ble__device__service_8h_a55b1603a366a9ea2f75c4cbe76772bc3}{BT\+\_\+\+UUID\+\_\+\+DEVICE\+\_\+\+HARDWARE\+\_\+\+VERSION}}~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(\mbox{\hyperlink{ble__device__service_8h_a4c033ba48815dc778fbf53ca13f9c2c9}{BT\+\_\+\+UUID\+\_\+\+DEVICE\+\_\+\+HARDWARE\+\_\+\+VERSION\+\_\+\+VAL}})
+\item 
+\#define \mbox{\hyperlink{ble__device__service_8h_a3166830105fe3bb457d384a928b4c3c0}{BT\+\_\+\+UUID\+\_\+\+DEVICE\+\_\+\+FIRMWARE\+\_\+\+VERSION}}~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(\mbox{\hyperlink{ble__device__service_8h_abad43012b424214325d32007116a49b1}{BT\+\_\+\+UUID\+\_\+\+DEVICE\+\_\+\+FIRMWARE\+\_\+\+VERSION\+\_\+\+VAL}})
+\item 
+\#define \mbox{\hyperlink{ble__device__service_8h_a87236d6bd6ba8ff46dfbc276f7bf12e5}{BT\+\_\+\+UUID\+\_\+\+DEVICE\+\_\+\+BATTERY\+\_\+\+PERCENT}}~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(\mbox{\hyperlink{ble__device__service_8h_a15690d963d43cf502d4113ac05e10087}{BT\+\_\+\+UUID\+\_\+\+DEVICE\+\_\+\+BATTERY\+\_\+\+PERCENT\+\_\+\+VAL}})
+\item 
+\#define \mbox{\hyperlink{ble__device__service_8h_a127e49d0763ee2499e1f2e0f40e9bec5}{BT\+\_\+\+UUID\+\_\+\+DEVICE\+\_\+\+BATTERY\+\_\+\+VOLTAGE}}~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(\mbox{\hyperlink{ble__device__service_8h_a50b8c97520b6019bc8bef64dd4c9cf39}{BT\+\_\+\+UUID\+\_\+\+DEVICE\+\_\+\+BATTERY\+\_\+\+VOLTAGE\+\_\+\+VAL}})
+\item 
+\#define \mbox{\hyperlink{ble__device__service_8h_a11d77cb829466a1793e9bd1e91e0c392}{BT\+\_\+\+UUID\+\_\+\+DEVICE\+\_\+\+BATTERY\+\_\+\+CURRENT}}~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(\mbox{\hyperlink{ble__device__service_8h_a879b66838d19118d1dd87df4aa076be4}{BT\+\_\+\+UUID\+\_\+\+DEVICE\+\_\+\+BATTERY\+\_\+\+CURRENT\+\_\+\+VAL}})
+\item 
+\#define \mbox{\hyperlink{ble__device__service_8h_aec9e91f516f8810093da6f04b9de6f9f}{BT\+\_\+\+UUID\+\_\+\+DEVICE\+\_\+\+BATTERY\+\_\+\+TEMPERATURE}}~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(\mbox{\hyperlink{ble__device__service_8h_a5a24bd2199f560aa35b1e2c2870d64f6}{BT\+\_\+\+UUID\+\_\+\+DEVICE\+\_\+\+BATTERY\+\_\+\+TEMPERATURE\+\_\+\+VAL}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{ble__device__service_8h_ae7f661c5a2c19aec217e05ef7d7e16f4}{ble\+\_\+device\+\_\+service\+\_\+init}} (\mbox{\hyperlink{structpmic__sensor__status__t}{pmic\+\_\+sensor\+\_\+status\+\_\+t}} \texorpdfstring{$\ast$}{*}status)
+\begin{DoxyCompactList}\small\item\em Connect PMIC sensor status to Device BLE Service. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{ble__device__service_8h_a7c39e51331b7b5f547d6619add432e83}\label{ble__device__service_8h_a7c39e51331b7b5f547d6619add432e83} 
+\index{ble\_device\_service.h@{ble\_device\_service.h}!BT\_UUID\_DEVICE@{BT\_UUID\_DEVICE}}
+\index{BT\_UUID\_DEVICE@{BT\_UUID\_DEVICE}!ble\_device\_service.h@{ble\_device\_service.h}}
+\doxysubsubsection{\texorpdfstring{BT\_UUID\_DEVICE}{BT\_UUID\_DEVICE}}
+{\footnotesize\ttfamily \#define BT\+\_\+\+UUID\+\_\+\+DEVICE~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(\mbox{\hyperlink{ble__device__service_8h_ab8f024ce00779c33cede93806bc0a7d5}{BT\+\_\+\+UUID\+\_\+\+DEVICE\+\_\+\+VAL}})}
+
+\Hypertarget{ble__device__service_8h_a11d77cb829466a1793e9bd1e91e0c392}\label{ble__device__service_8h_a11d77cb829466a1793e9bd1e91e0c392} 
+\index{ble\_device\_service.h@{ble\_device\_service.h}!BT\_UUID\_DEVICE\_BATTERY\_CURRENT@{BT\_UUID\_DEVICE\_BATTERY\_CURRENT}}
+\index{BT\_UUID\_DEVICE\_BATTERY\_CURRENT@{BT\_UUID\_DEVICE\_BATTERY\_CURRENT}!ble\_device\_service.h@{ble\_device\_service.h}}
+\doxysubsubsection{\texorpdfstring{BT\_UUID\_DEVICE\_BATTERY\_CURRENT}{BT\_UUID\_DEVICE\_BATTERY\_CURRENT}}
+{\footnotesize\ttfamily \#define BT\+\_\+\+UUID\+\_\+\+DEVICE\+\_\+\+BATTERY\+\_\+\+CURRENT~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(\mbox{\hyperlink{ble__device__service_8h_a879b66838d19118d1dd87df4aa076be4}{BT\+\_\+\+UUID\+\_\+\+DEVICE\+\_\+\+BATTERY\+\_\+\+CURRENT\+\_\+\+VAL}})}
+
+\Hypertarget{ble__device__service_8h_a879b66838d19118d1dd87df4aa076be4}\label{ble__device__service_8h_a879b66838d19118d1dd87df4aa076be4} 
+\index{ble\_device\_service.h@{ble\_device\_service.h}!BT\_UUID\_DEVICE\_BATTERY\_CURRENT\_VAL@{BT\_UUID\_DEVICE\_BATTERY\_CURRENT\_VAL}}
+\index{BT\_UUID\_DEVICE\_BATTERY\_CURRENT\_VAL@{BT\_UUID\_DEVICE\_BATTERY\_CURRENT\_VAL}!ble\_device\_service.h@{ble\_device\_service.h}}
+\doxysubsubsection{\texorpdfstring{BT\_UUID\_DEVICE\_BATTERY\_CURRENT\_VAL}{BT\_UUID\_DEVICE\_BATTERY\_CURRENT\_VAL}}
+{\footnotesize\ttfamily \#define BT\+\_\+\+UUID\+\_\+\+DEVICE\+\_\+\+BATTERY\+\_\+\+CURRENT\+\_\+\+VAL~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c96)}
+
+\Hypertarget{ble__device__service_8h_a87236d6bd6ba8ff46dfbc276f7bf12e5}\label{ble__device__service_8h_a87236d6bd6ba8ff46dfbc276f7bf12e5} 
+\index{ble\_device\_service.h@{ble\_device\_service.h}!BT\_UUID\_DEVICE\_BATTERY\_PERCENT@{BT\_UUID\_DEVICE\_BATTERY\_PERCENT}}
+\index{BT\_UUID\_DEVICE\_BATTERY\_PERCENT@{BT\_UUID\_DEVICE\_BATTERY\_PERCENT}!ble\_device\_service.h@{ble\_device\_service.h}}
+\doxysubsubsection{\texorpdfstring{BT\_UUID\_DEVICE\_BATTERY\_PERCENT}{BT\_UUID\_DEVICE\_BATTERY\_PERCENT}}
+{\footnotesize\ttfamily \#define BT\+\_\+\+UUID\+\_\+\+DEVICE\+\_\+\+BATTERY\+\_\+\+PERCENT~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(\mbox{\hyperlink{ble__device__service_8h_a15690d963d43cf502d4113ac05e10087}{BT\+\_\+\+UUID\+\_\+\+DEVICE\+\_\+\+BATTERY\+\_\+\+PERCENT\+\_\+\+VAL}})}
+
+\Hypertarget{ble__device__service_8h_a15690d963d43cf502d4113ac05e10087}\label{ble__device__service_8h_a15690d963d43cf502d4113ac05e10087} 
+\index{ble\_device\_service.h@{ble\_device\_service.h}!BT\_UUID\_DEVICE\_BATTERY\_PERCENT\_VAL@{BT\_UUID\_DEVICE\_BATTERY\_PERCENT\_VAL}}
+\index{BT\_UUID\_DEVICE\_BATTERY\_PERCENT\_VAL@{BT\_UUID\_DEVICE\_BATTERY\_PERCENT\_VAL}!ble\_device\_service.h@{ble\_device\_service.h}}
+\doxysubsubsection{\texorpdfstring{BT\_UUID\_DEVICE\_BATTERY\_PERCENT\_VAL}{BT\_UUID\_DEVICE\_BATTERY\_PERCENT\_VAL}}
+{\footnotesize\ttfamily \#define BT\+\_\+\+UUID\+\_\+\+DEVICE\+\_\+\+BATTERY\+\_\+\+PERCENT\+\_\+\+VAL~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c94)}
+
+\Hypertarget{ble__device__service_8h_aec9e91f516f8810093da6f04b9de6f9f}\label{ble__device__service_8h_aec9e91f516f8810093da6f04b9de6f9f} 
+\index{ble\_device\_service.h@{ble\_device\_service.h}!BT\_UUID\_DEVICE\_BATTERY\_TEMPERATURE@{BT\_UUID\_DEVICE\_BATTERY\_TEMPERATURE}}
+\index{BT\_UUID\_DEVICE\_BATTERY\_TEMPERATURE@{BT\_UUID\_DEVICE\_BATTERY\_TEMPERATURE}!ble\_device\_service.h@{ble\_device\_service.h}}
+\doxysubsubsection{\texorpdfstring{BT\_UUID\_DEVICE\_BATTERY\_TEMPERATURE}{BT\_UUID\_DEVICE\_BATTERY\_TEMPERATURE}}
+{\footnotesize\ttfamily \#define BT\+\_\+\+UUID\+\_\+\+DEVICE\+\_\+\+BATTERY\+\_\+\+TEMPERATURE~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(\mbox{\hyperlink{ble__device__service_8h_a5a24bd2199f560aa35b1e2c2870d64f6}{BT\+\_\+\+UUID\+\_\+\+DEVICE\+\_\+\+BATTERY\+\_\+\+TEMPERATURE\+\_\+\+VAL}})}
+
+\Hypertarget{ble__device__service_8h_a5a24bd2199f560aa35b1e2c2870d64f6}\label{ble__device__service_8h_a5a24bd2199f560aa35b1e2c2870d64f6} 
+\index{ble\_device\_service.h@{ble\_device\_service.h}!BT\_UUID\_DEVICE\_BATTERY\_TEMPERATURE\_VAL@{BT\_UUID\_DEVICE\_BATTERY\_TEMPERATURE\_VAL}}
+\index{BT\_UUID\_DEVICE\_BATTERY\_TEMPERATURE\_VAL@{BT\_UUID\_DEVICE\_BATTERY\_TEMPERATURE\_VAL}!ble\_device\_service.h@{ble\_device\_service.h}}
+\doxysubsubsection{\texorpdfstring{BT\_UUID\_DEVICE\_BATTERY\_TEMPERATURE\_VAL}{BT\_UUID\_DEVICE\_BATTERY\_TEMPERATURE\_VAL}}
+{\footnotesize\ttfamily \#define BT\+\_\+\+UUID\+\_\+\+DEVICE\+\_\+\+BATTERY\+\_\+\+TEMPERATURE\+\_\+\+VAL~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c97)}
+
+\Hypertarget{ble__device__service_8h_a127e49d0763ee2499e1f2e0f40e9bec5}\label{ble__device__service_8h_a127e49d0763ee2499e1f2e0f40e9bec5} 
+\index{ble\_device\_service.h@{ble\_device\_service.h}!BT\_UUID\_DEVICE\_BATTERY\_VOLTAGE@{BT\_UUID\_DEVICE\_BATTERY\_VOLTAGE}}
+\index{BT\_UUID\_DEVICE\_BATTERY\_VOLTAGE@{BT\_UUID\_DEVICE\_BATTERY\_VOLTAGE}!ble\_device\_service.h@{ble\_device\_service.h}}
+\doxysubsubsection{\texorpdfstring{BT\_UUID\_DEVICE\_BATTERY\_VOLTAGE}{BT\_UUID\_DEVICE\_BATTERY\_VOLTAGE}}
+{\footnotesize\ttfamily \#define BT\+\_\+\+UUID\+\_\+\+DEVICE\+\_\+\+BATTERY\+\_\+\+VOLTAGE~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(\mbox{\hyperlink{ble__device__service_8h_a50b8c97520b6019bc8bef64dd4c9cf39}{BT\+\_\+\+UUID\+\_\+\+DEVICE\+\_\+\+BATTERY\+\_\+\+VOLTAGE\+\_\+\+VAL}})}
+
+\Hypertarget{ble__device__service_8h_a50b8c97520b6019bc8bef64dd4c9cf39}\label{ble__device__service_8h_a50b8c97520b6019bc8bef64dd4c9cf39} 
+\index{ble\_device\_service.h@{ble\_device\_service.h}!BT\_UUID\_DEVICE\_BATTERY\_VOLTAGE\_VAL@{BT\_UUID\_DEVICE\_BATTERY\_VOLTAGE\_VAL}}
+\index{BT\_UUID\_DEVICE\_BATTERY\_VOLTAGE\_VAL@{BT\_UUID\_DEVICE\_BATTERY\_VOLTAGE\_VAL}!ble\_device\_service.h@{ble\_device\_service.h}}
+\doxysubsubsection{\texorpdfstring{BT\_UUID\_DEVICE\_BATTERY\_VOLTAGE\_VAL}{BT\_UUID\_DEVICE\_BATTERY\_VOLTAGE\_VAL}}
+{\footnotesize\ttfamily \#define BT\+\_\+\+UUID\+\_\+\+DEVICE\+\_\+\+BATTERY\+\_\+\+VOLTAGE\+\_\+\+VAL~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c95)}
+
+\Hypertarget{ble__device__service_8h_a3166830105fe3bb457d384a928b4c3c0}\label{ble__device__service_8h_a3166830105fe3bb457d384a928b4c3c0} 
+\index{ble\_device\_service.h@{ble\_device\_service.h}!BT\_UUID\_DEVICE\_FIRMWARE\_VERSION@{BT\_UUID\_DEVICE\_FIRMWARE\_VERSION}}
+\index{BT\_UUID\_DEVICE\_FIRMWARE\_VERSION@{BT\_UUID\_DEVICE\_FIRMWARE\_VERSION}!ble\_device\_service.h@{ble\_device\_service.h}}
+\doxysubsubsection{\texorpdfstring{BT\_UUID\_DEVICE\_FIRMWARE\_VERSION}{BT\_UUID\_DEVICE\_FIRMWARE\_VERSION}}
+{\footnotesize\ttfamily \#define BT\+\_\+\+UUID\+\_\+\+DEVICE\+\_\+\+FIRMWARE\+\_\+\+VERSION~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(\mbox{\hyperlink{ble__device__service_8h_abad43012b424214325d32007116a49b1}{BT\+\_\+\+UUID\+\_\+\+DEVICE\+\_\+\+FIRMWARE\+\_\+\+VERSION\+\_\+\+VAL}})}
+
+\Hypertarget{ble__device__service_8h_abad43012b424214325d32007116a49b1}\label{ble__device__service_8h_abad43012b424214325d32007116a49b1} 
+\index{ble\_device\_service.h@{ble\_device\_service.h}!BT\_UUID\_DEVICE\_FIRMWARE\_VERSION\_VAL@{BT\_UUID\_DEVICE\_FIRMWARE\_VERSION\_VAL}}
+\index{BT\_UUID\_DEVICE\_FIRMWARE\_VERSION\_VAL@{BT\_UUID\_DEVICE\_FIRMWARE\_VERSION\_VAL}!ble\_device\_service.h@{ble\_device\_service.h}}
+\doxysubsubsection{\texorpdfstring{BT\_UUID\_DEVICE\_FIRMWARE\_VERSION\_VAL}{BT\_UUID\_DEVICE\_FIRMWARE\_VERSION\_VAL}}
+{\footnotesize\ttfamily \#define BT\+\_\+\+UUID\+\_\+\+DEVICE\+\_\+\+FIRMWARE\+\_\+\+VERSION\+\_\+\+VAL~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c93)}
+
+\Hypertarget{ble__device__service_8h_a55b1603a366a9ea2f75c4cbe76772bc3}\label{ble__device__service_8h_a55b1603a366a9ea2f75c4cbe76772bc3} 
+\index{ble\_device\_service.h@{ble\_device\_service.h}!BT\_UUID\_DEVICE\_HARDWARE\_VERSION@{BT\_UUID\_DEVICE\_HARDWARE\_VERSION}}
+\index{BT\_UUID\_DEVICE\_HARDWARE\_VERSION@{BT\_UUID\_DEVICE\_HARDWARE\_VERSION}!ble\_device\_service.h@{ble\_device\_service.h}}
+\doxysubsubsection{\texorpdfstring{BT\_UUID\_DEVICE\_HARDWARE\_VERSION}{BT\_UUID\_DEVICE\_HARDWARE\_VERSION}}
+{\footnotesize\ttfamily \#define BT\+\_\+\+UUID\+\_\+\+DEVICE\+\_\+\+HARDWARE\+\_\+\+VERSION~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(\mbox{\hyperlink{ble__device__service_8h_a4c033ba48815dc778fbf53ca13f9c2c9}{BT\+\_\+\+UUID\+\_\+\+DEVICE\+\_\+\+HARDWARE\+\_\+\+VERSION\+\_\+\+VAL}})}
+
+\Hypertarget{ble__device__service_8h_a4c033ba48815dc778fbf53ca13f9c2c9}\label{ble__device__service_8h_a4c033ba48815dc778fbf53ca13f9c2c9} 
+\index{ble\_device\_service.h@{ble\_device\_service.h}!BT\_UUID\_DEVICE\_HARDWARE\_VERSION\_VAL@{BT\_UUID\_DEVICE\_HARDWARE\_VERSION\_VAL}}
+\index{BT\_UUID\_DEVICE\_HARDWARE\_VERSION\_VAL@{BT\_UUID\_DEVICE\_HARDWARE\_VERSION\_VAL}!ble\_device\_service.h@{ble\_device\_service.h}}
+\doxysubsubsection{\texorpdfstring{BT\_UUID\_DEVICE\_HARDWARE\_VERSION\_VAL}{BT\_UUID\_DEVICE\_HARDWARE\_VERSION\_VAL}}
+{\footnotesize\ttfamily \#define BT\+\_\+\+UUID\+\_\+\+DEVICE\+\_\+\+HARDWARE\+\_\+\+VERSION\+\_\+\+VAL~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c92)}
+
+\Hypertarget{ble__device__service_8h_a913eb6600790b462ae5f5fd31acbf49a}\label{ble__device__service_8h_a913eb6600790b462ae5f5fd31acbf49a} 
+\index{ble\_device\_service.h@{ble\_device\_service.h}!BT\_UUID\_DEVICE\_NAME@{BT\_UUID\_DEVICE\_NAME}}
+\index{BT\_UUID\_DEVICE\_NAME@{BT\_UUID\_DEVICE\_NAME}!ble\_device\_service.h@{ble\_device\_service.h}}
+\doxysubsubsection{\texorpdfstring{BT\_UUID\_DEVICE\_NAME}{BT\_UUID\_DEVICE\_NAME}}
+{\footnotesize\ttfamily \#define BT\+\_\+\+UUID\+\_\+\+DEVICE\+\_\+\+NAME~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(\mbox{\hyperlink{ble__device__service_8h_a4c16c030f8d53db5da2333efdf0bae02}{BT\+\_\+\+UUID\+\_\+\+DEVICE\+\_\+\+NAME\+\_\+\+VAL}})}
+
+\Hypertarget{ble__device__service_8h_a4c16c030f8d53db5da2333efdf0bae02}\label{ble__device__service_8h_a4c16c030f8d53db5da2333efdf0bae02} 
+\index{ble\_device\_service.h@{ble\_device\_service.h}!BT\_UUID\_DEVICE\_NAME\_VAL@{BT\_UUID\_DEVICE\_NAME\_VAL}}
+\index{BT\_UUID\_DEVICE\_NAME\_VAL@{BT\_UUID\_DEVICE\_NAME\_VAL}!ble\_device\_service.h@{ble\_device\_service.h}}
+\doxysubsubsection{\texorpdfstring{BT\_UUID\_DEVICE\_NAME\_VAL}{BT\_UUID\_DEVICE\_NAME\_VAL}}
+{\footnotesize\ttfamily \#define BT\+\_\+\+UUID\+\_\+\+DEVICE\+\_\+\+NAME\+\_\+\+VAL~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c91)}
+
+\Hypertarget{ble__device__service_8h_ab8f024ce00779c33cede93806bc0a7d5}\label{ble__device__service_8h_ab8f024ce00779c33cede93806bc0a7d5} 
+\index{ble\_device\_service.h@{ble\_device\_service.h}!BT\_UUID\_DEVICE\_VAL@{BT\_UUID\_DEVICE\_VAL}}
+\index{BT\_UUID\_DEVICE\_VAL@{BT\_UUID\_DEVICE\_VAL}!ble\_device\_service.h@{ble\_device\_service.h}}
+\doxysubsubsection{\texorpdfstring{BT\_UUID\_DEVICE\_VAL}{BT\_UUID\_DEVICE\_VAL}}
+{\footnotesize\ttfamily \#define BT\+\_\+\+UUID\+\_\+\+DEVICE\+\_\+\+VAL~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c90)}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{ble__device__service_8h_ae7f661c5a2c19aec217e05ef7d7e16f4}\label{ble__device__service_8h_ae7f661c5a2c19aec217e05ef7d7e16f4} 
+\index{ble\_device\_service.h@{ble\_device\_service.h}!ble\_device\_service\_init@{ble\_device\_service\_init}}
+\index{ble\_device\_service\_init@{ble\_device\_service\_init}!ble\_device\_service.h@{ble\_device\_service.h}}
+\doxysubsubsection{\texorpdfstring{ble\_device\_service\_init()}{ble\_device\_service\_init()}}
+{\footnotesize\ttfamily int ble\+\_\+device\+\_\+service\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpmic__sensor__status__t}{pmic\+\_\+sensor\+\_\+status\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{status }\end{DoxyParamCaption})}
+
+
+
+Connect PMIC sensor status to Device BLE Service. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em status} & PMIC sensor status \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 0 if successful connection, \texorpdfstring{$<$}{<} 0 if unsuccessful 
+\end{DoxyReturn}

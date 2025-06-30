@@ -1,0 +1,25 @@
+<map id="app/src/sensor_power.c" name="app/src/sensor_power.c">
+<area shape="rect" id="Node000001" title=" " alt="" coords="441,5,614,31"/>
+<area shape="rect" id="Node000002" href="$sensor__power_8h.html" title="This is a library for sensor power configurations and control. This is manages the power configuratio..." alt="" coords="175,79,298,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="481,33,297,78,296,73,480,28"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,152,164,177"/>
+<area shape="poly" id="edge7_Node000001_Node000004" title=" " alt="" coords="441,30,285,50,214,64,165,81,145,94,128,110,101,142,97,139,124,106,142,90,162,76,213,59,284,44,440,24"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="309,152,463,177"/>
+<area shape="poly" id="edge9_Node000001_Node000005" title=" " alt="" coords="442,32,398,50,380,63,364,80,359,94,360,109,372,140,367,142,354,110,354,93,360,77,376,59,396,45,440,27"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="373,79,441,104"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="509,33,440,74,438,69,507,28"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="466,79,589,104"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="530,31,530,65,525,65,525,31"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="613,79,802,104"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="557,28,666,71,664,76,555,33"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="826,79,893,104"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="586,28,813,76,812,81,585,33"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="917,79,988,104"/>
+<area shape="poly" id="edge11_Node000001_Node000010" title=" " alt="" coords="612,28,745,48,904,76,903,81,744,53,611,33"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="1013,79,1167,104"/>
+<area shape="poly" id="edge12_Node000001_Node000011" title=" " alt="" coords="614,28,1000,76,999,81,614,33"/>
+<area shape="rect" id="Node000003" href="$sensor__id_8h.html" title="This is a library to keep track of sensor ids and sensor power ids. As well as the configuration for ..." alt="" coords="189,152,285,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="239,104,239,138,234,138,234,104"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="213,106,123,149,121,144,211,102"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="262,102,350,144,348,148,260,106"/>
+</map>

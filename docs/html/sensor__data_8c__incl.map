@@ -1,0 +1,30 @@
+<map id="app/src/sensor_data.c" name="app/src/sensor_data.c">
+<area shape="rect" id="Node000001" title=" " alt="" coords="529,5,691,31"/>
+<area shape="rect" id="Node000002" href="$sensor__data_8h.html" title="This is a library to keep track of sensor data, using the sensor_reading library to collect data from..." alt="" coords="507,79,620,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="605,32,581,69,576,66,600,30"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="788,152,859,177"/>
+<area shape="poly" id="edge14_Node000001_Node000005" title=" " alt="" coords="620,30,646,65,685,102,730,128,776,146,774,151,728,133,682,106,642,68,616,33"/>
+<area shape="rect" id="Node000007" href="$sensor__power_8h.html" title="This is a library for sensor power configurations and control. This is manages the power configuratio..." alt="" coords="202,79,325,104"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="555,33,333,78,332,73,554,28"/>
+<area shape="rect" id="Node000010" href="$sensor__reading_8h.html" title="This is a library for sensor data configurations and collection. This is manages the sensor type,..." alt="" coords="349,79,482,104"/>
+<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="580,33,461,76,459,71,578,28"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="695,79,818,104"/>
+<area shape="poly" id="edge15_Node000001_Node000011" title=" " alt="" coords="635,28,722,70,719,75,632,33"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="842,79,997,104"/>
+<area shape="poly" id="edge16_Node000001_Node000012" title=" " alt="" coords="660,28,857,73,856,78,659,33"/>
+<area shape="rect" id="Node000003" href="$sensor__id_8h.html" title="This is a library to keep track of sensor ids and sensor power ids. As well as the configuration for ..." alt="" coords="367,152,463,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="541,106,453,148,451,144,538,102"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="487,152,562,177"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="559,106,540,141,535,139,555,103"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="606,101,776,148,774,153,604,107"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="587,152,764,177"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="583,102,647,142,644,147,580,106"/>
+<area shape="poly" id="edge7_Node000007_Node000003" title=" " alt="" coords="289,102,379,144,377,149,287,106"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="5,152,164,177"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="236,107,127,149,125,144,234,102"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="189,152,343,177"/>
+<area shape="poly" id="edge9_Node000007_Node000009" title=" " alt="" coords="266,104,268,138,262,139,261,104"/>
+<area shape="poly" id="edge11_Node000010_Node000003" title=" " alt="" coords="418,104,418,138,413,138,413,104"/>
+<area shape="poly" id="edge12_Node000010_Node000008" title=" " alt="" coords="363,107,152,152,151,146,362,101"/>
+<area shape="poly" id="edge13_Node000010_Node000009" title=" " alt="" coords="392,106,304,148,302,144,390,102"/>
+</map>

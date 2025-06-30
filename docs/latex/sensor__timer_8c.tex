@@ -1,0 +1,191 @@
+\doxysection{app/src/sensor\+\_\+timer.c File Reference}
+\hypertarget{sensor__timer_8c}{}\label{sensor__timer_8c}\index{app/src/sensor\_timer.c@{app/src/sensor\_timer.c}}
+{\ttfamily \#include $<$sensor\+\_\+timer.\+h$>$}\newline
+{\ttfamily \#include $<$zephyr/kernel.\+h$>$}\newline
+{\ttfamily \#include $<$zephyr/logging/log.\+h$>$}\newline
+Include dependency graph for sensor\+\_\+timer.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sensor__timer_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{sensor__timer_8c_aef3492a560014ecfdc7c4c706f26e085}{LOG\+\_\+\+MODULE\+\_\+\+REGISTER}} (SENSOR\+\_\+\+TIMER, LOG\+\_\+\+LEVEL\+\_\+\+INF)
+\item 
+int \mbox{\hyperlink{sensor__timer_8c_aec38ee834d2968ed0c8a1a0154625e05}{sensor\+\_\+timer\+\_\+init}} (const struct device \texorpdfstring{$\ast$}{*}dev)
+\begin{DoxyCompactList}\small\item\em Initialize the chosen sensor timer instance and create a top value callback to increment the total overflown seconds. This also starts the timer. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{sensor__timer_8c_a74a7d60320e2e64cd3f713e2c3834f68}{sensor\+\_\+timer\+\_\+start}} (const struct device \texorpdfstring{$\ast$}{*}dev)
+\begin{DoxyCompactList}\small\item\em Start the chosen sensor timer instance. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{sensor__timer_8c_afc741003bd636994c8405570743c5468}{sensor\+\_\+timer\+\_\+get\+\_\+current\+\_\+seconds}} (const struct device \texorpdfstring{$\ast$}{*}dev)
+\begin{DoxyCompactList}\small\item\em Get the current seconds the timer was started. This value resets every time the timer is reset or top value is reached. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{sensor__timer_8c_a4a6119e6df207fcc634fd79e676ee406}{sensor\+\_\+timer\+\_\+get\+\_\+total\+\_\+seconds}} (const struct device \texorpdfstring{$\ast$}{*}dev)
+\begin{DoxyCompactList}\small\item\em Get the total seconds the timer has been running. This value is reset when the timer is reset. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{sensor__timer_8c_aca813e54e76ffea463291f87a72efcb5}{sensor\+\_\+timer\+\_\+reset}} (const struct device \texorpdfstring{$\ast$}{*}dev)
+\begin{DoxyCompactList}\small\item\em Reset the chosen sensor timer instance. This also resets the total seconds to 0. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{sensor__timer_8c_ae630f67377c76b3e029f5a75c5101e72}{sensor\+\_\+timer\+\_\+stop}} (const struct device \texorpdfstring{$\ast$}{*}dev)
+\begin{DoxyCompactList}\small\item\em Stop the chosen sensor timer instance. Timer will remain at the current value. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{sensor__timer_8c_af921bc6e3c92f4ab106e2977b7155646}{sensor\+\_\+timer\+\_\+set\+\_\+alarm}} (const struct device \texorpdfstring{$\ast$}{*}dev, \mbox{\hyperlink{structsensor__timer__alarm__cfg__t}{sensor\+\_\+timer\+\_\+alarm\+\_\+cfg\+\_\+t}} \texorpdfstring{$\ast$}{*}sensor\+\_\+timer\+\_\+alarm\+\_\+cfg)
+\begin{DoxyCompactList}\small\item\em Set the alarm for the chosen sensor timer instance, also setting the top value of the timer to the chosen alarm value. When the alarm is triggered, the callback function will be called and the timer will be reset. In alarm callback, the is\+\_\+alarm\+\_\+set needs to be set to 0 manually. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{sensor__timer_8c_a59e461a7a10a1f5dd4d8e6e62c775d38}{sensor\+\_\+timer\+\_\+cancel\+\_\+alarm}} (const struct device \texorpdfstring{$\ast$}{*}dev, uint8\+\_\+t channel)
+\begin{DoxyCompactList}\small\item\em Cancel the alarm for the chosen channel of the sensor timer instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{sensor__timer_8c_aef3492a560014ecfdc7c4c706f26e085}\label{sensor__timer_8c_aef3492a560014ecfdc7c4c706f26e085} 
+\index{sensor\_timer.c@{sensor\_timer.c}!LOG\_MODULE\_REGISTER@{LOG\_MODULE\_REGISTER}}
+\index{LOG\_MODULE\_REGISTER@{LOG\_MODULE\_REGISTER}!sensor\_timer.c@{sensor\_timer.c}}
+\doxysubsubsection{\texorpdfstring{LOG\_MODULE\_REGISTER()}{LOG\_MODULE\_REGISTER()}}
+{\footnotesize\ttfamily LOG\+\_\+\+MODULE\+\_\+\+REGISTER (\begin{DoxyParamCaption}\item[{SENSOR\+\_\+\+TIMER}]{,  }\item[{LOG\+\_\+\+LEVEL\+\_\+\+INF}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{sensor__timer_8c_a59e461a7a10a1f5dd4d8e6e62c775d38}\label{sensor__timer_8c_a59e461a7a10a1f5dd4d8e6e62c775d38} 
+\index{sensor\_timer.c@{sensor\_timer.c}!sensor\_timer\_cancel\_alarm@{sensor\_timer\_cancel\_alarm}}
+\index{sensor\_timer\_cancel\_alarm@{sensor\_timer\_cancel\_alarm}!sensor\_timer.c@{sensor\_timer.c}}
+\doxysubsubsection{\texorpdfstring{sensor\_timer\_cancel\_alarm()}{sensor\_timer\_cancel\_alarm()}}
+{\footnotesize\ttfamily int sensor\+\_\+timer\+\_\+cancel\+\_\+alarm (\begin{DoxyParamCaption}\item[{const struct device \texorpdfstring{$\ast$}{*}}]{dev,  }\item[{uint8\+\_\+t}]{channel }\end{DoxyParamCaption})}
+
+
+
+Cancel the alarm for the chosen channel of the sensor timer instance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dev} & The timer device to cancel the alarm for. \\
+\hline
+{\em channel} & The channel to cancel the alarm for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, negative error code on failure. 
+\end{DoxyReturn}
+\Hypertarget{sensor__timer_8c_afc741003bd636994c8405570743c5468}\label{sensor__timer_8c_afc741003bd636994c8405570743c5468} 
+\index{sensor\_timer.c@{sensor\_timer.c}!sensor\_timer\_get\_current\_seconds@{sensor\_timer\_get\_current\_seconds}}
+\index{sensor\_timer\_get\_current\_seconds@{sensor\_timer\_get\_current\_seconds}!sensor\_timer.c@{sensor\_timer.c}}
+\doxysubsubsection{\texorpdfstring{sensor\_timer\_get\_current\_seconds()}{sensor\_timer\_get\_current\_seconds()}}
+{\footnotesize\ttfamily int sensor\+\_\+timer\+\_\+get\+\_\+current\+\_\+seconds (\begin{DoxyParamCaption}\item[{const struct device \texorpdfstring{$\ast$}{*}}]{dev }\end{DoxyParamCaption})}
+
+
+
+Get the current seconds the timer was started. This value resets every time the timer is reset or top value is reached. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dev} & The timer device to get the seconds from. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The seconds elapsed since the timer was started, or negative error code on failure. 
+\end{DoxyReturn}
+\Hypertarget{sensor__timer_8c_a4a6119e6df207fcc634fd79e676ee406}\label{sensor__timer_8c_a4a6119e6df207fcc634fd79e676ee406} 
+\index{sensor\_timer.c@{sensor\_timer.c}!sensor\_timer\_get\_total\_seconds@{sensor\_timer\_get\_total\_seconds}}
+\index{sensor\_timer\_get\_total\_seconds@{sensor\_timer\_get\_total\_seconds}!sensor\_timer.c@{sensor\_timer.c}}
+\doxysubsubsection{\texorpdfstring{sensor\_timer\_get\_total\_seconds()}{sensor\_timer\_get\_total\_seconds()}}
+{\footnotesize\ttfamily int sensor\+\_\+timer\+\_\+get\+\_\+total\+\_\+seconds (\begin{DoxyParamCaption}\item[{const struct device \texorpdfstring{$\ast$}{*}}]{dev }\end{DoxyParamCaption})}
+
+
+
+Get the total seconds the timer has been running. This value is reset when the timer is reset. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dev} & The timer device to get the total seconds from. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The total seconds the timer has been running, or negative error code on failure. 
+\end{DoxyReturn}
+\Hypertarget{sensor__timer_8c_aec38ee834d2968ed0c8a1a0154625e05}\label{sensor__timer_8c_aec38ee834d2968ed0c8a1a0154625e05} 
+\index{sensor\_timer.c@{sensor\_timer.c}!sensor\_timer\_init@{sensor\_timer\_init}}
+\index{sensor\_timer\_init@{sensor\_timer\_init}!sensor\_timer.c@{sensor\_timer.c}}
+\doxysubsubsection{\texorpdfstring{sensor\_timer\_init()}{sensor\_timer\_init()}}
+{\footnotesize\ttfamily int sensor\+\_\+timer\+\_\+init (\begin{DoxyParamCaption}\item[{const struct device \texorpdfstring{$\ast$}{*}}]{dev }\end{DoxyParamCaption})}
+
+
+
+Initialize the chosen sensor timer instance and create a top value callback to increment the total overflown seconds. This also starts the timer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dev} & The timer device to initialize. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, negative error code on failure. 
+\end{DoxyReturn}
+\Hypertarget{sensor__timer_8c_aca813e54e76ffea463291f87a72efcb5}\label{sensor__timer_8c_aca813e54e76ffea463291f87a72efcb5} 
+\index{sensor\_timer.c@{sensor\_timer.c}!sensor\_timer\_reset@{sensor\_timer\_reset}}
+\index{sensor\_timer\_reset@{sensor\_timer\_reset}!sensor\_timer.c@{sensor\_timer.c}}
+\doxysubsubsection{\texorpdfstring{sensor\_timer\_reset()}{sensor\_timer\_reset()}}
+{\footnotesize\ttfamily int sensor\+\_\+timer\+\_\+reset (\begin{DoxyParamCaption}\item[{const struct device \texorpdfstring{$\ast$}{*}}]{dev }\end{DoxyParamCaption})}
+
+
+
+Reset the chosen sensor timer instance. This also resets the total seconds to 0. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dev} & The timer device to reset. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, negative error code on failure. 
+\end{DoxyReturn}
+\Hypertarget{sensor__timer_8c_af921bc6e3c92f4ab106e2977b7155646}\label{sensor__timer_8c_af921bc6e3c92f4ab106e2977b7155646} 
+\index{sensor\_timer.c@{sensor\_timer.c}!sensor\_timer\_set\_alarm@{sensor\_timer\_set\_alarm}}
+\index{sensor\_timer\_set\_alarm@{sensor\_timer\_set\_alarm}!sensor\_timer.c@{sensor\_timer.c}}
+\doxysubsubsection{\texorpdfstring{sensor\_timer\_set\_alarm()}{sensor\_timer\_set\_alarm()}}
+{\footnotesize\ttfamily int sensor\+\_\+timer\+\_\+set\+\_\+alarm (\begin{DoxyParamCaption}\item[{const struct device \texorpdfstring{$\ast$}{*}}]{dev,  }\item[{\mbox{\hyperlink{structsensor__timer__alarm__cfg__t}{sensor\+\_\+timer\+\_\+alarm\+\_\+cfg\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{sensor\+\_\+timer\+\_\+alarm\+\_\+cfg }\end{DoxyParamCaption})}
+
+
+
+Set the alarm for the chosen sensor timer instance, also setting the top value of the timer to the chosen alarm value. When the alarm is triggered, the callback function will be called and the timer will be reset. In alarm callback, the is\+\_\+alarm\+\_\+set needs to be set to 0 manually. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dev} & The timer device to set the alarm for. \\
+\hline
+{\em sensor\+\_\+timer\+\_\+alarm\+\_\+cfg} & The alarm configuration to set. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, negative error code on failure. 
+\end{DoxyReturn}
+\Hypertarget{sensor__timer_8c_a74a7d60320e2e64cd3f713e2c3834f68}\label{sensor__timer_8c_a74a7d60320e2e64cd3f713e2c3834f68} 
+\index{sensor\_timer.c@{sensor\_timer.c}!sensor\_timer\_start@{sensor\_timer\_start}}
+\index{sensor\_timer\_start@{sensor\_timer\_start}!sensor\_timer.c@{sensor\_timer.c}}
+\doxysubsubsection{\texorpdfstring{sensor\_timer\_start()}{sensor\_timer\_start()}}
+{\footnotesize\ttfamily int sensor\+\_\+timer\+\_\+start (\begin{DoxyParamCaption}\item[{const struct device \texorpdfstring{$\ast$}{*}}]{dev }\end{DoxyParamCaption})}
+
+
+
+Start the chosen sensor timer instance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dev} & The timer device to start. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, negative error code on failure. 
+\end{DoxyReturn}
+\Hypertarget{sensor__timer_8c_ae630f67377c76b3e029f5a75c5101e72}\label{sensor__timer_8c_ae630f67377c76b3e029f5a75c5101e72} 
+\index{sensor\_timer.c@{sensor\_timer.c}!sensor\_timer\_stop@{sensor\_timer\_stop}}
+\index{sensor\_timer\_stop@{sensor\_timer\_stop}!sensor\_timer.c@{sensor\_timer.c}}
+\doxysubsubsection{\texorpdfstring{sensor\_timer\_stop()}{sensor\_timer\_stop()}}
+{\footnotesize\ttfamily int sensor\+\_\+timer\+\_\+stop (\begin{DoxyParamCaption}\item[{const struct device \texorpdfstring{$\ast$}{*}}]{dev }\end{DoxyParamCaption})}
+
+
+
+Stop the chosen sensor timer instance. Timer will remain at the current value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dev} & The timer device to stop. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, negative error code on failure. 
+\end{DoxyReturn}

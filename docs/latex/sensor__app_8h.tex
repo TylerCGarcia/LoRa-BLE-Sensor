@@ -7,8 +7,7 @@ A library to manage sensor applications. Working between power configurations an
 
 {\ttfamily \#include "{}sensor\+\_\+id.\+h"{}}\newline
 {\ttfamily \#include $<$stdint.\+h$>$}\newline
-Include dependency graph for sensor\+\_\+app.\+h\+:
-\nopagebreak
+Include dependency graph for sensor\+\_\+app.\+h\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -20,7 +19,7 @@ This graph shows which files directly or indirectly include this file\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=208pt]{sensor__app_8h__dep__incl}
+\includegraphics[width=350pt]{sensor__app_8h__dep__incl}
 \end{center}
 \end{figure}
 \doxysubsubsection*{Classes}
@@ -31,46 +30,42 @@ struct \mbox{\hyperlink{structsensor__app__config__t}{sensor\+\_\+app\+\_\+confi
 \doxysubsubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{sensor__app_8h_a4cdd0af44f5c2b29503979d86bf45fbf}\label{sensor__app_8h_a4cdd0af44f5c2b29503979d86bf45fbf} 
-\#define {\bfseries SENSOR\+\_\+\+VOLTAGE\+\_\+\+NAME\+\_\+\+LENGTH}~20
+\#define \mbox{\hyperlink{sensor__app_8h_a4cdd0af44f5c2b29503979d86bf45fbf}{SENSOR\+\_\+\+VOLTAGE\+\_\+\+NAME\+\_\+\+LENGTH}}~20
 \item 
-\Hypertarget{sensor__app_8h_a1b70e27acec5f3fad115276c378fe481}\label{sensor__app_8h_a1b70e27acec5f3fad115276c378fe481} 
-\#define {\bfseries SENSOR\+\_\+\+TYPE\+\_\+\+NAME\+\_\+\+LENGTH}~20
+\#define \mbox{\hyperlink{sensor__app_8h_a1b70e27acec5f3fad115276c378fe481}{SENSOR\+\_\+\+TYPE\+\_\+\+NAME\+\_\+\+LENGTH}}~20
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{sensor__app_8h_a3ded0fb95123f62995b82d8ccfe33a43}\label{sensor__app_8h_a3ded0fb95123f62995b82d8ccfe33a43} 
-enum {\bfseries sensor\+\_\+app\+\_\+state} \{ {\bfseries SENSOR\+\_\+\+APP\+\_\+\+STATE\+\_\+\+CONFIGURATION}
-, {\bfseries SENSOR\+\_\+\+APP\+\_\+\+STATE\+\_\+\+RUNNING}
-, {\bfseries SENSOR\+\_\+\+APP\+\_\+\+STATE\+\_\+\+ERROR}
+enum \mbox{\hyperlink{sensor__app_8h_a3ded0fb95123f62995b82d8ccfe33a43}{sensor\+\_\+app\+\_\+state}} \{ \mbox{\hyperlink{sensor__app_8h_a3ded0fb95123f62995b82d8ccfe33a43a48dae62cfd19edab5be767c441ebdb11}{SENSOR\+\_\+\+APP\+\_\+\+STATE\+\_\+\+CONFIGURATION}}
+, \mbox{\hyperlink{sensor__app_8h_a3ded0fb95123f62995b82d8ccfe33a43a5a92bbec0977ae77b062d7405131e1e4}{SENSOR\+\_\+\+APP\+\_\+\+STATE\+\_\+\+RUNNING}}
+, \mbox{\hyperlink{sensor__app_8h_a3ded0fb95123f62995b82d8ccfe33a43ab855477213c54014b8c5707885ff3dd3}{SENSOR\+\_\+\+APP\+\_\+\+STATE\+\_\+\+ERROR}}
  \}
 \item 
-\Hypertarget{sensor__app_8h_af1804e81186cc74c046575e0c164375a}\label{sensor__app_8h_af1804e81186cc74c046575e0c164375a} 
-enum {\bfseries sensor\+\_\+nvs\+\_\+address} \{ \newline
-{\bfseries SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+DEVICE\+\_\+\+NAME}
-, {\bfseries SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+APP\+\_\+\+STATE}
-, {\bfseries SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+LORAWAN\+\_\+\+ENABLED}
-, {\bfseries SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+LORAWAN\+\_\+\+FREQUENCY}
+enum \mbox{\hyperlink{sensor__app_8h_af1804e81186cc74c046575e0c164375a}{sensor\+\_\+nvs\+\_\+address}} \{ \newline
+\mbox{\hyperlink{sensor__app_8h_af1804e81186cc74c046575e0c164375aa2d268500f7614584b41291ea22792d65}{SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+DEVICE\+\_\+\+NAME}}
+, \mbox{\hyperlink{sensor__app_8h_af1804e81186cc74c046575e0c164375aaedf2f4070cffcaa48443cca30fe15a67}{SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+APP\+\_\+\+STATE}}
+, \mbox{\hyperlink{sensor__app_8h_af1804e81186cc74c046575e0c164375aa6fdc49bc0b7367d523405392185fa469}{SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+LORAWAN\+\_\+\+ENABLED}}
+, \mbox{\hyperlink{sensor__app_8h_af1804e81186cc74c046575e0c164375aa4de7e0009db882597905188c8accbf42}{SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+LORAWAN\+\_\+\+FREQUENCY}}
 , \newline
-{\bfseries SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+LORAWAN\+\_\+\+DEV\+\_\+\+EUI}
-, {\bfseries SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+LORAWAN\+\_\+\+JOIN\+\_\+\+EUI}
-, {\bfseries SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+LORAWAN\+\_\+\+APP\+\_\+\+KEY}
-, {\bfseries SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+LORAWAN\+\_\+\+DEV\+\_\+\+NONCE}
+\mbox{\hyperlink{sensor__app_8h_af1804e81186cc74c046575e0c164375aa67d0df0fb28ed76fae68842733be1079}{SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+LORAWAN\+\_\+\+DEV\+\_\+\+EUI}}
+, \mbox{\hyperlink{sensor__app_8h_af1804e81186cc74c046575e0c164375aac76be02be3ca8689c045c7f30cea8050}{SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+LORAWAN\+\_\+\+JOIN\+\_\+\+EUI}}
+, \mbox{\hyperlink{sensor__app_8h_af1804e81186cc74c046575e0c164375aa93f3738cd4a440dffaee1f871448391a}{SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+LORAWAN\+\_\+\+APP\+\_\+\+KEY}}
+, \mbox{\hyperlink{sensor__app_8h_af1804e81186cc74c046575e0c164375aaffe664ab5a382bbb5d46893a50fde38a}{SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+LORAWAN\+\_\+\+DEV\+\_\+\+NONCE}}
 , \newline
-{\bfseries SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+LORAWAN\+\_\+\+JOIN\+\_\+\+ATTEMPTS}
-, {\bfseries SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+LORAWAN\+\_\+\+SEND\+\_\+\+ATTEMPTS}
-, {\bfseries SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+SENSOR\+\_\+1\+\_\+\+ENABLED}
-, {\bfseries SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+SENSOR\+\_\+1\+\_\+\+POWER}
+\mbox{\hyperlink{sensor__app_8h_af1804e81186cc74c046575e0c164375aaf0a49d8a29c05d55efad9bca8d6f903e}{SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+LORAWAN\+\_\+\+JOIN\+\_\+\+ATTEMPTS}}
+, \mbox{\hyperlink{sensor__app_8h_af1804e81186cc74c046575e0c164375aab1cc502cc7f978e609e8ca729585897f}{SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+LORAWAN\+\_\+\+SEND\+\_\+\+ATTEMPTS}}
+, \mbox{\hyperlink{sensor__app_8h_af1804e81186cc74c046575e0c164375aa1ee7cb8b454ad2d8562245cd5a874f08}{SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+SENSOR\+\_\+1\+\_\+\+ENABLED}}
+, \mbox{\hyperlink{sensor__app_8h_af1804e81186cc74c046575e0c164375aa4c78d7851f9fcbacb347777598011878}{SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+SENSOR\+\_\+1\+\_\+\+POWER}}
 , \newline
-{\bfseries SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+SENSOR\+\_\+1\+\_\+\+TYPE}
-, {\bfseries SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+SENSOR\+\_\+1\+\_\+\+FREQUENCY}
-, {\bfseries SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+SENSOR\+\_\+2\+\_\+\+ENABLED}
-, {\bfseries SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+SENSOR\+\_\+2\+\_\+\+POWER}
+\mbox{\hyperlink{sensor__app_8h_af1804e81186cc74c046575e0c164375aa3be30ba219269e75031573d9171062d7}{SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+SENSOR\+\_\+1\+\_\+\+TYPE}}
+, \mbox{\hyperlink{sensor__app_8h_af1804e81186cc74c046575e0c164375aae556eaa29d1f84d18b211ff51bdfc7c3}{SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+SENSOR\+\_\+1\+\_\+\+FREQUENCY}}
+, \mbox{\hyperlink{sensor__app_8h_af1804e81186cc74c046575e0c164375aae6c7e5e8e28301d739118fb88ab5f874}{SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+SENSOR\+\_\+2\+\_\+\+ENABLED}}
+, \mbox{\hyperlink{sensor__app_8h_af1804e81186cc74c046575e0c164375aaa7135e15b2ff393620d853acb4a970fc}{SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+SENSOR\+\_\+2\+\_\+\+POWER}}
 , \newline
-{\bfseries SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+SENSOR\+\_\+2\+\_\+\+TYPE}
-, {\bfseries SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+SENSOR\+\_\+2\+\_\+\+FREQUENCY}
-, {\bfseries SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+LIMIT}
+\mbox{\hyperlink{sensor__app_8h_af1804e81186cc74c046575e0c164375aa78ee1d2b0a0d6147d60b404a617c2246}{SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+SENSOR\+\_\+2\+\_\+\+TYPE}}
+, \mbox{\hyperlink{sensor__app_8h_af1804e81186cc74c046575e0c164375aadba24505dba6d68dfcd99faefa24e6c8}{SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+SENSOR\+\_\+2\+\_\+\+FREQUENCY}}
+, \mbox{\hyperlink{sensor__app_8h_af1804e81186cc74c046575e0c164375aaa7465dda49e807164eace28c831347ca}{SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+LIMIT}}
  \}
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Functions}
@@ -103,6 +98,128 @@ Tyler Garcia
 \begin{DoxyCopyright}{Copyright}
 Copyright (c) 2025 
 \end{DoxyCopyright}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{sensor__app_8h_a1b70e27acec5f3fad115276c378fe481}\label{sensor__app_8h_a1b70e27acec5f3fad115276c378fe481} 
+\index{sensor\_app.h@{sensor\_app.h}!SENSOR\_TYPE\_NAME\_LENGTH@{SENSOR\_TYPE\_NAME\_LENGTH}}
+\index{SENSOR\_TYPE\_NAME\_LENGTH@{SENSOR\_TYPE\_NAME\_LENGTH}!sensor\_app.h@{sensor\_app.h}}
+\doxysubsubsection{\texorpdfstring{SENSOR\_TYPE\_NAME\_LENGTH}{SENSOR\_TYPE\_NAME\_LENGTH}}
+{\footnotesize\ttfamily \#define SENSOR\+\_\+\+TYPE\+\_\+\+NAME\+\_\+\+LENGTH~20}
+
+\Hypertarget{sensor__app_8h_a4cdd0af44f5c2b29503979d86bf45fbf}\label{sensor__app_8h_a4cdd0af44f5c2b29503979d86bf45fbf} 
+\index{sensor\_app.h@{sensor\_app.h}!SENSOR\_VOLTAGE\_NAME\_LENGTH@{SENSOR\_VOLTAGE\_NAME\_LENGTH}}
+\index{SENSOR\_VOLTAGE\_NAME\_LENGTH@{SENSOR\_VOLTAGE\_NAME\_LENGTH}!sensor\_app.h@{sensor\_app.h}}
+\doxysubsubsection{\texorpdfstring{SENSOR\_VOLTAGE\_NAME\_LENGTH}{SENSOR\_VOLTAGE\_NAME\_LENGTH}}
+{\footnotesize\ttfamily \#define SENSOR\+\_\+\+VOLTAGE\+\_\+\+NAME\+\_\+\+LENGTH~20}
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{sensor__app_8h_a3ded0fb95123f62995b82d8ccfe33a43}\label{sensor__app_8h_a3ded0fb95123f62995b82d8ccfe33a43} 
+\index{sensor\_app.h@{sensor\_app.h}!sensor\_app\_state@{sensor\_app\_state}}
+\index{sensor\_app\_state@{sensor\_app\_state}!sensor\_app.h@{sensor\_app.h}}
+\doxysubsubsection{\texorpdfstring{sensor\_app\_state}{sensor\_app\_state}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{sensor__app_8h_a3ded0fb95123f62995b82d8ccfe33a43}{sensor\+\_\+app\+\_\+state}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SENSOR\_APP\_STATE\_CONFIGURATION@{SENSOR\_APP\_STATE\_CONFIGURATION}!sensor\_app.h@{sensor\_app.h}}\index{sensor\_app.h@{sensor\_app.h}!SENSOR\_APP\_STATE\_CONFIGURATION@{SENSOR\_APP\_STATE\_CONFIGURATION}}}\Hypertarget{sensor__app_8h_a3ded0fb95123f62995b82d8ccfe33a43a48dae62cfd19edab5be767c441ebdb11}\label{sensor__app_8h_a3ded0fb95123f62995b82d8ccfe33a43a48dae62cfd19edab5be767c441ebdb11} 
+SENSOR\+\_\+\+APP\+\_\+\+STATE\+\_\+\+CONFIGURATION&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SENSOR\_APP\_STATE\_RUNNING@{SENSOR\_APP\_STATE\_RUNNING}!sensor\_app.h@{sensor\_app.h}}\index{sensor\_app.h@{sensor\_app.h}!SENSOR\_APP\_STATE\_RUNNING@{SENSOR\_APP\_STATE\_RUNNING}}}\Hypertarget{sensor__app_8h_a3ded0fb95123f62995b82d8ccfe33a43a5a92bbec0977ae77b062d7405131e1e4}\label{sensor__app_8h_a3ded0fb95123f62995b82d8ccfe33a43a5a92bbec0977ae77b062d7405131e1e4} 
+SENSOR\+\_\+\+APP\+\_\+\+STATE\+\_\+\+RUNNING&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SENSOR\_APP\_STATE\_ERROR@{SENSOR\_APP\_STATE\_ERROR}!sensor\_app.h@{sensor\_app.h}}\index{sensor\_app.h@{sensor\_app.h}!SENSOR\_APP\_STATE\_ERROR@{SENSOR\_APP\_STATE\_ERROR}}}\Hypertarget{sensor__app_8h_a3ded0fb95123f62995b82d8ccfe33a43ab855477213c54014b8c5707885ff3dd3}\label{sensor__app_8h_a3ded0fb95123f62995b82d8ccfe33a43ab855477213c54014b8c5707885ff3dd3} 
+SENSOR\+\_\+\+APP\+\_\+\+STATE\+\_\+\+ERROR&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{sensor__app_8h_af1804e81186cc74c046575e0c164375a}\label{sensor__app_8h_af1804e81186cc74c046575e0c164375a} 
+\index{sensor\_app.h@{sensor\_app.h}!sensor\_nvs\_address@{sensor\_nvs\_address}}
+\index{sensor\_nvs\_address@{sensor\_nvs\_address}!sensor\_app.h@{sensor\_app.h}}
+\doxysubsubsection{\texorpdfstring{sensor\_nvs\_address}{sensor\_nvs\_address}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{sensor__app_8h_af1804e81186cc74c046575e0c164375a}{sensor\+\_\+nvs\+\_\+address}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SENSOR\_NVS\_ADDRESS\_DEVICE\_NAME@{SENSOR\_NVS\_ADDRESS\_DEVICE\_NAME}!sensor\_app.h@{sensor\_app.h}}\index{sensor\_app.h@{sensor\_app.h}!SENSOR\_NVS\_ADDRESS\_DEVICE\_NAME@{SENSOR\_NVS\_ADDRESS\_DEVICE\_NAME}}}\Hypertarget{sensor__app_8h_af1804e81186cc74c046575e0c164375aa2d268500f7614584b41291ea22792d65}\label{sensor__app_8h_af1804e81186cc74c046575e0c164375aa2d268500f7614584b41291ea22792d65} 
+SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+DEVICE\+\_\+\+NAME&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SENSOR\_NVS\_ADDRESS\_APP\_STATE@{SENSOR\_NVS\_ADDRESS\_APP\_STATE}!sensor\_app.h@{sensor\_app.h}}\index{sensor\_app.h@{sensor\_app.h}!SENSOR\_NVS\_ADDRESS\_APP\_STATE@{SENSOR\_NVS\_ADDRESS\_APP\_STATE}}}\Hypertarget{sensor__app_8h_af1804e81186cc74c046575e0c164375aaedf2f4070cffcaa48443cca30fe15a67}\label{sensor__app_8h_af1804e81186cc74c046575e0c164375aaedf2f4070cffcaa48443cca30fe15a67} 
+SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+APP\+\_\+\+STATE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SENSOR\_NVS\_ADDRESS\_LORAWAN\_ENABLED@{SENSOR\_NVS\_ADDRESS\_LORAWAN\_ENABLED}!sensor\_app.h@{sensor\_app.h}}\index{sensor\_app.h@{sensor\_app.h}!SENSOR\_NVS\_ADDRESS\_LORAWAN\_ENABLED@{SENSOR\_NVS\_ADDRESS\_LORAWAN\_ENABLED}}}\Hypertarget{sensor__app_8h_af1804e81186cc74c046575e0c164375aa6fdc49bc0b7367d523405392185fa469}\label{sensor__app_8h_af1804e81186cc74c046575e0c164375aa6fdc49bc0b7367d523405392185fa469} 
+SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+LORAWAN\+\_\+\+ENABLED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SENSOR\_NVS\_ADDRESS\_LORAWAN\_FREQUENCY@{SENSOR\_NVS\_ADDRESS\_LORAWAN\_FREQUENCY}!sensor\_app.h@{sensor\_app.h}}\index{sensor\_app.h@{sensor\_app.h}!SENSOR\_NVS\_ADDRESS\_LORAWAN\_FREQUENCY@{SENSOR\_NVS\_ADDRESS\_LORAWAN\_FREQUENCY}}}\Hypertarget{sensor__app_8h_af1804e81186cc74c046575e0c164375aa4de7e0009db882597905188c8accbf42}\label{sensor__app_8h_af1804e81186cc74c046575e0c164375aa4de7e0009db882597905188c8accbf42} 
+SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+LORAWAN\+\_\+\+FREQUENCY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SENSOR\_NVS\_ADDRESS\_LORAWAN\_DEV\_EUI@{SENSOR\_NVS\_ADDRESS\_LORAWAN\_DEV\_EUI}!sensor\_app.h@{sensor\_app.h}}\index{sensor\_app.h@{sensor\_app.h}!SENSOR\_NVS\_ADDRESS\_LORAWAN\_DEV\_EUI@{SENSOR\_NVS\_ADDRESS\_LORAWAN\_DEV\_EUI}}}\Hypertarget{sensor__app_8h_af1804e81186cc74c046575e0c164375aa67d0df0fb28ed76fae68842733be1079}\label{sensor__app_8h_af1804e81186cc74c046575e0c164375aa67d0df0fb28ed76fae68842733be1079} 
+SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+LORAWAN\+\_\+\+DEV\+\_\+\+EUI&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SENSOR\_NVS\_ADDRESS\_LORAWAN\_JOIN\_EUI@{SENSOR\_NVS\_ADDRESS\_LORAWAN\_JOIN\_EUI}!sensor\_app.h@{sensor\_app.h}}\index{sensor\_app.h@{sensor\_app.h}!SENSOR\_NVS\_ADDRESS\_LORAWAN\_JOIN\_EUI@{SENSOR\_NVS\_ADDRESS\_LORAWAN\_JOIN\_EUI}}}\Hypertarget{sensor__app_8h_af1804e81186cc74c046575e0c164375aac76be02be3ca8689c045c7f30cea8050}\label{sensor__app_8h_af1804e81186cc74c046575e0c164375aac76be02be3ca8689c045c7f30cea8050} 
+SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+LORAWAN\+\_\+\+JOIN\+\_\+\+EUI&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SENSOR\_NVS\_ADDRESS\_LORAWAN\_APP\_KEY@{SENSOR\_NVS\_ADDRESS\_LORAWAN\_APP\_KEY}!sensor\_app.h@{sensor\_app.h}}\index{sensor\_app.h@{sensor\_app.h}!SENSOR\_NVS\_ADDRESS\_LORAWAN\_APP\_KEY@{SENSOR\_NVS\_ADDRESS\_LORAWAN\_APP\_KEY}}}\Hypertarget{sensor__app_8h_af1804e81186cc74c046575e0c164375aa93f3738cd4a440dffaee1f871448391a}\label{sensor__app_8h_af1804e81186cc74c046575e0c164375aa93f3738cd4a440dffaee1f871448391a} 
+SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+LORAWAN\+\_\+\+APP\+\_\+\+KEY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SENSOR\_NVS\_ADDRESS\_LORAWAN\_DEV\_NONCE@{SENSOR\_NVS\_ADDRESS\_LORAWAN\_DEV\_NONCE}!sensor\_app.h@{sensor\_app.h}}\index{sensor\_app.h@{sensor\_app.h}!SENSOR\_NVS\_ADDRESS\_LORAWAN\_DEV\_NONCE@{SENSOR\_NVS\_ADDRESS\_LORAWAN\_DEV\_NONCE}}}\Hypertarget{sensor__app_8h_af1804e81186cc74c046575e0c164375aaffe664ab5a382bbb5d46893a50fde38a}\label{sensor__app_8h_af1804e81186cc74c046575e0c164375aaffe664ab5a382bbb5d46893a50fde38a} 
+SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+LORAWAN\+\_\+\+DEV\+\_\+\+NONCE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SENSOR\_NVS\_ADDRESS\_LORAWAN\_JOIN\_ATTEMPTS@{SENSOR\_NVS\_ADDRESS\_LORAWAN\_JOIN\_ATTEMPTS}!sensor\_app.h@{sensor\_app.h}}\index{sensor\_app.h@{sensor\_app.h}!SENSOR\_NVS\_ADDRESS\_LORAWAN\_JOIN\_ATTEMPTS@{SENSOR\_NVS\_ADDRESS\_LORAWAN\_JOIN\_ATTEMPTS}}}\Hypertarget{sensor__app_8h_af1804e81186cc74c046575e0c164375aaf0a49d8a29c05d55efad9bca8d6f903e}\label{sensor__app_8h_af1804e81186cc74c046575e0c164375aaf0a49d8a29c05d55efad9bca8d6f903e} 
+SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+LORAWAN\+\_\+\+JOIN\+\_\+\+ATTEMPTS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SENSOR\_NVS\_ADDRESS\_LORAWAN\_SEND\_ATTEMPTS@{SENSOR\_NVS\_ADDRESS\_LORAWAN\_SEND\_ATTEMPTS}!sensor\_app.h@{sensor\_app.h}}\index{sensor\_app.h@{sensor\_app.h}!SENSOR\_NVS\_ADDRESS\_LORAWAN\_SEND\_ATTEMPTS@{SENSOR\_NVS\_ADDRESS\_LORAWAN\_SEND\_ATTEMPTS}}}\Hypertarget{sensor__app_8h_af1804e81186cc74c046575e0c164375aab1cc502cc7f978e609e8ca729585897f}\label{sensor__app_8h_af1804e81186cc74c046575e0c164375aab1cc502cc7f978e609e8ca729585897f} 
+SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+LORAWAN\+\_\+\+SEND\+\_\+\+ATTEMPTS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SENSOR\_NVS\_ADDRESS\_SENSOR\_1\_ENABLED@{SENSOR\_NVS\_ADDRESS\_SENSOR\_1\_ENABLED}!sensor\_app.h@{sensor\_app.h}}\index{sensor\_app.h@{sensor\_app.h}!SENSOR\_NVS\_ADDRESS\_SENSOR\_1\_ENABLED@{SENSOR\_NVS\_ADDRESS\_SENSOR\_1\_ENABLED}}}\Hypertarget{sensor__app_8h_af1804e81186cc74c046575e0c164375aa1ee7cb8b454ad2d8562245cd5a874f08}\label{sensor__app_8h_af1804e81186cc74c046575e0c164375aa1ee7cb8b454ad2d8562245cd5a874f08} 
+SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+SENSOR\+\_\+1\+\_\+\+ENABLED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SENSOR\_NVS\_ADDRESS\_SENSOR\_1\_POWER@{SENSOR\_NVS\_ADDRESS\_SENSOR\_1\_POWER}!sensor\_app.h@{sensor\_app.h}}\index{sensor\_app.h@{sensor\_app.h}!SENSOR\_NVS\_ADDRESS\_SENSOR\_1\_POWER@{SENSOR\_NVS\_ADDRESS\_SENSOR\_1\_POWER}}}\Hypertarget{sensor__app_8h_af1804e81186cc74c046575e0c164375aa4c78d7851f9fcbacb347777598011878}\label{sensor__app_8h_af1804e81186cc74c046575e0c164375aa4c78d7851f9fcbacb347777598011878} 
+SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+SENSOR\+\_\+1\+\_\+\+POWER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SENSOR\_NVS\_ADDRESS\_SENSOR\_1\_TYPE@{SENSOR\_NVS\_ADDRESS\_SENSOR\_1\_TYPE}!sensor\_app.h@{sensor\_app.h}}\index{sensor\_app.h@{sensor\_app.h}!SENSOR\_NVS\_ADDRESS\_SENSOR\_1\_TYPE@{SENSOR\_NVS\_ADDRESS\_SENSOR\_1\_TYPE}}}\Hypertarget{sensor__app_8h_af1804e81186cc74c046575e0c164375aa3be30ba219269e75031573d9171062d7}\label{sensor__app_8h_af1804e81186cc74c046575e0c164375aa3be30ba219269e75031573d9171062d7} 
+SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+SENSOR\+\_\+1\+\_\+\+TYPE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SENSOR\_NVS\_ADDRESS\_SENSOR\_1\_FREQUENCY@{SENSOR\_NVS\_ADDRESS\_SENSOR\_1\_FREQUENCY}!sensor\_app.h@{sensor\_app.h}}\index{sensor\_app.h@{sensor\_app.h}!SENSOR\_NVS\_ADDRESS\_SENSOR\_1\_FREQUENCY@{SENSOR\_NVS\_ADDRESS\_SENSOR\_1\_FREQUENCY}}}\Hypertarget{sensor__app_8h_af1804e81186cc74c046575e0c164375aae556eaa29d1f84d18b211ff51bdfc7c3}\label{sensor__app_8h_af1804e81186cc74c046575e0c164375aae556eaa29d1f84d18b211ff51bdfc7c3} 
+SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+SENSOR\+\_\+1\+\_\+\+FREQUENCY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SENSOR\_NVS\_ADDRESS\_SENSOR\_2\_ENABLED@{SENSOR\_NVS\_ADDRESS\_SENSOR\_2\_ENABLED}!sensor\_app.h@{sensor\_app.h}}\index{sensor\_app.h@{sensor\_app.h}!SENSOR\_NVS\_ADDRESS\_SENSOR\_2\_ENABLED@{SENSOR\_NVS\_ADDRESS\_SENSOR\_2\_ENABLED}}}\Hypertarget{sensor__app_8h_af1804e81186cc74c046575e0c164375aae6c7e5e8e28301d739118fb88ab5f874}\label{sensor__app_8h_af1804e81186cc74c046575e0c164375aae6c7e5e8e28301d739118fb88ab5f874} 
+SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+SENSOR\+\_\+2\+\_\+\+ENABLED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SENSOR\_NVS\_ADDRESS\_SENSOR\_2\_POWER@{SENSOR\_NVS\_ADDRESS\_SENSOR\_2\_POWER}!sensor\_app.h@{sensor\_app.h}}\index{sensor\_app.h@{sensor\_app.h}!SENSOR\_NVS\_ADDRESS\_SENSOR\_2\_POWER@{SENSOR\_NVS\_ADDRESS\_SENSOR\_2\_POWER}}}\Hypertarget{sensor__app_8h_af1804e81186cc74c046575e0c164375aaa7135e15b2ff393620d853acb4a970fc}\label{sensor__app_8h_af1804e81186cc74c046575e0c164375aaa7135e15b2ff393620d853acb4a970fc} 
+SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+SENSOR\+\_\+2\+\_\+\+POWER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SENSOR\_NVS\_ADDRESS\_SENSOR\_2\_TYPE@{SENSOR\_NVS\_ADDRESS\_SENSOR\_2\_TYPE}!sensor\_app.h@{sensor\_app.h}}\index{sensor\_app.h@{sensor\_app.h}!SENSOR\_NVS\_ADDRESS\_SENSOR\_2\_TYPE@{SENSOR\_NVS\_ADDRESS\_SENSOR\_2\_TYPE}}}\Hypertarget{sensor__app_8h_af1804e81186cc74c046575e0c164375aa78ee1d2b0a0d6147d60b404a617c2246}\label{sensor__app_8h_af1804e81186cc74c046575e0c164375aa78ee1d2b0a0d6147d60b404a617c2246} 
+SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+SENSOR\+\_\+2\+\_\+\+TYPE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SENSOR\_NVS\_ADDRESS\_SENSOR\_2\_FREQUENCY@{SENSOR\_NVS\_ADDRESS\_SENSOR\_2\_FREQUENCY}!sensor\_app.h@{sensor\_app.h}}\index{sensor\_app.h@{sensor\_app.h}!SENSOR\_NVS\_ADDRESS\_SENSOR\_2\_FREQUENCY@{SENSOR\_NVS\_ADDRESS\_SENSOR\_2\_FREQUENCY}}}\Hypertarget{sensor__app_8h_af1804e81186cc74c046575e0c164375aadba24505dba6d68dfcd99faefa24e6c8}\label{sensor__app_8h_af1804e81186cc74c046575e0c164375aadba24505dba6d68dfcd99faefa24e6c8} 
+SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+SENSOR\+\_\+2\+\_\+\+FREQUENCY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SENSOR\_NVS\_ADDRESS\_LIMIT@{SENSOR\_NVS\_ADDRESS\_LIMIT}!sensor\_app.h@{sensor\_app.h}}\index{sensor\_app.h@{sensor\_app.h}!SENSOR\_NVS\_ADDRESS\_LIMIT@{SENSOR\_NVS\_ADDRESS\_LIMIT}}}\Hypertarget{sensor__app_8h_af1804e81186cc74c046575e0c164375aaa7465dda49e807164eace28c831347ca}\label{sensor__app_8h_af1804e81186cc74c046575e0c164375aaa7465dda49e807164eace28c831347ca} 
+SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+LIMIT&\\
+\hline
+
+\end{DoxyEnumFields}
 
 
 \doxysubsection{Function Documentation}

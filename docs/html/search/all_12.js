@@ -1,11 +1,8 @@
 var searchData=
 [
-  ['v0_201_200_0',['V0.1.0',['../md_README.html#autotoc_md13',1,'']]],
-  ['v0_202_200_1',['V0.2.0',['../md_README.html#autotoc_md12',1,'']]],
-  ['v0_202_201_2',['V0.2.1',['../md_README.html#autotoc_md11',1,'']]],
-  ['v0_202_202_3',['V0.2.2',['../md_README.html#autotoc_md10',1,'']]],
-  ['v0_203_200_4',['V0.3.0',['../md_README.html#autotoc_md9',1,'']]],
-  ['v0_204_200_5',['V0.4.0',['../md_README.html#autotoc_md8',1,'']]],
-  ['v0_204_201_6',['V0.4.1',['../md_README.html#autotoc_md7',1,'']]],
-  ['validate_5foutput_7',['validate_output',['../sensor__power_8h.html#a3e23b3ad1ab7f243f5b3041e4974e101',1,'sensor_power.h']]]
+  ['one_5ftime_5ftrigger_0',['one_time_trigger',['../structsensor__scheduling__cfg__t.html#a7b1733ce7a32a1e750e8148f079129ad',1,'sensor_scheduling_cfg_t']]],
+  ['output_5fread_1',['output_read',['../structsensor__power__config__t.html#aa84fece14135482ea3fa9a180d9441ce',1,'sensor_power_config_t']]],
+  ['outut_5fread_5fdivider_5fhigh_2',['OUTUT_READ_DIVIDER_HIGH',['../sensor__power_8h.html#aa66df609f898b8aa1deaeff81498f0cf',1,'sensor_power.h']]],
+  ['outut_5fread_5fdivider_5flow_3',['OUTUT_READ_DIVIDER_LOW',['../sensor__power_8h.html#a9ce3d2fecc2e6d0768129e2a0ba6a9f7',1,'sensor_power.h']]],
+  ['overview_4',['Overview',['../index.html#autotoc_md1',1,'']]]
 ];

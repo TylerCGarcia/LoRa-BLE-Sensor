@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">LoRa-BLE-Sensor
+   <div id="projectname">LoRa-BLE-Sensor<span id="projectnumber">&#160;1.0.0</span>
    </div>
   </td>
  </tr>
@@ -83,27 +83,92 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a6de7bac37f7595a6cbb3a473cc3e1f91" id="r_a6de7bac37f7595a6cbb3a473cc3e1f91"><td class="memItemLeft" align="right" valign="top"><a id="a6de7bac37f7595a6cbb3a473cc3e1f91" name="a6de7bac37f7595a6cbb3a473cc3e1f91"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>data</b> [MAX_LORAWAN_PAYLOAD]</td></tr>
-<tr class="separator:a6de7bac37f7595a6cbb3a473cc3e1f91"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad7c1355cc270095f8d4ff220ac79d3b3" id="r_ad7c1355cc270095f8d4ff220ac79d3b3"><td class="memItemLeft" align="right" valign="top"><a id="ad7c1355cc270095f8d4ff220ac79d3b3" name="ad7c1355cc270095f8d4ff220ac79d3b3"></a>
-uint16_t&#160;</td><td class="memItemRight" valign="bottom"><b>length</b></td></tr>
+<tr class="memitem:ac539567596c2a3da0949ae081ea51722" id="r_ac539567596c2a3da0949ae081ea51722"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structlorawan__data__t.html#ac539567596c2a3da0949ae081ea51722">data</a> [<a class="el" href="sensor__lorawan_8h.html#ac045698827124fb023a1afce3c980b4c">MAX_LORAWAN_PAYLOAD</a>]</td></tr>
+<tr class="separator:ac539567596c2a3da0949ae081ea51722"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7c1355cc270095f8d4ff220ac79d3b3" id="r_ad7c1355cc270095f8d4ff220ac79d3b3"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structlorawan__data__t.html#ad7c1355cc270095f8d4ff220ac79d3b3">length</a></td></tr>
 <tr class="separator:ad7c1355cc270095f8d4ff220ac79d3b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf842557c9abb3105f811ee9318618ba" id="r_adf842557c9abb3105f811ee9318618ba"><td class="memItemLeft" align="right" valign="top"><a id="adf842557c9abb3105f811ee9318618ba" name="adf842557c9abb3105f811ee9318618ba"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>port</b></td></tr>
+<tr class="memitem:adf842557c9abb3105f811ee9318618ba" id="r_adf842557c9abb3105f811ee9318618ba"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structlorawan__data__t.html#adf842557c9abb3105f811ee9318618ba">port</a></td></tr>
 <tr class="separator:adf842557c9abb3105f811ee9318618ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae78982fcdcba14d586a8bcde12e61ceb" id="r_ae78982fcdcba14d586a8bcde12e61ceb"><td class="memItemLeft" align="right" valign="top"><a id="ae78982fcdcba14d586a8bcde12e61ceb" name="ae78982fcdcba14d586a8bcde12e61ceb"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>attempts</b></td></tr>
+<tr class="memitem:ae78982fcdcba14d586a8bcde12e61ceb" id="r_ae78982fcdcba14d586a8bcde12e61ceb"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structlorawan__data__t.html#ae78982fcdcba14d586a8bcde12e61ceb">attempts</a></td></tr>
 <tr class="separator:ae78982fcdcba14d586a8bcde12e61ceb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf69756d4c9e3f105b3ee05b07e8a548" id="r_adf69756d4c9e3f105b3ee05b07e8a548"><td class="memItemLeft" align="right" valign="top"><a id="adf69756d4c9e3f105b3ee05b07e8a548" name="adf69756d4c9e3f105b3ee05b07e8a548"></a>
-uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>delay</b></td></tr>
+<tr class="memitem:adf69756d4c9e3f105b3ee05b07e8a548" id="r_adf69756d4c9e3f105b3ee05b07e8a548"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structlorawan__data__t.html#adf69756d4c9e3f105b3ee05b07e8a548">delay</a></td></tr>
 <tr class="separator:adf69756d4c9e3f105b3ee05b07e8a548"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Structure to hold the LoRaWAN data to send. </p>
-</div><hr/>The documentation for this struct was generated from the following files:<ul>
+</div><h2 class="groupheader">Member Data Documentation</h2>
+<a id="ae78982fcdcba14d586a8bcde12e61ceb" name="ae78982fcdcba14d586a8bcde12e61ceb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae78982fcdcba14d586a8bcde12e61ceb">&#9670;&#160;</a></span>attempts</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t lorawan_data_t::attempts</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac539567596c2a3da0949ae081ea51722" name="ac539567596c2a3da0949ae081ea51722"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac539567596c2a3da0949ae081ea51722">&#9670;&#160;</a></span>data</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t lorawan_data_t::data[<a class="el" href="sensor__lorawan_8h.html#ac045698827124fb023a1afce3c980b4c">MAX_LORAWAN_PAYLOAD</a>]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adf69756d4c9e3f105b3ee05b07e8a548" name="adf69756d4c9e3f105b3ee05b07e8a548"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf69756d4c9e3f105b3ee05b07e8a548">&#9670;&#160;</a></span>delay</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t lorawan_data_t::delay</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad7c1355cc270095f8d4ff220ac79d3b3" name="ad7c1355cc270095f8d4ff220ac79d3b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7c1355cc270095f8d4ff220ac79d3b3">&#9670;&#160;</a></span>length</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t lorawan_data_t::length</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adf842557c9abb3105f811ee9318618ba" name="adf842557c9abb3105f811ee9318618ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf842557c9abb3105f811ee9318618ba">&#9670;&#160;</a></span>port</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t lorawan_data_t::port</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
 <li>app/include/<a class="el" href="sensor__lorawan_8h_source.html">sensor_lorawan.h</a></li>
-<li>tests/functionality/app/fakes/<a class="el" href="sensor__lorawan__fakes_8h_source.html">sensor_lorawan_fakes.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

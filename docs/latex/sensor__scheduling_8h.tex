@@ -9,12 +9,19 @@ This is a library to schedule sensor readings and radio transmissions.
 {\ttfamily \#include $<$stdint.\+h$>$}\newline
 {\ttfamily \#include $<$zephyr/kernel.\+h$>$}\newline
 {\ttfamily \#include $<$zephyr/device.\+h$>$}\newline
-Include dependency graph for sensor\+\_\+scheduling.\+h\+:
-\nopagebreak
+Include dependency graph for sensor\+\_\+scheduling.\+h\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{sensor__scheduling_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sensor__scheduling_8h__dep__incl}
 \end{center}
 \end{figure}
 \doxysubsubsection*{Classes}
@@ -25,11 +32,10 @@ struct \mbox{\hyperlink{structsensor__scheduling__cfg__t}{sensor\+\_\+scheduling
 \doxysubsubsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{sensor__scheduling_8h_af576aff082458d0be318520f1834bba6}\label{sensor__scheduling_8h_af576aff082458d0be318520f1834bba6} 
-enum {\bfseries sensor\+\_\+scheduling\+\_\+id} \{ {\bfseries SENSOR\+\_\+\+SCHEDULING\+\_\+\+ID\+\_\+\+SENSOR1}
-, {\bfseries SENSOR\+\_\+\+SCHEDULING\+\_\+\+ID\+\_\+\+SENSOR2}
-, {\bfseries SENSOR\+\_\+\+SCHEDULING\+\_\+\+ID\+\_\+\+RADIO}
-, {\bfseries SENSOR\+\_\+\+SCHEDULING\+\_\+\+ID\+\_\+\+LIMIT}
+enum \mbox{\hyperlink{sensor__scheduling_8h_af576aff082458d0be318520f1834bba6}{sensor\+\_\+scheduling\+\_\+id}} \{ \mbox{\hyperlink{sensor__scheduling_8h_af576aff082458d0be318520f1834bba6a79598f807d33db0c83fc9b1a4396b8fd}{SENSOR\+\_\+\+SCHEDULING\+\_\+\+ID\+\_\+\+SENSOR1}}
+, \mbox{\hyperlink{sensor__scheduling_8h_af576aff082458d0be318520f1834bba6a0adf5a58b15fc7a60076d05693091acd}{SENSOR\+\_\+\+SCHEDULING\+\_\+\+ID\+\_\+\+SENSOR2}}
+, \mbox{\hyperlink{sensor__scheduling_8h_af576aff082458d0be318520f1834bba6a35e1570f5c13fd93b52ff6dde1bb4044}{SENSOR\+\_\+\+SCHEDULING\+\_\+\+ID\+\_\+\+RADIO}}
+, \mbox{\hyperlink{sensor__scheduling_8h_af576aff082458d0be318520f1834bba6a07f4f8a23e98670121b5e132cb791ccf}{SENSOR\+\_\+\+SCHEDULING\+\_\+\+ID\+\_\+\+LIMIT}}
  \}
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Functions}
@@ -62,6 +68,33 @@ Tyler Garcia
 \begin{DoxyCopyright}{Copyright}
 Copyright (c) 2025 
 \end{DoxyCopyright}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{sensor__scheduling_8h_af576aff082458d0be318520f1834bba6}\label{sensor__scheduling_8h_af576aff082458d0be318520f1834bba6} 
+\index{sensor\_scheduling.h@{sensor\_scheduling.h}!sensor\_scheduling\_id@{sensor\_scheduling\_id}}
+\index{sensor\_scheduling\_id@{sensor\_scheduling\_id}!sensor\_scheduling.h@{sensor\_scheduling.h}}
+\doxysubsubsection{\texorpdfstring{sensor\_scheduling\_id}{sensor\_scheduling\_id}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{sensor__scheduling_8h_af576aff082458d0be318520f1834bba6}{sensor\+\_\+scheduling\+\_\+id}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SENSOR\_SCHEDULING\_ID\_SENSOR1@{SENSOR\_SCHEDULING\_ID\_SENSOR1}!sensor\_scheduling.h@{sensor\_scheduling.h}}\index{sensor\_scheduling.h@{sensor\_scheduling.h}!SENSOR\_SCHEDULING\_ID\_SENSOR1@{SENSOR\_SCHEDULING\_ID\_SENSOR1}}}\Hypertarget{sensor__scheduling_8h_af576aff082458d0be318520f1834bba6a79598f807d33db0c83fc9b1a4396b8fd}\label{sensor__scheduling_8h_af576aff082458d0be318520f1834bba6a79598f807d33db0c83fc9b1a4396b8fd} 
+SENSOR\+\_\+\+SCHEDULING\+\_\+\+ID\+\_\+\+SENSOR1&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SENSOR\_SCHEDULING\_ID\_SENSOR2@{SENSOR\_SCHEDULING\_ID\_SENSOR2}!sensor\_scheduling.h@{sensor\_scheduling.h}}\index{sensor\_scheduling.h@{sensor\_scheduling.h}!SENSOR\_SCHEDULING\_ID\_SENSOR2@{SENSOR\_SCHEDULING\_ID\_SENSOR2}}}\Hypertarget{sensor__scheduling_8h_af576aff082458d0be318520f1834bba6a0adf5a58b15fc7a60076d05693091acd}\label{sensor__scheduling_8h_af576aff082458d0be318520f1834bba6a0adf5a58b15fc7a60076d05693091acd} 
+SENSOR\+\_\+\+SCHEDULING\+\_\+\+ID\+\_\+\+SENSOR2&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SENSOR\_SCHEDULING\_ID\_RADIO@{SENSOR\_SCHEDULING\_ID\_RADIO}!sensor\_scheduling.h@{sensor\_scheduling.h}}\index{sensor\_scheduling.h@{sensor\_scheduling.h}!SENSOR\_SCHEDULING\_ID\_RADIO@{SENSOR\_SCHEDULING\_ID\_RADIO}}}\Hypertarget{sensor__scheduling_8h_af576aff082458d0be318520f1834bba6a35e1570f5c13fd93b52ff6dde1bb4044}\label{sensor__scheduling_8h_af576aff082458d0be318520f1834bba6a35e1570f5c13fd93b52ff6dde1bb4044} 
+SENSOR\+\_\+\+SCHEDULING\+\_\+\+ID\+\_\+\+RADIO&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SENSOR\_SCHEDULING\_ID\_LIMIT@{SENSOR\_SCHEDULING\_ID\_LIMIT}!sensor\_scheduling.h@{sensor\_scheduling.h}}\index{sensor\_scheduling.h@{sensor\_scheduling.h}!SENSOR\_SCHEDULING\_ID\_LIMIT@{SENSOR\_SCHEDULING\_ID\_LIMIT}}}\Hypertarget{sensor__scheduling_8h_af576aff082458d0be318520f1834bba6a07f4f8a23e98670121b5e132cb791ccf}\label{sensor__scheduling_8h_af576aff082458d0be318520f1834bba6a07f4f8a23e98670121b5e132cb791ccf} 
+SENSOR\+\_\+\+SCHEDULING\+\_\+\+ID\+\_\+\+LIMIT&\\
+\hline
+
+\end{DoxyEnumFields}
 
 
 \doxysubsection{Function Documentation}

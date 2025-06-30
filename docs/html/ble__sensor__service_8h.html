@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">LoRa-BLE-Sensor
+   <div id="projectname">LoRa-BLE-Sensor<span id="projectnumber">&#160;1.0.0</span>
    </div>
   </td>
  </tr>
@@ -97,94 +97,78 @@ Include dependency graph for ble_sensor_service.h:</div>
 <area shape="poly" title=" " alt="" coords="118,117,146,154,142,157,114,121"/>
 </map>
 </div>
+</div><div class="textblock"><div class="dynheader">
+This graph shows which files directly or indirectly include this file:</div>
+<div class="dyncontent">
+<div class="center"><img src="ble__sensor__service_8h__dep__incl.png" border="0" usemap="#aapp_2include_2ble__sensor__service_8hdep" alt=""/></div>
+<map name="aapp_2include_2ble__sensor__service_8hdep" id="aapp_2include_2ble__sensor__service_8hdep">
+<area shape="rect" title="This is a library to handle the BLE services for the sensor." alt="" coords="78,5,249,45"/>
+<area shape="rect" href="ble__sensor__service_8c.html" title=" " alt="" coords="5,93,148,133"/>
+<area shape="poly" title=" " alt="" coords="136,57,98,95,94,91,133,53"/>
+<area shape="rect" href="sensor__app_8c.html" title=" " alt="" coords="172,101,331,126"/>
+<area shape="poly" title=" " alt="" coords="195,53,241,98,237,102,191,57"/>
+</map>
+</div>
 </div>
 <p><a href="ble__sensor__service_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a7609fe9368a18da46d9159d81457c55f" id="r_a7609fe9368a18da46d9159d81457c55f"><td class="memItemLeft" align="right" valign="top"><a id="a7609fe9368a18da46d9159d81457c55f" name="a7609fe9368a18da46d9159d81457c55f"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>BT_UUID_SENSOR_VAL</b>&#160;&#160;&#160;BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c0)</td></tr>
+<tr class="memitem:a7609fe9368a18da46d9159d81457c55f" id="r_a7609fe9368a18da46d9159d81457c55f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__sensor__service_8h.html#a7609fe9368a18da46d9159d81457c55f">BT_UUID_SENSOR_VAL</a>&#160;&#160;&#160;BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c0)</td></tr>
 <tr class="separator:a7609fe9368a18da46d9159d81457c55f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae1e2816b27ceb96447eeca79cd3a54aa" id="r_ae1e2816b27ceb96447eeca79cd3a54aa"><td class="memItemLeft" align="right" valign="top"><a id="ae1e2816b27ceb96447eeca79cd3a54aa" name="ae1e2816b27ceb96447eeca79cd3a54aa"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>BT_UUID_SENSOR_STATE_VAL</b>&#160;&#160;&#160;BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c1)</td></tr>
+<tr class="memitem:ae1e2816b27ceb96447eeca79cd3a54aa" id="r_ae1e2816b27ceb96447eeca79cd3a54aa"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__sensor__service_8h.html#ae1e2816b27ceb96447eeca79cd3a54aa">BT_UUID_SENSOR_STATE_VAL</a>&#160;&#160;&#160;BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c1)</td></tr>
 <tr class="separator:ae1e2816b27ceb96447eeca79cd3a54aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9495df86d19cae504ef3095758f433ed" id="r_a9495df86d19cae504ef3095758f433ed"><td class="memItemLeft" align="right" valign="top"><a id="a9495df86d19cae504ef3095758f433ed" name="a9495df86d19cae504ef3095758f433ed"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>BT_UUID_SENSOR1_ENABLED_VAL</b>&#160;&#160;&#160;BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c2)</td></tr>
+<tr class="memitem:a9495df86d19cae504ef3095758f433ed" id="r_a9495df86d19cae504ef3095758f433ed"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__sensor__service_8h.html#a9495df86d19cae504ef3095758f433ed">BT_UUID_SENSOR1_ENABLED_VAL</a>&#160;&#160;&#160;BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c2)</td></tr>
 <tr class="separator:a9495df86d19cae504ef3095758f433ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a364d37dca81586b1855e032c23025e86" id="r_a364d37dca81586b1855e032c23025e86"><td class="memItemLeft" align="right" valign="top"><a id="a364d37dca81586b1855e032c23025e86" name="a364d37dca81586b1855e032c23025e86"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>BT_UUID_SENSOR1_CONFIG_VAL</b>&#160;&#160;&#160;BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c3)</td></tr>
+<tr class="memitem:a364d37dca81586b1855e032c23025e86" id="r_a364d37dca81586b1855e032c23025e86"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__sensor__service_8h.html#a364d37dca81586b1855e032c23025e86">BT_UUID_SENSOR1_CONFIG_VAL</a>&#160;&#160;&#160;BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c3)</td></tr>
 <tr class="separator:a364d37dca81586b1855e032c23025e86"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a409d01f220f5bc7479d4b1ee89f4124e" id="r_a409d01f220f5bc7479d4b1ee89f4124e"><td class="memItemLeft" align="right" valign="top"><a id="a409d01f220f5bc7479d4b1ee89f4124e" name="a409d01f220f5bc7479d4b1ee89f4124e"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>BT_UUID_SENSOR1_PWR_CONFIG_VAL</b>&#160;&#160;&#160;BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c4)</td></tr>
+<tr class="memitem:a409d01f220f5bc7479d4b1ee89f4124e" id="r_a409d01f220f5bc7479d4b1ee89f4124e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__sensor__service_8h.html#a409d01f220f5bc7479d4b1ee89f4124e">BT_UUID_SENSOR1_PWR_CONFIG_VAL</a>&#160;&#160;&#160;BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c4)</td></tr>
 <tr class="separator:a409d01f220f5bc7479d4b1ee89f4124e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba2ce1d421b7df4a3c445cea5157a863" id="r_aba2ce1d421b7df4a3c445cea5157a863"><td class="memItemLeft" align="right" valign="top"><a id="aba2ce1d421b7df4a3c445cea5157a863" name="aba2ce1d421b7df4a3c445cea5157a863"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>BT_UUID_SENSOR1_DATA_FREQ_VAL</b>&#160;&#160;&#160;BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c5)</td></tr>
+<tr class="memitem:aba2ce1d421b7df4a3c445cea5157a863" id="r_aba2ce1d421b7df4a3c445cea5157a863"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__sensor__service_8h.html#aba2ce1d421b7df4a3c445cea5157a863">BT_UUID_SENSOR1_DATA_FREQ_VAL</a>&#160;&#160;&#160;BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c5)</td></tr>
 <tr class="separator:aba2ce1d421b7df4a3c445cea5157a863"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6dc8a6806c02c32de044b8c6025ca943" id="r_a6dc8a6806c02c32de044b8c6025ca943"><td class="memItemLeft" align="right" valign="top"><a id="a6dc8a6806c02c32de044b8c6025ca943" name="a6dc8a6806c02c32de044b8c6025ca943"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>BT_UUID_SENSOR1_DATA_VAL</b>&#160;&#160;&#160;BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c6)</td></tr>
+<tr class="memitem:a6dc8a6806c02c32de044b8c6025ca943" id="r_a6dc8a6806c02c32de044b8c6025ca943"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__sensor__service_8h.html#a6dc8a6806c02c32de044b8c6025ca943">BT_UUID_SENSOR1_DATA_VAL</a>&#160;&#160;&#160;BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c6)</td></tr>
 <tr class="separator:a6dc8a6806c02c32de044b8c6025ca943"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad7cc5ce2932558ea222151debba3a5e2" id="r_ad7cc5ce2932558ea222151debba3a5e2"><td class="memItemLeft" align="right" valign="top"><a id="ad7cc5ce2932558ea222151debba3a5e2" name="ad7cc5ce2932558ea222151debba3a5e2"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>BT_UUID_SENSOR1_DATA_TIMESTAMP_VAL</b>&#160;&#160;&#160;BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c7)</td></tr>
+<tr class="memitem:ad7cc5ce2932558ea222151debba3a5e2" id="r_ad7cc5ce2932558ea222151debba3a5e2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__sensor__service_8h.html#ad7cc5ce2932558ea222151debba3a5e2">BT_UUID_SENSOR1_DATA_TIMESTAMP_VAL</a>&#160;&#160;&#160;BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c7)</td></tr>
 <tr class="separator:ad7cc5ce2932558ea222151debba3a5e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab6a364c5baaae7562902399a53269327" id="r_ab6a364c5baaae7562902399a53269327"><td class="memItemLeft" align="right" valign="top"><a id="ab6a364c5baaae7562902399a53269327" name="ab6a364c5baaae7562902399a53269327"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>BT_UUID_SENSOR2_ENABLED_VAL</b>&#160;&#160;&#160;BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c8)</td></tr>
+<tr class="memitem:ab6a364c5baaae7562902399a53269327" id="r_ab6a364c5baaae7562902399a53269327"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__sensor__service_8h.html#ab6a364c5baaae7562902399a53269327">BT_UUID_SENSOR2_ENABLED_VAL</a>&#160;&#160;&#160;BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c8)</td></tr>
 <tr class="separator:ab6a364c5baaae7562902399a53269327"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae3c0f4df45e112784ad4427f953cf840" id="r_ae3c0f4df45e112784ad4427f953cf840"><td class="memItemLeft" align="right" valign="top"><a id="ae3c0f4df45e112784ad4427f953cf840" name="ae3c0f4df45e112784ad4427f953cf840"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>BT_UUID_SENSOR2_CONFIG_VAL</b>&#160;&#160;&#160;BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c9)</td></tr>
+<tr class="memitem:ae3c0f4df45e112784ad4427f953cf840" id="r_ae3c0f4df45e112784ad4427f953cf840"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__sensor__service_8h.html#ae3c0f4df45e112784ad4427f953cf840">BT_UUID_SENSOR2_CONFIG_VAL</a>&#160;&#160;&#160;BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c9)</td></tr>
 <tr class="separator:ae3c0f4df45e112784ad4427f953cf840"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab9d89f7e53a9ce3a04bf90506c33ada7" id="r_ab9d89f7e53a9ce3a04bf90506c33ada7"><td class="memItemLeft" align="right" valign="top"><a id="ab9d89f7e53a9ce3a04bf90506c33ada7" name="ab9d89f7e53a9ce3a04bf90506c33ada7"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>BT_UUID_SENSOR2_PWR_CONFIG_VAL</b>&#160;&#160;&#160;BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2ca)</td></tr>
+<tr class="memitem:ab9d89f7e53a9ce3a04bf90506c33ada7" id="r_ab9d89f7e53a9ce3a04bf90506c33ada7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__sensor__service_8h.html#ab9d89f7e53a9ce3a04bf90506c33ada7">BT_UUID_SENSOR2_PWR_CONFIG_VAL</a>&#160;&#160;&#160;BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2ca)</td></tr>
 <tr class="separator:ab9d89f7e53a9ce3a04bf90506c33ada7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a001c3c40e140cc332ace158eb1495bd2" id="r_a001c3c40e140cc332ace158eb1495bd2"><td class="memItemLeft" align="right" valign="top"><a id="a001c3c40e140cc332ace158eb1495bd2" name="a001c3c40e140cc332ace158eb1495bd2"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>BT_UUID_SENSOR2_DATA_FREQ_VAL</b>&#160;&#160;&#160;BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2cb)</td></tr>
+<tr class="memitem:a001c3c40e140cc332ace158eb1495bd2" id="r_a001c3c40e140cc332ace158eb1495bd2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__sensor__service_8h.html#a001c3c40e140cc332ace158eb1495bd2">BT_UUID_SENSOR2_DATA_FREQ_VAL</a>&#160;&#160;&#160;BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2cb)</td></tr>
 <tr class="separator:a001c3c40e140cc332ace158eb1495bd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a559e8a8038aab80da93ee2ecede33b70" id="r_a559e8a8038aab80da93ee2ecede33b70"><td class="memItemLeft" align="right" valign="top"><a id="a559e8a8038aab80da93ee2ecede33b70" name="a559e8a8038aab80da93ee2ecede33b70"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>BT_UUID_SENSOR2_DATA_VAL</b>&#160;&#160;&#160;BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2cc)</td></tr>
+<tr class="memitem:a559e8a8038aab80da93ee2ecede33b70" id="r_a559e8a8038aab80da93ee2ecede33b70"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__sensor__service_8h.html#a559e8a8038aab80da93ee2ecede33b70">BT_UUID_SENSOR2_DATA_VAL</a>&#160;&#160;&#160;BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2cc)</td></tr>
 <tr class="separator:a559e8a8038aab80da93ee2ecede33b70"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5dba36b59755c6daed49bfb8463f26a0" id="r_a5dba36b59755c6daed49bfb8463f26a0"><td class="memItemLeft" align="right" valign="top"><a id="a5dba36b59755c6daed49bfb8463f26a0" name="a5dba36b59755c6daed49bfb8463f26a0"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>BT_UUID_SENSOR2_DATA_TIMESTAMP_VAL</b>&#160;&#160;&#160;BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2cd)</td></tr>
+<tr class="memitem:a5dba36b59755c6daed49bfb8463f26a0" id="r_a5dba36b59755c6daed49bfb8463f26a0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__sensor__service_8h.html#a5dba36b59755c6daed49bfb8463f26a0">BT_UUID_SENSOR2_DATA_TIMESTAMP_VAL</a>&#160;&#160;&#160;BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2cd)</td></tr>
 <tr class="separator:a5dba36b59755c6daed49bfb8463f26a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa797ca11be4f3ccb0bbea76d283ecb5c" id="r_aa797ca11be4f3ccb0bbea76d283ecb5c"><td class="memItemLeft" align="right" valign="top"><a id="aa797ca11be4f3ccb0bbea76d283ecb5c" name="aa797ca11be4f3ccb0bbea76d283ecb5c"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>BT_UUID_SENSOR</b>&#160;&#160;&#160;BT_UUID_DECLARE_128(BT_UUID_SENSOR_VAL)</td></tr>
+<tr class="memitem:aa797ca11be4f3ccb0bbea76d283ecb5c" id="r_aa797ca11be4f3ccb0bbea76d283ecb5c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__sensor__service_8h.html#aa797ca11be4f3ccb0bbea76d283ecb5c">BT_UUID_SENSOR</a>&#160;&#160;&#160;BT_UUID_DECLARE_128(<a class="el" href="ble__sensor__service_8h.html#a7609fe9368a18da46d9159d81457c55f">BT_UUID_SENSOR_VAL</a>)</td></tr>
 <tr class="separator:aa797ca11be4f3ccb0bbea76d283ecb5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5b19179eec9b53729f842613e17748d6" id="r_a5b19179eec9b53729f842613e17748d6"><td class="memItemLeft" align="right" valign="top"><a id="a5b19179eec9b53729f842613e17748d6" name="a5b19179eec9b53729f842613e17748d6"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>BT_UUID_SENSOR_STATE</b>&#160;&#160;&#160;BT_UUID_DECLARE_128(BT_UUID_SENSOR_STATE_VAL)</td></tr>
+<tr class="memitem:a5b19179eec9b53729f842613e17748d6" id="r_a5b19179eec9b53729f842613e17748d6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__sensor__service_8h.html#a5b19179eec9b53729f842613e17748d6">BT_UUID_SENSOR_STATE</a>&#160;&#160;&#160;BT_UUID_DECLARE_128(<a class="el" href="ble__sensor__service_8h.html#ae1e2816b27ceb96447eeca79cd3a54aa">BT_UUID_SENSOR_STATE_VAL</a>)</td></tr>
 <tr class="separator:a5b19179eec9b53729f842613e17748d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3ef16e0c505b1e56bde252c0dd2349f9" id="r_a3ef16e0c505b1e56bde252c0dd2349f9"><td class="memItemLeft" align="right" valign="top"><a id="a3ef16e0c505b1e56bde252c0dd2349f9" name="a3ef16e0c505b1e56bde252c0dd2349f9"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>BT_UUID_SENSOR1_ENABLED</b>&#160;&#160;&#160;BT_UUID_DECLARE_128(BT_UUID_SENSOR1_ENABLED_VAL)</td></tr>
+<tr class="memitem:a3ef16e0c505b1e56bde252c0dd2349f9" id="r_a3ef16e0c505b1e56bde252c0dd2349f9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__sensor__service_8h.html#a3ef16e0c505b1e56bde252c0dd2349f9">BT_UUID_SENSOR1_ENABLED</a>&#160;&#160;&#160;BT_UUID_DECLARE_128(<a class="el" href="ble__sensor__service_8h.html#a9495df86d19cae504ef3095758f433ed">BT_UUID_SENSOR1_ENABLED_VAL</a>)</td></tr>
 <tr class="separator:a3ef16e0c505b1e56bde252c0dd2349f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0cdb18c2002a9059167be991769a6e02" id="r_a0cdb18c2002a9059167be991769a6e02"><td class="memItemLeft" align="right" valign="top"><a id="a0cdb18c2002a9059167be991769a6e02" name="a0cdb18c2002a9059167be991769a6e02"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>BT_UUID_SENSOR1_CONFIG</b>&#160;&#160;&#160;BT_UUID_DECLARE_128(BT_UUID_SENSOR1_CONFIG_VAL)</td></tr>
+<tr class="memitem:a0cdb18c2002a9059167be991769a6e02" id="r_a0cdb18c2002a9059167be991769a6e02"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__sensor__service_8h.html#a0cdb18c2002a9059167be991769a6e02">BT_UUID_SENSOR1_CONFIG</a>&#160;&#160;&#160;BT_UUID_DECLARE_128(<a class="el" href="ble__sensor__service_8h.html#a364d37dca81586b1855e032c23025e86">BT_UUID_SENSOR1_CONFIG_VAL</a>)</td></tr>
 <tr class="separator:a0cdb18c2002a9059167be991769a6e02"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac16149698bcb76dce31557fb1149b483" id="r_ac16149698bcb76dce31557fb1149b483"><td class="memItemLeft" align="right" valign="top"><a id="ac16149698bcb76dce31557fb1149b483" name="ac16149698bcb76dce31557fb1149b483"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>BT_UUID_SENSOR1_PWR_CONFIG</b>&#160;&#160;&#160;BT_UUID_DECLARE_128(BT_UUID_SENSOR1_PWR_CONFIG_VAL)</td></tr>
+<tr class="memitem:ac16149698bcb76dce31557fb1149b483" id="r_ac16149698bcb76dce31557fb1149b483"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__sensor__service_8h.html#ac16149698bcb76dce31557fb1149b483">BT_UUID_SENSOR1_PWR_CONFIG</a>&#160;&#160;&#160;BT_UUID_DECLARE_128(<a class="el" href="ble__sensor__service_8h.html#a409d01f220f5bc7479d4b1ee89f4124e">BT_UUID_SENSOR1_PWR_CONFIG_VAL</a>)</td></tr>
 <tr class="separator:ac16149698bcb76dce31557fb1149b483"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d0bef6bc8a2d42f39445e0278aa0c66" id="r_a7d0bef6bc8a2d42f39445e0278aa0c66"><td class="memItemLeft" align="right" valign="top"><a id="a7d0bef6bc8a2d42f39445e0278aa0c66" name="a7d0bef6bc8a2d42f39445e0278aa0c66"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>BT_UUID_SENSOR1_DATA_FREQ</b>&#160;&#160;&#160;BT_UUID_DECLARE_128(BT_UUID_SENSOR1_DATA_FREQ_VAL)</td></tr>
+<tr class="memitem:a7d0bef6bc8a2d42f39445e0278aa0c66" id="r_a7d0bef6bc8a2d42f39445e0278aa0c66"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__sensor__service_8h.html#a7d0bef6bc8a2d42f39445e0278aa0c66">BT_UUID_SENSOR1_DATA_FREQ</a>&#160;&#160;&#160;BT_UUID_DECLARE_128(<a class="el" href="ble__sensor__service_8h.html#aba2ce1d421b7df4a3c445cea5157a863">BT_UUID_SENSOR1_DATA_FREQ_VAL</a>)</td></tr>
 <tr class="separator:a7d0bef6bc8a2d42f39445e0278aa0c66"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a6a8a0de8bf514e238fe88f1e4c4b51" id="r_a4a6a8a0de8bf514e238fe88f1e4c4b51"><td class="memItemLeft" align="right" valign="top"><a id="a4a6a8a0de8bf514e238fe88f1e4c4b51" name="a4a6a8a0de8bf514e238fe88f1e4c4b51"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>BT_UUID_SENSOR1_DATA</b>&#160;&#160;&#160;BT_UUID_DECLARE_128(BT_UUID_SENSOR1_DATA_VAL)</td></tr>
+<tr class="memitem:a4a6a8a0de8bf514e238fe88f1e4c4b51" id="r_a4a6a8a0de8bf514e238fe88f1e4c4b51"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__sensor__service_8h.html#a4a6a8a0de8bf514e238fe88f1e4c4b51">BT_UUID_SENSOR1_DATA</a>&#160;&#160;&#160;BT_UUID_DECLARE_128(<a class="el" href="ble__sensor__service_8h.html#a6dc8a6806c02c32de044b8c6025ca943">BT_UUID_SENSOR1_DATA_VAL</a>)</td></tr>
 <tr class="separator:a4a6a8a0de8bf514e238fe88f1e4c4b51"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac8324c6a40bf9eef7dd68da0a35c7c81" id="r_ac8324c6a40bf9eef7dd68da0a35c7c81"><td class="memItemLeft" align="right" valign="top"><a id="ac8324c6a40bf9eef7dd68da0a35c7c81" name="ac8324c6a40bf9eef7dd68da0a35c7c81"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>BT_UUID_SENSOR1_DATA_TIMESTAMP</b>&#160;&#160;&#160;BT_UUID_DECLARE_128(BT_UUID_SENSOR1_DATA_TIMESTAMP_VAL)</td></tr>
+<tr class="memitem:ac8324c6a40bf9eef7dd68da0a35c7c81" id="r_ac8324c6a40bf9eef7dd68da0a35c7c81"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__sensor__service_8h.html#ac8324c6a40bf9eef7dd68da0a35c7c81">BT_UUID_SENSOR1_DATA_TIMESTAMP</a>&#160;&#160;&#160;BT_UUID_DECLARE_128(<a class="el" href="ble__sensor__service_8h.html#ad7cc5ce2932558ea222151debba3a5e2">BT_UUID_SENSOR1_DATA_TIMESTAMP_VAL</a>)</td></tr>
 <tr class="separator:ac8324c6a40bf9eef7dd68da0a35c7c81"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d34bddf53ccdd46676f3dc8f64b1bfd" id="r_a9d34bddf53ccdd46676f3dc8f64b1bfd"><td class="memItemLeft" align="right" valign="top"><a id="a9d34bddf53ccdd46676f3dc8f64b1bfd" name="a9d34bddf53ccdd46676f3dc8f64b1bfd"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>BT_UUID_SENSOR2_ENABLED</b>&#160;&#160;&#160;BT_UUID_DECLARE_128(BT_UUID_SENSOR2_ENABLED_VAL)</td></tr>
+<tr class="memitem:a9d34bddf53ccdd46676f3dc8f64b1bfd" id="r_a9d34bddf53ccdd46676f3dc8f64b1bfd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__sensor__service_8h.html#a9d34bddf53ccdd46676f3dc8f64b1bfd">BT_UUID_SENSOR2_ENABLED</a>&#160;&#160;&#160;BT_UUID_DECLARE_128(<a class="el" href="ble__sensor__service_8h.html#ab6a364c5baaae7562902399a53269327">BT_UUID_SENSOR2_ENABLED_VAL</a>)</td></tr>
 <tr class="separator:a9d34bddf53ccdd46676f3dc8f64b1bfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a650182789bb650e81b6c9e182bc755f7" id="r_a650182789bb650e81b6c9e182bc755f7"><td class="memItemLeft" align="right" valign="top"><a id="a650182789bb650e81b6c9e182bc755f7" name="a650182789bb650e81b6c9e182bc755f7"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>BT_UUID_SENSOR2_CONFIG</b>&#160;&#160;&#160;BT_UUID_DECLARE_128(BT_UUID_SENSOR2_CONFIG_VAL)</td></tr>
+<tr class="memitem:a650182789bb650e81b6c9e182bc755f7" id="r_a650182789bb650e81b6c9e182bc755f7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__sensor__service_8h.html#a650182789bb650e81b6c9e182bc755f7">BT_UUID_SENSOR2_CONFIG</a>&#160;&#160;&#160;BT_UUID_DECLARE_128(<a class="el" href="ble__sensor__service_8h.html#ae3c0f4df45e112784ad4427f953cf840">BT_UUID_SENSOR2_CONFIG_VAL</a>)</td></tr>
 <tr class="separator:a650182789bb650e81b6c9e182bc755f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afdeec143b37bd0e8a75cf5f613eef26a" id="r_afdeec143b37bd0e8a75cf5f613eef26a"><td class="memItemLeft" align="right" valign="top"><a id="afdeec143b37bd0e8a75cf5f613eef26a" name="afdeec143b37bd0e8a75cf5f613eef26a"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>BT_UUID_SENSOR2_PWR_CONFIG</b>&#160;&#160;&#160;BT_UUID_DECLARE_128(BT_UUID_SENSOR2_PWR_CONFIG_VAL)</td></tr>
+<tr class="memitem:afdeec143b37bd0e8a75cf5f613eef26a" id="r_afdeec143b37bd0e8a75cf5f613eef26a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__sensor__service_8h.html#afdeec143b37bd0e8a75cf5f613eef26a">BT_UUID_SENSOR2_PWR_CONFIG</a>&#160;&#160;&#160;BT_UUID_DECLARE_128(<a class="el" href="ble__sensor__service_8h.html#ab9d89f7e53a9ce3a04bf90506c33ada7">BT_UUID_SENSOR2_PWR_CONFIG_VAL</a>)</td></tr>
 <tr class="separator:afdeec143b37bd0e8a75cf5f613eef26a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0073cd6236d38a133c8f66379c05ec6a" id="r_a0073cd6236d38a133c8f66379c05ec6a"><td class="memItemLeft" align="right" valign="top"><a id="a0073cd6236d38a133c8f66379c05ec6a" name="a0073cd6236d38a133c8f66379c05ec6a"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>BT_UUID_SENSOR2_DATA_FREQ</b>&#160;&#160;&#160;BT_UUID_DECLARE_128(BT_UUID_SENSOR2_DATA_FREQ_VAL)</td></tr>
+<tr class="memitem:a0073cd6236d38a133c8f66379c05ec6a" id="r_a0073cd6236d38a133c8f66379c05ec6a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__sensor__service_8h.html#a0073cd6236d38a133c8f66379c05ec6a">BT_UUID_SENSOR2_DATA_FREQ</a>&#160;&#160;&#160;BT_UUID_DECLARE_128(<a class="el" href="ble__sensor__service_8h.html#a001c3c40e140cc332ace158eb1495bd2">BT_UUID_SENSOR2_DATA_FREQ_VAL</a>)</td></tr>
 <tr class="separator:a0073cd6236d38a133c8f66379c05ec6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab4a8bcf4b5c6501ffe53dff446492a44" id="r_ab4a8bcf4b5c6501ffe53dff446492a44"><td class="memItemLeft" align="right" valign="top"><a id="ab4a8bcf4b5c6501ffe53dff446492a44" name="ab4a8bcf4b5c6501ffe53dff446492a44"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>BT_UUID_SENSOR2_DATA</b>&#160;&#160;&#160;BT_UUID_DECLARE_128(BT_UUID_SENSOR2_DATA_VAL)</td></tr>
+<tr class="memitem:ab4a8bcf4b5c6501ffe53dff446492a44" id="r_ab4a8bcf4b5c6501ffe53dff446492a44"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__sensor__service_8h.html#ab4a8bcf4b5c6501ffe53dff446492a44">BT_UUID_SENSOR2_DATA</a>&#160;&#160;&#160;BT_UUID_DECLARE_128(<a class="el" href="ble__sensor__service_8h.html#a559e8a8038aab80da93ee2ecede33b70">BT_UUID_SENSOR2_DATA_VAL</a>)</td></tr>
 <tr class="separator:ab4a8bcf4b5c6501ffe53dff446492a44"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9c84c0094f373d8ac6f1b95b824b2a04" id="r_a9c84c0094f373d8ac6f1b95b824b2a04"><td class="memItemLeft" align="right" valign="top"><a id="a9c84c0094f373d8ac6f1b95b824b2a04" name="a9c84c0094f373d8ac6f1b95b824b2a04"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>BT_UUID_SENSOR2_DATA_TIMESTAMP</b>&#160;&#160;&#160;BT_UUID_DECLARE_128(BT_UUID_SENSOR2_DATA_TIMESTAMP_VAL)</td></tr>
+<tr class="memitem:a9c84c0094f373d8ac6f1b95b824b2a04" id="r_a9c84c0094f373d8ac6f1b95b824b2a04"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__sensor__service_8h.html#a9c84c0094f373d8ac6f1b95b824b2a04">BT_UUID_SENSOR2_DATA_TIMESTAMP</a>&#160;&#160;&#160;BT_UUID_DECLARE_128(<a class="el" href="ble__sensor__service_8h.html#a5dba36b59755c6daed49bfb8463f26a0">BT_UUID_SENSOR2_DATA_TIMESTAMP_VAL</a>)</td></tr>
 <tr class="separator:a9c84c0094f373d8ac6f1b95b824b2a04"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
@@ -199,7 +183,400 @@ Functions</h2></td></tr>
 <dl class="section version"><dt>Version</dt><dd>0.1 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2025-05-06</dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2025 </dd></dl>
-</div><h2 class="groupheader">Function Documentation</h2>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="aa797ca11be4f3ccb0bbea76d283ecb5c" name="aa797ca11be4f3ccb0bbea76d283ecb5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa797ca11be4f3ccb0bbea76d283ecb5c">&#9670;&#160;</a></span>BT_UUID_SENSOR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BT_UUID_SENSOR&#160;&#160;&#160;BT_UUID_DECLARE_128(<a class="el" href="ble__sensor__service_8h.html#a7609fe9368a18da46d9159d81457c55f">BT_UUID_SENSOR_VAL</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0cdb18c2002a9059167be991769a6e02" name="a0cdb18c2002a9059167be991769a6e02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0cdb18c2002a9059167be991769a6e02">&#9670;&#160;</a></span>BT_UUID_SENSOR1_CONFIG</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BT_UUID_SENSOR1_CONFIG&#160;&#160;&#160;BT_UUID_DECLARE_128(<a class="el" href="ble__sensor__service_8h.html#a364d37dca81586b1855e032c23025e86">BT_UUID_SENSOR1_CONFIG_VAL</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a364d37dca81586b1855e032c23025e86" name="a364d37dca81586b1855e032c23025e86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a364d37dca81586b1855e032c23025e86">&#9670;&#160;</a></span>BT_UUID_SENSOR1_CONFIG_VAL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BT_UUID_SENSOR1_CONFIG_VAL&#160;&#160;&#160;BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c3)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4a6a8a0de8bf514e238fe88f1e4c4b51" name="a4a6a8a0de8bf514e238fe88f1e4c4b51"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a6a8a0de8bf514e238fe88f1e4c4b51">&#9670;&#160;</a></span>BT_UUID_SENSOR1_DATA</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BT_UUID_SENSOR1_DATA&#160;&#160;&#160;BT_UUID_DECLARE_128(<a class="el" href="ble__sensor__service_8h.html#a6dc8a6806c02c32de044b8c6025ca943">BT_UUID_SENSOR1_DATA_VAL</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7d0bef6bc8a2d42f39445e0278aa0c66" name="a7d0bef6bc8a2d42f39445e0278aa0c66"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d0bef6bc8a2d42f39445e0278aa0c66">&#9670;&#160;</a></span>BT_UUID_SENSOR1_DATA_FREQ</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BT_UUID_SENSOR1_DATA_FREQ&#160;&#160;&#160;BT_UUID_DECLARE_128(<a class="el" href="ble__sensor__service_8h.html#aba2ce1d421b7df4a3c445cea5157a863">BT_UUID_SENSOR1_DATA_FREQ_VAL</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aba2ce1d421b7df4a3c445cea5157a863" name="aba2ce1d421b7df4a3c445cea5157a863"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba2ce1d421b7df4a3c445cea5157a863">&#9670;&#160;</a></span>BT_UUID_SENSOR1_DATA_FREQ_VAL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BT_UUID_SENSOR1_DATA_FREQ_VAL&#160;&#160;&#160;BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c5)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac8324c6a40bf9eef7dd68da0a35c7c81" name="ac8324c6a40bf9eef7dd68da0a35c7c81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8324c6a40bf9eef7dd68da0a35c7c81">&#9670;&#160;</a></span>BT_UUID_SENSOR1_DATA_TIMESTAMP</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BT_UUID_SENSOR1_DATA_TIMESTAMP&#160;&#160;&#160;BT_UUID_DECLARE_128(<a class="el" href="ble__sensor__service_8h.html#ad7cc5ce2932558ea222151debba3a5e2">BT_UUID_SENSOR1_DATA_TIMESTAMP_VAL</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad7cc5ce2932558ea222151debba3a5e2" name="ad7cc5ce2932558ea222151debba3a5e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7cc5ce2932558ea222151debba3a5e2">&#9670;&#160;</a></span>BT_UUID_SENSOR1_DATA_TIMESTAMP_VAL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BT_UUID_SENSOR1_DATA_TIMESTAMP_VAL&#160;&#160;&#160;BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c7)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6dc8a6806c02c32de044b8c6025ca943" name="a6dc8a6806c02c32de044b8c6025ca943"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6dc8a6806c02c32de044b8c6025ca943">&#9670;&#160;</a></span>BT_UUID_SENSOR1_DATA_VAL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BT_UUID_SENSOR1_DATA_VAL&#160;&#160;&#160;BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c6)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3ef16e0c505b1e56bde252c0dd2349f9" name="a3ef16e0c505b1e56bde252c0dd2349f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ef16e0c505b1e56bde252c0dd2349f9">&#9670;&#160;</a></span>BT_UUID_SENSOR1_ENABLED</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BT_UUID_SENSOR1_ENABLED&#160;&#160;&#160;BT_UUID_DECLARE_128(<a class="el" href="ble__sensor__service_8h.html#a9495df86d19cae504ef3095758f433ed">BT_UUID_SENSOR1_ENABLED_VAL</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9495df86d19cae504ef3095758f433ed" name="a9495df86d19cae504ef3095758f433ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9495df86d19cae504ef3095758f433ed">&#9670;&#160;</a></span>BT_UUID_SENSOR1_ENABLED_VAL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BT_UUID_SENSOR1_ENABLED_VAL&#160;&#160;&#160;BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c2)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac16149698bcb76dce31557fb1149b483" name="ac16149698bcb76dce31557fb1149b483"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac16149698bcb76dce31557fb1149b483">&#9670;&#160;</a></span>BT_UUID_SENSOR1_PWR_CONFIG</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BT_UUID_SENSOR1_PWR_CONFIG&#160;&#160;&#160;BT_UUID_DECLARE_128(<a class="el" href="ble__sensor__service_8h.html#a409d01f220f5bc7479d4b1ee89f4124e">BT_UUID_SENSOR1_PWR_CONFIG_VAL</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a409d01f220f5bc7479d4b1ee89f4124e" name="a409d01f220f5bc7479d4b1ee89f4124e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a409d01f220f5bc7479d4b1ee89f4124e">&#9670;&#160;</a></span>BT_UUID_SENSOR1_PWR_CONFIG_VAL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BT_UUID_SENSOR1_PWR_CONFIG_VAL&#160;&#160;&#160;BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c4)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a650182789bb650e81b6c9e182bc755f7" name="a650182789bb650e81b6c9e182bc755f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a650182789bb650e81b6c9e182bc755f7">&#9670;&#160;</a></span>BT_UUID_SENSOR2_CONFIG</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BT_UUID_SENSOR2_CONFIG&#160;&#160;&#160;BT_UUID_DECLARE_128(<a class="el" href="ble__sensor__service_8h.html#ae3c0f4df45e112784ad4427f953cf840">BT_UUID_SENSOR2_CONFIG_VAL</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae3c0f4df45e112784ad4427f953cf840" name="ae3c0f4df45e112784ad4427f953cf840"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3c0f4df45e112784ad4427f953cf840">&#9670;&#160;</a></span>BT_UUID_SENSOR2_CONFIG_VAL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BT_UUID_SENSOR2_CONFIG_VAL&#160;&#160;&#160;BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c9)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab4a8bcf4b5c6501ffe53dff446492a44" name="ab4a8bcf4b5c6501ffe53dff446492a44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4a8bcf4b5c6501ffe53dff446492a44">&#9670;&#160;</a></span>BT_UUID_SENSOR2_DATA</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BT_UUID_SENSOR2_DATA&#160;&#160;&#160;BT_UUID_DECLARE_128(<a class="el" href="ble__sensor__service_8h.html#a559e8a8038aab80da93ee2ecede33b70">BT_UUID_SENSOR2_DATA_VAL</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0073cd6236d38a133c8f66379c05ec6a" name="a0073cd6236d38a133c8f66379c05ec6a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0073cd6236d38a133c8f66379c05ec6a">&#9670;&#160;</a></span>BT_UUID_SENSOR2_DATA_FREQ</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BT_UUID_SENSOR2_DATA_FREQ&#160;&#160;&#160;BT_UUID_DECLARE_128(<a class="el" href="ble__sensor__service_8h.html#a001c3c40e140cc332ace158eb1495bd2">BT_UUID_SENSOR2_DATA_FREQ_VAL</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a001c3c40e140cc332ace158eb1495bd2" name="a001c3c40e140cc332ace158eb1495bd2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a001c3c40e140cc332ace158eb1495bd2">&#9670;&#160;</a></span>BT_UUID_SENSOR2_DATA_FREQ_VAL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BT_UUID_SENSOR2_DATA_FREQ_VAL&#160;&#160;&#160;BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2cb)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9c84c0094f373d8ac6f1b95b824b2a04" name="a9c84c0094f373d8ac6f1b95b824b2a04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c84c0094f373d8ac6f1b95b824b2a04">&#9670;&#160;</a></span>BT_UUID_SENSOR2_DATA_TIMESTAMP</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BT_UUID_SENSOR2_DATA_TIMESTAMP&#160;&#160;&#160;BT_UUID_DECLARE_128(<a class="el" href="ble__sensor__service_8h.html#a5dba36b59755c6daed49bfb8463f26a0">BT_UUID_SENSOR2_DATA_TIMESTAMP_VAL</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5dba36b59755c6daed49bfb8463f26a0" name="a5dba36b59755c6daed49bfb8463f26a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5dba36b59755c6daed49bfb8463f26a0">&#9670;&#160;</a></span>BT_UUID_SENSOR2_DATA_TIMESTAMP_VAL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BT_UUID_SENSOR2_DATA_TIMESTAMP_VAL&#160;&#160;&#160;BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2cd)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a559e8a8038aab80da93ee2ecede33b70" name="a559e8a8038aab80da93ee2ecede33b70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a559e8a8038aab80da93ee2ecede33b70">&#9670;&#160;</a></span>BT_UUID_SENSOR2_DATA_VAL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BT_UUID_SENSOR2_DATA_VAL&#160;&#160;&#160;BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2cc)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9d34bddf53ccdd46676f3dc8f64b1bfd" name="a9d34bddf53ccdd46676f3dc8f64b1bfd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d34bddf53ccdd46676f3dc8f64b1bfd">&#9670;&#160;</a></span>BT_UUID_SENSOR2_ENABLED</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BT_UUID_SENSOR2_ENABLED&#160;&#160;&#160;BT_UUID_DECLARE_128(<a class="el" href="ble__sensor__service_8h.html#ab6a364c5baaae7562902399a53269327">BT_UUID_SENSOR2_ENABLED_VAL</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab6a364c5baaae7562902399a53269327" name="ab6a364c5baaae7562902399a53269327"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6a364c5baaae7562902399a53269327">&#9670;&#160;</a></span>BT_UUID_SENSOR2_ENABLED_VAL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BT_UUID_SENSOR2_ENABLED_VAL&#160;&#160;&#160;BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c8)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afdeec143b37bd0e8a75cf5f613eef26a" name="afdeec143b37bd0e8a75cf5f613eef26a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afdeec143b37bd0e8a75cf5f613eef26a">&#9670;&#160;</a></span>BT_UUID_SENSOR2_PWR_CONFIG</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BT_UUID_SENSOR2_PWR_CONFIG&#160;&#160;&#160;BT_UUID_DECLARE_128(<a class="el" href="ble__sensor__service_8h.html#ab9d89f7e53a9ce3a04bf90506c33ada7">BT_UUID_SENSOR2_PWR_CONFIG_VAL</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab9d89f7e53a9ce3a04bf90506c33ada7" name="ab9d89f7e53a9ce3a04bf90506c33ada7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9d89f7e53a9ce3a04bf90506c33ada7">&#9670;&#160;</a></span>BT_UUID_SENSOR2_PWR_CONFIG_VAL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BT_UUID_SENSOR2_PWR_CONFIG_VAL&#160;&#160;&#160;BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2ca)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5b19179eec9b53729f842613e17748d6" name="a5b19179eec9b53729f842613e17748d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b19179eec9b53729f842613e17748d6">&#9670;&#160;</a></span>BT_UUID_SENSOR_STATE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BT_UUID_SENSOR_STATE&#160;&#160;&#160;BT_UUID_DECLARE_128(<a class="el" href="ble__sensor__service_8h.html#ae1e2816b27ceb96447eeca79cd3a54aa">BT_UUID_SENSOR_STATE_VAL</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae1e2816b27ceb96447eeca79cd3a54aa" name="ae1e2816b27ceb96447eeca79cd3a54aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1e2816b27ceb96447eeca79cd3a54aa">&#9670;&#160;</a></span>BT_UUID_SENSOR_STATE_VAL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BT_UUID_SENSOR_STATE_VAL&#160;&#160;&#160;BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c1)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7609fe9368a18da46d9159d81457c55f" name="a7609fe9368a18da46d9159d81457c55f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7609fe9368a18da46d9159d81457c55f">&#9670;&#160;</a></span>BT_UUID_SENSOR_VAL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BT_UUID_SENSOR_VAL&#160;&#160;&#160;BT_UUID_128_ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c0)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
 <a id="a1ba80859b2f82bf34b2ea8655204e056" name="a1ba80859b2f82bf34b2ea8655204e056"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1ba80859b2f82bf34b2ea8655204e056">&#9670;&#160;</a></span>ble_sensor_service_init()</h2>
 

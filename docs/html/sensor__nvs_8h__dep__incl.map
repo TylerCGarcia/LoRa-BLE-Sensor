@@ -1,0 +1,11 @@
+<map id="app/include/sensor_nvs.h" name="app/include/sensor_nvs.h">
+<area shape="rect" id="Node000001" title="This is a library to keep track of sensor information and configurations that are stored in the non&#45;v..." alt="" coords="268,5,412,45"/>
+<area shape="rect" id="Node000002" href="$ble__lorawan__service_8c.html" title=" " alt="" coords="5,93,157,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="271,52,139,96,137,91,269,47"/>
+<area shape="rect" id="Node000003" href="$ble__sensor__service_8c.html" title=" " alt="" coords="182,93,325,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="313,57,274,95,271,91,309,53"/>
+<area shape="rect" id="Node000004" href="$sensor__app_8c.html" title=" " alt="" coords="349,101,507,126"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="371,53,418,98,414,102,368,57"/>
+<area shape="rect" id="Node000005" href="$sensor__nvs_8c.html" title=" " alt="" coords="532,101,689,126"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="413,47,575,98,574,103,412,52"/>
+</map>

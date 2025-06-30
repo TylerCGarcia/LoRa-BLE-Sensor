@@ -9,12 +9,19 @@ This is a library to keep track of sensor data, using the sensor\+\_\+reading li
 {\ttfamily \#include $<$stddef.\+h$>$}\newline
 {\ttfamily \#include $<$stdint.\+h$>$}\newline
 {\ttfamily \#include $<$zephyr/sys/ring\+\_\+buffer.\+h$>$}\newline
-Include dependency graph for sensor\+\_\+data.\+h\+:
-\nopagebreak
+Include dependency graph for sensor\+\_\+data.\+h\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{sensor__data_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=340pt]{sensor__data_8h__dep__incl}
 \end{center}
 \end{figure}
 \doxysubsubsection*{Classes}
@@ -25,21 +32,19 @@ struct \mbox{\hyperlink{structsensor__data__t}{sensor\+\_\+data\+\_\+t}}
 \doxysubsubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{sensor__data_8h_a3c1dd237f2fda312ac8da3475b809f73}\label{sensor__data_8h_a3c1dd237f2fda312ac8da3475b809f73} 
-\#define {\bfseries MAX\+\_\+\+DATA\+\_\+\+BUFFER\+\_\+\+SIZE}~100
+\#define \mbox{\hyperlink{sensor__data_8h_a3c1dd237f2fda312ac8da3475b809f73}{MAX\+\_\+\+DATA\+\_\+\+BUFFER\+\_\+\+SIZE}}~100
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{sensor__data_8h_ae58811ccec39232f9c49d149eed4a324}\label{sensor__data_8h_ae58811ccec39232f9c49d149eed4a324} 
 enum \mbox{\hyperlink{sensor__data_8h_ae58811ccec39232f9c49d149eed4a324}{sensor\+\_\+data\+\_\+type}} \{ \newline
-{\bfseries DATA\+\_\+\+TYPE\+\_\+\+INT}
-, {\bfseries DATA\+\_\+\+TYPE\+\_\+\+UINT8}
-, {\bfseries DATA\+\_\+\+TYPE\+\_\+\+UINT16}
-, {\bfseries DATA\+\_\+\+TYPE\+\_\+\+UINT32}
+\mbox{\hyperlink{sensor__data_8h_ae58811ccec39232f9c49d149eed4a324abf231dfe26eff989df3b697df1a45522}{DATA\+\_\+\+TYPE\+\_\+\+INT}}
+, \mbox{\hyperlink{sensor__data_8h_ae58811ccec39232f9c49d149eed4a324a332c1c608bc4515a9ca3a2589a361128}{DATA\+\_\+\+TYPE\+\_\+\+UINT8}}
+, \mbox{\hyperlink{sensor__data_8h_ae58811ccec39232f9c49d149eed4a324a245ae0de48bc92048c53ff8bd44fb850}{DATA\+\_\+\+TYPE\+\_\+\+UINT16}}
+, \mbox{\hyperlink{sensor__data_8h_ae58811ccec39232f9c49d149eed4a324aeb75b61567450ccd47baf77d95efa3f6}{DATA\+\_\+\+TYPE\+\_\+\+UINT32}}
 , \newline
-{\bfseries DATA\+\_\+\+TYPE\+\_\+\+FLOAT}
-, {\bfseries DATA\+\_\+\+TYPE\+\_\+\+LIMIT}
+\mbox{\hyperlink{sensor__data_8h_ae58811ccec39232f9c49d149eed4a324a0992e2c702acfcdc10275890e0b47536}{DATA\+\_\+\+TYPE\+\_\+\+FLOAT}}
+, \mbox{\hyperlink{sensor__data_8h_ae58811ccec39232f9c49d149eed4a324af73c2cae683ca2c2d0bdc721def1bc93}{DATA\+\_\+\+TYPE\+\_\+\+LIMIT}}
  \}
 \begin{DoxyCompactList}\small\item\em Types of data that can be stored in the sensor data buffer. Currently unused, plans to keep it for future use to potentially store in \doxylink{structsensor__data__t}{sensor\+\_\+data\+\_\+t} struct. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Functions}
@@ -72,6 +77,54 @@ Tyler Garcia
 \begin{DoxyCopyright}{Copyright}
 Copyright (c) 2025 
 \end{DoxyCopyright}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{sensor__data_8h_a3c1dd237f2fda312ac8da3475b809f73}\label{sensor__data_8h_a3c1dd237f2fda312ac8da3475b809f73} 
+\index{sensor\_data.h@{sensor\_data.h}!MAX\_DATA\_BUFFER\_SIZE@{MAX\_DATA\_BUFFER\_SIZE}}
+\index{MAX\_DATA\_BUFFER\_SIZE@{MAX\_DATA\_BUFFER\_SIZE}!sensor\_data.h@{sensor\_data.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_DATA\_BUFFER\_SIZE}{MAX\_DATA\_BUFFER\_SIZE}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+DATA\+\_\+\+BUFFER\+\_\+\+SIZE~100}
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{sensor__data_8h_ae58811ccec39232f9c49d149eed4a324}\label{sensor__data_8h_ae58811ccec39232f9c49d149eed4a324} 
+\index{sensor\_data.h@{sensor\_data.h}!sensor\_data\_type@{sensor\_data\_type}}
+\index{sensor\_data\_type@{sensor\_data\_type}!sensor\_data.h@{sensor\_data.h}}
+\doxysubsubsection{\texorpdfstring{sensor\_data\_type}{sensor\_data\_type}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{sensor__data_8h_ae58811ccec39232f9c49d149eed4a324}{sensor\+\_\+data\+\_\+type}}}
+
+
+
+Types of data that can be stored in the sensor data buffer. Currently unused, plans to keep it for future use to potentially store in \doxylink{structsensor__data__t}{sensor\+\_\+data\+\_\+t} struct. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DATA\_TYPE\_INT@{DATA\_TYPE\_INT}!sensor\_data.h@{sensor\_data.h}}\index{sensor\_data.h@{sensor\_data.h}!DATA\_TYPE\_INT@{DATA\_TYPE\_INT}}}\Hypertarget{sensor__data_8h_ae58811ccec39232f9c49d149eed4a324abf231dfe26eff989df3b697df1a45522}\label{sensor__data_8h_ae58811ccec39232f9c49d149eed4a324abf231dfe26eff989df3b697df1a45522} 
+DATA\+\_\+\+TYPE\+\_\+\+INT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DATA\_TYPE\_UINT8@{DATA\_TYPE\_UINT8}!sensor\_data.h@{sensor\_data.h}}\index{sensor\_data.h@{sensor\_data.h}!DATA\_TYPE\_UINT8@{DATA\_TYPE\_UINT8}}}\Hypertarget{sensor__data_8h_ae58811ccec39232f9c49d149eed4a324a332c1c608bc4515a9ca3a2589a361128}\label{sensor__data_8h_ae58811ccec39232f9c49d149eed4a324a332c1c608bc4515a9ca3a2589a361128} 
+DATA\+\_\+\+TYPE\+\_\+\+UINT8&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DATA\_TYPE\_UINT16@{DATA\_TYPE\_UINT16}!sensor\_data.h@{sensor\_data.h}}\index{sensor\_data.h@{sensor\_data.h}!DATA\_TYPE\_UINT16@{DATA\_TYPE\_UINT16}}}\Hypertarget{sensor__data_8h_ae58811ccec39232f9c49d149eed4a324a245ae0de48bc92048c53ff8bd44fb850}\label{sensor__data_8h_ae58811ccec39232f9c49d149eed4a324a245ae0de48bc92048c53ff8bd44fb850} 
+DATA\+\_\+\+TYPE\+\_\+\+UINT16&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DATA\_TYPE\_UINT32@{DATA\_TYPE\_UINT32}!sensor\_data.h@{sensor\_data.h}}\index{sensor\_data.h@{sensor\_data.h}!DATA\_TYPE\_UINT32@{DATA\_TYPE\_UINT32}}}\Hypertarget{sensor__data_8h_ae58811ccec39232f9c49d149eed4a324aeb75b61567450ccd47baf77d95efa3f6}\label{sensor__data_8h_ae58811ccec39232f9c49d149eed4a324aeb75b61567450ccd47baf77d95efa3f6} 
+DATA\+\_\+\+TYPE\+\_\+\+UINT32&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DATA\_TYPE\_FLOAT@{DATA\_TYPE\_FLOAT}!sensor\_data.h@{sensor\_data.h}}\index{sensor\_data.h@{sensor\_data.h}!DATA\_TYPE\_FLOAT@{DATA\_TYPE\_FLOAT}}}\Hypertarget{sensor__data_8h_ae58811ccec39232f9c49d149eed4a324a0992e2c702acfcdc10275890e0b47536}\label{sensor__data_8h_ae58811ccec39232f9c49d149eed4a324a0992e2c702acfcdc10275890e0b47536} 
+DATA\+\_\+\+TYPE\+\_\+\+FLOAT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DATA\_TYPE\_LIMIT@{DATA\_TYPE\_LIMIT}!sensor\_data.h@{sensor\_data.h}}\index{sensor\_data.h@{sensor\_data.h}!DATA\_TYPE\_LIMIT@{DATA\_TYPE\_LIMIT}}}\Hypertarget{sensor__data_8h_ae58811ccec39232f9c49d149eed4a324af73c2cae683ca2c2d0bdc721def1bc93}\label{sensor__data_8h_ae58811ccec39232f9c49d149eed4a324af73c2cae683ca2c2d0bdc721def1bc93} 
+DATA\+\_\+\+TYPE\+\_\+\+LIMIT&\\
+\hline
+
+\end{DoxyEnumFields}
 
 
 \doxysubsection{Function Documentation}

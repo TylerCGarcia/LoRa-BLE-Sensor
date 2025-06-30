@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">LoRa-BLE-Sensor
+   <div id="projectname">LoRa-BLE-Sensor<span id="projectnumber">&#160;1.0.0</span>
    </div>
   </td>
  </tr>
@@ -75,64 +75,301 @@ $(function() {
   <div class="headertitle"><div class="title">sensor_app_config_t Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="sensor__app_8h_source.html">sensor_app.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a2d65589f2c98ec7bf7c4defa468b6d8f" id="r_a2d65589f2c98ec7bf7c4defa468b6d8f"><td class="memItemLeft" align="right" valign="top"><a id="a2d65589f2c98ec7bf7c4defa468b6d8f" name="a2d65589f2c98ec7bf7c4defa468b6d8f"></a>
-enum sensor_app_state&#160;</td><td class="memItemRight" valign="bottom"><b>state</b></td></tr>
+<tr class="memitem:a2d65589f2c98ec7bf7c4defa468b6d8f" id="r_a2d65589f2c98ec7bf7c4defa468b6d8f"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="sensor__app_8h.html#a3ded0fb95123f62995b82d8ccfe33a43">sensor_app_state</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsensor__app__config__t.html#a2d65589f2c98ec7bf7c4defa468b6d8f">state</a></td></tr>
 <tr class="separator:a2d65589f2c98ec7bf7c4defa468b6d8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa16b29b7015e3f1a4353938b71a09742" id="r_aa16b29b7015e3f1a4353938b71a09742"><td class="memItemLeft" align="right" valign="top"><a id="aa16b29b7015e3f1a4353938b71a09742" name="aa16b29b7015e3f1a4353938b71a09742"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>connect_network_during_configuration</b></td></tr>
+<tr class="memitem:aa16b29b7015e3f1a4353938b71a09742" id="r_aa16b29b7015e3f1a4353938b71a09742"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsensor__app__config__t.html#aa16b29b7015e3f1a4353938b71a09742">connect_network_during_configuration</a></td></tr>
 <tr class="separator:aa16b29b7015e3f1a4353938b71a09742"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad2f608e0180a0127edbccea9cb4f8bde" id="r_ad2f608e0180a0127edbccea9cb4f8bde"><td class="memItemLeft" align="right" valign="top"><a id="ad2f608e0180a0127edbccea9cb4f8bde" name="ad2f608e0180a0127edbccea9cb4f8bde"></a>
-enum <a class="el" href="sensor__id_8h.html#ad7b3bc5128f463a9f210147ad5c043be">sensor_types</a>&#160;</td><td class="memItemRight" valign="bottom"><b>sensor_1_type</b></td></tr>
+<tr class="memitem:ad2f608e0180a0127edbccea9cb4f8bde" id="r_ad2f608e0180a0127edbccea9cb4f8bde"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="sensor__id_8h.html#ad7b3bc5128f463a9f210147ad5c043be">sensor_types</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsensor__app__config__t.html#ad2f608e0180a0127edbccea9cb4f8bde">sensor_1_type</a></td></tr>
 <tr class="separator:ad2f608e0180a0127edbccea9cb4f8bde"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aec6864936393bc0d7f59d7fc555092b6" id="r_aec6864936393bc0d7f59d7fc555092b6"><td class="memItemLeft" align="right" valign="top"><a id="aec6864936393bc0d7f59d7fc555092b6" name="aec6864936393bc0d7f59d7fc555092b6"></a>
-char&#160;</td><td class="memItemRight" valign="bottom"><b>sensor_1_type_name</b> [SENSOR_TYPE_NAME_LENGTH]</td></tr>
+<tr class="memitem:aec6864936393bc0d7f59d7fc555092b6" id="r_aec6864936393bc0d7f59d7fc555092b6"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsensor__app__config__t.html#aec6864936393bc0d7f59d7fc555092b6">sensor_1_type_name</a> [<a class="el" href="sensor__app_8h.html#a1b70e27acec5f3fad115276c378fe481">SENSOR_TYPE_NAME_LENGTH</a>]</td></tr>
 <tr class="separator:aec6864936393bc0d7f59d7fc555092b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad31a5fe2d29870ba0d1aa510bffae327" id="r_ad31a5fe2d29870ba0d1aa510bffae327"><td class="memItemLeft" align="right" valign="top"><a id="ad31a5fe2d29870ba0d1aa510bffae327" name="ad31a5fe2d29870ba0d1aa510bffae327"></a>
-enum <a class="el" href="sensor__id_8h.html#ad7b3bc5128f463a9f210147ad5c043be">sensor_types</a>&#160;</td><td class="memItemRight" valign="bottom"><b>sensor_2_type</b></td></tr>
+<tr class="memitem:ad31a5fe2d29870ba0d1aa510bffae327" id="r_ad31a5fe2d29870ba0d1aa510bffae327"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="sensor__id_8h.html#ad7b3bc5128f463a9f210147ad5c043be">sensor_types</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsensor__app__config__t.html#ad31a5fe2d29870ba0d1aa510bffae327">sensor_2_type</a></td></tr>
 <tr class="separator:ad31a5fe2d29870ba0d1aa510bffae327"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a71a3483ffdd95c616d2009ffcb268f2a" id="r_a71a3483ffdd95c616d2009ffcb268f2a"><td class="memItemLeft" align="right" valign="top"><a id="a71a3483ffdd95c616d2009ffcb268f2a" name="a71a3483ffdd95c616d2009ffcb268f2a"></a>
-char&#160;</td><td class="memItemRight" valign="bottom"><b>sensor_2_type_name</b> [SENSOR_TYPE_NAME_LENGTH]</td></tr>
+<tr class="memitem:a71a3483ffdd95c616d2009ffcb268f2a" id="r_a71a3483ffdd95c616d2009ffcb268f2a"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsensor__app__config__t.html#a71a3483ffdd95c616d2009ffcb268f2a">sensor_2_type_name</a> [<a class="el" href="sensor__app_8h.html#a1b70e27acec5f3fad115276c378fe481">SENSOR_TYPE_NAME_LENGTH</a>]</td></tr>
 <tr class="separator:a71a3483ffdd95c616d2009ffcb268f2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a41bee31e64c8ca7bc8d9c351de0a7732" id="r_a41bee31e64c8ca7bc8d9c351de0a7732"><td class="memItemLeft" align="right" valign="top"><a id="a41bee31e64c8ca7bc8d9c351de0a7732" name="a41bee31e64c8ca7bc8d9c351de0a7732"></a>
-enum <a class="el" href="sensor__id_8h.html#adef9477a37671049d57edb26e6a37746">sensor_voltage</a>&#160;</td><td class="memItemRight" valign="bottom"><b>sensor_1_voltage</b></td></tr>
+<tr class="memitem:a41bee31e64c8ca7bc8d9c351de0a7732" id="r_a41bee31e64c8ca7bc8d9c351de0a7732"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="sensor__id_8h.html#adef9477a37671049d57edb26e6a37746">sensor_voltage</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsensor__app__config__t.html#a41bee31e64c8ca7bc8d9c351de0a7732">sensor_1_voltage</a></td></tr>
 <tr class="separator:a41bee31e64c8ca7bc8d9c351de0a7732"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae76b43468244084f46a1de1c29198a59" id="r_ae76b43468244084f46a1de1c29198a59"><td class="memItemLeft" align="right" valign="top"><a id="ae76b43468244084f46a1de1c29198a59" name="ae76b43468244084f46a1de1c29198a59"></a>
-char&#160;</td><td class="memItemRight" valign="bottom"><b>sensor_1_voltage_name</b> [SENSOR_VOLTAGE_NAME_LENGTH]</td></tr>
+<tr class="memitem:ae76b43468244084f46a1de1c29198a59" id="r_ae76b43468244084f46a1de1c29198a59"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsensor__app__config__t.html#ae76b43468244084f46a1de1c29198a59">sensor_1_voltage_name</a> [<a class="el" href="sensor__app_8h.html#a4cdd0af44f5c2b29503979d86bf45fbf">SENSOR_VOLTAGE_NAME_LENGTH</a>]</td></tr>
 <tr class="separator:ae76b43468244084f46a1de1c29198a59"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c96e2d631c94fbff8ef7532602a0fb2" id="r_a5c96e2d631c94fbff8ef7532602a0fb2"><td class="memItemLeft" align="right" valign="top"><a id="a5c96e2d631c94fbff8ef7532602a0fb2" name="a5c96e2d631c94fbff8ef7532602a0fb2"></a>
-enum <a class="el" href="sensor__id_8h.html#adef9477a37671049d57edb26e6a37746">sensor_voltage</a>&#160;</td><td class="memItemRight" valign="bottom"><b>sensor_2_voltage</b></td></tr>
+<tr class="memitem:a5c96e2d631c94fbff8ef7532602a0fb2" id="r_a5c96e2d631c94fbff8ef7532602a0fb2"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="sensor__id_8h.html#adef9477a37671049d57edb26e6a37746">sensor_voltage</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsensor__app__config__t.html#a5c96e2d631c94fbff8ef7532602a0fb2">sensor_2_voltage</a></td></tr>
 <tr class="separator:a5c96e2d631c94fbff8ef7532602a0fb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a629cbd03dd279a988b81c83c94306b43" id="r_a629cbd03dd279a988b81c83c94306b43"><td class="memItemLeft" align="right" valign="top"><a id="a629cbd03dd279a988b81c83c94306b43" name="a629cbd03dd279a988b81c83c94306b43"></a>
-char&#160;</td><td class="memItemRight" valign="bottom"><b>sensor_2_voltage_name</b> [SENSOR_VOLTAGE_NAME_LENGTH]</td></tr>
+<tr class="memitem:a629cbd03dd279a988b81c83c94306b43" id="r_a629cbd03dd279a988b81c83c94306b43"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsensor__app__config__t.html#a629cbd03dd279a988b81c83c94306b43">sensor_2_voltage_name</a> [<a class="el" href="sensor__app_8h.html#a4cdd0af44f5c2b29503979d86bf45fbf">SENSOR_VOLTAGE_NAME_LENGTH</a>]</td></tr>
 <tr class="separator:a629cbd03dd279a988b81c83c94306b43"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4b87c63e61d3c430bc04b720f3d0c47d" id="r_a4b87c63e61d3c430bc04b720f3d0c47d"><td class="memItemLeft" align="right" valign="top"><a id="a4b87c63e61d3c430bc04b720f3d0c47d" name="a4b87c63e61d3c430bc04b720f3d0c47d"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>is_sensor_1_enabled</b></td></tr>
+<tr class="memitem:a4b87c63e61d3c430bc04b720f3d0c47d" id="r_a4b87c63e61d3c430bc04b720f3d0c47d"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsensor__app__config__t.html#a4b87c63e61d3c430bc04b720f3d0c47d">is_sensor_1_enabled</a></td></tr>
 <tr class="separator:a4b87c63e61d3c430bc04b720f3d0c47d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a85ee9b1f2e0425c8331ed3c2ef9e7092" id="r_a85ee9b1f2e0425c8331ed3c2ef9e7092"><td class="memItemLeft" align="right" valign="top"><a id="a85ee9b1f2e0425c8331ed3c2ef9e7092" name="a85ee9b1f2e0425c8331ed3c2ef9e7092"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>is_sensor_2_enabled</b></td></tr>
+<tr class="memitem:a85ee9b1f2e0425c8331ed3c2ef9e7092" id="r_a85ee9b1f2e0425c8331ed3c2ef9e7092"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsensor__app__config__t.html#a85ee9b1f2e0425c8331ed3c2ef9e7092">is_sensor_2_enabled</a></td></tr>
 <tr class="separator:a85ee9b1f2e0425c8331ed3c2ef9e7092"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a11d6d9c1722c56f527fe20a6d43441fe" id="r_a11d6d9c1722c56f527fe20a6d43441fe"><td class="memItemLeft" align="right" valign="top"><a id="a11d6d9c1722c56f527fe20a6d43441fe" name="a11d6d9c1722c56f527fe20a6d43441fe"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>sensor_1_frequency</b></td></tr>
+<tr class="memitem:a11d6d9c1722c56f527fe20a6d43441fe" id="r_a11d6d9c1722c56f527fe20a6d43441fe"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsensor__app__config__t.html#a11d6d9c1722c56f527fe20a6d43441fe">sensor_1_frequency</a></td></tr>
 <tr class="separator:a11d6d9c1722c56f527fe20a6d43441fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a78fd5aea6bdf8303364771280e48131d" id="r_a78fd5aea6bdf8303364771280e48131d"><td class="memItemLeft" align="right" valign="top"><a id="a78fd5aea6bdf8303364771280e48131d" name="a78fd5aea6bdf8303364771280e48131d"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>sensor_2_frequency</b></td></tr>
+<tr class="memitem:a78fd5aea6bdf8303364771280e48131d" id="r_a78fd5aea6bdf8303364771280e48131d"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsensor__app__config__t.html#a78fd5aea6bdf8303364771280e48131d">sensor_2_frequency</a></td></tr>
 <tr class="separator:a78fd5aea6bdf8303364771280e48131d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef66e676db081e59e58024f339777bdc" id="r_aef66e676db081e59e58024f339777bdc"><td class="memItemLeft" align="right" valign="top"><a id="aef66e676db081e59e58024f339777bdc" name="aef66e676db081e59e58024f339777bdc"></a>
-uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><b>sensor_1_latest_data</b></td></tr>
+<tr class="memitem:aef66e676db081e59e58024f339777bdc" id="r_aef66e676db081e59e58024f339777bdc"><td class="memItemLeft" align="right" valign="top">uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsensor__app__config__t.html#aef66e676db081e59e58024f339777bdc">sensor_1_latest_data</a></td></tr>
 <tr class="separator:aef66e676db081e59e58024f339777bdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aadb9be45228df06d019aca1a9119516d" id="r_aadb9be45228df06d019aca1a9119516d"><td class="memItemLeft" align="right" valign="top"><a id="aadb9be45228df06d019aca1a9119516d" name="aadb9be45228df06d019aca1a9119516d"></a>
-uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>sensor_1_latest_data_timestamp</b></td></tr>
+<tr class="memitem:aadb9be45228df06d019aca1a9119516d" id="r_aadb9be45228df06d019aca1a9119516d"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsensor__app__config__t.html#aadb9be45228df06d019aca1a9119516d">sensor_1_latest_data_timestamp</a></td></tr>
 <tr class="separator:aadb9be45228df06d019aca1a9119516d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f2bb1ef0a6d20e2584ea09fb2108c22" id="r_a7f2bb1ef0a6d20e2584ea09fb2108c22"><td class="memItemLeft" align="right" valign="top"><a id="a7f2bb1ef0a6d20e2584ea09fb2108c22" name="a7f2bb1ef0a6d20e2584ea09fb2108c22"></a>
-uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><b>sensor_2_latest_data</b></td></tr>
+<tr class="memitem:a7f2bb1ef0a6d20e2584ea09fb2108c22" id="r_a7f2bb1ef0a6d20e2584ea09fb2108c22"><td class="memItemLeft" align="right" valign="top">uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsensor__app__config__t.html#a7f2bb1ef0a6d20e2584ea09fb2108c22">sensor_2_latest_data</a></td></tr>
 <tr class="separator:a7f2bb1ef0a6d20e2584ea09fb2108c22"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa3523c99bc11b7a688db43b9ccad1bcf" id="r_aa3523c99bc11b7a688db43b9ccad1bcf"><td class="memItemLeft" align="right" valign="top"><a id="aa3523c99bc11b7a688db43b9ccad1bcf" name="aa3523c99bc11b7a688db43b9ccad1bcf"></a>
-uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>sensor_2_latest_data_timestamp</b></td></tr>
+<tr class="memitem:aa3523c99bc11b7a688db43b9ccad1bcf" id="r_aa3523c99bc11b7a688db43b9ccad1bcf"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsensor__app__config__t.html#aa3523c99bc11b7a688db43b9ccad1bcf">sensor_2_latest_data_timestamp</a></td></tr>
 <tr class="separator:aa3523c99bc11b7a688db43b9ccad1bcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="aa16b29b7015e3f1a4353938b71a09742" name="aa16b29b7015e3f1a4353938b71a09742"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa16b29b7015e3f1a4353938b71a09742">&#9670;&#160;</a></span>connect_network_during_configuration</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t sensor_app_config_t::connect_network_during_configuration</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4b87c63e61d3c430bc04b720f3d0c47d" name="a4b87c63e61d3c430bc04b720f3d0c47d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b87c63e61d3c430bc04b720f3d0c47d">&#9670;&#160;</a></span>is_sensor_1_enabled</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t sensor_app_config_t::is_sensor_1_enabled</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a85ee9b1f2e0425c8331ed3c2ef9e7092" name="a85ee9b1f2e0425c8331ed3c2ef9e7092"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85ee9b1f2e0425c8331ed3c2ef9e7092">&#9670;&#160;</a></span>is_sensor_2_enabled</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t sensor_app_config_t::is_sensor_2_enabled</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a11d6d9c1722c56f527fe20a6d43441fe" name="a11d6d9c1722c56f527fe20a6d43441fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11d6d9c1722c56f527fe20a6d43441fe">&#9670;&#160;</a></span>sensor_1_frequency</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t sensor_app_config_t::sensor_1_frequency</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aef66e676db081e59e58024f339777bdc" name="aef66e676db081e59e58024f339777bdc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef66e676db081e59e58024f339777bdc">&#9670;&#160;</a></span>sensor_1_latest_data</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t* sensor_app_config_t::sensor_1_latest_data</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aadb9be45228df06d019aca1a9119516d" name="aadb9be45228df06d019aca1a9119516d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aadb9be45228df06d019aca1a9119516d">&#9670;&#160;</a></span>sensor_1_latest_data_timestamp</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t sensor_app_config_t::sensor_1_latest_data_timestamp</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad2f608e0180a0127edbccea9cb4f8bde" name="ad2f608e0180a0127edbccea9cb4f8bde"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2f608e0180a0127edbccea9cb4f8bde">&#9670;&#160;</a></span>sensor_1_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="sensor__id_8h.html#ad7b3bc5128f463a9f210147ad5c043be">sensor_types</a> sensor_app_config_t::sensor_1_type</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aec6864936393bc0d7f59d7fc555092b6" name="aec6864936393bc0d7f59d7fc555092b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec6864936393bc0d7f59d7fc555092b6">&#9670;&#160;</a></span>sensor_1_type_name</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char sensor_app_config_t::sensor_1_type_name[<a class="el" href="sensor__app_8h.html#a1b70e27acec5f3fad115276c378fe481">SENSOR_TYPE_NAME_LENGTH</a>]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a41bee31e64c8ca7bc8d9c351de0a7732" name="a41bee31e64c8ca7bc8d9c351de0a7732"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41bee31e64c8ca7bc8d9c351de0a7732">&#9670;&#160;</a></span>sensor_1_voltage</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="sensor__id_8h.html#adef9477a37671049d57edb26e6a37746">sensor_voltage</a> sensor_app_config_t::sensor_1_voltage</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae76b43468244084f46a1de1c29198a59" name="ae76b43468244084f46a1de1c29198a59"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae76b43468244084f46a1de1c29198a59">&#9670;&#160;</a></span>sensor_1_voltage_name</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char sensor_app_config_t::sensor_1_voltage_name[<a class="el" href="sensor__app_8h.html#a4cdd0af44f5c2b29503979d86bf45fbf">SENSOR_VOLTAGE_NAME_LENGTH</a>]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a78fd5aea6bdf8303364771280e48131d" name="a78fd5aea6bdf8303364771280e48131d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78fd5aea6bdf8303364771280e48131d">&#9670;&#160;</a></span>sensor_2_frequency</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t sensor_app_config_t::sensor_2_frequency</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7f2bb1ef0a6d20e2584ea09fb2108c22" name="a7f2bb1ef0a6d20e2584ea09fb2108c22"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f2bb1ef0a6d20e2584ea09fb2108c22">&#9670;&#160;</a></span>sensor_2_latest_data</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t* sensor_app_config_t::sensor_2_latest_data</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa3523c99bc11b7a688db43b9ccad1bcf" name="aa3523c99bc11b7a688db43b9ccad1bcf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3523c99bc11b7a688db43b9ccad1bcf">&#9670;&#160;</a></span>sensor_2_latest_data_timestamp</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t sensor_app_config_t::sensor_2_latest_data_timestamp</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad31a5fe2d29870ba0d1aa510bffae327" name="ad31a5fe2d29870ba0d1aa510bffae327"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad31a5fe2d29870ba0d1aa510bffae327">&#9670;&#160;</a></span>sensor_2_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="sensor__id_8h.html#ad7b3bc5128f463a9f210147ad5c043be">sensor_types</a> sensor_app_config_t::sensor_2_type</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a71a3483ffdd95c616d2009ffcb268f2a" name="a71a3483ffdd95c616d2009ffcb268f2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71a3483ffdd95c616d2009ffcb268f2a">&#9670;&#160;</a></span>sensor_2_type_name</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char sensor_app_config_t::sensor_2_type_name[<a class="el" href="sensor__app_8h.html#a1b70e27acec5f3fad115276c378fe481">SENSOR_TYPE_NAME_LENGTH</a>]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5c96e2d631c94fbff8ef7532602a0fb2" name="a5c96e2d631c94fbff8ef7532602a0fb2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c96e2d631c94fbff8ef7532602a0fb2">&#9670;&#160;</a></span>sensor_2_voltage</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="sensor__id_8h.html#adef9477a37671049d57edb26e6a37746">sensor_voltage</a> sensor_app_config_t::sensor_2_voltage</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a629cbd03dd279a988b81c83c94306b43" name="a629cbd03dd279a988b81c83c94306b43"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a629cbd03dd279a988b81c83c94306b43">&#9670;&#160;</a></span>sensor_2_voltage_name</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char sensor_app_config_t::sensor_2_voltage_name[<a class="el" href="sensor__app_8h.html#a4cdd0af44f5c2b29503979d86bf45fbf">SENSOR_VOLTAGE_NAME_LENGTH</a>]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2d65589f2c98ec7bf7c4defa468b6d8f" name="a2d65589f2c98ec7bf7c4defa468b6d8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d65589f2c98ec7bf7c4defa468b6d8f">&#9670;&#160;</a></span>state</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="sensor__app_8h.html#a3ded0fb95123f62995b82d8ccfe33a43">sensor_app_state</a> sensor_app_config_t::state</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>app/include/<a class="el" href="sensor__app_8h_source.html">sensor_app.h</a></li>
 </ul>

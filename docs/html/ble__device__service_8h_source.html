@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">LoRa-BLE-Sensor
+   <div id="projectname">LoRa-BLE-Sensor<span id="projectnumber">&#160;1.0.0</span>
    </div>
   </td>
  </tr>
@@ -81,7 +81,7 @@ $(document).ready(function() { init_codefold(0); });
   <div class="headertitle"><div class="title">ble_device_service.h</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<a href="ble__device__service_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#ifndef BLE_DEVICE_SERVICE_H</span></div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#define BLE_DEVICE_SERVICE_H</span></div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
@@ -108,29 +108,30 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="comment">*/</span></div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="comment">/* Define the UUIDs for the LORAWAN service */</span></div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#define BT_UUID_DEVICE_VAL                      BT_UUID_128_ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c90)</span></div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#define BT_UUID_DEVICE_NAME_VAL                 BT_UUID_128_ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c91)</span></div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="preprocessor">#define BT_UUID_DEVICE_HARDWARE_VERSION_VAL     BT_UUID_128_ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c92)</span></div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="preprocessor">#define BT_UUID_DEVICE_FIRMWARE_VERSION_VAL     BT_UUID_128_ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c93)</span></div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="preprocessor">#define BT_UUID_DEVICE_BATTERY_PERCENT_VAL      BT_UUID_128_ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c94)</span></div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="preprocessor">#define BT_UUID_DEVICE_BATTERY_VOLTAGE_VAL      BT_UUID_128_ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c95)</span></div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="preprocessor">#define BT_UUID_DEVICE_BATTERY_CURRENT_VAL      BT_UUID_128_ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c96)</span></div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">#define BT_UUID_DEVICE_BATTERY_TEMPERATURE_VAL  BT_UUID_128_ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c97)</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="ble__device__service_8h.html#ab8f024ce00779c33cede93806bc0a7d5">   39</a></span><span class="preprocessor">#define BT_UUID_DEVICE_VAL                      BT_UUID_128_ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c90)</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="ble__device__service_8h.html#a4c16c030f8d53db5da2333efdf0bae02">   40</a></span><span class="preprocessor">#define BT_UUID_DEVICE_NAME_VAL                 BT_UUID_128_ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c91)</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="ble__device__service_8h.html#a4c033ba48815dc778fbf53ca13f9c2c9">   41</a></span><span class="preprocessor">#define BT_UUID_DEVICE_HARDWARE_VERSION_VAL     BT_UUID_128_ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c92)</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="ble__device__service_8h.html#abad43012b424214325d32007116a49b1">   42</a></span><span class="preprocessor">#define BT_UUID_DEVICE_FIRMWARE_VERSION_VAL     BT_UUID_128_ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c93)</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="ble__device__service_8h.html#a15690d963d43cf502d4113ac05e10087">   43</a></span><span class="preprocessor">#define BT_UUID_DEVICE_BATTERY_PERCENT_VAL      BT_UUID_128_ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c94)</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="ble__device__service_8h.html#a50b8c97520b6019bc8bef64dd4c9cf39">   44</a></span><span class="preprocessor">#define BT_UUID_DEVICE_BATTERY_VOLTAGE_VAL      BT_UUID_128_ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c95)</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="ble__device__service_8h.html#a879b66838d19118d1dd87df4aa076be4">   45</a></span><span class="preprocessor">#define BT_UUID_DEVICE_BATTERY_CURRENT_VAL      BT_UUID_128_ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c96)</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="ble__device__service_8h.html#a5a24bd2199f560aa35b1e2c2870d64f6">   46</a></span><span class="preprocessor">#define BT_UUID_DEVICE_BATTERY_TEMPERATURE_VAL  BT_UUID_128_ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c97)</span></div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="preprocessor">#define BT_UUID_DEVICE                     BT_UUID_DECLARE_128(BT_UUID_DEVICE_VAL)</span></div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="preprocessor">#define BT_UUID_DEVICE_NAME                BT_UUID_DECLARE_128(BT_UUID_DEVICE_NAME_VAL)</span></div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="preprocessor">#define BT_UUID_DEVICE_HARDWARE_VERSION    BT_UUID_DECLARE_128(BT_UUID_DEVICE_HARDWARE_VERSION_VAL)</span></div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="preprocessor">#define BT_UUID_DEVICE_FIRMWARE_VERSION    BT_UUID_DECLARE_128(BT_UUID_DEVICE_FIRMWARE_VERSION_VAL)</span></div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="preprocessor">#define BT_UUID_DEVICE_BATTERY_PERCENT     BT_UUID_DECLARE_128(BT_UUID_DEVICE_BATTERY_PERCENT_VAL)</span></div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="preprocessor">#define BT_UUID_DEVICE_BATTERY_VOLTAGE     BT_UUID_DECLARE_128(BT_UUID_DEVICE_BATTERY_VOLTAGE_VAL)</span></div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="preprocessor">#define BT_UUID_DEVICE_BATTERY_CURRENT     BT_UUID_DECLARE_128(BT_UUID_DEVICE_BATTERY_CURRENT_VAL)</span></div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="preprocessor">#define BT_UUID_DEVICE_BATTERY_TEMPERATURE BT_UUID_DECLARE_128(BT_UUID_DEVICE_BATTERY_TEMPERATURE_VAL)</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="ble__device__service_8h.html#a7c39e51331b7b5f547d6619add432e83">   49</a></span><span class="preprocessor">#define BT_UUID_DEVICE                     BT_UUID_DECLARE_128(BT_UUID_DEVICE_VAL)</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="ble__device__service_8h.html#a913eb6600790b462ae5f5fd31acbf49a">   50</a></span><span class="preprocessor">#define BT_UUID_DEVICE_NAME                BT_UUID_DECLARE_128(BT_UUID_DEVICE_NAME_VAL)</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="ble__device__service_8h.html#a55b1603a366a9ea2f75c4cbe76772bc3">   51</a></span><span class="preprocessor">#define BT_UUID_DEVICE_HARDWARE_VERSION    BT_UUID_DECLARE_128(BT_UUID_DEVICE_HARDWARE_VERSION_VAL)</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="ble__device__service_8h.html#a3166830105fe3bb457d384a928b4c3c0">   52</a></span><span class="preprocessor">#define BT_UUID_DEVICE_FIRMWARE_VERSION    BT_UUID_DECLARE_128(BT_UUID_DEVICE_FIRMWARE_VERSION_VAL)</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="ble__device__service_8h.html#a87236d6bd6ba8ff46dfbc276f7bf12e5">   53</a></span><span class="preprocessor">#define BT_UUID_DEVICE_BATTERY_PERCENT     BT_UUID_DECLARE_128(BT_UUID_DEVICE_BATTERY_PERCENT_VAL)</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="ble__device__service_8h.html#a127e49d0763ee2499e1f2e0f40e9bec5">   54</a></span><span class="preprocessor">#define BT_UUID_DEVICE_BATTERY_VOLTAGE     BT_UUID_DECLARE_128(BT_UUID_DEVICE_BATTERY_VOLTAGE_VAL)</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="ble__device__service_8h.html#a11d77cb829466a1793e9bd1e91e0c392">   55</a></span><span class="preprocessor">#define BT_UUID_DEVICE_BATTERY_CURRENT     BT_UUID_DECLARE_128(BT_UUID_DEVICE_BATTERY_CURRENT_VAL)</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="ble__device__service_8h.html#aec9e91f516f8810093da6f04b9de6f9f">   56</a></span><span class="preprocessor">#define BT_UUID_DEVICE_BATTERY_TEMPERATURE BT_UUID_DECLARE_128(BT_UUID_DEVICE_BATTERY_TEMPERATURE_VAL)</span></div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="keywordtype">int</span> ble_device_service_init(<a class="code hl_struct" href="structpmic__sensor__status__t.html">pmic_sensor_status_t</a> *status);</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="keywordtype">int</span> <a class="code hl_function" href="ble__device__service_8h.html#ae7f661c5a2c19aec217e05ef7d7e16f4">ble_device_service_init</a>(<a class="code hl_struct" href="structpmic__sensor__status__t.html">pmic_sensor_status_t</a> *status);</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="able__device__service_8h_html_ae7f661c5a2c19aec217e05ef7d7e16f4"><div class="ttname"><a href="ble__device__service_8h.html#ae7f661c5a2c19aec217e05ef7d7e16f4">ble_device_service_init</a></div><div class="ttdeci">int ble_device_service_init(pmic_sensor_status_t *status)</div><div class="ttdoc">Connect PMIC sensor status to Device BLE Service.</div><div class="ttdef"><b>Definition</b> ble_device_service.c:52</div></div>
 <div class="ttc" id="asensor__pmic_8h_html"><div class="ttname"><a href="sensor__pmic_8h.html">sensor_pmic.h</a></div><div class="ttdoc">This is a library to keep track of the PMIC and its configuration.</div></div>
 <div class="ttc" id="astructpmic__sensor__status__t_html"><div class="ttname"><a href="structpmic__sensor__status__t.html">pmic_sensor_status_t</a></div><div class="ttdef"><b>Definition</b> sensor_pmic.h:20</div></div>
 </div><!-- fragment --></div><!-- contents -->

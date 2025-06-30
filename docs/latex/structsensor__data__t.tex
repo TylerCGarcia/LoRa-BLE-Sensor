@@ -1,38 +1,95 @@
 \doxysection{sensor\+\_\+data\+\_\+t Struct Reference}
 \hypertarget{structsensor__data__t}{}\label{structsensor__data__t}\index{sensor\_data\_t@{sensor\_data\_t}}
+
+
+{\ttfamily \#include $<$sensor\+\_\+data.\+h$>$}
+
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{structsensor__data__t_a40003e8cf84f299c9f4670bc3e31835e}\label{structsensor__data__t_a40003e8cf84f299c9f4670bc3e31835e} 
-enum \mbox{\hyperlink{sensor__id_8h_a48a4081a48bf69abc4ba5d704ec33919}{sensor\+\_\+id}} {\bfseries id}
+enum \mbox{\hyperlink{sensor__id_8h_a48a4081a48bf69abc4ba5d704ec33919}{sensor\+\_\+id}} \mbox{\hyperlink{structsensor__data__t_a40003e8cf84f299c9f4670bc3e31835e}{id}}
 \item 
-\Hypertarget{structsensor__data__t_a349bb03cec37aed81e51831ba11f87ce}\label{structsensor__data__t_a349bb03cec37aed81e51831ba11f87ce} 
-enum \mbox{\hyperlink{sensor__id_8h_a9425a5b9d9160dce11f5f08e71e5048f}{sensor\+\_\+power\+\_\+id}} {\bfseries power\+\_\+id}
+enum \mbox{\hyperlink{sensor__id_8h_a9425a5b9d9160dce11f5f08e71e5048f}{sensor\+\_\+power\+\_\+id}} \mbox{\hyperlink{structsensor__data__t_a349bb03cec37aed81e51831ba11f87ce}{power\+\_\+id}}
 \item 
-\Hypertarget{structsensor__data__t_aa9c840bb68bb0fdebda958a53edad868}\label{structsensor__data__t_aa9c840bb68bb0fdebda958a53edad868} 
-struct ring\+\_\+buf {\bfseries data\+\_\+ring\+\_\+buf}
+struct ring\+\_\+buf \mbox{\hyperlink{structsensor__data__t_aa9c840bb68bb0fdebda958a53edad868}{data\+\_\+ring\+\_\+buf}}
 \item 
-\Hypertarget{structsensor__data__t_af77d0c6061887c5a8a401777c3713af7}\label{structsensor__data__t_af77d0c6061887c5a8a401777c3713af7} 
-struct ring\+\_\+buf {\bfseries timestamp\+\_\+ring\+\_\+buf}
+struct ring\+\_\+buf \mbox{\hyperlink{structsensor__data__t_af77d0c6061887c5a8a401777c3713af7}{timestamp\+\_\+ring\+\_\+buf}}
 \item 
-\Hypertarget{structsensor__data__t_a9f85b7704deb0c6877aabd5d38be0fa4}\label{structsensor__data__t_a9f85b7704deb0c6877aabd5d38be0fa4} 
-size\+\_\+t {\bfseries max\+\_\+samples}
+size\+\_\+t \mbox{\hyperlink{structsensor__data__t_a9f85b7704deb0c6877aabd5d38be0fa4}{max\+\_\+samples}}
 \item 
-\Hypertarget{structsensor__data__t_a0d0ff2e4cd05265413e08e4ec1eea7ee}\label{structsensor__data__t_a0d0ff2e4cd05265413e08e4ec1eea7ee} 
-size\+\_\+t {\bfseries data\+\_\+size}
+size\+\_\+t \mbox{\hyperlink{structsensor__data__t_a0d0ff2e4cd05265413e08e4ec1eea7ee}{data\+\_\+size}}
 \item 
-\Hypertarget{structsensor__data__t_a468d65cdcf2a383350b99d14b6dffc96}\label{structsensor__data__t_a468d65cdcf2a383350b99d14b6dffc96} 
-size\+\_\+t {\bfseries timestamp\+\_\+size}
+size\+\_\+t \mbox{\hyperlink{structsensor__data__t_a468d65cdcf2a383350b99d14b6dffc96}{timestamp\+\_\+size}}
 \item 
-\Hypertarget{structsensor__data__t_afd56b8c352bbdeaa17b05cd77ee5d629}\label{structsensor__data__t_afd56b8c352bbdeaa17b05cd77ee5d629} 
-void \texorpdfstring{$\ast$}{*} {\bfseries latest\+\_\+data}
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsensor__data__t_afd56b8c352bbdeaa17b05cd77ee5d629}{latest\+\_\+data}}
 \item 
-\Hypertarget{structsensor__data__t_aa30554940e7d98b6352859c0b1b37dba}\label{structsensor__data__t_aa30554940e7d98b6352859c0b1b37dba} 
-int {\bfseries latest\+\_\+timestamp}
+int \mbox{\hyperlink{structsensor__data__t_aa30554940e7d98b6352859c0b1b37dba}{latest\+\_\+timestamp}}
 \item 
-\Hypertarget{structsensor__data__t_ae481556be589dcfdfde89a55572c0286}\label{structsensor__data__t_ae481556be589dcfdfde89a55572c0286} 
-uint32\+\_\+t {\bfseries num\+\_\+samples}
+uint32\+\_\+t \mbox{\hyperlink{structsensor__data__t_ae481556be589dcfdfde89a55572c0286}{num\+\_\+samples}}
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structsensor__data__t_aa9c840bb68bb0fdebda958a53edad868}\label{structsensor__data__t_aa9c840bb68bb0fdebda958a53edad868} 
+\index{sensor\_data\_t@{sensor\_data\_t}!data\_ring\_buf@{data\_ring\_buf}}
+\index{data\_ring\_buf@{data\_ring\_buf}!sensor\_data\_t@{sensor\_data\_t}}
+\doxysubsubsection{\texorpdfstring{data\_ring\_buf}{data\_ring\_buf}}
+{\footnotesize\ttfamily struct ring\+\_\+buf sensor\+\_\+data\+\_\+t\+::data\+\_\+ring\+\_\+buf}
+
+\Hypertarget{structsensor__data__t_a0d0ff2e4cd05265413e08e4ec1eea7ee}\label{structsensor__data__t_a0d0ff2e4cd05265413e08e4ec1eea7ee} 
+\index{sensor\_data\_t@{sensor\_data\_t}!data\_size@{data\_size}}
+\index{data\_size@{data\_size}!sensor\_data\_t@{sensor\_data\_t}}
+\doxysubsubsection{\texorpdfstring{data\_size}{data\_size}}
+{\footnotesize\ttfamily size\+\_\+t sensor\+\_\+data\+\_\+t\+::data\+\_\+size}
+
+\Hypertarget{structsensor__data__t_a40003e8cf84f299c9f4670bc3e31835e}\label{structsensor__data__t_a40003e8cf84f299c9f4670bc3e31835e} 
+\index{sensor\_data\_t@{sensor\_data\_t}!id@{id}}
+\index{id@{id}!sensor\_data\_t@{sensor\_data\_t}}
+\doxysubsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{sensor__id_8h_a48a4081a48bf69abc4ba5d704ec33919}{sensor\+\_\+id}} sensor\+\_\+data\+\_\+t\+::id}
+
+\Hypertarget{structsensor__data__t_afd56b8c352bbdeaa17b05cd77ee5d629}\label{structsensor__data__t_afd56b8c352bbdeaa17b05cd77ee5d629} 
+\index{sensor\_data\_t@{sensor\_data\_t}!latest\_data@{latest\_data}}
+\index{latest\_data@{latest\_data}!sensor\_data\_t@{sensor\_data\_t}}
+\doxysubsubsection{\texorpdfstring{latest\_data}{latest\_data}}
+{\footnotesize\ttfamily void\texorpdfstring{$\ast$}{*} sensor\+\_\+data\+\_\+t\+::latest\+\_\+data}
+
+\Hypertarget{structsensor__data__t_aa30554940e7d98b6352859c0b1b37dba}\label{structsensor__data__t_aa30554940e7d98b6352859c0b1b37dba} 
+\index{sensor\_data\_t@{sensor\_data\_t}!latest\_timestamp@{latest\_timestamp}}
+\index{latest\_timestamp@{latest\_timestamp}!sensor\_data\_t@{sensor\_data\_t}}
+\doxysubsubsection{\texorpdfstring{latest\_timestamp}{latest\_timestamp}}
+{\footnotesize\ttfamily int sensor\+\_\+data\+\_\+t\+::latest\+\_\+timestamp}
+
+\Hypertarget{structsensor__data__t_a9f85b7704deb0c6877aabd5d38be0fa4}\label{structsensor__data__t_a9f85b7704deb0c6877aabd5d38be0fa4} 
+\index{sensor\_data\_t@{sensor\_data\_t}!max\_samples@{max\_samples}}
+\index{max\_samples@{max\_samples}!sensor\_data\_t@{sensor\_data\_t}}
+\doxysubsubsection{\texorpdfstring{max\_samples}{max\_samples}}
+{\footnotesize\ttfamily size\+\_\+t sensor\+\_\+data\+\_\+t\+::max\+\_\+samples}
+
+\Hypertarget{structsensor__data__t_ae481556be589dcfdfde89a55572c0286}\label{structsensor__data__t_ae481556be589dcfdfde89a55572c0286} 
+\index{sensor\_data\_t@{sensor\_data\_t}!num\_samples@{num\_samples}}
+\index{num\_samples@{num\_samples}!sensor\_data\_t@{sensor\_data\_t}}
+\doxysubsubsection{\texorpdfstring{num\_samples}{num\_samples}}
+{\footnotesize\ttfamily uint32\+\_\+t sensor\+\_\+data\+\_\+t\+::num\+\_\+samples}
+
+\Hypertarget{structsensor__data__t_a349bb03cec37aed81e51831ba11f87ce}\label{structsensor__data__t_a349bb03cec37aed81e51831ba11f87ce} 
+\index{sensor\_data\_t@{sensor\_data\_t}!power\_id@{power\_id}}
+\index{power\_id@{power\_id}!sensor\_data\_t@{sensor\_data\_t}}
+\doxysubsubsection{\texorpdfstring{power\_id}{power\_id}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{sensor__id_8h_a9425a5b9d9160dce11f5f08e71e5048f}{sensor\+\_\+power\+\_\+id}} sensor\+\_\+data\+\_\+t\+::power\+\_\+id}
+
+\Hypertarget{structsensor__data__t_af77d0c6061887c5a8a401777c3713af7}\label{structsensor__data__t_af77d0c6061887c5a8a401777c3713af7} 
+\index{sensor\_data\_t@{sensor\_data\_t}!timestamp\_ring\_buf@{timestamp\_ring\_buf}}
+\index{timestamp\_ring\_buf@{timestamp\_ring\_buf}!sensor\_data\_t@{sensor\_data\_t}}
+\doxysubsubsection{\texorpdfstring{timestamp\_ring\_buf}{timestamp\_ring\_buf}}
+{\footnotesize\ttfamily struct ring\+\_\+buf sensor\+\_\+data\+\_\+t\+::timestamp\+\_\+ring\+\_\+buf}
+
+\Hypertarget{structsensor__data__t_a468d65cdcf2a383350b99d14b6dffc96}\label{structsensor__data__t_a468d65cdcf2a383350b99d14b6dffc96} 
+\index{sensor\_data\_t@{sensor\_data\_t}!timestamp\_size@{timestamp\_size}}
+\index{timestamp\_size@{timestamp\_size}!sensor\_data\_t@{sensor\_data\_t}}
+\doxysubsubsection{\texorpdfstring{timestamp\_size}{timestamp\_size}}
+{\footnotesize\ttfamily size\+\_\+t sensor\+\_\+data\+\_\+t\+::timestamp\+\_\+size}
+
 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
