@@ -1,0 +1,5 @@
+<map id="app/include/sensor_names.h" name="app/include/sensor_names.h">
+<area shape="rect" id="Node000001" title="This is a library for sensor names, converting between strings and enum values to make configurations..." alt="" coords="5,5,149,45"/>
+<area shape="rect" id="Node000002" href="$sensor__id_8h.html" title="This is a library to keep track of sensor ids and sensor power ids. As well as the configuration for ..." alt="" coords="29,93,125,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="80,46,80,79,75,79,75,46"/>
+</map>

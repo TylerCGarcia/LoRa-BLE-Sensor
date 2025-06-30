@@ -1,0 +1,9 @@
+<map id="app/include/sensor_lorawan.h" name="app/include/sensor_lorawan.h">
+<area shape="rect" id="Node000001" title="This is a library to handle the LoRaWAN functionality for the sensor." alt="" coords="183,5,327,45"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,93,196,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="219,48,137,89,134,85,217,43"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="220,93,291,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="258,46,258,79,253,79,253,46"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="315,93,441,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="286,43,350,84,347,88,284,48"/>
+</map>

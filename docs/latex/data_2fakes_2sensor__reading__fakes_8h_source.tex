@@ -1,0 +1,39 @@
+\doxysection{sensor\+\_\+reading\+\_\+fakes.\+h}
+\hypertarget{data_2fakes_2sensor__reading__fakes_8h_source}{}\label{data_2fakes_2sensor__reading__fakes_8h_source}\index{tests/functionality/data/fakes/sensor\_reading\_fakes.h@{tests/functionality/data/fakes/sensor\_reading\_fakes.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ SENSOR\_READING\_FAKES\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ SENSOR\_READING\_FAKES\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sensor__id_8h}{sensor\_id.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <zephyr/drivers/gpio.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <zephyr/drivers/adc.h>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <zephyr/fff.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{comment}{/*\ Identification\ number\ of\ sensor.\ */}}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{sensor__id_8h_a48a4081a48bf69abc4ba5d704ec33919}{sensor\_id}}\ id;}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{comment}{/*\ First\ Digital\ Pin.\ */}}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{struct\ }gpio\_dt\_spec\ d1;}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{comment}{/*\ Second\ Digital\ Pin.\ */}\ }
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{struct\ }gpio\_dt\_spec\ d2;}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{comment}{/*\ ADC\ spec\ for\ voltage\ sensor.\ */}}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{struct\ }adc\_dt\_spec\ voltage\_read;}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{comment}{/*\ ADC\ spec\ for\ current\ sensor.\ */}}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{struct\ }adc\_dt\_spec\ current\_read;}
+\DoxyCodeLine{00023\ \}\ \mbox{\hyperlink{structsensor__reading__config__t}{sensor\_reading\_config\_t}};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ Declare\ all\ the\ fake\ functions}}
+\DoxyCodeLine{00026\ DECLARE\_FAKE\_VALUE\_FUNC(\textcolor{keywordtype}{int},\ \mbox{\hyperlink{sensor__reading_8h_aa6fcad3dc29d7fec3de7039ed0f26d04}{sensor\_reading\_setup}},\ \mbox{\hyperlink{structsensor__reading__config__t}{sensor\_reading\_config\_t}}\ *,\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{sensor__id_8h_ad7b3bc5128f463a9f210147ad5c043be}{sensor\_types}});}
+\DoxyCodeLine{00027\ DECLARE\_FAKE\_VALUE\_FUNC(\textcolor{keyword}{enum}\ \mbox{\hyperlink{sensor__id_8h_ad7b3bc5128f463a9f210147ad5c043be}{sensor\_types}},\ \mbox{\hyperlink{sensor__reading_8h_a6af57e852f80eea9b1a524336fa2dc21}{get\_sensor\_reading\_setup}},\ \mbox{\hyperlink{structsensor__reading__config__t}{sensor\_reading\_config\_t}}\ *);}
+\DoxyCodeLine{00028\ DECLARE\_FAKE\_VALUE\_FUNC(\textcolor{keywordtype}{float},\ \mbox{\hyperlink{sensor__reading_8h_a589ee5ff90f829a08f11c745934e0782}{get\_sensor\_voltage\_reading}},\ \mbox{\hyperlink{structsensor__reading__config__t}{sensor\_reading\_config\_t}}\ *);}
+\DoxyCodeLine{00029\ DECLARE\_FAKE\_VALUE\_FUNC(\textcolor{keywordtype}{float},\ \mbox{\hyperlink{sensor__reading_8h_a6d898802c9d847488f689aae8e6701c5}{get\_sensor\_current\_reading}},\ \mbox{\hyperlink{structsensor__reading__config__t}{sensor\_reading\_config\_t}}\ *);}
+\DoxyCodeLine{00030\ DECLARE\_FAKE\_VALUE\_FUNC(\textcolor{keywordtype}{int},\ \mbox{\hyperlink{sensor__reading_8h_a7d40f0d1e3e142b4cdeb487360522cf6}{get\_sensor\_pulse\_count}},\ \mbox{\hyperlink{structsensor__reading__config__t}{sensor\_reading\_config\_t}}\ *);}
+\DoxyCodeLine{00031\ DECLARE\_FAKE\_VALUE\_FUNC(\textcolor{keywordtype}{int},\ \mbox{\hyperlink{sensor__reading_8h_af605cb54eb7cca3d5a90da406a1b14a7}{reset\_sensor\_pulse\_count}},\ \mbox{\hyperlink{structsensor__reading__config__t}{sensor\_reading\_config\_t}}\ *);}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{comment}{//\ Reset\ all\ fakes}}
+\DoxyCodeLine{00034\ \textcolor{keywordtype}{void}\ sensor\_reading\_fakes\_reset(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

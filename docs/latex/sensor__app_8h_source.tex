@@ -1,0 +1,95 @@
+\doxysection{sensor\+\_\+app.\+h}
+\hypertarget{sensor__app_8h_source}{}\label{sensor__app_8h_source}\index{app/include/sensor\_app.h@{app/include/sensor\_app.h}}
+\mbox{\hyperlink{sensor__app_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#ifndef\ SENSOR\_APP\_H}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ SENSOR\_APP\_H}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sensor__id_8h}{sensor\_id.h}}"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ SENSOR\_VOLTAGE\_NAME\_LENGTH\ \ \ \ \ \ 20}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ SENSOR\_TYPE\_NAME\_LENGTH\ \ \ \ \ \ \ \ \ 20}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ In\ sensor\_app.h}}
+\DoxyCodeLine{00023\ \textcolor{keyword}{enum}\ sensor\_app\_state\{}
+\DoxyCodeLine{00024\ \ \ \ \ SENSOR\_APP\_STATE\_CONFIGURATION,\ \ \ \ \textcolor{comment}{//\ Device\ is\ in\ configuration\ mode\ (BLE\ active,\ waiting\ for\ setup)}}
+\DoxyCodeLine{00025\ \ \ \ \ SENSOR\_APP\_STATE\_RUNNING,\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Device\ is\ actively\ reading\ sensors\ and\ transmitting}}
+\DoxyCodeLine{00026\ \ \ \ \ SENSOR\_APP\_STATE\_ERROR,\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Error\ state}}
+\DoxyCodeLine{00027\ \};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{enum}\ sensor\_nvs\_address\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ SENSOR\_NVS\_ADDRESS\_DEVICE\_NAME,}
+\DoxyCodeLine{00031\ \ \ \ \ SENSOR\_NVS\_ADDRESS\_APP\_STATE,}
+\DoxyCodeLine{00032\ \ \ \ \ SENSOR\_NVS\_ADDRESS\_LORAWAN\_ENABLED,}
+\DoxyCodeLine{00033\ \ \ \ \ SENSOR\_NVS\_ADDRESS\_LORAWAN\_FREQUENCY,}
+\DoxyCodeLine{00034\ \ \ \ \ SENSOR\_NVS\_ADDRESS\_LORAWAN\_DEV\_EUI,}
+\DoxyCodeLine{00035\ \ \ \ \ SENSOR\_NVS\_ADDRESS\_LORAWAN\_JOIN\_EUI,}
+\DoxyCodeLine{00036\ \ \ \ \ SENSOR\_NVS\_ADDRESS\_LORAWAN\_APP\_KEY,}
+\DoxyCodeLine{00037\ \ \ \ \ SENSOR\_NVS\_ADDRESS\_LORAWAN\_DEV\_NONCE,}
+\DoxyCodeLine{00038\ \ \ \ \ SENSOR\_NVS\_ADDRESS\_LORAWAN\_JOIN\_ATTEMPTS,}
+\DoxyCodeLine{00039\ \ \ \ \ SENSOR\_NVS\_ADDRESS\_LORAWAN\_SEND\_ATTEMPTS,}
+\DoxyCodeLine{00040\ \ \ \ \ SENSOR\_NVS\_ADDRESS\_SENSOR\_1\_ENABLED,}
+\DoxyCodeLine{00041\ \ \ \ \ SENSOR\_NVS\_ADDRESS\_SENSOR\_1\_POWER,}
+\DoxyCodeLine{00042\ \ \ \ \ SENSOR\_NVS\_ADDRESS\_SENSOR\_1\_TYPE,}
+\DoxyCodeLine{00043\ \ \ \ \ SENSOR\_NVS\_ADDRESS\_SENSOR\_1\_FREQUENCY,}
+\DoxyCodeLine{00044\ \ \ \ \ SENSOR\_NVS\_ADDRESS\_SENSOR\_2\_ENABLED,}
+\DoxyCodeLine{00045\ \ \ \ \ SENSOR\_NVS\_ADDRESS\_SENSOR\_2\_POWER,}
+\DoxyCodeLine{00046\ \ \ \ \ SENSOR\_NVS\_ADDRESS\_SENSOR\_2\_TYPE,}
+\DoxyCodeLine{00047\ \ \ \ \ SENSOR\_NVS\_ADDRESS\_SENSOR\_2\_FREQUENCY,}
+\DoxyCodeLine{00048\ \ \ \ \ SENSOR\_NVS\_ADDRESS\_LIMIT,}
+\DoxyCodeLine{00049\ \};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{comment}{/*\ Current\ state\ of\ the\ app\ */}}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{enum}\ sensor\_app\_state\ state;}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{comment}{/*\ Tells\ whether\ or\ not\ to\ connect\ network\ during\ configuration\ */}}
+\DoxyCodeLine{00055\ \ \ \ \ uint8\_t\ connect\_network\_during\_configuration;}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{comment}{/*\ Sensor\ type\ used\ for\ sensor\ 1\ */}}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{sensor__id_8h_ad7b3bc5128f463a9f210147ad5c043be}{sensor\_types}}\ sensor\_1\_type;}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{comment}{/*\ Sensor\ power\ name\ used\ for\ sensor\ 1\ */}}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{char}\ sensor\_1\_type\_name[SENSOR\_TYPE\_NAME\_LENGTH];}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{comment}{/*\ Sensor\ type\ used\ for\ sensor\ 2\ */}}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{sensor__id_8h_ad7b3bc5128f463a9f210147ad5c043be}{sensor\_types}}\ sensor\_2\_type;}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{comment}{/*\ Sensor\ type\ name\ used\ for\ sensor\ 2\ */}}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{char}\ sensor\_2\_type\_name[SENSOR\_TYPE\_NAME\_LENGTH];}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{comment}{/*\ Power\ voltage\ used\ for\ sensor\ 1\ */}}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{sensor__id_8h_adef9477a37671049d57edb26e6a37746}{sensor\_voltage}}\ sensor\_1\_voltage;}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{comment}{/*\ Power\ voltage\ name\ used\ for\ sensor\ 1\ */}}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{char}\ sensor\_1\_voltage\_name[SENSOR\_VOLTAGE\_NAME\_LENGTH];}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{comment}{/*\ Power\ voltage\ used\ for\ sensor\ 2\ */}}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{sensor__id_8h_adef9477a37671049d57edb26e6a37746}{sensor\_voltage}}\ sensor\_2\_voltage;}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{comment}{/*\ Power\ voltage\ name\ used\ for\ sensor\ 2\ */}}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{char}\ sensor\_2\_voltage\_name[SENSOR\_VOLTAGE\_NAME\_LENGTH];}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{comment}{/*\ Whether\ sensor\ 1\ is\ enabled\ */}}
+\DoxyCodeLine{00073\ \ \ \ \ uint8\_t\ is\_sensor\_1\_enabled;}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{comment}{/*\ Whether\ sensor\ 2\ is\ enabled\ */}}
+\DoxyCodeLine{00075\ \ \ \ \ uint8\_t\ is\_sensor\_2\_enabled;}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{comment}{/*\ Frequency\ of\ sensor\ 1\ */}}
+\DoxyCodeLine{00077\ \ \ \ \ uint8\_t\ sensor\_1\_frequency;}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{comment}{/*\ Frequency\ of\ sensor\ 2\ */}}
+\DoxyCodeLine{00079\ \ \ \ \ uint8\_t\ sensor\_2\_frequency;}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{comment}{/*\ Data\ from\ sensor\ 1\ */}}
+\DoxyCodeLine{00081\ \ \ \ \ uint8\_t\ *sensor\_1\_latest\_data;}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{comment}{/*\ Time\ since\ the\ latest\ data\ was\ received\ from\ sensor\ 1\ */}}
+\DoxyCodeLine{00083\ \ \ \ \ uint32\_t\ sensor\_1\_latest\_data\_timestamp;}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{comment}{/*\ Data\ from\ sensor\ 2\ */}}
+\DoxyCodeLine{00085\ \ \ \ \ uint8\_t\ *sensor\_2\_latest\_data;}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{comment}{/*\ Time\ since\ the\ latest\ data\ was\ received\ from\ sensor\ 2\ */}}
+\DoxyCodeLine{00087\ \ \ \ \ uint32\_t\ sensor\_2\_latest\_data\_timestamp;}
+\DoxyCodeLine{00088\ \}\ \mbox{\hyperlink{structsensor__app__config__t}{sensor\_app\_config\_t}};}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00095\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sensor__app_8h_abea55631949306c2a0f82ddf35229087}{sensor\_app\_init}}(\mbox{\hyperlink{structsensor__app__config__t}{sensor\_app\_config\_t}}\ *config);}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00102\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sensor__app_8h_a42c2202edc8ee7e6c735115215f2aae0}{sensor\_app\_configuration\_state}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00109\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sensor__app_8h_af7b48579dad8956c9ccc318612d1ea02}{sensor\_app\_running\_state}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00116\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sensor__app_8h_a450c3a51ecd9475363f0122f84cee0c2}{sensor\_app\_error\_state}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00123\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sensor__app_8h_aa77b4db9e6c6a78c51af3acdc155f9a6}{sensor\_app\_ble\_start}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,45 @@
+\doxysection{sensor\+\_\+reading.\+h}
+\hypertarget{sensor__reading_8h_source}{}\label{sensor__reading_8h_source}\index{app/include/sensor\_reading.h@{app/include/sensor\_reading.h}}
+\mbox{\hyperlink{sensor__reading_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#ifndef\ SENSOR\_READING\_H}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ SENSOR\_READING\_H}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sensor__id_8h}{sensor\_id.h}}"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <zephyr/drivers/gpio.h>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <zephyr/drivers/adc.h>}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{comment}{/*\ Identification\ number\ of\ sensor.\ */}}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{sensor__id_8h_a48a4081a48bf69abc4ba5d704ec33919}{sensor\_id}}\ id;}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{comment}{/*\ First\ Digital\ Pin.\ */}}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{struct\ }gpio\_dt\_spec\ d1;}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{comment}{/*\ Second\ Digital\ Pin.\ */}\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{struct\ }gpio\_dt\_spec\ d2;}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{comment}{/*\ ADC\ spec\ for\ voltage\ sensor.\ */}}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{struct\ }adc\_dt\_spec\ voltage\_read;}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{comment}{/*\ ADC\ spec\ for\ current\ sensor.\ */}}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{struct\ }adc\_dt\_spec\ current\_read;}
+\DoxyCodeLine{00034\ \}\ \mbox{\hyperlink{structsensor__reading__config__t}{sensor\_reading\_config\_t}};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ VOLTAGE\_READ\_DIVIDER\_HIGH\ \ \ \ \ 100}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ VOLTAGE\_READ\_DIVIDER\_LOW\ \ \ \ \ \ 13}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ CURRENT\_READ\_RESISTOR\ \ \ \ \ \ \ \ \ 50}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ PULSE\_DEBOUNCE\_MS\ \ \ \ \ \ \ \ \ \ \ \ \ 50}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00048\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sensor__reading_8h_aa6fcad3dc29d7fec3de7039ed0f26d04}{sensor\_reading\_setup}}(\mbox{\hyperlink{structsensor__reading__config__t}{sensor\_reading\_config\_t}}\ *config,\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{sensor__id_8h_ad7b3bc5128f463a9f210147ad5c043be}{sensor\_types}}\ sensor\_type);}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00056\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{sensor__id_8h_ad7b3bc5128f463a9f210147ad5c043be}{sensor\_types}}\ \mbox{\hyperlink{sensor__reading_8h_a6af57e852f80eea9b1a524336fa2dc21}{get\_sensor\_reading\_setup}}(\mbox{\hyperlink{structsensor__reading__config__t}{sensor\_reading\_config\_t}}\ *config);}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00065\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{sensor__reading_8h_a589ee5ff90f829a08f11c745934e0782}{get\_sensor\_voltage\_reading}}(\mbox{\hyperlink{structsensor__reading__config__t}{sensor\_reading\_config\_t}}\ *config);}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00074\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{sensor__reading_8h_a6d898802c9d847488f689aae8e6701c5}{get\_sensor\_current\_reading}}(\mbox{\hyperlink{structsensor__reading__config__t}{sensor\_reading\_config\_t}}\ *config);}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00082\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sensor__reading_8h_a7d40f0d1e3e142b4cdeb487360522cf6}{get\_sensor\_pulse\_count}}(\mbox{\hyperlink{structsensor__reading__config__t}{sensor\_reading\_config\_t}}\ *config);}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00090\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sensor__reading_8h_af605cb54eb7cca3d5a90da406a1b14a7}{reset\_sensor\_pulse\_count}}(\mbox{\hyperlink{structsensor__reading__config__t}{sensor\_reading\_config\_t}}\ *config);}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,34 @@
+\doxysection{sensor\+\_\+pmic\+\_\+ops\+\_\+t Struct Reference}
+\hypertarget{structsensor__pmic__ops__t}{}\label{structsensor__pmic__ops__t}\index{sensor\_pmic\_ops\_t@{sensor\_pmic\_ops\_t}}
+
+
+Structure containing function pointers for PMIC operations.  
+
+
+
+
+{\ttfamily \#include $<$sensor\+\_\+pmic.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structsensor__pmic__ops__t_a7c66e190128cc2dc83c5f71367dbfd47}\label{structsensor__pmic__ops__t_a7c66e190128cc2dc83c5f71367dbfd47} 
+bool(\texorpdfstring{$\ast$}{*} {\bfseries device\+\_\+is\+\_\+ready} )(const struct device \texorpdfstring{$\ast$}{*}dev)
+\item 
+\Hypertarget{structsensor__pmic__ops__t_a2fa5b684167dcf2478e75bf1c47c3cbe}\label{structsensor__pmic__ops__t_a2fa5b684167dcf2478e75bf1c47c3cbe} 
+int(\texorpdfstring{$\ast$}{*} {\bfseries led\+\_\+on} )(const struct device \texorpdfstring{$\ast$}{*}dev, uint32\+\_\+t led)
+\item 
+\Hypertarget{structsensor__pmic__ops__t_a07dc5f6f373675d0af20e0cf265a49d3}\label{structsensor__pmic__ops__t_a07dc5f6f373675d0af20e0cf265a49d3} 
+int(\texorpdfstring{$\ast$}{*} {\bfseries led\+\_\+off} )(const struct device \texorpdfstring{$\ast$}{*}dev, uint32\+\_\+t led)
+\item 
+\Hypertarget{structsensor__pmic__ops__t_a014bff78bc8c76946a8346fb3c0632cd}\label{structsensor__pmic__ops__t_a014bff78bc8c76946a8346fb3c0632cd} 
+int(\texorpdfstring{$\ast$}{*} {\bfseries sensor\+\_\+status\+\_\+get} )(const struct device \texorpdfstring{$\ast$}{*}dev, \mbox{\hyperlink{structpmic__sensor__status__t}{pmic\+\_\+sensor\+\_\+status\+\_\+t}} \texorpdfstring{$\ast$}{*}status)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Structure containing function pointers for PMIC operations. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+app/include/\mbox{\hyperlink{sensor__pmic_8h}{sensor\+\_\+pmic.\+h}}\end{DoxyCompactItemize}

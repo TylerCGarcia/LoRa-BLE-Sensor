@@ -1,0 +1,171 @@
+\doxysection{app/include/sensor\+\_\+data.h File Reference}
+\hypertarget{sensor__data_8h}{}\label{sensor__data_8h}\index{app/include/sensor\_data.h@{app/include/sensor\_data.h}}
+
+
+This is a library to keep track of sensor data, using the sensor\+\_\+reading library to collect data from the sensors. This library will also handle the data storage and retrieval.  
+
+
+{\ttfamily \#include "{}sensor\+\_\+id.\+h"{}}\newline
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$zephyr/sys/ring\+\_\+buffer.\+h$>$}\newline
+Include dependency graph for sensor\+\_\+data.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sensor__data_8h__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structsensor__data__t}{sensor\+\_\+data\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{sensor__data_8h_a3c1dd237f2fda312ac8da3475b809f73}\label{sensor__data_8h_a3c1dd237f2fda312ac8da3475b809f73} 
+\#define {\bfseries MAX\+\_\+\+DATA\+\_\+\+BUFFER\+\_\+\+SIZE}~100
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{sensor__data_8h_ae58811ccec39232f9c49d149eed4a324}\label{sensor__data_8h_ae58811ccec39232f9c49d149eed4a324} 
+enum \mbox{\hyperlink{sensor__data_8h_ae58811ccec39232f9c49d149eed4a324}{sensor\+\_\+data\+\_\+type}} \{ \newline
+{\bfseries DATA\+\_\+\+TYPE\+\_\+\+INT}
+, {\bfseries DATA\+\_\+\+TYPE\+\_\+\+UINT8}
+, {\bfseries DATA\+\_\+\+TYPE\+\_\+\+UINT16}
+, {\bfseries DATA\+\_\+\+TYPE\+\_\+\+UINT32}
+, \newline
+{\bfseries DATA\+\_\+\+TYPE\+\_\+\+FLOAT}
+, {\bfseries DATA\+\_\+\+TYPE\+\_\+\+LIMIT}
+ \}
+\begin{DoxyCompactList}\small\item\em Types of data that can be stored in the sensor data buffer. Currently unused, plans to keep it for future use to potentially store in \doxylink{structsensor__data__t}{sensor\+\_\+data\+\_\+t} struct. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{sensor__data_8h_a1e50ff31480edbdf0db27eb081e46f02}{sensor\+\_\+data\+\_\+setup}} (\mbox{\hyperlink{structsensor__data__t}{sensor\+\_\+data\+\_\+t}} \texorpdfstring{$\ast$}{*}sensor\+\_\+data, enum \mbox{\hyperlink{sensor__id_8h_ad7b3bc5128f463a9f210147ad5c043be}{sensor\+\_\+types}} type, enum \mbox{\hyperlink{sensor__id_8h_adef9477a37671049d57edb26e6a37746}{sensor\+\_\+voltage}} voltage\+\_\+enum)
+\begin{DoxyCompactList}\small\item\em Setup the sensor data. If the sensor chosen has continuous power, the power will be turned on when the sensor is setup. If not the power will be turned on only when the data is read. PULSE\+\_\+\+SENSORs use continuous power. To disable a sensor, set the type to NULL\+\_\+\+SENSOR. This is important when using a sensor with continuous power, as it will turn off the power when the sensor is deinitialized. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{sensor__data_8h_aebd2198b628694d06c7e9e60c542e3d5}{sensor\+\_\+data\+\_\+read}} (\mbox{\hyperlink{structsensor__data__t}{sensor\+\_\+data\+\_\+t}} \texorpdfstring{$\ast$}{*}sensor\+\_\+data, int timestamp)
+\begin{DoxyCompactList}\small\item\em Read the sensor data, and store the data in the buffer. It adds a tinestamp to the data buffer. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{sensor__data_8h_aab28c5d63a9b2e900f09ed9da824bb46}{sensor\+\_\+data\+\_\+print\+\_\+data}} (\mbox{\hyperlink{structsensor__data__t}{sensor\+\_\+data\+\_\+t}} \texorpdfstring{$\ast$}{*}sensor\+\_\+data)
+\begin{DoxyCompactList}\small\item\em Print the sensor data from data and timestamp ring buffers. Displaying it from the oldest to newest. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{sensor__data_8h_a06f27b36b46521995937d03a4dc7e789}{sensor\+\_\+data\+\_\+clear}} (\mbox{\hyperlink{structsensor__data__t}{sensor\+\_\+data\+\_\+t}} \texorpdfstring{$\ast$}{*}sensor\+\_\+data)
+\begin{DoxyCompactList}\small\item\em Clear the sensor data. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{sensor__data_8h_a7b88e902bae5b2bd14945e9ef87c0579}{sensor\+\_\+data\+\_\+format\+\_\+for\+\_\+lorawan}} (\mbox{\hyperlink{structsensor__data__t}{sensor\+\_\+data\+\_\+t}} \texorpdfstring{$\ast$}{*}sensor\+\_\+data, uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, uint8\+\_\+t \texorpdfstring{$\ast$}{*}data\+\_\+len)
+\begin{DoxyCompactList}\small\item\em Format the sensor data for Lo\+Ra\+WAN, this breaks the data into a uint8\+\_\+t array. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This is a library to keep track of sensor data, using the sensor\+\_\+reading library to collect data from the sensors. This library will also handle the data storage and retrieval. 
+
+\begin{DoxyAuthor}{Author}
+Tyler Garcia 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/05-\/14
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2025 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{sensor__data_8h_a06f27b36b46521995937d03a4dc7e789}\label{sensor__data_8h_a06f27b36b46521995937d03a4dc7e789} 
+\index{sensor\_data.h@{sensor\_data.h}!sensor\_data\_clear@{sensor\_data\_clear}}
+\index{sensor\_data\_clear@{sensor\_data\_clear}!sensor\_data.h@{sensor\_data.h}}
+\doxysubsubsection{\texorpdfstring{sensor\_data\_clear()}{sensor\_data\_clear()}}
+{\footnotesize\ttfamily int sensor\+\_\+data\+\_\+clear (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structsensor__data__t}{sensor\+\_\+data\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{sensor\+\_\+data }\end{DoxyParamCaption})}
+
+
+
+Clear the sensor data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sensor\+\_\+data} & The sensor data to clear. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{sensor__data_8h_a7b88e902bae5b2bd14945e9ef87c0579}\label{sensor__data_8h_a7b88e902bae5b2bd14945e9ef87c0579} 
+\index{sensor\_data.h@{sensor\_data.h}!sensor\_data\_format\_for\_lorawan@{sensor\_data\_format\_for\_lorawan}}
+\index{sensor\_data\_format\_for\_lorawan@{sensor\_data\_format\_for\_lorawan}!sensor\_data.h@{sensor\_data.h}}
+\doxysubsubsection{\texorpdfstring{sensor\_data\_format\_for\_lorawan()}{sensor\_data\_format\_for\_lorawan()}}
+{\footnotesize\ttfamily int sensor\+\_\+data\+\_\+format\+\_\+for\+\_\+lorawan (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structsensor__data__t}{sensor\+\_\+data\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{sensor\+\_\+data,  }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data,  }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data\+\_\+len }\end{DoxyParamCaption})}
+
+
+
+Format the sensor data for Lo\+Ra\+WAN, this breaks the data into a uint8\+\_\+t array. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sensor\+\_\+data} & The sensor data to format. \\
+\hline
+{\em data} & The data to format. \\
+\hline
+{\em data\+\_\+len} & The length of the data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 0 if successful, -\/1 if failed. 
+\end{DoxyReturn}
+\Hypertarget{sensor__data_8h_aab28c5d63a9b2e900f09ed9da824bb46}\label{sensor__data_8h_aab28c5d63a9b2e900f09ed9da824bb46} 
+\index{sensor\_data.h@{sensor\_data.h}!sensor\_data\_print\_data@{sensor\_data\_print\_data}}
+\index{sensor\_data\_print\_data@{sensor\_data\_print\_data}!sensor\_data.h@{sensor\_data.h}}
+\doxysubsubsection{\texorpdfstring{sensor\_data\_print\_data()}{sensor\_data\_print\_data()}}
+{\footnotesize\ttfamily int sensor\+\_\+data\+\_\+print\+\_\+data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structsensor__data__t}{sensor\+\_\+data\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{sensor\+\_\+data }\end{DoxyParamCaption})}
+
+
+
+Print the sensor data from data and timestamp ring buffers. Displaying it from the oldest to newest. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sensor\+\_\+data} & The sensor data to print. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{sensor__data_8h_aebd2198b628694d06c7e9e60c542e3d5}\label{sensor__data_8h_aebd2198b628694d06c7e9e60c542e3d5} 
+\index{sensor\_data.h@{sensor\_data.h}!sensor\_data\_read@{sensor\_data\_read}}
+\index{sensor\_data\_read@{sensor\_data\_read}!sensor\_data.h@{sensor\_data.h}}
+\doxysubsubsection{\texorpdfstring{sensor\_data\_read()}{sensor\_data\_read()}}
+{\footnotesize\ttfamily int sensor\+\_\+data\+\_\+read (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structsensor__data__t}{sensor\+\_\+data\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{sensor\+\_\+data,  }\item[{int}]{timestamp }\end{DoxyParamCaption})}
+
+
+
+Read the sensor data, and store the data in the buffer. It adds a tinestamp to the data buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sensor\+\_\+data} & The sensor data to read. \\
+\hline
+{\em timestamp} & The timestamp to add to the data buffer. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 0 if successful, -\/1 if failed. 
+\end{DoxyReturn}
+\Hypertarget{sensor__data_8h_a1e50ff31480edbdf0db27eb081e46f02}\label{sensor__data_8h_a1e50ff31480edbdf0db27eb081e46f02} 
+\index{sensor\_data.h@{sensor\_data.h}!sensor\_data\_setup@{sensor\_data\_setup}}
+\index{sensor\_data\_setup@{sensor\_data\_setup}!sensor\_data.h@{sensor\_data.h}}
+\doxysubsubsection{\texorpdfstring{sensor\_data\_setup()}{sensor\_data\_setup()}}
+{\footnotesize\ttfamily int sensor\+\_\+data\+\_\+setup (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structsensor__data__t}{sensor\+\_\+data\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{sensor\+\_\+data,  }\item[{enum \mbox{\hyperlink{sensor__id_8h_ad7b3bc5128f463a9f210147ad5c043be}{sensor\+\_\+types}}}]{type,  }\item[{enum \mbox{\hyperlink{sensor__id_8h_adef9477a37671049d57edb26e6a37746}{sensor\+\_\+voltage}}}]{voltage\+\_\+enum }\end{DoxyParamCaption})}
+
+
+
+Setup the sensor data. If the sensor chosen has continuous power, the power will be turned on when the sensor is setup. If not the power will be turned on only when the data is read. PULSE\+\_\+\+SENSORs use continuous power. To disable a sensor, set the type to NULL\+\_\+\+SENSOR. This is important when using a sensor with continuous power, as it will turn off the power when the sensor is deinitialized. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sensor\+\_\+data} & The sensor data to setup holding the sensor id and power id. \\
+\hline
+{\em type} & The type of sensor to setup. \\
+\hline
+{\em voltage\+\_\+enum} & The voltage to use for the sensor. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 0 if successful, -\/1 if failed. 
+\end{DoxyReturn}

@@ -1,0 +1,7 @@
+<map id="app/include/sensor_app.h" name="app/include/sensor_app.h">
+<area shape="rect" id="Node000001" title="A library to manage sensor applications. Working between power configurations and data configurations..." alt="" coords="35,5,179,45"/>
+<area shape="rect" id="Node000002" href="$sensor__id_8h.html" title="This is a library to keep track of sensor ids and sensor power ids. As well as the configuration for ..." alt="" coords="5,93,101,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="96,47,71,83,67,80,92,44"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="126,93,197,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="122,44,148,80,143,84,118,47"/>
+</map>

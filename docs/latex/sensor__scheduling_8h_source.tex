@@ -1,0 +1,49 @@
+\doxysection{sensor\+\_\+scheduling.\+h}
+\hypertarget{sensor__scheduling_8h_source}{}\label{sensor__scheduling_8h_source}\index{app/include/sensor\_scheduling.h@{app/include/sensor\_scheduling.h}}
+\mbox{\hyperlink{sensor__scheduling_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#ifndef\ SENSOR\_SCHEDULING\_H}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ SENSOR\_SCHEDULING\_H}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sensor__timer_8h}{sensor\_timer.h}}"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <zephyr/kernel.h>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <zephyr/device.h>}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{enum}\ sensor\_scheduling\_id\{}
+\DoxyCodeLine{00021\ \ \ \ \ SENSOR\_SCHEDULING\_ID\_SENSOR1,}
+\DoxyCodeLine{00022\ \ \ \ \ SENSOR\_SCHEDULING\_ID\_SENSOR2,}
+\DoxyCodeLine{00023\ \ \ \ \ SENSOR\_SCHEDULING\_ID\_RADIO,\ \textcolor{comment}{//\ Radio\ is\ the\ last\ scheduled\ component\ in\ case\ sensors\ are\ triggered\ at\ the\ same\ time}}
+\DoxyCodeLine{00024\ \ \ \ \ SENSOR\_SCHEDULING\_ID\_LIMIT,}
+\DoxyCodeLine{00025\ \};}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{comment}{/*\ The\ configuration\ for\ a\ schedule\ */}}
+\DoxyCodeLine{00028\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{comment}{/*\ The\ id\ of\ the\ component\ to\ schedule\ */}}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{enum}\ sensor\_scheduling\_id\ id;}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{comment}{/*\ The\ frequency\ of\ the\ schedule\ in\ seconds\ */}}
+\DoxyCodeLine{00032\ \ \ \ \ uint32\_t\ frequency\_seconds;}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{comment}{/*\ Whether\ this\ component\ is\ currently\ scheduled\ */}}
+\DoxyCodeLine{00034\ \ \ \ \ uint8\_t\ is\_scheduled;}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{comment}{/*\ Whether\ this\ component\ schedule\ has\ been\ triggered\ */}}
+\DoxyCodeLine{00036\ \ \ \ \ uint8\_t\ is\_triggered;}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{/*\ Last\ event\ time\ in\ seconds\ */}}
+\DoxyCodeLine{00038\ \ \ \ \ uint32\_t\ last\_event\_time;}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{comment}{/*\ An\ optional\ trigger\ that\ isn't\ based\ on\ the\ frequency\ and\ is\ used\ for\ one-\/time\ events\ */}}
+\DoxyCodeLine{00040\ \ \ \ \ uint8\_t\ one\_time\_trigger;}
+\DoxyCodeLine{00041\ \}\ \mbox{\hyperlink{structsensor__scheduling__cfg__t}{sensor\_scheduling\_cfg\_t}};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00049\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sensor__scheduling_8h_a0479dc2a37c37e7de3ee1a39e2b21f6a}{sensor\_scheduling\_init}}(\textcolor{keyword}{const}\ \textcolor{keyword}{struct}\ device\ *timer);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00057\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sensor__scheduling_8h_af48c3df12ad78e292fca76c42f5d8867}{sensor\_scheduling\_add\_schedule}}(\mbox{\hyperlink{structsensor__scheduling__cfg__t}{sensor\_scheduling\_cfg\_t}}\ *schedule);}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00065\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sensor__scheduling_8h_afb35f4e7bf63407fdae2cbb93df1fdd8}{sensor\_scheduling\_remove\_schedule}}(\mbox{\hyperlink{structsensor__scheduling__cfg__t}{sensor\_scheduling\_cfg\_t}}\ *schedule);}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00074\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sensor__scheduling_8h_add23052115ae68e70416f069689af136}{sensor\_scheduling\_reset\_schedule}}(\mbox{\hyperlink{structsensor__scheduling__cfg__t}{sensor\_scheduling\_cfg\_t}}\ *schedule);}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00081\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sensor__scheduling_8h_a7369b55b27b226cb4a1c106d73ed2eb5}{sensor\_scheduling\_get\_seconds}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

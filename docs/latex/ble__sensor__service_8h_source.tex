@@ -1,0 +1,70 @@
+\doxysection{ble\+\_\+sensor\+\_\+service.\+h}
+\hypertarget{ble__sensor__service_8h_source}{}\label{ble__sensor__service_8h_source}\index{app/include/ble\_sensor\_service.h@{app/include/ble\_sensor\_service.h}}
+\mbox{\hyperlink{ble__sensor__service_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#ifndef\ BLE\_SENSOR\_SERVICE\_H}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ BLE\_SENSOR\_SERVICE\_H}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sensor__app_8h}{sensor\_app.h}}"{}}}
+\DoxyCodeLine{00016\ \textcolor{comment}{/*\ }}
+\DoxyCodeLine{00017\ \textcolor{comment}{-\/\ Service\ DEVICE}}
+\DoxyCodeLine{00018\ \textcolor{comment}{-\/\ device\_name\ (r/w)}}
+\DoxyCodeLine{00019\ \textcolor{comment}{-\/\ hardware\_version\ (r)}}
+\DoxyCodeLine{00020\ \textcolor{comment}{-\/\ firmware\_version\ (r)}}
+\DoxyCodeLine{00021\ \textcolor{comment}{-\/\ device\_type\ (r)}}
+\DoxyCodeLine{00022\ \textcolor{comment}{-\/\ Commands\ (w)}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ \ \ \ -\/\ clear\ and\ resetup\ nvs\ (w)}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ \ \ \ -\/\ restart\ device\ (w)}}
+\DoxyCodeLine{00025\ \textcolor{comment}{-\/\ number\ of\ sensors\ (r)}}
+\DoxyCodeLine{00026\ \textcolor{comment}{-\/\ number\ of\ power\ configurations\ (r)}}
+\DoxyCodeLine{00027\ \textcolor{comment}{-\/\ Battery\ Status\ (r)}}
+\DoxyCodeLine{00028\ \textcolor{comment}{\ \ \ \ -\/\ Battery\ State\ (r)}}
+\DoxyCodeLine{00029\ \textcolor{comment}{\ \ \ \ -\/\ Battery\ Level\ (r)}}
+\DoxyCodeLine{00030\ \textcolor{comment}{\ \ \ \ -\/\ Battery\ Voltage\ (r)}}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ \ \ \ -\/\ Battery\ Current\ (r)}}
+\DoxyCodeLine{00032\ \textcolor{comment}{\ \ \ \ -\/\ Battery\ Temperature\ (r)}}
+\DoxyCodeLine{00033\ \textcolor{comment}{\ \ \ \ -\/\ Battery\ Percentage\ (r)}}
+\DoxyCodeLine{00034\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{comment}{/*\ Define\ the\ UUIDs\ for\ the\ Sensor\ service\ */}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ BT\_UUID\_SENSOR\_VAL\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ BT\_UUID\_128\_ENCODE(0x07de1ad6,\ 0x4f7a,\ 0x4156,\ 0x9836,\ 0x77690b6ed2c0)}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ BT\_UUID\_SENSOR\_STATE\_VAL\ \ \ \ \ \ \ \ \ \ \ \ BT\_UUID\_128\_ENCODE(0x07de1ad6,\ 0x4f7a,\ 0x4156,\ 0x9836,\ 0x77690b6ed2c1)}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ BT\_UUID\_SENSOR1\_ENABLED\_VAL\ \ \ \ \ \ \ \ \ BT\_UUID\_128\_ENCODE(0x07de1ad6,\ 0x4f7a,\ 0x4156,\ 0x9836,\ 0x77690b6ed2c2)}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ BT\_UUID\_SENSOR1\_CONFIG\_VAL\ \ \ \ \ \ \ \ \ \ BT\_UUID\_128\_ENCODE(0x07de1ad6,\ 0x4f7a,\ 0x4156,\ 0x9836,\ 0x77690b6ed2c3)}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ BT\_UUID\_SENSOR1\_PWR\_CONFIG\_VAL\ \ \ \ \ \ BT\_UUID\_128\_ENCODE(0x07de1ad6,\ 0x4f7a,\ 0x4156,\ 0x9836,\ 0x77690b6ed2c4)}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ BT\_UUID\_SENSOR1\_DATA\_FREQ\_VAL\ \ \ \ \ \ \ BT\_UUID\_128\_ENCODE(0x07de1ad6,\ 0x4f7a,\ 0x4156,\ 0x9836,\ 0x77690b6ed2c5)}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ BT\_UUID\_SENSOR1\_DATA\_VAL\ \ \ \ \ \ \ \ \ \ \ \ BT\_UUID\_128\_ENCODE(0x07de1ad6,\ 0x4f7a,\ 0x4156,\ 0x9836,\ 0x77690b6ed2c6)}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ BT\_UUID\_SENSOR1\_DATA\_TIMESTAMP\_VAL\ \ BT\_UUID\_128\_ENCODE(0x07de1ad6,\ 0x4f7a,\ 0x4156,\ 0x9836,\ 0x77690b6ed2c7)}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ BT\_UUID\_SENSOR2\_ENABLED\_VAL\ \ \ \ \ \ \ \ \ BT\_UUID\_128\_ENCODE(0x07de1ad6,\ 0x4f7a,\ 0x4156,\ 0x9836,\ 0x77690b6ed2c8)}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ BT\_UUID\_SENSOR2\_CONFIG\_VAL\ \ \ \ \ \ \ \ \ \ BT\_UUID\_128\_ENCODE(0x07de1ad6,\ 0x4f7a,\ 0x4156,\ 0x9836,\ 0x77690b6ed2c9)}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ BT\_UUID\_SENSOR2\_PWR\_CONFIG\_VAL\ \ \ \ \ \ BT\_UUID\_128\_ENCODE(0x07de1ad6,\ 0x4f7a,\ 0x4156,\ 0x9836,\ 0x77690b6ed2ca)}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#define\ BT\_UUID\_SENSOR2\_DATA\_FREQ\_VAL\ \ \ \ \ \ \ BT\_UUID\_128\_ENCODE(0x07de1ad6,\ 0x4f7a,\ 0x4156,\ 0x9836,\ 0x77690b6ed2cb)}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ BT\_UUID\_SENSOR2\_DATA\_VAL\ \ \ \ \ \ \ \ \ \ \ \ BT\_UUID\_128\_ENCODE(0x07de1ad6,\ 0x4f7a,\ 0x4156,\ 0x9836,\ 0x77690b6ed2cc)}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ BT\_UUID\_SENSOR2\_DATA\_TIMESTAMP\_VAL\ \ BT\_UUID\_128\_ENCODE(0x07de1ad6,\ 0x4f7a,\ 0x4156,\ 0x9836,\ 0x77690b6ed2cd)}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{comment}{/*\ Attach\ the\ UUIDs\ for\ the\ Sensor\ service\ */}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#define\ BT\_UUID\_SENSOR\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ BT\_UUID\_DECLARE\_128(BT\_UUID\_SENSOR\_VAL)}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#define\ BT\_UUID\_SENSOR\_STATE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ BT\_UUID\_DECLARE\_128(BT\_UUID\_SENSOR\_STATE\_VAL)}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#define\ BT\_UUID\_SENSOR1\_ENABLED\ \ \ \ \ \ \ \ \ \ \ \ \ BT\_UUID\_DECLARE\_128(BT\_UUID\_SENSOR1\_ENABLED\_VAL)}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#define\ BT\_UUID\_SENSOR1\_CONFIG\ \ \ \ \ \ \ \ \ \ \ \ \ \ BT\_UUID\_DECLARE\_128(BT\_UUID\_SENSOR1\_CONFIG\_VAL)}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#define\ BT\_UUID\_SENSOR1\_PWR\_CONFIG\ \ \ \ \ \ \ \ \ \ BT\_UUID\_DECLARE\_128(BT\_UUID\_SENSOR1\_PWR\_CONFIG\_VAL)}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#define\ BT\_UUID\_SENSOR1\_DATA\_FREQ\ \ \ \ \ \ \ \ \ \ \ BT\_UUID\_DECLARE\_128(BT\_UUID\_SENSOR1\_DATA\_FREQ\_VAL)}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#define\ BT\_UUID\_SENSOR1\_DATA\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ BT\_UUID\_DECLARE\_128(BT\_UUID\_SENSOR1\_DATA\_VAL)}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#define\ BT\_UUID\_SENSOR1\_DATA\_TIMESTAMP\ \ \ \ \ \ BT\_UUID\_DECLARE\_128(BT\_UUID\_SENSOR1\_DATA\_TIMESTAMP\_VAL)}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#define\ BT\_UUID\_SENSOR2\_ENABLED\ \ \ \ \ \ \ \ \ \ \ \ \ BT\_UUID\_DECLARE\_128(BT\_UUID\_SENSOR2\_ENABLED\_VAL)}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#define\ BT\_UUID\_SENSOR2\_CONFIG\ \ \ \ \ \ \ \ \ \ \ \ \ \ BT\_UUID\_DECLARE\_128(BT\_UUID\_SENSOR2\_CONFIG\_VAL)}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#define\ BT\_UUID\_SENSOR2\_PWR\_CONFIG\ \ \ \ \ \ \ \ \ \ BT\_UUID\_DECLARE\_128(BT\_UUID\_SENSOR2\_PWR\_CONFIG\_VAL)}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#define\ BT\_UUID\_SENSOR2\_DATA\_FREQ\ \ \ \ \ \ \ \ \ \ \ BT\_UUID\_DECLARE\_128(BT\_UUID\_SENSOR2\_DATA\_FREQ\_VAL)}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#define\ BT\_UUID\_SENSOR2\_DATA\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ BT\_UUID\_DECLARE\_128(BT\_UUID\_SENSOR2\_DATA\_VAL)}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#define\ BT\_UUID\_SENSOR2\_DATA\_TIMESTAMP\ \ \ \ \ \ BT\_UUID\_DECLARE\_128(BT\_UUID\_SENSOR2\_DATA\_TIMESTAMP\_VAL)}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00078\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{ble__sensor__service_8h_a1ba80859b2f82bf34b2ea8655204e056}{ble\_sensor\_service\_init}}(\mbox{\hyperlink{structsensor__app__config__t}{sensor\_app\_config\_t}}\ *config);}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

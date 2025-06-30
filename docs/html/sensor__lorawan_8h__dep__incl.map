@@ -1,0 +1,5 @@
+<map id="app/include/sensor_lorawan.h" name="app/include/sensor_lorawan.h">
+<area shape="rect" id="Node000001" title="This is a library to handle the LoRaWAN functionality for the sensor." alt="" coords="23,5,167,45"/>
+<area shape="rect" id="Node000002" href="$ble__lorawan__service_8h.html" title="This is a library to handle the BLE services for the LORAWAN network. This service is used for config..." alt="" coords="5,93,185,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="98,59,98,93,93,93,93,59"/>
+</map>

@@ -1,0 +1,59 @@
+\doxysection{lorawan\+\_\+setup\+\_\+t Struct Reference}
+\hypertarget{structlorawan__setup__t}{}\label{structlorawan__setup__t}\index{lorawan\_setup\_t@{lorawan\_setup\_t}}
+
+
+Structure to hold the Lo\+Ra\+WAN setup, used to join the network.  
+
+
+
+
+{\ttfamily \#include $<$sensor\+\_\+lorawan.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structlorawan__setup__t_a45aba7ba172867dfe44fdc9c8cc6bc39}\label{structlorawan__setup__t_a45aba7ba172867dfe44fdc9c8cc6bc39} 
+uint8\+\_\+t {\bfseries is\+\_\+lorawan\+\_\+enabled}
+\item 
+\Hypertarget{structlorawan__setup__t_a7e8c07c0a70babe5c7f3de200016ac13}\label{structlorawan__setup__t_a7e8c07c0a70babe5c7f3de200016ac13} 
+uint8\+\_\+t {\bfseries lorawan\+\_\+frequency}
+\item 
+\Hypertarget{structlorawan__setup__t_a4e347da91d9dfbdf9b9c51966751e3d1}\label{structlorawan__setup__t_a4e347da91d9dfbdf9b9c51966751e3d1} 
+const struct device \texorpdfstring{$\ast$}{*} {\bfseries lora\+\_\+dev}
+\item 
+\Hypertarget{structlorawan__setup__t_a219102ecb4ec1db124d0461637e55a3a}\label{structlorawan__setup__t_a219102ecb4ec1db124d0461637e55a3a} 
+enum lorawan\+\_\+class {\bfseries uplink\+\_\+class}
+\item 
+\Hypertarget{structlorawan__setup__t_a42f28c20456a119c45dfae81284855ba}\label{structlorawan__setup__t_a42f28c20456a119c45dfae81284855ba} 
+struct lorawan\+\_\+downlink\+\_\+cb {\bfseries downlink\+\_\+callback}
+\item 
+\Hypertarget{structlorawan__setup__t_a8ffba489f13143f1df55251e376c332c}\label{structlorawan__setup__t_a8ffba489f13143f1df55251e376c332c} 
+int {\bfseries join\+\_\+attempts}
+\item 
+\Hypertarget{structlorawan__setup__t_aee4609d455698f63fbcc25bee3264df0}\label{structlorawan__setup__t_aee4609d455698f63fbcc25bee3264df0} 
+uint16\+\_\+t {\bfseries dev\+\_\+nonce}
+\item 
+\Hypertarget{structlorawan__setup__t_a46a9e1e7f56a2d5485c616af952c6f03}\label{structlorawan__setup__t_a46a9e1e7f56a2d5485c616af952c6f03} 
+uint32\+\_\+t {\bfseries delay}
+\item 
+\Hypertarget{structlorawan__setup__t_ae3491adb6e52c30fe8343c0a5f35c278}\label{structlorawan__setup__t_ae3491adb6e52c30fe8343c0a5f35c278} 
+uint8\+\_\+t {\bfseries dev\+\_\+eui} \mbox{[}8\mbox{]}
+\item 
+\Hypertarget{structlorawan__setup__t_a8132e99d476dba54c048f32ce9328198}\label{structlorawan__setup__t_a8132e99d476dba54c048f32ce9328198} 
+uint8\+\_\+t {\bfseries join\+\_\+eui} \mbox{[}8\mbox{]}
+\item 
+\Hypertarget{structlorawan__setup__t_a23c8a313ad9ef8d1837c1f44e623ed8d}\label{structlorawan__setup__t_a23c8a313ad9ef8d1837c1f44e623ed8d} 
+uint8\+\_\+t {\bfseries app\+\_\+key} \mbox{[}16\mbox{]}
+\item 
+\Hypertarget{structlorawan__setup__t_a58794c16257b069aedb7e0e9f7ec568f}\label{structlorawan__setup__t_a58794c16257b069aedb7e0e9f7ec568f} 
+uint8\+\_\+t {\bfseries send\+\_\+attempts}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Structure to hold the Lo\+Ra\+WAN setup, used to join the network. 
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+app/include/\mbox{\hyperlink{sensor__lorawan_8h}{sensor\+\_\+lorawan.\+h}}\item 
+tests/functionality/app/fakes/sensor\+\_\+lorawan\+\_\+fakes.\+h\end{DoxyCompactItemize}

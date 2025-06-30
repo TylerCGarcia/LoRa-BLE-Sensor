@@ -1,0 +1,60 @@
+\doxysection{sensor\+\_\+data.\+h}
+\hypertarget{sensor__data_8h_source}{}\label{sensor__data_8h_source}\index{app/include/sensor\_data.h@{app/include/sensor\_data.h}}
+\mbox{\hyperlink{sensor__data_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#ifndef\ SENSOR\_DATA\_H}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ SENSOR\_DATA\_H}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sensor__id_8h}{sensor\_id.h}}"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <stddef.h>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <zephyr/sys/ring\_buffer.h>}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ MAX\_DATA\_BUFFER\_SIZE\ 100}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{sensor__data_8h_ae58811ccec39232f9c49d149eed4a324}{sensor\_data\_type}}\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ DATA\_TYPE\_INT,}
+\DoxyCodeLine{00029\ \ \ \ \ DATA\_TYPE\_UINT8,}
+\DoxyCodeLine{00030\ \ \ \ \ DATA\_TYPE\_UINT16,}
+\DoxyCodeLine{00031\ \ \ \ \ DATA\_TYPE\_UINT32,}
+\DoxyCodeLine{00032\ \ \ \ \ DATA\_TYPE\_FLOAT,}
+\DoxyCodeLine{00033\ \ \ \ \ DATA\_TYPE\_LIMIT}
+\DoxyCodeLine{00034\ \};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{/*\ Sensor\ id\ to\ use\ for\ the\ sensor.\ */}}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{sensor__id_8h_a48a4081a48bf69abc4ba5d704ec33919}{sensor\_id}}\ id;}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{comment}{/*\ Power\ id\ to\ use\ for\ the\ sensor.\ */}}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{sensor__id_8h_a9425a5b9d9160dce11f5f08e71e5048f}{sensor\_power\_id}}\ power\_id;}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{/*\ Ring\ buffer\ for\ sensor\ data.\ */}}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{struct\ }ring\_buf\ data\_ring\_buf;}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{comment}{/*\ Ring\ buffer\ for\ timestamps.\ */}}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{struct\ }ring\_buf\ timestamp\_ring\_buf;}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{comment}{/*\ Maximum\ number\ of\ samples\ to\ store\ in\ the\ buffer.\ */}}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ max\_samples;}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{comment}{/*\ Size\ of\ the\ data\ in\ the\ buffer.\ */}}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ data\_size;}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{comment}{/*\ Size\ of\ the\ timestamp\ in\ the\ buffer.\ */}}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ timestamp\_size;}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{comment}{/*\ Pointer\ to\ latest\ data.\ */}}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{void}\ *latest\_data;}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{comment}{/*\ Latest\ timestamp.\ */}}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{int}\ latest\_timestamp;}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{/*\ Number\ of\ samples\ in\ the\ buffer.\ */}}
+\DoxyCodeLine{00056\ \ \ \ \ uint32\_t\ num\_samples;}
+\DoxyCodeLine{00057\ \}\ \mbox{\hyperlink{structsensor__data__t}{sensor\_data\_t}};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00069\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sensor__data_8h_a1e50ff31480edbdf0db27eb081e46f02}{sensor\_data\_setup}}(\mbox{\hyperlink{structsensor__data__t}{sensor\_data\_t}}\ *sensor\_data,\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{sensor__id_8h_ad7b3bc5128f463a9f210147ad5c043be}{sensor\_types}}\ type,\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{sensor__id_8h_adef9477a37671049d57edb26e6a37746}{sensor\_voltage}}\ voltage\_enum);}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00078\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sensor__data_8h_aebd2198b628694d06c7e9e60c542e3d5}{sensor\_data\_read}}(\mbox{\hyperlink{structsensor__data__t}{sensor\_data\_t}}\ *sensor\_data,\ \textcolor{keywordtype}{int}\ timestamp);}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00085\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sensor__data_8h_aab28c5d63a9b2e900f09ed9da824bb46}{sensor\_data\_print\_data}}(\mbox{\hyperlink{structsensor__data__t}{sensor\_data\_t}}\ *sensor\_data);}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00092\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sensor__data_8h_a06f27b36b46521995937d03a4dc7e789}{sensor\_data\_clear}}(\mbox{\hyperlink{structsensor__data__t}{sensor\_data\_t}}\ *sensor\_data);}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00102\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sensor__data_8h_a7b88e902bae5b2bd14945e9ef87c0579}{sensor\_data\_format\_for\_lorawan}}(\mbox{\hyperlink{structsensor__data__t}{sensor\_data\_t}}\ *sensor\_data,\ uint8\_t\ *data,\ uint8\_t\ *data\_len);}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

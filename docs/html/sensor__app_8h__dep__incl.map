@@ -1,0 +1,5 @@
+<map id="app/include/sensor_app.h" name="app/include/sensor_app.h">
+<area shape="rect" id="Node000001" title="A library to manage sensor applications. Working between power configurations and data configurations..." alt="" coords="19,5,163,45"/>
+<area shape="rect" id="Node000002" href="$ble__sensor__service_8h.html" title="This is a library to handle the BLE services for the sensor." alt="" coords="5,93,176,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="93,59,93,93,88,93,88,59"/>
+</map>

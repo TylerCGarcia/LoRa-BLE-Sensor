@@ -1,0 +1,42 @@
+\doxysection{sensor\+\_\+power\+\_\+fakes.\+h}
+\hypertarget{app_2fakes_2sensor__power__fakes_8h_source}{}\label{app_2fakes_2sensor__power__fakes_8h_source}\index{tests/functionality/app/fakes/sensor\_power\_fakes.h@{tests/functionality/app/fakes/sensor\_power\_fakes.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ SENSOR\_POWER\_FAKES\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ SENSOR\_POWER\_FAKES\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sensor__id_8h}{sensor\_id.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <zephyr/drivers/gpio.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <zephyr/drivers/adc.h>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <zephyr/fff.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{comment}{/*\ Sensor\ power\ configurationid.\ */}}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{sensor__id_8h_a9425a5b9d9160dce11f5f08e71e5048f}{sensor\_power\_id}}\ power\_id;}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{comment}{/*\ GPIO\ spec\ for\ the\ boost\ enable\ pin.\ */}}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{struct\ }gpio\_dt\_spec\ boost\_en;\ }
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{comment}{/*\ GPIO\ spec\ for\ the\ boost\ control\ 1\ pin.\ */}}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{struct\ }gpio\_dt\_spec\ boost\_ctrl1;}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{comment}{/*\ GPIO\ spec\ for\ the\ boost\ control\ 2\ pin.\ */}}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{struct\ }gpio\_dt\_spec\ boost\_ctrl2;}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{comment}{/*\ LDO\ device\ for\ the\ sensor.\ */}}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{struct\ }device\ *ldo\_dev;}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{comment}{/*\ ADC\ spec\ for\ reading\ the\ output\ voltage.\ */}}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{struct\ }adc\_dt\_spec\ output\_read;}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{comment}{/*\ Delay\ in\ ms\ to\ wait\ after\ setting\ the\ voltage\ to\ allow\ the\ voltage\ to\ stabilize.\ */}}
+\DoxyCodeLine{00026\ \ \ \ \ uint32\_t\ delay\_ms;}
+\DoxyCodeLine{00027\ \}\ \mbox{\hyperlink{structsensor__power__config__t}{sensor\_power\_config\_t}};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ DECLARE\_FAKE\_VALUE\_FUNC(\textcolor{keywordtype}{int},\ \mbox{\hyperlink{sensor__power_8h_af0fef1d3475ac0c0f02759e1384fc550}{sensor\_power\_init}},\ \mbox{\hyperlink{structsensor__power__config__t}{sensor\_power\_config\_t}}\ *);}
+\DoxyCodeLine{00030\ DECLARE\_FAKE\_VALUE\_FUNC(\textcolor{keyword}{enum}\ \mbox{\hyperlink{sensor__id_8h_adef9477a37671049d57edb26e6a37746}{sensor\_voltage}},\ \mbox{\hyperlink{sensor__power_8h_a43c8fa6a693ff0e093fcbb347d8e8b35}{get\_sensor\_output}},\ \mbox{\hyperlink{structsensor__power__config__t}{sensor\_power\_config\_t}}\ *);}
+\DoxyCodeLine{00031\ DECLARE\_FAKE\_VALUE\_FUNC(\textcolor{keywordtype}{int},\ \mbox{\hyperlink{sensor__power_8h_a635726c5da52d9e426385e46461510a4}{set\_sensor\_output}},\ \mbox{\hyperlink{structsensor__power__config__t}{sensor\_power\_config\_t}}\ *,\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{sensor__id_8h_adef9477a37671049d57edb26e6a37746}{sensor\_voltage}});}
+\DoxyCodeLine{00032\ DECLARE\_FAKE\_VALUE\_FUNC(\textcolor{keywordtype}{float},\ \mbox{\hyperlink{sensor__power_8h_ab807eed06a3e1579a7fa930c582df33a}{read\_sensor\_output}},\ \mbox{\hyperlink{structsensor__power__config__t}{sensor\_power\_config\_t}}\ *);}
+\DoxyCodeLine{00033\ DECLARE\_FAKE\_VALUE\_FUNC(\textcolor{keywordtype}{int},\ \mbox{\hyperlink{sensor__power_8h_a3e23b3ad1ab7f243f5b3041e4974e101}{validate\_output}},\ \mbox{\hyperlink{structsensor__power__config__t}{sensor\_power\_config\_t}}\ *,\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{sensor__id_8h_adef9477a37671049d57edb26e6a37746}{sensor\_voltage}},\ uint8\_t);}
+\DoxyCodeLine{00034\ DECLARE\_FAKE\_VALUE\_FUNC(\textcolor{keywordtype}{int},\ get\_sensor\_voltage\_name,\ \textcolor{keywordtype}{char}\ *,\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{sensor__id_8h_adef9477a37671049d57edb26e6a37746}{sensor\_voltage}});}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{comment}{//\ Reset\ all\ fakes}}
+\DoxyCodeLine{00037\ \textcolor{keywordtype}{void}\ sensor\_power\_fakes\_reset(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

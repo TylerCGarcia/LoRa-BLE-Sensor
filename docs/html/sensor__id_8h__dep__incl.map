@@ -1,0 +1,23 @@
+<map id="app/include/sensor_id.h" name="app/include/sensor_id.h">
+<area shape="rect" id="Node000001" title="This is a library to keep track of sensor ids and sensor power ids. As well as the configuration for ..." alt="" coords="675,5,850,31"/>
+<area shape="rect" id="Node000002" href="$sensor__app_8h.html" title="A library to manage sensor applications. Working between power configurations and data configurations..." alt="" coords="19,86,163,126"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="662,26,437,43,306,59,175,81,146,88,145,83,174,76,305,54,437,38,661,21"/>
+<area shape="rect" id="Node000004" href="$sensor__data_8h.html" title="This is a library to keep track of sensor data, using the sensor_reading library to collect data from..." alt="" coords="187,86,331,126"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="662,32,511,51,343,81,315,89,314,83,342,76,510,46,661,26"/>
+<area shape="rect" id="Node000005" href="$sensor__names_8h.html" title="This is a library for sensor names, converting between strings and enum values to make configurations..." alt="" coords="355,86,499,126"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="697,36,511,81,486,89,485,83,510,76,696,31"/>
+<area shape="rect" id="Node000006" href="$sensor__power_8h.html" title="This is a library for sensor power configurations and control. This is manages the power configuratio..." alt="" coords="523,86,667,126"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="729,39,633,88,631,83,727,35"/>
+<area shape="rect" id="Node000007" href="$sensor__reading_8h.html" title="This is a library for sensor data configurations and collection. This is manages the sensor type,..." alt="" coords="691,86,835,126"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="765,44,765,86,760,86,760,44"/>
+<area shape="rect" id="Node000008" href="$app_2fakes_2sensor__power__fakes_8h_source.html" title=" " alt="" coords="859,79,1042,133"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="801,34,894,76,892,81,799,39"/>
+<area shape="rect" id="Node000009" href="$app_2fakes_2sensor__reading__fakes_8h_source.html" title=" " alt="" coords="1067,79,1259,133"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="836,31,1055,76,1067,79,1066,84,1054,81,835,36"/>
+<area shape="rect" id="Node000010" href="$data_2fakes_2sensor__power__fakes_8h_source.html" title=" " alt="" coords="1283,79,1471,133"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="864,25,1054,44,1271,76,1284,78,1283,84,1270,81,1053,50,864,30"/>
+<area shape="rect" id="Node000011" href="$data_2fakes_2sensor__reading__fakes_8h_source.html" title=" " alt="" coords="1496,79,1693,133"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="864,20,1144,37,1315,54,1484,76,1496,78,1495,83,1484,81,1314,59,1144,43,864,26"/>
+<area shape="rect" id="Node000003" href="$ble__sensor__service_8h.html" title="This is a library to handle the BLE services for the sensor." alt="" coords="5,181,176,221"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="93,140,93,181,88,181,88,140"/>
+</map>

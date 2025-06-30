@@ -1,0 +1,146 @@
+\doxysection{app/include/ble\+\_\+sensor\+\_\+service.h File Reference}
+\hypertarget{ble__sensor__service_8h}{}\label{ble__sensor__service_8h}\index{app/include/ble\_sensor\_service.h@{app/include/ble\_sensor\_service.h}}
+
+
+This is a library to handle the BLE services for the sensor.  
+
+
+{\ttfamily \#include "{}sensor\+\_\+app.\+h"{}}\newline
+Include dependency graph for ble\+\_\+sensor\+\_\+service.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{ble__sensor__service_8h__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{ble__sensor__service_8h_a7609fe9368a18da46d9159d81457c55f}\label{ble__sensor__service_8h_a7609fe9368a18da46d9159d81457c55f} 
+\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR\+\_\+\+VAL}~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c0)
+\item 
+\Hypertarget{ble__sensor__service_8h_ae1e2816b27ceb96447eeca79cd3a54aa}\label{ble__sensor__service_8h_ae1e2816b27ceb96447eeca79cd3a54aa} 
+\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR\+\_\+\+STATE\+\_\+\+VAL}~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c1)
+\item 
+\Hypertarget{ble__sensor__service_8h_a9495df86d19cae504ef3095758f433ed}\label{ble__sensor__service_8h_a9495df86d19cae504ef3095758f433ed} 
+\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+ENABLED\+\_\+\+VAL}~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c2)
+\item 
+\Hypertarget{ble__sensor__service_8h_a364d37dca81586b1855e032c23025e86}\label{ble__sensor__service_8h_a364d37dca81586b1855e032c23025e86} 
+\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+CONFIG\+\_\+\+VAL}~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c3)
+\item 
+\Hypertarget{ble__sensor__service_8h_a409d01f220f5bc7479d4b1ee89f4124e}\label{ble__sensor__service_8h_a409d01f220f5bc7479d4b1ee89f4124e} 
+\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+PWR\+\_\+\+CONFIG\+\_\+\+VAL}~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c4)
+\item 
+\Hypertarget{ble__sensor__service_8h_aba2ce1d421b7df4a3c445cea5157a863}\label{ble__sensor__service_8h_aba2ce1d421b7df4a3c445cea5157a863} 
+\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+DATA\+\_\+\+FREQ\+\_\+\+VAL}~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c5)
+\item 
+\Hypertarget{ble__sensor__service_8h_a6dc8a6806c02c32de044b8c6025ca943}\label{ble__sensor__service_8h_a6dc8a6806c02c32de044b8c6025ca943} 
+\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+DATA\+\_\+\+VAL}~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c6)
+\item 
+\Hypertarget{ble__sensor__service_8h_ad7cc5ce2932558ea222151debba3a5e2}\label{ble__sensor__service_8h_ad7cc5ce2932558ea222151debba3a5e2} 
+\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+DATA\+\_\+\+TIMESTAMP\+\_\+\+VAL}~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c7)
+\item 
+\Hypertarget{ble__sensor__service_8h_ab6a364c5baaae7562902399a53269327}\label{ble__sensor__service_8h_ab6a364c5baaae7562902399a53269327} 
+\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+ENABLED\+\_\+\+VAL}~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c8)
+\item 
+\Hypertarget{ble__sensor__service_8h_ae3c0f4df45e112784ad4427f953cf840}\label{ble__sensor__service_8h_ae3c0f4df45e112784ad4427f953cf840} 
+\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+CONFIG\+\_\+\+VAL}~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2c9)
+\item 
+\Hypertarget{ble__sensor__service_8h_ab9d89f7e53a9ce3a04bf90506c33ada7}\label{ble__sensor__service_8h_ab9d89f7e53a9ce3a04bf90506c33ada7} 
+\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+PWR\+\_\+\+CONFIG\+\_\+\+VAL}~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2ca)
+\item 
+\Hypertarget{ble__sensor__service_8h_a001c3c40e140cc332ace158eb1495bd2}\label{ble__sensor__service_8h_a001c3c40e140cc332ace158eb1495bd2} 
+\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+DATA\+\_\+\+FREQ\+\_\+\+VAL}~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2cb)
+\item 
+\Hypertarget{ble__sensor__service_8h_a559e8a8038aab80da93ee2ecede33b70}\label{ble__sensor__service_8h_a559e8a8038aab80da93ee2ecede33b70} 
+\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+DATA\+\_\+\+VAL}~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2cc)
+\item 
+\Hypertarget{ble__sensor__service_8h_a5dba36b59755c6daed49bfb8463f26a0}\label{ble__sensor__service_8h_a5dba36b59755c6daed49bfb8463f26a0} 
+\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+DATA\+\_\+\+TIMESTAMP\+\_\+\+VAL}~BT\+\_\+\+UUID\+\_\+128\+\_\+\+ENCODE(0x07de1ad6, 0x4f7a, 0x4156, 0x9836, 0x77690b6ed2cd)
+\item 
+\Hypertarget{ble__sensor__service_8h_aa797ca11be4f3ccb0bbea76d283ecb5c}\label{ble__sensor__service_8h_aa797ca11be4f3ccb0bbea76d283ecb5c} 
+\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR}~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(BT\+\_\+\+UUID\+\_\+\+SENSOR\+\_\+\+VAL)
+\item 
+\Hypertarget{ble__sensor__service_8h_a5b19179eec9b53729f842613e17748d6}\label{ble__sensor__service_8h_a5b19179eec9b53729f842613e17748d6} 
+\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR\+\_\+\+STATE}~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(BT\+\_\+\+UUID\+\_\+\+SENSOR\+\_\+\+STATE\+\_\+\+VAL)
+\item 
+\Hypertarget{ble__sensor__service_8h_a3ef16e0c505b1e56bde252c0dd2349f9}\label{ble__sensor__service_8h_a3ef16e0c505b1e56bde252c0dd2349f9} 
+\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+ENABLED}~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+ENABLED\+\_\+\+VAL)
+\item 
+\Hypertarget{ble__sensor__service_8h_a0cdb18c2002a9059167be991769a6e02}\label{ble__sensor__service_8h_a0cdb18c2002a9059167be991769a6e02} 
+\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+CONFIG}~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+CONFIG\+\_\+\+VAL)
+\item 
+\Hypertarget{ble__sensor__service_8h_ac16149698bcb76dce31557fb1149b483}\label{ble__sensor__service_8h_ac16149698bcb76dce31557fb1149b483} 
+\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+PWR\+\_\+\+CONFIG}~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+PWR\+\_\+\+CONFIG\+\_\+\+VAL)
+\item 
+\Hypertarget{ble__sensor__service_8h_a7d0bef6bc8a2d42f39445e0278aa0c66}\label{ble__sensor__service_8h_a7d0bef6bc8a2d42f39445e0278aa0c66} 
+\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+DATA\+\_\+\+FREQ}~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+DATA\+\_\+\+FREQ\+\_\+\+VAL)
+\item 
+\Hypertarget{ble__sensor__service_8h_a4a6a8a0de8bf514e238fe88f1e4c4b51}\label{ble__sensor__service_8h_a4a6a8a0de8bf514e238fe88f1e4c4b51} 
+\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+DATA}~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+DATA\+\_\+\+VAL)
+\item 
+\Hypertarget{ble__sensor__service_8h_ac8324c6a40bf9eef7dd68da0a35c7c81}\label{ble__sensor__service_8h_ac8324c6a40bf9eef7dd68da0a35c7c81} 
+\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+DATA\+\_\+\+TIMESTAMP}~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(BT\+\_\+\+UUID\+\_\+\+SENSOR1\+\_\+\+DATA\+\_\+\+TIMESTAMP\+\_\+\+VAL)
+\item 
+\Hypertarget{ble__sensor__service_8h_a9d34bddf53ccdd46676f3dc8f64b1bfd}\label{ble__sensor__service_8h_a9d34bddf53ccdd46676f3dc8f64b1bfd} 
+\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+ENABLED}~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+ENABLED\+\_\+\+VAL)
+\item 
+\Hypertarget{ble__sensor__service_8h_a650182789bb650e81b6c9e182bc755f7}\label{ble__sensor__service_8h_a650182789bb650e81b6c9e182bc755f7} 
+\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+CONFIG}~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+CONFIG\+\_\+\+VAL)
+\item 
+\Hypertarget{ble__sensor__service_8h_afdeec143b37bd0e8a75cf5f613eef26a}\label{ble__sensor__service_8h_afdeec143b37bd0e8a75cf5f613eef26a} 
+\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+PWR\+\_\+\+CONFIG}~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+PWR\+\_\+\+CONFIG\+\_\+\+VAL)
+\item 
+\Hypertarget{ble__sensor__service_8h_a0073cd6236d38a133c8f66379c05ec6a}\label{ble__sensor__service_8h_a0073cd6236d38a133c8f66379c05ec6a} 
+\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+DATA\+\_\+\+FREQ}~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+DATA\+\_\+\+FREQ\+\_\+\+VAL)
+\item 
+\Hypertarget{ble__sensor__service_8h_ab4a8bcf4b5c6501ffe53dff446492a44}\label{ble__sensor__service_8h_ab4a8bcf4b5c6501ffe53dff446492a44} 
+\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+DATA}~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+DATA\+\_\+\+VAL)
+\item 
+\Hypertarget{ble__sensor__service_8h_a9c84c0094f373d8ac6f1b95b824b2a04}\label{ble__sensor__service_8h_a9c84c0094f373d8ac6f1b95b824b2a04} 
+\#define {\bfseries BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+DATA\+\_\+\+TIMESTAMP}~BT\+\_\+\+UUID\+\_\+\+DECLARE\+\_\+128(BT\+\_\+\+UUID\+\_\+\+SENSOR2\+\_\+\+DATA\+\_\+\+TIMESTAMP\+\_\+\+VAL)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{ble__sensor__service_8h_a1ba80859b2f82bf34b2ea8655204e056}{ble\+\_\+sensor\+\_\+service\+\_\+init}} (\mbox{\hyperlink{structsensor__app__config__t}{sensor\+\_\+app\+\_\+config\+\_\+t}} \texorpdfstring{$\ast$}{*}config)
+\begin{DoxyCompactList}\small\item\em Initialize the BLE sensor service. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This is a library to handle the BLE services for the sensor. 
+
+\begin{DoxyAuthor}{Author}
+Tyler Garcia 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/05-\/06
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2025 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{ble__sensor__service_8h_a1ba80859b2f82bf34b2ea8655204e056}\label{ble__sensor__service_8h_a1ba80859b2f82bf34b2ea8655204e056} 
+\index{ble\_sensor\_service.h@{ble\_sensor\_service.h}!ble\_sensor\_service\_init@{ble\_sensor\_service\_init}}
+\index{ble\_sensor\_service\_init@{ble\_sensor\_service\_init}!ble\_sensor\_service.h@{ble\_sensor\_service.h}}
+\doxysubsubsection{\texorpdfstring{ble\_sensor\_service\_init()}{ble\_sensor\_service\_init()}}
+{\footnotesize\ttfamily int ble\+\_\+sensor\+\_\+service\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structsensor__app__config__t}{sensor\+\_\+app\+\_\+config\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{config }\end{DoxyParamCaption})}
+
+
+
+Initialize the BLE sensor service. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em config} & Pointer to the sensor app config \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 0 if successful, \texorpdfstring{$<$}{<} 0 if unsuccessful 
+\end{DoxyReturn}

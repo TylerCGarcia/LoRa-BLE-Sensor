@@ -1,0 +1,52 @@
+\doxysection{ble\+\_\+lorawan\+\_\+service.\+h}
+\hypertarget{ble__lorawan__service_8h_source}{}\label{ble__lorawan__service_8h_source}\index{app/include/ble\_lorawan\_service.h@{app/include/ble\_lorawan\_service.h}}
+\mbox{\hyperlink{ble__lorawan__service_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#ifndef\ BLE\_LORAWAN\_SERVICE\_H}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ BLE\_LORAWAN\_SERVICE\_H}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sensor__lorawan_8h}{sensor\_lorawan.h}}"{}}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{comment}{/*\ }}
+\DoxyCodeLine{00019\ \textcolor{comment}{}}
+\DoxyCodeLine{00020\ \textcolor{comment}{-\/\ Service\ LORAWAN}}
+\DoxyCodeLine{00021\ \textcolor{comment}{-\/\ lorawan\_dev\_eui}}
+\DoxyCodeLine{00022\ \textcolor{comment}{-\/\ lorawan\_app\_eui}}
+\DoxyCodeLine{00023\ \textcolor{comment}{-\/\ lorawan\_net\_key}}
+\DoxyCodeLine{00024\ \textcolor{comment}{-\/\ lorawan\_connection\_status}}
+\DoxyCodeLine{00025\ \textcolor{comment}{-\/\ lorawan\_transmission\_frequency}}
+\DoxyCodeLine{00026\ \textcolor{comment}{-\/\ lorawan\_time\_since\_last\_transmission}}
+\DoxyCodeLine{00027\ \textcolor{comment}{-\/\ lorawan\_number\_of\_attempts\_for\_tranmissions}}
+\DoxyCodeLine{00028\ \textcolor{comment}{-\/\ lorawan\_last\_transmission\_status}}
+\DoxyCodeLine{00029\ \textcolor{comment}{-\/\ lorawan\_last\_transmission\_data}}
+\DoxyCodeLine{00030\ \textcolor{comment}{-\/\ lorawan\_current\_process}}
+\DoxyCodeLine{00031\ \textcolor{comment}{-\/\ lorawan\_commands}}
+\DoxyCodeLine{00032\ \textcolor{comment}{}}
+\DoxyCodeLine{00033\ \textcolor{comment}{To-\/Do}}
+\DoxyCodeLine{00034\ \textcolor{comment}{-\/\ Add\ callbacks\ for\ write\ operations\ to\ have\ other\ funcitons\ store\ the\ data}}
+\DoxyCodeLine{00035\ \textcolor{comment}{}}
+\DoxyCodeLine{00036\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{comment}{/*\ Define\ the\ UUIDs\ for\ the\ LORAWAN\ service\ */}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ BT\_UUID\_LORAWAN\_VAL\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ BT\_UUID\_128\_ENCODE(0x5a8cd4ac,\ 0x1520,\ 0x4c9d,\ 0xb488,\ 0x12942c26af40)}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ BT\_UUID\_LORAWAN\_ENABLED\_VAL\ \ \ \ \ \ \ \ \ BT\_UUID\_128\_ENCODE(0x5a8cd4ac,\ 0x1520,\ 0x4c9d,\ 0xb488,\ 0x12942c26af41)}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ BT\_UUID\_LORAWAN\_FREQUENCY\_VAL\ \ \ \ \ \ \ BT\_UUID\_128\_ENCODE(0x5a8cd4ac,\ 0x1520,\ 0x4c9d,\ 0xb488,\ 0x12942c26af42)}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ BT\_UUID\_LORAWAN\_DEV\_EUI\_VAL\ \ \ \ \ \ \ \ \ BT\_UUID\_128\_ENCODE(0x5a8cd4ac,\ 0x1520,\ 0x4c9d,\ 0xb488,\ 0x12942c26af43)}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ BT\_UUID\_LORAWAN\_JOIN\_EUI\_VAL\ \ \ \ \ \ \ \ BT\_UUID\_128\_ENCODE(0x5a8cd4ac,\ 0x1520,\ 0x4c9d,\ 0xb488,\ 0x12942c26af44)}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ BT\_UUID\_LORAWAN\_APP\_KEY\_VAL\ \ \ \ \ \ \ \ \ BT\_UUID\_128\_ENCODE(0x5a8cd4ac,\ 0x1520,\ 0x4c9d,\ 0xb488,\ 0x12942c26af45)}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ BT\_UUID\_LORAWAN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ BT\_UUID\_DECLARE\_128(BT\_UUID\_LORAWAN\_VAL)}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ BT\_UUID\_LORAWAN\_ENABLED\ \ \ \ \ \ \ \ \ \ \ \ \ BT\_UUID\_DECLARE\_128(BT\_UUID\_LORAWAN\_ENABLED\_VAL)}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ BT\_UUID\_LORAWAN\_FREQUENCY\ \ \ \ \ \ \ \ \ \ \ BT\_UUID\_DECLARE\_128(BT\_UUID\_LORAWAN\_FREQUENCY\_VAL)}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#define\ BT\_UUID\_LORAWAN\_DEV\_EUI\ \ \ \ \ \ \ \ \ \ \ \ \ BT\_UUID\_DECLARE\_128(BT\_UUID\_LORAWAN\_DEV\_EUI\_VAL)}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ BT\_UUID\_LORAWAN\_JOIN\_EUI\ \ \ \ \ \ \ \ \ \ \ \ BT\_UUID\_DECLARE\_128(BT\_UUID\_LORAWAN\_JOIN\_EUI\_VAL)}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ BT\_UUID\_LORAWAN\_APP\_KEY\ \ \ \ \ \ \ \ \ \ \ \ \ BT\_UUID\_DECLARE\_128(BT\_UUID\_LORAWAN\_APP\_KEY\_VAL)}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00061\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{ble__lorawan__service_8h_a2e1e68c8322c10d729b1f570eeb09ff7}{ble\_lorawan\_service\_init}}(\mbox{\hyperlink{structlorawan__setup__t}{lorawan\_setup\_t}}\ *setup);}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}
