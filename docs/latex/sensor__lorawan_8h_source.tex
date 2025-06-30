@@ -14,21 +14,21 @@
 \DoxyCodeLine{00020\ }
 \DoxyCodeLine{00024\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
 \DoxyCodeLine{00025\ \ \ \ \ \textcolor{comment}{/*\ Whether\ the\ LoRaWAN\ is\ enabled.\ */}}
-\DoxyCodeLine{00026\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structlorawan__setup__t_a45aba7ba172867dfe44fdc9c8cc6bc39}{is\_lorawan\_enabled}};}
+\DoxyCodeLine{00026\ \ \ \ \ uint8\_t\ is\_lorawan\_enabled;}
 \DoxyCodeLine{00027\ \ \ \ \ \textcolor{comment}{/*\ LoRaWAN\ frequency.\ */}}
-\DoxyCodeLine{00028\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structlorawan__setup__t_a7e8c07c0a70babe5c7f3de200016ac13}{lorawan\_frequency}};}
+\DoxyCodeLine{00028\ \ \ \ \ uint8\_t\ lorawan\_frequency;}
 \DoxyCodeLine{00029\ \ \ \ \ \textcolor{comment}{/*\ LoRaWAN\ Device.\ */}}
-\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{struct\ }device\ *\mbox{\hyperlink{structlorawan__setup__t_a57679a05e27f55fa5e6445f54e0c2b7a}{lora\_dev}};}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{struct\ }device\ *lora\_dev;}
 \DoxyCodeLine{00031\ \ \ \ \ \textcolor{comment}{/*\ LoRaWAN\ uplink\ class.\ */}}
-\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{enum}\ lorawan\_class\ \mbox{\hyperlink{structlorawan__setup__t_a219102ecb4ec1db124d0461637e55a3a}{uplink\_class}};}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{enum}\ lorawan\_class\ uplink\_class;}
 \DoxyCodeLine{00033\ \ \ \ \ \textcolor{comment}{/*\ LoRaWAN\ downlink\ callback.\ */}}
 \DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{struct\ }lorawan\_downlink\_cb\ downlink\_callback;}
 \DoxyCodeLine{00035\ \ \ \ \ \textcolor{comment}{/*\ How\ many\ attempts\ to\ join\ the\ network.\ If\ 0,\ it\ will\ attempt\ to\ join\ indefinitely.\ */}}
-\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structlorawan__setup__t_a8ffba489f13143f1df55251e376c332c}{join\_attempts}};}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{int}\ join\_attempts;}
 \DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{/*\ Device\ Nonce\ for\ LoRaWAN\ Network.\ Should\ be\ tracked\ seperately\ for\ different\ euis.\ */}}
-\DoxyCodeLine{00038\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structlorawan__setup__t_aee4609d455698f63fbcc25bee3264df0}{dev\_nonce}};}
+\DoxyCodeLine{00038\ \ \ \ \ uint16\_t\ dev\_nonce;}
 \DoxyCodeLine{00039\ \ \ \ \ \textcolor{comment}{/*\ Delay\ between\ joinattempts\ in\ milliseconds.\ */}}
-\DoxyCodeLine{00040\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structlorawan__setup__t_a46a9e1e7f56a2d5485c616af952c6f03}{delay}};}
+\DoxyCodeLine{00040\ \ \ \ \ uint32\_t\ delay;}
 \DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{/*\ Device\ EUI\ for\ LoRaWAN\ Network.\ */}}
 \DoxyCodeLine{00042\ \ \ \ \ uint8\_t\ dev\_eui[8];}
 \DoxyCodeLine{00043\ \ \ \ \ \textcolor{comment}{/*\ Join\ EUI\ for\ LoRaWAN\ Network.\ */}}
@@ -36,20 +36,20 @@
 \DoxyCodeLine{00045\ \ \ \ \ \textcolor{comment}{/*\ App\ Key\ for\ LoRaWAN\ Network.\ */}}
 \DoxyCodeLine{00046\ \ \ \ \ uint8\_t\ app\_key[16];}
 \DoxyCodeLine{00047\ \ \ \ \ \textcolor{comment}{/*\ How\ many\ attempts\ to\ send\ data\ when\ waiting\ for\ an\ ack,\ if\ 0,\ it\ will\ send\ an\ unconfirmed\ message.\ */}}
-\DoxyCodeLine{00048\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structlorawan__setup__t_a58794c16257b069aedb7e0e9f7ec568f}{send\_attempts}};}
+\DoxyCodeLine{00048\ \ \ \ \ uint8\_t\ send\_attempts;}
 \DoxyCodeLine{00049\ \}\ \mbox{\hyperlink{structlorawan__setup__t}{lorawan\_setup\_t}};}
 \DoxyCodeLine{00050\ }
 \DoxyCodeLine{00054\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
 \DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{/*\ Data\ to\ send.\ */}}
-\DoxyCodeLine{00056\ \ \ \ \ uint8\_t\ data[\mbox{\hyperlink{sensor__lorawan_8h_ac045698827124fb023a1afce3c980b4c}{MAX\_LORAWAN\_PAYLOAD}}];}
+\DoxyCodeLine{00056\ \ \ \ \ uint8\_t\ data[MAX\_LORAWAN\_PAYLOAD];}
 \DoxyCodeLine{00057\ \ \ \ \ \textcolor{comment}{/*\ Length\ of\ the\ data\ to\ send.\ */}}
-\DoxyCodeLine{00058\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structlorawan__data__t_ad7c1355cc270095f8d4ff220ac79d3b3}{length}};}
+\DoxyCodeLine{00058\ \ \ \ \ uint16\_t\ length;}
 \DoxyCodeLine{00059\ \ \ \ \ \textcolor{comment}{/*\ LoRaWAN\ port\ to\ send\ the\ data\ to.\ */}}
-\DoxyCodeLine{00060\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structlorawan__data__t_adf842557c9abb3105f811ee9318618ba}{port}};}
+\DoxyCodeLine{00060\ \ \ \ \ uint8\_t\ port;}
 \DoxyCodeLine{00061\ \ \ \ \ \textcolor{comment}{/*\ How\ many\ attempts\ to\ send\ data\ when\ waiting\ for\ an\ ack,\ if\ 0,\ it\ will\ send\ an\ unconfirmed\ message.\ */}}
-\DoxyCodeLine{00062\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structlorawan__data__t_ae78982fcdcba14d586a8bcde12e61ceb}{attempts}};}
+\DoxyCodeLine{00062\ \ \ \ \ uint8\_t\ attempts;}
 \DoxyCodeLine{00063\ \ \ \ \ \textcolor{comment}{/*\ Delay\ between\ attempts\ in\ milliseconds.\ */}}
-\DoxyCodeLine{00064\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structlorawan__data__t_adf69756d4c9e3f105b3ee05b07e8a548}{delay}};}
+\DoxyCodeLine{00064\ \ \ \ \ uint32\_t\ delay;}
 \DoxyCodeLine{00065\ \}\ \mbox{\hyperlink{structlorawan__data__t}{lorawan\_data\_t}};}
 \DoxyCodeLine{00066\ }
 \DoxyCodeLine{00073\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sensor__lorawan_8h_af934a615bc3c97b00d8d78bd74fc173c}{is\_lorawan\_configured}}(\mbox{\hyperlink{structlorawan__setup__t}{lorawan\_setup\_t}}\ *setup);}

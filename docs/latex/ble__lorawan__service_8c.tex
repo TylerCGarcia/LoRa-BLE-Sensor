@@ -1,5 +1,10 @@
 \doxysection{app/src/ble\+\_\+lorawan\+\_\+service.c File Reference}
 \hypertarget{ble__lorawan__service_8c}{}\label{ble__lorawan__service_8c}\index{app/src/ble\_lorawan\_service.c@{app/src/ble\_lorawan\_service.c}}
+
+
+This is a library to handle the BLE services for the LORAWAN network. This service is used for configuration and debugging of the LORAWAN network.  
+
+
 {\ttfamily \#include "{}ble\+\_\+lorawan\+\_\+service.\+h"{}}\newline
 {\ttfamily \#include $<$zephyr/bluetooth/bluetooth.\+h$>$}\newline
 {\ttfamily \#include $<$zephyr/bluetooth/gatt.\+h$>$}\newline
@@ -17,12 +22,31 @@ Include dependency graph for ble\+\_\+lorawan\+\_\+service.\+c\+:
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{ble__lorawan__service_8c_acc649e53dc7737ff65056ff5ef632710}{LOG\+\_\+\+MODULE\+\_\+\+REGISTER}} (BLE\+\_\+\+LORAWAN\+\_\+\+SERVICE, LOG\+\_\+\+LEVEL\+\_\+\+INF)
+\Hypertarget{ble__lorawan__service_8c_acc649e53dc7737ff65056ff5ef632710}\label{ble__lorawan__service_8c_acc649e53dc7737ff65056ff5ef632710} 
+{\bfseries LOG\+\_\+\+MODULE\+\_\+\+REGISTER} (BLE\+\_\+\+LORAWAN\+\_\+\+SERVICE, LOG\+\_\+\+LEVEL\+\_\+\+INF)
 \item 
-\mbox{\hyperlink{ble__lorawan__service_8c_a022ddedb73dcdcc65098cc27d78a30e8}{BT\+\_\+\+GATT\+\_\+\+SERVICE\+\_\+\+DEFINE}} (lorawan\+\_\+svc, BT\+\_\+\+GATT\+\_\+\+PRIMARY\+\_\+\+SERVICE(\mbox{\hyperlink{ble__lorawan__service_8h_a90b4fcf12a3c9cf011c076964bac9c35}{BT\+\_\+\+UUID\+\_\+\+LORAWAN}}), BT\+\_\+\+GATT\+\_\+\+CHARACTERISTIC(\mbox{\hyperlink{ble__lorawan__service_8h_ab6a3935befa2e1384dbc807576acd4ee}{BT\+\_\+\+UUID\+\_\+\+LORAWAN\+\_\+\+ENABLED}}, BT\+\_\+\+GATT\+\_\+\+CHRC\+\_\+\+READ\texorpdfstring{$\vert$}{|}BT\+\_\+\+GATT\+\_\+\+CHRC\+\_\+\+WRITE, BT\+\_\+\+GATT\+\_\+\+PERM\+\_\+\+READ\texorpdfstring{$\vert$}{|}BT\+\_\+\+GATT\+\_\+\+PERM\+\_\+\+WRITE, read\+\_\+enabled, write\+\_\+enabled, NULL), BT\+\_\+\+GATT\+\_\+\+CHARACTERISTIC(\mbox{\hyperlink{ble__lorawan__service_8h_a8de7a7d2b9fcfd816059f11f490193d9}{BT\+\_\+\+UUID\+\_\+\+LORAWAN\+\_\+\+FREQUENCY}}, BT\+\_\+\+GATT\+\_\+\+CHRC\+\_\+\+READ\texorpdfstring{$\vert$}{|}BT\+\_\+\+GATT\+\_\+\+CHRC\+\_\+\+WRITE, BT\+\_\+\+GATT\+\_\+\+PERM\+\_\+\+READ\texorpdfstring{$\vert$}{|}BT\+\_\+\+GATT\+\_\+\+PERM\+\_\+\+WRITE, read\+\_\+frequency, write\+\_\+frequency, NULL), BT\+\_\+\+GATT\+\_\+\+CHARACTERISTIC(\mbox{\hyperlink{ble__lorawan__service_8h_a0ac4f5f9e3b7d3fd8007fc83577798e2}{BT\+\_\+\+UUID\+\_\+\+LORAWAN\+\_\+\+DEV\+\_\+\+EUI}}, BT\+\_\+\+GATT\+\_\+\+CHRC\+\_\+\+READ\texorpdfstring{$\vert$}{|}BT\+\_\+\+GATT\+\_\+\+CHRC\+\_\+\+WRITE, BT\+\_\+\+GATT\+\_\+\+PERM\+\_\+\+READ\texorpdfstring{$\vert$}{|}BT\+\_\+\+GATT\+\_\+\+PERM\+\_\+\+WRITE, read\+\_\+dev\+\_\+eui, write\+\_\+dev\+\_\+eui, NULL), BT\+\_\+\+GATT\+\_\+\+CHARACTERISTIC(\mbox{\hyperlink{ble__lorawan__service_8h_ae54d6ebf3d4fde4bc66c477f8a30262f}{BT\+\_\+\+UUID\+\_\+\+LORAWAN\+\_\+\+JOIN\+\_\+\+EUI}}, BT\+\_\+\+GATT\+\_\+\+CHRC\+\_\+\+READ\texorpdfstring{$\vert$}{|}BT\+\_\+\+GATT\+\_\+\+CHRC\+\_\+\+WRITE, BT\+\_\+\+GATT\+\_\+\+PERM\+\_\+\+READ\texorpdfstring{$\vert$}{|}BT\+\_\+\+GATT\+\_\+\+PERM\+\_\+\+WRITE, read\+\_\+join\+\_\+eui, write\+\_\+join\+\_\+eui, NULL), BT\+\_\+\+GATT\+\_\+\+CHARACTERISTIC(\mbox{\hyperlink{ble__lorawan__service_8h_a061dbab1cb076c27d8ea1a10fe2821de}{BT\+\_\+\+UUID\+\_\+\+LORAWAN\+\_\+\+APP\+\_\+\+KEY}}, BT\+\_\+\+GATT\+\_\+\+CHRC\+\_\+\+READ\texorpdfstring{$\vert$}{|}BT\+\_\+\+GATT\+\_\+\+CHRC\+\_\+\+WRITE, BT\+\_\+\+GATT\+\_\+\+PERM\+\_\+\+READ\texorpdfstring{$\vert$}{|}BT\+\_\+\+GATT\+\_\+\+PERM\+\_\+\+WRITE, read\+\_\+app\+\_\+key, write\+\_\+app\+\_\+key, NULL),)
+\Hypertarget{ble__lorawan__service_8c_a022ddedb73dcdcc65098cc27d78a30e8}\label{ble__lorawan__service_8c_a022ddedb73dcdcc65098cc27d78a30e8} 
+{\bfseries BT\+\_\+\+GATT\+\_\+\+SERVICE\+\_\+\+DEFINE} (lorawan\+\_\+svc, BT\+\_\+\+GATT\+\_\+\+PRIMARY\+\_\+\+SERVICE(BT\+\_\+\+UUID\+\_\+\+LORAWAN), BT\+\_\+\+GATT\+\_\+\+CHARACTERISTIC(BT\+\_\+\+UUID\+\_\+\+LORAWAN\+\_\+\+ENABLED, BT\+\_\+\+GATT\+\_\+\+CHRC\+\_\+\+READ\texorpdfstring{$\vert$}{|}BT\+\_\+\+GATT\+\_\+\+CHRC\+\_\+\+WRITE, BT\+\_\+\+GATT\+\_\+\+PERM\+\_\+\+READ\texorpdfstring{$\vert$}{|}BT\+\_\+\+GATT\+\_\+\+PERM\+\_\+\+WRITE, read\+\_\+enabled, write\+\_\+enabled, NULL), BT\+\_\+\+GATT\+\_\+\+CHARACTERISTIC(BT\+\_\+\+UUID\+\_\+\+LORAWAN\+\_\+\+FREQUENCY, BT\+\_\+\+GATT\+\_\+\+CHRC\+\_\+\+READ\texorpdfstring{$\vert$}{|}BT\+\_\+\+GATT\+\_\+\+CHRC\+\_\+\+WRITE, BT\+\_\+\+GATT\+\_\+\+PERM\+\_\+\+READ\texorpdfstring{$\vert$}{|}BT\+\_\+\+GATT\+\_\+\+PERM\+\_\+\+WRITE, read\+\_\+frequency, write\+\_\+frequency, NULL), BT\+\_\+\+GATT\+\_\+\+CHARACTERISTIC(BT\+\_\+\+UUID\+\_\+\+LORAWAN\+\_\+\+DEV\+\_\+\+EUI, BT\+\_\+\+GATT\+\_\+\+CHRC\+\_\+\+READ\texorpdfstring{$\vert$}{|}BT\+\_\+\+GATT\+\_\+\+CHRC\+\_\+\+WRITE, BT\+\_\+\+GATT\+\_\+\+PERM\+\_\+\+READ\texorpdfstring{$\vert$}{|}BT\+\_\+\+GATT\+\_\+\+PERM\+\_\+\+WRITE, read\+\_\+dev\+\_\+eui, write\+\_\+dev\+\_\+eui, NULL), BT\+\_\+\+GATT\+\_\+\+CHARACTERISTIC(BT\+\_\+\+UUID\+\_\+\+LORAWAN\+\_\+\+JOIN\+\_\+\+EUI, BT\+\_\+\+GATT\+\_\+\+CHRC\+\_\+\+READ\texorpdfstring{$\vert$}{|}BT\+\_\+\+GATT\+\_\+\+CHRC\+\_\+\+WRITE, BT\+\_\+\+GATT\+\_\+\+PERM\+\_\+\+READ\texorpdfstring{$\vert$}{|}BT\+\_\+\+GATT\+\_\+\+PERM\+\_\+\+WRITE, read\+\_\+join\+\_\+eui, write\+\_\+join\+\_\+eui, NULL), BT\+\_\+\+GATT\+\_\+\+CHARACTERISTIC(BT\+\_\+\+UUID\+\_\+\+LORAWAN\+\_\+\+APP\+\_\+\+KEY, BT\+\_\+\+GATT\+\_\+\+CHRC\+\_\+\+READ\texorpdfstring{$\vert$}{|}BT\+\_\+\+GATT\+\_\+\+CHRC\+\_\+\+WRITE, BT\+\_\+\+GATT\+\_\+\+PERM\+\_\+\+READ\texorpdfstring{$\vert$}{|}BT\+\_\+\+GATT\+\_\+\+PERM\+\_\+\+WRITE, read\+\_\+app\+\_\+key, write\+\_\+app\+\_\+key, NULL),)
 \item 
 int \mbox{\hyperlink{ble__lorawan__service_8c_a2e1e68c8322c10d729b1f570eeb09ff7}{ble\+\_\+lorawan\+\_\+service\+\_\+init}} (\mbox{\hyperlink{structlorawan__setup__t}{lorawan\+\_\+setup\+\_\+t}} \texorpdfstring{$\ast$}{*}setup)
 \begin{DoxyCompactList}\small\item\em Connect Lo\+Ra\+WAN setup configuration to Lo\+Ra\+WAN BLE Service. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This is a library to handle the BLE services for the LORAWAN network. This service is used for configuration and debugging of the LORAWAN network. 
+
+\begin{DoxyAuthor}{Author}
+Tyler Garcia 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/05-\/06
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2025 
+\end{DoxyCopyright}
 
 
 \doxysubsection{Function Documentation}
@@ -44,15 +68,3 @@ Connect Lo\+Ra\+WAN setup configuration to Lo\+Ra\+WAN BLE Service.
 \begin{DoxyReturn}{Returns}
 int 0 if successful connection, \texorpdfstring{$<$}{<} 0 if unsuccessful 
 \end{DoxyReturn}
-\Hypertarget{ble__lorawan__service_8c_a022ddedb73dcdcc65098cc27d78a30e8}\label{ble__lorawan__service_8c_a022ddedb73dcdcc65098cc27d78a30e8} 
-\index{ble\_lorawan\_service.c@{ble\_lorawan\_service.c}!BT\_GATT\_SERVICE\_DEFINE@{BT\_GATT\_SERVICE\_DEFINE}}
-\index{BT\_GATT\_SERVICE\_DEFINE@{BT\_GATT\_SERVICE\_DEFINE}!ble\_lorawan\_service.c@{ble\_lorawan\_service.c}}
-\doxysubsubsection{\texorpdfstring{BT\_GATT\_SERVICE\_DEFINE()}{BT\_GATT\_SERVICE\_DEFINE()}}
-{\footnotesize\ttfamily BT\+\_\+\+GATT\+\_\+\+SERVICE\+\_\+\+DEFINE (\begin{DoxyParamCaption}\item[{lorawan\+\_\+svc}]{,  }\item[{BT\+\_\+\+GATT\+\_\+\+PRIMARY\+\_\+\+SERVICE(\mbox{\hyperlink{ble__lorawan__service_8h_a90b4fcf12a3c9cf011c076964bac9c35}{BT\+\_\+\+UUID\+\_\+\+LORAWAN}})}]{,  }\item[{BT\+\_\+\+GATT\+\_\+\+CHARACTERISTIC(\mbox{\hyperlink{ble__lorawan__service_8h_ab6a3935befa2e1384dbc807576acd4ee}{BT\+\_\+\+UUID\+\_\+\+LORAWAN\+\_\+\+ENABLED}}, BT\+\_\+\+GATT\+\_\+\+CHRC\+\_\+\+READ\texorpdfstring{$\vert$}{|}BT\+\_\+\+GATT\+\_\+\+CHRC\+\_\+\+WRITE, BT\+\_\+\+GATT\+\_\+\+PERM\+\_\+\+READ\texorpdfstring{$\vert$}{|}BT\+\_\+\+GATT\+\_\+\+PERM\+\_\+\+WRITE, read\+\_\+enabled, write\+\_\+enabled, NULL)}]{,  }\item[{BT\+\_\+\+GATT\+\_\+\+CHARACTERISTIC(\mbox{\hyperlink{ble__lorawan__service_8h_a8de7a7d2b9fcfd816059f11f490193d9}{BT\+\_\+\+UUID\+\_\+\+LORAWAN\+\_\+\+FREQUENCY}}, BT\+\_\+\+GATT\+\_\+\+CHRC\+\_\+\+READ\texorpdfstring{$\vert$}{|}BT\+\_\+\+GATT\+\_\+\+CHRC\+\_\+\+WRITE, BT\+\_\+\+GATT\+\_\+\+PERM\+\_\+\+READ\texorpdfstring{$\vert$}{|}BT\+\_\+\+GATT\+\_\+\+PERM\+\_\+\+WRITE, read\+\_\+frequency, write\+\_\+frequency, NULL)}]{,  }\item[{BT\+\_\+\+GATT\+\_\+\+CHARACTERISTIC(\mbox{\hyperlink{ble__lorawan__service_8h_a0ac4f5f9e3b7d3fd8007fc83577798e2}{BT\+\_\+\+UUID\+\_\+\+LORAWAN\+\_\+\+DEV\+\_\+\+EUI}}, BT\+\_\+\+GATT\+\_\+\+CHRC\+\_\+\+READ\texorpdfstring{$\vert$}{|}BT\+\_\+\+GATT\+\_\+\+CHRC\+\_\+\+WRITE, BT\+\_\+\+GATT\+\_\+\+PERM\+\_\+\+READ\texorpdfstring{$\vert$}{|}BT\+\_\+\+GATT\+\_\+\+PERM\+\_\+\+WRITE, read\+\_\+dev\+\_\+eui, write\+\_\+dev\+\_\+eui, NULL)}]{,  }\item[{BT\+\_\+\+GATT\+\_\+\+CHARACTERISTIC(\mbox{\hyperlink{ble__lorawan__service_8h_ae54d6ebf3d4fde4bc66c477f8a30262f}{BT\+\_\+\+UUID\+\_\+\+LORAWAN\+\_\+\+JOIN\+\_\+\+EUI}}, BT\+\_\+\+GATT\+\_\+\+CHRC\+\_\+\+READ\texorpdfstring{$\vert$}{|}BT\+\_\+\+GATT\+\_\+\+CHRC\+\_\+\+WRITE, BT\+\_\+\+GATT\+\_\+\+PERM\+\_\+\+READ\texorpdfstring{$\vert$}{|}BT\+\_\+\+GATT\+\_\+\+PERM\+\_\+\+WRITE, read\+\_\+join\+\_\+eui, write\+\_\+join\+\_\+eui, NULL)}]{,  }\item[{BT\+\_\+\+GATT\+\_\+\+CHARACTERISTIC(\mbox{\hyperlink{ble__lorawan__service_8h_a061dbab1cb076c27d8ea1a10fe2821de}{BT\+\_\+\+UUID\+\_\+\+LORAWAN\+\_\+\+APP\+\_\+\+KEY}}, BT\+\_\+\+GATT\+\_\+\+CHRC\+\_\+\+READ\texorpdfstring{$\vert$}{|}BT\+\_\+\+GATT\+\_\+\+CHRC\+\_\+\+WRITE, BT\+\_\+\+GATT\+\_\+\+PERM\+\_\+\+READ\texorpdfstring{$\vert$}{|}BT\+\_\+\+GATT\+\_\+\+PERM\+\_\+\+WRITE, read\+\_\+app\+\_\+key, write\+\_\+app\+\_\+key, NULL)}]{ }\end{DoxyParamCaption})}
-
-\Hypertarget{ble__lorawan__service_8c_acc649e53dc7737ff65056ff5ef632710}\label{ble__lorawan__service_8c_acc649e53dc7737ff65056ff5ef632710} 
-\index{ble\_lorawan\_service.c@{ble\_lorawan\_service.c}!LOG\_MODULE\_REGISTER@{LOG\_MODULE\_REGISTER}}
-\index{LOG\_MODULE\_REGISTER@{LOG\_MODULE\_REGISTER}!ble\_lorawan\_service.c@{ble\_lorawan\_service.c}}
-\doxysubsubsection{\texorpdfstring{LOG\_MODULE\_REGISTER()}{LOG\_MODULE\_REGISTER()}}
-{\footnotesize\ttfamily LOG\+\_\+\+MODULE\+\_\+\+REGISTER (\begin{DoxyParamCaption}\item[{BLE\+\_\+\+LORAWAN\+\_\+\+SERVICE}]{,  }\item[{LOG\+\_\+\+LEVEL\+\_\+\+INF}]{ }\end{DoxyParamCaption})}
-

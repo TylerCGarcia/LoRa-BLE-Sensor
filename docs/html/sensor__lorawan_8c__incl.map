@@ -1,5 +1,5 @@
 <map id="app/src/sensor_lorawan.c" name="app/src/sensor_lorawan.c">
-<area shape="rect" id="Node000001" title=" " alt="" coords="275,5,462,31"/>
+<area shape="rect" id="Node000001" title="This is a library to handle the LoRaWAN functionality for the sensor." alt="" coords="275,5,462,31"/>
 <area shape="rect" id="Node000002" href="$sensor__lorawan_8h.html" title="This is a library to handle the LoRaWAN functionality for the sensor." alt="" coords="174,79,310,104"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="350,33,276,74,273,69,347,28"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="5,152,196,177"/>

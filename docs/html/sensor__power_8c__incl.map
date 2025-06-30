@@ -1,5 +1,5 @@
 <map id="app/src/sensor_power.c" name="app/src/sensor_power.c">
-<area shape="rect" id="Node000001" title=" " alt="" coords="441,5,614,31"/>
+<area shape="rect" id="Node000001" title="This is a library for sensor power configurations and control. This is manages the power configuratio..." alt="" coords="441,5,614,31"/>
 <area shape="rect" id="Node000002" href="$sensor__power_8h.html" title="This is a library for sensor power configurations and control. This is manages the power configuratio..." alt="" coords="175,79,298,104"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="481,33,297,78,296,73,480,28"/>
 <area shape="rect" id="Node000004" title=" " alt="" coords="5,152,164,177"/>

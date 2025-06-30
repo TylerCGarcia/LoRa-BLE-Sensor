@@ -1,16 +1,7 @@
 var searchData=
 [
-  ['last_5fevent_5ftime_0',['last_event_time',['../structsensor__scheduling__cfg__t.html#abba893ad8007e3c3ebc4236d6d75c634',1,'sensor_scheduling_cfg_t']]],
-  ['latest_5fdata_1',['latest_data',['../structsensor__data__t.html#afd56b8c352bbdeaa17b05cd77ee5d629',1,'sensor_data_t']]],
-  ['latest_5ftimestamp_2',['latest_timestamp',['../structsensor__data__t.html#aa30554940e7d98b6352859c0b1b37dba',1,'sensor_data_t']]],
-  ['ldo_5fdev_3',['ldo_dev',['../structsensor__power__config__t.html#a0f63b54793e367d427e4dc3b0fb9a4d8',1,'sensor_power_config_t']]],
-  ['led_5foff_4',['led_off',['../structsensor__pmic__ops__t.html#a07dc5f6f373675d0af20e0cf265a49d3',1,'sensor_pmic_ops_t']]],
-  ['led_5fon_5',['led_on',['../structsensor__pmic__ops__t.html#a2fa5b684167dcf2478e75bf1c47c3cbe',1,'sensor_pmic_ops_t']]],
-  ['length_6',['length',['../structlorawan__data__t.html#ad7c1355cc270095f8d4ff220ac79d3b3',1,'lorawan_data_t']]],
-  ['log_5fmodule_5fregister_7',['log_module_register',['../ble__device__service_8c.html#a5cf91a0b297367e4c00afb82984e5ad0',1,'LOG_MODULE_REGISTER(BLE_DEVICE_SERVICE, LOG_LEVEL_INF):&#160;ble_device_service.c'],['../sensor__pmic_8c.html#a63f95623b80009d58a68ac58f84009fb',1,'LOG_MODULE_REGISTER(SENSOR_PMIC, LOG_LEVEL_INF):&#160;sensor_pmic.c'],['../sensor__nvs_8c.html#a8b0c454d609035825f8309a7feb15500',1,'LOG_MODULE_REGISTER(SENSOR_NVS, LOG_LEVEL_INF):&#160;sensor_nvs.c'],['../sensor__names_8c.html#aa6290cee7bd96172af54143d17936e7a',1,'LOG_MODULE_REGISTER(SENSOR_NAMES, LOG_LEVEL_INF):&#160;sensor_names.c'],['../sensor__lorawan_8c.html#acc1c1ef23c9b285cc0aec2d89586d530',1,'LOG_MODULE_REGISTER(SENSOR_LORAWAN, LOG_LEVEL_INF):&#160;sensor_lorawan.c'],['../sensor__data_8c.html#a35c0b71b62c47e2e28613793a0e01045',1,'LOG_MODULE_REGISTER(sensor_data, LOG_LEVEL_INF):&#160;sensor_data.c'],['../sensor__ble_8c.html#a6afcda4882565944311d3ad88ed5724c',1,'LOG_MODULE_REGISTER(SENSOR_BLE, LOG_LEVEL_INF):&#160;sensor_ble.c'],['../sensor__app_8c.html#ae839dcb59891db8a0b7b1fc5581de47c',1,'LOG_MODULE_REGISTER(SENSOR_APP, LOG_LEVEL_INF):&#160;sensor_app.c'],['../main_8c.html#a1e8c82b4071677ecf774911bd911da02',1,'LOG_MODULE_REGISTER(MAIN):&#160;main.c'],['../ble__sensor__service_8c.html#a2d285f9a5fb7859723c18937fa6600ca',1,'LOG_MODULE_REGISTER(BLE_SENSOR_SERVICE, LOG_LEVEL_DBG):&#160;ble_sensor_service.c'],['../ble__lorawan__service_8c.html#acc649e53dc7737ff65056ff5ef632710',1,'LOG_MODULE_REGISTER(BLE_LORAWAN_SERVICE, LOG_LEVEL_INF):&#160;ble_lorawan_service.c'],['../sensor__power_8c.html#a055a8d69d8aa3d02b67e96a19b7182f5',1,'LOG_MODULE_REGISTER(sensor_power, LOG_LEVEL_INF):&#160;sensor_power.c'],['../sensor__scheduling_8c.html#af7abe02dec3424b14da12707f5b7511a',1,'LOG_MODULE_REGISTER(SENSOR_SCHEDULING, LOG_LEVEL_INF):&#160;sensor_scheduling.c'],['../sensor__timer_8c.html#aef3492a560014ecfdc7c4c706f26e085',1,'LOG_MODULE_REGISTER(SENSOR_TIMER, LOG_LEVEL_INF):&#160;sensor_timer.c']]],
-  ['lora_20ble_20sensor_8',['LoRa-BLE-Sensor',['../index.html',1,'']]],
-  ['lora_5fdev_9',['lora_dev',['../structlorawan__setup__t.html#a57679a05e27f55fa5e6445f54e0c2b7a',1,'lorawan_setup_t']]],
-  ['lorawan_5fdata_5ft_10',['lorawan_data_t',['../structlorawan__data__t.html',1,'']]],
-  ['lorawan_5ffrequency_11',['lorawan_frequency',['../structlorawan__setup__t.html#a7e8c07c0a70babe5c7f3de200016ac13',1,'lorawan_setup_t']]],
-  ['lorawan_5fsetup_5ft_12',['lorawan_setup_t',['../structlorawan__setup__t.html',1,'']]]
+  ['pmic_5fsensor_5fstatus_5ft_0',['pmic_sensor_status_t',['../structpmic__sensor__status__t.html',1,'']]],
+  ['power_20analysis_1',['Power Analysis',['../index.html#autotoc_md4',1,'']]],
+  ['project_20initialization_2',['Project Initialization',['../index.html#autotoc_md2',1,'']]],
+  ['pulse_5fcontext_5ft_3',['pulse_context_t',['../structpulse__context__t.html',1,'']]]
 ];

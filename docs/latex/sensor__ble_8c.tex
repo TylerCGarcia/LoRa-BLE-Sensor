@@ -1,5 +1,10 @@
 \doxysection{app/src/sensor\+\_\+ble.c File Reference}
 \hypertarget{sensor__ble_8c}{}\label{sensor__ble_8c}\index{app/src/sensor\_ble.c@{app/src/sensor\_ble.c}}
+
+
+This is a library to handle the BLE functionality for the sensor.  
+
+
 {\ttfamily \#include "{}sensor\+\_\+ble.\+h"{}}\newline
 {\ttfamily \#include $<$zephyr/kernel.\+h$>$}\newline
 {\ttfamily \#include $<$zephyr/logging/log.\+h$>$}\newline
@@ -22,11 +27,13 @@ struct \mbox{\hyperlink{structble__adv__params__t}{ble\+\_\+adv\+\_\+params\+\_\
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{sensor__ble_8c_a6afcda4882565944311d3ad88ed5724c}{LOG\+\_\+\+MODULE\+\_\+\+REGISTER}} (SENSOR\+\_\+\+BLE, LOG\+\_\+\+LEVEL\+\_\+\+INF)
+\Hypertarget{sensor__ble_8c_a6afcda4882565944311d3ad88ed5724c}\label{sensor__ble_8c_a6afcda4882565944311d3ad88ed5724c} 
+{\bfseries LOG\+\_\+\+MODULE\+\_\+\+REGISTER} (SENSOR\+\_\+\+BLE, LOG\+\_\+\+LEVEL\+\_\+\+INF)
 \item 
 int \mbox{\hyperlink{sensor__ble_8c_a89b692cd77dd87374c564984e5a9be6d}{ble\+\_\+setup}} (\mbox{\hyperlink{structble__config__t}{ble\+\_\+config\+\_\+t}} \texorpdfstring{$\ast$}{*}config)
 \begin{DoxyCompactList}\small\item\em Setup the BLE device, with advertisement and connection parameters. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{sensor__ble_8c_a58b0d059d51618daef6d27d91a902e76}{ble\+\_\+end}} (void)
+\Hypertarget{sensor__ble_8c_a58b0d059d51618daef6d27d91a902e76}\label{sensor__ble_8c_a58b0d059d51618daef6d27d91a902e76} 
+int {\bfseries ble\+\_\+end} (void)
 \item 
 int \mbox{\hyperlink{sensor__ble_8c_a2540ec8bac282325b8a5ffad891c0c34}{is\+\_\+ble\+\_\+advertising}} (void)
 \begin{DoxyCompactList}\small\item\em Check if the BLE device is advertising. \end{DoxyCompactList}\item 
@@ -39,6 +46,23 @@ int \mbox{\hyperlink{sensor__ble_8c_ab69344a559ffc2d3167acaa8c58cdde5}{ble\+\_\+
 \item 
 struct bt\+\_\+conn\+\_\+cb \mbox{\hyperlink{sensor__ble_8c_a8f9e757c7c419efea35ae7848e3be8d9}{connection\+\_\+callbacks}}
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This is a library to handle the BLE functionality for the sensor. 
+
+\begin{DoxyAuthor}{Author}
+Tyler Garcia 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/05-\/05
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2025 
+\end{DoxyCopyright}
 
 
 \doxysubsection{Function Documentation}
@@ -60,12 +84,6 @@ Change the name of the BLE device.
 \begin{DoxyReturn}{Returns}
 int 0 on success, negative on failure. 
 \end{DoxyReturn}
-\Hypertarget{sensor__ble_8c_a58b0d059d51618daef6d27d91a902e76}\label{sensor__ble_8c_a58b0d059d51618daef6d27d91a902e76} 
-\index{sensor\_ble.c@{sensor\_ble.c}!ble\_end@{ble\_end}}
-\index{ble\_end@{ble\_end}!sensor\_ble.c@{sensor\_ble.c}}
-\doxysubsubsection{\texorpdfstring{ble\_end()}{ble\_end()}}
-{\footnotesize\ttfamily int ble\+\_\+end (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
-
 \Hypertarget{sensor__ble_8c_a89b692cd77dd87374c564984e5a9be6d}\label{sensor__ble_8c_a89b692cd77dd87374c564984e5a9be6d} 
 \index{sensor\_ble.c@{sensor\_ble.c}!ble\_setup@{ble\_setup}}
 \index{ble\_setup@{ble\_setup}!sensor\_ble.c@{sensor\_ble.c}}
@@ -110,12 +128,6 @@ Check if the BLE device is advertising.
 \begin{DoxyReturn}{Returns}
 int 1 if advertising, 0 if not. 
 \end{DoxyReturn}
-\Hypertarget{sensor__ble_8c_a6afcda4882565944311d3ad88ed5724c}\label{sensor__ble_8c_a6afcda4882565944311d3ad88ed5724c} 
-\index{sensor\_ble.c@{sensor\_ble.c}!LOG\_MODULE\_REGISTER@{LOG\_MODULE\_REGISTER}}
-\index{LOG\_MODULE\_REGISTER@{LOG\_MODULE\_REGISTER}!sensor\_ble.c@{sensor\_ble.c}}
-\doxysubsubsection{\texorpdfstring{LOG\_MODULE\_REGISTER()}{LOG\_MODULE\_REGISTER()}}
-{\footnotesize\ttfamily LOG\+\_\+\+MODULE\+\_\+\+REGISTER (\begin{DoxyParamCaption}\item[{SENSOR\+\_\+\+BLE}]{,  }\item[{LOG\+\_\+\+LEVEL\+\_\+\+INF}]{ }\end{DoxyParamCaption})}
-
 
 
 \doxysubsection{Variable Documentation}

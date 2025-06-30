@@ -1,3 +1,14 @@
+/**
+ * @file sensor_data.c
+ * @author Tyler Garcia
+ * @brief This is a library to keep track of sensor data, using the sensor_reading library to collect 
+ * data from the sensors. This library will also handle the data storage and retrieval.
+ * @version 0.1
+ * @date 2025-05-14
+ * 
+ * @copyright Copyright (c) 2025
+ * 
+ */
 
 #include "sensor_data.h"
 #include "sensor_power.h"

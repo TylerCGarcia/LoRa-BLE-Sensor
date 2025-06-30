@@ -1,3 +1,14 @@
+/**
+ * @file sensor_pmic.c
+ * @author Tyler Garcia
+ * @brief This is a library to keep track of the PMIC and its configuration.
+ * @version 0.1
+ * @date 2025-06-16
+ * 
+ * @copyright Copyright (c) 2025
+ * 
+ */
+
 #include "sensor_pmic.h"
 #include <zephyr/logging/log.h>
 #include <zephyr/drivers/led.h>

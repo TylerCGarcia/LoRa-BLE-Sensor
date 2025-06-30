@@ -1,159 +1,62 @@
 \doxysection{sensor\+\_\+app\+\_\+config\+\_\+t Struct Reference}
 \hypertarget{structsensor__app__config__t}{}\label{structsensor__app__config__t}\index{sensor\_app\_config\_t@{sensor\_app\_config\_t}}
-
-
-{\ttfamily \#include $<$sensor\+\_\+app.\+h$>$}
-
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-enum \mbox{\hyperlink{sensor__app_8h_a3ded0fb95123f62995b82d8ccfe33a43}{sensor\+\_\+app\+\_\+state}} \mbox{\hyperlink{structsensor__app__config__t_a2d65589f2c98ec7bf7c4defa468b6d8f}{state}}
-\item 
-uint8\+\_\+t \mbox{\hyperlink{structsensor__app__config__t_aa16b29b7015e3f1a4353938b71a09742}{connect\+\_\+network\+\_\+during\+\_\+configuration}}
-\item 
-enum \mbox{\hyperlink{sensor__id_8h_ad7b3bc5128f463a9f210147ad5c043be}{sensor\+\_\+types}} \mbox{\hyperlink{structsensor__app__config__t_ad2f608e0180a0127edbccea9cb4f8bde}{sensor\+\_\+1\+\_\+type}}
-\item 
-char \mbox{\hyperlink{structsensor__app__config__t_aec6864936393bc0d7f59d7fc555092b6}{sensor\+\_\+1\+\_\+type\+\_\+name}} \mbox{[}\mbox{\hyperlink{sensor__app_8h_a1b70e27acec5f3fad115276c378fe481}{SENSOR\+\_\+\+TYPE\+\_\+\+NAME\+\_\+\+LENGTH}}\mbox{]}
-\item 
-enum \mbox{\hyperlink{sensor__id_8h_ad7b3bc5128f463a9f210147ad5c043be}{sensor\+\_\+types}} \mbox{\hyperlink{structsensor__app__config__t_ad31a5fe2d29870ba0d1aa510bffae327}{sensor\+\_\+2\+\_\+type}}
-\item 
-char \mbox{\hyperlink{structsensor__app__config__t_a71a3483ffdd95c616d2009ffcb268f2a}{sensor\+\_\+2\+\_\+type\+\_\+name}} \mbox{[}\mbox{\hyperlink{sensor__app_8h_a1b70e27acec5f3fad115276c378fe481}{SENSOR\+\_\+\+TYPE\+\_\+\+NAME\+\_\+\+LENGTH}}\mbox{]}
-\item 
-enum \mbox{\hyperlink{sensor__id_8h_adef9477a37671049d57edb26e6a37746}{sensor\+\_\+voltage}} \mbox{\hyperlink{structsensor__app__config__t_a41bee31e64c8ca7bc8d9c351de0a7732}{sensor\+\_\+1\+\_\+voltage}}
-\item 
-char \mbox{\hyperlink{structsensor__app__config__t_ae76b43468244084f46a1de1c29198a59}{sensor\+\_\+1\+\_\+voltage\+\_\+name}} \mbox{[}\mbox{\hyperlink{sensor__app_8h_a4cdd0af44f5c2b29503979d86bf45fbf}{SENSOR\+\_\+\+VOLTAGE\+\_\+\+NAME\+\_\+\+LENGTH}}\mbox{]}
-\item 
-enum \mbox{\hyperlink{sensor__id_8h_adef9477a37671049d57edb26e6a37746}{sensor\+\_\+voltage}} \mbox{\hyperlink{structsensor__app__config__t_a5c96e2d631c94fbff8ef7532602a0fb2}{sensor\+\_\+2\+\_\+voltage}}
-\item 
-char \mbox{\hyperlink{structsensor__app__config__t_a629cbd03dd279a988b81c83c94306b43}{sensor\+\_\+2\+\_\+voltage\+\_\+name}} \mbox{[}\mbox{\hyperlink{sensor__app_8h_a4cdd0af44f5c2b29503979d86bf45fbf}{SENSOR\+\_\+\+VOLTAGE\+\_\+\+NAME\+\_\+\+LENGTH}}\mbox{]}
-\item 
-uint8\+\_\+t \mbox{\hyperlink{structsensor__app__config__t_a4b87c63e61d3c430bc04b720f3d0c47d}{is\+\_\+sensor\+\_\+1\+\_\+enabled}}
-\item 
-uint8\+\_\+t \mbox{\hyperlink{structsensor__app__config__t_a85ee9b1f2e0425c8331ed3c2ef9e7092}{is\+\_\+sensor\+\_\+2\+\_\+enabled}}
-\item 
-uint8\+\_\+t \mbox{\hyperlink{structsensor__app__config__t_a11d6d9c1722c56f527fe20a6d43441fe}{sensor\+\_\+1\+\_\+frequency}}
-\item 
-uint8\+\_\+t \mbox{\hyperlink{structsensor__app__config__t_a78fd5aea6bdf8303364771280e48131d}{sensor\+\_\+2\+\_\+frequency}}
-\item 
-uint8\+\_\+t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsensor__app__config__t_aef66e676db081e59e58024f339777bdc}{sensor\+\_\+1\+\_\+latest\+\_\+data}}
-\item 
-uint32\+\_\+t \mbox{\hyperlink{structsensor__app__config__t_aadb9be45228df06d019aca1a9119516d}{sensor\+\_\+1\+\_\+latest\+\_\+data\+\_\+timestamp}}
-\item 
-uint8\+\_\+t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsensor__app__config__t_a7f2bb1ef0a6d20e2584ea09fb2108c22}{sensor\+\_\+2\+\_\+latest\+\_\+data}}
-\item 
-uint32\+\_\+t \mbox{\hyperlink{structsensor__app__config__t_aa3523c99bc11b7a688db43b9ccad1bcf}{sensor\+\_\+2\+\_\+latest\+\_\+data\+\_\+timestamp}}
-\end{DoxyCompactItemize}
-
-
-\doxysubsection{Member Data Documentation}
-\Hypertarget{structsensor__app__config__t_aa16b29b7015e3f1a4353938b71a09742}\label{structsensor__app__config__t_aa16b29b7015e3f1a4353938b71a09742} 
-\index{sensor\_app\_config\_t@{sensor\_app\_config\_t}!connect\_network\_during\_configuration@{connect\_network\_during\_configuration}}
-\index{connect\_network\_during\_configuration@{connect\_network\_during\_configuration}!sensor\_app\_config\_t@{sensor\_app\_config\_t}}
-\doxysubsubsection{\texorpdfstring{connect\_network\_during\_configuration}{connect\_network\_during\_configuration}}
-{\footnotesize\ttfamily uint8\+\_\+t sensor\+\_\+app\+\_\+config\+\_\+t\+::connect\+\_\+network\+\_\+during\+\_\+configuration}
-
-\Hypertarget{structsensor__app__config__t_a4b87c63e61d3c430bc04b720f3d0c47d}\label{structsensor__app__config__t_a4b87c63e61d3c430bc04b720f3d0c47d} 
-\index{sensor\_app\_config\_t@{sensor\_app\_config\_t}!is\_sensor\_1\_enabled@{is\_sensor\_1\_enabled}}
-\index{is\_sensor\_1\_enabled@{is\_sensor\_1\_enabled}!sensor\_app\_config\_t@{sensor\_app\_config\_t}}
-\doxysubsubsection{\texorpdfstring{is\_sensor\_1\_enabled}{is\_sensor\_1\_enabled}}
-{\footnotesize\ttfamily uint8\+\_\+t sensor\+\_\+app\+\_\+config\+\_\+t\+::is\+\_\+sensor\+\_\+1\+\_\+enabled}
-
-\Hypertarget{structsensor__app__config__t_a85ee9b1f2e0425c8331ed3c2ef9e7092}\label{structsensor__app__config__t_a85ee9b1f2e0425c8331ed3c2ef9e7092} 
-\index{sensor\_app\_config\_t@{sensor\_app\_config\_t}!is\_sensor\_2\_enabled@{is\_sensor\_2\_enabled}}
-\index{is\_sensor\_2\_enabled@{is\_sensor\_2\_enabled}!sensor\_app\_config\_t@{sensor\_app\_config\_t}}
-\doxysubsubsection{\texorpdfstring{is\_sensor\_2\_enabled}{is\_sensor\_2\_enabled}}
-{\footnotesize\ttfamily uint8\+\_\+t sensor\+\_\+app\+\_\+config\+\_\+t\+::is\+\_\+sensor\+\_\+2\+\_\+enabled}
-
-\Hypertarget{structsensor__app__config__t_a11d6d9c1722c56f527fe20a6d43441fe}\label{structsensor__app__config__t_a11d6d9c1722c56f527fe20a6d43441fe} 
-\index{sensor\_app\_config\_t@{sensor\_app\_config\_t}!sensor\_1\_frequency@{sensor\_1\_frequency}}
-\index{sensor\_1\_frequency@{sensor\_1\_frequency}!sensor\_app\_config\_t@{sensor\_app\_config\_t}}
-\doxysubsubsection{\texorpdfstring{sensor\_1\_frequency}{sensor\_1\_frequency}}
-{\footnotesize\ttfamily uint8\+\_\+t sensor\+\_\+app\+\_\+config\+\_\+t\+::sensor\+\_\+1\+\_\+frequency}
-
-\Hypertarget{structsensor__app__config__t_aef66e676db081e59e58024f339777bdc}\label{structsensor__app__config__t_aef66e676db081e59e58024f339777bdc} 
-\index{sensor\_app\_config\_t@{sensor\_app\_config\_t}!sensor\_1\_latest\_data@{sensor\_1\_latest\_data}}
-\index{sensor\_1\_latest\_data@{sensor\_1\_latest\_data}!sensor\_app\_config\_t@{sensor\_app\_config\_t}}
-\doxysubsubsection{\texorpdfstring{sensor\_1\_latest\_data}{sensor\_1\_latest\_data}}
-{\footnotesize\ttfamily uint8\+\_\+t\texorpdfstring{$\ast$}{*} sensor\+\_\+app\+\_\+config\+\_\+t\+::sensor\+\_\+1\+\_\+latest\+\_\+data}
-
-\Hypertarget{structsensor__app__config__t_aadb9be45228df06d019aca1a9119516d}\label{structsensor__app__config__t_aadb9be45228df06d019aca1a9119516d} 
-\index{sensor\_app\_config\_t@{sensor\_app\_config\_t}!sensor\_1\_latest\_data\_timestamp@{sensor\_1\_latest\_data\_timestamp}}
-\index{sensor\_1\_latest\_data\_timestamp@{sensor\_1\_latest\_data\_timestamp}!sensor\_app\_config\_t@{sensor\_app\_config\_t}}
-\doxysubsubsection{\texorpdfstring{sensor\_1\_latest\_data\_timestamp}{sensor\_1\_latest\_data\_timestamp}}
-{\footnotesize\ttfamily uint32\+\_\+t sensor\+\_\+app\+\_\+config\+\_\+t\+::sensor\+\_\+1\+\_\+latest\+\_\+data\+\_\+timestamp}
-
-\Hypertarget{structsensor__app__config__t_ad2f608e0180a0127edbccea9cb4f8bde}\label{structsensor__app__config__t_ad2f608e0180a0127edbccea9cb4f8bde} 
-\index{sensor\_app\_config\_t@{sensor\_app\_config\_t}!sensor\_1\_type@{sensor\_1\_type}}
-\index{sensor\_1\_type@{sensor\_1\_type}!sensor\_app\_config\_t@{sensor\_app\_config\_t}}
-\doxysubsubsection{\texorpdfstring{sensor\_1\_type}{sensor\_1\_type}}
-{\footnotesize\ttfamily enum \mbox{\hyperlink{sensor__id_8h_ad7b3bc5128f463a9f210147ad5c043be}{sensor\+\_\+types}} sensor\+\_\+app\+\_\+config\+\_\+t\+::sensor\+\_\+1\+\_\+type}
-
-\Hypertarget{structsensor__app__config__t_aec6864936393bc0d7f59d7fc555092b6}\label{structsensor__app__config__t_aec6864936393bc0d7f59d7fc555092b6} 
-\index{sensor\_app\_config\_t@{sensor\_app\_config\_t}!sensor\_1\_type\_name@{sensor\_1\_type\_name}}
-\index{sensor\_1\_type\_name@{sensor\_1\_type\_name}!sensor\_app\_config\_t@{sensor\_app\_config\_t}}
-\doxysubsubsection{\texorpdfstring{sensor\_1\_type\_name}{sensor\_1\_type\_name}}
-{\footnotesize\ttfamily char sensor\+\_\+app\+\_\+config\+\_\+t\+::sensor\+\_\+1\+\_\+type\+\_\+name\mbox{[}\mbox{\hyperlink{sensor__app_8h_a1b70e27acec5f3fad115276c378fe481}{SENSOR\+\_\+\+TYPE\+\_\+\+NAME\+\_\+\+LENGTH}}\mbox{]}}
-
-\Hypertarget{structsensor__app__config__t_a41bee31e64c8ca7bc8d9c351de0a7732}\label{structsensor__app__config__t_a41bee31e64c8ca7bc8d9c351de0a7732} 
-\index{sensor\_app\_config\_t@{sensor\_app\_config\_t}!sensor\_1\_voltage@{sensor\_1\_voltage}}
-\index{sensor\_1\_voltage@{sensor\_1\_voltage}!sensor\_app\_config\_t@{sensor\_app\_config\_t}}
-\doxysubsubsection{\texorpdfstring{sensor\_1\_voltage}{sensor\_1\_voltage}}
-{\footnotesize\ttfamily enum \mbox{\hyperlink{sensor__id_8h_adef9477a37671049d57edb26e6a37746}{sensor\+\_\+voltage}} sensor\+\_\+app\+\_\+config\+\_\+t\+::sensor\+\_\+1\+\_\+voltage}
-
-\Hypertarget{structsensor__app__config__t_ae76b43468244084f46a1de1c29198a59}\label{structsensor__app__config__t_ae76b43468244084f46a1de1c29198a59} 
-\index{sensor\_app\_config\_t@{sensor\_app\_config\_t}!sensor\_1\_voltage\_name@{sensor\_1\_voltage\_name}}
-\index{sensor\_1\_voltage\_name@{sensor\_1\_voltage\_name}!sensor\_app\_config\_t@{sensor\_app\_config\_t}}
-\doxysubsubsection{\texorpdfstring{sensor\_1\_voltage\_name}{sensor\_1\_voltage\_name}}
-{\footnotesize\ttfamily char sensor\+\_\+app\+\_\+config\+\_\+t\+::sensor\+\_\+1\+\_\+voltage\+\_\+name\mbox{[}\mbox{\hyperlink{sensor__app_8h_a4cdd0af44f5c2b29503979d86bf45fbf}{SENSOR\+\_\+\+VOLTAGE\+\_\+\+NAME\+\_\+\+LENGTH}}\mbox{]}}
-
-\Hypertarget{structsensor__app__config__t_a78fd5aea6bdf8303364771280e48131d}\label{structsensor__app__config__t_a78fd5aea6bdf8303364771280e48131d} 
-\index{sensor\_app\_config\_t@{sensor\_app\_config\_t}!sensor\_2\_frequency@{sensor\_2\_frequency}}
-\index{sensor\_2\_frequency@{sensor\_2\_frequency}!sensor\_app\_config\_t@{sensor\_app\_config\_t}}
-\doxysubsubsection{\texorpdfstring{sensor\_2\_frequency}{sensor\_2\_frequency}}
-{\footnotesize\ttfamily uint8\+\_\+t sensor\+\_\+app\+\_\+config\+\_\+t\+::sensor\+\_\+2\+\_\+frequency}
-
-\Hypertarget{structsensor__app__config__t_a7f2bb1ef0a6d20e2584ea09fb2108c22}\label{structsensor__app__config__t_a7f2bb1ef0a6d20e2584ea09fb2108c22} 
-\index{sensor\_app\_config\_t@{sensor\_app\_config\_t}!sensor\_2\_latest\_data@{sensor\_2\_latest\_data}}
-\index{sensor\_2\_latest\_data@{sensor\_2\_latest\_data}!sensor\_app\_config\_t@{sensor\_app\_config\_t}}
-\doxysubsubsection{\texorpdfstring{sensor\_2\_latest\_data}{sensor\_2\_latest\_data}}
-{\footnotesize\ttfamily uint8\+\_\+t\texorpdfstring{$\ast$}{*} sensor\+\_\+app\+\_\+config\+\_\+t\+::sensor\+\_\+2\+\_\+latest\+\_\+data}
-
-\Hypertarget{structsensor__app__config__t_aa3523c99bc11b7a688db43b9ccad1bcf}\label{structsensor__app__config__t_aa3523c99bc11b7a688db43b9ccad1bcf} 
-\index{sensor\_app\_config\_t@{sensor\_app\_config\_t}!sensor\_2\_latest\_data\_timestamp@{sensor\_2\_latest\_data\_timestamp}}
-\index{sensor\_2\_latest\_data\_timestamp@{sensor\_2\_latest\_data\_timestamp}!sensor\_app\_config\_t@{sensor\_app\_config\_t}}
-\doxysubsubsection{\texorpdfstring{sensor\_2\_latest\_data\_timestamp}{sensor\_2\_latest\_data\_timestamp}}
-{\footnotesize\ttfamily uint32\+\_\+t sensor\+\_\+app\+\_\+config\+\_\+t\+::sensor\+\_\+2\+\_\+latest\+\_\+data\+\_\+timestamp}
-
-\Hypertarget{structsensor__app__config__t_ad31a5fe2d29870ba0d1aa510bffae327}\label{structsensor__app__config__t_ad31a5fe2d29870ba0d1aa510bffae327} 
-\index{sensor\_app\_config\_t@{sensor\_app\_config\_t}!sensor\_2\_type@{sensor\_2\_type}}
-\index{sensor\_2\_type@{sensor\_2\_type}!sensor\_app\_config\_t@{sensor\_app\_config\_t}}
-\doxysubsubsection{\texorpdfstring{sensor\_2\_type}{sensor\_2\_type}}
-{\footnotesize\ttfamily enum \mbox{\hyperlink{sensor__id_8h_ad7b3bc5128f463a9f210147ad5c043be}{sensor\+\_\+types}} sensor\+\_\+app\+\_\+config\+\_\+t\+::sensor\+\_\+2\+\_\+type}
-
-\Hypertarget{structsensor__app__config__t_a71a3483ffdd95c616d2009ffcb268f2a}\label{structsensor__app__config__t_a71a3483ffdd95c616d2009ffcb268f2a} 
-\index{sensor\_app\_config\_t@{sensor\_app\_config\_t}!sensor\_2\_type\_name@{sensor\_2\_type\_name}}
-\index{sensor\_2\_type\_name@{sensor\_2\_type\_name}!sensor\_app\_config\_t@{sensor\_app\_config\_t}}
-\doxysubsubsection{\texorpdfstring{sensor\_2\_type\_name}{sensor\_2\_type\_name}}
-{\footnotesize\ttfamily char sensor\+\_\+app\+\_\+config\+\_\+t\+::sensor\+\_\+2\+\_\+type\+\_\+name\mbox{[}\mbox{\hyperlink{sensor__app_8h_a1b70e27acec5f3fad115276c378fe481}{SENSOR\+\_\+\+TYPE\+\_\+\+NAME\+\_\+\+LENGTH}}\mbox{]}}
-
-\Hypertarget{structsensor__app__config__t_a5c96e2d631c94fbff8ef7532602a0fb2}\label{structsensor__app__config__t_a5c96e2d631c94fbff8ef7532602a0fb2} 
-\index{sensor\_app\_config\_t@{sensor\_app\_config\_t}!sensor\_2\_voltage@{sensor\_2\_voltage}}
-\index{sensor\_2\_voltage@{sensor\_2\_voltage}!sensor\_app\_config\_t@{sensor\_app\_config\_t}}
-\doxysubsubsection{\texorpdfstring{sensor\_2\_voltage}{sensor\_2\_voltage}}
-{\footnotesize\ttfamily enum \mbox{\hyperlink{sensor__id_8h_adef9477a37671049d57edb26e6a37746}{sensor\+\_\+voltage}} sensor\+\_\+app\+\_\+config\+\_\+t\+::sensor\+\_\+2\+\_\+voltage}
-
-\Hypertarget{structsensor__app__config__t_a629cbd03dd279a988b81c83c94306b43}\label{structsensor__app__config__t_a629cbd03dd279a988b81c83c94306b43} 
-\index{sensor\_app\_config\_t@{sensor\_app\_config\_t}!sensor\_2\_voltage\_name@{sensor\_2\_voltage\_name}}
-\index{sensor\_2\_voltage\_name@{sensor\_2\_voltage\_name}!sensor\_app\_config\_t@{sensor\_app\_config\_t}}
-\doxysubsubsection{\texorpdfstring{sensor\_2\_voltage\_name}{sensor\_2\_voltage\_name}}
-{\footnotesize\ttfamily char sensor\+\_\+app\+\_\+config\+\_\+t\+::sensor\+\_\+2\+\_\+voltage\+\_\+name\mbox{[}\mbox{\hyperlink{sensor__app_8h_a4cdd0af44f5c2b29503979d86bf45fbf}{SENSOR\+\_\+\+VOLTAGE\+\_\+\+NAME\+\_\+\+LENGTH}}\mbox{]}}
-
 \Hypertarget{structsensor__app__config__t_a2d65589f2c98ec7bf7c4defa468b6d8f}\label{structsensor__app__config__t_a2d65589f2c98ec7bf7c4defa468b6d8f} 
-\index{sensor\_app\_config\_t@{sensor\_app\_config\_t}!state@{state}}
-\index{state@{state}!sensor\_app\_config\_t@{sensor\_app\_config\_t}}
-\doxysubsubsection{\texorpdfstring{state}{state}}
-{\footnotesize\ttfamily enum \mbox{\hyperlink{sensor__app_8h_a3ded0fb95123f62995b82d8ccfe33a43}{sensor\+\_\+app\+\_\+state}} sensor\+\_\+app\+\_\+config\+\_\+t\+::state}
-
+enum sensor\+\_\+app\+\_\+state {\bfseries state}
+\item 
+\Hypertarget{structsensor__app__config__t_aa16b29b7015e3f1a4353938b71a09742}\label{structsensor__app__config__t_aa16b29b7015e3f1a4353938b71a09742} 
+uint8\+\_\+t {\bfseries connect\+\_\+network\+\_\+during\+\_\+configuration}
+\item 
+\Hypertarget{structsensor__app__config__t_ad2f608e0180a0127edbccea9cb4f8bde}\label{structsensor__app__config__t_ad2f608e0180a0127edbccea9cb4f8bde} 
+enum \mbox{\hyperlink{sensor__id_8h_ad7b3bc5128f463a9f210147ad5c043be}{sensor\+\_\+types}} {\bfseries sensor\+\_\+1\+\_\+type}
+\item 
+\Hypertarget{structsensor__app__config__t_aec6864936393bc0d7f59d7fc555092b6}\label{structsensor__app__config__t_aec6864936393bc0d7f59d7fc555092b6} 
+char {\bfseries sensor\+\_\+1\+\_\+type\+\_\+name} \mbox{[}SENSOR\+\_\+\+TYPE\+\_\+\+NAME\+\_\+\+LENGTH\mbox{]}
+\item 
+\Hypertarget{structsensor__app__config__t_ad31a5fe2d29870ba0d1aa510bffae327}\label{structsensor__app__config__t_ad31a5fe2d29870ba0d1aa510bffae327} 
+enum \mbox{\hyperlink{sensor__id_8h_ad7b3bc5128f463a9f210147ad5c043be}{sensor\+\_\+types}} {\bfseries sensor\+\_\+2\+\_\+type}
+\item 
+\Hypertarget{structsensor__app__config__t_a71a3483ffdd95c616d2009ffcb268f2a}\label{structsensor__app__config__t_a71a3483ffdd95c616d2009ffcb268f2a} 
+char {\bfseries sensor\+\_\+2\+\_\+type\+\_\+name} \mbox{[}SENSOR\+\_\+\+TYPE\+\_\+\+NAME\+\_\+\+LENGTH\mbox{]}
+\item 
+\Hypertarget{structsensor__app__config__t_a41bee31e64c8ca7bc8d9c351de0a7732}\label{structsensor__app__config__t_a41bee31e64c8ca7bc8d9c351de0a7732} 
+enum \mbox{\hyperlink{sensor__id_8h_adef9477a37671049d57edb26e6a37746}{sensor\+\_\+voltage}} {\bfseries sensor\+\_\+1\+\_\+voltage}
+\item 
+\Hypertarget{structsensor__app__config__t_ae76b43468244084f46a1de1c29198a59}\label{structsensor__app__config__t_ae76b43468244084f46a1de1c29198a59} 
+char {\bfseries sensor\+\_\+1\+\_\+voltage\+\_\+name} \mbox{[}SENSOR\+\_\+\+VOLTAGE\+\_\+\+NAME\+\_\+\+LENGTH\mbox{]}
+\item 
+\Hypertarget{structsensor__app__config__t_a5c96e2d631c94fbff8ef7532602a0fb2}\label{structsensor__app__config__t_a5c96e2d631c94fbff8ef7532602a0fb2} 
+enum \mbox{\hyperlink{sensor__id_8h_adef9477a37671049d57edb26e6a37746}{sensor\+\_\+voltage}} {\bfseries sensor\+\_\+2\+\_\+voltage}
+\item 
+\Hypertarget{structsensor__app__config__t_a629cbd03dd279a988b81c83c94306b43}\label{structsensor__app__config__t_a629cbd03dd279a988b81c83c94306b43} 
+char {\bfseries sensor\+\_\+2\+\_\+voltage\+\_\+name} \mbox{[}SENSOR\+\_\+\+VOLTAGE\+\_\+\+NAME\+\_\+\+LENGTH\mbox{]}
+\item 
+\Hypertarget{structsensor__app__config__t_a4b87c63e61d3c430bc04b720f3d0c47d}\label{structsensor__app__config__t_a4b87c63e61d3c430bc04b720f3d0c47d} 
+uint8\+\_\+t {\bfseries is\+\_\+sensor\+\_\+1\+\_\+enabled}
+\item 
+\Hypertarget{structsensor__app__config__t_a85ee9b1f2e0425c8331ed3c2ef9e7092}\label{structsensor__app__config__t_a85ee9b1f2e0425c8331ed3c2ef9e7092} 
+uint8\+\_\+t {\bfseries is\+\_\+sensor\+\_\+2\+\_\+enabled}
+\item 
+\Hypertarget{structsensor__app__config__t_a11d6d9c1722c56f527fe20a6d43441fe}\label{structsensor__app__config__t_a11d6d9c1722c56f527fe20a6d43441fe} 
+uint8\+\_\+t {\bfseries sensor\+\_\+1\+\_\+frequency}
+\item 
+\Hypertarget{structsensor__app__config__t_a78fd5aea6bdf8303364771280e48131d}\label{structsensor__app__config__t_a78fd5aea6bdf8303364771280e48131d} 
+uint8\+\_\+t {\bfseries sensor\+\_\+2\+\_\+frequency}
+\item 
+\Hypertarget{structsensor__app__config__t_aef66e676db081e59e58024f339777bdc}\label{structsensor__app__config__t_aef66e676db081e59e58024f339777bdc} 
+uint8\+\_\+t \texorpdfstring{$\ast$}{*} {\bfseries sensor\+\_\+1\+\_\+latest\+\_\+data}
+\item 
+\Hypertarget{structsensor__app__config__t_aadb9be45228df06d019aca1a9119516d}\label{structsensor__app__config__t_aadb9be45228df06d019aca1a9119516d} 
+uint32\+\_\+t {\bfseries sensor\+\_\+1\+\_\+latest\+\_\+data\+\_\+timestamp}
+\item 
+\Hypertarget{structsensor__app__config__t_a7f2bb1ef0a6d20e2584ea09fb2108c22}\label{structsensor__app__config__t_a7f2bb1ef0a6d20e2584ea09fb2108c22} 
+uint8\+\_\+t \texorpdfstring{$\ast$}{*} {\bfseries sensor\+\_\+2\+\_\+latest\+\_\+data}
+\item 
+\Hypertarget{structsensor__app__config__t_aa3523c99bc11b7a688db43b9ccad1bcf}\label{structsensor__app__config__t_aa3523c99bc11b7a688db43b9ccad1bcf} 
+uint32\+\_\+t {\bfseries sensor\+\_\+2\+\_\+latest\+\_\+data\+\_\+timestamp}
+\end{DoxyCompactItemize}
 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}

@@ -1,5 +1,10 @@
 \doxysection{app/src/sensor\+\_\+nvs.c File Reference}
 \hypertarget{sensor__nvs_8c}{}\label{sensor__nvs_8c}\index{app/src/sensor\_nvs.c@{app/src/sensor\_nvs.c}}
+
+
+This is a library to keep track of sensor information and configurations that are stored in the non-\/volatile storage (NVS) of the device. nrf52840\+\_\+partition gives 32KB for storage\+\_\+partition.  
+
+
 {\ttfamily \#include "{}sensor\+\_\+nvs.\+h"{}}\newline
 {\ttfamily \#include $<$zephyr/fs/nvs.\+h$>$}\newline
 {\ttfamily \#include $<$zephyr/logging/log.\+h$>$}\newline
@@ -16,16 +21,20 @@ Include dependency graph for sensor\+\_\+nvs.\+c\+:
 \doxysubsubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\#define \mbox{\hyperlink{sensor__nvs_8c_af729ab27c6be48ab7a2fa0d9779ed594}{NVS\+\_\+\+PARTITION}}~storage\+\_\+partition
+\Hypertarget{sensor__nvs_8c_af729ab27c6be48ab7a2fa0d9779ed594}\label{sensor__nvs_8c_af729ab27c6be48ab7a2fa0d9779ed594} 
+\#define {\bfseries NVS\+\_\+\+PARTITION}~storage\+\_\+partition
 \item 
-\#define \mbox{\hyperlink{sensor__nvs_8c_ab3dce2e576a700556320e93eb373ed73}{NVS\+\_\+\+PARTITION\+\_\+\+DEVICE}}~FIXED\+\_\+\+PARTITION\+\_\+\+DEVICE(\mbox{\hyperlink{sensor__nvs_8c_af729ab27c6be48ab7a2fa0d9779ed594}{NVS\+\_\+\+PARTITION}})
+\Hypertarget{sensor__nvs_8c_ab3dce2e576a700556320e93eb373ed73}\label{sensor__nvs_8c_ab3dce2e576a700556320e93eb373ed73} 
+\#define {\bfseries NVS\+\_\+\+PARTITION\+\_\+\+DEVICE}~FIXED\+\_\+\+PARTITION\+\_\+\+DEVICE(NVS\+\_\+\+PARTITION)
 \item 
-\#define \mbox{\hyperlink{sensor__nvs_8c_a9d2e807fcd3e49aaf4c40d17a203dc01}{NVS\+\_\+\+PARTITION\+\_\+\+OFFSET}}~FIXED\+\_\+\+PARTITION\+\_\+\+OFFSET(\mbox{\hyperlink{sensor__nvs_8c_af729ab27c6be48ab7a2fa0d9779ed594}{NVS\+\_\+\+PARTITION}})
+\Hypertarget{sensor__nvs_8c_a9d2e807fcd3e49aaf4c40d17a203dc01}\label{sensor__nvs_8c_a9d2e807fcd3e49aaf4c40d17a203dc01} 
+\#define {\bfseries NVS\+\_\+\+PARTITION\+\_\+\+OFFSET}~FIXED\+\_\+\+PARTITION\+\_\+\+OFFSET(NVS\+\_\+\+PARTITION)
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{sensor__nvs_8c_a8b0c454d609035825f8309a7feb15500}{LOG\+\_\+\+MODULE\+\_\+\+REGISTER}} (SENSOR\+\_\+\+NVS, LOG\+\_\+\+LEVEL\+\_\+\+INF)
+\Hypertarget{sensor__nvs_8c_a8b0c454d609035825f8309a7feb15500}\label{sensor__nvs_8c_a8b0c454d609035825f8309a7feb15500} 
+{\bfseries LOG\+\_\+\+MODULE\+\_\+\+REGISTER} (SENSOR\+\_\+\+NVS, LOG\+\_\+\+LEVEL\+\_\+\+INF)
 \item 
 int \mbox{\hyperlink{sensor__nvs_8c_acd3b35314828749fb2850c5b507be010}{sensor\+\_\+nvs\+\_\+setup}} (uint8\+\_\+t nvs\+\_\+address\+\_\+count)
 \begin{DoxyCompactList}\small\item\em Setup NVS for use. An enum list of addresses should be defined in application code, with the maximum number of addresses being defined. This must be called before any other NVS functions. This mounts the NVS partition and initializes it. The nvs\+\_\+address\+\_\+count will be used to know when the address is out of bounds. \end{DoxyCompactList}\item 
@@ -39,34 +48,24 @@ int \mbox{\hyperlink{sensor__nvs_8c_a82eb1f53f08c01bc99029213a6203dc3}{sensor\+\
 \begin{DoxyCompactList}\small\item\em Clear all data from NVS. NVS must be setup again after clearing. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\doxysubsection{Macro Definition Documentation}
-\Hypertarget{sensor__nvs_8c_af729ab27c6be48ab7a2fa0d9779ed594}\label{sensor__nvs_8c_af729ab27c6be48ab7a2fa0d9779ed594} 
-\index{sensor\_nvs.c@{sensor\_nvs.c}!NVS\_PARTITION@{NVS\_PARTITION}}
-\index{NVS\_PARTITION@{NVS\_PARTITION}!sensor\_nvs.c@{sensor\_nvs.c}}
-\doxysubsubsection{\texorpdfstring{NVS\_PARTITION}{NVS\_PARTITION}}
-{\footnotesize\ttfamily \#define NVS\+\_\+\+PARTITION~storage\+\_\+partition}
+\doxysubsection{Detailed Description}
+This is a library to keep track of sensor information and configurations that are stored in the non-\/volatile storage (NVS) of the device. nrf52840\+\_\+partition gives 32KB for storage\+\_\+partition. 
 
-\Hypertarget{sensor__nvs_8c_ab3dce2e576a700556320e93eb373ed73}\label{sensor__nvs_8c_ab3dce2e576a700556320e93eb373ed73} 
-\index{sensor\_nvs.c@{sensor\_nvs.c}!NVS\_PARTITION\_DEVICE@{NVS\_PARTITION\_DEVICE}}
-\index{NVS\_PARTITION\_DEVICE@{NVS\_PARTITION\_DEVICE}!sensor\_nvs.c@{sensor\_nvs.c}}
-\doxysubsubsection{\texorpdfstring{NVS\_PARTITION\_DEVICE}{NVS\_PARTITION\_DEVICE}}
-{\footnotesize\ttfamily \#define NVS\+\_\+\+PARTITION\+\_\+\+DEVICE~FIXED\+\_\+\+PARTITION\+\_\+\+DEVICE(\mbox{\hyperlink{sensor__nvs_8c_af729ab27c6be48ab7a2fa0d9779ed594}{NVS\+\_\+\+PARTITION}})}
-
-\Hypertarget{sensor__nvs_8c_a9d2e807fcd3e49aaf4c40d17a203dc01}\label{sensor__nvs_8c_a9d2e807fcd3e49aaf4c40d17a203dc01} 
-\index{sensor\_nvs.c@{sensor\_nvs.c}!NVS\_PARTITION\_OFFSET@{NVS\_PARTITION\_OFFSET}}
-\index{NVS\_PARTITION\_OFFSET@{NVS\_PARTITION\_OFFSET}!sensor\_nvs.c@{sensor\_nvs.c}}
-\doxysubsubsection{\texorpdfstring{NVS\_PARTITION\_OFFSET}{NVS\_PARTITION\_OFFSET}}
-{\footnotesize\ttfamily \#define NVS\+\_\+\+PARTITION\+\_\+\+OFFSET~FIXED\+\_\+\+PARTITION\+\_\+\+OFFSET(\mbox{\hyperlink{sensor__nvs_8c_af729ab27c6be48ab7a2fa0d9779ed594}{NVS\+\_\+\+PARTITION}})}
-
+\begin{DoxyAuthor}{Author}
+Tyler Garcia 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/05-\/08
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2025 
+\end{DoxyCopyright}
 
 
 \doxysubsection{Function Documentation}
-\Hypertarget{sensor__nvs_8c_a8b0c454d609035825f8309a7feb15500}\label{sensor__nvs_8c_a8b0c454d609035825f8309a7feb15500} 
-\index{sensor\_nvs.c@{sensor\_nvs.c}!LOG\_MODULE\_REGISTER@{LOG\_MODULE\_REGISTER}}
-\index{LOG\_MODULE\_REGISTER@{LOG\_MODULE\_REGISTER}!sensor\_nvs.c@{sensor\_nvs.c}}
-\doxysubsubsection{\texorpdfstring{LOG\_MODULE\_REGISTER()}{LOG\_MODULE\_REGISTER()}}
-{\footnotesize\ttfamily LOG\+\_\+\+MODULE\+\_\+\+REGISTER (\begin{DoxyParamCaption}\item[{SENSOR\+\_\+\+NVS}]{,  }\item[{LOG\+\_\+\+LEVEL\+\_\+\+INF}]{ }\end{DoxyParamCaption})}
-
 \Hypertarget{sensor__nvs_8c_a82eb1f53f08c01bc99029213a6203dc3}\label{sensor__nvs_8c_a82eb1f53f08c01bc99029213a6203dc3} 
 \index{sensor\_nvs.c@{sensor\_nvs.c}!sensor\_nvs\_clear@{sensor\_nvs\_clear}}
 \index{sensor\_nvs\_clear@{sensor\_nvs\_clear}!sensor\_nvs.c@{sensor\_nvs.c}}

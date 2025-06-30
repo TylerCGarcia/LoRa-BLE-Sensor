@@ -79,6 +79,9 @@ $(function() {
   <div class="headertitle"><div class="title">sensor_names.c File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>This is a library for sensor names, converting between strings and enum values to make configurations human readable.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;zephyr/logging/log.h&gt;</code><br />
 <code>#include &lt;zephyr/kernel.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="sensor__names_8h_source.html">sensor_names.h</a>&quot;</code><br />
@@ -87,7 +90,7 @@ Include dependency graph for sensor_names.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="sensor__names_8c__incl.png" border="0" usemap="#aapp_2src_2sensor__names_8c" alt=""/></div>
 <map name="aapp_2src_2sensor__names_8c" id="aapp_2src_2sensor__names_8c">
-<area shape="rect" title=" " alt="" coords="156,5,335,31"/>
+<area shape="rect" title="This is a library for sensor names, converting between strings and enum values to make configurations..." alt="" coords="156,5,335,31"/>
 <area shape="rect" title=" " alt="" coords="5,79,160,104"/>
 <area shape="poly" title=" " alt="" coords="220,33,123,75,121,71,218,28"/>
 <area shape="rect" title=" " alt="" coords="184,79,307,104"/>
@@ -101,7 +104,8 @@ Include dependency graph for sensor_names.c:</div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aa6290cee7bd96172af54143d17936e7a" id="r_aa6290cee7bd96172af54143d17936e7a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor__names_8c.html#aa6290cee7bd96172af54143d17936e7a">LOG_MODULE_REGISTER</a> (SENSOR_NAMES, LOG_LEVEL_INF)</td></tr>
+<tr class="memitem:aa6290cee7bd96172af54143d17936e7a" id="r_aa6290cee7bd96172af54143d17936e7a"><td class="memItemLeft" align="right" valign="top"><a id="aa6290cee7bd96172af54143d17936e7a" name="aa6290cee7bd96172af54143d17936e7a"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>LOG_MODULE_REGISTER</b> (SENSOR_NAMES, LOG_LEVEL_INF)</td></tr>
 <tr class="separator:aa6290cee7bd96172af54143d17936e7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af2d4bb2f892caf0646b08f52b6ab36e4" id="r_af2d4bb2f892caf0646b08f52b6ab36e4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor__names_8c.html#af2d4bb2f892caf0646b08f52b6ab36e4">get_sensor_voltage_name_from_index</a> (char *voltage_name, enum <a class="el" href="sensor__id_8h.html#adef9477a37671049d57edb26e6a37746">sensor_voltage</a> voltage)</td></tr>
 <tr class="memdesc:af2d4bb2f892caf0646b08f52b6ab36e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name for the selected sensor voltage.  <br /></td></tr>
@@ -109,11 +113,13 @@ Functions</h2></td></tr>
 <tr class="memitem:a004c3fc8f6dfb80531b44482e95cd692" id="r_a004c3fc8f6dfb80531b44482e95cd692"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor__names_8c.html#a004c3fc8f6dfb80531b44482e95cd692">get_sensor_voltage_index_from_name</a> (char *voltage_name)</td></tr>
 <tr class="memdesc:a004c3fc8f6dfb80531b44482e95cd692"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the index for the selected sensor voltage.  <br /></td></tr>
 <tr class="separator:a004c3fc8f6dfb80531b44482e95cd692"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a38e065cdd19b87fca95f43793267185a" id="r_a38e065cdd19b87fca95f43793267185a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor__names_8c.html#a38e065cdd19b87fca95f43793267185a">get_sensor_type_name_from_index</a> (char *sensor_type_name, enum <a class="el" href="sensor__id_8h.html#ad7b3bc5128f463a9f210147ad5c043be">sensor_types</a> sensor_type)</td></tr>
-<tr class="memdesc:a38e065cdd19b87fca95f43793267185a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name for the selected sensor type.  <br /></td></tr>
+<tr class="memitem:a38e065cdd19b87fca95f43793267185a" id="r_a38e065cdd19b87fca95f43793267185a"><td class="memItemLeft" align="right" valign="top"><a id="a38e065cdd19b87fca95f43793267185a" name="a38e065cdd19b87fca95f43793267185a"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>get_sensor_type_name_from_index</b> (char *sensor_type_name, enum <a class="el" href="sensor__id_8h.html#ad7b3bc5128f463a9f210147ad5c043be">sensor_types</a> sensor_type)</td></tr>
+<tr class="memdesc:a38e065cdd19b87fca95f43793267185a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name for the selected sensor type. <br /></td></tr>
 <tr class="separator:a38e065cdd19b87fca95f43793267185a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9fb3fb527b22ae291ba6c3eb703d5d67" id="r_a9fb3fb527b22ae291ba6c3eb703d5d67"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor__names_8c.html#a9fb3fb527b22ae291ba6c3eb703d5d67">get_sensor_type_index_from_name</a> (char *sensor_type_name)</td></tr>
-<tr class="memdesc:a9fb3fb527b22ae291ba6c3eb703d5d67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the index for the selected sensor type.  <br /></td></tr>
+<tr class="memitem:a9fb3fb527b22ae291ba6c3eb703d5d67" id="r_a9fb3fb527b22ae291ba6c3eb703d5d67"><td class="memItemLeft" align="right" valign="top"><a id="a9fb3fb527b22ae291ba6c3eb703d5d67" name="a9fb3fb527b22ae291ba6c3eb703d5d67"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>get_sensor_type_index_from_name</b> (char *sensor_type_name)</td></tr>
+<tr class="memdesc:a9fb3fb527b22ae291ba6c3eb703d5d67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the index for the selected sensor type. <br /></td></tr>
 <tr class="separator:a9fb3fb527b22ae291ba6c3eb703d5d67"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
@@ -123,57 +129,13 @@ Variables</h2></td></tr>
 <tr class="memitem:a80b20a867c7d42cce81f01afa778a2fd" id="r_a80b20a867c7d42cce81f01afa778a2fd"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor__names_8c.html#a80b20a867c7d42cce81f01afa778a2fd">sensor_type_names</a> []</td></tr>
 <tr class="separator:a80b20a867c7d42cce81f01afa778a2fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="a9fb3fb527b22ae291ba6c3eb703d5d67" name="a9fb3fb527b22ae291ba6c3eb703d5d67"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9fb3fb527b22ae291ba6c3eb703d5d67">&#9670;&#160;</a></span>get_sensor_type_index_from_name()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int get_sensor_type_index_from_name </td>
-          <td>(</td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>sensor_type_name</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Get the index for the selected sensor type. </p>
-
-</div>
-</div>
-<a id="a38e065cdd19b87fca95f43793267185a" name="a38e065cdd19b87fca95f43793267185a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a38e065cdd19b87fca95f43793267185a">&#9670;&#160;</a></span>get_sensor_type_name_from_index()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int get_sensor_type_name_from_index </td>
-          <td>(</td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>sensor_type_name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">enum <a class="el" href="sensor__id_8h.html#ad7b3bc5128f463a9f210147ad5c043be">sensor_types</a>&#160;</td>
-          <td class="paramname"><em>sensor_type</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Get the name for the selected sensor type. </p>
-
-</div>
-</div>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This is a library for sensor names, converting between strings and enum values to make configurations human readable. </p>
+<dl class="section author"><dt>Author</dt><dd>Tyler Garcia </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>0.1 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2025-06-06</dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2025 </dd></dl>
+</div><h2 class="groupheader">Function Documentation</h2>
 <a id="a004c3fc8f6dfb80531b44482e95cd692" name="a004c3fc8f6dfb80531b44482e95cd692"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a004c3fc8f6dfb80531b44482e95cd692">&#9670;&#160;</a></span>get_sensor_voltage_index_from_name()</h2>
 
@@ -239,34 +201,6 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="aa6290cee7bd96172af54143d17936e7a" name="aa6290cee7bd96172af54143d17936e7a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa6290cee7bd96172af54143d17936e7a">&#9670;&#160;</a></span>LOG_MODULE_REGISTER()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">LOG_MODULE_REGISTER </td>
-          <td>(</td>
-          <td class="paramtype">SENSOR_NAMES&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">LOG_LEVEL_INF&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <h2 class="groupheader">Variable Documentation</h2>
 <a id="a80b20a867c7d42cce81f01afa778a2fd" name="a80b20a867c7d42cce81f01afa778a2fd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a80b20a867c7d42cce81f01afa778a2fd">&#9670;&#160;</a></span>sensor_type_names</h2>
@@ -280,15 +214,11 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">= {</div>
-<div class="line">    [<a class="code hl_enumvalue" href="sensor__id_8h.html#ad7b3bc5128f463a9f210147ad5c043bea1ae65a7266083bff167d506a200bf31d">NULL_SENSOR</a>]    = <span class="stringliteral">&quot;NULL_SENSOR&quot;</span>,</div>
-<div class="line">    [<a class="code hl_enumvalue" href="sensor__id_8h.html#ad7b3bc5128f463a9f210147ad5c043beac31575412b8072d3691c3a90c7f639ed">VOLTAGE_SENSOR</a>] = <span class="stringliteral">&quot;VOLTAGE_SENSOR&quot;</span>,</div>
-<div class="line">    [<a class="code hl_enumvalue" href="sensor__id_8h.html#ad7b3bc5128f463a9f210147ad5c043bea33217e9fe6c7e9bf0c1cc0c5862205aa">CURRENT_SENSOR</a>] = <span class="stringliteral">&quot;CURRENT_SENSOR&quot;</span>,</div>
-<div class="line">    [<a class="code hl_enumvalue" href="sensor__id_8h.html#ad7b3bc5128f463a9f210147ad5c043bea025b92f3d549d50747ba7c9fdcf99c17">PULSE_SENSOR</a>]   = <span class="stringliteral">&quot;PULSE_SENSOR&quot;</span>,</div>
+<div class="line">    [NULL_SENSOR]    = <span class="stringliteral">&quot;NULL_SENSOR&quot;</span>,</div>
+<div class="line">    [VOLTAGE_SENSOR] = <span class="stringliteral">&quot;VOLTAGE_SENSOR&quot;</span>,</div>
+<div class="line">    [CURRENT_SENSOR] = <span class="stringliteral">&quot;CURRENT_SENSOR&quot;</span>,</div>
+<div class="line">    [PULSE_SENSOR]   = <span class="stringliteral">&quot;PULSE_SENSOR&quot;</span>,</div>
 <div class="line">}</div>
-<div class="ttc" id="asensor__id_8h_html_ad7b3bc5128f463a9f210147ad5c043bea025b92f3d549d50747ba7c9fdcf99c17"><div class="ttname"><a href="sensor__id_8h.html#ad7b3bc5128f463a9f210147ad5c043bea025b92f3d549d50747ba7c9fdcf99c17">PULSE_SENSOR</a></div><div class="ttdeci">@ PULSE_SENSOR</div><div class="ttdef"><b>Definition</b> sensor_id.h:37</div></div>
-<div class="ttc" id="asensor__id_8h_html_ad7b3bc5128f463a9f210147ad5c043bea1ae65a7266083bff167d506a200bf31d"><div class="ttname"><a href="sensor__id_8h.html#ad7b3bc5128f463a9f210147ad5c043bea1ae65a7266083bff167d506a200bf31d">NULL_SENSOR</a></div><div class="ttdeci">@ NULL_SENSOR</div><div class="ttdef"><b>Definition</b> sensor_id.h:31</div></div>
-<div class="ttc" id="asensor__id_8h_html_ad7b3bc5128f463a9f210147ad5c043bea33217e9fe6c7e9bf0c1cc0c5862205aa"><div class="ttname"><a href="sensor__id_8h.html#ad7b3bc5128f463a9f210147ad5c043bea33217e9fe6c7e9bf0c1cc0c5862205aa">CURRENT_SENSOR</a></div><div class="ttdeci">@ CURRENT_SENSOR</div><div class="ttdef"><b>Definition</b> sensor_id.h:35</div></div>
-<div class="ttc" id="asensor__id_8h_html_ad7b3bc5128f463a9f210147ad5c043beac31575412b8072d3691c3a90c7f639ed"><div class="ttname"><a href="sensor__id_8h.html#ad7b3bc5128f463a9f210147ad5c043beac31575412b8072d3691c3a90c7f639ed">VOLTAGE_SENSOR</a></div><div class="ttdeci">@ VOLTAGE_SENSOR</div><div class="ttdef"><b>Definition</b> sensor_id.h:33</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -304,19 +234,13 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">= {</div>
-<div class="line">    [<a class="code hl_enumvalue" href="sensor__id_8h.html#adef9477a37671049d57edb26e6a37746a365711b2e480fbc6b57a5562d0bbda71">SENSOR_VOLTAGE_OFF</a>] = <span class="stringliteral">&quot;SENSOR_VOLTAGE_OFF&quot;</span>,</div>
-<div class="line">    [<a class="code hl_enumvalue" href="sensor__id_8h.html#adef9477a37671049d57edb26e6a37746a9b4fcdd65f929c8b063b596fa8134bb4">SENSOR_VOLTAGE_3V3</a>] = <span class="stringliteral">&quot;SENSOR_VOLTAGE_3V3&quot;</span>,</div>
-<div class="line">    [<a class="code hl_enumvalue" href="sensor__id_8h.html#adef9477a37671049d57edb26e6a37746a1a6466274f5b981adca68b4b81d0cc42">SENSOR_VOLTAGE_5V</a>]  = <span class="stringliteral">&quot;SENSOR_VOLTAGE_5V&quot;</span>,</div>
-<div class="line">    [<a class="code hl_enumvalue" href="sensor__id_8h.html#adef9477a37671049d57edb26e6a37746a961d2f2da6e1fa1a2a305f968b84b3b6">SENSOR_VOLTAGE_6V</a>]  = <span class="stringliteral">&quot;SENSOR_VOLTAGE_6V&quot;</span>,</div>
-<div class="line">    [<a class="code hl_enumvalue" href="sensor__id_8h.html#adef9477a37671049d57edb26e6a37746ac2275370e5eb6cf4971605a40c4debe8">SENSOR_VOLTAGE_12V</a>] = <span class="stringliteral">&quot;SENSOR_VOLTAGE_12V&quot;</span>,</div>
-<div class="line">    [<a class="code hl_enumvalue" href="sensor__id_8h.html#adef9477a37671049d57edb26e6a37746a66011e884dcdf770cf7eb90f92518c4e">SENSOR_VOLTAGE_24V</a>] = <span class="stringliteral">&quot;SENSOR_VOLTAGE_24V&quot;</span>,</div>
+<div class="line">    [SENSOR_VOLTAGE_OFF] = <span class="stringliteral">&quot;SENSOR_VOLTAGE_OFF&quot;</span>,</div>
+<div class="line">    [SENSOR_VOLTAGE_3V3] = <span class="stringliteral">&quot;SENSOR_VOLTAGE_3V3&quot;</span>,</div>
+<div class="line">    [SENSOR_VOLTAGE_5V]  = <span class="stringliteral">&quot;SENSOR_VOLTAGE_5V&quot;</span>,</div>
+<div class="line">    [SENSOR_VOLTAGE_6V]  = <span class="stringliteral">&quot;SENSOR_VOLTAGE_6V&quot;</span>,</div>
+<div class="line">    [SENSOR_VOLTAGE_12V] = <span class="stringliteral">&quot;SENSOR_VOLTAGE_12V&quot;</span>,</div>
+<div class="line">    [SENSOR_VOLTAGE_24V] = <span class="stringliteral">&quot;SENSOR_VOLTAGE_24V&quot;</span>,</div>
 <div class="line">}</div>
-<div class="ttc" id="asensor__id_8h_html_adef9477a37671049d57edb26e6a37746a1a6466274f5b981adca68b4b81d0cc42"><div class="ttname"><a href="sensor__id_8h.html#adef9477a37671049d57edb26e6a37746a1a6466274f5b981adca68b4b81d0cc42">SENSOR_VOLTAGE_5V</a></div><div class="ttdeci">@ SENSOR_VOLTAGE_5V</div><div class="ttdef"><b>Definition</b> sensor_id.h:57</div></div>
-<div class="ttc" id="asensor__id_8h_html_adef9477a37671049d57edb26e6a37746a365711b2e480fbc6b57a5562d0bbda71"><div class="ttname"><a href="sensor__id_8h.html#adef9477a37671049d57edb26e6a37746a365711b2e480fbc6b57a5562d0bbda71">SENSOR_VOLTAGE_OFF</a></div><div class="ttdeci">@ SENSOR_VOLTAGE_OFF</div><div class="ttdef"><b>Definition</b> sensor_id.h:55</div></div>
-<div class="ttc" id="asensor__id_8h_html_adef9477a37671049d57edb26e6a37746a66011e884dcdf770cf7eb90f92518c4e"><div class="ttname"><a href="sensor__id_8h.html#adef9477a37671049d57edb26e6a37746a66011e884dcdf770cf7eb90f92518c4e">SENSOR_VOLTAGE_24V</a></div><div class="ttdeci">@ SENSOR_VOLTAGE_24V</div><div class="ttdef"><b>Definition</b> sensor_id.h:60</div></div>
-<div class="ttc" id="asensor__id_8h_html_adef9477a37671049d57edb26e6a37746a961d2f2da6e1fa1a2a305f968b84b3b6"><div class="ttname"><a href="sensor__id_8h.html#adef9477a37671049d57edb26e6a37746a961d2f2da6e1fa1a2a305f968b84b3b6">SENSOR_VOLTAGE_6V</a></div><div class="ttdeci">@ SENSOR_VOLTAGE_6V</div><div class="ttdef"><b>Definition</b> sensor_id.h:58</div></div>
-<div class="ttc" id="asensor__id_8h_html_adef9477a37671049d57edb26e6a37746a9b4fcdd65f929c8b063b596fa8134bb4"><div class="ttname"><a href="sensor__id_8h.html#adef9477a37671049d57edb26e6a37746a9b4fcdd65f929c8b063b596fa8134bb4">SENSOR_VOLTAGE_3V3</a></div><div class="ttdeci">@ SENSOR_VOLTAGE_3V3</div><div class="ttdef"><b>Definition</b> sensor_id.h:56</div></div>
-<div class="ttc" id="asensor__id_8h_html_adef9477a37671049d57edb26e6a37746ac2275370e5eb6cf4971605a40c4debe8"><div class="ttname"><a href="sensor__id_8h.html#adef9477a37671049d57edb26e6a37746ac2275370e5eb6cf4971605a40c4debe8">SENSOR_VOLTAGE_12V</a></div><div class="ttdeci">@ SENSOR_VOLTAGE_12V</div><div class="ttdef"><b>Definition</b> sensor_id.h:59</div></div>
 </div><!-- fragment -->
 </div>
 </div>

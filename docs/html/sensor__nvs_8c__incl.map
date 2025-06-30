@@ -1,5 +1,5 @@
 <map id="app/src/sensor_nvs.c" name="app/src/sensor_nvs.c">
-<area shape="rect" id="Node000001" title=" " alt="" coords="311,5,469,31"/>
+<area shape="rect" id="Node000001" title="This is a library to keep track of sensor information and configurations that are stored in the non&#45;v..." alt="" coords="311,5,469,31"/>
 <area shape="rect" id="Node000002" href="$sensor__nvs_8h.html" title="This is a library to keep track of sensor information and configurations that are stored in the non&#45;v..." alt="" coords="35,86,142,111"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="344,33,156,81,142,85,141,80,155,76,343,28"/>
 <area shape="rect" id="Node000005" title=" " alt="" coords="167,86,288,111"/>

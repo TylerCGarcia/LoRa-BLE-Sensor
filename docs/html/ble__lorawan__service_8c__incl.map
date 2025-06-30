@@ -1,5 +1,5 @@
 <map id="app/src/ble_lorawan_service.c" name="app/src/ble_lorawan_service.c">
-<area shape="rect" id="Node000001" title=" " alt="" coords="538,5,690,45"/>
+<area shape="rect" id="Node000001" title="This is a library to handle the BLE services for the LORAWAN network. This service is used for config..." alt="" coords="538,5,690,45"/>
 <area shape="rect" id="Node000002" href="$ble__lorawan__service_8h.html" title="This is a library to handle the BLE services for the LORAWAN network. This service is used for config..." alt="" coords="5,93,172,119"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="538,41,179,94,178,89,537,35"/>
 <area shape="rect" id="Node000007" title=" " alt="" coords="197,93,407,119"/>
@@ -10,7 +10,7 @@
 <area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="639,43,685,82,682,86,635,48"/>
 <area shape="rect" id="Node000010" href="$sensor__nvs_8h.html" title="This is a library to keep track of sensor information and configurations that are stored in the non&#45;v..." alt="" coords="810,93,917,119"/>
 <area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="675,43,815,87,813,92,673,48"/>
-<area shape="rect" id="Node000012" href="$sensor__app_8h.html" title="A library to manage sensor applications. Working between power configurations and data configurations..." alt="" coords="941,93,1049,119"/>
+<area shape="rect" id="Node000012" href="$sensor__app_8h.html" title="A library to manage sensor applications. Working between power configurations, data configurations,..." alt="" coords="941,93,1049,119"/>
 <area shape="poly" id="edge12_Node000001_Node000012" title=" " alt="" coords="691,40,928,88,927,93,690,45"/>
 <area shape="rect" id="Node000003" href="$sensor__lorawan_8h.html" title="This is a library to handle the LoRaWAN functionality for the sensor." alt="" coords="263,167,399,192"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="128,116,280,160,278,165,127,121"/>

@@ -1,5 +1,5 @@
 <map id="app/src/sensor_pmic.c" name="app/src/sensor_pmic.c">
-<area shape="rect" id="Node000001" title=" " alt="" coords="595,5,762,31"/>
+<area shape="rect" id="Node000001" title="This is a library to keep track of the PMIC and its configuration." alt="" coords="595,5,762,31"/>
 <area shape="rect" id="Node000002" href="$sensor__pmic_8h.html" title="This is a library to keep track of the PMIC and its configuration." alt="" coords="189,86,305,111"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="596,33,465,54,318,81,301,85,300,80,317,76,464,48,595,28"/>
 <area shape="rect" id="Node000007" title=" " alt="" coords="329,86,484,111"/>

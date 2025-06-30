@@ -1,3 +1,14 @@
+/**
+ * @file sensor_timer.c
+ * @author Tyler Garcia
+ * @brief This is a library to keep track of sensor and radio timers. Manages alarms for sensors and radio transmissions.
+ * This library is used by the sensor_scheduling library to schedule sensor readings and radio transmissions.
+ * @version 0.1
+ * @date 2025-05-09
+ * 
+ * @copyright Copyright (c) 2025
+ * 
+ */
 
 #include <sensor_timer.h>
 #include <zephyr/kernel.h>

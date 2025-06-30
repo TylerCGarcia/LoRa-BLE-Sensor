@@ -1,6 +1,6 @@
 <map id="app/src/ble_device_service.c" name="app/src/ble_device_service.c">
-<area shape="rect" id="Node000001" title=" " alt="" coords="459,5,602,45"/>
-<area shape="rect" id="Node000002" href="$ble__device__service_8h.html" title=" " alt="" coords="167,93,326,119"/>
+<area shape="rect" id="Node000001" title="This is a library to handle the BLE services device configuration. It displays the device name,..." alt="" coords="459,5,602,45"/>
+<area shape="rect" id="Node000002" href="$ble__device__service_8h.html" title="This is a library to handle the BLE services device configuration. It displays the device name,..." alt="" coords="167,93,326,119"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="463,48,302,92,300,87,462,43"/>
 <area shape="rect" id="Node000008" title=" " alt="" coords="351,93,505,119"/>
 <area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="507,48,456,87,452,83,504,43"/>

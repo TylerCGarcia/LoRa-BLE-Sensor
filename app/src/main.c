@@ -1,7 +1,14 @@
-/*
- * Copyright (c) 2016 Intel Corporation
- *
- * SPDX-License-Identifier: Apache-2.0
+/**
+ * @file main.c
+ * @author Tyler Garcia
+ * @brief This is the main file for the LoRa-BLE-Sensor project.
+ * It initializes the sensor app and starts the BLE thread.
+ * 
+ * @version 0.1
+ * @date 2025-04-28
+ * 
+ * @copyright Copyright (c) 2025
+ * 
  */
 
 #include <stdio.h>

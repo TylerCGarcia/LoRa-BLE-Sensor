@@ -79,13 +79,16 @@ $(function() {
   <div class="headertitle"><div class="title">ble_device_service.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>This is a library to handle the BLE services device configuration. It displays the device name, hardware version, firmware version, and battery/charger information.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="sensor__pmic_8h_source.html">sensor_pmic.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for ble_device_service.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="ble__device__service_8h__incl.png" border="0" usemap="#aapp_2include_2ble__device__service_8h" alt=""/></div>
 <map name="aapp_2include_2ble__device__service_8h" id="aapp_2include_2ble__device__service_8h">
-<area shape="rect" title=" " alt="" coords="161,5,332,45"/>
+<area shape="rect" title="This is a library to handle the BLE services device configuration. It displays the device name,..." alt="" coords="161,5,332,45"/>
 <area shape="rect" href="sensor__pmic_8h.html" title="This is a library to keep track of the PMIC and its configuration." alt="" coords="189,93,305,119"/>
 <area shape="poly" title=" " alt="" coords="249,46,249,79,244,79,244,46"/>
 <area shape="rect" title=" " alt="" coords="5,167,131,192"/>
@@ -103,10 +106,10 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="ble__device__service_8h__dep__incl.png" border="0" usemap="#aapp_2include_2ble__device__service_8hdep" alt=""/></div>
 <map name="aapp_2include_2ble__device__service_8hdep" id="aapp_2include_2ble__device__service_8hdep">
-<area shape="rect" title=" " alt="" coords="78,5,249,45"/>
-<area shape="rect" href="ble__device__service_8c.html" title=" " alt="" coords="5,93,148,133"/>
+<area shape="rect" title="This is a library to handle the BLE services device configuration. It displays the device name,..." alt="" coords="78,5,249,45"/>
+<area shape="rect" href="ble__device__service_8c.html" title="This is a library to handle the BLE services device configuration. It displays the device name,..." alt="" coords="5,93,148,133"/>
 <area shape="poly" title=" " alt="" coords="136,57,98,95,94,91,133,53"/>
-<area shape="rect" href="sensor__app_8c.html" title=" " alt="" coords="172,101,331,126"/>
+<area shape="rect" href="sensor__app_8c.html" title="A library to manage sensor applications. Working between power configurations, data configurations,..." alt="" coords="172,101,331,126"/>
 <area shape="poly" title=" " alt="" coords="195,53,241,98,237,102,191,57"/>
 </map>
 </div>
@@ -115,37 +118,53 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:ab8f024ce00779c33cede93806bc0a7d5" id="r_ab8f024ce00779c33cede93806bc0a7d5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__device__service_8h.html#ab8f024ce00779c33cede93806bc0a7d5">BT_UUID_DEVICE_VAL</a>&#160;&#160;&#160;BT_UUID_128_ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c90)</td></tr>
+<tr class="memitem:ab8f024ce00779c33cede93806bc0a7d5" id="r_ab8f024ce00779c33cede93806bc0a7d5"><td class="memItemLeft" align="right" valign="top"><a id="ab8f024ce00779c33cede93806bc0a7d5" name="ab8f024ce00779c33cede93806bc0a7d5"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BT_UUID_DEVICE_VAL</b>&#160;&#160;&#160;BT_UUID_128_ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c90)</td></tr>
 <tr class="separator:ab8f024ce00779c33cede93806bc0a7d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c16c030f8d53db5da2333efdf0bae02" id="r_a4c16c030f8d53db5da2333efdf0bae02"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__device__service_8h.html#a4c16c030f8d53db5da2333efdf0bae02">BT_UUID_DEVICE_NAME_VAL</a>&#160;&#160;&#160;BT_UUID_128_ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c91)</td></tr>
+<tr class="memitem:a4c16c030f8d53db5da2333efdf0bae02" id="r_a4c16c030f8d53db5da2333efdf0bae02"><td class="memItemLeft" align="right" valign="top"><a id="a4c16c030f8d53db5da2333efdf0bae02" name="a4c16c030f8d53db5da2333efdf0bae02"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BT_UUID_DEVICE_NAME_VAL</b>&#160;&#160;&#160;BT_UUID_128_ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c91)</td></tr>
 <tr class="separator:a4c16c030f8d53db5da2333efdf0bae02"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c033ba48815dc778fbf53ca13f9c2c9" id="r_a4c033ba48815dc778fbf53ca13f9c2c9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__device__service_8h.html#a4c033ba48815dc778fbf53ca13f9c2c9">BT_UUID_DEVICE_HARDWARE_VERSION_VAL</a>&#160;&#160;&#160;BT_UUID_128_ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c92)</td></tr>
+<tr class="memitem:a4c033ba48815dc778fbf53ca13f9c2c9" id="r_a4c033ba48815dc778fbf53ca13f9c2c9"><td class="memItemLeft" align="right" valign="top"><a id="a4c033ba48815dc778fbf53ca13f9c2c9" name="a4c033ba48815dc778fbf53ca13f9c2c9"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BT_UUID_DEVICE_HARDWARE_VERSION_VAL</b>&#160;&#160;&#160;BT_UUID_128_ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c92)</td></tr>
 <tr class="separator:a4c033ba48815dc778fbf53ca13f9c2c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abad43012b424214325d32007116a49b1" id="r_abad43012b424214325d32007116a49b1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__device__service_8h.html#abad43012b424214325d32007116a49b1">BT_UUID_DEVICE_FIRMWARE_VERSION_VAL</a>&#160;&#160;&#160;BT_UUID_128_ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c93)</td></tr>
+<tr class="memitem:abad43012b424214325d32007116a49b1" id="r_abad43012b424214325d32007116a49b1"><td class="memItemLeft" align="right" valign="top"><a id="abad43012b424214325d32007116a49b1" name="abad43012b424214325d32007116a49b1"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BT_UUID_DEVICE_FIRMWARE_VERSION_VAL</b>&#160;&#160;&#160;BT_UUID_128_ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c93)</td></tr>
 <tr class="separator:abad43012b424214325d32007116a49b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a15690d963d43cf502d4113ac05e10087" id="r_a15690d963d43cf502d4113ac05e10087"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__device__service_8h.html#a15690d963d43cf502d4113ac05e10087">BT_UUID_DEVICE_BATTERY_PERCENT_VAL</a>&#160;&#160;&#160;BT_UUID_128_ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c94)</td></tr>
+<tr class="memitem:a15690d963d43cf502d4113ac05e10087" id="r_a15690d963d43cf502d4113ac05e10087"><td class="memItemLeft" align="right" valign="top"><a id="a15690d963d43cf502d4113ac05e10087" name="a15690d963d43cf502d4113ac05e10087"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BT_UUID_DEVICE_BATTERY_PERCENT_VAL</b>&#160;&#160;&#160;BT_UUID_128_ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c94)</td></tr>
 <tr class="separator:a15690d963d43cf502d4113ac05e10087"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a50b8c97520b6019bc8bef64dd4c9cf39" id="r_a50b8c97520b6019bc8bef64dd4c9cf39"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__device__service_8h.html#a50b8c97520b6019bc8bef64dd4c9cf39">BT_UUID_DEVICE_BATTERY_VOLTAGE_VAL</a>&#160;&#160;&#160;BT_UUID_128_ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c95)</td></tr>
+<tr class="memitem:a50b8c97520b6019bc8bef64dd4c9cf39" id="r_a50b8c97520b6019bc8bef64dd4c9cf39"><td class="memItemLeft" align="right" valign="top"><a id="a50b8c97520b6019bc8bef64dd4c9cf39" name="a50b8c97520b6019bc8bef64dd4c9cf39"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BT_UUID_DEVICE_BATTERY_VOLTAGE_VAL</b>&#160;&#160;&#160;BT_UUID_128_ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c95)</td></tr>
 <tr class="separator:a50b8c97520b6019bc8bef64dd4c9cf39"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a879b66838d19118d1dd87df4aa076be4" id="r_a879b66838d19118d1dd87df4aa076be4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__device__service_8h.html#a879b66838d19118d1dd87df4aa076be4">BT_UUID_DEVICE_BATTERY_CURRENT_VAL</a>&#160;&#160;&#160;BT_UUID_128_ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c96)</td></tr>
+<tr class="memitem:a879b66838d19118d1dd87df4aa076be4" id="r_a879b66838d19118d1dd87df4aa076be4"><td class="memItemLeft" align="right" valign="top"><a id="a879b66838d19118d1dd87df4aa076be4" name="a879b66838d19118d1dd87df4aa076be4"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BT_UUID_DEVICE_BATTERY_CURRENT_VAL</b>&#160;&#160;&#160;BT_UUID_128_ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c96)</td></tr>
 <tr class="separator:a879b66838d19118d1dd87df4aa076be4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a24bd2199f560aa35b1e2c2870d64f6" id="r_a5a24bd2199f560aa35b1e2c2870d64f6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__device__service_8h.html#a5a24bd2199f560aa35b1e2c2870d64f6">BT_UUID_DEVICE_BATTERY_TEMPERATURE_VAL</a>&#160;&#160;&#160;BT_UUID_128_ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c97)</td></tr>
+<tr class="memitem:a5a24bd2199f560aa35b1e2c2870d64f6" id="r_a5a24bd2199f560aa35b1e2c2870d64f6"><td class="memItemLeft" align="right" valign="top"><a id="a5a24bd2199f560aa35b1e2c2870d64f6" name="a5a24bd2199f560aa35b1e2c2870d64f6"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BT_UUID_DEVICE_BATTERY_TEMPERATURE_VAL</b>&#160;&#160;&#160;BT_UUID_128_ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c97)</td></tr>
 <tr class="separator:a5a24bd2199f560aa35b1e2c2870d64f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c39e51331b7b5f547d6619add432e83" id="r_a7c39e51331b7b5f547d6619add432e83"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__device__service_8h.html#a7c39e51331b7b5f547d6619add432e83">BT_UUID_DEVICE</a>&#160;&#160;&#160;BT_UUID_DECLARE_128(<a class="el" href="ble__device__service_8h.html#ab8f024ce00779c33cede93806bc0a7d5">BT_UUID_DEVICE_VAL</a>)</td></tr>
+<tr class="memitem:a7c39e51331b7b5f547d6619add432e83" id="r_a7c39e51331b7b5f547d6619add432e83"><td class="memItemLeft" align="right" valign="top"><a id="a7c39e51331b7b5f547d6619add432e83" name="a7c39e51331b7b5f547d6619add432e83"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BT_UUID_DEVICE</b>&#160;&#160;&#160;BT_UUID_DECLARE_128(BT_UUID_DEVICE_VAL)</td></tr>
 <tr class="separator:a7c39e51331b7b5f547d6619add432e83"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a913eb6600790b462ae5f5fd31acbf49a" id="r_a913eb6600790b462ae5f5fd31acbf49a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__device__service_8h.html#a913eb6600790b462ae5f5fd31acbf49a">BT_UUID_DEVICE_NAME</a>&#160;&#160;&#160;BT_UUID_DECLARE_128(<a class="el" href="ble__device__service_8h.html#a4c16c030f8d53db5da2333efdf0bae02">BT_UUID_DEVICE_NAME_VAL</a>)</td></tr>
+<tr class="memitem:a913eb6600790b462ae5f5fd31acbf49a" id="r_a913eb6600790b462ae5f5fd31acbf49a"><td class="memItemLeft" align="right" valign="top"><a id="a913eb6600790b462ae5f5fd31acbf49a" name="a913eb6600790b462ae5f5fd31acbf49a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BT_UUID_DEVICE_NAME</b>&#160;&#160;&#160;BT_UUID_DECLARE_128(BT_UUID_DEVICE_NAME_VAL)</td></tr>
 <tr class="separator:a913eb6600790b462ae5f5fd31acbf49a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a55b1603a366a9ea2f75c4cbe76772bc3" id="r_a55b1603a366a9ea2f75c4cbe76772bc3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__device__service_8h.html#a55b1603a366a9ea2f75c4cbe76772bc3">BT_UUID_DEVICE_HARDWARE_VERSION</a>&#160;&#160;&#160;BT_UUID_DECLARE_128(<a class="el" href="ble__device__service_8h.html#a4c033ba48815dc778fbf53ca13f9c2c9">BT_UUID_DEVICE_HARDWARE_VERSION_VAL</a>)</td></tr>
+<tr class="memitem:a55b1603a366a9ea2f75c4cbe76772bc3" id="r_a55b1603a366a9ea2f75c4cbe76772bc3"><td class="memItemLeft" align="right" valign="top"><a id="a55b1603a366a9ea2f75c4cbe76772bc3" name="a55b1603a366a9ea2f75c4cbe76772bc3"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BT_UUID_DEVICE_HARDWARE_VERSION</b>&#160;&#160;&#160;BT_UUID_DECLARE_128(BT_UUID_DEVICE_HARDWARE_VERSION_VAL)</td></tr>
 <tr class="separator:a55b1603a366a9ea2f75c4cbe76772bc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3166830105fe3bb457d384a928b4c3c0" id="r_a3166830105fe3bb457d384a928b4c3c0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__device__service_8h.html#a3166830105fe3bb457d384a928b4c3c0">BT_UUID_DEVICE_FIRMWARE_VERSION</a>&#160;&#160;&#160;BT_UUID_DECLARE_128(<a class="el" href="ble__device__service_8h.html#abad43012b424214325d32007116a49b1">BT_UUID_DEVICE_FIRMWARE_VERSION_VAL</a>)</td></tr>
+<tr class="memitem:a3166830105fe3bb457d384a928b4c3c0" id="r_a3166830105fe3bb457d384a928b4c3c0"><td class="memItemLeft" align="right" valign="top"><a id="a3166830105fe3bb457d384a928b4c3c0" name="a3166830105fe3bb457d384a928b4c3c0"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BT_UUID_DEVICE_FIRMWARE_VERSION</b>&#160;&#160;&#160;BT_UUID_DECLARE_128(BT_UUID_DEVICE_FIRMWARE_VERSION_VAL)</td></tr>
 <tr class="separator:a3166830105fe3bb457d384a928b4c3c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a87236d6bd6ba8ff46dfbc276f7bf12e5" id="r_a87236d6bd6ba8ff46dfbc276f7bf12e5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__device__service_8h.html#a87236d6bd6ba8ff46dfbc276f7bf12e5">BT_UUID_DEVICE_BATTERY_PERCENT</a>&#160;&#160;&#160;BT_UUID_DECLARE_128(<a class="el" href="ble__device__service_8h.html#a15690d963d43cf502d4113ac05e10087">BT_UUID_DEVICE_BATTERY_PERCENT_VAL</a>)</td></tr>
+<tr class="memitem:a87236d6bd6ba8ff46dfbc276f7bf12e5" id="r_a87236d6bd6ba8ff46dfbc276f7bf12e5"><td class="memItemLeft" align="right" valign="top"><a id="a87236d6bd6ba8ff46dfbc276f7bf12e5" name="a87236d6bd6ba8ff46dfbc276f7bf12e5"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BT_UUID_DEVICE_BATTERY_PERCENT</b>&#160;&#160;&#160;BT_UUID_DECLARE_128(BT_UUID_DEVICE_BATTERY_PERCENT_VAL)</td></tr>
 <tr class="separator:a87236d6bd6ba8ff46dfbc276f7bf12e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a127e49d0763ee2499e1f2e0f40e9bec5" id="r_a127e49d0763ee2499e1f2e0f40e9bec5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__device__service_8h.html#a127e49d0763ee2499e1f2e0f40e9bec5">BT_UUID_DEVICE_BATTERY_VOLTAGE</a>&#160;&#160;&#160;BT_UUID_DECLARE_128(<a class="el" href="ble__device__service_8h.html#a50b8c97520b6019bc8bef64dd4c9cf39">BT_UUID_DEVICE_BATTERY_VOLTAGE_VAL</a>)</td></tr>
+<tr class="memitem:a127e49d0763ee2499e1f2e0f40e9bec5" id="r_a127e49d0763ee2499e1f2e0f40e9bec5"><td class="memItemLeft" align="right" valign="top"><a id="a127e49d0763ee2499e1f2e0f40e9bec5" name="a127e49d0763ee2499e1f2e0f40e9bec5"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BT_UUID_DEVICE_BATTERY_VOLTAGE</b>&#160;&#160;&#160;BT_UUID_DECLARE_128(BT_UUID_DEVICE_BATTERY_VOLTAGE_VAL)</td></tr>
 <tr class="separator:a127e49d0763ee2499e1f2e0f40e9bec5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a11d77cb829466a1793e9bd1e91e0c392" id="r_a11d77cb829466a1793e9bd1e91e0c392"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__device__service_8h.html#a11d77cb829466a1793e9bd1e91e0c392">BT_UUID_DEVICE_BATTERY_CURRENT</a>&#160;&#160;&#160;BT_UUID_DECLARE_128(<a class="el" href="ble__device__service_8h.html#a879b66838d19118d1dd87df4aa076be4">BT_UUID_DEVICE_BATTERY_CURRENT_VAL</a>)</td></tr>
+<tr class="memitem:a11d77cb829466a1793e9bd1e91e0c392" id="r_a11d77cb829466a1793e9bd1e91e0c392"><td class="memItemLeft" align="right" valign="top"><a id="a11d77cb829466a1793e9bd1e91e0c392" name="a11d77cb829466a1793e9bd1e91e0c392"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BT_UUID_DEVICE_BATTERY_CURRENT</b>&#160;&#160;&#160;BT_UUID_DECLARE_128(BT_UUID_DEVICE_BATTERY_CURRENT_VAL)</td></tr>
 <tr class="separator:a11d77cb829466a1793e9bd1e91e0c392"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aec9e91f516f8810093da6f04b9de6f9f" id="r_aec9e91f516f8810093da6f04b9de6f9f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__device__service_8h.html#aec9e91f516f8810093da6f04b9de6f9f">BT_UUID_DEVICE_BATTERY_TEMPERATURE</a>&#160;&#160;&#160;BT_UUID_DECLARE_128(<a class="el" href="ble__device__service_8h.html#a5a24bd2199f560aa35b1e2c2870d64f6">BT_UUID_DEVICE_BATTERY_TEMPERATURE_VAL</a>)</td></tr>
+<tr class="memitem:aec9e91f516f8810093da6f04b9de6f9f" id="r_aec9e91f516f8810093da6f04b9de6f9f"><td class="memItemLeft" align="right" valign="top"><a id="aec9e91f516f8810093da6f04b9de6f9f" name="aec9e91f516f8810093da6f04b9de6f9f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BT_UUID_DEVICE_BATTERY_TEMPERATURE</b>&#160;&#160;&#160;BT_UUID_DECLARE_128(BT_UUID_DEVICE_BATTERY_TEMPERATURE_VAL)</td></tr>
 <tr class="separator:aec9e91f516f8810093da6f04b9de6f9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
@@ -154,232 +173,13 @@ Functions</h2></td></tr>
 <tr class="memdesc:ae7f661c5a2c19aec217e05ef7d7e16f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Connect PMIC sensor status to Device BLE Service.  <br /></td></tr>
 <tr class="separator:ae7f661c5a2c19aec217e05ef7d7e16f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="a7c39e51331b7b5f547d6619add432e83" name="a7c39e51331b7b5f547d6619add432e83"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7c39e51331b7b5f547d6619add432e83">&#9670;&#160;</a></span>BT_UUID_DEVICE</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define BT_UUID_DEVICE&#160;&#160;&#160;BT_UUID_DECLARE_128(<a class="el" href="ble__device__service_8h.html#ab8f024ce00779c33cede93806bc0a7d5">BT_UUID_DEVICE_VAL</a>)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a11d77cb829466a1793e9bd1e91e0c392" name="a11d77cb829466a1793e9bd1e91e0c392"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a11d77cb829466a1793e9bd1e91e0c392">&#9670;&#160;</a></span>BT_UUID_DEVICE_BATTERY_CURRENT</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define BT_UUID_DEVICE_BATTERY_CURRENT&#160;&#160;&#160;BT_UUID_DECLARE_128(<a class="el" href="ble__device__service_8h.html#a879b66838d19118d1dd87df4aa076be4">BT_UUID_DEVICE_BATTERY_CURRENT_VAL</a>)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a879b66838d19118d1dd87df4aa076be4" name="a879b66838d19118d1dd87df4aa076be4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a879b66838d19118d1dd87df4aa076be4">&#9670;&#160;</a></span>BT_UUID_DEVICE_BATTERY_CURRENT_VAL</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define BT_UUID_DEVICE_BATTERY_CURRENT_VAL&#160;&#160;&#160;BT_UUID_128_ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c96)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a87236d6bd6ba8ff46dfbc276f7bf12e5" name="a87236d6bd6ba8ff46dfbc276f7bf12e5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a87236d6bd6ba8ff46dfbc276f7bf12e5">&#9670;&#160;</a></span>BT_UUID_DEVICE_BATTERY_PERCENT</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define BT_UUID_DEVICE_BATTERY_PERCENT&#160;&#160;&#160;BT_UUID_DECLARE_128(<a class="el" href="ble__device__service_8h.html#a15690d963d43cf502d4113ac05e10087">BT_UUID_DEVICE_BATTERY_PERCENT_VAL</a>)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a15690d963d43cf502d4113ac05e10087" name="a15690d963d43cf502d4113ac05e10087"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a15690d963d43cf502d4113ac05e10087">&#9670;&#160;</a></span>BT_UUID_DEVICE_BATTERY_PERCENT_VAL</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define BT_UUID_DEVICE_BATTERY_PERCENT_VAL&#160;&#160;&#160;BT_UUID_128_ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c94)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="aec9e91f516f8810093da6f04b9de6f9f" name="aec9e91f516f8810093da6f04b9de6f9f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aec9e91f516f8810093da6f04b9de6f9f">&#9670;&#160;</a></span>BT_UUID_DEVICE_BATTERY_TEMPERATURE</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define BT_UUID_DEVICE_BATTERY_TEMPERATURE&#160;&#160;&#160;BT_UUID_DECLARE_128(<a class="el" href="ble__device__service_8h.html#a5a24bd2199f560aa35b1e2c2870d64f6">BT_UUID_DEVICE_BATTERY_TEMPERATURE_VAL</a>)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a5a24bd2199f560aa35b1e2c2870d64f6" name="a5a24bd2199f560aa35b1e2c2870d64f6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5a24bd2199f560aa35b1e2c2870d64f6">&#9670;&#160;</a></span>BT_UUID_DEVICE_BATTERY_TEMPERATURE_VAL</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define BT_UUID_DEVICE_BATTERY_TEMPERATURE_VAL&#160;&#160;&#160;BT_UUID_128_ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c97)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a127e49d0763ee2499e1f2e0f40e9bec5" name="a127e49d0763ee2499e1f2e0f40e9bec5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a127e49d0763ee2499e1f2e0f40e9bec5">&#9670;&#160;</a></span>BT_UUID_DEVICE_BATTERY_VOLTAGE</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define BT_UUID_DEVICE_BATTERY_VOLTAGE&#160;&#160;&#160;BT_UUID_DECLARE_128(<a class="el" href="ble__device__service_8h.html#a50b8c97520b6019bc8bef64dd4c9cf39">BT_UUID_DEVICE_BATTERY_VOLTAGE_VAL</a>)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a50b8c97520b6019bc8bef64dd4c9cf39" name="a50b8c97520b6019bc8bef64dd4c9cf39"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a50b8c97520b6019bc8bef64dd4c9cf39">&#9670;&#160;</a></span>BT_UUID_DEVICE_BATTERY_VOLTAGE_VAL</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define BT_UUID_DEVICE_BATTERY_VOLTAGE_VAL&#160;&#160;&#160;BT_UUID_128_ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c95)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a3166830105fe3bb457d384a928b4c3c0" name="a3166830105fe3bb457d384a928b4c3c0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3166830105fe3bb457d384a928b4c3c0">&#9670;&#160;</a></span>BT_UUID_DEVICE_FIRMWARE_VERSION</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define BT_UUID_DEVICE_FIRMWARE_VERSION&#160;&#160;&#160;BT_UUID_DECLARE_128(<a class="el" href="ble__device__service_8h.html#abad43012b424214325d32007116a49b1">BT_UUID_DEVICE_FIRMWARE_VERSION_VAL</a>)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="abad43012b424214325d32007116a49b1" name="abad43012b424214325d32007116a49b1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abad43012b424214325d32007116a49b1">&#9670;&#160;</a></span>BT_UUID_DEVICE_FIRMWARE_VERSION_VAL</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define BT_UUID_DEVICE_FIRMWARE_VERSION_VAL&#160;&#160;&#160;BT_UUID_128_ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c93)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a55b1603a366a9ea2f75c4cbe76772bc3" name="a55b1603a366a9ea2f75c4cbe76772bc3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a55b1603a366a9ea2f75c4cbe76772bc3">&#9670;&#160;</a></span>BT_UUID_DEVICE_HARDWARE_VERSION</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define BT_UUID_DEVICE_HARDWARE_VERSION&#160;&#160;&#160;BT_UUID_DECLARE_128(<a class="el" href="ble__device__service_8h.html#a4c033ba48815dc778fbf53ca13f9c2c9">BT_UUID_DEVICE_HARDWARE_VERSION_VAL</a>)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a4c033ba48815dc778fbf53ca13f9c2c9" name="a4c033ba48815dc778fbf53ca13f9c2c9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4c033ba48815dc778fbf53ca13f9c2c9">&#9670;&#160;</a></span>BT_UUID_DEVICE_HARDWARE_VERSION_VAL</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define BT_UUID_DEVICE_HARDWARE_VERSION_VAL&#160;&#160;&#160;BT_UUID_128_ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c92)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a913eb6600790b462ae5f5fd31acbf49a" name="a913eb6600790b462ae5f5fd31acbf49a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a913eb6600790b462ae5f5fd31acbf49a">&#9670;&#160;</a></span>BT_UUID_DEVICE_NAME</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define BT_UUID_DEVICE_NAME&#160;&#160;&#160;BT_UUID_DECLARE_128(<a class="el" href="ble__device__service_8h.html#a4c16c030f8d53db5da2333efdf0bae02">BT_UUID_DEVICE_NAME_VAL</a>)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a4c16c030f8d53db5da2333efdf0bae02" name="a4c16c030f8d53db5da2333efdf0bae02"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4c16c030f8d53db5da2333efdf0bae02">&#9670;&#160;</a></span>BT_UUID_DEVICE_NAME_VAL</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define BT_UUID_DEVICE_NAME_VAL&#160;&#160;&#160;BT_UUID_128_ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c91)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ab8f024ce00779c33cede93806bc0a7d5" name="ab8f024ce00779c33cede93806bc0a7d5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab8f024ce00779c33cede93806bc0a7d5">&#9670;&#160;</a></span>BT_UUID_DEVICE_VAL</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define BT_UUID_DEVICE_VAL&#160;&#160;&#160;BT_UUID_128_ENCODE(0xf983f80d, 0x277a, 0x423a, 0xa122, 0xa37302ff7c90)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<h2 class="groupheader">Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This is a library to handle the BLE services device configuration. It displays the device name, hardware version, firmware version, and battery/charger information. </p>
+<dl class="section author"><dt>Author</dt><dd>Tyler Garcia </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>0.1 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2025-05-06</dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2025 </dd></dl>
+</div><h2 class="groupheader">Function Documentation</h2>
 <a id="ae7f661c5a2c19aec217e05ef7d7e16f4" name="ae7f661c5a2c19aec217e05ef7d7e16f4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae7f661c5a2c19aec217e05ef7d7e16f4">&#9670;&#160;</a></span>ble_device_service_init()</h2>
 

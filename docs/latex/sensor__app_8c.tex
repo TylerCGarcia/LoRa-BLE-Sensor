@@ -1,5 +1,10 @@
 \doxysection{app/src/sensor\+\_\+app.c File Reference}
 \hypertarget{sensor__app_8c}{}\label{sensor__app_8c}\index{app/src/sensor\_app.c@{app/src/sensor\_app.c}}
+
+
+A library to manage sensor applications. Working between power configurations, data configurations, and scheduling for sensor reading. As well as Lo\+Ra\+WAN initialization, scheduling, and data transmission. This library also handles the BLE services for the device, sensor, and Lo\+Ra\+WAN.  
+
+
 {\ttfamily \#include "{}sensor\+\_\+app.\+h"{}}\newline
 {\ttfamily \#include "{}sensor\+\_\+ble.\+h"{}}\newline
 {\ttfamily \#include "{}sensor\+\_\+scheduling.\+h"{}}\newline
@@ -24,16 +29,20 @@ Include dependency graph for sensor\+\_\+app.\+c\+:
 \doxysubsubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\#define \mbox{\hyperlink{sensor__app_8c_ababc8792e188f33a5144e9504c0ebb1e}{BLE\+\_\+\+STACKSIZE}}~1024
+\Hypertarget{sensor__app_8c_ababc8792e188f33a5144e9504c0ebb1e}\label{sensor__app_8c_ababc8792e188f33a5144e9504c0ebb1e} 
+\#define {\bfseries BLE\+\_\+\+STACKSIZE}~1024
 \item 
-\#define \mbox{\hyperlink{sensor__app_8c_a4777fbbdd2c40e7fda3c2da2f8410d08}{BLE\+\_\+\+THREAD\+\_\+\+PRIORITY}}~1
+\Hypertarget{sensor__app_8c_a4777fbbdd2c40e7fda3c2da2f8410d08}\label{sensor__app_8c_a4777fbbdd2c40e7fda3c2da2f8410d08} 
+\#define {\bfseries BLE\+\_\+\+THREAD\+\_\+\+PRIORITY}~1
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{sensor__app_8c_ae839dcb59891db8a0b7b1fc5581de47c}{LOG\+\_\+\+MODULE\+\_\+\+REGISTER}} (SENSOR\+\_\+\+APP, LOG\+\_\+\+LEVEL\+\_\+\+INF)
+\Hypertarget{sensor__app_8c_ae839dcb59891db8a0b7b1fc5581de47c}\label{sensor__app_8c_ae839dcb59891db8a0b7b1fc5581de47c} 
+{\bfseries LOG\+\_\+\+MODULE\+\_\+\+REGISTER} (SENSOR\+\_\+\+APP, LOG\+\_\+\+LEVEL\+\_\+\+INF)
 \item 
-\mbox{\hyperlink{sensor__app_8c_a5001f2d3651508a0c2bb0a9f2fb54888}{K\+\_\+\+THREAD\+\_\+\+STACK\+\_\+\+DEFINE}} (ble\+\_\+stack, \mbox{\hyperlink{sensor__app_8c_ababc8792e188f33a5144e9504c0ebb1e}{BLE\+\_\+\+STACKSIZE}})
+\Hypertarget{sensor__app_8c_a5001f2d3651508a0c2bb0a9f2fb54888}\label{sensor__app_8c_a5001f2d3651508a0c2bb0a9f2fb54888} 
+{\bfseries K\+\_\+\+THREAD\+\_\+\+STACK\+\_\+\+DEFINE} (ble\+\_\+stack, BLE\+\_\+\+STACKSIZE)
 \item 
 int \mbox{\hyperlink{sensor__app_8c_abea55631949306c2a0f82ddf35229087}{sensor\+\_\+app\+\_\+init}} (\mbox{\hyperlink{structsensor__app__config__t}{sensor\+\_\+app\+\_\+config\+\_\+t}} \texorpdfstring{$\ast$}{*}config)
 \begin{DoxyCompactList}\small\item\em Initialize the sensor app, handle anything that needs to be initialized for the app such as timers, nvs, etc. \end{DoxyCompactList}\item 
@@ -48,38 +57,29 @@ int \mbox{\hyperlink{sensor__app_8c_aa77b4db9e6c6a78c51af3acdc155f9a6}{sensor\+\
 \doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-struct k\+\_\+thread \mbox{\hyperlink{sensor__app_8c_ab9cde14293552e128ff011c9ecc554bc}{blethread\+\_\+id}}
+\Hypertarget{sensor__app_8c_ab9cde14293552e128ff011c9ecc554bc}\label{sensor__app_8c_ab9cde14293552e128ff011c9ecc554bc} 
+struct k\+\_\+thread {\bfseries blethread\+\_\+id}
 \end{DoxyCompactItemize}
 
 
-\doxysubsection{Macro Definition Documentation}
-\Hypertarget{sensor__app_8c_ababc8792e188f33a5144e9504c0ebb1e}\label{sensor__app_8c_ababc8792e188f33a5144e9504c0ebb1e} 
-\index{sensor\_app.c@{sensor\_app.c}!BLE\_STACKSIZE@{BLE\_STACKSIZE}}
-\index{BLE\_STACKSIZE@{BLE\_STACKSIZE}!sensor\_app.c@{sensor\_app.c}}
-\doxysubsubsection{\texorpdfstring{BLE\_STACKSIZE}{BLE\_STACKSIZE}}
-{\footnotesize\ttfamily \#define BLE\+\_\+\+STACKSIZE~1024}
+\doxysubsection{Detailed Description}
+A library to manage sensor applications. Working between power configurations, data configurations, and scheduling for sensor reading. As well as Lo\+Ra\+WAN initialization, scheduling, and data transmission. This library also handles the BLE services for the device, sensor, and Lo\+Ra\+WAN. 
 
-\Hypertarget{sensor__app_8c_a4777fbbdd2c40e7fda3c2da2f8410d08}\label{sensor__app_8c_a4777fbbdd2c40e7fda3c2da2f8410d08} 
-\index{sensor\_app.c@{sensor\_app.c}!BLE\_THREAD\_PRIORITY@{BLE\_THREAD\_PRIORITY}}
-\index{BLE\_THREAD\_PRIORITY@{BLE\_THREAD\_PRIORITY}!sensor\_app.c@{sensor\_app.c}}
-\doxysubsubsection{\texorpdfstring{BLE\_THREAD\_PRIORITY}{BLE\_THREAD\_PRIORITY}}
-{\footnotesize\ttfamily \#define BLE\+\_\+\+THREAD\+\_\+\+PRIORITY~1}
-
+\begin{DoxyAuthor}{Author}
+Tyler Garcia 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/04-\/28
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2025 
+\end{DoxyCopyright}
 
 
 \doxysubsection{Function Documentation}
-\Hypertarget{sensor__app_8c_a5001f2d3651508a0c2bb0a9f2fb54888}\label{sensor__app_8c_a5001f2d3651508a0c2bb0a9f2fb54888} 
-\index{sensor\_app.c@{sensor\_app.c}!K\_THREAD\_STACK\_DEFINE@{K\_THREAD\_STACK\_DEFINE}}
-\index{K\_THREAD\_STACK\_DEFINE@{K\_THREAD\_STACK\_DEFINE}!sensor\_app.c@{sensor\_app.c}}
-\doxysubsubsection{\texorpdfstring{K\_THREAD\_STACK\_DEFINE()}{K\_THREAD\_STACK\_DEFINE()}}
-{\footnotesize\ttfamily K\+\_\+\+THREAD\+\_\+\+STACK\+\_\+\+DEFINE (\begin{DoxyParamCaption}\item[{ble\+\_\+stack}]{,  }\item[{\mbox{\hyperlink{sensor__app_8c_ababc8792e188f33a5144e9504c0ebb1e}{BLE\+\_\+\+STACKSIZE}}}]{ }\end{DoxyParamCaption})}
-
-\Hypertarget{sensor__app_8c_ae839dcb59891db8a0b7b1fc5581de47c}\label{sensor__app_8c_ae839dcb59891db8a0b7b1fc5581de47c} 
-\index{sensor\_app.c@{sensor\_app.c}!LOG\_MODULE\_REGISTER@{LOG\_MODULE\_REGISTER}}
-\index{LOG\_MODULE\_REGISTER@{LOG\_MODULE\_REGISTER}!sensor\_app.c@{sensor\_app.c}}
-\doxysubsubsection{\texorpdfstring{LOG\_MODULE\_REGISTER()}{LOG\_MODULE\_REGISTER()}}
-{\footnotesize\ttfamily LOG\+\_\+\+MODULE\+\_\+\+REGISTER (\begin{DoxyParamCaption}\item[{SENSOR\+\_\+\+APP}]{,  }\item[{LOG\+\_\+\+LEVEL\+\_\+\+INF}]{ }\end{DoxyParamCaption})}
-
 \Hypertarget{sensor__app_8c_aa77b4db9e6c6a78c51af3acdc155f9a6}\label{sensor__app_8c_aa77b4db9e6c6a78c51af3acdc155f9a6} 
 \index{sensor\_app.c@{sensor\_app.c}!sensor\_app\_ble\_start@{sensor\_app\_ble\_start}}
 \index{sensor\_app\_ble\_start@{sensor\_app\_ble\_start}!sensor\_app.c@{sensor\_app.c}}
@@ -145,12 +145,3 @@ Execute the sensor app running state.
 \begin{DoxyReturn}{Returns}
 int 0 on success, -\/1 on failure 
 \end{DoxyReturn}
-
-
-\doxysubsection{Variable Documentation}
-\Hypertarget{sensor__app_8c_ab9cde14293552e128ff011c9ecc554bc}\label{sensor__app_8c_ab9cde14293552e128ff011c9ecc554bc} 
-\index{sensor\_app.c@{sensor\_app.c}!blethread\_id@{blethread\_id}}
-\index{blethread\_id@{blethread\_id}!sensor\_app.c@{sensor\_app.c}}
-\doxysubsubsection{\texorpdfstring{blethread\_id}{blethread\_id}}
-{\footnotesize\ttfamily struct k\+\_\+thread blethread\+\_\+id}
-

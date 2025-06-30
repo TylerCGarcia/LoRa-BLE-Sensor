@@ -1,8 +1,8 @@
 /**
- * @file ble_lorawan_service.h
+ * @file ble_device_service.h
  * @author Tyler Garcia
- * @brief This is a library to handle the BLE services for the LORAWAN network.
- * This service is used for configuration and debugging of the LORAWAN network.
+ * @brief This is a library to handle the BLE services device configuration.
+ * It displays the device name, hardware version, firmware version, and battery/charger information.
  * @version 0.1
  * @date 2025-05-06
  * 

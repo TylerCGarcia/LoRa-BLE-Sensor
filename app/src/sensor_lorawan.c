@@ -1,3 +1,14 @@
+/**
+ * @file sensor_lorawan.c
+ * @author Tyler Garcia
+ * @brief This is a library to handle the LoRaWAN functionality for the sensor.
+ * @version 0.1
+ * @date 2025-05-01
+ * 
+ * @copyright Copyright (c) 2025
+ * 
+ */
+
 #include "sensor_lorawan.h"
 #include <zephyr/lorawan/lorawan.h>
 #include <errno.h>

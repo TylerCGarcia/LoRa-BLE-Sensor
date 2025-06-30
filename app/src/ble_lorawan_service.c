@@ -1,3 +1,14 @@
+/**
+ * @file ble_lorawan_service.c
+ * @author Tyler Garcia
+ * @brief This is a library to handle the BLE services for the LORAWAN network.
+ * This service is used for configuration and debugging of the LORAWAN network.
+ * @version 0.1
+ * @date 2025-05-06
+ * 
+ * @copyright Copyright (c) 2025
+ * 
+ */
 
 #include "ble_lorawan_service.h"
 #include <zephyr/bluetooth/bluetooth.h>

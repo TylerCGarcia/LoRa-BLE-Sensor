@@ -1,5 +1,10 @@
 \doxysection{app/src/sensor\+\_\+lorawan.c File Reference}
 \hypertarget{sensor__lorawan_8c}{}\label{sensor__lorawan_8c}\index{app/src/sensor\_lorawan.c@{app/src/sensor\_lorawan.c}}
+
+
+This is a library to handle the Lo\+Ra\+WAN functionality for the sensor.  
+
+
 {\ttfamily \#include "{}sensor\+\_\+lorawan.\+h"{}}\newline
 {\ttfamily \#include $<$zephyr/lorawan/lorawan.\+h$>$}\newline
 {\ttfamily \#include $<$errno.\+h$>$}\newline
@@ -16,7 +21,8 @@ Include dependency graph for sensor\+\_\+lorawan.\+c\+:
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{sensor__lorawan_8c_acc1c1ef23c9b285cc0aec2d89586d530}{LOG\+\_\+\+MODULE\+\_\+\+REGISTER}} (SENSOR\+\_\+\+LORAWAN, LOG\+\_\+\+LEVEL\+\_\+\+INF)
+\Hypertarget{sensor__lorawan_8c_acc1c1ef23c9b285cc0aec2d89586d530}\label{sensor__lorawan_8c_acc1c1ef23c9b285cc0aec2d89586d530} 
+{\bfseries LOG\+\_\+\+MODULE\+\_\+\+REGISTER} (SENSOR\+\_\+\+LORAWAN, LOG\+\_\+\+LEVEL\+\_\+\+INF)
 \item 
 int \mbox{\hyperlink{sensor__lorawan_8c_af934a615bc3c97b00d8d78bd74fc173c}{is\+\_\+lorawan\+\_\+configured}} (\mbox{\hyperlink{structlorawan__setup__t}{lorawan\+\_\+setup\+\_\+t}} \texorpdfstring{$\ast$}{*}setup)
 \begin{DoxyCompactList}\small\item\em Check if the Lo\+Ra\+WAN Network is configured with valid lorawan keys. \end{DoxyCompactList}\item 
@@ -28,6 +34,23 @@ int \mbox{\hyperlink{sensor__lorawan_8c_a691d934002c51fcc68bbc46278446556}{senso
 \begin{DoxyCompactList}\small\item\em Send data to the Lo\+Ra\+WAN Network. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{sensor__lorawan_8c_ad956ecca412416d93cb540685136bb3a}{is\+\_\+lorawan\+\_\+connected}} (void)
 \begin{DoxyCompactList}\small\item\em Check if the Lo\+Ra\+WAN Network is connected. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This is a library to handle the Lo\+Ra\+WAN functionality for the sensor. 
+
+\begin{DoxyAuthor}{Author}
+Tyler Garcia 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/05-\/01
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2025 
+\end{DoxyCopyright}
 
 
 \doxysubsection{Function Documentation}
@@ -62,12 +85,6 @@ Check if the Lo\+Ra\+WAN Network is connected.
 \begin{DoxyReturn}{Returns}
 int 1 if connected, 0 if not connected 
 \end{DoxyReturn}
-\Hypertarget{sensor__lorawan_8c_acc1c1ef23c9b285cc0aec2d89586d530}\label{sensor__lorawan_8c_acc1c1ef23c9b285cc0aec2d89586d530} 
-\index{sensor\_lorawan.c@{sensor\_lorawan.c}!LOG\_MODULE\_REGISTER@{LOG\_MODULE\_REGISTER}}
-\index{LOG\_MODULE\_REGISTER@{LOG\_MODULE\_REGISTER}!sensor\_lorawan.c@{sensor\_lorawan.c}}
-\doxysubsubsection{\texorpdfstring{LOG\_MODULE\_REGISTER()}{LOG\_MODULE\_REGISTER()}}
-{\footnotesize\ttfamily LOG\+\_\+\+MODULE\+\_\+\+REGISTER (\begin{DoxyParamCaption}\item[{SENSOR\+\_\+\+LORAWAN}]{,  }\item[{LOG\+\_\+\+LEVEL\+\_\+\+INF}]{ }\end{DoxyParamCaption})}
-
 \Hypertarget{sensor__lorawan_8c_a467771dd18d292b7f02d601df20e5791}\label{sensor__lorawan_8c_a467771dd18d292b7f02d601df20e5791} 
 \index{sensor\_lorawan.c@{sensor\_lorawan.c}!sensor\_lorawan\_log\_network\_config@{sensor\_lorawan\_log\_network\_config}}
 \index{sensor\_lorawan\_log\_network\_config@{sensor\_lorawan\_log\_network\_config}!sensor\_lorawan.c@{sensor\_lorawan.c}}

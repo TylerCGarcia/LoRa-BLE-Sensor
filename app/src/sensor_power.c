@@ -1,3 +1,15 @@
+/**
+ * @file sensor_power.c
+ * @author Tyler Garcia
+ * @brief This is a library for sensor power configurations and control.
+ * This is manages the power configuration, pin configuration, and control of sensor power.
+ * @version 0.1
+ * @date 2025-05-09
+ * 
+ * @copyright Copyright (c) 2025
+ * 
+ */
+
 #include "sensor_power.h"
 #include <errno.h>
 #include <zephyr/kernel.h>

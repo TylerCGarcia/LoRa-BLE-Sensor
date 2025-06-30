@@ -15,7 +15,7 @@
 \DoxyCodeLine{00022\ }
 \DoxyCodeLine{00026\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
 \DoxyCodeLine{00027\ \ \ \ \ \textcolor{comment}{/*\ Sensor\ power\ configurationid.\ */}}
-\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{sensor__id_8h_a9425a5b9d9160dce11f5f08e71e5048f}{sensor\_power\_id}}\ \mbox{\hyperlink{structsensor__power__config__t_a7da301642fff747759b5303ade71d390}{power\_id}};}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{sensor__id_8h_a9425a5b9d9160dce11f5f08e71e5048f}{sensor\_power\_id}}\ power\_id;}
 \DoxyCodeLine{00029\ \ \ \ \ \textcolor{comment}{/*\ GPIO\ spec\ for\ the\ boost\ enable\ pin.\ */}}
 \DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{struct\ }gpio\_dt\_spec\ boost\_en;\ }
 \DoxyCodeLine{00031\ \ \ \ \ \textcolor{comment}{/*\ GPIO\ spec\ for\ the\ boost\ control\ 1\ pin.\ */}}
@@ -23,11 +23,11 @@
 \DoxyCodeLine{00033\ \ \ \ \ \textcolor{comment}{/*\ GPIO\ spec\ for\ the\ boost\ control\ 2\ pin.\ */}}
 \DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{struct\ }gpio\_dt\_spec\ boost\_ctrl2;}
 \DoxyCodeLine{00035\ \ \ \ \ \textcolor{comment}{/*\ LDO\ device\ for\ the\ sensor.\ */}}
-\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{struct\ }device\ *\mbox{\hyperlink{structsensor__power__config__t_a0f63b54793e367d427e4dc3b0fb9a4d8}{ldo\_dev}};}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{struct\ }device\ *ldo\_dev;}
 \DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{/*\ ADC\ spec\ for\ reading\ the\ output\ voltage.\ */}}
 \DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{struct\ }adc\_dt\_spec\ output\_read;}
 \DoxyCodeLine{00039\ \ \ \ \ \textcolor{comment}{/*\ Delay\ in\ ms\ to\ wait\ after\ setting\ the\ voltage\ to\ allow\ the\ voltage\ to\ stabilize.\ */}}
-\DoxyCodeLine{00040\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structsensor__power__config__t_a5e50d2b8a592e0bd9d86c635d777677f}{delay\_ms}};}
+\DoxyCodeLine{00040\ \ \ \ \ uint32\_t\ delay\_ms;}
 \DoxyCodeLine{00041\ \}\ \mbox{\hyperlink{structsensor__power__config__t}{sensor\_power\_config\_t}};}
 \DoxyCodeLine{00042\ }
 \DoxyCodeLine{00050\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sensor__power_8h_af0fef1d3475ac0c0f02759e1384fc550}{sensor\_power\_init}}(\mbox{\hyperlink{structsensor__power__config__t}{sensor\_power\_config\_t}}\ *config);}

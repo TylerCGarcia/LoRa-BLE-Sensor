@@ -1,5 +1,5 @@
 <map id="app/src/sensor_ble.c" name="app/src/sensor_ble.c">
-<area shape="rect" id="Node000001" title=" " alt="" coords="307,5,462,31"/>
+<area shape="rect" id="Node000001" title="This is a library to handle the BLE functionality for the sensor." alt="" coords="307,5,462,31"/>
 <area shape="rect" id="Node000002" href="$sensor__ble_8h.html" title="This is a library to handle the BLE functionality for the sensor." alt="" coords="63,86,167,111"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="346,33,168,85,167,80,345,28"/>
 <area shape="rect" id="Node000004" title=" " alt="" coords="99,167,310,192"/>

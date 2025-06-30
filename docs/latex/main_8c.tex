@@ -1,5 +1,10 @@
 \doxysection{app/src/main.c File Reference}
 \hypertarget{main_8c}{}\label{main_8c}\index{app/src/main.c@{app/src/main.c}}
+
+
+This is the main file for the Lo\+Ra-\/\+BLE-\/\+Sensor project. It initializes the sensor app and starts the BLE thread.  
+
+
 {\ttfamily \#include $<$stdio.\+h$>$}\newline
 {\ttfamily \#include $<$zephyr/kernel.\+h$>$}\newline
 {\ttfamily \#include $<$zephyr/logging/log.\+h$>$}\newline
@@ -17,9 +22,11 @@ Include dependency graph for main.\+c\+:
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{main_8c_a1e8c82b4071677ecf774911bd911da02}{LOG\+\_\+\+MODULE\+\_\+\+REGISTER}} (MAIN)
+\Hypertarget{main_8c_a1e8c82b4071677ecf774911bd911da02}\label{main_8c_a1e8c82b4071677ecf774911bd911da02} 
+{\bfseries LOG\+\_\+\+MODULE\+\_\+\+REGISTER} (MAIN)
 \item 
-int \mbox{\hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main}} (void)
+\Hypertarget{main_8c_a840291bc02cba5474a4cb46a9b9566fe}\label{main_8c_a840291bc02cba5474a4cb46a9b9566fe} 
+int {\bfseries main} (void)
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -28,19 +35,21 @@ int \mbox{\hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main}} (void)
 \end{DoxyCompactItemize}
 
 
-\doxysubsection{Function Documentation}
-\Hypertarget{main_8c_a1e8c82b4071677ecf774911bd911da02}\label{main_8c_a1e8c82b4071677ecf774911bd911da02} 
-\index{main.c@{main.c}!LOG\_MODULE\_REGISTER@{LOG\_MODULE\_REGISTER}}
-\index{LOG\_MODULE\_REGISTER@{LOG\_MODULE\_REGISTER}!main.c@{main.c}}
-\doxysubsubsection{\texorpdfstring{LOG\_MODULE\_REGISTER()}{LOG\_MODULE\_REGISTER()}}
-{\footnotesize\ttfamily LOG\+\_\+\+MODULE\+\_\+\+REGISTER (\begin{DoxyParamCaption}\item[{MAIN}]{ }\end{DoxyParamCaption})}
+\doxysubsection{Detailed Description}
+This is the main file for the Lo\+Ra-\/\+BLE-\/\+Sensor project. It initializes the sensor app and starts the BLE thread. 
 
-\Hypertarget{main_8c_a840291bc02cba5474a4cb46a9b9566fe}\label{main_8c_a840291bc02cba5474a4cb46a9b9566fe} 
-\index{main.c@{main.c}!main@{main}}
-\index{main@{main}!main.c@{main.c}}
-\doxysubsubsection{\texorpdfstring{main()}{main()}}
-{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
-
+\begin{DoxyAuthor}{Author}
+Tyler Garcia 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/04-\/28
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2025 
+\end{DoxyCopyright}
 
 
 \doxysubsection{Variable Documentation}
@@ -53,16 +62,16 @@ int \mbox{\hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main}} (void)
 {\bfseries Initial value\+:}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{=\ \{}
-\DoxyCodeLine{\ \ \ \ .state\ =\ \mbox{\hyperlink{sensor__app_8h_a3ded0fb95123f62995b82d8ccfe33a43a48dae62cfd19edab5be767c441ebdb11}{SENSOR\_APP\_STATE\_CONFIGURATION}},}
+\DoxyCodeLine{\ \ \ \ .state\ =\ SENSOR\_APP\_STATE\_CONFIGURATION,}
 \DoxyCodeLine{\ \ \ \ .connect\_network\_during\_configuration\ =\ 1,}
 \DoxyCodeLine{\ \ \ \ .is\_sensor\_1\_enabled\ =\ 0,}
-\DoxyCodeLine{\ \ \ \ .sensor\_1\_voltage\ =\ \mbox{\hyperlink{sensor__id_8h_adef9477a37671049d57edb26e6a37746a365711b2e480fbc6b57a5562d0bbda71}{SENSOR\_VOLTAGE\_OFF}},}
-\DoxyCodeLine{\ \ \ \ .sensor\_1\_type\ =\ \mbox{\hyperlink{sensor__id_8h_ad7b3bc5128f463a9f210147ad5c043bea1ae65a7266083bff167d506a200bf31d}{NULL\_SENSOR}},}
+\DoxyCodeLine{\ \ \ \ .sensor\_1\_voltage\ =\ SENSOR\_VOLTAGE\_OFF,}
+\DoxyCodeLine{\ \ \ \ .sensor\_1\_type\ =\ NULL\_SENSOR,}
 \DoxyCodeLine{\ \ \ \ .sensor\_1\_type\_name\ =\ \textcolor{stringliteral}{"{}NULL\_SENSOR"{}},}
 \DoxyCodeLine{\ \ \ \ .sensor\_1\_frequency\ =\ 0,}
 \DoxyCodeLine{\ \ \ \ .is\_sensor\_2\_enabled\ =\ 0,}
-\DoxyCodeLine{\ \ \ \ .sensor\_2\_voltage\ =\ \mbox{\hyperlink{sensor__id_8h_adef9477a37671049d57edb26e6a37746a365711b2e480fbc6b57a5562d0bbda71}{SENSOR\_VOLTAGE\_OFF}},}
-\DoxyCodeLine{\ \ \ \ .sensor\_2\_type\ =\ \mbox{\hyperlink{sensor__id_8h_ad7b3bc5128f463a9f210147ad5c043bea1ae65a7266083bff167d506a200bf31d}{NULL\_SENSOR}},}
+\DoxyCodeLine{\ \ \ \ .sensor\_2\_voltage\ =\ SENSOR\_VOLTAGE\_OFF,}
+\DoxyCodeLine{\ \ \ \ .sensor\_2\_type\ =\ NULL\_SENSOR,}
 \DoxyCodeLine{\ \ \ \ .sensor\_2\_type\_name\ =\ \textcolor{stringliteral}{"{}NULL\_SENSOR"{}},}
 \DoxyCodeLine{\ \ \ \ .sensor\_2\_frequency\ =\ 0,}
 \DoxyCodeLine{\}}

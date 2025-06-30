@@ -92,34 +92,49 @@ Directory dependency graph for src:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="files" name="files"></a>
 Files</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top"><span class="icondoc"></span>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__device__service_8c.html">ble_device_service.c</a></td></tr>
+<tr class="memdesc:ble__device__service_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a library to handle the BLE services device configuration. It displays the device name, hardware version, firmware version, and battery/charger information. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top"><span class="icondoc"></span>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__lorawan__service_8c.html">ble_lorawan_service.c</a></td></tr>
+<tr class="memdesc:ble__lorawan__service_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a library to handle the BLE services for the LORAWAN network. This service is used for configuration and debugging of the LORAWAN network. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top"><span class="icondoc"></span>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__sensor__service_8c.html">ble_sensor_service.c</a></td></tr>
+<tr class="memdesc:ble__sensor__service_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a library to handle the BLE services for the sensor. It allows for configurations of the sensor, including power configuration, sensor configuration, and data frequency. It also allows for the retrieval of the sensor data. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top"><span class="icondoc"></span>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html">main.c</a></td></tr>
+<tr class="memdesc:main_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the main file for the LoRa-BLE-Sensor project. It initializes the sensor app and starts the BLE thread. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top"><span class="icondoc"></span>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor__app_8c.html">sensor_app.c</a></td></tr>
+<tr class="memdesc:sensor__app_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">A library to manage sensor applications. Working between power configurations, data configurations, and scheduling for sensor reading. As well as LoRaWAN initialization, scheduling, and data transmission. This library also handles the BLE services for the device, sensor, and LoRaWAN. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top"><span class="icondoc"></span>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor__ble_8c.html">sensor_ble.c</a></td></tr>
+<tr class="memdesc:sensor__ble_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a library to handle the BLE functionality for the sensor. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top"><span class="icondoc"></span>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor__data_8c.html">sensor_data.c</a></td></tr>
+<tr class="memdesc:sensor__data_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a library to keep track of sensor data, using the sensor_reading library to collect data from the sensors. This library will also handle the data storage and retrieval. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top"><span class="icondoc"></span>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor__lorawan_8c.html">sensor_lorawan.c</a></td></tr>
+<tr class="memdesc:sensor__lorawan_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a library to handle the LoRaWAN functionality for the sensor. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top"><span class="icondoc"></span>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor__names_8c.html">sensor_names.c</a></td></tr>
+<tr class="memdesc:sensor__names_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a library for sensor names, converting between strings and enum values to make configurations human readable. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top"><span class="icondoc"></span>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor__nvs_8c.html">sensor_nvs.c</a></td></tr>
+<tr class="memdesc:sensor__nvs_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a library to keep track of sensor information and configurations that are stored in the non-volatile storage (NVS) of the device. nrf52840_partition gives 32KB for storage_partition. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top"><span class="icondoc"></span>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor__pmic_8c.html">sensor_pmic.c</a></td></tr>
+<tr class="memdesc:sensor__pmic_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a library to keep track of the PMIC and its configuration. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top"><span class="icondoc"></span>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor__power_8c.html">sensor_power.c</a></td></tr>
+<tr class="memdesc:sensor__power_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a library for sensor power configurations and control. This is manages the power configuration, pin configuration, and control of sensor power. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top"><span class="icondoc"></span>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor__reading_8c.html">sensor_reading.c</a></td></tr>
+<tr class="memdesc:sensor__reading_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a library for sensor data configurations and collection. This is manages the sensor type, pin configuration, and reading of sensor data. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top"><span class="icondoc"></span>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor__scheduling_8c.html">sensor_scheduling.c</a></td></tr>
+<tr class="memdesc:sensor__scheduling_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a library to schedule sensor readings and radio transmissions. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top"><span class="icondoc"></span>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor__timer_8c.html">sensor_timer.c</a></td></tr>
+<tr class="memdesc:sensor__timer_8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a library to keep track of sensor and radio timers. Manages alarms for sensors and radio transmissions. This library is used by the sensor_scheduling library to schedule sensor readings and radio transmissions. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->

@@ -1,5 +1,5 @@
 <map id="app/src/sensor_reading.c" name="app/src/sensor_reading.c">
-<area shape="rect" id="Node000001" title=" " alt="" coords="190,5,373,31"/>
+<area shape="rect" id="Node000001" title="This is a library for sensor data configurations and collection. This is manages the sensor type,..." alt="" coords="190,5,373,31"/>
 <area shape="rect" id="Node000002" href="$sensor__reading_8h.html" title="This is a library for sensor data configurations and collection. This is manages the sensor type,..." alt="" coords="139,79,272,104"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="271,33,230,71,226,67,267,29"/>
 <area shape="rect" id="Node000006" title=" " alt="" coords="296,79,419,104"/>

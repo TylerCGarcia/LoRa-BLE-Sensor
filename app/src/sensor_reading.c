@@ -1,4 +1,14 @@
-
+/**
+ * @file sensor_reading.c
+ * @author Tyler Garcia
+ * @brief This is a library for sensor data configurations and collection.
+ * This is manages the sensor type, pin configuration, and reading of sensor data.
+ * @version 0.1
+ * @date 2025-04-28
+ * 
+ * @copyright Copyright (c) 2025
+ * 
+ */
 
 #include "sensor_reading.h"
 #include <zephyr/kernel.h>

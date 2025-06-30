@@ -1,3 +1,15 @@
+/**
+ * @file ble_device_service.c
+ * @author Tyler Garcia
+ * @brief This is a library to handle the BLE services device configuration.
+ * It displays the device name, hardware version, firmware version, and battery/charger information.
+ * @version 0.1
+ * @date 2025-05-06
+ * 
+ * @copyright Copyright (c) 2025
+ * 
+ */
+
 #include "ble_device_service.h"
 #include <zephyr/logging/log.h>
 #include <zephyr/bluetooth/bluetooth.h>

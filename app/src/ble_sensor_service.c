@@ -1,3 +1,17 @@
+/**
+ * @file ble_sensor_service.c
+ * @author Tyler Garcia
+ * @brief This is a library to handle the BLE services for the sensor.
+ * It allows for configurations of the sensor, including power configuration, 
+ * sensor configuration, and data frequency.
+ * It also allows for the retrieval of the sensor data.
+ * 
+ * @version 0.1
+ * @date 2025-05-06
+ * 
+ * @copyright Copyright (c) 2025
+ * 
+ */
 
 #include "ble_sensor_service.h"
 #include <zephyr/bluetooth/bluetooth.h>

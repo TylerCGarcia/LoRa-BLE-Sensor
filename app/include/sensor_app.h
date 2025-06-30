@@ -2,7 +2,9 @@
  * @file sensor_app.h
  * @author Tyler Garcia
  * @brief A library to manage sensor applications. Working between
- * power configurations and data configurations.
+ * power configurations, data configurations, and scheduling for sensor reading. 
+ * As well as LoRaWAN initialization, scheduling, and data transmission. This 
+ * library also handles the BLE services for the device, sensor, and LoRaWAN.
  * @version 0.1
  * @date 2025-04-28
  * 

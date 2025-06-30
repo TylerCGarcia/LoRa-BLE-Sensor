@@ -12,45 +12,22 @@ Structure containing function pointers for PMIC operations.
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-bool(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsensor__pmic__ops__t_a7c66e190128cc2dc83c5f71367dbfd47}{device\+\_\+is\+\_\+ready}} )(const struct device \texorpdfstring{$\ast$}{*}dev)
+\Hypertarget{structsensor__pmic__ops__t_a7c66e190128cc2dc83c5f71367dbfd47}\label{structsensor__pmic__ops__t_a7c66e190128cc2dc83c5f71367dbfd47} 
+bool(\texorpdfstring{$\ast$}{*} {\bfseries device\+\_\+is\+\_\+ready} )(const struct device \texorpdfstring{$\ast$}{*}dev)
 \item 
-int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsensor__pmic__ops__t_a2fa5b684167dcf2478e75bf1c47c3cbe}{led\+\_\+on}} )(const struct device \texorpdfstring{$\ast$}{*}dev, uint32\+\_\+t led)
+\Hypertarget{structsensor__pmic__ops__t_a2fa5b684167dcf2478e75bf1c47c3cbe}\label{structsensor__pmic__ops__t_a2fa5b684167dcf2478e75bf1c47c3cbe} 
+int(\texorpdfstring{$\ast$}{*} {\bfseries led\+\_\+on} )(const struct device \texorpdfstring{$\ast$}{*}dev, uint32\+\_\+t led)
 \item 
-int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsensor__pmic__ops__t_a07dc5f6f373675d0af20e0cf265a49d3}{led\+\_\+off}} )(const struct device \texorpdfstring{$\ast$}{*}dev, uint32\+\_\+t led)
+\Hypertarget{structsensor__pmic__ops__t_a07dc5f6f373675d0af20e0cf265a49d3}\label{structsensor__pmic__ops__t_a07dc5f6f373675d0af20e0cf265a49d3} 
+int(\texorpdfstring{$\ast$}{*} {\bfseries led\+\_\+off} )(const struct device \texorpdfstring{$\ast$}{*}dev, uint32\+\_\+t led)
 \item 
-int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsensor__pmic__ops__t_a014bff78bc8c76946a8346fb3c0632cd}{sensor\+\_\+status\+\_\+get}} )(const struct device \texorpdfstring{$\ast$}{*}dev, \mbox{\hyperlink{structpmic__sensor__status__t}{pmic\+\_\+sensor\+\_\+status\+\_\+t}} \texorpdfstring{$\ast$}{*}status)
+\Hypertarget{structsensor__pmic__ops__t_a014bff78bc8c76946a8346fb3c0632cd}\label{structsensor__pmic__ops__t_a014bff78bc8c76946a8346fb3c0632cd} 
+int(\texorpdfstring{$\ast$}{*} {\bfseries sensor\+\_\+status\+\_\+get} )(const struct device \texorpdfstring{$\ast$}{*}dev, \mbox{\hyperlink{structpmic__sensor__status__t}{pmic\+\_\+sensor\+\_\+status\+\_\+t}} \texorpdfstring{$\ast$}{*}status)
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 Structure containing function pointers for PMIC operations. 
-
-\doxysubsection{Member Data Documentation}
-\Hypertarget{structsensor__pmic__ops__t_a7c66e190128cc2dc83c5f71367dbfd47}\label{structsensor__pmic__ops__t_a7c66e190128cc2dc83c5f71367dbfd47} 
-\index{sensor\_pmic\_ops\_t@{sensor\_pmic\_ops\_t}!device\_is\_ready@{device\_is\_ready}}
-\index{device\_is\_ready@{device\_is\_ready}!sensor\_pmic\_ops\_t@{sensor\_pmic\_ops\_t}}
-\doxysubsubsection{\texorpdfstring{device\_is\_ready}{device\_is\_ready}}
-{\footnotesize\ttfamily bool(\texorpdfstring{$\ast$}{*} sensor\+\_\+pmic\+\_\+ops\+\_\+t\+::device\+\_\+is\+\_\+ready) (const struct device \texorpdfstring{$\ast$}{*}dev)}
-
-\Hypertarget{structsensor__pmic__ops__t_a07dc5f6f373675d0af20e0cf265a49d3}\label{structsensor__pmic__ops__t_a07dc5f6f373675d0af20e0cf265a49d3} 
-\index{sensor\_pmic\_ops\_t@{sensor\_pmic\_ops\_t}!led\_off@{led\_off}}
-\index{led\_off@{led\_off}!sensor\_pmic\_ops\_t@{sensor\_pmic\_ops\_t}}
-\doxysubsubsection{\texorpdfstring{led\_off}{led\_off}}
-{\footnotesize\ttfamily int(\texorpdfstring{$\ast$}{*} sensor\+\_\+pmic\+\_\+ops\+\_\+t\+::led\+\_\+off) (const struct device \texorpdfstring{$\ast$}{*}dev, uint32\+\_\+t led)}
-
-\Hypertarget{structsensor__pmic__ops__t_a2fa5b684167dcf2478e75bf1c47c3cbe}\label{structsensor__pmic__ops__t_a2fa5b684167dcf2478e75bf1c47c3cbe} 
-\index{sensor\_pmic\_ops\_t@{sensor\_pmic\_ops\_t}!led\_on@{led\_on}}
-\index{led\_on@{led\_on}!sensor\_pmic\_ops\_t@{sensor\_pmic\_ops\_t}}
-\doxysubsubsection{\texorpdfstring{led\_on}{led\_on}}
-{\footnotesize\ttfamily int(\texorpdfstring{$\ast$}{*} sensor\+\_\+pmic\+\_\+ops\+\_\+t\+::led\+\_\+on) (const struct device \texorpdfstring{$\ast$}{*}dev, uint32\+\_\+t led)}
-
-\Hypertarget{structsensor__pmic__ops__t_a014bff78bc8c76946a8346fb3c0632cd}\label{structsensor__pmic__ops__t_a014bff78bc8c76946a8346fb3c0632cd} 
-\index{sensor\_pmic\_ops\_t@{sensor\_pmic\_ops\_t}!sensor\_status\_get@{sensor\_status\_get}}
-\index{sensor\_status\_get@{sensor\_status\_get}!sensor\_pmic\_ops\_t@{sensor\_pmic\_ops\_t}}
-\doxysubsubsection{\texorpdfstring{sensor\_status\_get}{sensor\_status\_get}}
-{\footnotesize\ttfamily int(\texorpdfstring{$\ast$}{*} sensor\+\_\+pmic\+\_\+ops\+\_\+t\+::sensor\+\_\+status\+\_\+get) (const struct device \texorpdfstring{$\ast$}{*}dev, \mbox{\hyperlink{structpmic__sensor__status__t}{pmic\+\_\+sensor\+\_\+status\+\_\+t}} \texorpdfstring{$\ast$}{*}status)}
-
-
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

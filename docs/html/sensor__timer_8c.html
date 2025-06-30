@@ -78,6 +78,9 @@ $(function() {
   <div class="headertitle"><div class="title">sensor_timer.c File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>This is a library to keep track of sensor and radio timers. Manages alarms for sensors and radio transmissions. This library is used by the sensor_scheduling library to schedule sensor readings and radio transmissions.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;<a class="el" href="sensor__timer_8h_source.html">sensor_timer.h</a>&gt;</code><br />
 <code>#include &lt;zephyr/kernel.h&gt;</code><br />
 <code>#include &lt;zephyr/logging/log.h&gt;</code><br />
@@ -86,7 +89,7 @@ Include dependency graph for sensor_timer.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="sensor__timer_8c__incl.png" border="0" usemap="#aapp_2src_2sensor__timer_8c" alt=""/></div>
 <map name="aapp_2src_2sensor__timer_8c" id="aapp_2src_2sensor__timer_8c">
-<area shape="rect" title=" " alt="" coords="244,5,412,31"/>
+<area shape="rect" title="This is a library to keep track of sensor and radio timers. Manages alarms for sensors and radio tran..." alt="" coords="244,5,412,31"/>
 <area shape="rect" href="sensor__timer_8h.html" title="This is a library to keep track of sensor and radio timers. Manages alarms for sensors and radio tran..." alt="" coords="123,79,242,104"/>
 <area shape="poly" title=" " alt="" coords="306,33,220,75,217,70,303,28"/>
 <area shape="rect" title=" " alt="" coords="267,79,389,104"/>
@@ -102,7 +105,8 @@ Include dependency graph for sensor_timer.c:</div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aef3492a560014ecfdc7c4c706f26e085" id="r_aef3492a560014ecfdc7c4c706f26e085"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor__timer_8c.html#aef3492a560014ecfdc7c4c706f26e085">LOG_MODULE_REGISTER</a> (SENSOR_TIMER, LOG_LEVEL_INF)</td></tr>
+<tr class="memitem:aef3492a560014ecfdc7c4c706f26e085" id="r_aef3492a560014ecfdc7c4c706f26e085"><td class="memItemLeft" align="right" valign="top"><a id="aef3492a560014ecfdc7c4c706f26e085" name="aef3492a560014ecfdc7c4c706f26e085"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>LOG_MODULE_REGISTER</b> (SENSOR_TIMER, LOG_LEVEL_INF)</td></tr>
 <tr class="separator:aef3492a560014ecfdc7c4c706f26e085"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec38ee834d2968ed0c8a1a0154625e05" id="r_aec38ee834d2968ed0c8a1a0154625e05"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor__timer_8c.html#aec38ee834d2968ed0c8a1a0154625e05">sensor_timer_init</a> (const struct device *dev)</td></tr>
 <tr class="memdesc:aec38ee834d2968ed0c8a1a0154625e05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the chosen sensor timer instance and create a top value callback to increment the total overflown seconds. This also starts the timer.  <br /></td></tr>
@@ -129,35 +133,13 @@ Functions</h2></td></tr>
 <tr class="memdesc:a59e461a7a10a1f5dd4d8e6e62c775d38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cancel the alarm for the chosen channel of the sensor timer instance.  <br /></td></tr>
 <tr class="separator:a59e461a7a10a1f5dd4d8e6e62c775d38"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="aef3492a560014ecfdc7c4c706f26e085" name="aef3492a560014ecfdc7c4c706f26e085"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aef3492a560014ecfdc7c4c706f26e085">&#9670;&#160;</a></span>LOG_MODULE_REGISTER()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">LOG_MODULE_REGISTER </td>
-          <td>(</td>
-          <td class="paramtype">SENSOR_TIMER&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">LOG_LEVEL_INF&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This is a library to keep track of sensor and radio timers. Manages alarms for sensors and radio transmissions. This library is used by the sensor_scheduling library to schedule sensor readings and radio transmissions. </p>
+<dl class="section author"><dt>Author</dt><dd>Tyler Garcia </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>0.1 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2025-05-09</dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2025 </dd></dl>
+</div><h2 class="groupheader">Function Documentation</h2>
 <a id="a59e461a7a10a1f5dd4d8e6e62c775d38" name="a59e461a7a10a1f5dd4d8e6e62c775d38"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a59e461a7a10a1f5dd4d8e6e62c775d38">&#9670;&#160;</a></span>sensor_timer_cancel_alarm()</h2>
 

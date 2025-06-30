@@ -18,8 +18,11 @@ This will initialize the python environment(.venv), initialize west(.west), and 
 \begin{DoxyItemize}
 \item Calls functions in {\bfseries{sensor\+\_\+app}} library
 \begin{DoxyItemize}
-\item Switches between states for the sensor
+\item Initializes the bluetooth thread
+\item Switches between states for the sensor(configuration, running, error) {\bfseries{\doxylink{sensor__app_8c}{sensor\+\_\+app.\+c}}}
 \end{DoxyItemize}
+\item Calls functions in {\bfseries{sensor\+\_\+nvs}}, {\bfseries{sensor\+\_\+scheduling}}, {\bfseries{sensor\+\_\+lorawan}} and {\bfseries{sensor\+\_\+data}}.
+\item Controles the high level functionality of the project.
 \end{DoxyItemize}\hypertarget{index_autotoc_md4}{}\doxysection{\texorpdfstring{Power Analysis}{Power Analysis}}\label{index_autotoc_md4}
 
 \begin{DoxyItemize}

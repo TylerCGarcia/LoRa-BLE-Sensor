@@ -1,5 +1,10 @@
 \doxysection{app/src/sensor\+\_\+reading.c File Reference}
 \hypertarget{sensor__reading_8c}{}\label{sensor__reading_8c}\index{app/src/sensor\_reading.c@{app/src/sensor\_reading.c}}
+
+
+This is a library for sensor data configurations and collection. This is manages the sensor type, pin configuration, and reading of sensor data.  
+
+
 {\ttfamily \#include "{}sensor\+\_\+reading.\+h"{}}\newline
 {\ttfamily \#include $<$zephyr/kernel.\+h$>$}\newline
 Include dependency graph for sensor\+\_\+reading.\+c\+:
@@ -33,8 +38,26 @@ int \mbox{\hyperlink{sensor__reading_8c_af605cb54eb7cca3d5a90da406a1b14a7}{reset
 \doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-enum \mbox{\hyperlink{sensor__id_8h_ad7b3bc5128f463a9f210147ad5c043be}{sensor\+\_\+types}} \mbox{\hyperlink{sensor__reading_8c_ac2266f26865b724e634d34a49ee294a8}{sensor\+\_\+setups}} \mbox{[}\mbox{\hyperlink{sensor__id_8h_a48a4081a48bf69abc4ba5d704ec33919a06676323c3ed87ee9dc4c533c037539c}{SENSOR\+\_\+\+INDEX\+\_\+\+LIMIT}}\mbox{]}
+\Hypertarget{sensor__reading_8c_ac2266f26865b724e634d34a49ee294a8}\label{sensor__reading_8c_ac2266f26865b724e634d34a49ee294a8} 
+enum \mbox{\hyperlink{sensor__id_8h_ad7b3bc5128f463a9f210147ad5c043be}{sensor\+\_\+types}} {\bfseries sensor\+\_\+setups} \mbox{[}SENSOR\+\_\+\+INDEX\+\_\+\+LIMIT\mbox{]}
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This is a library for sensor data configurations and collection. This is manages the sensor type, pin configuration, and reading of sensor data. 
+
+\begin{DoxyAuthor}{Author}
+Tyler Garcia 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/04-\/28
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2025 
+\end{DoxyCopyright}
 
 
 \doxysubsection{Function Documentation}
@@ -148,12 +171,3 @@ Setup sensor for sensor\+\_\+type with hardware configuration.
 \begin{DoxyReturn}{Returns}
 int 0 if successful, \texorpdfstring{$<$}{<} 0 otherwise 
 \end{DoxyReturn}
-
-
-\doxysubsection{Variable Documentation}
-\Hypertarget{sensor__reading_8c_ac2266f26865b724e634d34a49ee294a8}\label{sensor__reading_8c_ac2266f26865b724e634d34a49ee294a8} 
-\index{sensor\_reading.c@{sensor\_reading.c}!sensor\_setups@{sensor\_setups}}
-\index{sensor\_setups@{sensor\_setups}!sensor\_reading.c@{sensor\_reading.c}}
-\doxysubsubsection{\texorpdfstring{sensor\_setups}{sensor\_setups}}
-{\footnotesize\ttfamily enum \mbox{\hyperlink{sensor__id_8h_ad7b3bc5128f463a9f210147ad5c043be}{sensor\+\_\+types}} sensor\+\_\+setups\mbox{[}\mbox{\hyperlink{sensor__id_8h_a48a4081a48bf69abc4ba5d704ec33919a06676323c3ed87ee9dc4c533c037539c}{SENSOR\+\_\+\+INDEX\+\_\+\+LIMIT}}\mbox{]}}
-

@@ -78,6 +78,9 @@ $(function() {
   <div class="headertitle"><div class="title">ble_device_service.c File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>This is a library to handle the BLE services device configuration. It displays the device name, hardware version, firmware version, and battery/charger information.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="ble__device__service_8h_source.html">ble_device_service.h</a>&quot;</code><br />
 <code>#include &lt;zephyr/logging/log.h&gt;</code><br />
 <code>#include &lt;zephyr/bluetooth/bluetooth.h&gt;</code><br />
@@ -87,8 +90,8 @@ Include dependency graph for ble_device_service.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="ble__device__service_8c__incl.png" border="0" usemap="#aapp_2src_2ble__device__service_8c" alt=""/></div>
 <map name="aapp_2src_2ble__device__service_8c" id="aapp_2src_2ble__device__service_8c">
-<area shape="rect" title=" " alt="" coords="459,5,602,45"/>
-<area shape="rect" href="ble__device__service_8h.html" title=" " alt="" coords="167,93,326,119"/>
+<area shape="rect" title="This is a library to handle the BLE services device configuration. It displays the device name,..." alt="" coords="459,5,602,45"/>
+<area shape="rect" href="ble__device__service_8h.html" title="This is a library to handle the BLE services device configuration. It displays the device name,..." alt="" coords="167,93,326,119"/>
 <area shape="poly" title=" " alt="" coords="463,48,302,92,300,87,462,43"/>
 <area shape="rect" title=" " alt="" coords="351,93,505,119"/>
 <area shape="poly" title=" " alt="" coords="507,48,456,87,452,83,504,43"/>
@@ -111,15 +114,23 @@ Include dependency graph for ble_device_service.c:</div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a5cf91a0b297367e4c00afb82984e5ad0" id="r_a5cf91a0b297367e4c00afb82984e5ad0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__device__service_8c.html#a5cf91a0b297367e4c00afb82984e5ad0">LOG_MODULE_REGISTER</a> (BLE_DEVICE_SERVICE, LOG_LEVEL_INF)</td></tr>
+<tr class="memitem:a5cf91a0b297367e4c00afb82984e5ad0" id="r_a5cf91a0b297367e4c00afb82984e5ad0"><td class="memItemLeft" align="right" valign="top"><a id="a5cf91a0b297367e4c00afb82984e5ad0" name="a5cf91a0b297367e4c00afb82984e5ad0"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>LOG_MODULE_REGISTER</b> (BLE_DEVICE_SERVICE, LOG_LEVEL_INF)</td></tr>
 <tr class="separator:a5cf91a0b297367e4c00afb82984e5ad0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a38c013572cedf384b31b9f6a6bdc95c4" id="r_a38c013572cedf384b31b9f6a6bdc95c4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__device__service_8c.html#a38c013572cedf384b31b9f6a6bdc95c4">BT_GATT_SERVICE_DEFINE</a> (device_svc, BT_GATT_PRIMARY_SERVICE(<a class="el" href="ble__device__service_8h.html#a7c39e51331b7b5f547d6619add432e83">BT_UUID_DEVICE</a>), BT_GATT_CHARACTERISTIC(<a class="el" href="ble__device__service_8h.html#a55b1603a366a9ea2f75c4cbe76772bc3">BT_UUID_DEVICE_HARDWARE_VERSION</a>, BT_GATT_CHRC_READ, BT_GATT_PERM_READ, read_hardware_version, NULL, NULL), BT_GATT_CHARACTERISTIC(<a class="el" href="ble__device__service_8h.html#a3166830105fe3bb457d384a928b4c3c0">BT_UUID_DEVICE_FIRMWARE_VERSION</a>, BT_GATT_CHRC_READ, BT_GATT_PERM_READ, read_firmware_version, NULL, NULL), BT_GATT_CHARACTERISTIC(<a class="el" href="ble__device__service_8h.html#a127e49d0763ee2499e1f2e0f40e9bec5">BT_UUID_DEVICE_BATTERY_VOLTAGE</a>, BT_GATT_CHRC_READ, BT_GATT_PERM_READ, read_battery_voltage, NULL, NULL), BT_GATT_CHARACTERISTIC(<a class="el" href="ble__device__service_8h.html#aec9e91f516f8810093da6f04b9de6f9f">BT_UUID_DEVICE_BATTERY_TEMPERATURE</a>, BT_GATT_CHRC_READ, BT_GATT_PERM_READ, read_battery_temperature, NULL, NULL),)</td></tr>
+<tr class="memitem:a38c013572cedf384b31b9f6a6bdc95c4" id="r_a38c013572cedf384b31b9f6a6bdc95c4"><td class="memItemLeft" align="right" valign="top"><a id="a38c013572cedf384b31b9f6a6bdc95c4" name="a38c013572cedf384b31b9f6a6bdc95c4"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>BT_GATT_SERVICE_DEFINE</b> (device_svc, BT_GATT_PRIMARY_SERVICE(BT_UUID_DEVICE), BT_GATT_CHARACTERISTIC(BT_UUID_DEVICE_HARDWARE_VERSION, BT_GATT_CHRC_READ, BT_GATT_PERM_READ, read_hardware_version, NULL, NULL), BT_GATT_CHARACTERISTIC(BT_UUID_DEVICE_FIRMWARE_VERSION, BT_GATT_CHRC_READ, BT_GATT_PERM_READ, read_firmware_version, NULL, NULL), BT_GATT_CHARACTERISTIC(BT_UUID_DEVICE_BATTERY_VOLTAGE, BT_GATT_CHRC_READ, BT_GATT_PERM_READ, read_battery_voltage, NULL, NULL), BT_GATT_CHARACTERISTIC(BT_UUID_DEVICE_BATTERY_TEMPERATURE, BT_GATT_CHRC_READ, BT_GATT_PERM_READ, read_battery_temperature, NULL, NULL),)</td></tr>
 <tr class="separator:a38c013572cedf384b31b9f6a6bdc95c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae7f661c5a2c19aec217e05ef7d7e16f4" id="r_ae7f661c5a2c19aec217e05ef7d7e16f4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ble__device__service_8c.html#ae7f661c5a2c19aec217e05ef7d7e16f4">ble_device_service_init</a> (<a class="el" href="structpmic__sensor__status__t.html">pmic_sensor_status_t</a> *status)</td></tr>
 <tr class="memdesc:ae7f661c5a2c19aec217e05ef7d7e16f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Connect PMIC sensor status to Device BLE Service.  <br /></td></tr>
 <tr class="separator:ae7f661c5a2c19aec217e05ef7d7e16f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This is a library to handle the BLE services device configuration. It displays the device name, hardware version, firmware version, and battery/charger information. </p>
+<dl class="section author"><dt>Author</dt><dd>Tyler Garcia </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>0.1 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2025-05-06</dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2025 </dd></dl>
+</div><h2 class="groupheader">Function Documentation</h2>
 <a id="ae7f661c5a2c19aec217e05ef7d7e16f4" name="ae7f661c5a2c19aec217e05ef7d7e16f4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae7f661c5a2c19aec217e05ef7d7e16f4">&#9670;&#160;</a></span>ble_device_service_init()</h2>
 
@@ -144,86 +155,6 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>int 0 if successful connection, &lt; 0 if unsuccessful </dd></dl>
-
-</div>
-</div>
-<a id="a38c013572cedf384b31b9f6a6bdc95c4" name="a38c013572cedf384b31b9f6a6bdc95c4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a38c013572cedf384b31b9f6a6bdc95c4">&#9670;&#160;</a></span>BT_GATT_SERVICE_DEFINE()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">BT_GATT_SERVICE_DEFINE </td>
-          <td>(</td>
-          <td class="paramtype">device_svc&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">BT_GATT_PRIMARY_SERVICE(<a class="el" href="ble__device__service_8h.html#a7c39e51331b7b5f547d6619add432e83">BT_UUID_DEVICE</a>)&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">BT_GATT_CHARACTERISTIC(<a class="el" href="ble__device__service_8h.html#a55b1603a366a9ea2f75c4cbe76772bc3">BT_UUID_DEVICE_HARDWARE_VERSION</a>, BT_GATT_CHRC_READ, BT_GATT_PERM_READ, read_hardware_version, NULL, NULL)&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">BT_GATT_CHARACTERISTIC(<a class="el" href="ble__device__service_8h.html#a3166830105fe3bb457d384a928b4c3c0">BT_UUID_DEVICE_FIRMWARE_VERSION</a>, BT_GATT_CHRC_READ, BT_GATT_PERM_READ, read_firmware_version, NULL, NULL)&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">BT_GATT_CHARACTERISTIC(<a class="el" href="ble__device__service_8h.html#a127e49d0763ee2499e1f2e0f40e9bec5">BT_UUID_DEVICE_BATTERY_VOLTAGE</a>, BT_GATT_CHRC_READ, BT_GATT_PERM_READ, read_battery_voltage, NULL, NULL)&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">BT_GATT_CHARACTERISTIC(<a class="el" href="ble__device__service_8h.html#aec9e91f516f8810093da6f04b9de6f9f">BT_UUID_DEVICE_BATTERY_TEMPERATURE</a>, BT_GATT_CHRC_READ, BT_GATT_PERM_READ, read_battery_temperature, NULL, NULL)&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a5cf91a0b297367e4c00afb82984e5ad0" name="a5cf91a0b297367e4c00afb82984e5ad0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5cf91a0b297367e4c00afb82984e5ad0">&#9670;&#160;</a></span>LOG_MODULE_REGISTER()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">LOG_MODULE_REGISTER </td>
-          <td>(</td>
-          <td class="paramtype">BLE_DEVICE_SERVICE&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">LOG_LEVEL_INF&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
 
 </div>
 </div>

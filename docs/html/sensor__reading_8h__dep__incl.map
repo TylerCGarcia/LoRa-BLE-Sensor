@@ -1,7 +1,7 @@
 <map id="app/include/sensor_reading.h" name="app/include/sensor_reading.h">
 <area shape="rect" id="Node000001" title="This is a library for sensor data configurations and collection. This is manages the sensor type,..." alt="" coords="113,5,257,45"/>
-<area shape="rect" id="Node000002" href="$sensor__data_8c.html" title=" " alt="" coords="5,93,168,119"/>
+<area shape="rect" id="Node000002" href="$sensor__data_8c.html" title="This is a library to keep track of sensor data, using the sensor_reading library to collect data from..." alt="" coords="5,93,168,119"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="152,56,103,95,100,91,149,52"/>
-<area shape="rect" id="Node000003" href="$sensor__reading_8c.html" title=" " alt="" coords="193,93,375,119"/>
+<area shape="rect" id="Node000003" href="$sensor__reading_8c.html" title="This is a library for sensor data configurations and collection. This is manages the sensor type,..." alt="" coords="193,93,375,119"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="222,52,271,91,268,95,218,56"/>
 </map>

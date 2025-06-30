@@ -1,7 +1,7 @@
 <map id="app/include/sensor_scheduling.h" name="app/include/sensor_scheduling.h">
 <area shape="rect" id="Node000001" title="This is a library to schedule sensor readings and radio transmissions." alt="" coords="115,5,259,45"/>
-<area shape="rect" id="Node000002" href="$sensor__app_8c.html" title=" " alt="" coords="5,93,164,119"/>
+<area shape="rect" id="Node000002" href="$sensor__app_8c.html" title="A library to manage sensor applications. Working between power configurations, data configurations,..." alt="" coords="5,93,164,119"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="153,56,102,95,98,91,150,52"/>
-<area shape="rect" id="Node000003" href="$sensor__scheduling_8c.html" title=" " alt="" coords="188,93,392,119"/>
+<area shape="rect" id="Node000003" href="$sensor__scheduling_8c.html" title="This is a library to schedule sensor readings and radio transmissions." alt="" coords="188,93,392,119"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="225,52,276,91,273,95,222,56"/>
 </map>

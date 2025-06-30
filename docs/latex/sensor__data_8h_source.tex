@@ -14,35 +14,35 @@
 \DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ MAX\_DATA\_BUFFER\_SIZE\ 100}}
 \DoxyCodeLine{00022\ }
 \DoxyCodeLine{00027\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{sensor__data_8h_ae58811ccec39232f9c49d149eed4a324}{sensor\_data\_type}}\ \{}
-\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{sensor__data_8h_ae58811ccec39232f9c49d149eed4a324abf231dfe26eff989df3b697df1a45522}{DATA\_TYPE\_INT}},}
-\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{sensor__data_8h_ae58811ccec39232f9c49d149eed4a324a332c1c608bc4515a9ca3a2589a361128}{DATA\_TYPE\_UINT8}},}
-\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{sensor__data_8h_ae58811ccec39232f9c49d149eed4a324a245ae0de48bc92048c53ff8bd44fb850}{DATA\_TYPE\_UINT16}},}
-\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{sensor__data_8h_ae58811ccec39232f9c49d149eed4a324aeb75b61567450ccd47baf77d95efa3f6}{DATA\_TYPE\_UINT32}},}
-\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{sensor__data_8h_ae58811ccec39232f9c49d149eed4a324a0992e2c702acfcdc10275890e0b47536}{DATA\_TYPE\_FLOAT}},}
-\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{sensor__data_8h_ae58811ccec39232f9c49d149eed4a324af73c2cae683ca2c2d0bdc721def1bc93}{DATA\_TYPE\_LIMIT}}}
+\DoxyCodeLine{00028\ \ \ \ \ DATA\_TYPE\_INT,}
+\DoxyCodeLine{00029\ \ \ \ \ DATA\_TYPE\_UINT8,}
+\DoxyCodeLine{00030\ \ \ \ \ DATA\_TYPE\_UINT16,}
+\DoxyCodeLine{00031\ \ \ \ \ DATA\_TYPE\_UINT32,}
+\DoxyCodeLine{00032\ \ \ \ \ DATA\_TYPE\_FLOAT,}
+\DoxyCodeLine{00033\ \ \ \ \ DATA\_TYPE\_LIMIT}
 \DoxyCodeLine{00034\ \};}
 \DoxyCodeLine{00035\ }
 \DoxyCodeLine{00036\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
 \DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{/*\ Sensor\ id\ to\ use\ for\ the\ sensor.\ */}}
-\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{sensor__id_8h_a48a4081a48bf69abc4ba5d704ec33919}{sensor\_id}}\ \mbox{\hyperlink{structsensor__data__t_a40003e8cf84f299c9f4670bc3e31835e}{id}};}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{sensor__id_8h_a48a4081a48bf69abc4ba5d704ec33919}{sensor\_id}}\ id;}
 \DoxyCodeLine{00039\ \ \ \ \ \textcolor{comment}{/*\ Power\ id\ to\ use\ for\ the\ sensor.\ */}}
-\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{sensor__id_8h_a9425a5b9d9160dce11f5f08e71e5048f}{sensor\_power\_id}}\ \mbox{\hyperlink{structsensor__data__t_a349bb03cec37aed81e51831ba11f87ce}{power\_id}};}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{sensor__id_8h_a9425a5b9d9160dce11f5f08e71e5048f}{sensor\_power\_id}}\ power\_id;}
 \DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{/*\ Ring\ buffer\ for\ sensor\ data.\ */}}
 \DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{struct\ }ring\_buf\ data\_ring\_buf;}
 \DoxyCodeLine{00043\ \ \ \ \ \textcolor{comment}{/*\ Ring\ buffer\ for\ timestamps.\ */}}
 \DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{struct\ }ring\_buf\ timestamp\_ring\_buf;}
 \DoxyCodeLine{00045\ \ \ \ \ \textcolor{comment}{/*\ Maximum\ number\ of\ samples\ to\ store\ in\ the\ buffer.\ */}}
-\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{structsensor__data__t_a9f85b7704deb0c6877aabd5d38be0fa4}{max\_samples}};}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ max\_samples;}
 \DoxyCodeLine{00047\ \ \ \ \ \textcolor{comment}{/*\ Size\ of\ the\ data\ in\ the\ buffer.\ */}}
-\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{structsensor__data__t_a0d0ff2e4cd05265413e08e4ec1eea7ee}{data\_size}};}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ data\_size;}
 \DoxyCodeLine{00049\ \ \ \ \ \textcolor{comment}{/*\ Size\ of\ the\ timestamp\ in\ the\ buffer.\ */}}
-\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{structsensor__data__t_a468d65cdcf2a383350b99d14b6dffc96}{timestamp\_size}};}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ timestamp\_size;}
 \DoxyCodeLine{00051\ \ \ \ \ \textcolor{comment}{/*\ Pointer\ to\ latest\ data.\ */}}
-\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{void}\ *\mbox{\hyperlink{structsensor__data__t_afd56b8c352bbdeaa17b05cd77ee5d629}{latest\_data}};}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{void}\ *latest\_data;}
 \DoxyCodeLine{00053\ \ \ \ \ \textcolor{comment}{/*\ Latest\ timestamp.\ */}}
-\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structsensor__data__t_aa30554940e7d98b6352859c0b1b37dba}{latest\_timestamp}};}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{int}\ latest\_timestamp;}
 \DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{/*\ Number\ of\ samples\ in\ the\ buffer.\ */}}
-\DoxyCodeLine{00056\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structsensor__data__t_ae481556be589dcfdfde89a55572c0286}{num\_samples}};}
+\DoxyCodeLine{00056\ \ \ \ \ uint32\_t\ num\_samples;}
 \DoxyCodeLine{00057\ \}\ \mbox{\hyperlink{structsensor__data__t}{sensor\_data\_t}};}
 \DoxyCodeLine{00058\ }
 \DoxyCodeLine{00069\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sensor__data_8h_a1e50ff31480edbdf0db27eb081e46f02}{sensor\_data\_setup}}(\mbox{\hyperlink{structsensor__data__t}{sensor\_data\_t}}\ *sensor\_data,\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{sensor__id_8h_ad7b3bc5128f463a9f210147ad5c043be}{sensor\_types}}\ type,\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{sensor__id_8h_adef9477a37671049d57edb26e6a37746}{sensor\_voltage}}\ voltage\_enum);}

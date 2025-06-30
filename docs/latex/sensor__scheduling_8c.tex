@@ -1,5 +1,10 @@
 \doxysection{app/src/sensor\+\_\+scheduling.c File Reference}
 \hypertarget{sensor__scheduling_8c}{}\label{sensor__scheduling_8c}\index{app/src/sensor\_scheduling.c@{app/src/sensor\_scheduling.c}}
+
+
+This is a library to schedule sensor readings and radio transmissions.  
+
+
 {\ttfamily \#include "{}sensor\+\_\+scheduling.\+h"{}}\newline
 {\ttfamily \#include "{}sensor\+\_\+timer.\+h"{}}\newline
 {\ttfamily \#include $<$zephyr/logging/log.\+h$>$}\newline
@@ -14,7 +19,8 @@ Include dependency graph for sensor\+\_\+scheduling.\+c\+:
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{sensor__scheduling_8c_af7abe02dec3424b14da12707f5b7511a}{LOG\+\_\+\+MODULE\+\_\+\+REGISTER}} (SENSOR\+\_\+\+SCHEDULING, LOG\+\_\+\+LEVEL\+\_\+\+INF)
+\Hypertarget{sensor__scheduling_8c_af7abe02dec3424b14da12707f5b7511a}\label{sensor__scheduling_8c_af7abe02dec3424b14da12707f5b7511a} 
+{\bfseries LOG\+\_\+\+MODULE\+\_\+\+REGISTER} (SENSOR\+\_\+\+SCHEDULING, LOG\+\_\+\+LEVEL\+\_\+\+INF)
 \item 
 int \mbox{\hyperlink{sensor__scheduling_8c_a0479dc2a37c37e7de3ee1a39e2b21f6a}{sensor\+\_\+scheduling\+\_\+init}} (const struct device \texorpdfstring{$\ast$}{*}timer)
 \begin{DoxyCompactList}\small\item\em Initialize the sensor scheduling module. \end{DoxyCompactList}\item 
@@ -28,13 +34,24 @@ int \mbox{\hyperlink{sensor__scheduling_8c_a7369b55b27b226cb4a1c106d73ed2eb5}{se
 \begin{DoxyCompactList}\small\item\em Get the current time in seconds since the scheduling module was initialized. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\doxysubsection{Function Documentation}
-\Hypertarget{sensor__scheduling_8c_af7abe02dec3424b14da12707f5b7511a}\label{sensor__scheduling_8c_af7abe02dec3424b14da12707f5b7511a} 
-\index{sensor\_scheduling.c@{sensor\_scheduling.c}!LOG\_MODULE\_REGISTER@{LOG\_MODULE\_REGISTER}}
-\index{LOG\_MODULE\_REGISTER@{LOG\_MODULE\_REGISTER}!sensor\_scheduling.c@{sensor\_scheduling.c}}
-\doxysubsubsection{\texorpdfstring{LOG\_MODULE\_REGISTER()}{LOG\_MODULE\_REGISTER()}}
-{\footnotesize\ttfamily LOG\+\_\+\+MODULE\+\_\+\+REGISTER (\begin{DoxyParamCaption}\item[{SENSOR\+\_\+\+SCHEDULING}]{,  }\item[{LOG\+\_\+\+LEVEL\+\_\+\+INF}]{ }\end{DoxyParamCaption})}
+\doxysubsection{Detailed Description}
+This is a library to schedule sensor readings and radio transmissions. 
 
+\begin{DoxyAuthor}{Author}
+Tyler Garcia 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/05-\/12
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2025 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Function Documentation}
 \Hypertarget{sensor__scheduling_8c_af48c3df12ad78e292fca76c42f5d8867}\label{sensor__scheduling_8c_af48c3df12ad78e292fca76c42f5d8867} 
 \index{sensor\_scheduling.c@{sensor\_scheduling.c}!sensor\_scheduling\_add\_schedule@{sensor\_scheduling\_add\_schedule}}
 \index{sensor\_scheduling\_add\_schedule@{sensor\_scheduling\_add\_schedule}!sensor\_scheduling.c@{sensor\_scheduling.c}}

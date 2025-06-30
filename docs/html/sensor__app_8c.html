@@ -80,6 +80,9 @@ $(function() {
   <div class="headertitle"><div class="title">sensor_app.c File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>A library to manage sensor applications. Working between power configurations, data configurations, and scheduling for sensor reading. As well as LoRaWAN initialization, scheduling, and data transmission. This library also handles the BLE services for the device, sensor, and LoRaWAN.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="sensor__app_8h_source.html">sensor_app.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="sensor__ble_8h_source.html">sensor_ble.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="sensor__scheduling_8h_source.html">sensor_scheduling.h</a>&quot;</code><br />
@@ -98,8 +101,8 @@ Include dependency graph for sensor_app.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="sensor__app_8c__incl.png" border="0" usemap="#aapp_2src_2sensor__app_8c" alt=""/></div>
 <map name="aapp_2src_2sensor__app_8c" id="aapp_2src_2sensor__app_8c">
-<area shape="rect" title=" " alt="" coords="626,5,785,31"/>
-<area shape="rect" href="sensor__app_8h.html" title="A library to manage sensor applications. Working between power configurations and data configurations..." alt="" coords="90,152,198,177"/>
+<area shape="rect" title="A library to manage sensor applications. Working between power configurations, data configurations,..." alt="" coords="626,5,785,31"/>
+<area shape="rect" href="sensor__app_8h.html" title="A library to manage sensor applications. Working between power configurations, data configurations,..." alt="" coords="90,152,198,177"/>
 <area shape="poly" title=" " alt="" coords="626,31,511,50,447,64,385,81,358,93,330,106,199,151,197,146,328,102,355,88,383,76,446,59,510,45,625,26"/>
 <area shape="rect" href="sensor__ble_8h.html" title="This is a library to handle the BLE functionality for the sensor." alt="" coords="493,79,597,104"/>
 <area shape="poly" title=" " alt="" coords="681,33,585,75,583,71,679,28"/>
@@ -115,11 +118,11 @@ Include dependency graph for sensor_app.c:</div>
 <area shape="poly" title=" " alt="" coords="733,28,769,48,803,77,824,107,838,138,833,140,820,110,799,80,766,53,730,33"/>
 <area shape="rect" href="sensor__pmic_8h.html" title="This is a library to keep track of the PMIC and its configuration." alt="" coords="987,152,1103,177"/>
 <area shape="poly" title=" " alt="" coords="785,20,856,26,931,37,996,53,1021,64,1038,77,1047,91,1052,107,1053,138,1047,138,1046,108,1042,93,1034,80,1018,69,994,58,930,42,856,32,785,26"/>
-<area shape="rect" href="ble__sensor__service_8h.html" title="This is a library to handle the BLE services for the sensor." alt="" coords="158,79,317,104"/>
+<area shape="rect" href="ble__sensor__service_8h.html" title="This is a library to handle the BLE services for the sensor. It allows for configurations of the sens..." alt="" coords="158,79,317,104"/>
 <area shape="poly" title=" " alt="" coords="631,33,327,79,326,74,630,28"/>
 <area shape="rect" href="ble__lorawan__service_8h.html" title="This is a library to handle the BLE services for the LORAWAN network. This service is used for config..." alt="" coords="622,79,789,104"/>
 <area shape="poly" title=" " alt="" coords="708,31,708,65,703,65,703,31"/>
-<area shape="rect" href="ble__device__service_8h.html" title=" " alt="" coords="865,79,1023,104"/>
+<area shape="rect" href="ble__device__service_8h.html" title="This is a library to handle the BLE services device configuration. It displays the device name,..." alt="" coords="865,79,1023,104"/>
 <area shape="poly" title=" " alt="" coords="744,28,893,72,891,77,743,33"/>
 <area shape="rect" href="sensor__names_8h.html" title="This is a library for sensor names, converting between strings and enum values to make configurations..." alt="" coords="5,79,133,104"/>
 <area shape="poly" title=" " alt="" coords="626,29,414,51,147,81,147,76,414,45,625,24"/>
@@ -168,16 +171,20 @@ Include dependency graph for sensor_app.c:</div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:ababc8792e188f33a5144e9504c0ebb1e" id="r_ababc8792e188f33a5144e9504c0ebb1e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor__app_8c.html#ababc8792e188f33a5144e9504c0ebb1e">BLE_STACKSIZE</a>&#160;&#160;&#160;1024</td></tr>
+<tr class="memitem:ababc8792e188f33a5144e9504c0ebb1e" id="r_ababc8792e188f33a5144e9504c0ebb1e"><td class="memItemLeft" align="right" valign="top"><a id="ababc8792e188f33a5144e9504c0ebb1e" name="ababc8792e188f33a5144e9504c0ebb1e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BLE_STACKSIZE</b>&#160;&#160;&#160;1024</td></tr>
 <tr class="separator:ababc8792e188f33a5144e9504c0ebb1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4777fbbdd2c40e7fda3c2da2f8410d08" id="r_a4777fbbdd2c40e7fda3c2da2f8410d08"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor__app_8c.html#a4777fbbdd2c40e7fda3c2da2f8410d08">BLE_THREAD_PRIORITY</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memitem:a4777fbbdd2c40e7fda3c2da2f8410d08" id="r_a4777fbbdd2c40e7fda3c2da2f8410d08"><td class="memItemLeft" align="right" valign="top"><a id="a4777fbbdd2c40e7fda3c2da2f8410d08" name="a4777fbbdd2c40e7fda3c2da2f8410d08"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BLE_THREAD_PRIORITY</b>&#160;&#160;&#160;1</td></tr>
 <tr class="separator:a4777fbbdd2c40e7fda3c2da2f8410d08"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ae839dcb59891db8a0b7b1fc5581de47c" id="r_ae839dcb59891db8a0b7b1fc5581de47c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor__app_8c.html#ae839dcb59891db8a0b7b1fc5581de47c">LOG_MODULE_REGISTER</a> (SENSOR_APP, LOG_LEVEL_INF)</td></tr>
+<tr class="memitem:ae839dcb59891db8a0b7b1fc5581de47c" id="r_ae839dcb59891db8a0b7b1fc5581de47c"><td class="memItemLeft" align="right" valign="top"><a id="ae839dcb59891db8a0b7b1fc5581de47c" name="ae839dcb59891db8a0b7b1fc5581de47c"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>LOG_MODULE_REGISTER</b> (SENSOR_APP, LOG_LEVEL_INF)</td></tr>
 <tr class="separator:ae839dcb59891db8a0b7b1fc5581de47c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5001f2d3651508a0c2bb0a9f2fb54888" id="r_a5001f2d3651508a0c2bb0a9f2fb54888"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor__app_8c.html#a5001f2d3651508a0c2bb0a9f2fb54888">K_THREAD_STACK_DEFINE</a> (ble_stack, <a class="el" href="sensor__app_8c.html#ababc8792e188f33a5144e9504c0ebb1e">BLE_STACKSIZE</a>)</td></tr>
+<tr class="memitem:a5001f2d3651508a0c2bb0a9f2fb54888" id="r_a5001f2d3651508a0c2bb0a9f2fb54888"><td class="memItemLeft" align="right" valign="top"><a id="a5001f2d3651508a0c2bb0a9f2fb54888" name="a5001f2d3651508a0c2bb0a9f2fb54888"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>K_THREAD_STACK_DEFINE</b> (ble_stack, BLE_STACKSIZE)</td></tr>
 <tr class="separator:a5001f2d3651508a0c2bb0a9f2fb54888"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abea55631949306c2a0f82ddf35229087" id="r_abea55631949306c2a0f82ddf35229087"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor__app_8c.html#abea55631949306c2a0f82ddf35229087">sensor_app_init</a> (<a class="el" href="structsensor__app__config__t.html">sensor_app_config_t</a> *config)</td></tr>
 <tr class="memdesc:abea55631949306c2a0f82ddf35229087"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the sensor app, handle anything that needs to be initialized for the app such as timers, nvs, etc.  <br /></td></tr>
@@ -197,95 +204,17 @@ Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:ab9cde14293552e128ff011c9ecc554bc" id="r_ab9cde14293552e128ff011c9ecc554bc"><td class="memItemLeft" align="right" valign="top">struct k_thread&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor__app_8c.html#ab9cde14293552e128ff011c9ecc554bc">blethread_id</a></td></tr>
+<tr class="memitem:ab9cde14293552e128ff011c9ecc554bc" id="r_ab9cde14293552e128ff011c9ecc554bc"><td class="memItemLeft" align="right" valign="top"><a id="ab9cde14293552e128ff011c9ecc554bc" name="ab9cde14293552e128ff011c9ecc554bc"></a>
+struct k_thread&#160;</td><td class="memItemRight" valign="bottom"><b>blethread_id</b></td></tr>
 <tr class="separator:ab9cde14293552e128ff011c9ecc554bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="ababc8792e188f33a5144e9504c0ebb1e" name="ababc8792e188f33a5144e9504c0ebb1e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ababc8792e188f33a5144e9504c0ebb1e">&#9670;&#160;</a></span>BLE_STACKSIZE</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define BLE_STACKSIZE&#160;&#160;&#160;1024</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a4777fbbdd2c40e7fda3c2da2f8410d08" name="a4777fbbdd2c40e7fda3c2da2f8410d08"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4777fbbdd2c40e7fda3c2da2f8410d08">&#9670;&#160;</a></span>BLE_THREAD_PRIORITY</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define BLE_THREAD_PRIORITY&#160;&#160;&#160;1</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="a5001f2d3651508a0c2bb0a9f2fb54888" name="a5001f2d3651508a0c2bb0a9f2fb54888"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5001f2d3651508a0c2bb0a9f2fb54888">&#9670;&#160;</a></span>K_THREAD_STACK_DEFINE()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">K_THREAD_STACK_DEFINE </td>
-          <td>(</td>
-          <td class="paramtype">ble_stack&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="sensor__app_8c.html#ababc8792e188f33a5144e9504c0ebb1e">BLE_STACKSIZE</a>&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ae839dcb59891db8a0b7b1fc5581de47c" name="ae839dcb59891db8a0b7b1fc5581de47c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae839dcb59891db8a0b7b1fc5581de47c">&#9670;&#160;</a></span>LOG_MODULE_REGISTER()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">LOG_MODULE_REGISTER </td>
-          <td>(</td>
-          <td class="paramtype">SENSOR_APP&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">LOG_LEVEL_INF&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A library to manage sensor applications. Working between power configurations, data configurations, and scheduling for sensor reading. As well as LoRaWAN initialization, scheduling, and data transmission. This library also handles the BLE services for the device, sensor, and LoRaWAN. </p>
+<dl class="section author"><dt>Author</dt><dd>Tyler Garcia </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>0.1 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2025-04-28</dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2025 </dd></dl>
+</div><h2 class="groupheader">Function Documentation</h2>
 <a id="aa77b4db9e6c6a78c51af3acdc155f9a6" name="aa77b4db9e6c6a78c51af3acdc155f9a6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa77b4db9e6c6a78c51af3acdc155f9a6">&#9670;&#160;</a></span>sensor_app_ble_start()</h2>
 
@@ -388,21 +317,6 @@ Variables</h2></td></tr>
 
 <p>Execute the sensor app running state. </p>
 <dl class="section return"><dt>Returns</dt><dd>int 0 on success, -1 on failure </dd></dl>
-
-</div>
-</div>
-<h2 class="groupheader">Variable Documentation</h2>
-<a id="ab9cde14293552e128ff011c9ecc554bc" name="ab9cde14293552e128ff011c9ecc554bc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab9cde14293552e128ff011c9ecc554bc">&#9670;&#160;</a></span>blethread_id</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">struct k_thread blethread_id</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
 
 </div>
 </div>

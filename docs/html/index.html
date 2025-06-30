@@ -83,11 +83,14 @@ Project Initialization</h1>
 </div><!-- fragment --><p>This will initialize the python environment(.venv), initialize west(.west), and update west, pulling down the appropriate zephyr dependencies needed for this project. These dependencies are determined by the west manifest(west.yml) in the <code>zephyr</code> folder. The update process may take time, when finished all of the dependencies should be located in the <code>deps</code> folder. After this the <code>app</code> folder can be built and twister can be used to run the <code>tests</code> folder.</p>
 <h1><a class="anchor" id="autotoc_md3"></a>
 Code Breakdown</h1>
-<p><b><a class="el" href="main_8c.html">main.c</a></b></p><ul>
+<p><b><a class="el" href="main_8c.html" title="This is the main file for the LoRa-BLE-Sensor project. It initializes the sensor app and starts the B...">main.c</a></b></p><ul>
 <li>Calls functions in <b>sensor_app</b> library<ul>
-<li>Switches between states for the sensor</li>
+<li>Initializes the bluetooth thread</li>
+<li>Switches between states for the sensor(configuration, running, error) <b><a class="el" href="sensor__app_8c.html" title="A library to manage sensor applications. Working between power configurations, data configurations,...">sensor_app.c</a></b></li>
 </ul>
 </li>
+<li>Calls functions in <b>sensor_nvs</b>, <b>sensor_scheduling</b>, <b>sensor_lorawan</b> and <b>sensor_data</b>.</li>
+<li>Controles the high level functionality of the project.</li>
 </ul>
 <h1><a class="anchor" id="autotoc_md4"></a>
 Power Analysis</h1>

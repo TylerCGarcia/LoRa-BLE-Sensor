@@ -1,5 +1,5 @@
 <map id="app/src/main.c" name="app/src/main.c">
-<area shape="rect" id="Node000001" title=" " alt="" coords="351,5,468,31"/>
+<area shape="rect" id="Node000001" title="This is the main file for the LoRa&#45;BLE&#45;Sensor project. It initializes the sensor app and starts the B..." alt="" coords="351,5,468,31"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,86,72,111"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="351,29,227,48,155,63,85,81,77,84,76,79,83,76,154,58,226,43,350,24"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="96,86,219,111"/>
@@ -10,7 +10,7 @@
 <area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="424,29,477,75,474,79,421,33"/>
 <area shape="rect" id="Node000006" title=" " alt="" coords="600,79,747,119"/>
 <area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="448,28,598,72,596,77,447,33"/>
-<area shape="rect" id="Node000007" href="$sensor__app_8h.html" title="A library to manage sensor applications. Working between power configurations and data configurations..." alt="" coords="771,86,879,111"/>
+<area shape="rect" id="Node000007" href="$sensor__app_8h.html" title="A library to manage sensor applications. Working between power configurations, data configurations,..." alt="" coords="771,86,879,111"/>
 <area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="469,25,602,46,759,76,775,80,774,85,758,81,601,51,468,30"/>
 <area shape="rect" id="Node000008" href="$sensor__id_8h.html" title="This is a library to keep track of sensor ids and sensor power ids. As well as the configuration for ..." alt="" coords="723,167,819,192"/>
 <area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="819,113,789,157,784,154,815,110"/>

@@ -80,6 +80,9 @@ $(function() {
   <div class="headertitle"><div class="title">sensor_data.c File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>This is a library to keep track of sensor data, using the sensor_reading library to collect data from the sensors. This library will also handle the data storage and retrieval.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="sensor__data_8h_source.html">sensor_data.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="sensor__power_8h_source.html">sensor_power.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="sensor__reading_8h_source.html">sensor_reading.h</a>&quot;</code><br />
@@ -91,7 +94,7 @@ Include dependency graph for sensor_data.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="sensor__data_8c__incl.png" border="0" usemap="#aapp_2src_2sensor__data_8c" alt=""/></div>
 <map name="aapp_2src_2sensor__data_8c" id="aapp_2src_2sensor__data_8c">
-<area shape="rect" title=" " alt="" coords="529,5,691,31"/>
+<area shape="rect" title="This is a library to keep track of sensor data, using the sensor_reading library to collect data from..." alt="" coords="529,5,691,31"/>
 <area shape="rect" href="sensor__data_8h.html" title="This is a library to keep track of sensor data, using the sensor_reading library to collect data from..." alt="" coords="507,79,620,104"/>
 <area shape="poly" title=" " alt="" coords="605,32,581,69,576,66,600,30"/>
 <area shape="rect" title=" " alt="" coords="788,152,859,177"/>
@@ -129,7 +132,8 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a35c0b71b62c47e2e28613793a0e01045" id="r_a35c0b71b62c47e2e28613793a0e01045"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor__data_8c.html#a35c0b71b62c47e2e28613793a0e01045">LOG_MODULE_REGISTER</a> (sensor_data, LOG_LEVEL_INF)</td></tr>
+<tr class="memitem:a35c0b71b62c47e2e28613793a0e01045" id="r_a35c0b71b62c47e2e28613793a0e01045"><td class="memItemLeft" align="right" valign="top"><a id="a35c0b71b62c47e2e28613793a0e01045" name="a35c0b71b62c47e2e28613793a0e01045"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>LOG_MODULE_REGISTER</b> (sensor_data, LOG_LEVEL_INF)</td></tr>
 <tr class="separator:a35c0b71b62c47e2e28613793a0e01045"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1e50ff31480edbdf0db27eb081e46f02" id="r_a1e50ff31480edbdf0db27eb081e46f02"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor__data_8c.html#a1e50ff31480edbdf0db27eb081e46f02">sensor_data_setup</a> (<a class="el" href="structsensor__data__t.html">sensor_data_t</a> *sensor_data, enum <a class="el" href="sensor__id_8h.html#ad7b3bc5128f463a9f210147ad5c043be">sensor_types</a> type, enum <a class="el" href="sensor__id_8h.html#adef9477a37671049d57edb26e6a37746">sensor_voltage</a> voltage_enum)</td></tr>
 <tr class="memdesc:a1e50ff31480edbdf0db27eb081e46f02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup the sensor data. If the sensor chosen has continuous power, the power will be turned on when the sensor is setup. If not the power will be turned on only when the data is read. PULSE_SENSORs use continuous power. To disable a sensor, set the type to NULL_SENSOR. This is important when using a sensor with continuous power, as it will turn off the power when the sensor is deinitialized.  <br /></td></tr>
@@ -154,35 +158,13 @@ Variables</h2></td></tr>
 <tr class="memitem:ab6b531a896b7217c2c31a9ebf5cdf764" id="r_ab6b531a896b7217c2c31a9ebf5cdf764"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structsensor__reading__config__t.html">sensor_reading_config_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor__data_8c.html#ab6b531a896b7217c2c31a9ebf5cdf764">sensor2_reading_config</a></td></tr>
 <tr class="separator:ab6b531a896b7217c2c31a9ebf5cdf764"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="a35c0b71b62c47e2e28613793a0e01045" name="a35c0b71b62c47e2e28613793a0e01045"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a35c0b71b62c47e2e28613793a0e01045">&#9670;&#160;</a></span>LOG_MODULE_REGISTER()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">LOG_MODULE_REGISTER </td>
-          <td>(</td>
-          <td class="paramtype">sensor_data&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">LOG_LEVEL_INF&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This is a library to keep track of sensor data, using the sensor_reading library to collect data from the sensors. This library will also handle the data storage and retrieval. </p>
+<dl class="section author"><dt>Author</dt><dd>Tyler Garcia </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>0.1 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2025-05-14</dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2025 </dd></dl>
+</div><h2 class="groupheader">Function Documentation</h2>
 <a id="a06f27b36b46521995937d03a4dc7e789" name="a06f27b36b46521995937d03a4dc7e789"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a06f27b36b46521995937d03a4dc7e789">&#9670;&#160;</a></span>sensor_data_clear()</h2>
 
@@ -376,13 +358,12 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">= {</div>
-<div class="line">    .id = <a class="code hl_enumvalue" href="sensor__id_8h.html#a48a4081a48bf69abc4ba5d704ec33919ae22c3912f49ac41a1d8bea9e5a230488">SENSOR_1</a>,</div>
+<div class="line">    .id = SENSOR_1,</div>
 <div class="line">    .d1 = GPIO_DT_SPEC_GET(DT_ALIAS(sensor1d1), gpios), </div>
 <div class="line">    .d2 = GPIO_DT_SPEC_GET(DT_ALIAS(sensor1d2), gpios),</div>
 <div class="line">    .voltage_read = ADC_DT_SPEC_GET_BY_NAME(DT_PATH(zephyr_user), voltage_sensor1),</div>
 <div class="line">    .current_read = ADC_DT_SPEC_GET_BY_NAME(DT_PATH(zephyr_user), current_sensor1)</div>
 <div class="line">}</div>
-<div class="ttc" id="asensor__id_8h_html_a48a4081a48bf69abc4ba5d704ec33919ae22c3912f49ac41a1d8bea9e5a230488"><div class="ttname"><a href="sensor__id_8h.html#a48a4081a48bf69abc4ba5d704ec33919ae22c3912f49ac41a1d8bea9e5a230488">SENSOR_1</a></div><div class="ttdeci">@ SENSOR_1</div><div class="ttdef"><b>Definition</b> sensor_id.h:21</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -398,13 +379,12 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">= {</div>
-<div class="line">    .id = <a class="code hl_enumvalue" href="sensor__id_8h.html#a48a4081a48bf69abc4ba5d704ec33919accdbcdb24d1f54e96b6fdb67e049092b">SENSOR_2</a>,</div>
+<div class="line">    .id = SENSOR_2,</div>
 <div class="line">    .d1 = GPIO_DT_SPEC_GET(DT_ALIAS(sensor2d1), gpios), </div>
 <div class="line">    .d2 = GPIO_DT_SPEC_GET(DT_ALIAS(sensor2d2), gpios),</div>
 <div class="line">    .voltage_read = ADC_DT_SPEC_GET_BY_NAME(DT_PATH(zephyr_user), voltage_sensor2),</div>
 <div class="line">    .current_read = ADC_DT_SPEC_GET_BY_NAME(DT_PATH(zephyr_user), current_sensor2)</div>
 <div class="line">}</div>
-<div class="ttc" id="asensor__id_8h_html_a48a4081a48bf69abc4ba5d704ec33919accdbcdb24d1f54e96b6fdb67e049092b"><div class="ttname"><a href="sensor__id_8h.html#a48a4081a48bf69abc4ba5d704ec33919accdbcdb24d1f54e96b6fdb67e049092b">SENSOR_2</a></div><div class="ttdeci">@ SENSOR_2</div><div class="ttdef"><b>Definition</b> sensor_id.h:22</div></div>
 </div><!-- fragment -->
 </div>
 </div>

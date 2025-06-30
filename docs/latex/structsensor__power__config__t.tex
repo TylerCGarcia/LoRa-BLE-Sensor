@@ -12,69 +12,31 @@ Sensor power configuration.
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-enum \mbox{\hyperlink{sensor__id_8h_a9425a5b9d9160dce11f5f08e71e5048f}{sensor\+\_\+power\+\_\+id}} \mbox{\hyperlink{structsensor__power__config__t_a7da301642fff747759b5303ade71d390}{power\+\_\+id}}
+\Hypertarget{structsensor__power__config__t_a7da301642fff747759b5303ade71d390}\label{structsensor__power__config__t_a7da301642fff747759b5303ade71d390} 
+enum \mbox{\hyperlink{sensor__id_8h_a9425a5b9d9160dce11f5f08e71e5048f}{sensor\+\_\+power\+\_\+id}} {\bfseries power\+\_\+id}
 \item 
-struct gpio\+\_\+dt\+\_\+spec \mbox{\hyperlink{structsensor__power__config__t_acd4f124a680fd352dc8b814ec1389d71}{boost\+\_\+en}}
+\Hypertarget{structsensor__power__config__t_acd4f124a680fd352dc8b814ec1389d71}\label{structsensor__power__config__t_acd4f124a680fd352dc8b814ec1389d71} 
+struct gpio\+\_\+dt\+\_\+spec {\bfseries boost\+\_\+en}
 \item 
-struct gpio\+\_\+dt\+\_\+spec \mbox{\hyperlink{structsensor__power__config__t_a6c5af2a9c7e3a32a42c72d41feca0ce6}{boost\+\_\+ctrl1}}
+\Hypertarget{structsensor__power__config__t_a6c5af2a9c7e3a32a42c72d41feca0ce6}\label{structsensor__power__config__t_a6c5af2a9c7e3a32a42c72d41feca0ce6} 
+struct gpio\+\_\+dt\+\_\+spec {\bfseries boost\+\_\+ctrl1}
 \item 
-struct gpio\+\_\+dt\+\_\+spec \mbox{\hyperlink{structsensor__power__config__t_a193939b73b006cfb0646cd5ed84947da}{boost\+\_\+ctrl2}}
+\Hypertarget{structsensor__power__config__t_a193939b73b006cfb0646cd5ed84947da}\label{structsensor__power__config__t_a193939b73b006cfb0646cd5ed84947da} 
+struct gpio\+\_\+dt\+\_\+spec {\bfseries boost\+\_\+ctrl2}
 \item 
-const struct device \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structsensor__power__config__t_a0f63b54793e367d427e4dc3b0fb9a4d8}{ldo\+\_\+dev}}
+\Hypertarget{structsensor__power__config__t_a0f63b54793e367d427e4dc3b0fb9a4d8}\label{structsensor__power__config__t_a0f63b54793e367d427e4dc3b0fb9a4d8} 
+const struct device \texorpdfstring{$\ast$}{*} {\bfseries ldo\+\_\+dev}
 \item 
-const struct adc\+\_\+dt\+\_\+spec \mbox{\hyperlink{structsensor__power__config__t_aa84fece14135482ea3fa9a180d9441ce}{output\+\_\+read}}
+\Hypertarget{structsensor__power__config__t_aa84fece14135482ea3fa9a180d9441ce}\label{structsensor__power__config__t_aa84fece14135482ea3fa9a180d9441ce} 
+const struct adc\+\_\+dt\+\_\+spec {\bfseries output\+\_\+read}
 \item 
-uint32\+\_\+t \mbox{\hyperlink{structsensor__power__config__t_a5e50d2b8a592e0bd9d86c635d777677f}{delay\+\_\+ms}}
+\Hypertarget{structsensor__power__config__t_a5e50d2b8a592e0bd9d86c635d777677f}\label{structsensor__power__config__t_a5e50d2b8a592e0bd9d86c635d777677f} 
+uint32\+\_\+t {\bfseries delay\+\_\+ms}
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 Sensor power configuration. 
-
-\doxysubsection{Member Data Documentation}
-\Hypertarget{structsensor__power__config__t_a6c5af2a9c7e3a32a42c72d41feca0ce6}\label{structsensor__power__config__t_a6c5af2a9c7e3a32a42c72d41feca0ce6} 
-\index{sensor\_power\_config\_t@{sensor\_power\_config\_t}!boost\_ctrl1@{boost\_ctrl1}}
-\index{boost\_ctrl1@{boost\_ctrl1}!sensor\_power\_config\_t@{sensor\_power\_config\_t}}
-\doxysubsubsection{\texorpdfstring{boost\_ctrl1}{boost\_ctrl1}}
-{\footnotesize\ttfamily struct gpio\+\_\+dt\+\_\+spec sensor\+\_\+power\+\_\+config\+\_\+t\+::boost\+\_\+ctrl1}
-
-\Hypertarget{structsensor__power__config__t_a193939b73b006cfb0646cd5ed84947da}\label{structsensor__power__config__t_a193939b73b006cfb0646cd5ed84947da} 
-\index{sensor\_power\_config\_t@{sensor\_power\_config\_t}!boost\_ctrl2@{boost\_ctrl2}}
-\index{boost\_ctrl2@{boost\_ctrl2}!sensor\_power\_config\_t@{sensor\_power\_config\_t}}
-\doxysubsubsection{\texorpdfstring{boost\_ctrl2}{boost\_ctrl2}}
-{\footnotesize\ttfamily struct gpio\+\_\+dt\+\_\+spec sensor\+\_\+power\+\_\+config\+\_\+t\+::boost\+\_\+ctrl2}
-
-\Hypertarget{structsensor__power__config__t_acd4f124a680fd352dc8b814ec1389d71}\label{structsensor__power__config__t_acd4f124a680fd352dc8b814ec1389d71} 
-\index{sensor\_power\_config\_t@{sensor\_power\_config\_t}!boost\_en@{boost\_en}}
-\index{boost\_en@{boost\_en}!sensor\_power\_config\_t@{sensor\_power\_config\_t}}
-\doxysubsubsection{\texorpdfstring{boost\_en}{boost\_en}}
-{\footnotesize\ttfamily struct gpio\+\_\+dt\+\_\+spec sensor\+\_\+power\+\_\+config\+\_\+t\+::boost\+\_\+en}
-
-\Hypertarget{structsensor__power__config__t_a5e50d2b8a592e0bd9d86c635d777677f}\label{structsensor__power__config__t_a5e50d2b8a592e0bd9d86c635d777677f} 
-\index{sensor\_power\_config\_t@{sensor\_power\_config\_t}!delay\_ms@{delay\_ms}}
-\index{delay\_ms@{delay\_ms}!sensor\_power\_config\_t@{sensor\_power\_config\_t}}
-\doxysubsubsection{\texorpdfstring{delay\_ms}{delay\_ms}}
-{\footnotesize\ttfamily uint32\+\_\+t sensor\+\_\+power\+\_\+config\+\_\+t\+::delay\+\_\+ms}
-
-\Hypertarget{structsensor__power__config__t_a0f63b54793e367d427e4dc3b0fb9a4d8}\label{structsensor__power__config__t_a0f63b54793e367d427e4dc3b0fb9a4d8} 
-\index{sensor\_power\_config\_t@{sensor\_power\_config\_t}!ldo\_dev@{ldo\_dev}}
-\index{ldo\_dev@{ldo\_dev}!sensor\_power\_config\_t@{sensor\_power\_config\_t}}
-\doxysubsubsection{\texorpdfstring{ldo\_dev}{ldo\_dev}}
-{\footnotesize\ttfamily const struct device\texorpdfstring{$\ast$}{*} sensor\+\_\+power\+\_\+config\+\_\+t\+::ldo\+\_\+dev}
-
-\Hypertarget{structsensor__power__config__t_aa84fece14135482ea3fa9a180d9441ce}\label{structsensor__power__config__t_aa84fece14135482ea3fa9a180d9441ce} 
-\index{sensor\_power\_config\_t@{sensor\_power\_config\_t}!output\_read@{output\_read}}
-\index{output\_read@{output\_read}!sensor\_power\_config\_t@{sensor\_power\_config\_t}}
-\doxysubsubsection{\texorpdfstring{output\_read}{output\_read}}
-{\footnotesize\ttfamily const struct adc\+\_\+dt\+\_\+spec sensor\+\_\+power\+\_\+config\+\_\+t\+::output\+\_\+read}
-
-\Hypertarget{structsensor__power__config__t_a7da301642fff747759b5303ade71d390}\label{structsensor__power__config__t_a7da301642fff747759b5303ade71d390} 
-\index{sensor\_power\_config\_t@{sensor\_power\_config\_t}!power\_id@{power\_id}}
-\index{power\_id@{power\_id}!sensor\_power\_config\_t@{sensor\_power\_config\_t}}
-\doxysubsubsection{\texorpdfstring{power\_id}{power\_id}}
-{\footnotesize\ttfamily enum \mbox{\hyperlink{sensor__id_8h_a9425a5b9d9160dce11f5f08e71e5048f}{sensor\+\_\+power\+\_\+id}} sensor\+\_\+power\+\_\+config\+\_\+t\+::power\+\_\+id}
-
-
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

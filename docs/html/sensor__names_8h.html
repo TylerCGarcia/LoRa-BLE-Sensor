@@ -98,11 +98,11 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="center"><img src="sensor__names_8h__dep__incl.png" border="0" usemap="#aapp_2include_2sensor__names_8hdep" alt=""/></div>
 <map name="aapp_2include_2sensor__names_8hdep" id="aapp_2include_2sensor__names_8hdep">
 <area shape="rect" title="This is a library for sensor names, converting between strings and enum values to make configurations..." alt="" coords="179,5,323,45"/>
-<area shape="rect" href="ble__sensor__service_8c.html" title=" " alt="" coords="5,93,148,133"/>
+<area shape="rect" href="ble__sensor__service_8c.html" title="This is a library to handle the BLE services for the sensor. It allows for configurations of the sens..." alt="" coords="5,93,148,133"/>
 <area shape="poly" title=" " alt="" coords="202,54,116,96,114,91,200,49"/>
-<area shape="rect" href="sensor__app_8c.html" title=" " alt="" coords="172,101,331,126"/>
+<area shape="rect" href="sensor__app_8c.html" title="A library to manage sensor applications. Working between power configurations, data configurations,..." alt="" coords="172,101,331,126"/>
 <area shape="poly" title=" " alt="" coords="254,59,254,100,249,100,249,59"/>
-<area shape="rect" href="sensor__names_8c.html" title=" " alt="" coords="355,101,534,126"/>
+<area shape="rect" href="sensor__names_8c.html" title="This is a library for sensor names, converting between strings and enum values to make configurations..." alt="" coords="355,101,534,126"/>
 <area shape="poly" title=" " alt="" coords="307,49,420,98,418,103,305,53"/>
 </map>
 </div>
@@ -117,11 +117,13 @@ Functions</h2></td></tr>
 <tr class="memitem:a004c3fc8f6dfb80531b44482e95cd692" id="r_a004c3fc8f6dfb80531b44482e95cd692"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor__names_8h.html#a004c3fc8f6dfb80531b44482e95cd692">get_sensor_voltage_index_from_name</a> (char *voltage_name)</td></tr>
 <tr class="memdesc:a004c3fc8f6dfb80531b44482e95cd692"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the index for the selected sensor voltage.  <br /></td></tr>
 <tr class="separator:a004c3fc8f6dfb80531b44482e95cd692"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a38e065cdd19b87fca95f43793267185a" id="r_a38e065cdd19b87fca95f43793267185a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor__names_8h.html#a38e065cdd19b87fca95f43793267185a">get_sensor_type_name_from_index</a> (char *sensor_type_name, enum <a class="el" href="sensor__id_8h.html#ad7b3bc5128f463a9f210147ad5c043be">sensor_types</a> sensor_type)</td></tr>
-<tr class="memdesc:a38e065cdd19b87fca95f43793267185a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name for the selected sensor type.  <br /></td></tr>
+<tr class="memitem:a38e065cdd19b87fca95f43793267185a" id="r_a38e065cdd19b87fca95f43793267185a"><td class="memItemLeft" align="right" valign="top"><a id="a38e065cdd19b87fca95f43793267185a" name="a38e065cdd19b87fca95f43793267185a"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>get_sensor_type_name_from_index</b> (char *sensor_type_name, enum <a class="el" href="sensor__id_8h.html#ad7b3bc5128f463a9f210147ad5c043be">sensor_types</a> sensor_type)</td></tr>
+<tr class="memdesc:a38e065cdd19b87fca95f43793267185a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name for the selected sensor type. <br /></td></tr>
 <tr class="separator:a38e065cdd19b87fca95f43793267185a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9fb3fb527b22ae291ba6c3eb703d5d67" id="r_a9fb3fb527b22ae291ba6c3eb703d5d67"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sensor__names_8h.html#a9fb3fb527b22ae291ba6c3eb703d5d67">get_sensor_type_index_from_name</a> (char *sensor_type_name)</td></tr>
-<tr class="memdesc:a9fb3fb527b22ae291ba6c3eb703d5d67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the index for the selected sensor type.  <br /></td></tr>
+<tr class="memitem:a9fb3fb527b22ae291ba6c3eb703d5d67" id="r_a9fb3fb527b22ae291ba6c3eb703d5d67"><td class="memItemLeft" align="right" valign="top"><a id="a9fb3fb527b22ae291ba6c3eb703d5d67" name="a9fb3fb527b22ae291ba6c3eb703d5d67"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>get_sensor_type_index_from_name</b> (char *sensor_type_name)</td></tr>
+<tr class="memdesc:a9fb3fb527b22ae291ba6c3eb703d5d67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the index for the selected sensor type. <br /></td></tr>
 <tr class="separator:a9fb3fb527b22ae291ba6c3eb703d5d67"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -131,56 +133,6 @@ Functions</h2></td></tr>
 <dl class="section date"><dt>Date</dt><dd>2025-06-06</dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2025 </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="a9fb3fb527b22ae291ba6c3eb703d5d67" name="a9fb3fb527b22ae291ba6c3eb703d5d67"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9fb3fb527b22ae291ba6c3eb703d5d67">&#9670;&#160;</a></span>get_sensor_type_index_from_name()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int get_sensor_type_index_from_name </td>
-          <td>(</td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>sensor_type_name</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Get the index for the selected sensor type. </p>
-
-</div>
-</div>
-<a id="a38e065cdd19b87fca95f43793267185a" name="a38e065cdd19b87fca95f43793267185a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a38e065cdd19b87fca95f43793267185a">&#9670;&#160;</a></span>get_sensor_type_name_from_index()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int get_sensor_type_name_from_index </td>
-          <td>(</td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>sensor_type_name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">enum <a class="el" href="sensor__id_8h.html#ad7b3bc5128f463a9f210147ad5c043be">sensor_types</a>&#160;</td>
-          <td class="paramname"><em>sensor_type</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Get the name for the selected sensor type. </p>
-
-</div>
-</div>
 <a id="a004c3fc8f6dfb80531b44482e95cd692" name="a004c3fc8f6dfb80531b44482e95cd692"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a004c3fc8f6dfb80531b44482e95cd692">&#9670;&#160;</a></span>get_sensor_voltage_index_from_name()</h2>
 

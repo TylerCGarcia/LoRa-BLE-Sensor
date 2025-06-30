@@ -1,4 +1,13 @@
-
+/**
+ * @file sensor_ble.c
+ * @author Tyler Garcia
+ * @brief This is a library to handle the BLE functionality for the sensor.
+ * @version 0.1
+ * @date 2025-05-05
+ * 
+ * @copyright Copyright (c) 2025
+ * 
+ */
 
 #include "sensor_ble.h"
 #include <zephyr/kernel.h>

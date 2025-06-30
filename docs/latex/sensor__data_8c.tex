@@ -1,5 +1,10 @@
 \doxysection{app/src/sensor\+\_\+data.c File Reference}
 \hypertarget{sensor__data_8c}{}\label{sensor__data_8c}\index{app/src/sensor\_data.c@{app/src/sensor\_data.c}}
+
+
+This is a library to keep track of sensor data, using the sensor\+\_\+reading library to collect data from the sensors. This library will also handle the data storage and retrieval.  
+
+
 {\ttfamily \#include "{}sensor\+\_\+data.\+h"{}}\newline
 {\ttfamily \#include "{}sensor\+\_\+power.\+h"{}}\newline
 {\ttfamily \#include "{}sensor\+\_\+reading.\+h"{}}\newline
@@ -22,7 +27,8 @@ struct \mbox{\hyperlink{structsensor__data__config__t}{sensor\+\_\+data\+\_\+con
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{sensor__data_8c_a35c0b71b62c47e2e28613793a0e01045}{LOG\+\_\+\+MODULE\+\_\+\+REGISTER}} (sensor\+\_\+data, LOG\+\_\+\+LEVEL\+\_\+\+INF)
+\Hypertarget{sensor__data_8c_a35c0b71b62c47e2e28613793a0e01045}\label{sensor__data_8c_a35c0b71b62c47e2e28613793a0e01045} 
+{\bfseries LOG\+\_\+\+MODULE\+\_\+\+REGISTER} (sensor\+\_\+data, LOG\+\_\+\+LEVEL\+\_\+\+INF)
 \item 
 int \mbox{\hyperlink{sensor__data_8c_a1e50ff31480edbdf0db27eb081e46f02}{sensor\+\_\+data\+\_\+setup}} (\mbox{\hyperlink{structsensor__data__t}{sensor\+\_\+data\+\_\+t}} \texorpdfstring{$\ast$}{*}sensor\+\_\+data, enum \mbox{\hyperlink{sensor__id_8h_ad7b3bc5128f463a9f210147ad5c043be}{sensor\+\_\+types}} type, enum \mbox{\hyperlink{sensor__id_8h_adef9477a37671049d57edb26e6a37746}{sensor\+\_\+voltage}} voltage\+\_\+enum)
 \begin{DoxyCompactList}\small\item\em Setup the sensor data. If the sensor chosen has continuous power, the power will be turned on when the sensor is setup. If not the power will be turned on only when the data is read. PULSE\+\_\+\+SENSORs use continuous power. To disable a sensor, set the type to NULL\+\_\+\+SENSOR. This is important when using a sensor with continuous power, as it will turn off the power when the sensor is deinitialized. \end{DoxyCompactList}\item 
@@ -43,13 +49,24 @@ int \mbox{\hyperlink{sensor__data_8c_a7b88e902bae5b2bd14945e9ef87c0579}{sensor\+
 \end{DoxyCompactItemize}
 
 
-\doxysubsection{Function Documentation}
-\Hypertarget{sensor__data_8c_a35c0b71b62c47e2e28613793a0e01045}\label{sensor__data_8c_a35c0b71b62c47e2e28613793a0e01045} 
-\index{sensor\_data.c@{sensor\_data.c}!LOG\_MODULE\_REGISTER@{LOG\_MODULE\_REGISTER}}
-\index{LOG\_MODULE\_REGISTER@{LOG\_MODULE\_REGISTER}!sensor\_data.c@{sensor\_data.c}}
-\doxysubsubsection{\texorpdfstring{LOG\_MODULE\_REGISTER()}{LOG\_MODULE\_REGISTER()}}
-{\footnotesize\ttfamily LOG\+\_\+\+MODULE\+\_\+\+REGISTER (\begin{DoxyParamCaption}\item[{sensor\+\_\+data}]{,  }\item[{LOG\+\_\+\+LEVEL\+\_\+\+INF}]{ }\end{DoxyParamCaption})}
+\doxysubsection{Detailed Description}
+This is a library to keep track of sensor data, using the sensor\+\_\+reading library to collect data from the sensors. This library will also handle the data storage and retrieval. 
 
+\begin{DoxyAuthor}{Author}
+Tyler Garcia 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/05-\/14
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2025 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Function Documentation}
 \Hypertarget{sensor__data_8c_a06f27b36b46521995937d03a4dc7e789}\label{sensor__data_8c_a06f27b36b46521995937d03a4dc7e789} 
 \index{sensor\_data.c@{sensor\_data.c}!sensor\_data\_clear@{sensor\_data\_clear}}
 \index{sensor\_data\_clear@{sensor\_data\_clear}!sensor\_data.c@{sensor\_data.c}}
@@ -156,7 +173,7 @@ int 0 if successful, -\/1 if failed.
 {\bfseries Initial value\+:}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{=\ \{}
-\DoxyCodeLine{\ \ \ \ .id\ =\ \mbox{\hyperlink{sensor__id_8h_a48a4081a48bf69abc4ba5d704ec33919ae22c3912f49ac41a1d8bea9e5a230488}{SENSOR\_1}},}
+\DoxyCodeLine{\ \ \ \ .id\ =\ SENSOR\_1,}
 \DoxyCodeLine{\ \ \ \ .d1\ =\ GPIO\_DT\_SPEC\_GET(DT\_ALIAS(sensor1d1),\ gpios),\ }
 \DoxyCodeLine{\ \ \ \ .d2\ =\ GPIO\_DT\_SPEC\_GET(DT\_ALIAS(sensor1d2),\ gpios),}
 \DoxyCodeLine{\ \ \ \ .voltage\_read\ =\ ADC\_DT\_SPEC\_GET\_BY\_NAME(DT\_PATH(zephyr\_user),\ voltage\_sensor1),}
@@ -173,7 +190,7 @@ int 0 if successful, -\/1 if failed.
 {\bfseries Initial value\+:}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{=\ \{}
-\DoxyCodeLine{\ \ \ \ .id\ =\ \mbox{\hyperlink{sensor__id_8h_a48a4081a48bf69abc4ba5d704ec33919accdbcdb24d1f54e96b6fdb67e049092b}{SENSOR\_2}},}
+\DoxyCodeLine{\ \ \ \ .id\ =\ SENSOR\_2,}
 \DoxyCodeLine{\ \ \ \ .d1\ =\ GPIO\_DT\_SPEC\_GET(DT\_ALIAS(sensor2d1),\ gpios),\ }
 \DoxyCodeLine{\ \ \ \ .d2\ =\ GPIO\_DT\_SPEC\_GET(DT\_ALIAS(sensor2d2),\ gpios),}
 \DoxyCodeLine{\ \ \ \ .voltage\_read\ =\ ADC\_DT\_SPEC\_GET\_BY\_NAME(DT\_PATH(zephyr\_user),\ voltage\_sensor2),}

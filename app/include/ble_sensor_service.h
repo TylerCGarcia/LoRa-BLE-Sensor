@@ -2,6 +2,10 @@
  * @file ble_sensor_service.h
  * @author Tyler Garcia
  * @brief This is a library to handle the BLE services for the sensor.
+ * It allows for configurations of the sensor, including power configuration, 
+ * sensor configuration, and data frequency.
+ * It also allows for the retrieval of the sensor data.
+ * 
  * @version 0.1
  * @date 2025-05-06
  * 

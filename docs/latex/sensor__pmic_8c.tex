@@ -1,5 +1,10 @@
 \doxysection{app/src/sensor\+\_\+pmic.c File Reference}
 \hypertarget{sensor__pmic_8c}{}\label{sensor__pmic_8c}\index{app/src/sensor\_pmic.c@{app/src/sensor\_pmic.c}}
+
+
+This is a library to keep track of the PMIC and its configuration.  
+
+
 {\ttfamily \#include "{}sensor\+\_\+pmic.\+h"{}}\newline
 {\ttfamily \#include $<$zephyr/logging/log.\+h$>$}\newline
 {\ttfamily \#include $<$zephyr/drivers/led.\+h$>$}\newline
@@ -17,7 +22,8 @@ Include dependency graph for sensor\+\_\+pmic.\+c\+:
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{sensor__pmic_8c_a63f95623b80009d58a68ac58f84009fb}{LOG\+\_\+\+MODULE\+\_\+\+REGISTER}} (SENSOR\+\_\+\+PMIC, LOG\+\_\+\+LEVEL\+\_\+\+INF)
+\Hypertarget{sensor__pmic_8c_a63f95623b80009d58a68ac58f84009fb}\label{sensor__pmic_8c_a63f95623b80009d58a68ac58f84009fb} 
+{\bfseries LOG\+\_\+\+MODULE\+\_\+\+REGISTER} (SENSOR\+\_\+\+PMIC, LOG\+\_\+\+LEVEL\+\_\+\+INF)
 \item 
 int \mbox{\hyperlink{sensor__pmic_8c_ab10476450c5262c31c13e37c4ede71d1}{sensor\+\_\+pmic\+\_\+init\+\_\+with\+\_\+ops}} (const \mbox{\hyperlink{structsensor__pmic__ops__t}{sensor\+\_\+pmic\+\_\+ops\+\_\+t}} \texorpdfstring{$\ast$}{*}ops)
 \begin{DoxyCompactList}\small\item\em Initialize the PMIC with custom operations. \end{DoxyCompactList}\item 
@@ -31,13 +37,24 @@ int \mbox{\hyperlink{sensor__pmic_8c_a3188b4c1fb883790f628bf86874728e8}{sensor\+
 \begin{DoxyCompactList}\small\item\em Get the status of the PMIC sensors. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\doxysubsection{Function Documentation}
-\Hypertarget{sensor__pmic_8c_a63f95623b80009d58a68ac58f84009fb}\label{sensor__pmic_8c_a63f95623b80009d58a68ac58f84009fb} 
-\index{sensor\_pmic.c@{sensor\_pmic.c}!LOG\_MODULE\_REGISTER@{LOG\_MODULE\_REGISTER}}
-\index{LOG\_MODULE\_REGISTER@{LOG\_MODULE\_REGISTER}!sensor\_pmic.c@{sensor\_pmic.c}}
-\doxysubsubsection{\texorpdfstring{LOG\_MODULE\_REGISTER()}{LOG\_MODULE\_REGISTER()}}
-{\footnotesize\ttfamily LOG\+\_\+\+MODULE\+\_\+\+REGISTER (\begin{DoxyParamCaption}\item[{SENSOR\+\_\+\+PMIC}]{,  }\item[{LOG\+\_\+\+LEVEL\+\_\+\+INF}]{ }\end{DoxyParamCaption})}
+\doxysubsection{Detailed Description}
+This is a library to keep track of the PMIC and its configuration. 
 
+\begin{DoxyAuthor}{Author}
+Tyler Garcia 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/06-\/16
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2025 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Function Documentation}
 \Hypertarget{sensor__pmic_8c_abec5f29250d8b6eb68f24443e73d499c}\label{sensor__pmic_8c_abec5f29250d8b6eb68f24443e73d499c} 
 \index{sensor\_pmic.c@{sensor\_pmic.c}!sensor\_pmic\_init@{sensor\_pmic\_init}}
 \index{sensor\_pmic\_init@{sensor\_pmic\_init}!sensor\_pmic.c@{sensor\_pmic.c}}

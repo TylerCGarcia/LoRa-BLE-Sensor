@@ -1,5 +1,5 @@
 <map id="app/src/sensor_scheduling.c" name="app/src/sensor_scheduling.c">
-<area shape="rect" id="Node000001" title=" " alt="" coords="186,5,390,31"/>
+<area shape="rect" id="Node000001" title="This is a library to schedule sensor readings and radio transmissions." alt="" coords="186,5,390,31"/>
 <area shape="rect" id="Node000002" href="$sensor__scheduling_8h.html" title="This is a library to schedule sensor readings and radio transmissions." alt="" coords="211,79,365,104"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="291,31,291,65,285,65,285,31"/>
 <area shape="rect" id="Node000003" href="$sensor__timer_8h.html" title="This is a library to keep track of sensor and radio timers. Manages alarms for sensors and radio tran..." alt="" coords="114,152,233,177"/>
