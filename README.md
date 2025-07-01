@@ -38,6 +38,10 @@ This will initialize the python environment(.venv), initialize west(.west), and 
 - Low level functionality for controlling power outputs to sensors.
 - Manages regulators onboard regulators.
 
+**sensor_scheduling.c** 
+- Calls functions in **sensor_timer**.
+- Manages scehduling of sensor readings and lorawan transmissions.
+
 # Power Analysis
 - No power analysis is done yet
 
