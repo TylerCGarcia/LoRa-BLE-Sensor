@@ -2,7 +2,7 @@
 
 cmake_minimum_required(VERSION 3.20.0)
 
-# Get the version from Git
+# Get the version from Git written as {major}.{minor}.{patch}-{commit}-{hash}
 find_package(Git QUIET)
 if(GIT_FOUND)
   execute_process(
