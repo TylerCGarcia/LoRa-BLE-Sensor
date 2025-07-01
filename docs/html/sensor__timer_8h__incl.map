@@ -1,7 +1,0 @@
-<map id="app/include/sensor_timer.h" name="app/include/sensor_timer.h">
-<area shape="rect" id="Node000001" title="This is a library to keep track of sensor and radio timers. Manages alarms for sensors and radio tran..." alt="" coords="111,5,255,45"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,93,184,119"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="163,48,120,86,116,82,160,44"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="208,93,333,119"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="206,44,249,82,245,86,202,48"/>
-</map>

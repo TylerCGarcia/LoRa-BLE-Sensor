@@ -1,7 +1,0 @@
-<map id="app/include/sensor_power.h" name="app/include/sensor_power.h">
-<area shape="rect" id="Node000001" title="This is a library for sensor power configurations and control. This is manages the power configuratio..." alt="" coords="111,5,255,45"/>
-<area shape="rect" id="Node000002" href="$sensor__data_8c.html" title="This is a library to keep track of sensor data, using the sensor_reading library to collect data from..." alt="" coords="5,93,168,119"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="151,56,103,95,99,91,147,52"/>
-<area shape="rect" id="Node000003" href="$sensor__power_8c.html" title="This is a library for sensor power configurations and control. This is manages the power configuratio..." alt="" coords="192,93,365,119"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="218,52,266,91,263,95,215,56"/>
-</map>

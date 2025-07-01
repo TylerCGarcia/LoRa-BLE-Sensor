@@ -1,7 +1,0 @@
-<map id="app/include/sensor_ble.h" name="app/include/sensor_ble.h">
-<area shape="rect" id="Node000001" title="This is a library to handle the BLE functionality for the sensor." alt="" coords="50,5,194,45"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,93,76,119"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="104,47,65,85,61,82,100,44"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="99,93,310,119"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="144,44,184,82,181,86,140,47"/>
-</map>

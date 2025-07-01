@@ -1,8 +1,0 @@
-var searchData=
-[
-  ['ble_5fchange_5fname_0',['ble_change_name',['../sensor__ble_8h.html#ab69344a559ffc2d3167acaa8c58cdde5',1,'ble_change_name(ble_config_t *config):&#160;sensor_ble.c'],['../sensor__ble_8c.html#ab69344a559ffc2d3167acaa8c58cdde5',1,'ble_change_name(ble_config_t *config):&#160;sensor_ble.c']]],
-  ['ble_5fdevice_5fservice_5finit_1',['ble_device_service_init',['../ble__device__service_8h.html#ae7f661c5a2c19aec217e05ef7d7e16f4',1,'ble_device_service_init(pmic_sensor_status_t *status):&#160;ble_device_service.c'],['../ble__device__service_8c.html#ae7f661c5a2c19aec217e05ef7d7e16f4',1,'ble_device_service_init(pmic_sensor_status_t *status):&#160;ble_device_service.c']]],
-  ['ble_5florawan_5fservice_5finit_2',['ble_lorawan_service_init',['../ble__lorawan__service_8h.html#a2e1e68c8322c10d729b1f570eeb09ff7',1,'ble_lorawan_service_init(lorawan_setup_t *setup):&#160;ble_lorawan_service.c'],['../ble__lorawan__service_8c.html#a2e1e68c8322c10d729b1f570eeb09ff7',1,'ble_lorawan_service_init(lorawan_setup_t *setup):&#160;ble_lorawan_service.c']]],
-  ['ble_5fsensor_5fservice_5finit_3',['ble_sensor_service_init',['../ble__sensor__service_8h.html#a1ba80859b2f82bf34b2ea8655204e056',1,'ble_sensor_service_init(sensor_app_config_t *config):&#160;ble_sensor_service.c'],['../ble__sensor__service_8c.html#a1ba80859b2f82bf34b2ea8655204e056',1,'ble_sensor_service_init(sensor_app_config_t *config):&#160;ble_sensor_service.c']]],
-  ['ble_5fsetup_4',['ble_setup',['../sensor__ble_8h.html#a89b692cd77dd87374c564984e5a9be6d',1,'ble_setup(ble_config_t *config):&#160;sensor_ble.c'],['../sensor__ble_8c.html#a89b692cd77dd87374c564984e5a9be6d',1,'ble_setup(ble_config_t *config):&#160;sensor_ble.c']]]
-];
