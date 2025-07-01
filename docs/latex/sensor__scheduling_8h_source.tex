@@ -11,39 +11,38 @@
 \DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <zephyr/kernel.h>}}
 \DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <zephyr/device.h>}}
 \DoxyCodeLine{00019\ }
-\DoxyCodeLine{00020\ \textcolor{keyword}{enum}\ sensor\_scheduling\_id\{}
-\DoxyCodeLine{00021\ \ \ \ \ SENSOR\_SCHEDULING\_ID\_SENSOR1,}
-\DoxyCodeLine{00022\ \ \ \ \ SENSOR\_SCHEDULING\_ID\_SENSOR2,}
-\DoxyCodeLine{00023\ \ \ \ \ SENSOR\_SCHEDULING\_ID\_RADIO,\ \textcolor{comment}{//\ Radio\ is\ the\ last\ scheduled\ component\ in\ case\ sensors\ are\ triggered\ at\ the\ same\ time}}
-\DoxyCodeLine{00024\ \ \ \ \ SENSOR\_SCHEDULING\_ID\_LIMIT,}
-\DoxyCodeLine{00025\ \};}
-\DoxyCodeLine{00026\ }
-\DoxyCodeLine{00027\ \textcolor{comment}{/*\ The\ configuration\ for\ a\ schedule\ */}}
-\DoxyCodeLine{00028\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
-\DoxyCodeLine{00029\ \ \ \ \ \textcolor{comment}{/*\ The\ id\ of\ the\ component\ to\ schedule\ */}}
-\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{enum}\ sensor\_scheduling\_id\ id;}
-\DoxyCodeLine{00031\ \ \ \ \ \textcolor{comment}{/*\ The\ frequency\ of\ the\ schedule\ in\ seconds\ */}}
-\DoxyCodeLine{00032\ \ \ \ \ uint32\_t\ frequency\_seconds;}
-\DoxyCodeLine{00033\ \ \ \ \ \textcolor{comment}{/*\ Whether\ this\ component\ is\ currently\ scheduled\ */}}
-\DoxyCodeLine{00034\ \ \ \ \ uint8\_t\ is\_scheduled;}
-\DoxyCodeLine{00035\ \ \ \ \ \textcolor{comment}{/*\ Whether\ this\ component\ schedule\ has\ been\ triggered\ */}}
-\DoxyCodeLine{00036\ \ \ \ \ uint8\_t\ is\_triggered;}
-\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{/*\ Last\ event\ time\ in\ seconds\ */}}
-\DoxyCodeLine{00038\ \ \ \ \ uint32\_t\ last\_event\_time;}
-\DoxyCodeLine{00039\ \ \ \ \ \textcolor{comment}{/*\ An\ optional\ trigger\ that\ isn't\ based\ on\ the\ frequency\ and\ is\ used\ for\ one-\/time\ events\ */}}
-\DoxyCodeLine{00040\ \ \ \ \ uint8\_t\ one\_time\_trigger;}
-\DoxyCodeLine{00041\ \}\ \mbox{\hyperlink{structsensor__scheduling__cfg__t}{sensor\_scheduling\_cfg\_t}};}
-\DoxyCodeLine{00042\ }
-\DoxyCodeLine{00049\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sensor__scheduling_8h_a0479dc2a37c37e7de3ee1a39e2b21f6a}{sensor\_scheduling\_init}}(\textcolor{keyword}{const}\ \textcolor{keyword}{struct}\ device\ *timer);}
-\DoxyCodeLine{00050\ }
-\DoxyCodeLine{00057\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sensor__scheduling_8h_af48c3df12ad78e292fca76c42f5d8867}{sensor\_scheduling\_add\_schedule}}(\mbox{\hyperlink{structsensor__scheduling__cfg__t}{sensor\_scheduling\_cfg\_t}}\ *schedule);}
-\DoxyCodeLine{00058\ }
-\DoxyCodeLine{00065\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sensor__scheduling_8h_afb35f4e7bf63407fdae2cbb93df1fdd8}{sensor\_scheduling\_remove\_schedule}}(\mbox{\hyperlink{structsensor__scheduling__cfg__t}{sensor\_scheduling\_cfg\_t}}\ *schedule);}
-\DoxyCodeLine{00066\ }
-\DoxyCodeLine{00074\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sensor__scheduling_8h_add23052115ae68e70416f069689af136}{sensor\_scheduling\_reset\_schedule}}(\mbox{\hyperlink{structsensor__scheduling__cfg__t}{sensor\_scheduling\_cfg\_t}}\ *schedule);}
-\DoxyCodeLine{00075\ }
-\DoxyCodeLine{00081\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sensor__scheduling_8h_a7369b55b27b226cb4a1c106d73ed2eb5}{sensor\_scheduling\_get\_seconds}}(\textcolor{keywordtype}{void});}
-\DoxyCodeLine{00082\ }
-\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00024\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{sensor__scheduling_8h_af576aff082458d0be318520f1834bba6}{sensor\_scheduling\_id}}\{}
+\DoxyCodeLine{00025\ \ \ \ \ SENSOR\_SCHEDULING\_ID\_SENSOR1,}
+\DoxyCodeLine{00026\ \ \ \ \ SENSOR\_SCHEDULING\_ID\_SENSOR2,}
+\DoxyCodeLine{00027\ \ \ \ \ SENSOR\_SCHEDULING\_ID\_RADIO,\ \textcolor{comment}{//\ Radio\ is\ the\ last\ scheduled\ component\ in\ case\ sensors\ are\ triggered\ at\ the\ same\ time}}
+\DoxyCodeLine{00028\ \ \ \ \ SENSOR\_SCHEDULING\_ID\_LIMIT,}
+\DoxyCodeLine{00029\ \};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{comment}{/*\ The\ id\ of\ the\ component\ to\ schedule\ */}}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{sensor__scheduling_8h_af576aff082458d0be318520f1834bba6}{sensor\_scheduling\_id}}\ id;}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{/*\ The\ frequency\ of\ the\ schedule\ in\ seconds\ */}}
+\DoxyCodeLine{00038\ \ \ \ \ uint32\_t\ frequency\_seconds;}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{comment}{/*\ Whether\ this\ component\ is\ currently\ scheduled\ */}}
+\DoxyCodeLine{00040\ \ \ \ \ uint8\_t\ is\_scheduled;}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{/*\ Whether\ this\ component\ schedule\ has\ been\ triggered\ */}}
+\DoxyCodeLine{00042\ \ \ \ \ uint8\_t\ is\_triggered;}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{comment}{/*\ Last\ event\ time\ in\ seconds\ */}}
+\DoxyCodeLine{00044\ \ \ \ \ uint32\_t\ last\_event\_time;}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{comment}{/*\ An\ optional\ trigger\ that\ isn't\ based\ on\ the\ frequency\ and\ is\ used\ for\ one-\/time\ events\ */}}
+\DoxyCodeLine{00046\ \ \ \ \ uint8\_t\ one\_time\_trigger;}
+\DoxyCodeLine{00047\ \}\ \mbox{\hyperlink{structsensor__scheduling__cfg__t}{sensor\_scheduling\_cfg\_t}};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00055\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sensor__scheduling_8h_a0479dc2a37c37e7de3ee1a39e2b21f6a}{sensor\_scheduling\_init}}(\textcolor{keyword}{const}\ \textcolor{keyword}{struct}\ device\ *timer);}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00063\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sensor__scheduling_8h_af48c3df12ad78e292fca76c42f5d8867}{sensor\_scheduling\_add\_schedule}}(\mbox{\hyperlink{structsensor__scheduling__cfg__t}{sensor\_scheduling\_cfg\_t}}\ *schedule);}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00071\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sensor__scheduling_8h_afb35f4e7bf63407fdae2cbb93df1fdd8}{sensor\_scheduling\_remove\_schedule}}(\mbox{\hyperlink{structsensor__scheduling__cfg__t}{sensor\_scheduling\_cfg\_t}}\ *schedule);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00080\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sensor__scheduling_8h_add23052115ae68e70416f069689af136}{sensor\_scheduling\_reset\_schedule}}(\mbox{\hyperlink{structsensor__scheduling__cfg__t}{sensor\_scheduling\_cfg\_t}}\ *schedule);}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00087\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sensor__scheduling_8h_a7369b55b27b226cb4a1c106d73ed2eb5}{sensor\_scheduling\_get\_seconds}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

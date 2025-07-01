@@ -21,13 +21,20 @@
 #define SENSOR_VOLTAGE_NAME_LENGTH      20
 #define SENSOR_TYPE_NAME_LENGTH         20
 
-// In sensor_app.h
+/**
+ * @brief Enum for the sensor app state.
+ * This is used to track the state of the sensor app.
+ */
 enum sensor_app_state{
     SENSOR_APP_STATE_CONFIGURATION,    // Device is in configuration mode (BLE active, waiting for setup)
     SENSOR_APP_STATE_RUNNING,         // Device is actively reading sensors and transmitting
     SENSOR_APP_STATE_ERROR,           // Error state
 };
 
+/**
+ * @brief Enum for the NVS addresses for the sensor app.
+ * This is used to store the sensor app configuration in NVS.
+ */
 enum sensor_nvs_address {
     SENSOR_NVS_ADDRESS_DEVICE_NAME,
     SENSOR_NVS_ADDRESS_APP_STATE,
@@ -50,6 +57,10 @@ enum sensor_nvs_address {
 	SENSOR_NVS_ADDRESS_LIMIT,
 };
 
+/**
+ * @brief Structure for the sensor app configuration.
+ * This is used to store the sensor configuration and state.
+ */
 typedef struct {
     /* Current state of the app */
     enum sensor_app_state state;

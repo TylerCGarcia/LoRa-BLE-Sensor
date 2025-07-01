@@ -15,8 +15,10 @@
 #include <stdint.h>
 #include <zephyr/bluetooth/bluetooth.h>
 
-
-/* Structure to hold the BLE setup. */
+/**
+ * @brief Structure for the BLE configuration.
+ * This is used to store the BLE advertisement parameters.
+ */
 typedef struct {
     /* Advertising interval min in milliseconds. */
     uint32_t adv_interval_min_ms;
@@ -26,7 +28,10 @@ typedef struct {
     char adv_name[32];
 } ble_config_t;
 
-/* Structure to hold the advertising intervals using zephyr codes(not milliseconds). */
+/**
+ * @brief Structure for the BLE advertising intervals.
+ * This is used to store the BLE advertising intervals using zephyr codes(not milliseconds).
+ */
 typedef struct {
     /* Advertising interval min in zephyr codes(not milliseconds). */
     uint32_t min;

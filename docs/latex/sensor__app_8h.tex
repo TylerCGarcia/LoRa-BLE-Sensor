@@ -7,16 +7,14 @@ A library to manage sensor applications. Working between power configurations, d
 
 {\ttfamily \#include "{}sensor\+\_\+id.\+h"{}}\newline
 {\ttfamily \#include $<$stdint.\+h$>$}\newline
-Include dependency graph for sensor\+\_\+app.\+h\+:
-\nopagebreak
+Include dependency graph for sensor\+\_\+app.\+h\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=224pt]{sensor__app_8h__incl}
 \end{center}
 \end{figure}
-This graph shows which files directly or indirectly include this file\+:
-\nopagebreak
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -27,7 +25,7 @@ This graph shows which files directly or indirectly include this file\+:
 \begin{DoxyCompactItemize}
 \item 
 struct \mbox{\hyperlink{structsensor__app__config__t}{sensor\+\_\+app\+\_\+config\+\_\+t}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Structure for the sensor app configuration. This is used to store the sensor configuration and state. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
@@ -41,13 +39,13 @@ struct \mbox{\hyperlink{structsensor__app__config__t}{sensor\+\_\+app\+\_\+confi
 \begin{DoxyCompactItemize}
 \item 
 \Hypertarget{sensor__app_8h_a3ded0fb95123f62995b82d8ccfe33a43}\label{sensor__app_8h_a3ded0fb95123f62995b82d8ccfe33a43} 
-enum {\bfseries sensor\+\_\+app\+\_\+state} \{ {\bfseries SENSOR\+\_\+\+APP\+\_\+\+STATE\+\_\+\+CONFIGURATION}
+enum \mbox{\hyperlink{sensor__app_8h_a3ded0fb95123f62995b82d8ccfe33a43}{sensor\+\_\+app\+\_\+state}} \{ {\bfseries SENSOR\+\_\+\+APP\+\_\+\+STATE\+\_\+\+CONFIGURATION}
 , {\bfseries SENSOR\+\_\+\+APP\+\_\+\+STATE\+\_\+\+RUNNING}
 , {\bfseries SENSOR\+\_\+\+APP\+\_\+\+STATE\+\_\+\+ERROR}
  \}
-\item 
+\begin{DoxyCompactList}\small\item\em Enum for the sensor app state. This is used to track the state of the sensor app. \end{DoxyCompactList}\item 
 \Hypertarget{sensor__app_8h_af1804e81186cc74c046575e0c164375a}\label{sensor__app_8h_af1804e81186cc74c046575e0c164375a} 
-enum {\bfseries sensor\+\_\+nvs\+\_\+address} \{ \newline
+enum \mbox{\hyperlink{sensor__app_8h_af1804e81186cc74c046575e0c164375a}{sensor\+\_\+nvs\+\_\+address}} \{ \newline
 {\bfseries SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+DEVICE\+\_\+\+NAME}
 , {\bfseries SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+APP\+\_\+\+STATE}
 , {\bfseries SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+LORAWAN\+\_\+\+ENABLED}
@@ -72,7 +70,7 @@ enum {\bfseries sensor\+\_\+nvs\+\_\+address} \{ \newline
 , {\bfseries SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+SENSOR\+\_\+2\+\_\+\+FREQUENCY}
 , {\bfseries SENSOR\+\_\+\+NVS\+\_\+\+ADDRESS\+\_\+\+LIMIT}
  \}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Enum for the NVS addresses for the sensor app. This is used to store the sensor app configuration in NVS. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 

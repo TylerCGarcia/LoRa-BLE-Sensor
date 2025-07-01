@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">LoRa-BLE-Sensor<span id="projectnumber">&#160;1.0.0</span>
+   <div id="projectname">LoRa-BLE-Sensor<span id="projectnumber">&#160;0.4.1-5-gfba7e49</span>
    </div>
   </td>
  </tr>
@@ -86,11 +86,20 @@ Code Breakdown</h1>
 <p><b><a class="el" href="main_8c.html" title="This is the main file for the LoRa-BLE-Sensor project. It initializes the sensor app and starts the B...">main.c</a></b></p><ul>
 <li>Calls functions in <b>sensor_app</b> library<ul>
 <li>Initializes the bluetooth thread</li>
-<li>Switches between states for the sensor(configuration, running, error) <b><a class="el" href="sensor__app_8c.html" title="A library to manage sensor applications. Working between power configurations, data configurations,...">sensor_app.c</a></b></li>
+<li>Switches between states for the sensor(configuration, running, error)</li>
 </ul>
 </li>
+</ul>
+<p><b><a class="el" href="sensor__app_8c.html" title="A library to manage sensor applications. Working between power configurations, data configurations,...">sensor_app.c</a></b></p><ul>
 <li>Calls functions in <b>sensor_nvs</b>, <b>sensor_scheduling</b>, <b>sensor_lorawan</b> and <b>sensor_data</b>.</li>
 <li>Controles the high level functionality of the project.</li>
+</ul>
+<p><b><a class="el" href="sensor__data_8c.html" title="This is a library to keep track of sensor data, using the sensor_reading library to collect data from...">sensor_data.c</a></b></p><ul>
+<li>Calls functions in <b>sensor_reading</b> and <b>sensor_power</b>.</li>
+<li>Manages power control in relation to sensor readings.<ul>
+<li>Manages the data buffers from sensor readings</li>
+</ul>
+</li>
 </ul>
 <h1><a class="anchor" id="autotoc_md4"></a>
 Power Analysis</h1>

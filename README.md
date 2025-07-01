@@ -20,9 +20,15 @@ This will initialize the python environment(.venv), initialize west(.west), and 
 - Calls functions in **sensor_app** library
   * Initializes the bluetooth thread
   * Switches between states for the sensor(configuration, running, error)
+
 **sensor_app.c** 
 - Calls functions in **sensor_nvs**, **sensor_scheduling**, **sensor_lorawan** and **sensor_data**.
 - Controles the high level functionality of the project.
+
+**sensor_data.c** 
+- Calls functions in **sensor_reading** and **sensor_power**.
+- Manages power control in relation to sensor readings.
+  * Manages the data buffers from sensor readings
 
 # Power Analysis
 - No power analysis is done yet

@@ -19,10 +19,23 @@ This will initialize the python environment(.venv), initialize west(.west), and 
 \item Calls functions in {\bfseries{sensor\+\_\+app}} library
 \begin{DoxyItemize}
 \item Initializes the bluetooth thread
-\item Switches between states for the sensor(configuration, running, error) {\bfseries{\doxylink{sensor__app_8c}{sensor\+\_\+app.\+c}}}
+\item Switches between states for the sensor(configuration, running, error)
 \end{DoxyItemize}
+\end{DoxyItemize}
+
+{\bfseries{\doxylink{sensor__app_8c}{sensor\+\_\+app.\+c}}}
+\begin{DoxyItemize}
 \item Calls functions in {\bfseries{sensor\+\_\+nvs}}, {\bfseries{sensor\+\_\+scheduling}}, {\bfseries{sensor\+\_\+lorawan}} and {\bfseries{sensor\+\_\+data}}.
 \item Controles the high level functionality of the project.
+\end{DoxyItemize}
+
+{\bfseries{\doxylink{sensor__data_8c}{sensor\+\_\+data.\+c}}}
+\begin{DoxyItemize}
+\item Calls functions in {\bfseries{sensor\+\_\+reading}} and {\bfseries{sensor\+\_\+power}}.
+\item Manages power control in relation to sensor readings.
+\begin{DoxyItemize}
+\item Manages the data buffers from sensor readings
+\end{DoxyItemize}
 \end{DoxyItemize}\hypertarget{index_autotoc_md4}{}\doxysection{\texorpdfstring{Power Analysis}{Power Analysis}}\label{index_autotoc_md4}
 
 \begin{DoxyItemize}

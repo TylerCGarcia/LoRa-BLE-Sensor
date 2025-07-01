@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">LoRa-BLE-Sensor<span id="projectnumber">&#160;1.0.0</span>
+   <div id="projectname">LoRa-BLE-Sensor<span id="projectnumber">&#160;0.4.1-5-gfba7e49</span>
    </div>
   </td>
  </tr>
@@ -90,45 +90,56 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;zephyr/drivers/sensor.h&gt;</span></div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
-<div class="foldopen" id="foldopen00020" data-start="{" data-end="};">
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="structpmic__sensor__status__t.html">   20</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keywordtype">float</span> percentage;</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keywordtype">float</span> voltage;</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keywordtype">float</span> current;</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keywordtype">float</span> temp;</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    uint32_t chg_status;</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    uint32_t chg_error;</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordtype">bool</span> vbus_present;</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>} <a class="code hl_struct" href="structpmic__sensor__status__t.html">pmic_sensor_status_t</a>;</div>
-</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
-<div class="foldopen" id="foldopen00033" data-start="{" data-end="};">
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="structsensor__pmic__ops__t.html">   33</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    bool (*device_is_ready)(<span class="keyword">const</span> <span class="keyword">struct </span>device *dev);</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    int (*led_on)(<span class="keyword">const</span> <span class="keyword">struct </span>device *dev, uint32_t led);</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    int (*led_off)(<span class="keyword">const</span> <span class="keyword">struct </span>device *dev, uint32_t led);</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    int (*sensor_status_get)(<span class="keyword">const</span> <span class="keyword">struct </span>device *dev, <a class="code hl_struct" href="structpmic__sensor__status__t.html">pmic_sensor_status_t</a> *status);</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>} <a class="code hl_struct" href="structsensor__pmic__ops__t.html">sensor_pmic_ops_t</a>;</div>
+<div class="foldopen" id="foldopen00023" data-start="{" data-end="};">
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="structpmic__sensor__status__t.html">   23</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="comment">/* Battery percentage */</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordtype">float</span> percentage;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="comment">/* Battery voltage */</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordtype">float</span> voltage;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="comment">/* Battery current */</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordtype">float</span> current;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="comment">/* Battery temperature */</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keywordtype">float</span> temp;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="comment">/* Charger status */</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    uint32_t chg_status;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="comment">/* Charger error */</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    uint32_t chg_error;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="comment">/* VBUS present */</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordtype">bool</span> vbus_present;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>} <a class="code hl_struct" href="structpmic__sensor__status__t.html">pmic_sensor_status_t</a>;</div>
 </div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="keywordtype">int</span> <a class="code hl_function" href="sensor__pmic_8h.html#ab10476450c5262c31c13e37c4ede71d1">sensor_pmic_init_with_ops</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structsensor__pmic__ops__t.html">sensor_pmic_ops_t</a> *ops);</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="keywordtype">int</span> <a class="code hl_function" href="sensor__pmic_8h.html#abec5f29250d8b6eb68f24443e73d499c">sensor_pmic_init</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="keywordtype">int</span> <a class="code hl_function" href="sensor__pmic_8h.html#ab9df9aeae0e58e6a84ef355b344b67bc">sensor_pmic_led_on</a>(<span class="keywordtype">void</span>);</div>
+<div class="foldopen" id="foldopen00043" data-start="{" data-end="};">
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="structsensor__pmic__ops__t.html">   43</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="comment">/* Function pointer to check if the PMIC device is ready */</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    bool (*device_is_ready)(<span class="keyword">const</span> <span class="keyword">struct </span>device *dev);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="comment">/* Function pointer to turn on the LED */</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    int (*led_on)(<span class="keyword">const</span> <span class="keyword">struct </span>device *dev, uint32_t led);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="comment">/* Function pointer to turn off the LED */</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    int (*led_off)(<span class="keyword">const</span> <span class="keyword">struct </span>device *dev, uint32_t led);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="comment">/* Function pointer to get the status of the PMIC sensors */</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    int (*sensor_status_get)(<span class="keyword">const</span> <span class="keyword">struct </span>device *dev, <a class="code hl_struct" href="structpmic__sensor__status__t.html">pmic_sensor_status_t</a> *status);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>} <a class="code hl_struct" href="structsensor__pmic__ops__t.html">sensor_pmic_ops_t</a>;</div>
+</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="keywordtype">int</span> <a class="code hl_function" href="sensor__pmic_8h.html#ab10476450c5262c31c13e37c4ede71d1">sensor_pmic_init_with_ops</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structsensor__pmic__ops__t.html">sensor_pmic_ops_t</a> *ops);</div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="keywordtype">int</span> <a class="code hl_function" href="sensor__pmic_8h.html#a6f1bb0a59bede6a789b304756c8d6a09">sensor_pmic_led_off</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="keywordtype">int</span> <a class="code hl_function" href="sensor__pmic_8h.html#abec5f29250d8b6eb68f24443e73d499c">sensor_pmic_init</a>(<span class="keywordtype">void</span>);</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="keywordtype">int</span> <a class="code hl_function" href="sensor__pmic_8h.html#a3188b4c1fb883790f628bf86874728e8">sensor_pmic_status_get</a>(<a class="code hl_struct" href="structpmic__sensor__status__t.html">pmic_sensor_status_t</a> *status);</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="keywordtype">int</span> <a class="code hl_function" href="sensor__pmic_8h.html#ab9df9aeae0e58e6a84ef355b344b67bc">sensor_pmic_led_on</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="keywordtype">int</span> <a class="code hl_function" href="sensor__pmic_8h.html#a6f1bb0a59bede6a789b304756c8d6a09">sensor_pmic_led_off</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="keywordtype">int</span> <a class="code hl_function" href="sensor__pmic_8h.html#a3188b4c1fb883790f628bf86874728e8">sensor_pmic_status_get</a>(<a class="code hl_struct" href="structpmic__sensor__status__t.html">pmic_sensor_status_t</a> *status);</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="asensor__pmic_8h_html_a3188b4c1fb883790f628bf86874728e8"><div class="ttname"><a href="sensor__pmic_8h.html#a3188b4c1fb883790f628bf86874728e8">sensor_pmic_status_get</a></div><div class="ttdeci">int sensor_pmic_status_get(pmic_sensor_status_t *status)</div><div class="ttdoc">Get the status of the PMIC sensors.</div><div class="ttdef"><b>Definition</b> sensor_pmic.c:115</div></div>
 <div class="ttc" id="asensor__pmic_8h_html_a6f1bb0a59bede6a789b304756c8d6a09"><div class="ttname"><a href="sensor__pmic_8h.html#a6f1bb0a59bede6a789b304756c8d6a09">sensor_pmic_led_off</a></div><div class="ttdeci">int sensor_pmic_led_off(void)</div><div class="ttdoc">Turn off the LED.</div><div class="ttdef"><b>Definition</b> sensor_pmic.c:78</div></div>
 <div class="ttc" id="asensor__pmic_8h_html_ab10476450c5262c31c13e37c4ede71d1"><div class="ttname"><a href="sensor__pmic_8h.html#ab10476450c5262c31c13e37c4ede71d1">sensor_pmic_init_with_ops</a></div><div class="ttdeci">int sensor_pmic_init_with_ops(const sensor_pmic_ops_t *ops)</div><div class="ttdoc">Initialize the PMIC with custom operations.</div><div class="ttdef"><b>Definition</b> sensor_pmic.c:41</div></div>
 <div class="ttc" id="asensor__pmic_8h_html_ab9df9aeae0e58e6a84ef355b344b67bc"><div class="ttname"><a href="sensor__pmic_8h.html#ab9df9aeae0e58e6a84ef355b344b67bc">sensor_pmic_led_on</a></div><div class="ttdeci">int sensor_pmic_led_on(void)</div><div class="ttdoc">Turn on the LED.</div><div class="ttdef"><b>Definition</b> sensor_pmic.c:73</div></div>
 <div class="ttc" id="asensor__pmic_8h_html_abec5f29250d8b6eb68f24443e73d499c"><div class="ttname"><a href="sensor__pmic_8h.html#abec5f29250d8b6eb68f24443e73d499c">sensor_pmic_init</a></div><div class="ttdeci">int sensor_pmic_init(void)</div><div class="ttdoc">Initialize the PMIC, with default operations.</div><div class="ttdef"><b>Definition</b> sensor_pmic.c:68</div></div>
-<div class="ttc" id="astructpmic__sensor__status__t_html"><div class="ttname"><a href="structpmic__sensor__status__t.html">pmic_sensor_status_t</a></div><div class="ttdef"><b>Definition</b> sensor_pmic.h:20</div></div>
-<div class="ttc" id="astructsensor__pmic__ops__t_html"><div class="ttname"><a href="structsensor__pmic__ops__t.html">sensor_pmic_ops_t</a></div><div class="ttdoc">Structure containing function pointers for PMIC operations.</div><div class="ttdef"><b>Definition</b> sensor_pmic.h:33</div></div>
+<div class="ttc" id="astructpmic__sensor__status__t_html"><div class="ttname"><a href="structpmic__sensor__status__t.html">pmic_sensor_status_t</a></div><div class="ttdoc">Structure for the PMIC sensor status.</div><div class="ttdef"><b>Definition</b> sensor_pmic.h:23</div></div>
+<div class="ttc" id="astructsensor__pmic__ops__t_html"><div class="ttname"><a href="structsensor__pmic__ops__t.html">sensor_pmic_ops_t</a></div><div class="ttdoc">Structure containing function pointers for PMIC operations.</div><div class="ttdef"><b>Definition</b> sensor_pmic.h:43</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

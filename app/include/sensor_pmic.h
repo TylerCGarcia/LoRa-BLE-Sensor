@@ -17,13 +17,23 @@
 #include <stdint.h>
 #include <zephyr/drivers/sensor.h>
 
+/**
+ * @brief Structure for the PMIC sensor status.
+ */
 typedef struct {
+    /* Battery percentage */
     float percentage;
+    /* Battery voltage */
     float voltage;
+    /* Battery current */
     float current;
+    /* Battery temperature */
     float temp;
+    /* Charger status */
     uint32_t chg_status;
+    /* Charger error */
     uint32_t chg_error;
+    /* VBUS present */
     bool vbus_present;
 } pmic_sensor_status_t;
 
@@ -31,9 +41,13 @@ typedef struct {
  * @brief Structure containing function pointers for PMIC operations
  */
 typedef struct {
+    /* Function pointer to check if the PMIC device is ready */
     bool (*device_is_ready)(const struct device *dev);
+    /* Function pointer to turn on the LED */
     int (*led_on)(const struct device *dev, uint32_t led);
+    /* Function pointer to turn off the LED */
     int (*led_off)(const struct device *dev, uint32_t led);
+    /* Function pointer to get the status of the PMIC sensors */
     int (*sensor_status_get)(const struct device *dev, pmic_sensor_status_t *status);
 } sensor_pmic_ops_t;
 

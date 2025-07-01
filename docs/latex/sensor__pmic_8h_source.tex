@@ -11,33 +11,44 @@
 \DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
 \DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <zephyr/drivers/sensor.h>}}
 \DoxyCodeLine{00019\ }
-\DoxyCodeLine{00020\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
-\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{float}\ percentage;}
-\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{float}\ voltage;}
-\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{float}\ current;}
-\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{float}\ temp;}
-\DoxyCodeLine{00025\ \ \ \ \ uint32\_t\ chg\_status;}
-\DoxyCodeLine{00026\ \ \ \ \ uint32\_t\ chg\_error;}
-\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{bool}\ vbus\_present;}
-\DoxyCodeLine{00028\ \}\ \mbox{\hyperlink{structpmic__sensor__status__t}{pmic\_sensor\_status\_t}};}
-\DoxyCodeLine{00029\ }
-\DoxyCodeLine{00033\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
-\DoxyCodeLine{00034\ \ \ \ \ bool\ (*device\_is\_ready)(\textcolor{keyword}{const}\ \textcolor{keyword}{struct\ }device\ *dev);}
-\DoxyCodeLine{00035\ \ \ \ \ int\ (*led\_on)(\textcolor{keyword}{const}\ \textcolor{keyword}{struct\ }device\ *dev,\ uint32\_t\ led);}
-\DoxyCodeLine{00036\ \ \ \ \ int\ (*led\_off)(\textcolor{keyword}{const}\ \textcolor{keyword}{struct\ }device\ *dev,\ uint32\_t\ led);}
-\DoxyCodeLine{00037\ \ \ \ \ int\ (*sensor\_status\_get)(\textcolor{keyword}{const}\ \textcolor{keyword}{struct\ }device\ *dev,\ \mbox{\hyperlink{structpmic__sensor__status__t}{pmic\_sensor\_status\_t}}\ *status);}
-\DoxyCodeLine{00038\ \}\ \mbox{\hyperlink{structsensor__pmic__ops__t}{sensor\_pmic\_ops\_t}};}
+\DoxyCodeLine{00023\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{comment}{/*\ Battery\ percentage\ */}}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{float}\ percentage;}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{comment}{/*\ Battery\ voltage\ */}}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{float}\ voltage;}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{comment}{/*\ Battery\ current\ */}}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{float}\ current;}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{comment}{/*\ Battery\ temperature\ */}}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{float}\ temp;}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{comment}{/*\ Charger\ status\ */}}
+\DoxyCodeLine{00033\ \ \ \ \ uint32\_t\ chg\_status;}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{comment}{/*\ Charger\ error\ */}}
+\DoxyCodeLine{00035\ \ \ \ \ uint32\_t\ chg\_error;}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{comment}{/*\ VBUS\ present\ */}}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{bool}\ vbus\_present;}
+\DoxyCodeLine{00038\ \}\ \mbox{\hyperlink{structpmic__sensor__status__t}{pmic\_sensor\_status\_t}};}
 \DoxyCodeLine{00039\ }
-\DoxyCodeLine{00046\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sensor__pmic_8h_ab10476450c5262c31c13e37c4ede71d1}{sensor\_pmic\_init\_with\_ops}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structsensor__pmic__ops__t}{sensor\_pmic\_ops\_t}}\ *ops);}
-\DoxyCodeLine{00047\ }
-\DoxyCodeLine{00053\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sensor__pmic_8h_abec5f29250d8b6eb68f24443e73d499c}{sensor\_pmic\_init}}(\textcolor{keywordtype}{void});}
-\DoxyCodeLine{00054\ }
-\DoxyCodeLine{00060\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sensor__pmic_8h_ab9df9aeae0e58e6a84ef355b344b67bc}{sensor\_pmic\_led\_on}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00043\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{comment}{/*\ Function\ pointer\ to\ check\ if\ the\ PMIC\ device\ is\ ready\ */}}
+\DoxyCodeLine{00045\ \ \ \ \ bool\ (*device\_is\_ready)(\textcolor{keyword}{const}\ \textcolor{keyword}{struct\ }device\ *dev);}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{comment}{/*\ Function\ pointer\ to\ turn\ on\ the\ LED\ */}}
+\DoxyCodeLine{00047\ \ \ \ \ int\ (*led\_on)(\textcolor{keyword}{const}\ \textcolor{keyword}{struct\ }device\ *dev,\ uint32\_t\ led);}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{comment}{/*\ Function\ pointer\ to\ turn\ off\ the\ LED\ */}}
+\DoxyCodeLine{00049\ \ \ \ \ int\ (*led\_off)(\textcolor{keyword}{const}\ \textcolor{keyword}{struct\ }device\ *dev,\ uint32\_t\ led);}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{comment}{/*\ Function\ pointer\ to\ get\ the\ status\ of\ the\ PMIC\ sensors\ */}}
+\DoxyCodeLine{00051\ \ \ \ \ int\ (*sensor\_status\_get)(\textcolor{keyword}{const}\ \textcolor{keyword}{struct\ }device\ *dev,\ \mbox{\hyperlink{structpmic__sensor__status__t}{pmic\_sensor\_status\_t}}\ *status);}
+\DoxyCodeLine{00052\ \}\ \mbox{\hyperlink{structsensor__pmic__ops__t}{sensor\_pmic\_ops\_t}};}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00060\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sensor__pmic_8h_ab10476450c5262c31c13e37c4ede71d1}{sensor\_pmic\_init\_with\_ops}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structsensor__pmic__ops__t}{sensor\_pmic\_ops\_t}}\ *ops);}
 \DoxyCodeLine{00061\ }
-\DoxyCodeLine{00067\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sensor__pmic_8h_a6f1bb0a59bede6a789b304756c8d6a09}{sensor\_pmic\_led\_off}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00067\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sensor__pmic_8h_abec5f29250d8b6eb68f24443e73d499c}{sensor\_pmic\_init}}(\textcolor{keywordtype}{void});}
 \DoxyCodeLine{00068\ }
-\DoxyCodeLine{00075\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sensor__pmic_8h_a3188b4c1fb883790f628bf86874728e8}{sensor\_pmic\_status\_get}}(\mbox{\hyperlink{structpmic__sensor__status__t}{pmic\_sensor\_status\_t}}\ *status);}
-\DoxyCodeLine{00076\ }
-\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00074\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sensor__pmic_8h_ab9df9aeae0e58e6a84ef355b344b67bc}{sensor\_pmic\_led\_on}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00081\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sensor__pmic_8h_a6f1bb0a59bede6a789b304756c8d6a09}{sensor\_pmic\_led\_off}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00089\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sensor__pmic_8h_a3188b4c1fb883790f628bf86874728e8}{sensor\_pmic\_status\_get}}(\mbox{\hyperlink{structpmic__sensor__status__t}{pmic\_sensor\_status\_t}}\ *status);}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

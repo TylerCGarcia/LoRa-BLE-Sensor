@@ -33,6 +33,10 @@ enum sensor_data_type {
     DATA_TYPE_LIMIT
 };
 
+/**
+ * @brief Structure for the sensor data.
+ * This is used to store the sensor data and timestamp for each sensor.
+ */
 typedef struct {
     /* Sensor id to use for the sensor. */
     enum sensor_id id;

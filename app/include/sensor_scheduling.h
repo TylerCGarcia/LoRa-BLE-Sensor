@@ -17,6 +17,10 @@
 #include <zephyr/kernel.h>
 #include <zephyr/device.h>
 
+/**
+ * @brief Enum for the sensor scheduling id.
+ * This is used to identify the sensor or radio to schedule.
+ */
 enum sensor_scheduling_id{
     SENSOR_SCHEDULING_ID_SENSOR1,
     SENSOR_SCHEDULING_ID_SENSOR2,
@@ -24,7 +28,9 @@ enum sensor_scheduling_id{
     SENSOR_SCHEDULING_ID_LIMIT,
 };
 
-/* The configuration for a schedule */
+/**
+ * @brief Structure for the sensor scheduling configuration, each sensor and radio will have a schedule.
+ */
 typedef struct {
     /* The id of the component to schedule */
     enum sensor_scheduling_id id;
