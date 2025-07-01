@@ -22,3 +22,6 @@ deps/
 .vscode/
 # remove all testing apps
 app_*/
+#documentation
+docs/html/
+docs/latex/
