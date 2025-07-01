@@ -22,7 +22,7 @@ jobs:
         run: |
           PROJECT_NUMBER=$(git describe --tags) doxygen docs/Doxyfile
           mkdir docs/deploy
-          mv docs/html docs/deploy/doxygen
+          mv docs/html docs/deploy
 
       - name: Setup pages
         if: github.event_name != 'pull_request'
