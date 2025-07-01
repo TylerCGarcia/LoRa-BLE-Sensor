@@ -1,0 +1,52 @@
+name: Documentation
+
+on: [push, pull_request]
+
+env:
+  DOXYGEN_VERSION: 1.9.8
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          wget --no-verbose "https://github.com/doxygen/doxygen/releases/download/Release_${DOXYGEN_VERSION//./_}/doxygen-${DOXYGEN_VERSION}.linux.bin.tar.gz"
+          tar xf doxygen-${DOXYGEN_VERSION}.linux.bin.tar.gz
+          echo "${PWD}/doxygen-${DOXYGEN_VERSION}/bin" >> $GITHUB_PATH
+
+      - name: Build
+        run: |
+          PROJECT_NUMBER=$(git describe --tags) doxygen docs/Doxyfile
+          mkdir docs/deploy
+          mv docs/html docs/deploy/doxygen
+
+      - name: Setup pages
+        if: github.event_name != 'pull_request'
+        uses: actions/configure-pages@v4
+
+      - name: Upload pages artifact
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/deploy
+
+      - name: Upload artifacts
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          path: docs/deploy
+
+  deploy:
+    runs-on: ubuntu-22.04
+    needs: build
+    if: github.event_name != 'pull_request'
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4

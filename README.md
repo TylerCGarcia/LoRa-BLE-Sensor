@@ -30,6 +30,14 @@ This will initialize the python environment(.venv), initialize west(.west), and 
 - Manages power control in relation to sensor readings.
   * Manages the data buffers from sensor readings
 
+**sensor_reading.c** 
+- Low level functionality for reading from sensors.
+- Can be used with a variable number of sensors.
+
+**sensor_power.c** 
+- Low level functionality for controlling power outputs to sensors.
+- Manages regulators onboard regulators.
+
 # Power Analysis
 - No power analysis is done yet
 
