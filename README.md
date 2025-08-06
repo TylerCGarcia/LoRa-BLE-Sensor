@@ -91,9 +91,12 @@ This will initialize the python environment(.venv), initialize west(.west), and 
 - Error handling when state given is out of bounds
 
 # Revision History
-Current Version: **V0.4.1**
+Current Version: **V0.4.2**
 
 Version Breakdown: `[Major API Change]`.`[Minor Change/Added Functionality]`.`[Patch/bug fixes]`
+
+### V0.4.2
+- Average voltage reading over 100 values
 
 ### V0.4.1
 - Switched SDK to nRF Connect SDK V3.0.2
