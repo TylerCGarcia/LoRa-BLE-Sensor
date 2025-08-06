@@ -272,18 +272,54 @@ static int add_sensor_configuration_to_lorawan_payload(void)
     return 0;
 }
 
+static int add_latest_sensor_data_to_lorawan_payload(sensor_data_t *sensor_data)
+{
+    int ret;
+    uint8_t i = lorawan_data.length;
+    
+    // Check if we have latest data
+    if (sensor_data->latest_data == NULL) {
+        LOG_ERR("No latest data available for sensor");
+        return -1;
+    }
+    
+    // Convert float to 4 bytes using union for type punning
+    union {
+        float f;
+        uint8_t bytes[4];
+    } float_to_bytes;
+    
+    // Copy the float value from latest_data
+    memcpy(&float_to_bytes.f, sensor_data->latest_data, sizeof(float));
+    
+    // Add the 4 bytes to the LoRaWAN payload (big-endian format)
+    lorawan_data.data[i++] = float_to_bytes.bytes[3];  // Most significant byte
+    lorawan_data.data[i++] = float_to_bytes.bytes[2];
+    lorawan_data.data[i++] = float_to_bytes.bytes[1];
+    lorawan_data.data[i++] = float_to_bytes.bytes[0];  // Least significant byte
+    
+    // Update the payload length
+    lorawan_data.length = i;
+    
+    LOG_DBG("Added latest sensor data (float: %f) as 4 bytes to LoRaWAN payload", float_to_bytes.f);
+    
+    return 0;
+}
+
 static int format_and_send_lorawan_payload(void)
 {
     int ret;
-    add_sensor_configuration_to_lorawan_payload();
+    // add_sensor_configuration_to_lorawan_payload();
     /* Add the sensor data to the LoRaWAN payload. */
     if(sensor_app_config->is_sensor_1_enabled)
     {
-        add_sensor_data_to_lorawan_payload(&sensor1_data);
+        // add_sensor_data_to_lorawan_payload(&sensor1_data);
+        add_latest_sensor_data_to_lorawan_payload(&sensor1_data);
     }
     if(sensor_app_config->is_sensor_2_enabled)
     {
-        add_sensor_data_to_lorawan_payload(&sensor2_data);
+        // add_sensor_data_to_lorawan_payload(&sensor2_data);
+        add_latest_sensor_data_to_lorawan_payload(&sensor2_data);
     }
     LOG_INF("Sending LoRaWAN payload with length %d", lorawan_data.length);
     lorawan_data.port = 2;
