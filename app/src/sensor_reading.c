@@ -172,8 +172,16 @@ float get_sensor_voltage_reading(sensor_reading_config_t *config)
     {
         return -1;
     }
-	int val_mv = (int)read_sensor_output_raw(&config->voltage_read);
-	int err = adc_raw_to_millivolts_dt(&config->voltage_read, &val_mv);
+    int sum = 0;
+    const int num_samples = 100;
+    for (int i = 0; i < num_samples; i++) {
+        sum += (int)read_sensor_output_raw(&config->voltage_read);
+        k_msleep(1);
+    }
+    int avg_raw = sum / num_samples;
+
+    int val_mv = avg_raw;
+    int err = adc_raw_to_millivolts_dt(&config->voltage_read, &val_mv);
     if(err < 0)
     {
         return err;

@@ -258,8 +258,8 @@ int sensor_data_print_data(sensor_data_t *sensor_data)
     uint32_t data_size = ring_buf_size_get(&sensor_data->data_ring_buf);
     uint32_t timestamp_size = ring_buf_size_get(&sensor_data->timestamp_ring_buf);
     
-    LOG_INF("Ring Buffer Data size: %d bytes", data_size);
-    LOG_INF("Ring Buffer Timestamp size: %d bytes", timestamp_size);
+    LOG_DBG("Ring Buffer Data size: %d bytes", data_size);
+    LOG_DBG("Ring Buffer Timestamp size: %d bytes", timestamp_size);
     
     // Calculate number of samples in the buffer
     size_t num_samples = data_size / sensor_data->data_size;
