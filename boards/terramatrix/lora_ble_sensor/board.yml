@@ -1,7 +1,7 @@
 board:
   name: lora_ble_sensor
   full_name: LoRa_BLE_Sensor
-  vendor: arm
+  vendor: terramatrix
   revision:
     format: major.minor.patch
     default: "1.1.0"

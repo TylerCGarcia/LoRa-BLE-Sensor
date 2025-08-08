@@ -12,7 +12,7 @@
 
 / {
 	model = "LoRa_BLE_Sensor with a Nordic NRF52840 SoC";
-	compatible = "arm,lora_ble_sensor";
+	compatible = "TerraMatrix,ble_lora_sensor";
 
 	chosen {
 		zephyr,console = &cdc_acm_uart0;

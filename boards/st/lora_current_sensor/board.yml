@@ -1,5 +1,0 @@
-board:
-  name: lora_current_sensor
-  vendor: st
-  socs:
-    - name: stm32wle5xx
